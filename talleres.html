@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talleres de Cocina — Clorofila Montevideo</title>
+  <meta name="description" content="Talleres intensivos de cocina basada en plantas en Parque Rodó, Montevideo. Fermentación, pan sin gluten, alfajores, tapeo.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://clorofila.uy/talleres">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://clorofila.uy/talleres">
+  <meta property="og:title"       content="Talleres de Cocina — Clorofila Montevideo">
+  <meta property="og:description" content="Encuentros intensivos de un día. Fermentación, pan sin gluten, alfajores plant-based y tapeo. Parque Rodó, Montevideo.">
+  <meta property="og:image"       content="https://clorofila.uy/img-tapeo.jpg">
+  <meta property="og:locale"      content="es_UY">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:image"      content="https://clorofila.uy/img-tapeo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="shared.css">
+
+  <style>
+    .hero-talleres { background: var(--verde-tinte); border-bottom: 1px solid var(--crema-osc); }
+    .hero-talleres-inner { max-width: var(--max); margin: 0 auto; padding: 5.5rem 2rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+    .hero-talleres h1 { font-size: clamp(3rem, 7vw, 5.5rem); letter-spacing: -.03em; margin-bottom: 0; }
+    .hero-talleres .lead { font-size: 1.05rem; color: var(--texto-med); max-width: 48ch; line-height: 1.75; margin-bottom: 1rem; }
+    .hero-talleres-stmt { font-family: var(--ff-d); font-style: italic; color: var(--verde-med); font-size: 1.05rem; }
+    @media (max-width: 700px) { .hero-talleres-inner { grid-template-columns: 1fr; gap: 1.5rem; padding: 4rem 2rem; } }
+    .hero-talleres h1 { margin-bottom: .75rem; }
+    .hero-talleres .lead { font-size: 1rem; color: var(--texto-med); max-width: 56ch; line-height: 1.75; }
+
+    .talleres-list { max-width: var(--max); margin: 0 auto; padding: 0 2rem 6rem; }
+    .taller {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 4.5rem 0;
+      border-bottom: 1px solid var(--crema-osc);
+    }
+    .taller:last-child { border-bottom: none; }
+    .taller:nth-child(even) .taller-img { order: -1; }
+    .taller-img { border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 4/3; box-shadow: var(--shadow); }
+    .taller-img img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.94); transition: filter .5s, transform .6s var(--ease-out); }
+    .taller:hover .taller-img img { filter: saturate(1.04); transform: scale(1.02); }
+    .taller-num { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--acento); margin-bottom: .5rem; }
+    .taller-icon { display: block; margin-bottom: .75rem; color: var(--acento); width: 40px; height: 40px; }
+    .taller-icon svg { width: 40px; height: 40px; display: block; }
+    .taller h2 { margin-bottom: 1rem; }
+    .taller-body { font-size: .93rem; color: var(--texto-med); margin-bottom: 1.5rem; line-height: 1.75; }
+    .taller-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+    .taller-tag { font-size: .73rem; font-weight: 500; padding: .28rem .72rem; border-radius: 20px; background: var(--verde-luz); color: var(--verde); }
+
+    .cta-curso-link { background: var(--verde-luz); padding: 4.5rem 2rem; text-align: center; }
+    .cta-curso-link h3 { margin-bottom: .75rem; }
+    .cta-curso-link p  { margin: 0 auto 2rem; color: var(--texto-med); font-size: .95rem; }
+
+    @media (max-width: 768px) {
+      .taller { grid-template-columns: 1fr; gap: 2rem; }
+      .taller:nth-child(even) .taller-img { order: 0; }
+    }
+  </style>
+  <!-- Google Analytics GA4 — reemplazar G-BBLJT4TYCV con tu Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BBLJT4TYCV');
+  </script>
+  <!-- Meta Pixel — reemplazar 2002873889966452 con tu Pixel ID -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','2002873889966452');
+    fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2002873889966452&ev=PageView&noscript=1"/></noscript>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Ir al contenido principal</a>
+
+<nav class="nav" aria-label="Principal">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>Clorofila</span><span>Estudio de Cocina</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li role="presentation" style="display:contents"><button type="button" class="nav-close" id="nav-close" aria-label="Cerrar menú">✕</button></li>
+      <li><a href="curso.html">El curso</a></li>
+      <li><a href="talleres.html" class="active" aria-current="page">Talleres</a></li>
+      <li><a href="recetas.html">Artículos</a></li>
+      <li><a href="leonardo.html">Leonardo</a></li>
+      <li><a href="servicios.html">Trabajemos juntos</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="nav-cta">Inscribirme →</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
+  </div>
+</nav>
+<main id="main-content">
+
+<div class="hero-talleres">
+  <div class="hero-talleres-inner">
+    <div class="fade-up">
+      <span class="section-label">Propuestas puntuales</span>
+      <h1>Talleres</h1>
+    </div>
+    <div class="fade-up" style="transition-delay:.08s">
+      <p class="lead">Encuentros intensivos de un día. Cada taller tiene una técnica central y un ritmo más relajado que el curso. Dejá tu interés y te avisamos cuando haya fecha.</p>
+      <p class="hero-talleres-stmt">Sin fecha fija — avisamos a quienes dejaron su interés con anticipación.</p>
+    </div>
+  </div>
+</div>
+
+<div class="talleres-list">
+
+  <div class="taller fade-up">
+    <div class="taller-content">
+      <p class="taller-num">Taller 01</p>
+      <span class="taller-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="12" y="7" width="12" height="3" rx="1.5"/><path d="M14 10h8v2H14z"/><path d="M11 12h14v12a3 3 0 0 1-3 3h-8a3 3 0 0 1-3-3V12z"/><line x1="11" y1="16" x2="25" y2="16"/><circle cx="15.5" cy="21" r="1.5" fill="currentColor" stroke="none"/><circle cx="21" cy="19" r="1" fill="currentColor" stroke="none"/></svg></span>
+      <h2>Fermentación de vegetales</h2>
+      <p class="taller-body">Fermentación láctica aplicada a la cocina cotidiana. Trabajamos chucrut, kimchi y encurtidos desde el proceso: qué pasa biológicamente, cómo controlarlo, cómo saber si está bien. Sin receta mágica — con comprensión real del mecanismo.</p>
+      <div class="taller-tags">
+        <span class="taller-tag">1 día intensivo</span>
+        <span class="taller-tag">Ingredientes incluidos</span>
+        <span class="taller-tag">Te llevás lo que elaborás</span>
+      </div>
+      <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20taller%20de%20Fermentaci%C3%B3n.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Avisame cuando haya fecha →</a>
+    </div>
+    <div class="taller-img reveal-img"><img src="img-bts.jpg" alt="Fermentación de vegetales" loading="lazy"></div>
+  </div>
+
+  <div class="taller fade-up">
+    <div class="taller-content">
+      <p class="taller-num">Taller 02</p>
+      <span class="taller-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21c0-5 2.5-9 10-9s10 4 10 9v4a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-4z"/><path d="M13 17.5c.5-2 2.5-3 4-2"/><path d="M18.5 16.5c.5-2 2.5-3 4-2"/></svg></span>
+      <h2>Pan sin gluten con masa madre</h2>
+      <p class="taller-body">El problema del pan sin gluten no es la harina — es entender la hidratación, la fermentación y la estructura. Trabajamos esas variables: por qué quedan apelmazados y cómo resolverlo. Con masa madre real, sin aditivos, con comprensión del proceso.</p>
+      <div class="taller-tags">
+        <span class="taller-tag">1 día intensivo</span>
+        <span class="taller-tag">Ingredientes incluidos</span>
+        <span class="taller-tag">Te llevás el pan</span>
+      </div>
+      <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20taller%20de%20Pan%20sin%20gluten.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Avisame cuando haya fecha →</a>
+    </div>
+    <div class="taller-img reveal-img"><img src="img-sandwich.jpg" alt="Pan sin gluten con masa madre" loading="lazy"></div>
+  </div>
+
+  <div class="taller fade-up">
+    <div class="taller-content">
+      <p class="taller-num">Taller 03</p>
+      <span class="taller-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 14c0 0 2-2 10-2s10 2 10 2"/><path d="M8 14v8c0 3 2 5 10 5s10-2 10-5v-8"/><path d="M13 19c0 2 2 3 5 3s5-1 5-3"/></svg></span>
+      <h2>Pastas sin gluten</h2>
+      <p class="taller-body">Masa, textura y cocción — no la harina. Trabajamos la hidratación, los almidones alternativos y la técnica de amasado para conseguir pastas sin gluten que realmente funcionan. Sin aditivos, con criterio sobre el proceso.</p>
+      <div class="taller-tags">
+        <span class="taller-tag">1 día intensivo</span>
+        <span class="taller-tag">Ingredientes incluidos</span>
+        <span class="taller-tag">Te llevás lo elaborado</span>
+      </div>
+      <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20taller%20de%20Pastas%20sin%20gluten.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Avisame cuando haya fecha →</a>
+    </div>
+    <div class="taller-img reveal-img"><img src="img-clase-masa.jpg" alt="Pastas sin gluten en Clorofila" loading="lazy"></div>
+  </div>
+
+  <div class="taller fade-up">
+    <div class="taller-content">
+      <p class="taller-num">Taller 04</p>
+      <span class="taller-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="18" r="11"/><circle cx="14" cy="15" r="1.5" fill="currentColor" stroke="none"/><circle cx="22.5" cy="14" r="1.2" fill="currentColor" stroke="none"/><circle cx="21.5" cy="22" r="1.5" fill="currentColor" stroke="none"/><circle cx="13.5" cy="22.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="18" cy="18.5" r="1" fill="currentColor" stroke="none"/></svg></span>
+      <h2>Alfajores plant-based</h2>
+      <p class="taller-body">Elaboraciones dulces sin lácteos ni huevos, con técnica pastelera real. No se trata de sustituir ingredientes uno a uno — se trata de entender qué función cumple cada componente y cómo reemplazarlo con criterio. Alfajores, ganache y rellenos sin compromiso de textura.</p>
+      <div class="taller-tags">
+        <span class="taller-tag">1 día intensivo</span>
+        <span class="taller-tag">Ingredientes incluidos</span>
+        <span class="taller-tag">Te llevás lo elaborado</span>
+      </div>
+      <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20taller%20de%20Alfajores.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Avisame cuando haya fecha →</a>
+    </div>
+    <div class="taller-img reveal-img"><img src="img-alfajores.jpg" alt="Alfajores plant-based" loading="lazy"></div>
+  </div>
+
+  <div class="taller fade-up">
+    <div class="taller-content">
+      <p class="taller-num">Taller 05</p>
+      <span class="taller-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="18" cy="20" rx="10" ry="6"/><path d="M8 20v4c0 3.3 4.5 6 10 6s10-2.7 10-6v-4"/><path d="M18 14c5.5 0 10 2.7 10 6"/><path d="M8 20c0-3.3 4.5-6 10-6"/><path d="M18 8c3 0 5 1.5 5 3.5S21 15 18 15s-5-1.5-5-3.5S15 8 18 8z"/></svg></span>
+      <h2>Quesos vegetales</h2>
+      <p class="taller-body">Fermentación, maduración y textura aplicadas a quesos de cajú y otras bases vegetales. Entendemos qué hace que un queso sea queso — acidez, proteína, grasa, tiempo — y replicamos ese proceso sin ingredientes de origen animal.</p>
+      <div class="taller-tags">
+        <span class="taller-tag">1 día intensivo</span>
+        <span class="taller-tag">Ingredientes incluidos</span>
+        <span class="taller-tag">Te llevás lo elaborado</span>
+      </div>
+      <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20taller%20de%20Quesos%20vegetales.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Avisame cuando haya fecha →</a>
+    </div>
+    <div class="taller-img reveal-img"><img src="img-cheesecake.jpg" alt="Quesos vegetales en Clorofila" loading="lazy"></div>
+  </div>
+
+  <div class="taller fade-up">
+    <div class="taller-content">
+      <p class="taller-num">Taller 06</p>
+      <span class="taller-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="21" cy="18" r="9"/><circle cx="21" cy="18" r="5.5"/><line x1="9.5" y1="8" x2="9.5" y2="28"/><path d="M7 8v5.5a2.5 2.5 0 0 0 5 0V8"/><line x1="7" y1="8" x2="7" y2="13.5"/><line x1="12" y1="8" x2="12" y2="13.5"/></svg></span>
+      <h2>Tapeo — cocinar y cenar</h2>
+      <p class="taller-body">Una experiencia distinta: cocinamos juntos y después nos sentamos a comer lo que elaboramos. Patés, encurtidos, pan, hummus, pequeños platos. Para quienes disfrutan tanto del proceso como de la mesa. Grupos muy pequeños, sin apuro.</p>
+      <div class="taller-tags">
+        <span class="taller-tag">Tarde y noche</span>
+        <span class="taller-tag">Todo incluido</span>
+        <span class="taller-tag">Grupos muy pequeños</span>
+      </div>
+      <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20Tapeo.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Avisame cuando haya fecha →</a>
+    </div>
+    <div class="taller-img reveal-img"><img src="img-tapeo.jpg" alt="Tapeo — cocinar y cenar" loading="lazy"></div>
+  </div>
+
+</div>
+
+<div class="cta-curso-link">
+  <span class="section-label">¿Buscás algo más profundo?</span>
+  <h3>El curso de tres meses va más adentro.</h3>
+  <p>Si querés construir criterio culinario real, el camino es el programa completo.</p>
+  <a href="curso.html" class="btn btn-primary">Ver el curso →</a>
+</div>
+
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo">Clorofila</span>
+      <p class="tagline">No enseñamos recetas. <br>Enseñamos a entender.</p>
+      <p class="sub">Maldonado 1976 esq. Blanes · Parque Rodó · Montevideo · Desde 2013</p>
+    </div>
+    <div><h5>Propuesta</h5><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="recetas.html">Artículos</a></li></ul></div>
+    <div><h5>Clorofila</h5><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
+    <div><h5>Contacto</h5><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 Clorofila Estudio de Cocina · Parque Rodó · Montevideo · Uruguay</div>
+</footer>
+
+<div class="sticky-cta" id="sticky-cta">
+  <a href="https://wa.me/59894064148?text=Hola%2C%20quiero%20info%20de%20los%20talleres%20de%20Clorofila." target="_blank" rel="noopener noreferrer" class="cta-main">Consultar disponibilidad →</a>
+  <a href="https://wa.me/59894064148" target="_blank" rel="noopener noreferrer" class="wa-btn">💬</a>
+</div>
+
+<script>
+  const _nbtn = document.getElementById('nav-hamburger');
+  const _nul  = document.getElementById('nav-links');
+  const _ncls = document.getElementById('nav-close');
+  function _openNav()  { _nul.classList.add('open');    _nbtn.setAttribute('aria-expanded','true'); document.body.classList.add('nav-open'); }
+  function _closeNav() { _nul.classList.remove('open'); _nbtn.setAttribute('aria-expanded','false'); document.body.classList.remove('nav-open'); }
+  _nbtn.addEventListener('click', _openNav);
+  _ncls.addEventListener('click', _closeNav);
+  document.addEventListener('keydown', e => { if(e.key==='Escape' && _nul.classList.contains('open')) _closeNav(); });
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
+  document.querySelectorAll('.fade-up, .reveal-img').forEach(el => obs.observe(el));
+  setTimeout(() => { document.querySelectorAll('.fade-up, .reveal-img').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible'); }); }, 80);
+  const cta = document.getElementById('sticky-cta');
+  const navEl = document.querySelector('.nav');
+  window.addEventListener('scroll', () => { if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 20); cta.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+</script>
+</body>
+</html>

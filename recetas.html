@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artículos — Clorofila Estudio de Cocina</title>
+  <meta name="description" content="Ciencia aplicada a la cocina cotidiana. Aceites, omega-3, fermentación, lavado de frutas. Sin alarmismo, con evidencia y criterio.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://clorofila.uy/recetas">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://clorofila.uy/recetas">
+  <meta property="og:title"       content="Artículos de Cocina y Ciencia — Clorofila">
+  <meta property="og:description" content="Ciencia aplicada a la cocina cotidiana. Sin alarmismo, con evidencia.">
+  <meta property="og:image"       content="https://clorofila.uy/img-leo-cocina.jpg">
+  <meta property="og:locale"      content="es_UY">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:image"      content="https://clorofila.uy/img-leo-cocina.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="shared.css">
+
+  <style>
+    .hero-recetas { background: var(--verde); padding: 0; margin: 0; }
+    .hero-recetas-inner { max-width: var(--max); margin: 0 auto; padding: 5.5rem 2rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+    .hero-recetas h1 { margin-bottom: 0; color: var(--crema); }
+    .hero-recetas h1 em { color: var(--verde-luz); }
+    .hero-recetas .lead { font-size: 1.02rem; color: rgba(255,255,255,.7); max-width: 48ch; line-height: 1.78; margin-bottom: 0; }
+    .hero-recetas-label { color: var(--verde-luz) !important; }
+    @media (max-width: 700px) { .hero-recetas-inner { grid-template-columns: 1fr; gap: 1.75rem; padding: 4rem 2rem; } }
+
+    .articulos { padding: 3.5rem 2rem 5.5rem; max-width: var(--max); margin: 0 auto; }
+    .articulos-intro { font-size: .9rem; color: var(--texto-med); margin-bottom: 2rem; font-style: italic; padding: 1.25rem 1.5rem; background: var(--verde-tinte); border-radius: var(--r-md); border-left: 3px solid var(--verde-luz); }
+    .articulos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+    .art-card {
+      background: var(--blanco);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--crema-osc);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .22s, transform .22s;
+    }
+    .art-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+    .art-card.publicado { border-top: 3px solid var(--verde-med); }
+    .art-card.proximo   { border-top: 3px solid var(--crema-osc); opacity: .78; }
+
+    .art-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .75rem; }
+    .art-num    { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--texto-med); }
+    .art-badge  { font-size: .68rem; font-weight: 700; padding: .2rem .65rem; border-radius: 20px; letter-spacing: .04em; }
+    .badge-pub  { background: var(--verde-luz); color: var(--verde); }
+    .badge-prox { background: var(--crema-osc); color: var(--texto-med); }
+
+    .art-area   { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--acento); margin-bottom: .4rem; }
+    .art-card h3 { font-size: 1.05rem; margin-bottom: .6rem; line-height: 1.3; }
+    .art-card p  { font-size: .87rem; color: var(--texto-med); line-height: 1.65; flex: 1; }
+    .art-footer { margin-top: 1.25rem; }
+    .art-link { font-size: .82rem; font-weight: 500; color: var(--verde-med); display: inline-flex; align-items: center; gap: .3rem; transition: color .2s; }
+    .art-link:hover { color: var(--acento); }
+    .art-coming { font-size: .82rem; color: var(--texto-med); opacity: .5; }
+
+    .ig-cta { background: var(--verde); padding: 4.5rem 2rem; text-align: center; }
+    .ig-cta h3 { color: var(--crema); margin-bottom: .75rem; }
+    .ig-cta p  { color: rgba(255,255,255,.65); margin: 0 auto 2rem; }
+
+    @media (max-width: 700px) { .articulos-grid { grid-template-columns: 1fr; } }
+  </style>
+  <!-- Google Analytics GA4 — reemplazar G-BBLJT4TYCV con tu Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BBLJT4TYCV');
+  </script>
+  <!-- Meta Pixel — reemplazar 2002873889966452 con tu Pixel ID -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','2002873889966452');
+    fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2002873889966452&ev=PageView&noscript=1"/></noscript>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Ir al contenido principal</a>
+
+<nav class="nav" aria-label="Principal">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>Clorofila</span><span>Estudio de Cocina</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li role="presentation" style="display:contents"><button type="button" class="nav-close" id="nav-close" aria-label="Cerrar menú">✕</button></li>
+      <li><a href="curso.html">El curso</a></li>
+      <li><a href="talleres.html">Talleres</a></li>
+      <li><a href="recetas.html" class="active" aria-current="page">Artículos</a></li>
+      <li><a href="leonardo.html">Leonardo</a></li>
+      <li><a href="servicios.html">Trabajemos juntos</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="nav-cta">Inscribirme →</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
+  </div>
+</nav>
+<main id="main-content">
+
+<div class="hero-recetas">
+  <div class="hero-recetas-inner">
+    <div class="fade-up">
+      <span class="section-label hero-recetas-label">Ciencia y cocina</span>
+      <h1>Lo que la ciencia dice sobre lo que <em>cocinás</em>.</h1>
+    </div>
+    <div class="fade-up" style="transition-delay:.08s">
+      <p class="lead">Artículos sobre los temas que más preguntas generan en clase. Sin alarmismo, sin dogma — con evidencia y criterio. Porque entender el alimento es cocinar mejor.</p>
+    </div>
+  </div>
+</div>
+
+<div class="articulos">
+  <p class="articulos-intro">Los temas publicados salen primero en Instagram — seguí <a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" style="color:var(--verde-med);font-weight:500">@clorofilaclases</a> para recibirlos cuando salen.</p>
+  <div class="articulos-grid">
+
+    <div class="art-card publicado fade-up">
+      <div class="art-header"><span class="art-num">01</span><span class="art-badge badge-pub">Publicado</span></div>
+      <p class="art-area">Aceites y grasas</p>
+      <h3>Aceite de oliva y punto de humo: el mito que no muere</h3>
+      <p>El punto de humo no es el indicador relevante para la estabilidad oxidativa. Lo que importa es el perfil de ácidos grasos y los antioxidantes — y ahí el oliva extra virgen gana.</p>
+      <div class="art-footer"><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" class="art-link">Lo contamos en Instagram →</a></div>
+    </div>
+
+    <div class="art-card publicado fade-up" style="transition-delay:.1s">
+      <div class="art-header"><span class="art-num">02</span><span class="art-badge badge-pub">Publicado</span></div>
+      <p class="art-area">Omega-3</p>
+      <h3>¿Qué le pasa al omega-3 del lino cuando horneás?</h3>
+      <p>El ALA del lino es el ácido graso más inestable al calor. A 180°C en horneado real, la pérdida es significativa. Lo que queda — y qué podés hacer — vale la pena entenderlo.</p>
+      <div class="art-footer"><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" class="art-link">Lo contamos en Instagram →</a></div>
+    </div>
+
+    <div class="art-card publicado fade-up" style="transition-delay:.2s">
+      <div class="art-header"><span class="art-num">03</span><span class="art-badge badge-pub">Publicado</span></div>
+      <p class="art-area">Frutas y verduras</p>
+      <h3>Lavado de frutas: bicarbonato vs agua sola</h3>
+      <p>El bicarbonato ayuda con residuos de contacto en la cáscara. Para plaguicidas sistémicos — los que están adentro del tejido — ningún lavado sirve. La distinción importa.</p>
+      <div class="art-footer"><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" class="art-link">Lo contamos en Instagram →</a></div>
+    </div>
+
+    <div class="art-card proximo fade-up" style="transition-delay:.3s">
+      <div class="art-header"><span class="art-num">04</span><span class="art-badge badge-prox">En preparación</span></div>
+      <p class="art-area">Grasas y salud</p>
+      <h3>Más allá del colesterol total</h3>
+      <p>Apo-B, tamaño de partícula LDL, TMAO y microbioma dan una imagen más completa. El análisis con marcadores modernos cambia el ranking de las grasas.</p>
+      <div class="art-footer"><span class="art-coming">Próximamente</span></div>
+    </div>
+
+    <div class="art-card proximo fade-up">
+      <div class="art-header"><span class="art-num">05</span><span class="art-badge badge-prox">En preparación</span></div>
+      <p class="art-area">Pan y gluten</p>
+      <h3>Pan sin gluten no es automáticamente saludable</h3>
+      <p>Sin gluten, muchos panes industriales agregan almidones refinados y gomas. El resultado nutricional puede ser peor que el pan de trigo.</p>
+      <div class="art-footer"><span class="art-coming">Próximamente</span></div>
+    </div>
+
+    <div class="art-card proximo fade-up" style="transition-delay:.1s">
+      <div class="art-header"><span class="art-num">06</span><span class="art-badge badge-prox">En preparación</span></div>
+      <p class="art-area">Fermentación</p>
+      <h3>Masa madre y digestibilidad: qué pasa realmente</h3>
+      <p>La fermentación larga degrada parte del gluten y reduce FODMAPs. El mecanismo existe — pero depende del tiempo, la temperatura y la cepa.</p>
+      <div class="art-footer"><span class="art-coming">Próximamente</span></div>
+    </div>
+
+    <div class="art-card proximo fade-up" style="transition-delay:.2s">
+      <div class="art-header"><span class="art-num">07</span><span class="art-badge badge-prox">En preparación</span></div>
+      <p class="art-area">Legumbres</p>
+      <h3>Remojo de legumbres: cuánto importa y cuánto no</h3>
+      <p>El remojo reduce los antinutrientes pero no los elimina. Cuánto importa depende de qué legumbre, cuánto comés y cómo está tu digestión.</p>
+      <div class="art-footer"><span class="art-coming">Próximamente</span></div>
+    </div>
+
+    <div class="art-card proximo fade-up" style="transition-delay:.3s">
+      <div class="art-header"><span class="art-num">08</span><span class="art-badge badge-prox">En preparación</span></div>
+      <p class="art-area">Endulzantes</p>
+      <h3>Endulzantes: la guía sin sesgo</h3>
+      <p>Azúcar, miel, coco, agave, stevia, eritritol. Cada uno tiene un perfil metabólico diferente. Análisis honesto sin marketing ni alarmismo.</p>
+      <div class="art-footer"><span class="art-coming">Próximamente</span></div>
+    </div>
+
+    <div class="art-card proximo fade-up">
+      <div class="art-header"><span class="art-num">09</span><span class="art-badge badge-prox">En preparación</span></div>
+      <p class="art-area">Fermentación</p>
+      <h3>Cómo funciona la fermentación: el mecanismo completo</h3>
+      <p>Bacterias, pH, sustrato, temperatura, tiempo. Cuando entendés las variables, podés fermentar cualquier cosa con seguridad y criterio.</p>
+      <div class="art-footer"><span class="art-coming">Próximamente</span></div>
+    </div>
+
+    <div class="art-card proximo fade-up" style="transition-delay:.1s">
+      <div class="art-header"><span class="art-num">10</span><span class="art-badge badge-prox">En preparación</span></div>
+      <p class="art-area">Proteína vegetal</p>
+      <h3>Proteína vegetal: mitos y realidades</h3>
+      <p>La proteína vegetal "incompleta" es un mito simplificado. La complementación tiene lógica — pero no hace falta hacerla en cada comida.</p>
+      <div class="art-footer"><span class="art-coming">Próximamente</span></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ig-cta">
+  <span class="section-label" style="color:var(--verde-luz)">@clorofilaclases</span>
+  <h3>Estos temas también los <em style="color:var(--verde-luz)">publicamos en Instagram</em>.</h3>
+  <p>Seguinos para recibir el contenido cuando sale y para preguntar directamente.</p>
+  <a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" class="btn btn-light">Ir a Instagram →</a>
+</div>
+
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo">Clorofila</span>
+      <p class="tagline">No enseñamos recetas. <br>Enseñamos a entender.</p>
+      <p class="sub">Maldonado 1976 esq. Blanes · Parque Rodó · Montevideo · Desde 2013</p>
+    </div>
+    <div><h5>Propuesta</h5><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="recetas.html">Artículos</a></li></ul></div>
+    <div><h5>Clorofila</h5><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
+    <div><h5>Contacto</h5><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 Clorofila Estudio de Cocina · Parque Rodó · Montevideo · Uruguay</div>
+</footer>
+
+<div class="sticky-cta" id="sticky-cta">
+  <a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" class="cta-main">Seguirnos en Instagram →</a>
+  <a href="https://wa.me/59894064148" target="_blank" rel="noopener noreferrer" class="wa-btn">💬</a>
+</div>
+
+<script>
+  const _nbtn = document.getElementById('nav-hamburger');
+  const _nul  = document.getElementById('nav-links');
+  const _ncls = document.getElementById('nav-close');
+  function _openNav()  { _nul.classList.add('open');    _nbtn.setAttribute('aria-expanded','true'); document.body.classList.add('nav-open'); }
+  function _closeNav() { _nul.classList.remove('open'); _nbtn.setAttribute('aria-expanded','false'); document.body.classList.remove('nav-open'); }
+  _nbtn.addEventListener('click', _openNav);
+  _ncls.addEventListener('click', _closeNav);
+  document.addEventListener('keydown', e => { if(e.key==='Escape' && _nul.classList.contains('open')) _closeNav(); });
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
+  document.querySelectorAll('.fade-up, .reveal-img').forEach(el => obs.observe(el));
+  setTimeout(() => { document.querySelectorAll('.fade-up, .reveal-img').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible'); }); }, 80);
+  const cta = document.getElementById('sticky-cta');
+  const navEl = document.querySelector('.nav');
+  window.addEventListener('scroll', () => { if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 20); cta.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+</script>
+</body>
+</html>

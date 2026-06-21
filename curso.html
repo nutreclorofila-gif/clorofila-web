@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curso de Cocina Basada en Plantas — Clorofila Montevideo</title>
+  <meta name="description" content="Curso de cocina basada en plantas de 3 meses en Montevideo. Comprensión profunda de procesos, fermentación, técnica y criterio culinario. Agosto 2026.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://clorofila.uy/curso">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://clorofila.uy/curso">
+  <meta property="og:title"       content="El Curso de Clorofila — Cocina con criterio · Agosto 2026">
+  <meta property="og:description" content="12 clases presenciales en Parque Rodó. Basado en plantas, fermentación y comprensión profunda de procesos. Con Leonardo Lemes y Lic. Nut. Micaela Gago Moral.">
+  <meta property="og:image"       content="https://clorofila.uy/img-clase-masa.jpg">
+  <meta property="og:locale"      content="es_UY">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:image"      content="https://clorofila.uy/img-clase-masa.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="shared.css">
+  <script async src="https://tally.so/widgets/embed.js"></script>
+
+  <style>
+    .hero-curso {
+      position: relative;
+      min-height: 460px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-curso-img { position: absolute; inset: 0; }
+    .hero-curso-img img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.92) brightness(.82); }
+    .hero-curso-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(32,48,31,.15) 0%, rgba(32,48,31,.35) 45%, rgba(32,48,31,.82) 100%); }
+    .hero-curso-content {
+      position: relative;
+      z-index: 1;
+      padding: 3rem 2rem;
+      max-width: var(--max);
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .hero-tag {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      color: rgba(255,255,255,.88);
+      font-size: .73rem;
+      font-weight: 500;
+      padding: .28rem .72rem;
+      border-radius: 20px;
+      letter-spacing: .04em;
+    }
+    .hero-curso-content h1 { color: var(--crema); font-size: clamp(2.6rem, 5.2vw, 4.2rem); letter-spacing: -.025em; }
+    .hero-curso-content h1 em { color: var(--verde-luz); }
+    .hero-curso-content p  { color: rgba(255,255,255,.7); max-width: 52ch; margin-top: .75rem; }
+
+    .tabs-container { background: var(--blanco); border-bottom: 1px solid var(--crema-osc); position: sticky; top: var(--nav-h); z-index: 40; }
+    .tabs { max-width: var(--max); margin: 0 auto; padding: 0 2rem; display: flex; overflow-x: auto; }
+    .tab-btn {
+      padding: 1rem 1.5rem;
+      font-family: var(--ff-b);
+      font-size: .84rem;
+      font-weight: 500;
+      color: var(--texto-med);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+    }
+    .tab-btn:hover  { color: var(--verde); }
+    .tab-btn.active { color: var(--verde); border-bottom-color: var(--verde); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .meses { padding: 4.5rem 2rem; max-width: var(--max); margin: 0 auto; }
+    .mes {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--crema-osc);
+      align-items: start;
+    }
+    .mes:last-child { border-bottom: none; }
+    .mes-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--verde);
+      color: var(--crema);
+      font-family: var(--ff-d);
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .mes-label { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--acento); margin-bottom: .3rem; }
+    .mes-body h3 { margin-bottom: .75rem; }
+    .mes-body p  { font-size: .95rem; color: var(--texto-med); line-height: 1.7; }
+
+    .temas-section { padding: 4.5rem 2rem; max-width: var(--max); margin: 0 auto; }
+    .temas-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: .75rem;
+      margin-top: 2.5rem;
+    }
+    .tema-chip {
+      background: var(--blanco);
+      border: 1px solid var(--crema-osc);
+      border-radius: var(--r-lg);
+      padding: 1rem;
+      text-align: center;
+      font-size: .82rem;
+      color: var(--texto-med);
+    }
+    .tema-chip .tema-icon { display: block; margin-bottom: .5rem; color: var(--verde-med); width: 32px; height: 32px; }
+    .tema-chip .tema-icon svg { width: 32px; height: 32px; display: block; }
+
+    .incluye { padding: 4.5rem 2rem; background: var(--crema-osc); }
+    .incluye-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .incluye-list li, .llevas-list li {
+      display: flex; align-items: flex-start; gap: .75rem;
+      padding: .72rem 0; border-bottom: 1px solid rgba(36,51,36,.08);
+      font-size: .93rem; color: var(--texto-med); line-height: 1.5;
+    }
+    .incluye-list li:last-child, .llevas-list li:last-child { border-bottom: none; }
+    .incluye-list li::before { content: '✓'; color: var(--verde-med); font-weight: 700; flex-shrink: 0; }
+    .llevas-list  li::before { content: '→'; color: var(--acento); flex-shrink: 0; }
+
+    .equipo-section { padding: 4.5rem 2rem; max-width: var(--max); margin: 0 auto; }
+    .equipo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 3rem; }
+    .docente {
+      background: var(--blanco);
+      border-radius: var(--r-lg);
+      padding: 2.5rem;
+      border: 1px solid var(--crema-osc);
+    }
+    .docente-avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--verde);
+      color: var(--crema);
+      font-family: var(--ff-d);
+      font-size: 1.3rem;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .docente-rol { font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--acento); margin-bottom: .25rem; }
+    .docente h4 { margin-bottom: .75rem; }
+    .docente > p { font-size: .9rem; color: var(--texto-med); line-height: 1.7; margin-bottom: 1.25rem; }
+    .docente-formacion h5 { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--texto-med); margin-bottom: .6rem; }
+    .docente-formacion li { font-size: .85rem; color: var(--texto-med); padding: .35rem 0; border-bottom: 1px solid var(--crema-osc); display: flex; gap: .5rem; }
+    .docente-formacion li:last-child { border-bottom: none; }
+    .docente-formacion li::before { content: '—'; color: var(--crema-osc); flex-shrink: 0; }
+
+    .precio-section { padding: 5.5rem 2rem; }
+    .precio-card {
+      max-width: 560px;
+      margin: 0 auto;
+      background: var(--verde);
+      border-radius: 16px;
+      padding: 3.5rem 3rem;
+      text-align: center;
+    }
+    .precio-eyebrow { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 1.5rem; display: block; }
+    .precio-card h3 { color: var(--crema); margin-bottom: .25rem; }
+    .precio-total { font-family: var(--ff-d); font-size: 3.8rem; font-weight: 500; color: var(--crema); line-height: 1; }
+    .precio-sub { font-size: .83rem; color: rgba(255,255,255,.5); margin-top: .4rem; }
+    .precio-cuotas {
+      margin: 1.5rem 0;
+      padding: 1.25rem;
+      background: rgba(255,255,255,.07);
+      border-radius: var(--r-lg);
+    }
+    .precio-cuotas p { font-size: .93rem; color: rgba(255,255,255,.7); }
+    .precio-cuotas strong { color: var(--crema); font-size: 1.1rem; }
+    .precio-ahorro { font-size: .8rem; color: var(--verde-luz); margin-bottom: 1.5rem; }
+    .precio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 1.5rem 0; text-align: left; }
+    .precio-grid li { font-size: .82rem; color: rgba(255,255,255,.6); display: flex; flex-direction: column; gap: .1rem; }
+    .precio-grid li strong { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.4); font-weight: 700; }
+    .precio-pagos { font-size: .78rem; color: rgba(255,255,255,.4); margin-bottom: 2rem; }
+    .precio-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .precio-notice { font-size: .75rem; color: rgba(255,255,255,.35); margin-top: 1.25rem; }
+
+    .faq { padding: 4.5rem 2rem; max-width: 720px; margin: 0 auto; background: var(--crema-osc); }
+    .faq-item { border-bottom: 1px solid var(--crema-osc); }
+    button.faq-q {
+      width: 100%; background: none; border: none;
+      text-align: left; font-family: var(--ff-b);
+    }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 2rem;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: .93rem;
+      color: var(--texto);
+      gap: 1rem;
+    }
+    .faq-q:hover { color: var(--verde); }
+    .faq-icon { font-size: 1.2rem; color: var(--acento); flex-shrink: 0; transition: transform .3s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { display: none; padding: 0 2rem 1.2rem; font-size: .9rem; color: var(--texto-med); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    @media (max-width: 900px) {
+      .incluye-inner, .equipo-grid { grid-template-columns: 1fr; }
+      .temas-grid { grid-template-columns: repeat(3, 1fr); }
+      .precio-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .temas-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Course","name":"Curso de Cocina Basada en Plantas","description":"Curso presencial de 3 meses (12 clases presenciales) en Parque Rodó, Montevideo. Cocina basada en plantas, fermentación, técnica y criterio culinario.","provider":{"@type":"Organization","name":"Clorofila Estudio de Cocina","url":"https://clorofila.uy/"},"hasCourseInstance":{"@type":"CourseInstance","courseMode":"Onsite","startDate":"2026-08-11","location":{"@type":"Place","name":"Clorofila","address":"Maldonado 1976 esq. Blanes, Parque Rodó, Montevideo"}},"offers":{"@type":"Offer","price":"12200","priceCurrency":"UYU","availability":"https://schema.org/InStock"}}
+  </script>
+  <!-- Google Analytics GA4 — reemplazar G-BBLJT4TYCV con tu Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BBLJT4TYCV');
+  </script>
+  <!-- Meta Pixel — reemplazar 2002873889966452 con tu Pixel ID -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','2002873889966452');
+    fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2002873889966452&ev=PageView&noscript=1"/></noscript>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Ir al contenido principal</a>
+
+<!-- NAV -->
+<nav class="nav" aria-label="Principal">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>Clorofila</span><span>Estudio de Cocina</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li role="presentation" style="display:contents"><button type="button" class="nav-close" id="nav-close" aria-label="Cerrar menú">✕</button></li>
+      <li><a href="curso.html" class="active" aria-current="page">El curso</a></li>
+      <li><a href="talleres.html">Talleres</a></li>
+      <li><a href="recetas.html">Artículos</a></li>
+      <li><a href="leonardo.html">Leonardo</a></li>
+      <li><a href="servicios.html">Trabajemos juntos</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="nav-cta">Inscribirme →</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
+  </div>
+</nav>
+<main id="main-content">
+
+<!-- HERO -->
+<header class="hero-curso">
+  <div class="hero-curso-img"><img src="img-clase-masa.jpg" alt="Curso Clorofila" loading="eager"></div>
+  <div class="hero-curso-content">
+    <ul class="hero-tags">
+      <li><span class="hero-tag">Agosto 2026</span></li>
+      <li><span class="hero-tag">3 meses · 12 clases</span></li>
+      <li><span class="hero-tag">Presencial · Parque Rodó</span></li>
+      <li><span class="hero-tag">Grupos reducidos</span></li>
+    </ul>
+    <h1>El curso de <em>Clorofila</em>.</h1>
+    <p>Un programa profundo, gradual y práctico para construir criterio culinario real. No enseñamos recetas — enseñamos a entender.</p>
+  </div>
+</header>
+
+<!-- TABS -->
+<div class="tabs-container">
+  <div class="tabs" role="tablist" aria-label="Secciones del curso">
+    <button type="button" class="tab-btn active" data-tab="recorrido" role="tab" aria-selected="true"  aria-controls="tab-recorrido" id="tbtn-recorrido">Recorrido</button>
+    <button type="button" class="tab-btn"        data-tab="temas"     role="tab" aria-selected="false" aria-controls="tab-temas"     id="tbtn-temas">Temas</button>
+    <button type="button" class="tab-btn"        data-tab="incluye"   role="tab" aria-selected="false" aria-controls="tab-incluye"   id="tbtn-incluye">Incluye</button>
+    <button type="button" class="tab-btn"        data-tab="equipo"    role="tab" aria-selected="false" aria-controls="tab-equipo"    id="tbtn-equipo">Equipo</button>
+  </div>
+</div>
+
+<!-- TAB RECORRIDO -->
+<div class="tab-content active" id="tab-recorrido" role="tabpanel" aria-labelledby="tbtn-recorrido" tabindex="0">
+  <div class="meses">
+    <p style="color:var(--texto-med); max-width:58ch; margin-bottom:2rem; font-size:.95rem">Tres meses con una progresión clara: 12 clases presenciales en grupos reducidos. Cada mes construye sobre el anterior.</p>
+    <div class="mes fade-up">
+      <div class="mes-num">1</div>
+      <div class="mes-body">
+        <p class="mes-label">Mes 1 · Fundamentos</p>
+        <h3>Las bases que lo cambian todo</h3>
+        <p>Técnicas de corte y organización · Bases vegetales · Batidos verdes y sopas · Primera fermentación. Lo que debería saber cualquier cocinero antes de seguir una receta.</p>
+      </div>
+    </div>
+    <div class="mes fade-up">
+      <div class="mes-num">2</div>
+      <div class="mes-body">
+        <p class="mes-label">Mes 2 · Profundización</p>
+        <h3>Procesos vivos y complejidad</h3>
+        <p>Kéfir, kombucha, kimchi · Cocina con hongos · Platos salados complejos · Quesos vegetales · Seguridad alimentaria en fermentaciones. El por qué detrás de cada proceso.</p>
+      </div>
+    </div>
+    <div class="mes fade-up">
+      <div class="mes-num">3</div>
+      <div class="mes-body">
+        <p class="mes-label">Mes 3 · Integración</p>
+        <h3>Autonomía y elaboraciones</h3>
+        <p>Pastelería basada en plantas · Sushi vegetal · Pastas y dal · Menú completo · Recetario final. El mes para demostrar que ya cocinás con criterio propio.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB TEMAS -->
+<div class="tab-content" id="tab-temas" role="tabpanel" aria-labelledby="tbtn-temas" tabindex="0">
+  <div class="temas-section">
+    <p style="color:var(--texto-med); max-width:58ch; margin-bottom:.5rem">Los contenidos centrales del curso. Se trabajan otras elaboraciones según el desarrollo de cada grupo.</p>
+    <div class="temas-grid">
+      <div class="tema-chip fade-up"><span class="tema-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 29C10 29 7 22 8 13c0 0 5-2 10-7 5 5 10 7 10 7 1 9-2 16-10 16z"/><line x1="18" y1="29" x2="18" y2="19"/><path d="M18 25c-3-2-5.5-5.5-6-9"/><path d="M18 23c3-2 5.5-5.5 6-9"/></svg></span>Técnicas y bases vegetales</div>
+      <div class="tema-chip fade-up"><span class="tema-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="12" y="7" width="12" height="3" rx="1.5"/><path d="M14 10h8v2H14z"/><path d="M11 12h14v12a3 3 0 0 1-3 3h-8a3 3 0 0 1-3-3V12z"/><line x1="11" y1="16" x2="25" y2="16"/><circle cx="15.5" cy="21" r="1.5" fill="currentColor" stroke="none"/><circle cx="21" cy="19" r="1" fill="currentColor" stroke="none"/></svg></span>Fermentación aplicada</div>
+      <div class="tema-chip fade-up"><span class="tema-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 19h8v5a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-5z"/><path d="M9 19c0-5.5 4-11 9-11s9 5.5 9 11H9z"/><circle cx="15" cy="14" r="1.5" fill="currentColor" stroke="none"/><circle cx="21" cy="13" r="1" fill="currentColor" stroke="none"/></svg></span>Cocina con hongos</div>
+      <div class="tema-chip fade-up"><span class="tema-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 16h22c0 8-5 13-11 13S7 24 7 16z"/><line x1="7" y1="16" x2="29" y2="16"/><path d="M15 12c0-2 1.3-3.5 3-3.5s3 1.5 3 3.5"/><path d="M11 12l1.5 1"/><path d="M25 12l-1.5 1"/></svg></span>Platos salados complejos</div>
+      <div class="tema-chip fade-up"><span class="tema-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 7L29 22v5H7v-5L18 7z"/><circle cx="18" cy="19" r="2.5"/><circle cx="22.5" cy="23.5" r="1.5"/><circle cx="13" cy="22" r="1.5"/></svg></span>Quesos vegetales</div>
+      <div class="tema-chip fade-up"><span class="tema-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 16h14l-2 11H13L11 16z"/><line x1="9" y1="16" x2="27" y2="16"/><line x1="14" y1="27" x2="22" y2="27"/><path d="M14 10c0 0 .5-2.5 2-2"/><path d="M19 9c0 0 .5-2.5 2-2"/></svg></span>Batidos y sopas</div>
+      <div class="tema-chip fade-up"><span class="tema-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 22h22v4a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-4z"/><path d="M7 22c0-5.5 4.5-11 11-11s11 5.5 11 11H7z"/><path d="M18 11V7"/><circle cx="18" cy="6" r="1.5" fill="currentColor" stroke="none"/><line x1="7" y1="22" x2="29" y2="22"/></svg></span>Pastelería sin gluten</div>
+      <div class="tema-chip fade-up"><span class="tema-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="18" r="11"/><circle cx="18" cy="18" r="6.5"/><circle cx="18" cy="18" r="2.5" fill="currentColor" stroke="none"/><path d="M11.5 11.5c1.5 2 2 4.5 2 6.5"/><path d="M24.5 24.5c-1.5-2-2-4.5-2-6.5"/></svg></span>Sushi vegetal</div>
+      <div class="tema-chip fade-up"><span class="tema-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 23h22c0 4.5-5 7-11 7S7 27.5 7 23z"/><path d="M11 23c0-3 2-7 4.5-8"/><path d="M14.5 23c0-3 2-7 4.5-8"/><path d="M18 23c0-3 2-7 4.5-8"/><path d="M21.5 23c0-3 2-7 4.5-8"/></svg></span>Pastas y legumbres</div>
+      <div class="tema-chip fade-up"><span class="tema-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 8h8"/><path d="M15 8v8.5l-7.5 9.5A2 2 0 0 0 9 29h18a2 2 0 0 0 1.5-3L21 16.5V8"/><line x1="11" y1="24" x2="25" y2="24"/><circle cx="15" cy="22" r="1.2" fill="currentColor" stroke="none"/><circle cx="22.5" cy="27" r="0.9" fill="currentColor" stroke="none"/></svg></span>Ciencia del alimento</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB INCLUYE -->
+<div class="tab-content" id="tab-incluye" role="tabpanel" aria-labelledby="tbtn-incluye" tabindex="0">
+  <div class="incluye">
+    <div class="incluye-inner">
+      <div class="fade-up">
+        <h3 style="margin-bottom:1.5rem">Lo que incluye</h3>
+        <ul class="incluye-list">
+          <li>Todos los ingredientes y materiales de trabajo en clase</li>
+          <li>Degustación de las preparaciones en cada encuentro</li>
+          <li>Recetario completo al finalizar el curso</li>
+          <li>Posibilidad de recuperar clases</li>
+          <li>Participación de Lic. Nut. Micaela Gago como referente nutricional</li>
+        </ul>
+      </div>
+      <div class="fade-up" style="transition-delay:.1s">
+        <h3 style="margin-bottom:1.5rem">Lo que te llevás</h3>
+        <ul class="llevas-list">
+          <li>Sabés leer lo que pasa en la olla — y por qué</li>
+          <li>Cocinás sin receta, adaptando a lo que tenés</li>
+          <li>Podés improvisar, corregir y decidir sin miedo</li>
+          <li>Una cocina cotidiana más segura, más honesta, menos ansiosa</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB EQUIPO -->
+<div class="tab-content" id="tab-equipo" role="tabpanel" aria-labelledby="tbtn-equipo" tabindex="0">
+  <div class="equipo-section">
+    <div class="equipo-grid">
+      <div class="docente fade-up">
+        <div class="docente-avatar">LL</div>
+        <p class="docente-rol">Fundador · Coordina el curso</p>
+        <h4>Leonardo Lemes</h4>
+        <p>Chef, docente e investigador gastronómico con 25 años de experiencia y 13 enseñando. Pionero en Uruguay en cocina basada en plantas, fermentación y comprensión científica del alimento. Formado en Permacultura (Na Luum), Agricultura de Bosques de Alimentos (Ipoema), Gestor Cultural (CLAEH). Estudia Medicina Tradicional China en Neijing.</p>
+        <div class="docente-formacion">
+          <h5>Formación</h5>
+          <ul>
+                        <li>Permacultura — Na Luum</li>
+            <li>Agricultura de Bosques de Alimentos — Ipoema, Brasil</li>
+            <li>Gestión Cultural — CLAEH</li>
+            <li>Medicina Tradicional China — Neijing (en curso)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="docente fade-up" style="transition-delay:.1s">
+        <div class="docente-avatar">MG</div>
+        <p class="docente-rol">Participa en el curso</p>
+        <h4>Lic. Nut. Micaela Gago Moral</h4>
+        <p>Licenciada en Nutrición y terapeuta nutricional. Articula alimentación, cocina y bienestar desde una mirada integradora que va más allá de los macronutrientes. Desde hace cuatro años acompaña procesos integrando Ayurveda, fitoterapia y nutrición informada en trauma.</p>
+        <div class="docente-formacion">
+          <h5>Enfoque</h5>
+          <ul>
+            <li>Nutrición integradora y holística</li>
+            <li>Ayurveda aplicada a la alimentación</li>
+            <li>Fitoterapia y nutrición informada en trauma</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:2rem; font-size:.85rem; color:var(--texto-med)">
+      → <a href="leonardo.html" style="color:var(--verde-med); font-weight:500">Conocer más sobre Leonardo →</a>
+    </p>
+  </div>
+</div>
+
+<!-- PRECIO -->
+<section class="precio-section">
+  <div class="precio-card fade-up">
+    <span class="precio-eyebrow">Curso de Cocina Basada en Plantas · Agosto 2026</span>
+    <h3>Clorofila · Parque Rodó</h3>
+    <p style="font-size:.8rem; color:rgba(255,255,255,.4); margin:.5rem 0">precio total bonificado</p>
+    <div class="precio-total">$12.200</div>
+    <p class="precio-sub">12 clases presenciales · menos de $1.020 por clase</p>
+    <div class="precio-cuotas">
+      <p>O en 3 cuotas de <strong>$4.800/mes</strong></p>
+    </div>
+    <p class="precio-ahorro">↓ Ahorrás $2.200 pagando el curso completo</p>
+    <ul class="precio-grid">
+      <li><strong>Inicio</strong>Semana del 11 de agosto</li>
+      <li><strong>Clases</strong>12 presenciales</li>
+      <li><strong>Días</strong>Lunes, martes, miércoles, jueves o sábados</li>
+      <li><strong>Lugar</strong>Parque Rodó, Montevideo</li>
+    </ul>
+    <p class="precio-pagos">Tarjeta hasta 12 cuotas de $1.016 · Transferencia · Abitab · RedPagos · MercadoPago</p>
+    <div class="precio-actions">
+      <button type="button" data-tally-open="EkMbWL" data-tally-overlay="1" class="btn btn-light">Reservar mi lugar →</button>
+      <a href="https://wa.me/59894064148?text=Hola%2C%20quiero%20info%20del%20curso%20de%20Clorofila." target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light">💬 Consultar por WhatsApp</a>
+    </div>
+    <p class="precio-notice">Grupos reducidos · te escribimos por WhatsApp en menos de 24h para confirmar tu lugar</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<div class="faq">
+  <span class="section-label">Antes de anotarte</span>
+  <h2 class="section-title" style="margin-bottom:2rem">Preguntas <em>frecuentes</em></h2>
+  <div class="faq-item"><button type="button" class="faq-q">¿Cómo se organiza la cursada? <span class="faq-icon">+</span></button><p class="faq-a">El curso tiene 12 clases presenciales a lo largo de 3 meses — una por semana. Hay grupos en distintos días de la semana (lunes, martes, miércoles, jueves y sábados) para que puedas elegir el que mejor te queda. Arranca la semana del 11 de agosto.</p></div>
+  <div class="faq-item"><button type="button" class="faq-q">¿Necesito experiencia previa? <span class="faq-icon">+</span></button><p class="faq-a">No. El curso está pensado tanto para quienes recién empiezan como para quienes ya cocinan y quieren profundizar. Arrancamos desde las bases.</p></div>
+  <div class="faq-item"><button type="button" class="faq-q">¿Qué tipo de cocina se enseña? <span class="faq-icon">+</span></button><p class="faq-a">Basada en plantas: vegetales, legumbres, hongos, semillas, granos y frutas. No hace falta alimentarse así todos los días — el criterio que desarrollás sirve para cualquier forma de cocinar.</p></div>
+  <div class="faq-item"><button type="button" class="faq-q">¿Qué pasa si falto a una clase? <span class="faq-icon">+</span></button><p class="faq-a">Las clases se pueden recuperar. Coordinamos para que no pierdas contenido.</p></div>
+  <div class="faq-item"><button type="button" class="faq-q">¿Cómo puedo pagar? <span class="faq-icon">+</span></button><p class="faq-a">Transferencia bancaria (BROU), Abitab, RedPagos y MercadoPago. Con tarjeta hasta 12 cuotas. El total tiene precio bonificado si abonás el curso completo.</p></div>
+  <div class="faq-item"><button type="button" class="faq-q">¿Los ingredientes están incluidos? <span class="faq-icon">+</span></button><p class="faq-a">Sí. Ingredientes, materiales, degustación y el recetario completo al finalizar. Todo incluido en el precio.</p></div>
+  <div class="faq-item"><button type="button" class="faq-q">¿Y si no puedo asistir después de inscribirme? <span class="faq-icon">+</span></button><p class="faq-a">La inscripción no es reembolsable, pero si avisás con tiempo evaluamos cada caso de forma personal. Escribinos y lo vemos juntos.</p></div>
+</div>
+
+<!-- FOOTER -->
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo">Clorofila</span>
+      <p class="tagline">No enseñamos recetas. <br>Enseñamos a entender.</p>
+      <p class="sub">Maldonado 1976 esq. Blanes · Parque Rodó · Montevideo · Desde 2013</p>
+    </div>
+    <div><h5>Propuesta</h5><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="recetas.html">Artículos</a></li></ul></div>
+    <div><h5>Clorofila</h5><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
+    <div><h5>Contacto</h5><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 Clorofila Estudio de Cocina · Parque Rodó · Montevideo · Uruguay</div>
+</footer>
+
+<!-- CTA FLOTANTE -->
+<div class="sticky-cta" id="sticky-cta">
+  <button type="button" data-tally-open="EkMbWL" data-tally-overlay="1" class="cta-main" style="cursor:pointer; border:none; font-family:var(--ff-b)">Reservar mi lugar →</button>
+  <a href="https://wa.me/59894064148?text=Hola%2C%20quiero%20info%20del%20curso%20de%20Clorofila." target="_blank" rel="noopener noreferrer" class="wa-btn">💬</a>
+</div>
+
+<script>
+  const _nbtn = document.getElementById('nav-hamburger');
+  const _nul  = document.getElementById('nav-links');
+  const _ncls = document.getElementById('nav-close');
+  function _openNav()  { _nul.classList.add('open');    _nbtn.setAttribute('aria-expanded','true'); document.body.classList.add('nav-open'); }
+  function _closeNav() { _nul.classList.remove('open'); _nbtn.setAttribute('aria-expanded','false'); document.body.classList.remove('nav-open'); }
+  _nbtn.addEventListener('click', _openNav);
+  _ncls.addEventListener('click', _closeNav);
+  document.addEventListener('keydown', e => { if(e.key==='Escape' && _nul.classList.contains('open')) _closeNav(); });
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+  document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('open')));
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
+  document.querySelectorAll('.fade-up, .reveal-img').forEach(el => obs.observe(el));
+  setTimeout(() => { document.querySelectorAll('.fade-up, .reveal-img').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible'); }); }, 80);
+  const cta = document.getElementById('sticky-cta');
+  const navEl = document.querySelector('.nav');
+  window.addEventListener('scroll', () => { if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 20); cta.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+</script>
+</body>
+</html>

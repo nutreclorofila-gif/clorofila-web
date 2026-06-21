@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leonardo Lemes — Chef, Docente e Investigador Gastronómico</title>
+  <meta name="description" content="25 años cocinando, 13 enseñando. Chef, docente e investigador gastronómico. Fundador de Clorofila Estudio de Cocina en Parque Rodó, Montevideo.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://clorofila.uy/leonardo">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://clorofila.uy/leonardo">
+  <meta property="og:title"       content="Leonardo Lemes — Chef, Docente e Investigador Gastronómico · Clorofila">
+  <meta property="og:description" content="25 años cocinando, 13 enseñando. Fundador de Clorofila Estudio de Cocina en Parque Rodó, Montevideo.">
+  <meta property="og:image"       content="https://clorofila.uy/img-leo-cocina.jpg">
+  <meta property="og:locale"      content="es_UY">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:image"      content="https://clorofila.uy/img-leo-cocina.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="shared.css">
+
+  <style>
+    /* ── HERO ── */
+    .hero-leo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 600px;
+    }
+    .hero-leo-img { overflow: hidden; }
+    .hero-leo-img img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.97) brightness(.99); }
+    .hero-leo-content {
+      background: var(--verde);
+      padding: 5rem 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .hero-leo-content .rol {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 1.25rem;
+    }
+    .hero-leo-content h1 {
+      color: var(--crema);
+      font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+      margin-bottom: 1.25rem;
+    }
+    .hero-leo-content p {
+      color: rgba(255,255,255,.7);
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 44ch;
+      margin-bottom: 2.5rem;
+    }
+    .hero-leo-stats {
+      display: flex;
+      gap: 2rem;
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 2rem;
+    }
+    .leo-stat span { display: block; }
+    .leo-stat .num {
+      font-family: var(--ff-d);
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: var(--crema);
+      line-height: 1;
+    }
+    .leo-stat .lbl {
+      font-size: .78rem;
+      color: rgba(255,255,255,.45);
+      margin-top: .25rem;
+    }
+
+    /* ── FILOSOFÍA ── */
+    .filosofia {
+      padding: 5.5rem 2rem;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .filosofia-quote {
+      font-family: var(--ff-d);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--verde);
+      border-left: 3px solid var(--acento);
+      padding-left: 1.75rem;
+      max-width: 70ch;
+      margin-bottom: 3rem;
+    }
+    .filosofia-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .filosofia-body p { font-size: .95rem; line-height: 1.8; }
+
+    /* ── FORMACIÓN ── */
+    .formacion {
+      background: var(--crema-osc);
+      padding: 5.5rem 2rem;
+    }
+    .formacion-inner { max-width: var(--max); margin: 0 auto; }
+    .formacion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+    .formacion-bloque h4 {
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .formacion-lista li {
+      display: flex;
+      gap: .75rem;
+      align-items: flex-start;
+      padding: .65rem 0;
+      border-bottom: 1px solid rgba(36,51,36,.07);
+      font-size: .9rem;
+      color: var(--texto-med);
+      line-height: 1.5;
+    }
+    .formacion-lista li:last-child { border-bottom: none; }
+    .formacion-lista li::before { content: '—'; color: var(--crema-osc); flex-shrink: 0; }
+
+    /* ── INVESTIGACIÓN ── */
+    .investigacion {
+      padding: 5.5rem 2rem;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .investigacion-intro {
+      font-size: 1rem;
+      color: var(--texto-med);
+      max-width: 60ch;
+      line-height: 1.75;
+      margin-bottom: 3rem;
+    }
+    .temas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .tema-card {
+      background: var(--blanco);
+      border: 1px solid var(--crema-osc);
+      border-radius: var(--r-lg);
+      padding: 1.5rem;
+      transition: box-shadow .22s, transform .22s;
+    }
+    .tema-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+    .tema-area {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--acento);
+      margin-bottom: .5rem;
+    }
+    .tema-card h4 { font-size: 1rem; margin-bottom: .5rem; }
+    .tema-card p  { font-size: .85rem; color: var(--texto-med); line-height: 1.6; }
+    .tema-badge {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: .68rem;
+      font-weight: 600;
+      padding: .2rem .65rem;
+      border-radius: 20px;
+    }
+    .badge-pub  { background: var(--verde-luz); color: var(--verde); }
+    .badge-prox { background: var(--crema-osc); color: var(--texto-med); }
+
+    /* ── CTA ── */
+    .leo-cta {
+      background: var(--verde);
+      padding: 5.5rem 2rem;
+      text-align: center;
+    }
+    .leo-cta h2 { color: var(--crema); margin-bottom: 1rem; }
+    .leo-cta p  { color: rgba(255,255,255,.65); margin: 0 auto 2.5rem; }
+    .leo-cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-leo         { grid-template-columns: 1fr; }
+      .hero-leo-img     { height: 380px; }
+      .hero-leo-content { padding: 3rem 2rem; }
+      .filosofia-body   { grid-template-columns: 1fr; gap: 1.5rem; }
+      .formacion-grid   { grid-template-columns: 1fr; }
+      .temas-grid       { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .temas-grid { grid-template-columns: 1fr; }
+      .hero-leo-stats { gap: 1.5rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Leonardo Lemes","jobTitle":"Chef, docente e investigador gastronómico","description":"Chef, docente e investigador gastronómico con 25 años de experiencia. Fundador de Clorofila Estudio de Cocina en Parque Rodó, Montevideo.","image":"https://clorofila.uy/img-leo-cocina.jpg","url":"https://clorofila.uy/leonardo","worksFor":{"@type":"Organization","name":"Clorofila Estudio de Cocina"},"knowsAbout":["Cocina basada en plantas","Fermentación","Masa madre","Pastelería sin gluten","Desarrollo de productos gastronómicos"]}
+  </script>
+  <!-- Google Analytics GA4 — reemplazar G-BBLJT4TYCV con tu Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BBLJT4TYCV');
+  </script>
+  <!-- Meta Pixel — reemplazar 2002873889966452 con tu Pixel ID -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','2002873889966452');
+    fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2002873889966452&ev=PageView&noscript=1"/></noscript>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Ir al contenido principal</a>
+
+<!-- NAV -->
+<nav class="nav" aria-label="Principal">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span>Clorofila</span>
+      <span>Estudio de Cocina</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li role="presentation" style="display:contents"><button type="button" class="nav-close" id="nav-close" aria-label="Cerrar menú">✕</button></li>
+      <li><a href="curso.html">El curso</a></li>
+      <li><a href="talleres.html">Talleres</a></li>
+      <li><a href="recetas.html">Artículos</a></li>
+      <li><a href="leonardo.html" class="active" aria-current="page">Leonardo</a></li>
+      <li><a href="servicios.html">Trabajemos juntos</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="nav-cta">Inscribirme →</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
+  </div>
+</nav>
+<main id="main-content">
+
+<!-- HERO -->
+<header class="hero-leo">
+  <div class="hero-leo-img">
+    <img src="img-leo-cocina.jpg" alt="Leonardo Lemes — chef, docente e investigador gastronómico" loading="eager">
+  </div>
+  <div class="hero-leo-content">
+    <p class="rol">Fundador de Clorofila · Parque Rodó, Montevideo</p>
+    <h1>Leonardo <em style="color:var(--verde-luz)">Lemes</em>.</h1>
+    <p>Chef, docente e investigador gastronómico con 25 años de experiencia y 13 enseñando. Pionero en Uruguay en cocina basada en plantas, fermentación y comprensión científica del alimento.</p>
+    <div class="hero-leo-stats">
+      <div class="leo-stat"><span class="num">25</span><span class="lbl">años cocinando</span></div>
+      <div class="leo-stat"><span class="num">13</span><span class="lbl">años enseñando</span></div>
+      <div class="leo-stat"><span class="num">+1200</span><span class="lbl">alumnos formados</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- FILOSOFÍA -->
+<section class="filosofia">
+  <blockquote class="filosofia-quote fade-up">
+    La técnica solo tiene sentido cuando clarifica. Cuando se usa para impresionar en lugar de aclarar, algo está mal.
+  </blockquote>
+  <div class="filosofia-body fade-up">
+    <p>Leonardo desarrolló su enfoque durante más de dos décadas en cocinas, mercados y espacios de estudio. Su metodología parte de una premisa simple: para cocinar bien hay que entender qué pasa en la olla, no seguir pasos en papel.</p>
+    <p>Su investigación abarca la química del alimento, la microbiología de las fermentaciones, el impacto del calor sobre los nutrientes, y la intersección entre cocina, salud y evidencia científica. Todo con un objetivo concreto: que sus alumnos puedan tomar decisiones culinarias informadas, autónomas y sin miedo.</p>
+  </div>
+</section>
+
+<!-- FORMACIÓN -->
+<section class="formacion">
+  <div class="formacion-inner">
+    <div class="fade-up">
+      <span class="section-label">Formación y trayectoria</span>
+      <h2 class="section-title">De dónde viene <em>el criterio</em>.</h2>
+    </div>
+    <div class="formacion-grid">
+      <div class="formacion-bloque fade-up">
+        <h4>Formación académica y técnica</h4>
+        <ul class="formacion-lista">
+          <li>Permacultura — Na Luum</li>
+          <li>Agricultura de Bosques de Alimentos — Ipoema (Brasil)</li>
+          <li>Gestión Cultural — CLAEH</li>
+          <li>Medicina Tradicional China — Neijing (en curso)</li>
+        </ul>
+      </div>
+      <div class="formacion-bloque fade-up" style="transition-delay:.1s">
+        <h4>Áreas de investigación y práctica</h4>
+        <ul class="formacion-lista">
+          <li>Fermentación aplicada a la cocina cotidiana: lacto-fermentación, masa madre, kéfir, kombucha</li>
+          <li>Gastronomía basada en plantas — desarrollo de técnicas sin productos de origen animal</li>
+          <li>Química y física del alimento aplicadas a la docencia</li>
+          <li>Dietética según Medicina Tradicional China</li>
+          <li>Epidemiología nutricional y lectura crítica de evidencia científica</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTIGACIÓN -->
+<section class="investigacion">
+  <div class="fade-up">
+    <span class="section-label">Lo que investiga</span>
+    <h2 class="section-title">Ciencia aplicada a la <em>cocina real</em>.</h2>
+    <p class="investigacion-intro">La investigación de Leonardo no parte de papers sino de preguntas concretas que aparecen en el trabajo con los alimentos y en la docencia. Cada tema que investiga termina en clase.</p>
+  </div>
+  <div class="temas-grid">
+
+    <div class="tema-card fade-up">
+      <p class="tema-area">Aceites y grasas</p>
+      <h4>Aceite de oliva y punto de humo</h4>
+      <p>El punto de humo no es el indicador relevante. Lo que importa es la estabilidad oxidativa — y ahí el EVOO gana por perfil de ácidos grasos y antioxidantes.</p>
+      <span class="tema-badge badge-pub">Publicado en Instagram</span>
+    </div>
+
+    <div class="tema-card fade-up" style="transition-delay:.1s">
+      <p class="tema-area">Omega-3</p>
+      <h4>ALA del lino al calor</h4>
+      <p>El ALA es el ácido graso más inestable al calor. A 180°C en horneado real, la pérdida es significativa. Lo que queda — y qué hacer al respecto — importa saberlo.</p>
+      <span class="tema-badge badge-pub">Publicado en Instagram</span>
+    </div>
+
+    <div class="tema-card fade-up" style="transition-delay:.2s">
+      <p class="tema-area">Frutas y verduras</p>
+      <h4>Lavado de frutas: bicarbonato vs agua</h4>
+      <p>El bicarbonato ayuda con residuos de contacto. Para plaguicidas sistémicos, ningún lavado sirve. La distinción entre contacto y sistémico es crítica.</p>
+      <span class="tema-badge badge-pub">Publicado en Instagram</span>
+    </div>
+
+    <div class="tema-card fade-up">
+      <p class="tema-area">Grasas y salud</p>
+      <h4>Más allá del colesterol total</h4>
+      <p>Apo-B, tamaño de partícula LDL, TMAO y microbioma dan una imagen más precisa. El análisis con marcadores modernos cambia el ranking de las grasas.</p>
+      <span class="tema-badge badge-prox">En preparación</span>
+    </div>
+
+    <div class="tema-card fade-up" style="transition-delay:.1s">
+      <p class="tema-area">Fermentación</p>
+      <h4>Masa madre y digestibilidad</h4>
+      <p>La fermentación larga degrada parte del gluten y reduce FODMAPs. El mecanismo existe — pero depende del tiempo, la temperatura y la cepa.</p>
+      <span class="tema-badge badge-prox">En preparación</span>
+    </div>
+
+    <div class="tema-card fade-up" style="transition-delay:.2s">
+      <p class="tema-area">Pan y gluten</p>
+      <h4>Pan sin gluten no es automáticamente saludable</h4>
+      <p>Sin gluten, muchos panes industriales reemplazan con almidones refinados y gomas. El perfil nutricional puede ser peor que el pan de trigo.</p>
+      <span class="tema-badge badge-prox">En preparación</span>
+    </div>
+
+  </div>
+  <p style="margin-top:2rem; font-size:.85rem; color:var(--texto-med)">
+    → Todos los temas de investigación se publican en <a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" style="color:var(--verde-med); font-weight:500">@clorofilaclases</a> y en la sección <a href="recetas.html" style="color:var(--verde-med); font-weight:500">Artículos</a>.
+  </p>
+</section>
+
+<!-- ÁREAS DE TRABAJO -->
+<section style="background:var(--crema-osc); padding:5.5rem 2rem;">
+  <div style="max-width:var(--max); margin:0 auto;">
+    <div class="fade-up">
+      <span class="section-label">Cómo podemos trabajar juntos</span>
+      <h2 class="section-title">No solo chef y <em>docente</em>.</h2>
+      <p style="color:var(--texto-med); max-width:58ch; line-height:1.75; font-size:.97rem; margin-bottom:2.5rem">El trabajo de Leonardo va más allá del aula. Su experiencia se aplica también a proyectos de personas, empresas y eventos — desde el desarrollo de un producto hasta una charla o un retiro.</p>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:2.5rem;" class="fade-up">
+      <span class="hero-tag" style="background:var(--blanco); border:1px solid var(--crema-osc); color:var(--verde); font-size:.82rem; font-weight:500; padding:.4rem .9rem; border-radius:20px;">Chef</span>
+      <span class="hero-tag" style="background:var(--blanco); border:1px solid var(--crema-osc); color:var(--verde); font-size:.82rem; font-weight:500; padding:.4rem .9rem; border-radius:20px;">Docente</span>
+      <span class="hero-tag" style="background:var(--blanco); border:1px solid var(--crema-osc); color:var(--verde); font-size:.82rem; font-weight:500; padding:.4rem .9rem; border-radius:20px;">Investigador gastronómico</span>
+      <span class="hero-tag" style="background:var(--blanco); border:1px solid var(--crema-osc); color:var(--verde); font-size:.82rem; font-weight:500; padding:.4rem .9rem; border-radius:20px;">Consultor</span>
+      <span class="hero-tag" style="background:var(--blanco); border:1px solid var(--crema-osc); color:var(--verde); font-size:.82rem; font-weight:500; padding:.4rem .9rem; border-radius:20px;">Desarrollador de productos</span>
+      <span class="hero-tag" style="background:var(--blanco); border:1px solid var(--crema-osc); color:var(--verde); font-size:.82rem; font-weight:500; padding:.4rem .9rem; border-radius:20px;">Facilitador de experiencias</span>
+      <span class="hero-tag" style="background:var(--blanco); border:1px solid var(--crema-osc); color:var(--verde); font-size:.82rem; font-weight:500; padding:.4rem .9rem; border-radius:20px;">Formador de equipos</span>
+      <span class="hero-tag" style="background:var(--blanco); border:1px solid var(--crema-osc); color:var(--verde); font-size:.82rem; font-weight:500; padding:.4rem .9rem; border-radius:20px;">Conferencista</span>
+    </div>
+    <div class="fade-up">
+      <a href="servicios.html" class="btn btn-primary">Ver todas las formas de trabajar juntos →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="leo-cta">
+  <div class="fade-up">
+    <span class="section-label" style="color:var(--verde-luz)">El curso</span>
+    <h2>Aprendé con Leonardo <em style="color:var(--verde-luz)">en persona</em>.</h2>
+    <p>El curso de Clorofila — agosto 2026. Grupos reducidos, Parque Rodó. Con Lic. Nut. Micaela Gago Moral.</p>
+    <div class="leo-cta-actions">
+      <a href="curso.html" class="btn btn-light">Ver el curso completo →</a>
+      <a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light">Inscribirme al curso →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo">Clorofila</span>
+      <p class="tagline">No enseñamos recetas. <br>Enseñamos a entender.</p>
+      <p class="sub">Maldonado 1976 esq. Blanes · Parque Rodó · Montevideo · Desde 2013</p>
+    </div>
+    <div>
+      <h5>Propuesta</h5>
+      <ul>
+        <li><a href="curso.html">El curso</a></li>
+        <li><a href="talleres.html">Talleres</a></li>
+        <li><a href="servicios.html">Trabajemos juntos</a></li>
+        <li><a href="recetas.html">Artículos</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Clorofila</h5>
+      <ul>
+        <li><a href="leonardo.html">Leonardo Lemes</a></li>
+        <li><a href="sobre.html">Sobre nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li>
+        <li><a href="https://wa.me/59894064148">094 064 148</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Clorofila Estudio de Cocina · Parque Rodó · Montevideo · Uruguay</div>
+</footer>
+
+<!-- CTA FLOTANTE -->
+<div class="sticky-cta" id="sticky-cta">
+  <a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="cta-main">Inscribirme →</a>
+  <a href="https://wa.me/59894064148" target="_blank" rel="noopener noreferrer" class="wa-btn">💬</a>
+</div>
+
+<script>
+  const _nbtn = document.getElementById('nav-hamburger');
+  const _nul  = document.getElementById('nav-links');
+  const _ncls = document.getElementById('nav-close');
+  function _openNav()  { _nul.classList.add('open');    _nbtn.setAttribute('aria-expanded','true'); document.body.classList.add('nav-open'); }
+  function _closeNav() { _nul.classList.remove('open'); _nbtn.setAttribute('aria-expanded','false'); document.body.classList.remove('nav-open'); }
+  _nbtn.addEventListener('click', _openNav);
+  _ncls.addEventListener('click', _closeNav);
+  document.addEventListener('keydown', e => { if(e.key==='Escape' && _nul.classList.contains('open')) _closeNav(); });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.fade-up, .reveal-img').forEach(el => obs.observe(el));
+  setTimeout(() => { document.querySelectorAll('.fade-up, .reveal-img').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible'); }); }, 80);
+  const cta = document.getElementById('sticky-cta');
+  const navEl = document.querySelector('.nav');
+  window.addEventListener('scroll', () => { if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 20); cta.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+</script>
+</body>
+</html>

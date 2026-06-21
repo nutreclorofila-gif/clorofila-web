@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="dccf1cf7e028ebab">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clorofila — Estudio de Cocina en Montevideo</title>
+  <meta name="description" content="No enseñamos recetas. Enseñamos a entender. Estudio de cocina basada en plantas en Parque Rodó, Montevideo. Curso de 3 meses y talleres.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://clorofila.uy/">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://clorofila.uy/">
+  <meta property="og:title"       content="Clorofila — No enseñamos recetas. Enseñamos a entender.">
+  <meta property="og:description" content="Estudio de cocina basada en plantas en Parque Rodó, Montevideo. Más de 13 años formando cocineras y cocineros con criterio propio.">
+  <meta property="og:image"       content="https://clorofila.uy/img-comunidad.jpg">
+  <meta property="og:locale"      content="es_UY">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Clorofila — No enseñamos recetas. Enseñamos a entender.">
+  <meta name="twitter:image"      content="https://clorofila.uy/img-comunidad.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="shared.css">
+  <script async src="https://tally.so/widgets/embed.js"></script>
+
+  <style>
+    /* HERO — dos columnas */
+    .hero-section { background: linear-gradient(180deg, var(--paper), var(--crema)); position: relative; overflow: hidden; }
+    .hero-section::after { content: ''; position: absolute; top: -12%; right: -8%; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(61,102,64,.08), transparent 68%); pointer-events: none; }
+    .hero { max-width: var(--max); margin: 0 auto; padding: 5rem 2rem 5.5rem; display: grid; grid-template-columns: 1.04fr .96fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+    .hero-eyebrow { display: flex; align-items: center; gap: .6rem; font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--texto-suave); margin-bottom: 1.75rem; }
+    .hero-eyebrow::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--acento); }
+    .hero h1 { font-size: clamp(3rem, 6vw, 5rem); line-height: 1.02; letter-spacing: -.03em; margin-bottom: 1.5rem; max-width: 14ch; }
+    .hero-brand-stmt { font-family: var(--ff-d); font-style: italic; font-size: clamp(1.2rem, 2.5vw, 1.6rem); color: var(--verde-med); margin-bottom: 1.5rem; display: block; }
+    .hero-lead { font-size: 1.02rem; color: var(--texto-med); max-width: 48ch; line-height: 1.78; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: .85rem; flex-wrap: wrap; margin-bottom: 2.75rem; }
+    .hero-stats { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; border-top: 1px solid var(--crema-osc); padding-top: 1.5rem; }
+    .hero-stat { display: flex; flex-direction: column; gap: .15rem; font-size: .76rem; color: var(--texto-suave); padding-right: 1.6rem; margin-right: 1.6rem; border-right: 1px solid var(--crema-osc); letter-spacing: .02em; }
+    .hero-stat:last-of-type { border-right: 0; margin-right: 0; padding-right: 0; }
+    .hero-stat strong { color: var(--verde); font-weight: 600; font-family: var(--ff-d); font-size: 1.7rem; line-height: 1; letter-spacing: -.01em; }
+    .hero-stat-sep { display: none; }
+
+    /* FOTO PRINCIPAL — Leo */
+    .hero-photo { position: relative; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 4/5; box-shadow: var(--shadow-lg); }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; filter: saturate(.94); }
+    .hero-photo-caption { position: absolute; bottom: 1.25rem; left: 1.25rem; font-size: .68rem; color: rgba(255,255,255,.95); letter-spacing: .08em; text-transform: uppercase; background: rgba(32,48,31,.42); padding: .4rem .9rem; border-radius: 20px; backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.14); }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 3.5rem; }
+      .hero-photo { aspect-ratio: 3/4; max-height: 480px; }
+      .hero-stat { padding-right: 1.1rem; margin-right: 1.1rem; }
+    }
+
+    /* CRITERIO */
+    .criterio { padding: 5.5rem 2rem; }
+    .criterio-inner { max-width: var(--max); margin: 0 auto; }
+    .criterio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 3rem 0 0; }
+    .criterio-panel { border-radius: var(--r-lg); padding: 2.5rem; }
+    .criterio-panel.receta { background: var(--blanco); border: 1px solid var(--crema-osc); }
+    .criterio-panel.criterio-p { background: var(--verde-luz); border: 1px solid rgba(61,102,64,.15); }
+    .panel-label { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: .5rem; }
+    .panel-label.label-receta { color: var(--texto-med); }
+    .panel-label.label-criterio { color: var(--verde-med); }
+    .panel-label::before { content: ''; display: inline-block; width: 20px; height: 1px; }
+    .label-receta::before { background: var(--crema-osc); }
+    .label-criterio::before { background: var(--verde-med); }
+    .criterio-instruccion { font-family: var(--ff-d); font-size: 1.3rem; line-height: 1.45; color: var(--verde); margin-bottom: 1.25rem; font-style: italic; }
+    .criterio-resultado { font-size: .9rem; color: var(--texto-med); line-height: 1.65; padding-top: 1.25rem; border-top: 1px solid rgba(36,51,36,.08); }
+    .criterio-cierre { max-width: 680px; margin: 3rem auto 0; text-align: center; font-family: var(--ff-d); font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-style: italic; line-height: 1.5; color: var(--verde); }
+    .criterio-cierre strong { display: block; margin-top: .5rem; font-style: normal; font-size: .85rem; font-family: var(--ff-b); font-weight: 500; color: var(--texto-med); letter-spacing: .04em; }
+
+    /* PARA QUIÉN */
+    .para-quien { background: var(--crema-osc); padding: 5.5rem 2rem; }
+    .para-quien-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .para-quien-img { border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 4/5; }
+    .para-quien-img img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.9); }
+    .pq-listas { margin-top: 2rem; }
+    .pq-bloque + .pq-bloque { margin-top: 1.75rem; }
+    .pq-bloque h4 { font-family: var(--ff-b); font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1rem; }
+    .pq-bloque.si h4  { color: var(--verde-med); }
+    .pq-bloque.no h4  { color: var(--texto-med); }
+    .pq-bloque li { font-size: .92rem; color: var(--texto-med); padding: .4rem 0; display: flex; align-items: flex-start; gap: .65rem; line-height: 1.5; }
+    .pq-bloque.si li::before { content: '✓'; color: var(--verde-med); font-weight: 700; flex-shrink: 0; }
+    .pq-bloque.no li::before { content: '—'; color: var(--crema); flex-shrink: 0; }
+
+    /* POSTURA */
+    .postura { background: var(--verde); padding: 5.5rem 2rem; }
+    .postura-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .postura h2 { color: var(--crema); margin-bottom: 1.5rem; }
+    .postura p { color: rgba(255,255,255,.7); margin-bottom: 1rem; line-height: 1.75; }
+    .postura-quote { font-family: var(--ff-d); font-size: 1.35rem; font-style: italic; color: rgba(255,255,255,.85); border-left: 2px solid var(--acento); padding-left: 1.25rem; line-height: 1.5; margin: 2rem 0; }
+    .postura-img { border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 4/5; }
+    .postura-img img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.88) brightness(.96); }
+
+    /* TRANSFORMACIÓN */
+    .transform { padding: 5.5rem 2rem; }
+    .transform-inner { max-width: var(--max); margin: 0 auto; }
+    .transform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .transform-col { background: var(--blanco); border-radius: var(--r-lg); padding: 2rem 2rem 1.5rem; border: 1px solid var(--crema-osc); }
+    .transform-col-label { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1.25rem; padding-bottom: .75rem; border-bottom: 2px solid; }
+    .transform-col.antes .transform-col-label { color: var(--texto-med); border-color: var(--crema-osc); }
+    .transform-col.despues .transform-col-label { color: var(--verde-med); border-color: var(--verde-luz); }
+    .transform-col ul li { font-size: .9rem; color: var(--texto-med); padding: .55rem 0; border-bottom: 1px solid var(--crema-osc); display: flex; align-items: flex-start; gap: .65rem; line-height: 1.5; }
+    .transform-col ul li:last-child { border-bottom: none; }
+    .transform-col.antes li::before { content: '—'; color: var(--crema-osc); flex-shrink: 0; }
+    .transform-col.despues li::before { content: '✓'; color: var(--verde-med); font-weight: 700; flex-shrink: 0; }
+
+    /* CÓMO ES UNA CLASE */
+    .clase { background: var(--verde-luz); padding: 5.5rem 2rem; }
+    .clase-inner { max-width: var(--max); margin: 0 auto; }
+    .clase-top { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 3rem; }
+    .clase-img { border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 5/4; }
+    .clase-img img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.9); }
+    .clase-pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .clase-paso { background: var(--blanco); border-radius: var(--r-lg); padding: 1.75rem; }
+    .clase-paso .num { font-family: var(--ff-d); font-size: 1.8rem; color: var(--acento); display: block; margin-bottom: .5rem; }
+    .clase-paso h4 { font-size: 1.05rem; margin-bottom: .4rem; }
+    .clase-paso p { font-size: .87rem; color: var(--texto-med); line-height: 1.6; }
+
+    /* GALERÍA */
+    .galeria { background: var(--verde); padding: 3rem 0; overflow: hidden; }
+    .galeria-head { max-width: var(--max); margin: 0 auto 2rem; padding: 0 2rem; }
+    .galeria-head h3 { color: var(--crema); font-size: 1.4rem; }
+    .galeria-head p { color: rgba(255,255,255,.5); font-size: .85rem; margin-top: .25rem; }
+    .galeria-grid { max-width: var(--max); margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+    .galeria-item { aspect-ratio: 3/4; overflow: hidden; border-radius: 8px; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .galeria-item:hover img { transform: scale(1.04); }
+    .galeria-caption { font-size: .7rem; color: rgba(255,255,255,.5); text-align: center; margin-top: .4rem; }
+
+    /* COMUNIDAD */
+    .comunidad { padding: 5.5rem 2rem; }
+    .comunidad-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .comunidad-img { border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 4/3; }
+    .comunidad-img img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.92); }
+    .comunidad p { margin-bottom: 1rem; line-height: 1.75; }
+
+    /* TESTIMONIOS */
+    .testimonios { padding: 5.5rem 2rem; background: var(--crema-osc); }
+    .testimonios-inner { max-width: var(--max); margin: 0 auto; }
+    .testimonios-title { text-align: center; margin-bottom: .75rem; }
+    .testimonios-label { display: block; text-align: center; margin-bottom: 1rem; }
+
+    /* LEAD MAGNET */
+    .lead-magnet { background: var(--verde); padding: 5.5rem 2rem; }
+    .lead-magnet-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+    .lead-magnet .section-label { color: var(--verde-luz); }
+    .lead-magnet h2 { color: var(--crema); margin-bottom: 1rem; }
+    .lead-magnet .lead { margin: 0 auto 2.5rem; font-size: 1rem; color: rgba(255,255,255,.7); }
+    .lead-items { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .lead-item { display: flex; align-items: center; gap: .5rem; font-size: .85rem; color: rgba(255,255,255,.65); }
+    .lead-item::before { content: '→'; color: var(--verde-luz); font-weight: 600; }
+    .lead-magnet-cta { display: flex; flex-direction: column; align-items: center; gap: .75rem; }
+    .lead-fine { font-size: .75rem; color: rgba(255,255,255,.4); }
+
+    /* CTA CURSO */
+    .cta-curso { background: var(--crema-osc); padding: 5.5rem 2rem; }
+    .cta-curso-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+    .cta-curso h2 { margin-bottom: 1rem; }
+    .cta-curso p { color: var(--texto-med); margin: 0 auto 1.5rem; }
+    .cta-features { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .cta-feat { font-size: .82rem; color: var(--texto-med); display: flex; align-items: center; gap: .35rem; }
+    .cta-feat::before { content: '·'; color: var(--acento); font-size: 1.2rem; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* TAPEO CARD */
+    .tapeo-card { display: grid; grid-template-columns: 1fr 1fr; max-height: 360px; }
+    .tapeo-card > div:last-child { overflow: hidden; }
+    .tapeo-card > div:last-child img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* TALLERES */
+    .talleres-home { padding: 5.5rem 2rem; }
+    .talleres-home-inner { max-width: var(--max); margin: 0 auto; }
+    .talleres-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
+    .taller-card { background: var(--blanco); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--crema-osc); transition: box-shadow .2s, transform .2s; }
+    .taller-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+    .taller-card-img { aspect-ratio: 3/2; overflow: hidden; }
+    .taller-card-img img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.92); }
+    .taller-card-body { padding: 1.5rem; }
+    .taller-card h3 { font-size: 1.05rem; margin-bottom: .5rem; }
+    .taller-card p { font-size: .85rem; margin-bottom: 1rem; line-height: 1.55; }
+    .taller-card a { font-size: .82rem; color: var(--verde-med); font-weight: 500; }
+    .taller-card a:hover { color: var(--acento); }
+
+    @media (max-width: 900px) {
+      .postura-inner, .para-quien-inner, .clase-top, .comunidad-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      /* tapeo-card mantiene 2 cols hasta 768px */
+      .criterio-grid, .transform-grid { grid-template-columns: 1fr; }
+      .clase-pasos { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: repeat(3, 1fr); }
+      .talleres-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .tapeo-card { grid-template-columns: 1fr; min-height: auto; }
+      .tapeo-card > div:last-child { height: 220px; }
+    }
+    @media (max-width: 600px) {
+      .talleres-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .lead-items { flex-direction: column; align-items: center; gap: .75rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"LocalBusiness","name":"Clorofila Estudio de Cocina","description":"Estudio de cocina basada en plantas en Parque Rodó, Montevideo. Curso de 3 meses y talleres.","url":"https://clorofila.uy/","image":"https://clorofila.uy/img-leo-cocina.jpg","telephone":"+59894064148","email":"nutreclorofila@gmail.com","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"},"geo":{"@type":"GeoCoordinates","latitude":-34.9106,"longitude":-56.1850},"sameAs":["https://instagram.com/clorofilaclases"],"foundingDate":"2013","priceRange":"$$"}
+  </script>
+  <!-- Google Analytics GA4 — reemplazar G-BBLJT4TYCV con tu Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BBLJT4TYCV');
+  </script>
+  <!-- Meta Pixel — reemplazar 2002873889966452 con tu Pixel ID -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','2002873889966452');
+    fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2002873889966452&ev=PageView&noscript=1"/></noscript>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Ir al contenido principal</a>
+
+<div class="announce-bar">
+  <span class="dot"></span>
+  Agosto 2026 · Grupos reducidos · Inscripciones abiertas · cupos limitados
+  <a href="curso.html">Conocer el curso →</a>
+</div>
+
+<nav class="nav" aria-label="Principal">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>Clorofila</span><span>Estudio de Cocina</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li role="presentation" style="display:contents"><button type="button" class="nav-close" id="nav-close" aria-label="Cerrar menú">✕</button></li>
+      <li><a href="curso.html">El curso</a></li>
+      <li><a href="talleres.html">Talleres</a></li>
+      <li><a href="recetas.html">Artículos</a></li>
+      <li><a href="leonardo.html">Leonardo</a></li>
+      <li><a href="servicios.html">Trabajemos juntos</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="nav-cta">Inscribirme →</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
+  </div>
+</nav>
+<main id="main-content">
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="hero">
+    <div class="hero-text fade-up">
+      <p class="hero-eyebrow">Parque Rodó · Montevideo · Desde 2013</p>
+      <h1>Cocinar bien para <em>entender</em> mejor.</h1>
+      <span class="hero-brand-stmt">No enseñamos recetas. Enseñamos a entender.</span>
+      <p class="hero-lead">Un estudio en Parque Rodó donde aprendés a comprender los alimentos en lugar de seguir recetas. Curso de tres meses y talleres puntuales — cocina basada en plantas, con criterio propio y sin depender de instrucciones.</p>
+      <div class="hero-actions">
+        <a href="curso.html" class="btn btn-primary">Ver el curso →</a>
+        <a href="#criterio" class="btn btn-outline">Cómo pensamos la cocina</a>
+      </div>
+      <div class="hero-stats">
+        <span class="hero-stat"><strong>+1200</strong> alumnos formados</span>
+        <span class="hero-stat"><strong>13</strong> años enseñando</span>
+        <span class="hero-stat"><strong>25</strong> años cocinando</span>
+      </div>
+    </div>
+    <div class="hero-photo reveal-img fade-up" style="transition-delay:.12s">
+      <img src="img-leo-cocina.jpg" alt="Leonardo Lemes cocinando en el estudio de Clorofila" loading="eager">
+      <span class="hero-photo-caption">Leonardo Lemes · Clorofila</span>
+    </div>
+  </div>
+</section>
+
+<!-- CRITERIO -->
+<section class="criterio" id="criterio">
+  <div class="criterio-inner">
+    <div class="fade-up">
+      <span class="section-label">El método</span>
+      <h2 class="section-title">Criterio antes que <em>receta</em>.</h2>
+      <p class="section-lead">Una receta funciona hasta que algo cambia. El criterio funciona siempre — porque no depende de números, sino de lo que ves, olés y tocás.</p>
+    </div>
+    <div class="criterio-grid">
+      <div class="criterio-panel receta fade-up">
+        <p class="panel-label label-receta">Con una receta</p>
+        <p class="criterio-instruccion">"Zanahoria al horno: 200°C, 25 minutos, cubos de 2 cm."</p>
+        <p class="criterio-resultado">Esos números sirven solo en las condiciones exactas en que se escribieron. Si tu horno calienta distinto, el corte es otro o la zanahoria trae más agua, el resultado cambia — y no sabés por qué.</p>
+      </div>
+      <div class="criterio-panel criterio-p fade-up" style="transition-delay:.1s">
+        <p class="panel-label label-criterio">Con criterio</p>
+        <p class="criterio-instruccion">"Buscás que los bordes se caramelicen y que el centro ceda al pincharlo."</p>
+        <p class="criterio-resultado">Puede pasar a los 18 minutos o a los 35: da igual. Estás leyendo la cocción real, no mirando el reloj. Las señales no mienten; los números, a veces sí.</p>
+      </div>
+    </div>
+    <div class="criterio-cierre fade-up">
+      Eso enseñamos en Clorofila: no la receta de la zanahoria, sino el razonamiento que después aplicás a cualquier vegetal.
+      <strong>El criterio se traslada. La receta, no.</strong>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUIÉN -->
+<section class="para-quien">
+  <div class="para-quien-inner">
+    <div class="para-quien-img reveal-img">
+      <img src="img-alumnas.jpg" alt="Alumnas trabajando en una clase de Clorofila" loading="lazy">
+    </div>
+    <div class="fade-up" style="transition-delay:.1s">
+      <span class="section-label">¿Es para vos?</span>
+      <h2 class="section-title">Para quién es <em>Clorofila</em>.</h2>
+      <p style="font-size:.97rem; color:var(--texto-med); line-height:1.7; margin-bottom:1.75rem">No hace falta experiencia previa. Podés llegar sin saber hervir agua — lo que importa es la disposición para aprender de verdad.</p>
+      <div class="pq-listas">
+        <div class="pq-bloque si">
+          <h4>Es para vos si</h4>
+          <ul>
+            <li>Querés entender qué pasa en la cocina, no solo seguir pasos.</li>
+            <li>Te llaman la atención la fermentación, la masa madre, la cocina basada en plantas.</li>
+            <li>Valorás aprender con profundidad antes que rápido.</li>
+            <li>Buscás poder cocinar sin depender de recetas ni instrucciones.</li>
+            <li>Preferís el proceso y la calidad por encima de los atajos.</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:.88rem; color:var(--texto-med); margin-top:1.5rem; font-style:italic">El único requisito real es la disposición para involucrarse.</p>
+    </div>
+  </div>
+</section>
+
+<!-- POSTURA -->
+<section class="postura">
+  <div class="postura-inner">
+    <div class="fade-up">
+      <span class="section-label" style="color:var(--verde-luz)">Sobre Clorofila</span>
+      <h2>Una cocina con <em style="color:var(--verde-luz)">postura</em>.</h2>
+      <p>Clorofila nació en 2013 con una convicción: en Uruguay no había un espacio serio para aprender a cocinar saludable de verdad. No como moda — como práctica.</p>
+      <blockquote class="postura-quote">"Cuando comprendés por qué algo funciona, podés cocinar lo que quieras — sin depender de una receta ni tener miedo de improvisar."</blockquote>
+      <p>No enseñamos pasos. Enseñamos procesos. No enseñamos a copiar — enseñamos a observar, a interpretar, a decidir. Cuando entendés eso, la autonomía en la cocina no es un objetivo: es una consecuencia.</p>
+      <br>
+      <a href="sobre.html" class="btn btn-ghost-light" style="margin-top:.5rem">Conocer más sobre Clorofila →</a>
+    </div>
+    <div class="postura-img reveal-img" style="transition-delay:.15s">
+      <img src="img-leo-ensena.jpg" alt="Leonardo Lemes enseñando en una clase de Clorofila">
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFORMACIÓN -->
+<section class="transform">
+  <div class="transform-inner">
+    <div class="fade-up">
+      <span class="section-label">Lo que cambia</span>
+      <h2 class="section-title">Antes y <em>después</em>.</h2>
+      <p class="section-lead">No es un cambio de recetas. Es un cambio en cómo pensás la cocina.</p>
+    </div>
+    <div class="transform-grid fade-up">
+      <div class="transform-col antes">
+        <p class="transform-col-label">Antes</p>
+        <ul>
+          <li>Dependencia de recetas paso a paso</li>
+          <li>Inseguridad al cocinar sin instrucciones</li>
+          <li>Repetición mecánica sin comprensión</li>
+          <li>Dificultad para improvisar o corregir</li>
+          <li>Sensación de seguir pasos sin entender el por qué</li>
+        </ul>
+      </div>
+      <div class="transform-col despues">
+        <p class="transform-col-label">Después</p>
+        <ul>
+          <li>Cocinás sin receta, con lo que hay en casa</li>
+          <li>Entendés por qué algo funcionó — o por qué no</li>
+          <li>Podés improvisar, adaptar y corregir sobre la marcha</li>
+          <li>Autonomía real: sin instrucciones, sin depender de nadie</li>
+          <li>Una cocina cotidiana más confiante y menos ansiosa</li>
+        </ul>
+        <p style="font-size:.85rem; color:var(--texto-med); margin-top:1.25rem; padding-top:1rem; border-top:1px solid var(--crema-osc); line-height:1.6">Al terminar, podés resolver en la cocina lo que antes necesitabas una receta para hacer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO ES UNA CLASE -->
+<section class="clase">
+  <div class="clase-inner">
+    <div class="clase-top">
+      <div class="fade-up">
+        <span class="section-label">Cómo es una clase</span>
+        <h2 class="section-title">Manos en la masa desde el <em>primer día</em>.</h2>
+        <p style="color:var(--texto-med); line-height:1.75; font-size:.97rem">Trabajamos en grupos reducidos alrededor de una mesa grande, cada quien con su espacio, sus herramientas e ingredientes. No mirás cocinar: cocinás. Y al final, nos sentamos a comer juntos lo que preparamos.</p>
+      </div>
+      <div class="clase-img reveal-img" style="transition-delay:.1s">
+        <img src="img-clase-plating.jpg" alt="Alumnos cocinando y emplatando en Clorofila" loading="lazy">
+      </div>
+    </div>
+    <div class="clase-pasos">
+      <div class="clase-paso fade-up">
+        <span class="num">01</span>
+        <h4>Cocinás, no mirás</h4>
+        <p>Desde el primer día tenés las manos en la masa. Se aprende haciendo, no observando.</p>
+      </div>
+      <div class="clase-paso fade-up" style="transition-delay:.1s">
+        <span class="num">02</span>
+        <h4>Entendés mientras hacés</h4>
+        <p>Leonardo explica el por qué de cada proceso en el momento, no antes. La comprensión llega con las manos.</p>
+      </div>
+      <div class="clase-paso fade-up" style="transition-delay:.2s">
+        <span class="num">03</span>
+        <h4>Compartís la mesa</h4>
+        <p>Probás todo lo que preparás y cerramos comiendo juntos. La comunidad se construye en la mesa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<div class="galeria">
+  <div class="galeria-head">
+    <h3>Lo que se cocina acá</h3>
+    <p>Elaboraciones reales de clases y talleres — todo basado en plantas.</p>
+  </div>
+  <div class="galeria-grid">
+    <div><div class="galeria-item"><img src="img-cheesecake.jpg" alt="Cheesecake con frutillas y flores comestibles" loading="lazy"></div><p class="galeria-caption">Cheesecake de frutillas</p></div>
+    <div><div class="galeria-item"><img src="img-alfajores.jpg" alt="Alfajores de chocolate" loading="lazy"></div><p class="galeria-caption">Alfajores</p></div>
+    <div><div class="galeria-item"><img src="img-tosta.jpg" alt="Tosta de hongos y hojas verdes" loading="lazy"></div><p class="galeria-caption">Tosta de hongos</p></div>
+    <div><div class="galeria-item"><img src="img-budin.jpg" alt="Budín con frosting y naranja" loading="lazy"></div><p class="galeria-caption">Pastelería</p></div>
+    <div><div class="galeria-item"><img src="img-postre-higos.jpg" alt="Postre emplatado con higos y frutas" loading="lazy"></div><p class="galeria-caption">Postre emplatado</p></div>
+  </div>
+</div>
+
+<!-- TESTIMONIOS -->
+<section class="testimonios">
+  <div class="testimonios-inner">
+    <span class="section-label testimonios-label">Lo que dicen</span>
+    <h2 class="testimonios-title">En sus propias <em>palabras</em>.</h2>
+
+    <style>
+      .testimonios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2.5rem 0 2rem; }
+      .testimonio { background: var(--blanco); border-radius: var(--r-lg); padding: 2rem; border: 1px solid var(--crema-osc); display: flex; flex-direction: column; }
+      .testimonio-stars { color: var(--acento); font-size: .85rem; margin-bottom: .75rem; letter-spacing: .08em; }
+      .testimonio blockquote { font-family: var(--ff-d); font-style: italic; font-size: 1.05rem; line-height: 1.6; color: var(--verde); flex: 1; margin-bottom: 1.25rem; }
+      .testimonio-autor { font-size: .78rem; color: var(--texto-suave); border-top: 1px solid var(--crema-osc); padding-top: .9rem; }
+      .testimonio-autor strong { display: block; color: var(--texto); font-weight: 600; margin-bottom: .15rem; font-size: .82rem; }
+      @media (max-width: 768px) { .testimonios-grid { grid-template-columns: 1fr; } }
+    </style>
+
+    <div class="testimonios-grid">
+      <div class="testimonio fade-up">
+        <p class="testimonio-stars">★★★★★</p>
+        <blockquote>«No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado.»</blockquote>
+        <div class="testimonio-autor"><strong>Valentina Pedreira</strong>Alumna · Curso de 3 meses</div>
+      </div>
+      <div class="testimonio fade-up" style="transition-delay:.1s">
+        <p class="testimonio-stars">★★★★★</p>
+        <blockquote>«Lo que más me sorprendió fue entender el por qué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien. Eso antes no me pasaba.»</blockquote>
+        <div class="testimonio-autor"><strong>Matías Acevedo</strong>Alumno · Curso de 3 meses</div>
+      </div>
+      <div class="testimonio fade-up" style="transition-delay:.2s">
+        <p class="testimonio-stars">★★★★★</p>
+        <blockquote>«No es un curso de recetas. Es aprender a pensar la cocina de otra manera. Cambió completamente mi relación con la comida y con el tiempo que le dedico.»</blockquote>
+        <div class="testimonio-autor"><strong>Lucía Fernández</strong>Alumna · Curso de 3 meses</div>
+      </div>
+    </div>
+
+    <div style="text-align:center">
+      <a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Ver más en @clorofilaclases →</a>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD MAGNET -->
+<section class="lead-magnet">
+  <div class="lead-magnet-inner fade-up">
+    <span class="section-label">Agosto 2026 · Parque Rodó</span>
+    <h2>Reservá tu <em style="color:var(--verde-luz)">lugar</em>.</h2>
+    <p class="lead">Los grupos son reducidos. Dejá tus datos y te contactamos para coordinar la inscripción — respondemos personalmente antes de que se llenen los cupos.</p>
+    <div class="lead-items">
+      <span class="lead-item">Programa completo módulo a módulo</span>
+      <span class="lead-item">Respuesta personal a tus preguntas</span>
+      <span class="lead-item">Confirmación de cupo con prioridad</span>
+    </div>
+    <div class="lead-magnet-cta">
+      <button type="button" data-tally-open="EkMbWL" data-tally-overlay="1" class="btn btn-light" style="font-size:.95rem; padding:.85rem 2rem">Reservar mi lugar →</button>
+      <a href="https://wa.me/59894064148?text=Hola%2C%20quiero%20info%20del%20curso%20de%20Clorofila." target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light" style="font-size:.88rem">💬 Consultar por WhatsApp</a>
+      <p class="lead-fine">Sin compromiso previo. Respondemos personalmente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TALLERES Y TAPEO -->
+<section class="talleres-home">
+  <div class="talleres-home-inner">
+    <div class="fade-up">
+      <span class="section-label">Propuestas puntuales</span>
+      <h2 class="section-title">Talleres y experiencias</h2>
+      <p class="section-lead">Desde una noche de cocina y cena hasta talleres de técnica específica. Sin compromiso previo.</p>
+    </div>
+
+    <!-- TAPEO: tarjeta destacada -->
+    <div class="fade-up tapeo-card" style="background:var(--verde); border-radius:var(--r-lg); overflow:hidden; margin-bottom:1.5rem;">
+      <div style="padding:2.5rem; display:flex; flex-direction:column; justify-content:center; gap:1rem;">
+        <span style="font-family:var(--ff-b); font-size:.68rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--verde-luz); display:inline-flex; align-items:center; gap:.5rem;">● Experiencia</span>
+        <h3 style="color:var(--crema); font-size:clamp(1.5rem,2.8vw,2.1rem); margin:0;">Tapeo — cocinar y cenar.</h3>
+        <p style="color:rgba(245,240,231,.72); font-size:.9rem; line-height:1.7; margin:0; max-width:42ch;">Una noche diferente. Cocinamos juntos platos reales — patés, panes, encurtidos, pequeñas elaboraciones — y después nos sentamos a comer lo que hicimos. Grupos muy pequeños.</p>
+        <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20Tapeo.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-light" style="align-self:flex-start; margin-top:.5rem;">Avisame cuando haya fecha →</a>
+      </div>
+      <div style="overflow:hidden;">
+        <img src="img-tapeo.jpg" alt="Tapeo en Clorofila — cocinar y cenar juntos" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+      </div>
+    </div>
+
+    <!-- Grid de talleres -->
+    <div class="talleres-grid">
+      <div class="taller-card fade-up">
+        <div class="taller-card-img"><img src="img-bts.jpg" alt="Fermentación y procesos en Clorofila" loading="lazy"></div>
+        <div class="taller-card-body"><h3>Fermentación de vegetales</h3><p>Chucrut, kimchi y encurtidos desde la comprensión del proceso.</p><a href="talleres.html">Ver taller →</a></div>
+      </div>
+      <div class="taller-card fade-up" style="transition-delay:.1s">
+        <div class="taller-card-img"><img src="img-sandwich.jpg" alt="Pan sin gluten" loading="lazy"></div>
+        <div class="taller-card-body"><h3>Pan sin gluten con masa madre</h3><p>Fermentación, hidratación y técnica para panes sin gluten ni aditivos.</p><a href="talleres.html">Ver taller →</a></div>
+      </div>
+      <div class="taller-card fade-up" style="transition-delay:.2s">
+        <div class="taller-card-img"><img src="img-alfajores.jpg" alt="Alfajores plant-based" loading="lazy"></div>
+        <div class="taller-card-body"><h3>Alfajores plant-based</h3><p>Pastelería sin lácteos ni huevos con técnica real — no sustitución, comprensión.</p><a href="talleres.html">Ver taller →</a></div>
+      </div>
+      <div class="taller-card fade-up" style="transition-delay:.3s">
+        <div class="taller-card-img"><img src="img-postre-stack.jpg" alt="Quesos vegetales en Clorofila" loading="lazy"></div>
+        <div class="taller-card-body"><h3>Quesos vegetales</h3><p>Fermentación y maduración aplicadas a quesos de cajú. Sin ingredientes de origen animal.</p><a href="talleres.html">Ver taller →</a></div>
+      </div>
+      <div class="taller-card fade-up" style="transition-delay:.4s">
+        <div class="taller-card-img"><img src="img-clase-masa.jpg" alt="Pastas sin gluten en Clorofila" loading="lazy"></div>
+        <div class="taller-card-body"><h3>Pastas sin gluten</h3><p>Hidratación, almidones y técnica de amasado para pastas sin gluten que realmente funcionan.</p><a href="talleres.html">Ver taller →</a></div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2.5rem">
+      <a href="talleres.html" class="btn btn-outline">Ver todos los talleres →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo">Clorofila</span>
+      <p class="tagline">No enseñamos recetas. <br>Enseñamos a entender.</p>
+      <p class="sub">Maldonado 1976 esq. Blanes · Parque Rodó · Montevideo · Desde 2013</p>
+    </div>
+    <div><h5>Propuesta</h5><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="recetas.html">Artículos</a></li></ul></div>
+    <div><h5>Clorofila</h5><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
+    <div><h5>Contacto</h5><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">@clorofilaclases</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 Clorofila Estudio de Cocina · Parque Rodó · Montevideo · Uruguay</div>
+</footer>
+
+<div class="sticky-cta" id="sticky-cta">
+  <a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="cta-main">Inscribirme →</a>
+  <a href="https://wa.me/59894064148?text=Hola%2C%20quiero%20info%20del%20curso%20de%20Clorofila." target="_blank" rel="noopener noreferrer" class="wa-btn" aria-label="Escribir por WhatsApp">💬</a>
+</div>
+
+<script>
+  const hamburger = document.getElementById('nav-hamburger');
+  const navClose  = document.getElementById('nav-close');
+  const navLinks  = document.getElementById('nav-links');
+  function openNav()  { navLinks.classList.add('open'); hamburger.setAttribute('aria-expanded','true');  document.body.classList.add('nav-open'); }
+  function closeNav() { navLinks.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); document.body.classList.remove('nav-open'); }
+  hamburger.addEventListener('click', openNav);
+  navClose.addEventListener('click',  closeNav);
+  document.addEventListener('keydown', e => { if(e.key==='Escape' && navLinks.classList.contains('open')) closeNav(); });
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up, .reveal-img').forEach(el => obs.observe(el));
+  setTimeout(() => { document.querySelectorAll('.fade-up, .reveal-img').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible'); }); }, 80);
+  const cta = document.getElementById('sticky-cta');
+  const navEl = document.querySelector('.nav');
+  window.addEventListener('scroll', () => {
+    cta.classList.toggle('visible', window.scrollY > 700);
+    if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+</script>
+</body>
+</html>

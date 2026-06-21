@@ -1,0 +1,28 @@
+[[redirects]]
+  from = "http://clorofila.uy/*"
+  to   = "https://clorofila.uy/:splat"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "http://www.clorofila.uy/*"
+  to   = "https://clorofila.uy/:splat"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "https://www.clorofila.uy/*"
+  to   = "https://clorofila.uy/:splat"
+  status = 301
+  force  = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[build]
+  publish = "."
