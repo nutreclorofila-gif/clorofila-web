@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://tally.so">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#20301f">
+  <title>Guía Práctica del Tofu — Clorofila Estudio de Cocina</title>
+  <meta name="description" content="Cómo elegir, conservar, prensar, marinar y cocinar el tofu bien. Tipos de tofu, valor nutricional, errores frecuentes y recetas base.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://clorofila.uy/guia-tofu">
+  <meta property="og:type"        content="article">
+  <meta property="og:url"         content="https://clorofila.uy/guia-tofu">
+  <meta property="og:title"       content="Guía Práctica del Tofu — Clorofila">
+  <meta property="og:description" content="Todo lo que necesitás saber para elegir, conservar y cocinar bien el tofu.">
+  <meta property="og:image"       content="https://clorofila.uy/img-tarta.jpg">
+  <meta property="og:locale"      content="es_UY">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:image"      content="https://clorofila.uy/img-tarta.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="shared.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Guía Práctica del Tofu",
+    "description": "Todo lo que necesitás saber para elegir, conservar y cocinar bien el tofu.",
+    "image": "https://clorofila.uy/img-tarta.jpg",
+    "datePublished": "2026-06-24",
+    "dateModified": "2026-06-24",
+    "author": { "@type": "Organization", "name": "Clorofila — Estudio de Cocina" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Clorofila — Estudio de Cocina",
+      "logo": { "@type": "ImageObject", "url": "https://clorofila.uy/icon-512.png" }
+    },
+    "mainEntityOfPage": "https://clorofila.uy/guia-tofu"
+  }
+  </script>
+
+  <style>
+    .hero-guia { background: var(--verde); padding: 0; margin: 0; }
+    .hero-guia-inner { max-width: var(--max-narrow); margin: 0 auto; padding: 5.5rem 2rem 4rem; }
+    .hero-guia h1 { color: var(--crema); margin-bottom: 1rem; }
+    .hero-guia .lead { font-size: 1.05rem; color: rgba(255,255,255,.7); max-width: 56ch; line-height: 1.78; }
+    .hero-guia-label { color: var(--verde-luz) !important; }
+
+    .guia { padding: 4.5rem 2rem 2rem; max-width: var(--max-narrow); margin: 0 auto; }
+    .guia-intro { font-size: 1.02rem; line-height: 1.85; margin-bottom: 1.1rem; }
+    .guia-intro strong { color: var(--verde); }
+
+    .guia h2 { font-size: 1.55rem; margin: 3rem 0 1.1rem; padding-top: 1.5rem; border-top: 1px solid var(--crema-osc); }
+    .guia section:first-of-type h2 { border-top: none; padding-top: 0; }
+    .guia p { margin-bottom: 1rem; line-height: 1.8; }
+    .guia ul, .guia ol { margin: 0 0 1.3rem 1.3rem; }
+    .guia ul li, .guia ol li { color: var(--texto-med); line-height: 1.75; margin-bottom: .4rem; }
+    .guia ul { list-style: disc; }
+    .guia ol { list-style: decimal; }
+
+    .nota { background: var(--verde-tinte); border-left: 3px solid var(--verde-luz); border-radius: var(--r-md); padding: 1rem 1.25rem; font-size: .92rem; font-style: italic; color: var(--texto-med); margin: 1.3rem 0; }
+    .alerta { background: #fdf1ea; border-left: 3px solid var(--acento); border-radius: var(--r-md); padding: 1rem 1.25rem; font-size: .92rem; color: var(--texto-med); margin: 1.3rem 0; }
+
+    .tipo-card { background: var(--blanco); border: 1px solid var(--crema-osc); border-radius: var(--r-lg); padding: 1.4rem 1.6rem; margin-bottom: 1rem; }
+    .tipo-card h3 { font-size: 1.1rem; margin-bottom: .4rem; }
+    .tipo-card p { margin-bottom: 0; font-size: .94rem; }
+
+    .errores-grid { display: grid; gap: .9rem; margin: 1.5rem 0 1rem; }
+    .error-item { background: var(--blanco); border: 1px solid var(--crema-osc); border-radius: var(--r-md); padding: 1rem 1.25rem; font-size: .92rem; }
+    .error-item strong { color: var(--acento-osc); display: block; margin-bottom: .25rem; }
+
+    .receta-card { background: var(--blanco); border: 1px solid var(--crema-osc); border-radius: var(--r-lg); padding: 1.6rem 1.8rem; margin-bottom: 1.4rem; }
+    .receta-card h3 { font-size: 1.15rem; margin-bottom: .5rem; color: var(--verde-med); }
+    .receta-card .ingredientes { font-style: italic; color: var(--texto-suave); font-size: .9rem; margin-bottom: .7rem; }
+    .receta-card p:last-child { margin-bottom: 0; }
+
+    .guia-cta { background: var(--verde); padding: 4.5rem 2rem; text-align: center; margin-top: 3rem; }
+    .guia-cta h3 { color: var(--crema); margin-bottom: .75rem; }
+    .guia-cta p  { color: rgba(255,255,255,.65); margin: 0 auto 2rem; max-width: 50ch; }
+    .guia-cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .guia-firma { text-align: center; margin: 2.5rem 0; color: var(--texto-suave); font-size: .85rem; }
+  </style>
+  <!-- Analítica con consentimiento (GA4 + Meta Pixel) — reemplazar los IDs -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.loadAnalytics = function () {
+      if (window.__analyticsLoaded) return;
+      if (location.hostname !== 'clorofila.uy' && location.hostname !== 'www.clorofila.uy') return;
+      window.__analyticsLoaded = true;
+      // Google Analytics GA4
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-BBLJT4TYCV');
+      // Meta Pixel
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','2002873889966452');
+      fbq('track','PageView');
+    };
+    if (localStorage.getItem('cookieConsent') === 'accepted') window.loadAnalytics();
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Ir al contenido principal</a>
+
+<nav class="nav" aria-label="Principal">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>Clorofila</span><span>Estudio de Cocina</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li role="presentation" style="display:contents"><button type="button" class="nav-close" id="nav-close" aria-label="Cerrar menú">✕</button></li>
+      <li><a href="curso.html">El curso</a></li>
+      <li><a href="talleres.html">Talleres</a></li>
+      <li><a href="recetas.html" class="active" aria-current="page">Artículos</a></li>
+      <li><a href="leonardo.html">Leonardo</a></li>
+      <li><a href="servicios.html">Trabajemos juntos</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="nav-cta">Inscribirme →</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
+  </div>
+</nav>
+<main id="main-content">
+
+<div class="hero-guia">
+  <div class="hero-guia-inner">
+    <div class="fade-up">
+      <span class="section-label hero-guia-label">Proteína vegetal</span>
+      <h1>Guía práctica <em>del tofu</em>.</h1>
+      <p class="lead">Todo lo que necesitás saber para elegirlo, conservarlo y cocinarlo bien.</p>
+    </div>
+  </div>
+</div>
+
+<article class="guia">
+
+  <p class="guia-intro fade-up">El tofu es uno de los alimentos más comprados y menos aprovechados de la cocina basada en plantas. No porque sea difícil — sino porque nadie explica bien cómo usarlo.</p>
+  <p class="guia-intro fade-up">No tiene sabor propio por diseño. Es una base, no un ingrediente terminado. Cuando entendés eso, y aprendés dos o tres técnicas básicas, pasa de ser ese bloque blanco que no convence a uno de los ingredientes más versátiles que podés tener en la heladera.</p>
+  <p class="guia-intro fade-up"><strong>Esta guía tiene todo lo que necesitás para usarlo bien.</strong></p>
+
+  <section class="fade-up">
+    <h2>Qué es y cómo se hace</h2>
+    <p>El tofu es proteína de soja coagulada. El proceso es casi idéntico al del queso: se extrae leche de soja, se calienta y se le agrega un coagulante — generalmente sulfato de calcio o cloruro de magnesio — que hace que las proteínas se unan y formen una masa sólida. Esa masa se prensa para eliminar el exceso de líquido y dar forma al bloque final.</p>
+    <p>Es un alimento mínimamente procesado. Sus ingredientes son soja, agua y coagulante. Sin aditivos, sin conservantes, sin ingredientes artificiales en su versión tradicional. El nivel de procesamiento es comparable al del queso o el yogur.</p>
+    <p>Originario de China, se consume en Asia desde hace más de 2.000 años. Es fuente completa de proteína vegetal — contiene los nueve aminoácidos esenciales — y uno de los alimentos más estudiados dentro de la alimentación basada en plantas.</p>
+  </section>
+
+  <section class="fade-up">
+    <h2>Valor nutricional</h2>
+    <p>Por cada 100 g de tofu firme:</p>
+    <ul>
+      <li>Proteínas: 8 a 10 g</li>
+      <li>Grasas: 4 a 5 g, principalmente insaturadas</li>
+      <li>Carbohidratos: menos de 2 g</li>
+      <li>Calcio: entre 150 y 350 mg según el coagulante usado</li>
+      <li>Hierro: 1,5 a 2 mg</li>
+      <li>Sin colesterol y naturalmente bajo en sodio</li>
+    </ul>
+    <p>El tofu elaborado con sulfato de calcio es una fuente significativa de calcio biodisponible, comparable en muchos casos a los lácteos. Es también fuente de manganeso, selenio, fósforo y vitaminas del grupo B.</p>
+    <p>Contiene isoflavonas — compuestos vegetales con una estructura similar a los estrógenos pero con una actividad biológica muchísimo menor. La evidencia científica actual no respalda que el consumo habitual de tofu genere alteraciones hormonales en adultos sanos.</p>
+  </section>
+
+  <section class="fade-up">
+    <h2>Cómo elegirlo</h2>
+    <ul>
+      <li><strong>Leé la lista de ingredientes.</strong> Un buen tofu tiene pocos: soja, agua y coagulante. Si tiene conservantes, almidones o aditivos innecesarios es señal de menor calidad.</li>
+      <li><strong>Fijate en el coagulante.</strong> El sulfato de calcio produce un tofu más suave y con mayor contenido de calcio. El cloruro de magnesio produce una textura más firme. Ambos son válidos según el uso que le vayas a dar.</li>
+      <li><strong>Elegí orgánico cuando sea posible.</strong> La soja es uno de los cultivos con mayor uso de agroquímicos a nivel global. El tofu orgánico garantiza que no se usaron pesticidas ni soja transgénica.</li>
+      <li><strong>Fijate en la fecha.</strong> El tofu fresco tiene una ventana de consumo corta una vez abierto. Elegí el envase con más días de vencimiento si no lo vas a usar de inmediato.</li>
+      <li><strong>Elegí el tipo según lo que vas a preparar.</strong> No todos los tofus sirven para todo.</li>
+    </ul>
+  </section>
+
+  <section class="fade-up">
+    <h2>Tipos de tofu</h2>
+    <div class="tipo-card">
+      <h3>Tofu sedoso</h3>
+      <p>Textura suave y cremosa, alto contenido de agua. No aguanta el prensado ni el dorado. Ideal para salsas, cremas, postres, mousses, smoothies y como reemplazo del huevo en preparaciones húmedas.</p>
+    </div>
+    <div class="tipo-card">
+      <h3>Tofu blando</h3>
+      <p>Un poco más firme que el sedoso pero todavía delicado. Bueno para sopas suaves y rellenos cremosos donde se quiere que el tofu se integre sin estructura definida.</p>
+    </div>
+    <div class="tipo-card">
+      <h3>Tofu firme</h3>
+      <p>El más versátil y el más fácil de conseguir. Aguanta el prensado, la marinada, el salteado y el horno. Es el punto de partida para la mayoría de las recetas.</p>
+    </div>
+    <div class="tipo-card">
+      <h3>Tofu extra firme</h3>
+      <p>Menor contenido de agua, textura densa. Ideal para cubos dorados en sartén o a la plancha. Requiere menos tiempo de prensado y da mejor resultado cuando se busca textura crocante.</p>
+    </div>
+    <div class="tipo-card">
+      <h3>Tofu ahumado</h3>
+      <p>Ya viene procesado con humo. Tiene sabor pronunciado y textura firme. Se puede usar directamente sin marinar. Muy bueno en sandwiches, ensaladas y salteados rápidos.</p>
+    </div>
+  </section>
+
+  <section class="fade-up">
+    <h2>Cómo conservarlo</h2>
+    <p>Una vez abierto el envase, el tofu necesita cuidados básicos para mantener su calidad. El agua sola ayuda pero no alcanza: en el agua sin tratar igual pueden desarrollarse microorganismos indeseables, aunque no se note a simple vista ni huela mal todavía.</p>
+    <ol>
+      <li>Colocá el tofu en un recipiente limpio con tapa.</li>
+      <li>Cubrilo completamente con agua fría.</li>
+      <li>Disolvé una pizca de sal en el agua antes de sumergirlo.</li>
+      <li>Agregá un chorrito de vinagre blanco.</li>
+      <li>Refrigerá inmediatamente.</li>
+      <li>Cambiá el agua cada 24 a 48 horas.</li>
+    </ol>
+    <p>La sal inhibe el crecimiento bacteriano y mantiene la textura firme. El vinagre baja el pH del agua creando un ambiente donde los microorganismos no prosperan. En las cantidades indicadas no alteran el sabor del tofu.</p>
+    <div class="nota">Bien conservado con este método dura entre 5 y 7 días después de abierto. Un olor suave y ligeramente ácido puede ser normal. Un olor fuerte o agrio indica que ya no está en condiciones — en caso de duda, descartalo.</div>
+  </section>
+
+  <section class="fade-up">
+    <h2>Cómo congelarlo</h2>
+    <p>Congelar el tofu modifica su estructura interna. Los cristales de hielo rompen la red proteica dejando una textura más porosa, firme y esponjosa al descongelar. Esa porosidad hace que absorba marinadas y salsas de forma mucho más eficiente que el tofu fresco.</p>
+    <ol>
+      <li>Escurrí y secá bien antes de congelar.</li>
+      <li>Cortalo en porciones del tamaño que vas a usar.</li>
+      <li>Guardalo en bolsa o recipiente apto para freezer.</li>
+      <li>Dura hasta 3 meses.</li>
+    </ol>
+    <p>Para descongelar, pasalo a la heladera la noche anterior o sumergilo en agua tibia durante 30 minutos. Una vez descongelado, prensalo bien antes de cocinar — libera mucha agua y si no la eliminás el resultado se resiente.</p>
+  </section>
+
+  <section class="fade-up">
+    <h2>Cómo prensarlo</h2>
+    <p>Es el paso que más diferencia hace y el que más se saltea. Al eliminar el exceso de agua, el tofu dora en lugar de cocinarse al vapor.</p>
+    <ol>
+      <li>Envolvé el bloque en un paño limpio o varias capas de papel absorbente.</li>
+      <li>Colocalo sobre una superficie plana.</li>
+      <li>Poné algo pesado encima — una tabla, una sartén, unos libros.</li>
+      <li>Dejalo prensado entre 20 y 45 minutos.</li>
+      <li>Cambiá el papel si se satura antes de tiempo.</li>
+    </ol>
+    <p>El tofu extra firme necesita menos tiempo. El firme estándar se beneficia de al menos 30 minutos.</p>
+  </section>
+
+  <section class="fade-up">
+    <h2>Cómo marinarlo</h2>
+    <p>El tofu absorbe sabores desde la superficie hacia adentro. El prensado previo mejora la absorción porque elimina el agua que ocupa los poros. El tofu congelado y descongelado absorbe aún mejor por su textura más porosa.</p>
+    <p><strong>Proporciones base para 250 g de tofu:</strong></p>
+    <ul>
+      <li>3 cdas de ingrediente salado — salsa de soja, tamari o miso disuelto</li>
+      <li>1 cda de ácido — limón, vinagre de manzana o vinagre de arroz</li>
+      <li>1 cda de grasa — aceite de oliva o aceite de sésamo</li>
+      <li>Aromáticos a gusto — ajo, jengibre, hierbas, especias</li>
+    </ul>
+    <p><strong>Combinaciones que funcionan:</strong></p>
+    <ul>
+      <li><strong>Asiática</strong> — salsa de soja, ajo, jengibre rallado, aceite de sésamo, lima</li>
+      <li><strong>Ahumada</strong> — pimentón ahumado, ajo en polvo, aceite de oliva, salsa de soja, pimienta negra</li>
+      <li><strong>Cítrica</strong> — jugo de limón, ralladura, mostaza, aceite de oliva, hierbas frescas</li>
+      <li><strong>Mediterránea</strong> — orégano, ajo, aceite de oliva, vinagre de manzana, sal</li>
+    </ul>
+    <p>Tiempo mínimo de marinado: 30 minutos. Para resultado óptimo: 2 a 4 horas en heladera. Se puede marinar toda la noche.</p>
+  </section>
+
+  <section class="fade-up">
+    <h2>Métodos de cocción</h2>
+    <ul>
+      <li><strong>Salteado en sartén.</strong> Sartén bien caliente, poco aceite. Cubos sin moverlos hasta que se forme costra — 3 a 4 minutos por lado. Si los movés antes de tiempo se pegan y se rompen.</li>
+      <li><strong>Al horno.</strong> 200°C, 25 a 30 minutos, dando vuelta a mitad de cocción. Firme por fuera, suave por dentro. Ideal para preparar en cantidad y usar durante la semana.</li>
+      <li><strong>A la plancha.</strong> Láminas de 1 cm. Plancha bien caliente con poco aceite. 3 a 4 minutos por lado sin mover.</li>
+      <li><strong>Frito.</strong> Aceite abundante y caliente. Forma una capa muy crocante. Secá bien el tofu antes para evitar salpicaduras. 2 a 3 minutos por lado.</li>
+      <li><strong>En caldos y sopas.</strong> El tofu sedoso va directo al caldo caliente sin cocción previa. El firme se incorpora en cubos los últimos minutos y absorbe el sabor del caldo sin perder estructura.</li>
+    </ul>
+  </section>
+
+  <section class="fade-up">
+    <h2>Errores frecuentes</h2>
+    <div class="errores-grid">
+      <div class="error-item"><strong>Guardarlo sin agua después de abierto.</strong>Se reseca y se deteriora rápidamente.</div>
+      <div class="error-item"><strong>No cambiar el agua.</strong>El agua estancada favorece el desarrollo de microorganismos aunque no huela mal todavía.</div>
+      <div class="error-item"><strong>Saltear sin prensar.</strong>El agua que no eliminaste se libera en la sartén. El tofu se cocina al vapor en lugar de dorarse.</div>
+      <div class="error-item"><strong>No marinar.</strong>El tofu sin marinar es neutro — eso no es un defecto, es su naturaleza. El sabor lo aportás vos.</div>
+      <div class="error-item"><strong>Usar tofu sedoso donde se necesita firmeza.</strong>El sedoso no aguanta el salteado ni el horno.</div>
+      <div class="error-item"><strong>Cocinar a fuego bajo.</strong>El tofu necesita calor alto para dorarse. A fuego bajo queda pálido y gomoso.</div>
+      <div class="error-item"><strong>Congelarlo y no prensarlo al descongelar.</strong>Una vez descongelado libera mucha agua. Si no la eliminás antes de cocinar el resultado se resiente.</div>
+    </div>
+  </section>
+
+  <section class="fade-up">
+    <h2>Recetas base</h2>
+
+    <div class="receta-card">
+      <h3>Tofu crocante al horno</h3>
+      <p class="ingredientes">250 g de tofu firme · 1 cda de salsa de soja · 1 cdita de aceite de oliva · pimentón ahumado · ajo en polvo · pimienta negra</p>
+      <p>Prensar 30 minutos. Marinar 30 minutos. Cortar en cubos. Hornear 25 minutos a 200°C dando vuelta a mitad de cocción. Queda crocante por fuera y firme por dentro. Sirve para ensaladas, bowls, arroces o como snack.</p>
+    </div>
+
+    <div class="receta-card">
+      <h3>Tofu scramble</h3>
+      <p class="ingredientes">300 g de tofu firme · cúrcuma · sal negra kala namak · cebolla · morrón · aceite de oliva</p>
+      <p>Saltear la verdura 5 minutos. Desmenuzar el tofu con tenedor directamente en la sartén. Agregar las especias y cocinar 5 minutos más revolviendo. La sal negra kala namak tiene azufre y da un sabor muy cercano al huevo — es el ingrediente que hace la diferencia en esta preparación.</p>
+    </div>
+
+    <div class="receta-card">
+      <h3>Tofu a la plancha con marinada asiática</h3>
+      <p class="ingredientes">250 g de tofu extra firme en láminas de 1 cm · 2 cdas de salsa de soja · 1 cdita de jengibre rallado · 1 diente de ajo · 1 cdita de aceite de sésamo · unas gotas de lima</p>
+      <p>Prensar 20 minutos. Marinar 2 horas. Plancha bien caliente con poco aceite. 4 minutos por lado sin mover. Servir con arroz y verduras salteadas.</p>
+    </div>
+
+    <div class="receta-card">
+      <h3>Crema de tofu sedoso</h3>
+      <p class="ingredientes">200 g de tofu sedoso · jugo de medio limón · 1 diente de ajo · 2 cdas de aceite de oliva · sal · hierbas frescas a gusto</p>
+      <p>Procesar todo hasta obtener una crema lisa. Funciona como base para aderezos, dips, rellenos y salsas. Se condimenta en muchas direcciones según el plato.</p>
+    </div>
+  </section>
+
+</article>
+
+<div class="guia-cta">
+  <span class="section-label" style="color:var(--verde-luz)">Para seguir aprendiendo</span>
+  <h3>En Clorofila no enseñamos <em style="color:var(--verde-luz)">recetas</em>. Enseñamos a entender.</h3>
+  <p>El tofu es un buen ejemplo de eso: una vez que entendés su lógica, no necesitás seguir una receta paso a paso. Si querés aprender a cocinar con esas bases, escribinos.</p>
+  <div class="guia-cta-actions">
+    <a href="https://wa.me/59894064148" target="_blank" rel="noopener noreferrer" class="btn btn-light">Escribir por WhatsApp →</a>
+    <a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light">Ir a Instagram →</a>
+  </div>
+</div>
+
+<p class="guia-firma">Clorofila — Estudio de Cocina · Maldonado 1976, Parque Rodó, Montevideo</p>
+
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo">Clorofila</span>
+      <p class="tagline">No enseñamos recetas. <br>Enseñamos a entender.</p>
+      <p class="sub">Maldonado 1976 esq. Blanes · Parque Rodó · Montevideo · Desde 2013</p>
+    </div>
+    <div><h2>Propuesta</h2><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="recetas.html">Artículos</a></li></ul></div>
+    <div><h2>Clorofila</h2><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
+    <div><h2>Contacto</h2><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 Clorofila Estudio de Cocina · Parque Rodó · Montevideo · Uruguay</div>
+</footer>
+
+<div class="sticky-cta" id="sticky-cta">
+  <a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" class="cta-main">Seguirnos en Instagram →</a>
+  <a href="https://wa.me/59894064148" target="_blank" rel="noopener noreferrer" class="wa-btn">💬</a>
+</div>
+
+<script>
+  const _nbtn = document.getElementById('nav-hamburger');
+  const _nul  = document.getElementById('nav-links');
+  const _ncls = document.getElementById('nav-close');
+  function _openNav()  { _nul.classList.add('open');    _nbtn.setAttribute('aria-expanded','true'); document.body.classList.add('nav-open'); }
+  function _closeNav() { _nul.classList.remove('open'); _nbtn.setAttribute('aria-expanded','false'); document.body.classList.remove('nav-open'); }
+  _nbtn.addEventListener('click', _openNav);
+  _ncls.addEventListener('click', _closeNav);
+  document.addEventListener('keydown', e => { if(e.key==='Escape' && _nul.classList.contains('open')) _closeNav(); });
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
+  document.querySelectorAll('.fade-up, .reveal-img').forEach(el => obs.observe(el));
+  setTimeout(() => { document.querySelectorAll('.fade-up, .reveal-img').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible'); }); }, 80);
+  const cta = document.getElementById('sticky-cta');
+  const navEl = document.querySelector('.nav');
+  window.addEventListener('scroll', () => { if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 20); cta.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+</script>
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+  <p>Usamos cookies propias y de terceros para analítica y publicidad. Podés aceptar o rechazar su uso. <a href="contacto.html">Más info</a></p>
+  <div class="cookie-banner-actions">
+    <button type="button" id="cookie-decline">Rechazar</button>
+    <button type="button" id="cookie-accept">Aceptar</button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const banner = document.getElementById('cookie-banner');
+    const consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+      setTimeout(() => banner.classList.add('visible'), 600);
+    }
+    document.getElementById('cookie-accept').addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'accepted');
+      banner.classList.remove('visible');
+      if (typeof window.loadAnalytics === 'function') window.loadAnalytics();
+    });
+    document.getElementById('cookie-decline').addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'declined');
+      banner.classList.remove('visible');
+    });
+  })();
+</script>
+</body>
+</html>
