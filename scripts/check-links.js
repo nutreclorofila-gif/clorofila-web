@@ -8,7 +8,7 @@ let errors = 0;
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(path.join(root, file), 'utf8');
-  const attrRegex = /(?:href|src)\s*=\s*["']([^"']+)["']/g;
+  const attrRegex = /(?:href|src|srcset)\s*=\s*["']([^"']+)["']/g;
   let match;
   while ((match = attrRegex.exec(html))) {
     const raw = match[1];

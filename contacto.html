@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://connect.facebook.net">
+  <link rel="preconnect" href="https://tally.so">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#20301f">
   <title>Contacto — Clorofila Estudio de Cocina · Parque Rodó, Montevideo</title>
   <meta name="description" content="Contactá a Clorofila para el curso, los talleres o cualquier consulta. Maldonado 1976 esq. Blanes, Parque Rodó, Montevideo.">
   <meta name="robots" content="index, follow">
@@ -54,10 +62,10 @@
     .canal-info strong { font-size: .93rem; }
     .canal-info span   { font-size: .77rem; color: var(--texto-med); font-weight: 400; margin-top: .1rem; }
 
-    .ubicacion h4 { margin-bottom: .5rem; font-size: 1rem; }
+    .ubicacion h2 { margin-bottom: .5rem; font-size: 1rem; }
     .ubicacion-addr { font-size: .9rem; color: var(--texto-med); line-height: 1.75; }
     .horarios { margin-top: 1.75rem; }
-    .horarios h4 { margin-bottom: .75rem; font-size: 1rem; }
+    .horarios h2 { margin-bottom: .75rem; font-size: 1rem; }
     .horarios table { width: 100%; border-collapse: collapse; }
     .horarios td { padding: .55rem 0; font-size: .87rem; color: var(--texto-med); border-bottom: 1px solid var(--crema-osc); }
     .horarios td:first-child { font-weight: 500; color: var(--verde); width: 110px; }
@@ -73,26 +81,32 @@
       .contacto-main { grid-template-columns: 1fr; gap: 3rem; }
     }
   </style>
-  <!-- Google Analytics GA4 — reemplazar G-BBLJT4TYCV con tu Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV"></script>
+  <!-- Analítica con consentimiento (GA4 + Meta Pixel) — reemplazar los IDs -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-BBLJT4TYCV');
+    window.loadAnalytics = function () {
+      if (window.__analyticsLoaded) return;
+      if (location.hostname !== 'clorofila.uy' && location.hostname !== 'www.clorofila.uy') return;
+      window.__analyticsLoaded = true;
+      // Google Analytics GA4
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-BBLJT4TYCV');
+      // Meta Pixel
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','2002873889966452');
+      fbq('track','PageView');
+    };
+    if (localStorage.getItem('cookieConsent') === 'accepted') window.loadAnalytics();
   </script>
-  <!-- Meta Pixel — reemplazar 2002873889966452 con tu Pixel ID -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','2002873889966452');
-    fbq('track','PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=2002873889966452&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Ir al contenido principal</a>
@@ -139,10 +153,10 @@
     </div>
 
     <div class="ubicacion">
-      <h4>Dónde estamos</h4>
+      <h2>Dónde estamos</h2>
       <p class="ubicacion-addr"><strong>Maldonado 1976 esq. Blanes</strong><br>Parque Rodó, Montevideo, Uruguay</p>
       <div class="horarios">
-        <h4>Días del curso</h4>
+        <h2>Días del curso</h2>
         <table>
           <tbody>
             <tr><td>Martes</td><td>19:00 – 21:00 hs</td></tr>
@@ -171,7 +185,7 @@
       <a href="https://maps.google.com/?q=Maldonado+1976+Montevideo+Uruguay" target="_blank" rel="noopener noreferrer">Ver en Google Maps →</a>
     </p>
     <div class="reveal-img" style="border-radius:var(--r-lg); overflow:hidden; margin-top:1rem; aspect-ratio:16/10">
-      <img src="img-espacio.jpg" alt="El estudio de Clorofila en Parque Rodó" loading="lazy" style="width:100%; height:100%; object-fit:cover; filter:saturate(.92)">
+      <picture><source srcset="img-espacio.webp" type="image/webp"><img src="img-espacio.jpg" width="867" height="1300" alt="El estudio de Clorofila en Parque Rodó" loading="lazy" style="width:100%; height:100%; object-fit:cover; filter:saturate(.92)"></picture>
     </div>
   </div>
 
@@ -184,9 +198,9 @@
       <p class="tagline">No enseñamos recetas. <br>Enseñamos a entender.</p>
       <p class="sub">Maldonado 1976 esq. Blanes · Parque Rodó · Montevideo · Desde 2013</p>
     </div>
-    <div><h5>Propuesta</h5><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="recetas.html">Artículos</a></li></ul></div>
-    <div><h5>Clorofila</h5><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
-    <div><h5>Contacto</h5><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li></ul></div>
+    <div><h2>Propuesta</h2><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="recetas.html">Artículos</a></li></ul></div>
+    <div><h2>Clorofila</h2><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
+    <div><h2>Contacto</h2><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li></ul></div>
   </div>
   <div class="footer-bottom">© 2026 Clorofila Estudio de Cocina · Parque Rodó · Montevideo · Uruguay</div>
 </footer>
@@ -211,6 +225,32 @@
   const cta = document.getElementById('sticky-cta');
   const navEl = document.querySelector('.nav');
   window.addEventListener('scroll', () => { if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 20); cta.classList.toggle('visible', window.scrollY > 300); }, { passive: true });
+</script>
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+  <p>Usamos cookies propias y de terceros para analítica y publicidad. Podés aceptar o rechazar su uso. <a href="contacto.html">Más info</a></p>
+  <div class="cookie-banner-actions">
+    <button type="button" id="cookie-decline">Rechazar</button>
+    <button type="button" id="cookie-accept">Aceptar</button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const banner = document.getElementById('cookie-banner');
+    const consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+      setTimeout(() => banner.classList.add('visible'), 600);
+    }
+    document.getElementById('cookie-accept').addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'accepted');
+      banner.classList.remove('visible');
+      if (typeof window.loadAnalytics === 'function') window.loadAnalytics();
+    });
+    document.getElementById('cookie-decline').addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'declined');
+      banner.classList.remove('visible');
+    });
+  })();
 </script>
 </body>
 </html>

@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="google-site-verification" content="dccf1cf7e028ebab">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://connect.facebook.net">
+  <link rel="preconnect" href="https://tally.so">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#20301f">
   <title>Clorofila — Estudio de Cocina en Montevideo</title>
   <meta name="description" content="No enseñamos recetas. Enseñamos a entender. Estudio de cocina basada en plantas en Parque Rodó, Montevideo. Curso de 3 meses y talleres.">
   <meta name="robots" content="index, follow">
@@ -74,9 +82,9 @@
     .para-quien-img img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.9); }
     .pq-listas { margin-top: 2rem; }
     .pq-bloque + .pq-bloque { margin-top: 1.75rem; }
-    .pq-bloque h4 { font-family: var(--ff-b); font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1rem; }
-    .pq-bloque.si h4  { color: var(--verde-med); }
-    .pq-bloque.no h4  { color: var(--texto-med); }
+    .pq-bloque h3 { font-family: var(--ff-b); font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1rem; }
+    .pq-bloque.si h3  { color: var(--verde-med); }
+    .pq-bloque.no h3  { color: var(--texto-med); }
     .pq-bloque li { font-size: .92rem; color: var(--texto-med); padding: .4rem 0; display: flex; align-items: flex-start; gap: .65rem; line-height: 1.5; }
     .pq-bloque.si li::before { content: '✓'; color: var(--verde-med); font-weight: 700; flex-shrink: 0; }
     .pq-bloque.no li::before { content: '—'; color: var(--crema); flex-shrink: 0; }
@@ -112,7 +120,7 @@
     .clase-pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .clase-paso { background: var(--blanco); border-radius: var(--r-lg); padding: 1.75rem; }
     .clase-paso .num { font-family: var(--ff-d); font-size: 1.8rem; color: var(--acento); display: block; margin-bottom: .5rem; }
-    .clase-paso h4 { font-size: 1.05rem; margin-bottom: .4rem; }
+    .clase-paso h3 { font-size: 1.05rem; margin-bottom: .4rem; }
     .clase-paso p { font-size: .87rem; color: var(--texto-med); line-height: 1.6; }
 
     /* GALERÍA */
@@ -202,26 +210,32 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"LocalBusiness","name":"Clorofila Estudio de Cocina","description":"Estudio de cocina basada en plantas en Parque Rodó, Montevideo. Curso de 3 meses y talleres.","url":"https://clorofila.uy/","image":"https://clorofila.uy/img-leo-cocina.jpg","telephone":"+59894064148","email":"nutreclorofila@gmail.com","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"},"geo":{"@type":"GeoCoordinates","latitude":-34.9106,"longitude":-56.1850},"sameAs":["https://instagram.com/clorofilaclases"],"foundingDate":"2013","priceRange":"$$"}
   </script>
-  <!-- Google Analytics GA4 — reemplazar G-BBLJT4TYCV con tu Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV"></script>
+  <!-- Analítica con consentimiento (GA4 + Meta Pixel) — reemplazar los IDs -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-BBLJT4TYCV');
+    window.loadAnalytics = function () {
+      if (window.__analyticsLoaded) return;
+      if (location.hostname !== 'clorofila.uy' && location.hostname !== 'www.clorofila.uy') return;
+      window.__analyticsLoaded = true;
+      // Google Analytics GA4
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-BBLJT4TYCV');
+      // Meta Pixel
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','2002873889966452');
+      fbq('track','PageView');
+    };
+    if (localStorage.getItem('cookieConsent') === 'accepted') window.loadAnalytics();
   </script>
-  <!-- Meta Pixel — reemplazar 2002873889966452 con tu Pixel ID -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','2002873889966452');
-    fbq('track','PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=2002873889966452&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Ir al contenido principal</a>
@@ -270,7 +284,7 @@
       </div>
     </div>
     <div class="hero-photo reveal-img fade-up" style="transition-delay:.12s">
-      <img src="img-leo-cocina.jpg" alt="Leonardo Lemes cocinando en el estudio de Clorofila" loading="eager">
+      <picture><source srcset="img-leo-cocina.webp" type="image/webp"><img src="img-leo-cocina.jpg" width="975" height="1300" alt="Leonardo Lemes cocinando en el estudio de Clorofila" loading="eager"></picture>
       <span class="hero-photo-caption">Leonardo Lemes · Clorofila</span>
     </div>
   </div>
@@ -307,7 +321,7 @@
 <section class="para-quien">
   <div class="para-quien-inner">
     <div class="para-quien-img reveal-img">
-      <img src="img-alumnas.jpg" alt="Alumnas trabajando en una clase de Clorofila" loading="lazy">
+      <picture><source srcset="img-alumnas.webp" type="image/webp"><img src="img-alumnas.jpg" width="867" height="1300" alt="Alumnas trabajando en una clase de Clorofila" loading="lazy"></picture>
     </div>
     <div class="fade-up" style="transition-delay:.1s">
       <span class="section-label">¿Es para vos?</span>
@@ -315,7 +329,7 @@
       <p style="font-size:.97rem; color:var(--texto-med); line-height:1.7; margin-bottom:1.75rem">No hace falta experiencia previa. Podés llegar sin saber hervir agua — lo que importa es la disposición para aprender de verdad.</p>
       <div class="pq-listas">
         <div class="pq-bloque si">
-          <h4>Es para vos si</h4>
+          <h3>Es para vos si</h3>
           <ul>
             <li>Querés entender qué pasa en la cocina, no solo seguir pasos.</li>
             <li>Te llaman la atención la fermentación, la masa madre, la cocina basada en plantas.</li>
@@ -343,7 +357,7 @@
       <a href="sobre.html" class="btn btn-ghost-light" style="margin-top:.5rem">Conocer más sobre Clorofila →</a>
     </div>
     <div class="postura-img reveal-img" style="transition-delay:.15s">
-      <img src="img-leo-ensena.jpg" alt="Leonardo Lemes enseñando en una clase de Clorofila">
+      <picture><source srcset="img-leo-ensena.webp" type="image/webp"><img src="img-leo-ensena.jpg" width="975" height="1300" alt="Leonardo Lemes enseñando en una clase de Clorofila"></picture>
     </div>
   </div>
 </section>
@@ -392,23 +406,23 @@
         <p style="color:var(--texto-med); line-height:1.75; font-size:.97rem">Trabajamos en grupos reducidos alrededor de una mesa grande, cada quien con su espacio, sus herramientas e ingredientes. No mirás cocinar: cocinás. Y al final, nos sentamos a comer juntos lo que preparamos.</p>
       </div>
       <div class="clase-img reveal-img" style="transition-delay:.1s">
-        <img src="img-clase-plating.jpg" alt="Alumnos cocinando y emplatando en Clorofila" loading="lazy">
+        <picture><source srcset="img-clase-plating.webp" type="image/webp"><img src="img-clase-plating.jpg" width="867" height="1300" alt="Alumnos cocinando y emplatando en Clorofila" loading="lazy"></picture>
       </div>
     </div>
     <div class="clase-pasos">
       <div class="clase-paso fade-up">
         <span class="num">01</span>
-        <h4>Cocinás, no mirás</h4>
+        <h3>Cocinás, no mirás</h3>
         <p>Desde el primer día tenés las manos en la masa. Se aprende haciendo, no observando.</p>
       </div>
       <div class="clase-paso fade-up" style="transition-delay:.1s">
         <span class="num">02</span>
-        <h4>Entendés mientras hacés</h4>
+        <h3>Entendés mientras hacés</h3>
         <p>Leonardo explica el por qué de cada proceso en el momento, no antes. La comprensión llega con las manos.</p>
       </div>
       <div class="clase-paso fade-up" style="transition-delay:.2s">
         <span class="num">03</span>
-        <h4>Compartís la mesa</h4>
+        <h3>Compartís la mesa</h3>
         <p>Probás todo lo que preparás y cerramos comiendo juntos. La comunidad se construye en la mesa.</p>
       </div>
     </div>
@@ -422,11 +436,11 @@
     <p>Elaboraciones reales de clases y talleres — todo basado en plantas.</p>
   </div>
   <div class="galeria-grid">
-    <div><div class="galeria-item"><img src="img-cheesecake.jpg" alt="Cheesecake con frutillas y flores comestibles" loading="lazy"></div><p class="galeria-caption">Cheesecake de frutillas</p></div>
-    <div><div class="galeria-item"><img src="img-alfajores.jpg" alt="Alfajores de chocolate" loading="lazy"></div><p class="galeria-caption">Alfajores</p></div>
-    <div><div class="galeria-item"><img src="img-tosta.jpg" alt="Tosta de hongos y hojas verdes" loading="lazy"></div><p class="galeria-caption">Tosta de hongos</p></div>
-    <div><div class="galeria-item"><img src="img-budin.jpg" alt="Budín con frosting y naranja" loading="lazy"></div><p class="galeria-caption">Pastelería</p></div>
-    <div><div class="galeria-item"><img src="img-postre-higos.jpg" alt="Postre emplatado con higos y frutas" loading="lazy"></div><p class="galeria-caption">Postre emplatado</p></div>
+    <div><div class="galeria-item"><picture><source srcset="img-cheesecake.webp" type="image/webp"><img src="img-cheesecake.jpg" width="667" height="1000" alt="Cheesecake con frutillas y flores comestibles" loading="lazy"></picture></div><p class="galeria-caption">Cheesecake de frutillas</p></div>
+    <div><div class="galeria-item"><picture><source srcset="img-alfajores.webp" type="image/webp"><img src="img-alfajores.jpg" width="667" height="1000" alt="Alfajores de chocolate" loading="lazy"></picture></div><p class="galeria-caption">Alfajores</p></div>
+    <div><div class="galeria-item"><picture><source srcset="img-tosta.webp" type="image/webp"><img src="img-tosta.jpg" width="667" height="1000" alt="Tosta de hongos y hojas verdes" loading="lazy"></picture></div><p class="galeria-caption">Tosta de hongos</p></div>
+    <div><div class="galeria-item"><picture><source srcset="img-budin.webp" type="image/webp"><img src="img-budin.jpg" width="667" height="1000" alt="Budín con frosting y naranja" loading="lazy"></picture></div><p class="galeria-caption">Pastelería</p></div>
+    <div><div class="galeria-item"><picture><source srcset="img-postre-higos.webp" type="image/webp"><img src="img-postre-higos.jpg" width="667" height="1000" alt="Postre emplatado con higos y frutas" loading="lazy"></picture></div><p class="galeria-caption">Postre emplatado</p></div>
   </div>
 </div>
 
@@ -507,30 +521,30 @@
         <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20Tapeo.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-light" style="align-self:flex-start; margin-top:.5rem;">Avisame cuando haya fecha →</a>
       </div>
       <div style="overflow:hidden;">
-        <img src="img-tapeo.jpg" alt="Tapeo en Clorofila — cocinar y cenar juntos" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+        <picture><source srcset="img-tapeo.webp" type="image/webp"><img src="img-tapeo.jpg" width="1600" height="1200" alt="Tapeo en Clorofila — cocinar y cenar juntos" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;"></picture>
       </div>
     </div>
 
     <!-- Grid de talleres -->
     <div class="talleres-grid">
       <div class="taller-card fade-up">
-        <div class="taller-card-img"><img src="img-bts.jpg" alt="Fermentación y procesos en Clorofila" loading="lazy"></div>
+        <div class="taller-card-img"><picture><source srcset="img-bts.webp" type="image/webp"><img src="img-bts.jpg" width="867" height="1300" alt="Fermentación y procesos en Clorofila" loading="lazy"></picture></div>
         <div class="taller-card-body"><h3>Fermentación de vegetales</h3><p>Chucrut, kimchi y encurtidos desde la comprensión del proceso.</p><a href="talleres.html">Ver taller →</a></div>
       </div>
       <div class="taller-card fade-up" style="transition-delay:.1s">
-        <div class="taller-card-img"><img src="img-sandwich.jpg" alt="Pan sin gluten" loading="lazy"></div>
+        <div class="taller-card-img"><picture><source srcset="img-sandwich.webp" type="image/webp"><img src="img-sandwich.jpg" width="667" height="1000" alt="Pan sin gluten" loading="lazy"></picture></div>
         <div class="taller-card-body"><h3>Pan sin gluten con masa madre</h3><p>Fermentación, hidratación y técnica para panes sin gluten ni aditivos.</p><a href="talleres.html">Ver taller →</a></div>
       </div>
       <div class="taller-card fade-up" style="transition-delay:.2s">
-        <div class="taller-card-img"><img src="img-alfajores.jpg" alt="Alfajores plant-based" loading="lazy"></div>
+        <div class="taller-card-img"><picture><source srcset="img-alfajores.webp" type="image/webp"><img src="img-alfajores.jpg" width="667" height="1000" alt="Alfajores plant-based" loading="lazy"></picture></div>
         <div class="taller-card-body"><h3>Alfajores plant-based</h3><p>Pastelería sin lácteos ni huevos con técnica real — no sustitución, comprensión.</p><a href="talleres.html">Ver taller →</a></div>
       </div>
       <div class="taller-card fade-up" style="transition-delay:.3s">
-        <div class="taller-card-img"><img src="img-postre-stack.jpg" alt="Quesos vegetales en Clorofila" loading="lazy"></div>
+        <div class="taller-card-img"><picture><source srcset="img-postre-stack.webp" type="image/webp"><img src="img-postre-stack.jpg" width="667" height="1000" alt="Quesos vegetales en Clorofila" loading="lazy"></picture></div>
         <div class="taller-card-body"><h3>Quesos vegetales</h3><p>Fermentación y maduración aplicadas a quesos de cajú. Sin ingredientes de origen animal.</p><a href="talleres.html">Ver taller →</a></div>
       </div>
       <div class="taller-card fade-up" style="transition-delay:.4s">
-        <div class="taller-card-img"><img src="img-clase-masa.jpg" alt="Pastas sin gluten en Clorofila" loading="lazy"></div>
+        <div class="taller-card-img"><picture><source srcset="img-clase-masa.webp" type="image/webp"><img src="img-clase-masa.jpg" width="975" height="1300" alt="Pastas sin gluten en Clorofila" loading="lazy"></picture></div>
         <div class="taller-card-body"><h3>Pastas sin gluten</h3><p>Hidratación, almidones y técnica de amasado para pastas sin gluten que realmente funcionan.</p><a href="talleres.html">Ver taller →</a></div>
       </div>
     </div>
@@ -550,9 +564,9 @@
       <p class="tagline">No enseñamos recetas. <br>Enseñamos a entender.</p>
       <p class="sub">Maldonado 1976 esq. Blanes · Parque Rodó · Montevideo · Desde 2013</p>
     </div>
-    <div><h5>Propuesta</h5><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="recetas.html">Artículos</a></li></ul></div>
-    <div><h5>Clorofila</h5><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
-    <div><h5>Contacto</h5><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">@clorofilaclases</a></li></ul></div>
+    <div><h2>Propuesta</h2><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="recetas.html">Artículos</a></li></ul></div>
+    <div><h2>Clorofila</h2><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
+    <div><h2>Contacto</h2><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">@clorofilaclases</a></li></ul></div>
   </div>
   <div class="footer-bottom">© 2026 Clorofila Estudio de Cocina · Parque Rodó · Montevideo · Uruguay</div>
 </footer>
@@ -580,6 +594,32 @@
     cta.classList.toggle('visible', window.scrollY > 700);
     if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });
+</script>
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+  <p>Usamos cookies propias y de terceros para analítica y publicidad. Podés aceptar o rechazar su uso. <a href="contacto.html">Más info</a></p>
+  <div class="cookie-banner-actions">
+    <button type="button" id="cookie-decline">Rechazar</button>
+    <button type="button" id="cookie-accept">Aceptar</button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const banner = document.getElementById('cookie-banner');
+    const consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+      setTimeout(() => banner.classList.add('visible'), 600);
+    }
+    document.getElementById('cookie-accept').addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'accepted');
+      banner.classList.remove('visible');
+      if (typeof window.loadAnalytics === 'function') window.loadAnalytics();
+    });
+    document.getElementById('cookie-decline').addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'declined');
+      banner.classList.remove('visible');
+    });
+  })();
 </script>
 </body>
 </html>

@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://connect.facebook.net">
+  <link rel="preconnect" href="https://tally.so">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#20301f">
   <title>Talleres de Cocina — Clorofila Montevideo</title>
   <meta name="description" content="Talleres intensivos de cocina basada en plantas en Parque Rodó, Montevideo. Fermentación, pan sin gluten, alfajores, tapeo.">
   <meta name="robots" content="index, follow">
@@ -60,26 +68,32 @@
       .taller:nth-child(even) .taller-img { order: 0; }
     }
   </style>
-  <!-- Google Analytics GA4 — reemplazar G-BBLJT4TYCV con tu Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV"></script>
+  <!-- Analítica con consentimiento (GA4 + Meta Pixel) — reemplazar los IDs -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-BBLJT4TYCV');
+    window.loadAnalytics = function () {
+      if (window.__analyticsLoaded) return;
+      if (location.hostname !== 'clorofila.uy' && location.hostname !== 'www.clorofila.uy') return;
+      window.__analyticsLoaded = true;
+      // Google Analytics GA4
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-BBLJT4TYCV');
+      // Meta Pixel
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','2002873889966452');
+      fbq('track','PageView');
+    };
+    if (localStorage.getItem('cookieConsent') === 'accepted') window.loadAnalytics();
   </script>
-  <!-- Meta Pixel — reemplazar 2002873889966452 con tu Pixel ID -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','2002873889966452');
-    fbq('track','PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=2002873889966452&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Ir al contenido principal</a>
@@ -131,7 +145,7 @@
       </div>
       <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20taller%20de%20Fermentaci%C3%B3n.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Avisame cuando haya fecha →</a>
     </div>
-    <div class="taller-img reveal-img"><img src="img-bts.jpg" alt="Fermentación de vegetales" loading="lazy"></div>
+    <div class="taller-img reveal-img"><picture><source srcset="img-bts.webp" type="image/webp"><img src="img-bts.jpg" width="867" height="1300" alt="Fermentación de vegetales" loading="lazy"></picture></div>
   </div>
 
   <div class="taller fade-up">
@@ -147,7 +161,7 @@
       </div>
       <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20taller%20de%20Pan%20sin%20gluten.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Avisame cuando haya fecha →</a>
     </div>
-    <div class="taller-img reveal-img"><img src="img-sandwich.jpg" alt="Pan sin gluten con masa madre" loading="lazy"></div>
+    <div class="taller-img reveal-img"><picture><source srcset="img-sandwich.webp" type="image/webp"><img src="img-sandwich.jpg" width="667" height="1000" alt="Pan sin gluten con masa madre" loading="lazy"></picture></div>
   </div>
 
   <div class="taller fade-up">
@@ -163,7 +177,7 @@
       </div>
       <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20taller%20de%20Pastas%20sin%20gluten.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Avisame cuando haya fecha →</a>
     </div>
-    <div class="taller-img reveal-img"><img src="img-clase-masa.jpg" alt="Pastas sin gluten en Clorofila" loading="lazy"></div>
+    <div class="taller-img reveal-img"><picture><source srcset="img-clase-masa.webp" type="image/webp"><img src="img-clase-masa.jpg" width="975" height="1300" alt="Pastas sin gluten en Clorofila" loading="lazy"></picture></div>
   </div>
 
   <div class="taller fade-up">
@@ -179,7 +193,7 @@
       </div>
       <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20taller%20de%20Alfajores.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Avisame cuando haya fecha →</a>
     </div>
-    <div class="taller-img reveal-img"><img src="img-alfajores.jpg" alt="Alfajores plant-based" loading="lazy"></div>
+    <div class="taller-img reveal-img"><picture><source srcset="img-alfajores.webp" type="image/webp"><img src="img-alfajores.jpg" width="667" height="1000" alt="Alfajores plant-based" loading="lazy"></picture></div>
   </div>
 
   <div class="taller fade-up">
@@ -195,7 +209,7 @@
       </div>
       <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20taller%20de%20Quesos%20vegetales.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Avisame cuando haya fecha →</a>
     </div>
-    <div class="taller-img reveal-img"><img src="img-cheesecake.jpg" alt="Quesos vegetales en Clorofila" loading="lazy"></div>
+    <div class="taller-img reveal-img"><picture><source srcset="img-cheesecake.webp" type="image/webp"><img src="img-cheesecake.jpg" width="667" height="1000" alt="Quesos vegetales en Clorofila" loading="lazy"></picture></div>
   </div>
 
   <div class="taller fade-up">
@@ -211,7 +225,7 @@
       </div>
       <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20Tapeo.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Avisame cuando haya fecha →</a>
     </div>
-    <div class="taller-img reveal-img"><img src="img-tapeo.jpg" alt="Tapeo — cocinar y cenar" loading="lazy"></div>
+    <div class="taller-img reveal-img"><picture><source srcset="img-tapeo.webp" type="image/webp"><img src="img-tapeo.jpg" width="1600" height="1200" alt="Tapeo — cocinar y cenar" loading="lazy"></picture></div>
   </div>
 
 </div>
@@ -231,9 +245,9 @@
       <p class="tagline">No enseñamos recetas. <br>Enseñamos a entender.</p>
       <p class="sub">Maldonado 1976 esq. Blanes · Parque Rodó · Montevideo · Desde 2013</p>
     </div>
-    <div><h5>Propuesta</h5><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="recetas.html">Artículos</a></li></ul></div>
-    <div><h5>Clorofila</h5><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
-    <div><h5>Contacto</h5><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li></ul></div>
+    <div><h2>Propuesta</h2><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="recetas.html">Artículos</a></li></ul></div>
+    <div><h2>Clorofila</h2><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
+    <div><h2>Contacto</h2><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li></ul></div>
   </div>
   <div class="footer-bottom">© 2026 Clorofila Estudio de Cocina · Parque Rodó · Montevideo · Uruguay</div>
 </footer>
@@ -258,6 +272,32 @@
   const cta = document.getElementById('sticky-cta');
   const navEl = document.querySelector('.nav');
   window.addEventListener('scroll', () => { if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 20); cta.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+</script>
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+  <p>Usamos cookies propias y de terceros para analítica y publicidad. Podés aceptar o rechazar su uso. <a href="contacto.html">Más info</a></p>
+  <div class="cookie-banner-actions">
+    <button type="button" id="cookie-decline">Rechazar</button>
+    <button type="button" id="cookie-accept">Aceptar</button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const banner = document.getElementById('cookie-banner');
+    const consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+      setTimeout(() => banner.classList.add('visible'), 600);
+    }
+    document.getElementById('cookie-accept').addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'accepted');
+      banner.classList.remove('visible');
+      if (typeof window.loadAnalytics === 'function') window.loadAnalytics();
+    });
+    document.getElementById('cookie-decline').addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'declined');
+      banner.classList.remove('visible');
+    });
+  })();
 </script>
 </body>
 </html>

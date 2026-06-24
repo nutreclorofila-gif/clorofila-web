@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://connect.facebook.net">
+  <link rel="preconnect" href="https://tally.so">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#20301f">
   <title>Sobre Clorofila — Estudio de Cocina en Montevideo desde 2013</title>
   <meta name="description" content="La historia, los valores y el equipo de Clorofila. Un estudio de cocina basada en plantas en Parque Rodó, Montevideo, desde 2013.">
   <meta name="robots" content="index, follow">
@@ -76,7 +84,7 @@
     .docente-rol { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--acento); margin-bottom: .25rem; }
     .docente-card h3 { margin-bottom: .75rem; }
     .docente-card > p { font-size: .9rem; color: var(--texto-med); line-height: 1.75; margin-bottom: 1.5rem; }
-    .docente-form h5 { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--texto-med); margin-bottom: .75rem; }
+    .docente-form h4 { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--texto-med); margin-bottom: .75rem; }
     .docente-form li { font-size: .85rem; color: var(--texto-med); padding: .38rem 0; border-bottom: 1px solid var(--crema-osc); display: flex; gap: .5rem; }
     .docente-form li:last-child { border-bottom: none; }
     .docente-form li::before { content: '—'; color: var(--crema-osc); flex-shrink: 0; }
@@ -86,26 +94,32 @@
       .valores-grid { grid-template-columns: 1fr; }
     }
   </style>
-  <!-- Google Analytics GA4 — reemplazar G-BBLJT4TYCV con tu Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV"></script>
+  <!-- Analítica con consentimiento (GA4 + Meta Pixel) — reemplazar los IDs -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-BBLJT4TYCV');
+    window.loadAnalytics = function () {
+      if (window.__analyticsLoaded) return;
+      if (location.hostname !== 'clorofila.uy' && location.hostname !== 'www.clorofila.uy') return;
+      window.__analyticsLoaded = true;
+      // Google Analytics GA4
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-BBLJT4TYCV');
+      // Meta Pixel
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','2002873889966452');
+      fbq('track','PageView');
+    };
+    if (localStorage.getItem('cookieConsent') === 'accepted') window.loadAnalytics();
   </script>
-  <!-- Meta Pixel — reemplazar 2002873889966452 con tu Pixel ID -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','2002873889966452');
-    fbq('track','PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=2002873889966452&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Ir al contenido principal</a>
@@ -137,7 +151,7 @@
       <p class="lead">Clorofila no nació de una tendencia. Nació de una convicción: que cocinar bien es una de las decisiones más importantes que tomamos todos los días, y que nadie debería depender de recetas para hacerlo.</p>
     </div>
     <div class="hero-sobre-img reveal-img fade-up" style="transition-delay:.15s">
-      <img src="img-leo-ensena.jpg" alt="Leonardo Lemes en Clorofila" loading="eager">
+      <picture><source srcset="img-leo-ensena.webp" type="image/webp"><img src="img-leo-ensena.jpg" width="975" height="1300" alt="Leonardo Lemes en Clorofila" loading="eager"></picture>
     </div>
   </div>
 </div>
@@ -210,7 +224,7 @@
         <h3>Leonardo Lemes</h3>
         <p>Chef, docente e investigador gastronómico con 25 años de experiencia y 13 enseñando. Pionero en Uruguay en el desarrollo de una cocina basada en plantas, fermentación y comprensión científica del alimento. Su metodología parte de una premisa simple: para cocinar bien hay que entender qué pasa en la olla, no seguir pasos en papel.</p>
         <div class="docente-form">
-          <h5>Formación</h5>
+          <h4>Formación</h4>
           <ul>
                         <li>Permacultura — Na Luum</li>
             <li>Agricultura de Bosques de Alimentos — Ipoema, Brasil</li>
@@ -226,7 +240,7 @@
         <h3>Lic. Nut. Micaela Gago Moral</h3>
         <p>Licenciada en Nutrición y terapeuta nutricional. Articula alimentación, cocina y bienestar desde una mirada integradora que va más allá de los macronutrientes. Desde hace cuatro años acompaña procesos integrando Ayurveda, fitoterapia y nutrición informada en trauma.</p>
         <div class="docente-form">
-          <h5>Enfoque</h5>
+          <h4>Enfoque</h4>
           <ul>
             <li>Nutrición integradora y holística</li>
             <li>Ayurveda aplicada a la alimentación</li>
@@ -247,9 +261,9 @@
       <p class="tagline">No enseñamos recetas. <br>Enseñamos a entender.</p>
       <p class="sub">Maldonado 1976 esq. Blanes · Parque Rodó · Montevideo · Desde 2013</p>
     </div>
-    <div><h5>Propuesta</h5><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="recetas.html">Artículos</a></li></ul></div>
-    <div><h5>Clorofila</h5><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
-    <div><h5>Contacto</h5><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li></ul></div>
+    <div><h2>Propuesta</h2><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="recetas.html">Artículos</a></li></ul></div>
+    <div><h2>Clorofila</h2><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
+    <div><h2>Contacto</h2><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li></ul></div>
   </div>
   <div class="footer-bottom">© 2026 Clorofila Estudio de Cocina · Parque Rodó · Montevideo · Uruguay</div>
 </footer>
@@ -274,6 +288,32 @@
   const cta = document.getElementById('sticky-cta');
   const navEl = document.querySelector('.nav');
   window.addEventListener('scroll', () => { if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 20); cta.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+</script>
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+  <p>Usamos cookies propias y de terceros para analítica y publicidad. Podés aceptar o rechazar su uso. <a href="contacto.html">Más info</a></p>
+  <div class="cookie-banner-actions">
+    <button type="button" id="cookie-decline">Rechazar</button>
+    <button type="button" id="cookie-accept">Aceptar</button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const banner = document.getElementById('cookie-banner');
+    const consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+      setTimeout(() => banner.classList.add('visible'), 600);
+    }
+    document.getElementById('cookie-accept').addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'accepted');
+      banner.classList.remove('visible');
+      if (typeof window.loadAnalytics === 'function') window.loadAnalytics();
+    });
+    document.getElementById('cookie-decline').addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'declined');
+      banner.classList.remove('visible');
+    });
+  })();
 </script>
 </body>
 </html>

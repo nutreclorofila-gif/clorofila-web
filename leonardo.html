@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://connect.facebook.net">
+  <link rel="preconnect" href="https://tally.so">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#20301f">
   <title>Leonardo Lemes — Chef, Docente e Investigador Gastronómico</title>
   <meta name="description" content="25 años cocinando, 13 enseñando. Chef, docente e investigador gastronómico. Fundador de Clorofila Estudio de Cocina en Parque Rodó, Montevideo.">
   <meta name="robots" content="index, follow">
@@ -111,7 +119,7 @@
       gap: 3rem;
       margin-top: 3rem;
     }
-    .formacion-bloque h4 {
+    .formacion-bloque h3 {
       font-size: 1rem;
       margin-bottom: 1.25rem;
     }
@@ -162,7 +170,7 @@
       color: var(--acento);
       margin-bottom: .5rem;
     }
-    .tema-card h4 { font-size: 1rem; margin-bottom: .5rem; }
+    .tema-card h3 { font-size: 1rem; margin-bottom: .5rem; }
     .tema-card p  { font-size: .85rem; color: var(--texto-med); line-height: 1.6; }
     .tema-badge {
       display: inline-block;
@@ -202,26 +210,32 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Person","name":"Leonardo Lemes","jobTitle":"Chef, docente e investigador gastronómico","description":"Chef, docente e investigador gastronómico con 25 años de experiencia. Fundador de Clorofila Estudio de Cocina en Parque Rodó, Montevideo.","image":"https://clorofila.uy/img-leo-cocina.jpg","url":"https://clorofila.uy/leonardo","worksFor":{"@type":"Organization","name":"Clorofila Estudio de Cocina"},"knowsAbout":["Cocina basada en plantas","Fermentación","Masa madre","Pastelería sin gluten","Desarrollo de productos gastronómicos"]}
   </script>
-  <!-- Google Analytics GA4 — reemplazar G-BBLJT4TYCV con tu Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV"></script>
+  <!-- Analítica con consentimiento (GA4 + Meta Pixel) — reemplazar los IDs -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-BBLJT4TYCV');
+    window.loadAnalytics = function () {
+      if (window.__analyticsLoaded) return;
+      if (location.hostname !== 'clorofila.uy' && location.hostname !== 'www.clorofila.uy') return;
+      window.__analyticsLoaded = true;
+      // Google Analytics GA4
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-BBLJT4TYCV');
+      // Meta Pixel
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','2002873889966452');
+      fbq('track','PageView');
+    };
+    if (localStorage.getItem('cookieConsent') === 'accepted') window.loadAnalytics();
   </script>
-  <!-- Meta Pixel — reemplazar 2002873889966452 con tu Pixel ID -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','2002873889966452');
-    fbq('track','PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=2002873889966452&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Ir al contenido principal</a>
@@ -252,7 +266,7 @@
 <!-- HERO -->
 <header class="hero-leo">
   <div class="hero-leo-img">
-    <img src="img-leo-cocina.jpg" alt="Leonardo Lemes — chef, docente e investigador gastronómico" loading="eager">
+    <picture><source srcset="img-leo-cocina.webp" type="image/webp"><img src="img-leo-cocina.jpg" width="975" height="1300" alt="Leonardo Lemes — chef, docente e investigador gastronómico" loading="eager"></picture>
   </div>
   <div class="hero-leo-content">
     <p class="rol">Fundador de Clorofila · Parque Rodó, Montevideo</p>
@@ -286,7 +300,7 @@
     </div>
     <div class="formacion-grid">
       <div class="formacion-bloque fade-up">
-        <h4>Formación académica y técnica</h4>
+        <h3>Formación académica y técnica</h3>
         <ul class="formacion-lista">
           <li>Permacultura — Na Luum</li>
           <li>Agricultura de Bosques de Alimentos — Ipoema (Brasil)</li>
@@ -295,7 +309,7 @@
         </ul>
       </div>
       <div class="formacion-bloque fade-up" style="transition-delay:.1s">
-        <h4>Áreas de investigación y práctica</h4>
+        <h3>Áreas de investigación y práctica</h3>
         <ul class="formacion-lista">
           <li>Fermentación aplicada a la cocina cotidiana: lacto-fermentación, masa madre, kéfir, kombucha</li>
           <li>Gastronomía basada en plantas — desarrollo de técnicas sin productos de origen animal</li>
@@ -319,42 +333,42 @@
 
     <div class="tema-card fade-up">
       <p class="tema-area">Aceites y grasas</p>
-      <h4>Aceite de oliva y punto de humo</h4>
+      <h3>Aceite de oliva y punto de humo</h3>
       <p>El punto de humo no es el indicador relevante. Lo que importa es la estabilidad oxidativa — y ahí el EVOO gana por perfil de ácidos grasos y antioxidantes.</p>
       <span class="tema-badge badge-pub">Publicado en Instagram</span>
     </div>
 
     <div class="tema-card fade-up" style="transition-delay:.1s">
       <p class="tema-area">Omega-3</p>
-      <h4>ALA del lino al calor</h4>
+      <h3>ALA del lino al calor</h3>
       <p>El ALA es el ácido graso más inestable al calor. A 180°C en horneado real, la pérdida es significativa. Lo que queda — y qué hacer al respecto — importa saberlo.</p>
       <span class="tema-badge badge-pub">Publicado en Instagram</span>
     </div>
 
     <div class="tema-card fade-up" style="transition-delay:.2s">
       <p class="tema-area">Frutas y verduras</p>
-      <h4>Lavado de frutas: bicarbonato vs agua</h4>
+      <h3>Lavado de frutas: bicarbonato vs agua</h3>
       <p>El bicarbonato ayuda con residuos de contacto. Para plaguicidas sistémicos, ningún lavado sirve. La distinción entre contacto y sistémico es crítica.</p>
       <span class="tema-badge badge-pub">Publicado en Instagram</span>
     </div>
 
     <div class="tema-card fade-up">
       <p class="tema-area">Grasas y salud</p>
-      <h4>Más allá del colesterol total</h4>
+      <h3>Más allá del colesterol total</h3>
       <p>Apo-B, tamaño de partícula LDL, TMAO y microbioma dan una imagen más precisa. El análisis con marcadores modernos cambia el ranking de las grasas.</p>
       <span class="tema-badge badge-prox">En preparación</span>
     </div>
 
     <div class="tema-card fade-up" style="transition-delay:.1s">
       <p class="tema-area">Fermentación</p>
-      <h4>Masa madre y digestibilidad</h4>
+      <h3>Masa madre y digestibilidad</h3>
       <p>La fermentación larga degrada parte del gluten y reduce FODMAPs. El mecanismo existe — pero depende del tiempo, la temperatura y la cepa.</p>
       <span class="tema-badge badge-prox">En preparación</span>
     </div>
 
     <div class="tema-card fade-up" style="transition-delay:.2s">
       <p class="tema-area">Pan y gluten</p>
-      <h4>Pan sin gluten no es automáticamente saludable</h4>
+      <h3>Pan sin gluten no es automáticamente saludable</h3>
       <p>Sin gluten, muchos panes industriales reemplazan con almidones refinados y gomas. El perfil nutricional puede ser peor que el pan de trigo.</p>
       <span class="tema-badge badge-prox">En preparación</span>
     </div>
@@ -412,7 +426,7 @@
       <p class="sub">Maldonado 1976 esq. Blanes · Parque Rodó · Montevideo · Desde 2013</p>
     </div>
     <div>
-      <h5>Propuesta</h5>
+      <h2>Propuesta</h2>
       <ul>
         <li><a href="curso.html">El curso</a></li>
         <li><a href="talleres.html">Talleres</a></li>
@@ -421,7 +435,7 @@
       </ul>
     </div>
     <div>
-      <h5>Clorofila</h5>
+      <h2>Clorofila</h2>
       <ul>
         <li><a href="leonardo.html">Leonardo Lemes</a></li>
         <li><a href="sobre.html">Sobre nosotros</a></li>
@@ -430,7 +444,7 @@
       </ul>
     </div>
     <div>
-      <h5>Contacto</h5>
+      <h2>Contacto</h2>
       <ul>
         <li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li>
         <li><a href="https://wa.me/59894064148">094 064 148</a></li>
@@ -463,6 +477,32 @@
   const cta = document.getElementById('sticky-cta');
   const navEl = document.querySelector('.nav');
   window.addEventListener('scroll', () => { if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 20); cta.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+</script>
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+  <p>Usamos cookies propias y de terceros para analítica y publicidad. Podés aceptar o rechazar su uso. <a href="contacto.html">Más info</a></p>
+  <div class="cookie-banner-actions">
+    <button type="button" id="cookie-decline">Rechazar</button>
+    <button type="button" id="cookie-accept">Aceptar</button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const banner = document.getElementById('cookie-banner');
+    const consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+      setTimeout(() => banner.classList.add('visible'), 600);
+    }
+    document.getElementById('cookie-accept').addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'accepted');
+      banner.classList.remove('visible');
+      if (typeof window.loadAnalytics === 'function') window.loadAnalytics();
+    });
+    document.getElementById('cookie-decline').addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'declined');
+      banner.classList.remove('visible');
+    });
+  })();
 </script>
 </body>
 </html>
