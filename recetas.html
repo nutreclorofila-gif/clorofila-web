@@ -6,6 +6,11 @@
   <link rel="preconnect" href="https://www.googletagmanager.com">
   <link rel="preconnect" href="https://connect.facebook.net">
   <link rel="preconnect" href="https://tally.so">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#20301f">
   <title>Artículos — Clorofila Estudio de Cocina</title>
   <meta name="description" content="Ciencia aplicada a la cocina cotidiana. Aceites, omega-3, fermentación, lavado de frutas. Sin alarmismo, con evidencia y criterio.">
   <meta name="robots" content="index, follow">
@@ -68,26 +73,31 @@
 
     @media (max-width: 700px) { .articulos-grid { grid-template-columns: 1fr; } }
   </style>
-  <!-- Google Analytics GA4 — reemplazar G-BBLJT4TYCV con tu Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV"></script>
+  <!-- Analítica con consentimiento (GA4 + Meta Pixel) — reemplazar los IDs -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-BBLJT4TYCV');
+    window.loadAnalytics = function () {
+      if (window.__analyticsLoaded) return;
+      window.__analyticsLoaded = true;
+      // Google Analytics GA4
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-BBLJT4TYCV');
+      // Meta Pixel
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','2002873889966452');
+      fbq('track','PageView');
+    };
+    if (localStorage.getItem('cookieConsent') === 'accepted') window.loadAnalytics();
   </script>
-  <!-- Meta Pixel — reemplazar 2002873889966452 con tu Pixel ID -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','2002873889966452');
-    fbq('track','PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=2002873889966452&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Ir al contenido principal</a>
@@ -271,6 +281,7 @@
     document.getElementById('cookie-accept').addEventListener('click', () => {
       localStorage.setItem('cookieConsent', 'accepted');
       banner.classList.remove('visible');
+      if (typeof window.loadAnalytics === 'function') window.loadAnalytics();
     });
     document.getElementById('cookie-decline').addEventListener('click', () => {
       localStorage.setItem('cookieConsent', 'declined');
