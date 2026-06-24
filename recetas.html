@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://connect.facebook.net">
+  <link rel="preconnect" href="https://tally.so">
   <title>Artículos — Clorofila Estudio de Cocina</title>
   <meta name="description" content="Ciencia aplicada a la cocina cotidiana. Aceites, omega-3, fermentación, lavado de frutas. Sin alarmismo, con evidencia y criterio.">
   <meta name="robots" content="index, follow">
@@ -249,6 +252,31 @@
   const cta = document.getElementById('sticky-cta');
   const navEl = document.querySelector('.nav');
   window.addEventListener('scroll', () => { if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 20); cta.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+</script>
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+  <p>Usamos cookies propias y de terceros para analítica y publicidad. Podés aceptar o rechazar su uso. <a href="contacto.html">Más info</a></p>
+  <div class="cookie-banner-actions">
+    <button type="button" id="cookie-decline">Rechazar</button>
+    <button type="button" id="cookie-accept">Aceptar</button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const banner = document.getElementById('cookie-banner');
+    const consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+      setTimeout(() => banner.classList.add('visible'), 600);
+    }
+    document.getElementById('cookie-accept').addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'accepted');
+      banner.classList.remove('visible');
+    });
+    document.getElementById('cookie-decline').addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'declined');
+      banner.classList.remove('visible');
+    });
+  })();
 </script>
 </body>
 </html>
