@@ -87,6 +87,7 @@
     function gtag(){dataLayer.push(arguments);}
     window.loadAnalytics = function () {
       if (window.__analyticsLoaded) return;
+      if (location.hostname !== 'clorofila.uy' && location.hostname !== 'www.clorofila.uy') return;
       window.__analyticsLoaded = true;
       // Google Analytics GA4
       var ga = document.createElement('script');
