@@ -8,10 +8,10 @@ let errors = 0;
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(path.join(root, file), 'utf8');
-  const attrRegex = /(?:href|src|srcset)\s*=\s*["']([^"']+)["']/g;
-  let match;
-  while ((match = attrRegex.exec(html))) {
-    const raw = match[1];
+  const hrefSrcRegex = /(?:href|src)\s*=\s*["']([^"']+)["']/g;
+  const srcsetRegex = /srcset\s*=\s*["']([^"']+)["']/g;
+
+  function checkRef(raw) {
     if (
       raw.startsWith('http://') ||
       raw.startsWith('https://') ||
@@ -21,14 +21,25 @@ for (const file of htmlFiles) {
       raw.startsWith('data:') ||
       raw.startsWith('//')
     ) {
-      continue;
+      return;
     }
     const [target] = raw.split('#');
-    if (!target) continue;
+    if (!target) return;
     const resolved = path.join(root, target);
     if (!fs.existsSync(resolved)) {
       console.error(`[${file}] broken local reference: "${raw}"`);
       errors++;
+    }
+  }
+
+  let match;
+  while ((match = hrefSrcRegex.exec(html))) {
+    checkRef(match[1]);
+  }
+  while ((match = srcsetRegex.exec(html))) {
+    for (const entry of match[1].split(',')) {
+      const url = entry.trim().split(/\s+/)[0];
+      if (url) checkRef(url);
     }
   }
 }
