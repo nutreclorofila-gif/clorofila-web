@@ -1,0 +1,16 @@
+{
+  "name": "clorofila-web",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Sitio estático del Estudio de Cocina Clorofila",
+  "scripts": {
+    "check:links": "node scripts/check-links.js",
+    "check:jsonld": "node scripts/check-jsonld.js",
+    "check:sitemap": "node scripts/check-sitemap.js",
+    "check:html": "html-validate --config .htmlvalidate.json *.html",
+    "test": "npm run check:links && npm run check:jsonld && npm run check:sitemap && npm run check:html"
+  },
+  "devDependencies": {
+    "html-validate": "^11.5.3"
+  }
+}
