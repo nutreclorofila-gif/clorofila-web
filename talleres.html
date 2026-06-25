@@ -97,6 +97,7 @@
 <body>
 <a class="skip-link" href="#main-content">Ir al contenido principal</a>
 
+<!--#include nav active="talleres.html"-->
 <nav class="nav" aria-label="Principal">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo"><span>Clorofila</span><span>Estudio de Cocina</span></a>
@@ -104,7 +105,7 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="curso.html">El curso</a></li>
       <li><a href="talleres.html" class="active" aria-current="page">Talleres</a></li>
-      <li><a href="recetas.html">Artículos</a></li>
+      <li><a href="articulos.html">Artículos</a></li>
       <li><a href="leonardo.html">Leonardo</a></li>
       <li><a href="servicios.html">Trabajemos juntos</a></li>
       <li><a href="sobre.html">Sobre</a></li>
@@ -114,6 +115,7 @@
     <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
   </div>
 </nav>
+<!--#include-end nav-->
 <main id="main-content">
 
 <div class="hero-talleres">
@@ -256,15 +258,8 @@
   <a href="https://wa.me/59894064148" target="_blank" rel="noopener noreferrer" class="wa-btn">💬</a>
 </div>
 
+<script src="nav.js" defer></script>
 <script>
-  const _nbtn = document.getElementById('nav-hamburger');
-  const _nul  = document.getElementById('nav-links');
-  const _ncls = document.getElementById('nav-close');
-  function _openNav()  { _nul.classList.add('open');    _nbtn.setAttribute('aria-expanded','true'); document.body.classList.add('nav-open'); }
-  function _closeNav() { _nul.classList.remove('open'); _nbtn.setAttribute('aria-expanded','false'); document.body.classList.remove('nav-open'); }
-  _nbtn.addEventListener('click', _openNav);
-  _ncls.addEventListener('click', _closeNav);
-  document.addEventListener('keydown', e => { if(e.key==='Escape' && _nul.classList.contains('open')) _closeNav(); });
   const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
   document.querySelectorAll('.fade-up, .reveal-img').forEach(el => obs.observe(el));
   setTimeout(() => { document.querySelectorAll('.fade-up, .reveal-img').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible'); }); }, 80);

@@ -52,6 +52,7 @@
 <body>
 <a class="skip-link" href="#main-content">Ir al contenido principal</a>
 
+<!--#include nav active="" base="absolute"-->
 <nav class="nav" aria-label="Principal">
   <div class="nav-inner">
     <a href="/index.html" class="nav-logo"><span>Clorofila</span><span>Estudio de Cocina</span></a>
@@ -59,7 +60,7 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="/curso.html">El curso</a></li>
       <li><a href="/talleres.html">Talleres</a></li>
-      <li><a href="/recetas.html">Artículos</a></li>
+      <li><a href="/articulos.html">Artículos</a></li>
       <li><a href="/leonardo.html">Leonardo</a></li>
       <li><a href="/servicios.html">Trabajemos juntos</a></li>
       <li><a href="/sobre.html">Sobre</a></li>
@@ -69,6 +70,7 @@
     <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
   </div>
 </nav>
+<!--#include-end nav-->
 
 <main id="main-content" class="err">
   <div class="code">404</div>
@@ -94,16 +96,7 @@
   <div class="footer-bottom">© 2026 Clorofila Estudio de Cocina · Parque Rodó · Montevideo · Uruguay</div>
 </footer>
 
-<script>
-  const _nbtn = document.getElementById('nav-hamburger');
-  const _nul  = document.getElementById('nav-links');
-  const _ncls = document.getElementById('nav-close');
-  function _openNav()  { _nul.classList.add('open');    _nbtn.setAttribute('aria-expanded','true'); document.body.classList.add('nav-open'); }
-  function _closeNav() { _nul.classList.remove('open'); _nbtn.setAttribute('aria-expanded','false'); document.body.classList.remove('nav-open'); }
-  _nbtn.addEventListener('click', _openNav);
-  _ncls.addEventListener('click', _closeNav);
-  document.addEventListener('keydown', e => { if(e.key==='Escape' && _nul.classList.contains('open')) _closeNav(); });
-</script>
+<script src="/nav.js" defer></script>
 <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
   <p>Usamos cookies propias y de terceros para analítica y publicidad. Podés aceptar o rechazar su uso. <a href="contacto.html">Más info</a></p>
   <div class="cookie-banner-actions">
