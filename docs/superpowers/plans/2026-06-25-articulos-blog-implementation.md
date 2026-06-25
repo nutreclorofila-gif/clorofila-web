@@ -500,17 +500,81 @@ Find the inline `<script>` block containing `getElementById('nav-hamburger')` an
 
 - [ ] **Step 2: `curso.html`** — active link: `curso.html`
 
-Same nav block as Step 1 but with `<!--#include nav active="curso.html"-->` and `<li><a href="curso.html" class="active" aria-current="page">El curso</a></li>` in place of the plain `El curso` link. Same `nav.js` script replacement as Step 1 (curso.html's inline script uses `_nbtn`/`_nul`/`_ncls` naming — replace that whole block's nav-handling portion, keep the `.tab-btn`/`.faq-q` page-specific listeners that follow it untouched).
+Replace the `<nav>` block with:
 
-- [ ] **Step 3: `talleres.html`** — active link: `talleres.html`. Same pattern as Step 2, with `<li><a href="talleres.html" class="active" aria-current="page">Talleres</a></li>`.
+```html
+<!--#include nav active="curso.html"-->
+<nav class="nav" aria-label="Principal">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>Clorofila</span><span>Estudio de Cocina</span></a>
+    <button type="button" class="nav-close" id="nav-close" aria-label="Cerrar menú">✕</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="curso.html" class="active" aria-current="page">El curso</a></li>
+      <li><a href="talleres.html">Talleres</a></li>
+      <li><a href="articulos.html">Artículos</a></li>
+      <li><a href="leonardo.html">Leonardo</a></li>
+      <li><a href="servicios.html">Trabajemos juntos</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="nav-cta">Inscribirme →</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
+  </div>
+</nav>
+<!--#include-end nav-->
+```
 
-- [ ] **Step 4: `leonardo.html`** — active link: `leonardo.html`. Same pattern, `<li><a href="leonardo.html" class="active" aria-current="page">Leonardo</a></li>`.
+`curso.html`'s inline script (inside the page's main `<script>` tag, after the cookie banner markup) currently reads exactly:
 
-- [ ] **Step 5: `servicios.html`** — active link: `servicios.html`. Same pattern, `<li><a href="servicios.html" class="active" aria-current="page">Trabajemos juntos</a></li>`.
+```html
+  const _nbtn = document.getElementById('nav-hamburger');
+  const _nul  = document.getElementById('nav-links');
+  const _ncls = document.getElementById('nav-close');
+  function _openNav()  { _nul.classList.add('open');    _nbtn.setAttribute('aria-expanded','true'); document.body.classList.add('nav-open'); }
+  function _closeNav() { _nul.classList.remove('open'); _nbtn.setAttribute('aria-expanded','false'); document.body.classList.remove('nav-open'); }
+  _nbtn.addEventListener('click', _openNav);
+  _ncls.addEventListener('click', _closeNav);
+  document.addEventListener('keydown', e => { if(e.key==='Escape' && _nul.classList.contains('open')) _closeNav(); });
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+  document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('open')));
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
+```
 
-- [ ] **Step 6: `sobre.html`** — active link: `sobre.html`. Same pattern, `<li><a href="sobre.html" class="active" aria-current="page">Sobre</a></li>`.
+Replace the first 8 lines (from `const _nbtn = ...` through the `document.addEventListener('keydown', ...)` line) with `<script src="nav.js" defer></script>` placed immediately before the `<script>` tag that contains the rest. Keep the `.tab-btn` block, the `.faq-q` line, and the `IntersectionObserver` line exactly as they are (they are page-specific, not part of the nav duplication problem).
 
-- [ ] **Step 7: `contacto.html`** — active link: `contacto.html`. Same pattern, `<li><a href="contacto.html" class="active" aria-current="page">Contacto</a></li>`.
+- [ ] **Step 3: `talleres.html`, `leonardo.html`, `servicios.html`, `sobre.html`, `contacto.html`** — these 5 files currently have an *identical* inline nav-toggle script to each other:
+
+```html
+  const _nbtn = document.getElementById('nav-hamburger');
+  const _nul  = document.getElementById('nav-links');
+  const _ncls = document.getElementById('nav-close');
+  function _openNav()  { _nul.classList.add('open');    _nbtn.setAttribute('aria-expanded','true'); document.body.classList.add('nav-open'); }
+  function _closeNav() { _nul.classList.remove('open'); _nbtn.setAttribute('aria-expanded','false'); document.body.classList.remove('nav-open'); }
+  _nbtn.addEventListener('click', _openNav);
+  _ncls.addEventListener('click', _closeNav);
+  document.addEventListener('keydown', e => { if(e.key==='Escape' && _nul.classList.contains('open')) _closeNav(); });
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
+```
+
+For each of these 5 files: replace the first 8 lines (from `const _nbtn = ...` through `document.addEventListener('keydown', ...)`) with `<script src="nav.js" defer></script>` placed immediately before the `<script>` tag containing the rest. Keep the `IntersectionObserver` line and everything after it untouched.
+
+For the `<nav>` block, use the same structure as Step 2 for each file, changing only the `active` marker value and which `<li>` gets ` class="active" aria-current="page"` added:
+
+- `talleres.html`: `<!--#include nav active="talleres.html"-->`, active item: `<li><a href="talleres.html" class="active" aria-current="page">Talleres</a></li>`
+- `leonardo.html`: `<!--#include nav active="leonardo.html"-->`, active item: `<li><a href="leonardo.html" class="active" aria-current="page">Leonardo</a></li>`
+- `servicios.html`: `<!--#include nav active="servicios.html"-->`, active item: `<li><a href="servicios.html" class="active" aria-current="page">Trabajemos juntos</a></li>`
+- `sobre.html`: `<!--#include nav active="sobre.html"-->`, active item: `<li><a href="sobre.html" class="active" aria-current="page">Sobre</a></li>`
+- `contacto.html`: `<!--#include nav active="contacto.html"-->`, active item: `<li><a href="contacto.html" class="active" aria-current="page">Contacto</a></li>`
+
+All other `<li>` items in each file's nav stay exactly as in Step 1's block (plain, no active class), with `href="articulos.html"` for the Artículos item (not `recetas.html`).
 
 - [ ] **Step 8: `404.html`** — active link: none, **and uses absolute paths** (confirmed: this page currently uses `href="/curso.html"` style links, not relative, because Netlify serves it for missing URLs at any depth).
 
@@ -538,7 +602,21 @@ Replace the `<nav>` block with:
 <!--#include-end nav-->
 ```
 
-404.html also has its own inline nav-toggle script (check the file — if present, replace it the same way with `<script src="/nav.js" defer></script>`, using the absolute path since this page already uses absolute paths for `shared.css` too).
+`404.html`'s inline script currently reads exactly:
+
+```html
+  const _nbtn = document.getElementById('nav-hamburger');
+  const _nul  = document.getElementById('nav-links');
+  const _ncls = document.getElementById('nav-close');
+  function _openNav()  { _nul.classList.add('open');    _nbtn.setAttribute('aria-expanded','true'); document.body.classList.add('nav-open'); }
+  function _closeNav() { _nul.classList.remove('open'); _nbtn.setAttribute('aria-expanded','false'); document.body.classList.remove('nav-open'); }
+  _nbtn.addEventListener('click', _openNav);
+  _ncls.addEventListener('click', _closeNav);
+  document.addEventListener('keydown', e => { if(e.key==='Escape' && _nul.classList.contains('open')) _closeNav(); });
+</script>
+```
+
+(it is the entire contents of that `<script>` tag — there is no `IntersectionObserver` or other page-local code after it on this page). Replace the whole tag with `<script src="/nav.js" defer></script>`, using the absolute path since this page already uses absolute paths for `shared.css` and the nav links too.
 
 - [ ] **Step 9: Run sync and check**
 
