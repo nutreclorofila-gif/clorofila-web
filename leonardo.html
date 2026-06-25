@@ -240,17 +240,15 @@
 <a class="skip-link" href="#main-content">Ir al contenido principal</a>
 
 <!-- NAV -->
+<!--#include nav active="leonardo.html"-->
 <nav class="nav" aria-label="Principal">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <span>Clorofila</span>
-      <span>Estudio de Cocina</span>
-    </a>
+    <a href="index.html" class="nav-logo"><span>Clorofila</span><span>Estudio de Cocina</span></a>
     <button type="button" class="nav-close" id="nav-close" aria-label="Cerrar menú">✕</button>
     <ul class="nav-links" id="nav-links">
       <li><a href="curso.html">El curso</a></li>
       <li><a href="talleres.html">Talleres</a></li>
-      <li><a href="recetas.html">Artículos</a></li>
+      <li><a href="articulos.html">Artículos</a></li>
       <li><a href="leonardo.html" class="active" aria-current="page">Leonardo</a></li>
       <li><a href="servicios.html">Trabajemos juntos</a></li>
       <li><a href="sobre.html">Sobre</a></li>
@@ -260,6 +258,7 @@
     <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
   </div>
 </nav>
+<!--#include-end nav-->
 <main id="main-content">
 
 <!-- HERO -->
@@ -374,7 +373,7 @@
 
   </div>
   <p style="margin-top:2rem; font-size:.85rem; color:var(--texto-med)">
-    → Todos los temas de investigación se publican en <a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" style="color:var(--verde-med); font-weight:500">@clorofilaclases</a> y en la sección <a href="recetas.html" style="color:var(--verde-med); font-weight:500">Artículos</a>.
+    → Todos los temas de investigación se publican en <a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" style="color:var(--verde-med); font-weight:500">@clorofilaclases</a> y en la sección <a href="articulos.html" style="color:var(--verde-med); font-weight:500">Artículos</a>.
   </p>
 </section>
 
@@ -430,7 +429,7 @@
         <li><a href="curso.html">El curso</a></li>
         <li><a href="talleres.html">Talleres</a></li>
         <li><a href="servicios.html">Trabajemos juntos</a></li>
-        <li><a href="recetas.html">Artículos</a></li>
+        <li><a href="articulos.html">Artículos</a></li>
       </ul>
     </div>
     <div>
@@ -459,15 +458,8 @@
   <a href="https://wa.me/59894064148" target="_blank" rel="noopener noreferrer" class="wa-btn">💬</a>
 </div>
 
+<script src="nav.js" defer></script>
 <script>
-  const _nbtn = document.getElementById('nav-hamburger');
-  const _nul  = document.getElementById('nav-links');
-  const _ncls = document.getElementById('nav-close');
-  function _openNav()  { _nul.classList.add('open');    _nbtn.setAttribute('aria-expanded','true'); document.body.classList.add('nav-open'); }
-  function _closeNav() { _nul.classList.remove('open'); _nbtn.setAttribute('aria-expanded','false'); document.body.classList.remove('nav-open'); }
-  _nbtn.addEventListener('click', _openNav);
-  _ncls.addEventListener('click', _closeNav);
-  document.addEventListener('keydown', e => { if(e.key==='Escape' && _nul.classList.contains('open')) _closeNav(); });
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.06 });

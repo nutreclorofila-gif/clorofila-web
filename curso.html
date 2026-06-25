@@ -266,6 +266,7 @@
 <a class="skip-link" href="#main-content">Ir al contenido principal</a>
 
 <!-- NAV -->
+<!--#include nav active="curso.html"-->
 <nav class="nav" aria-label="Principal">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo"><span>Clorofila</span><span>Estudio de Cocina</span></a>
@@ -273,7 +274,7 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="curso.html" class="active" aria-current="page">El curso</a></li>
       <li><a href="talleres.html">Talleres</a></li>
-      <li><a href="recetas.html">Artículos</a></li>
+      <li><a href="articulos.html">Artículos</a></li>
       <li><a href="leonardo.html">Leonardo</a></li>
       <li><a href="servicios.html">Trabajemos juntos</a></li>
       <li><a href="sobre.html">Sobre</a></li>
@@ -283,6 +284,7 @@
     <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
   </div>
 </nav>
+<!--#include-end nav-->
 <main id="main-content">
 
 <!-- HERO -->
@@ -477,7 +479,7 @@
       <p class="tagline">No enseñamos recetas. <br>Enseñamos a entender.</p>
       <p class="sub">Maldonado 1976 esq. Blanes · Parque Rodó · Montevideo · Desde 2013</p>
     </div>
-    <div><h2>Propuesta</h2><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="recetas.html">Artículos</a></li></ul></div>
+    <div><h2>Propuesta</h2><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="servicios.html">Trabajemos juntos</a></li><li><a href="articulos.html">Artículos</a></li></ul></div>
     <div><h2>Clorofila</h2><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
     <div><h2>Contacto</h2><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li></ul></div>
   </div>
@@ -490,15 +492,8 @@
   <a href="https://wa.me/59894064148?text=Hola%2C%20quiero%20info%20del%20curso%20de%20Clorofila." target="_blank" rel="noopener noreferrer" class="wa-btn">💬</a>
 </div>
 
+<script src="nav.js" defer></script>
 <script>
-  const _nbtn = document.getElementById('nav-hamburger');
-  const _nul  = document.getElementById('nav-links');
-  const _ncls = document.getElementById('nav-close');
-  function _openNav()  { _nul.classList.add('open');    _nbtn.setAttribute('aria-expanded','true'); document.body.classList.add('nav-open'); }
-  function _closeNav() { _nul.classList.remove('open'); _nbtn.setAttribute('aria-expanded','false'); document.body.classList.remove('nav-open'); }
-  _nbtn.addEventListener('click', _openNav);
-  _ncls.addEventListener('click', _closeNav);
-  document.addEventListener('keydown', e => { if(e.key==='Escape' && _nul.classList.contains('open')) _closeNav(); });
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
