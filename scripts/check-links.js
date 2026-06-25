@@ -23,7 +23,7 @@ for (const file of htmlFiles) {
     ) {
       return;
     }
-    const [target] = raw.split('#');
+    const [target] = raw.split('#')[0].split('?');
     if (!target) return;
     const resolved = path.join(root, target);
     if (!fs.existsSync(resolved)) {
