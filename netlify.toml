@@ -16,6 +16,18 @@
   status = 301
   force  = true
 
+[[redirects]]
+  from = "/recetas"
+  to   = "/articulos"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/recetas.html"
+  to   = "/articulos"
+  status = 301
+  force  = true
+
 [[headers]]
   for = "/*"
   [headers.values]
