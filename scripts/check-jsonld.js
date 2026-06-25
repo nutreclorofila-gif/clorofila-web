@@ -2,7 +2,18 @@ const fs = require('fs');
 const path = require('path');
 
 const root = process.cwd();
-const htmlFiles = fs.readdirSync(root).filter((f) => f.endsWith('.html'));
+const htmlFiles = [
+  ...fs.readdirSync(root).filter((f) => f.endsWith('.html')),
+];
+const articulosDir = path.join(root, 'articulos');
+if (fs.existsSync(articulosDir)) {
+  htmlFiles.push(
+    ...fs
+      .readdirSync(articulosDir)
+      .filter((f) => f.endsWith('.html'))
+      .map((f) => path.join('articulos', f))
+  );
+}
 
 let errors = 0;
 let checked = 0;
