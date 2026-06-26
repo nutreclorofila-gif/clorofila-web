@@ -292,7 +292,7 @@
   <div class="hero-curso-img"><picture><source srcset="img-clase-masa.webp" type="image/webp"><img src="img-clase-masa.jpg" width="975" height="1300" alt="Curso Clorofila" loading="eager"></picture></div>
   <div class="hero-curso-content">
     <ul class="hero-tags">
-      <li><span class="hero-tag">Agosto 2026</span></li>
+      <li><span class="hero-tag" id="curso-countdown-tag">Agosto 2026</span></li>
       <li><span class="hero-tag">3 meses · 12 clases</span></li>
       <li><span class="hero-tag">Presencial · Parque Rodó</span></li>
       <li><span class="hero-tag">Grupos reducidos</span></li>
@@ -536,6 +536,20 @@
       localStorage.setItem('cookieConsent', 'declined');
       banner.classList.remove('visible');
     });
+  })();
+</script>
+<script>
+  (function () {
+    var el = document.getElementById('curso-countdown-tag');
+    if (!el) return;
+    var start = new Date('2026-08-11T00:00:00');
+    var days = Math.ceil((start - new Date()) / 86400000);
+    if (days > 0) {
+      var weeks = Math.ceil(days / 7);
+      el.textContent = 'Empieza en ' + weeks + ' semana' + (weeks === 1 ? '' : 's');
+    } else {
+      el.textContent = '11 de agosto';
+    }
   })();
 </script>
 </body>
