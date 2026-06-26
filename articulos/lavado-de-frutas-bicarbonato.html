@@ -166,6 +166,7 @@
 </div>
 
 <script src="../nav.js" defer></script>
+<script src="../track.js" defer></script>
 <script>
   const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.fade-up, .reveal-img').forEach(el => obs.observe(el));
