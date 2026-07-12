@@ -35,8 +35,15 @@
       s.src = "https://tally.so/widgets/embed.js";
       document.body.appendChild(s);
     }
-    if ("requestIdleCallback" in window) requestIdleCallback(loadTally, { timeout: 4000 });
-    else window.addEventListener("load", loadTally);
+    document.addEventListener("pointerover", function (e) {
+      if (e.target.closest && e.target.closest("[data-tally-open]")) loadTally();
+    });
+    document.addEventListener("focusin", function (e) {
+      if (e.target.closest && e.target.closest("[data-tally-open]")) loadTally();
+    });
+    document.addEventListener("click", function (e) {
+      if (e.target.closest && e.target.closest("[data-tally-open]")) loadTally();
+    });
   </script>
 
   <style>

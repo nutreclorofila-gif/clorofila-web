@@ -37,8 +37,15 @@
       s.src = "https://tally.so/widgets/embed.js";
       document.body.appendChild(s);
     }
-    if ("requestIdleCallback" in window) requestIdleCallback(loadTally, { timeout: 4000 });
-    else window.addEventListener("load", loadTally);
+    document.addEventListener("pointerover", function (e) {
+      if (e.target.closest && e.target.closest("[data-tally-open]")) loadTally();
+    });
+    document.addEventListener("focusin", function (e) {
+      if (e.target.closest && e.target.closest("[data-tally-open]")) loadTally();
+    });
+    document.addEventListener("click", function (e) {
+      if (e.target.closest && e.target.closest("[data-tally-open]")) loadTally();
+    });
   </script>
 
   <style>
@@ -297,7 +304,7 @@
       </div>
     </div>
     <div class="hero-photo reveal-img fade-up" style="transition-delay:.12s">
-      <picture><source srcset="img-leo-cocina-700.webp 700w, img-leo-cocina.webp 975w" sizes="(max-width: 860px) calc(100vw - 4rem), 50vw" type="image/webp"><img src="img-leo-cocina.jpg" width="975" height="1300" alt="Leonardo Lemes cocinando en el estudio de Clorofila" loading="eager"></picture>
+      <picture><source srcset="img-leo-cocina-610.webp 610w, img-leo-cocina-700.webp 700w, img-leo-cocina.webp 975w" sizes="(max-width: 860px) calc(100vw - 4rem), 50vw" type="image/webp"><img src="img-leo-cocina.jpg" width="975" height="1300" alt="Leonardo Lemes cocinando en el estudio de Clorofila" loading="eager"></picture>
       <span class="hero-photo-caption">Leonardo Lemes · Clorofila</span>
     </div>
   </div>
