@@ -193,6 +193,19 @@
     .docente-formacion li:last-child { border-bottom: none; }
     .docente-formacion li::before { content: '—'; color: var(--crema-osc); flex-shrink: 0; }
 
+    .grupos-section { padding: 4.5rem 2rem 1rem; max-width: var(--max); margin: 0 auto; }
+    .grupos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
+    .grupo-card { background: var(--blanco); border: 1px solid var(--crema-osc); border-radius: var(--r-lg); padding: 1.75rem; display: flex; flex-direction: column; gap: .35rem; }
+    .grupo-dia { font-family: var(--ff-d); font-size: 1.5rem; color: var(--verde); line-height: 1.1; }
+    .grupo-hora { font-size: .95rem; color: var(--texto); font-weight: 500; }
+    .grupo-detalle { font-size: .82rem; color: var(--texto-med); line-height: 1.55; margin-top: .4rem; padding-top: .75rem; border-top: 1px solid var(--crema-osc); }
+    .grupo-inicio { font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--acento); margin-bottom: .2rem; }
+    @media (max-width: 900px) { .grupos-grid { grid-template-columns: 1fr; } }
+
+    .precio-quote { max-width: 560px; margin: 0 auto 2.5rem; text-align: center; }
+    .precio-quote blockquote { font-family: var(--ff-d); font-style: italic; font-size: 1.15rem; line-height: 1.6; color: var(--verde); }
+    .precio-quote cite { display: block; margin-top: .6rem; font-style: normal; font-size: .78rem; color: var(--texto-suave); }
+
     .precio-section { padding: 5.5rem 2rem; }
     .precio-card {
       max-width: 560px;
@@ -253,11 +266,11 @@
     }
   </style>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Course","name":"Curso de Cocina Basada en Plantas","description":"Curso presencial de 3 meses (12 clases presenciales) en Parque Rodó, Montevideo. Cocina basada en plantas, fermentación, técnica y criterio culinario.","provider":{"@type":"Organization","name":"Clorofila Estudio de Cocina","url":"https://clorofila.uy/"},"hasCourseInstance":[{"@type":"CourseInstance","courseMode":"Onsite","startDate":"2026-08-11","location":{"@type":"Place","name":"Clorofila","address":"Maldonado 1976 esq. Blanes, Parque Rodó, Montevideo"},"offers":{"@type":"Offer","price":"12200","priceCurrency":"UYU","availability":"https://schema.org/InStock"}}]}
+  {"@context":"https://schema.org","@type":"Course","name":"Curso de Cocina Basada en Plantas","description":"Curso presencial de 3 meses (12 clases presenciales) en Parque Rodó, Montevideo. Cocina basada en plantas, fermentación, técnica y criterio culinario.","provider":{"@type":"Organization","name":"Clorofila Estudio de Cocina","url":"https://clorofila.uy/"},"hasCourseInstance":[{"@type":"CourseInstance","name":"Grupo martes 19:00-21:00","courseMode":"Onsite","startDate":"2026-08-11","location":{"@type":"Place","name":"Clorofila","address":"Maldonado 1976 esq. Blanes, Parque Rodó, Montevideo"},"offers":{"@type":"Offer","price":"12200","priceCurrency":"UYU","availability":"https://schema.org/InStock"}},{"@type":"CourseInstance","name":"Grupo miércoles 10:00-12:00","courseMode":"Onsite","startDate":"2026-08-12","location":{"@type":"Place","name":"Clorofila","address":"Maldonado 1976 esq. Blanes, Parque Rodó, Montevideo"},"offers":{"@type":"Offer","price":"12200","priceCurrency":"UYU","availability":"https://schema.org/InStock"}},{"@type":"CourseInstance","name":"Grupo sábados quincenal 15:00-18:30","courseMode":"Onsite","startDate":"2026-08-22","location":{"@type":"Place","name":"Clorofila","address":"Maldonado 1976 esq. Blanes, Parque Rodó, Montevideo"},"offers":{"@type":"Offer","price":"12200","priceCurrency":"UYU","availability":"https://schema.org/InStock"}}]}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"¿Cómo se organiza la cursada?","acceptedAnswer":{"@type":"Answer","text":"El curso tiene 12 clases presenciales a lo largo de 3 meses. Para esta edición hay grupos los martes, miércoles y sábados, para que puedas elegir el que mejor te queda. Arranca la semana del 11 de agosto."}},
+    {"@type":"Question","name":"¿Cómo se organiza la cursada?","acceptedAnswer":{"@type":"Answer","text":"Son 3 meses de cursada con tres grupos para elegir: martes de 19 a 21 h (arranca el 11 de agosto), miércoles de 10 a 12 h (arranca el 12 de agosto) — ambos con 12 clases semanales — o sábados de 15 a 18:30 h cada 15 días, en 6 encuentros extendidos (arranca el 22 de agosto)."}},
     {"@type":"Question","name":"¿Necesito experiencia previa?","acceptedAnswer":{"@type":"Answer","text":"No. El curso está pensado tanto para quienes recién empiezan como para quienes ya cocinan y quieren profundizar. Arrancamos desde las bases."}},
     {"@type":"Question","name":"¿Qué tipo de cocina se enseña?","acceptedAnswer":{"@type":"Answer","text":"Basada en plantas: vegetales, legumbres, hongos, semillas, granos y frutas. No hace falta alimentarse así todos los días — el criterio que desarrollás sirve para cualquier forma de cocinar."}},
     {"@type":"Question","name":"¿Qué pasa si falto a una clase?","acceptedAnswer":{"@type":"Answer","text":"Las clases se pueden recuperar. Coordinamos para que no pierdas contenido."}},
@@ -461,8 +474,41 @@
   </div>
 </div>
 
+<!-- GRUPOS Y HORARIOS -->
+<section class="grupos-section">
+  <div class="fade-up">
+    <span class="section-label">Edición agosto 2026</span>
+    <h2 class="section-title">Grupos y <em>horarios</em></h2>
+    <p class="section-lead">Mismo programa en tres horarios — elegís el grupo que mejor te queda.</p>
+  </div>
+  <div class="grupos-grid">
+    <div class="grupo-card fade-up">
+      <p class="grupo-inicio">Arranca el 11 de agosto</p>
+      <p class="grupo-dia">Martes</p>
+      <p class="grupo-hora">19:00 a 21:00 h</p>
+      <p class="grupo-detalle">Clase semanal · 12 encuentros. Para quienes salen de trabajar y quieren cerrar el día cocinando.</p>
+    </div>
+    <div class="grupo-card fade-up" style="transition-delay:.1s">
+      <p class="grupo-inicio">Arranca el 12 de agosto</p>
+      <p class="grupo-dia">Miércoles</p>
+      <p class="grupo-hora">10:00 a 12:00 h</p>
+      <p class="grupo-detalle">Clase semanal · 12 encuentros. El grupo de mañana, con el estudio tranquilo y luz de día.</p>
+    </div>
+    <div class="grupo-card fade-up" style="transition-delay:.2s">
+      <p class="grupo-inicio">Arranca el 22 de agosto</p>
+      <p class="grupo-dia">Sábados</p>
+      <p class="grupo-hora">15:00 a 18:30 h</p>
+      <p class="grupo-detalle">Cada 15 días · 6 encuentros extendidos. El mismo recorrido, en jornadas más largas y espaciadas.</p>
+    </div>
+  </div>
+</section>
+
 <!-- PRECIO -->
 <section class="precio-section">
+  <div class="precio-quote fade-up">
+    <blockquote>«No es un curso de recetas. Es aprender a pensar la cocina de otra manera.»</blockquote>
+    <cite>Lucía Fernández · Alumna del curso de 3 meses</cite>
+  </div>
   <div class="precio-card fade-up">
     <span class="precio-eyebrow">Curso de Cocina Basada en Plantas · Agosto 2026</span>
     <h3>Clorofila · Parque Rodó</h3>
@@ -476,7 +522,7 @@
     <ul class="precio-grid">
       <li><strong>Inicio</strong>Semana del 11 de agosto</li>
       <li><strong>Clases</strong>12 presenciales</li>
-      <li><strong>Días</strong>Martes, miércoles o sábados</li>
+      <li><strong>Grupos</strong>Martes 19 h · Miércoles 10 h · Sábados 15 h</li>
       <li><strong>Lugar</strong>Parque Rodó, Montevideo</li>
     </ul>
     <p class="precio-pagos">Tarjeta hasta 12 cuotas de $1.016 · Transferencia · Abitab · RedPagos · MercadoPago</p>
@@ -492,7 +538,7 @@
 <div class="faq">
   <span class="section-label">Antes de anotarte</span>
   <h2 class="section-title" style="margin-bottom:2rem">Preguntas <em>frecuentes</em></h2>
-  <div class="faq-item"><button type="button" class="faq-q">¿Cómo se organiza la cursada? <span class="faq-icon">+</span></button><p class="faq-a">El curso tiene 12 clases presenciales a lo largo de 3 meses. Para esta edición hay grupos los martes, miércoles y sábados, para que puedas elegir el que mejor te queda. Arranca la semana del 11 de agosto.</p></div>
+  <div class="faq-item"><button type="button" class="faq-q">¿Cómo se organiza la cursada? <span class="faq-icon">+</span></button><p class="faq-a">Son 3 meses de cursada con tres grupos para elegir: martes de 19 a 21 h (arranca el 11 de agosto), miércoles de 10 a 12 h (arranca el 12 de agosto) — ambos con 12 clases semanales — o sábados de 15 a 18:30 h cada 15 días, en 6 encuentros extendidos (arranca el 22 de agosto).</p></div>
   <div class="faq-item"><button type="button" class="faq-q">¿Necesito experiencia previa? <span class="faq-icon">+</span></button><p class="faq-a">No. El curso está pensado tanto para quienes recién empiezan como para quienes ya cocinan y quieren profundizar. Arrancamos desde las bases.</p></div>
   <div class="faq-item"><button type="button" class="faq-q">¿Qué tipo de cocina se enseña? <span class="faq-icon">+</span></button><p class="faq-a">Basada en plantas: vegetales, legumbres, hongos, semillas, granos y frutas. No hace falta alimentarse así todos los días — el criterio que desarrollás sirve para cualquier forma de cocinar.</p></div>
   <div class="faq-item"><button type="button" class="faq-q">¿Qué pasa si falto a una clase? <span class="faq-icon">+</span></button><p class="faq-a">Las clases se pueden recuperar. Coordinamos para que no pierdas contenido.</p></div>
