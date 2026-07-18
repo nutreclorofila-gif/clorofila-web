@@ -39,4 +39,27 @@
       fireSignUp();
     }
   });
+
+  // Red de seguridad de las animaciones de entrada: garantiza que ninguna foto
+  // ni bloque quede oculto para siempre si el navegador restaura el scroll, si
+  // se entra por un ancla (#seccion) o si se scrollea rápido antes de que el
+  // IntersectionObserver de cada página alcance a dispararse.
+  function revealInView() {
+    var pending = document.querySelectorAll('.fade-up:not(.visible), .reveal-img:not(.visible)');
+    if (!pending.length) {
+      window.removeEventListener('scroll', revealInView);
+      return;
+    }
+    var h = window.innerHeight;
+    for (var i = 0; i < pending.length; i++) {
+      if (pending[i].getBoundingClientRect().top < h) pending[i].classList.add('visible');
+    }
+  }
+  window.addEventListener('scroll', revealInView, { passive: true });
+  window.addEventListener('load', revealInView);
+  // Última garantía: pasado un tiempo, nada puede seguir invisible.
+  setTimeout(function () {
+    var all = document.querySelectorAll('.fade-up:not(.visible), .reveal-img:not(.visible)');
+    for (var i = 0; i < all.length; i++) all[i].classList.add('visible');
+  }, 2600);
 })();
