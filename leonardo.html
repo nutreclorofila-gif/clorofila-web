@@ -207,6 +207,13 @@
       .temas-grid { grid-template-columns: 1fr; }
       .hero-leo-stats { gap: 1.5rem; }
     }
+    .leo-articulos { padding: 5rem 2rem; background: var(--crema-osc); }
+    .leo-articulos-inner { max-width: var(--max-narrow); margin: 0 auto; }
+    .leo-articulos h2 { margin-bottom: .75rem; }
+    .leo-articulos-lead { color: var(--texto-med); margin-bottom: 2rem; max-width: 54ch; }
+    .leo-articulos-list { display: flex; flex-direction: column; gap: .85rem; margin-bottom: 2rem; }
+    .leo-articulos-list a { color: var(--verde); font-family: var(--ff-d); font-size: 1.08rem; line-height: 1.45; display: block; padding-bottom: .85rem; border-bottom: 1px solid rgba(36,51,36,.12); }
+    .leo-articulos-list a:hover { color: var(--acento-osc); }
   </style>
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@graph": [{"@type": "Person", "name": "Leonardo Lemes", "jobTitle": "Chef, docente e investigador gastronómico", "description": "Chef, docente e investigador gastronómico con 25 años de experiencia. Fundador de Clorofila Estudio de Cocina en Parque Rodó, Montevideo.", "image": "https://clorofila.uy/img-leo-cocina.jpg", "url": "https://clorofila.uy/leonardo", "worksFor": {"@id": "https://clorofila.uy/#organization"}, "knowsAbout": ["Cocina basada en plantas", "Fermentación", "Masa madre", "Pastelería sin gluten", "Desarrollo de productos gastronómicos", "Cocina vegana", "Quesos vegetales", "Investigación gastronómica"], "@id": "https://clorofila.uy/leonardo#person", "founderOf": {"@id": "https://clorofila.uy/#organization"}, "nationality": {"@type": "Country", "name": "Uruguay"}, "knowsLanguage": "es", "sameAs": ["https://instagram.com/clorofilaclases"]}]}
@@ -413,6 +420,22 @@
       <a href="curso.html" class="btn btn-light">Ver el curso completo →</a>
       <a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light">Inscribirme al curso →</a>
     </div>
+  </div>
+</section>
+
+<!-- LO QUE ESCRIBE -->
+<section class="leo-articulos">
+  <div class="leo-articulos-inner">
+    <span class="section-label">Lo que investiga</span>
+    <h2>Algunas cosas que <em>escribió</em>.</h2>
+    <p class="leo-articulos-lead">Preguntas que aparecen seguido en clase, respondidas con la evidencia disponible y sin alarmismo.</p>
+    <ul class="leo-articulos-list">
+      <li><a href="articulos/aceite-de-oliva-punto-de-humo.html">Aceite de oliva y punto de humo: el mito que no muere →</a></li>
+      <li><a href="articulos/omega-3-lino-horneado.html">¿Qué le pasa al omega-3 del lino cuando horneás? →</a></li>
+      <li><a href="articulos/lavado-de-frutas-bicarbonato.html">Lavado de frutas: bicarbonato vs agua sola →</a></li>
+      <li><a href="articulos/mas-alla-del-colesterol-total.html">Más allá del colesterol total →</a></li>
+    </ul>
+    <a href="articulos.html" class="btn btn-outline">Ver todos los artículos →</a>
   </div>
 </section>
 
