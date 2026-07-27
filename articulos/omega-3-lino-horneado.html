@@ -46,6 +46,12 @@
     .articulo-relacionados ul { display: flex; flex-direction: column; gap: .6rem; }
     .articulo-relacionados a { color: var(--verde-med); font-weight: 500; }
     .articulo-relacionados a:hover { color: var(--acento); }
+    .captura { background: var(--verde); border-radius: var(--r-lg); padding: 2.5rem 2rem; margin: 3rem auto 0; max-width: var(--max-narrow); }
+    .captura-eyebrow { display: block; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--verde-luz); margin-bottom: .9rem; }
+    .captura h2 { color: var(--crema); font-size: 1.6rem; line-height: 1.2; margin-bottom: .75rem; }
+    .captura h2 em { color: var(--acento); font-style: italic; }
+    .captura p { color: rgba(255,255,255,.72); font-size: .95rem; line-height: 1.7; margin-bottom: 1.5rem; max-width: 52ch; }
+    .captura-nota { font-size: .78rem; color: rgba(255,255,255,.45); margin: .9rem 0 0; }
   </style>
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "Article", "headline": "¿Qué le pasa al omega-3 del lino cuando horneás?", "author": {"@id": "https://clorofila.uy/leonardo#person"}, "publisher": {"@id": "https://clorofila.uy/#organization"}, "datePublished": "2026-06-25", "mainEntityOfPage": "https://clorofila.uy/articulos/omega-3-lino-horneado", "isPartOf": {"@id": "https://clorofila.uy/articulos#blog"}, "@id": "https://clorofila.uy/articulos/omega-3-lino-horneado#article", "inLanguage": "es-UY", "articleSection": "Aceites y grasas", "dateModified": "2026-07-25"}
@@ -133,6 +139,14 @@
     <p>Esto es justo el tipo de criterio que se trabaja en el curso de 3 meses: no memorizar reglas, sino entender el mecanismo detrás de cada decisión en la cocina.</p>
     <a href="../curso.html" class="btn btn-light">Conocer el curso →</a>
   </div>
+
+  <section class="captura">
+    <span class="captura-eyebrow">Sin costo</span>
+    <h2>Una pregunta de cocina <em>respondida</em> por mes.</h2>
+    <p>Como esta: una duda que aparece seguido en clase, con lo que dice la evidencia y sin alarmismo. Una vez por mes, nada más. Si algún día no te sirve, te desuscribís en un clic.</p>
+    <button type="button" data-tally-open="TALLY_NEWSLETTER_ID" data-tally-overlay="1" class="btn btn-light">Quiero recibirlas →</button>
+    <p class="captura-nota">Tu mail no se comparte con nadie.</p>
+  </section>
 </article>
 
 <div class="articulo-relacionados">
