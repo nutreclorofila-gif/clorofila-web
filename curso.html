@@ -26,7 +26,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Jost:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Jost:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Jost:wght@300;400;500;600&display=swap"></noscript>
-  <link rel="stylesheet" href="shared.css?v=20260721">
+  <link rel="stylesheet" href="shared.css?v=20260726">
   <script>
     var tallyCallbacks = [];
     function loadTally(cb) {
@@ -234,28 +234,6 @@
     .precio-pagos { font-size: .78rem; color: rgba(255,255,255,.4); margin-bottom: 2rem; }
     .precio-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .precio-notice { font-size: .75rem; color: rgba(255,255,255,.35); margin-top: 1.25rem; }
-
-    .faq { padding: 4.5rem 2rem; max-width: 720px; margin: 0 auto; background: var(--crema-osc); }
-    .faq-item { border-bottom: 1px solid var(--crema-osc); }
-    button.faq-q {
-      width: 100%; background: none; border: none;
-      text-align: left; font-family: var(--ff-b);
-    }
-    .faq-q {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.2rem 2rem;
-      cursor: pointer;
-      font-weight: 500;
-      font-size: .93rem;
-      color: var(--texto);
-      gap: 1rem;
-    }
-    .faq-q:hover { color: var(--verde); }
-    .faq-icon { font-size: 1.2rem; color: var(--acento); flex-shrink: 0; transition: transform .3s; }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-a { display: none; padding: 0 2rem 1.2rem; font-size: .9rem; color: var(--texto-med); line-height: 1.7; }
-    .faq-item.open .faq-a { display: block; }
-
     @media (max-width: 900px) {
       .incluye-inner, .equipo-grid { grid-template-columns: 1fr; }
       .temas-grid { grid-template-columns: repeat(3, 1fr); }
