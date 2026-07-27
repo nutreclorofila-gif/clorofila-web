@@ -264,9 +264,41 @@
     @media (max-width: 600px) {
       .temas-grid { grid-template-columns: repeat(2, 1fr); }
     }
+
+    /* Prueba social sobre el precio */
+    .prueba-social { max-width: var(--max); margin: 0 auto 3rem; }
+    .prueba-rating {
+      display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+      gap: .3rem .75rem; margin: 0 auto 2rem; padding: .85rem 1.5rem; width: fit-content;
+      background: var(--blanco); border: 1px solid var(--crema-osc);
+      border-radius: 999px; text-decoration: none; transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+    }
+    .prueba-rating:hover { border-color: var(--verde-med); box-shadow: var(--shadow-sm); }
+    .prueba-stars { color: var(--acento-osc); letter-spacing: .1em; font-size: .9rem; }
+    .prueba-num { font-size: .88rem; color: var(--texto-med); }
+    .prueba-num strong { font-family: var(--ff-d); font-size: 1.15rem; color: var(--verde); font-weight: 600; }
+    .prueba-link { font-size: .78rem; color: var(--acento-osc); font-weight: 500; }
+    .prueba-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .prueba-card {
+      margin: 0; padding: 1.75rem; background: var(--blanco);
+      border: 1px solid var(--crema-osc); border-radius: var(--r-lg);
+      display: flex; flex-direction: column;
+    }
+    .prueba-card blockquote {
+      margin: 0 0 1.1rem; flex: 1; font-family: var(--ff-d); font-style: italic;
+      font-size: 1rem; line-height: 1.6; color: var(--verde);
+    }
+    .prueba-card figcaption {
+      font-size: .78rem; color: var(--texto); font-weight: 600;
+      border-top: 1px solid var(--crema-osc); padding-top: .85rem;
+    }
+    .prueba-card figcaption span {
+      display: block; margin-top: .15rem; font-weight: 400; color: var(--texto-suave);
+    }
+    @media (max-width: 860px) { .prueba-grid { grid-template-columns: 1fr; } }
   </style>
   <script type="application/ld+json">
-  {"@context": "https://schema.org", "@graph": [{"@context": "https://schema.org", "@type": "Course", "name": "Curso de Cocina Basada en Plantas", "description": "Curso presencial de 3 meses (12 clases presenciales) en Parque Rodó, Montevideo. Cocina basada en plantas, fermentación, técnica y criterio culinario.", "provider": {"@id": "https://clorofila.uy/#organization"}, "hasCourseInstance": [{"@type": "CourseInstance", "name": "Grupo martes 19:00-21:00", "courseMode": "Onsite", "startDate": "2026-08-11", "location": {"@type": "Place", "name": "Clorofila", "address": {"@type": "PostalAddress", "streetAddress": "Maldonado 1976 esq. Blanes", "addressLocality": "Montevideo", "addressCountry": "UY"}}, "offers": {"@type": "Offer", "price": "12200", "priceCurrency": "UYU", "availability": "https://schema.org/InStock", "url": "https://clorofila.uy/curso", "category": "Curso presencial"}, "courseWorkload": "PT2H", "inLanguage": "es-UY"}, {"@type": "CourseInstance", "name": "Grupo miércoles 10:00-12:00", "courseMode": "Onsite", "startDate": "2026-08-12", "location": {"@type": "Place", "name": "Clorofila", "address": {"@type": "PostalAddress", "streetAddress": "Maldonado 1976 esq. Blanes", "addressLocality": "Montevideo", "addressCountry": "UY"}}, "offers": {"@type": "Offer", "price": "12200", "priceCurrency": "UYU", "availability": "https://schema.org/InStock", "url": "https://clorofila.uy/curso", "category": "Curso presencial"}, "courseWorkload": "PT2H", "inLanguage": "es-UY"}, {"@type": "CourseInstance", "name": "Grupo sábados quincenal 15:00-18:30", "courseMode": "Onsite", "startDate": "2026-08-22", "location": {"@type": "Place", "name": "Clorofila", "address": {"@type": "PostalAddress", "streetAddress": "Maldonado 1976 esq. Blanes", "addressLocality": "Montevideo", "addressCountry": "UY"}}, "offers": {"@type": "Offer", "price": "12200", "priceCurrency": "UYU", "availability": "https://schema.org/InStock", "url": "https://clorofila.uy/curso", "category": "Curso presencial"}, "courseWorkload": "PT2H", "inLanguage": "es-UY"}], "@id": "https://clorofila.uy/curso#course", "url": "https://clorofila.uy/curso", "inLanguage": "es-UY", "educationalLevel": "Principiante a intermedio", "teaches": ["Cocina basada en plantas", "Fermentación", "Panificación sin gluten", "Pastelería sin lácteos ni huevos", "Criterio culinario"], "about": ["Cocina vegana", "Cocina basada en plantas", "Cocina plant based", "Técnica culinaria"], "keywords": "curso de cocina vegana Montevideo, curso de cocina plant based Montevideo, curso de cocina basada en plantas", "courseWorkload": "PT24H"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://clorofila.uy/"}, {"@type": "ListItem", "position": 2, "name": "El curso", "item": "https://clorofila.uy/curso"}]}]}
+  {"@context": "https://schema.org", "@graph": [{"@type": "Course", "name": "Curso de Cocina Basada en Plantas", "description": "Curso presencial de 3 meses (12 clases presenciales) en Parque Rodó, Montevideo. Cocina basada en plantas, fermentación, técnica y criterio culinario.", "provider": {"@id": "https://clorofila.uy/#organization"}, "hasCourseInstance": [{"@type": "CourseInstance", "name": "Grupo martes 19:00-21:00", "courseMode": "Onsite", "startDate": "2026-08-11", "location": {"@type": "Place", "name": "Clorofila", "address": {"@type": "PostalAddress", "streetAddress": "Maldonado 1976 esq. Blanes", "addressLocality": "Montevideo", "addressCountry": "UY"}}, "offers": {"@type": "Offer", "price": "12200", "priceCurrency": "UYU", "availability": "https://schema.org/InStock", "url": "https://clorofila.uy/curso", "category": "Curso presencial"}, "courseWorkload": "PT2H", "inLanguage": "es-UY"}, {"@type": "CourseInstance", "name": "Grupo miércoles 10:00-12:00", "courseMode": "Onsite", "startDate": "2026-08-12", "location": {"@type": "Place", "name": "Clorofila", "address": {"@type": "PostalAddress", "streetAddress": "Maldonado 1976 esq. Blanes", "addressLocality": "Montevideo", "addressCountry": "UY"}}, "offers": {"@type": "Offer", "price": "12200", "priceCurrency": "UYU", "availability": "https://schema.org/InStock", "url": "https://clorofila.uy/curso", "category": "Curso presencial"}, "courseWorkload": "PT2H", "inLanguage": "es-UY"}, {"@type": "CourseInstance", "name": "Grupo sábados quincenal 15:00-18:30", "courseMode": "Onsite", "startDate": "2026-08-22", "location": {"@type": "Place", "name": "Clorofila", "address": {"@type": "PostalAddress", "streetAddress": "Maldonado 1976 esq. Blanes", "addressLocality": "Montevideo", "addressCountry": "UY"}}, "offers": {"@type": "Offer", "price": "12200", "priceCurrency": "UYU", "availability": "https://schema.org/InStock", "url": "https://clorofila.uy/curso", "category": "Curso presencial"}, "courseWorkload": "PT2H", "inLanguage": "es-UY"}], "@id": "https://clorofila.uy/curso#course", "url": "https://clorofila.uy/curso", "inLanguage": "es-UY", "educationalLevel": "Principiante a intermedio", "teaches": ["Cocina basada en plantas", "Fermentación", "Panificación sin gluten", "Pastelería sin lácteos ni huevos", "Criterio culinario"], "about": ["Cocina vegana", "Cocina basada en plantas", "Cocina plant based", "Técnica culinaria"], "keywords": "curso de cocina vegana Montevideo, curso de cocina plant based Montevideo, curso de cocina basada en plantas", "courseWorkload": "PT24H"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://clorofila.uy/"}, {"@type": "ListItem", "position": 2, "name": "El curso", "item": "https://clorofila.uy/curso"}]}]}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -506,9 +538,26 @@
 
 <!-- PRECIO -->
 <section class="precio-section">
-  <div class="precio-quote fade-up">
-    <blockquote>«No es un curso de recetas. Es aprender a pensar la cocina de otra manera.»</blockquote>
-    <cite>Lucía Fernández · Alumna del curso de 3 meses</cite>
+  <div class="prueba-social fade-up">
+    <a class="prueba-rating" href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer">
+      <span class="prueba-stars" aria-hidden="true">★★★★★</span>
+      <span class="prueba-num"><strong>4,9</strong> · 21 opiniones en Google</span>
+      <span class="prueba-link">Leerlas todas →</span>
+    </a>
+    <div class="prueba-grid">
+      <figure class="prueba-card">
+        <blockquote>«No es un curso de recetas. Es aprender a pensar la cocina de otra manera.»</blockquote>
+        <figcaption>Lucía Fernández<span>Alumna del curso de 3 meses</span></figcaption>
+      </figure>
+      <figure class="prueba-card">
+        <blockquote>«Lo que más me sorprendió fue entender el por qué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien.»</blockquote>
+        <figcaption>Matías Acevedo<span>Alumno del curso de 3 meses</span></figcaption>
+      </figure>
+      <figure class="prueba-card">
+        <blockquote>«Excelente lugar para aprender a cocinar y a comer. Es mucho más que una receta, es aprender a crear tus propias recetas de la mano de los que saben.»</blockquote>
+        <figcaption>Alessandra Nadile<span>Reseña en Google</span></figcaption>
+      </figure>
+    </div>
   </div>
   <div class="precio-card fade-up">
     <span class="precio-eyebrow">Curso de Cocina Basada en Plantas · Agosto 2026</span>
