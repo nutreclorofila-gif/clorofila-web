@@ -509,7 +509,7 @@
 </div>
 
 <!-- GRUPOS Y HORARIOS -->
-<section class="grupos-section">
+<section class="grupos-section" id="grupos">
   <div class="fade-up">
     <span class="section-label">Edición agosto 2026</span>
     <h2 class="section-title">Grupos y <em>horarios</em></h2>
@@ -538,7 +538,7 @@
 </section>
 
 <!-- PRECIO -->
-<section class="precio-section">
+<section class="precio-section" id="precio">
   <div class="prueba-social fade-up">
     <a class="prueba-rating" href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer">
       <span class="prueba-stars" aria-hidden="true">★★★★★</span>
@@ -586,7 +586,7 @@
 </section>
 
 <!-- FAQ -->
-<div class="faq">
+<div class="faq" id="faq">
   <span class="section-label">Antes de anotarte</span>
   <h2 class="section-title" style="margin-bottom:2rem">Preguntas <em>frecuentes</em></h2>
   <div class="faq-item"><button type="button" class="faq-q">¿Cómo se organiza la cursada? <span class="faq-icon">+</span></button><p class="faq-a">Son 3 meses de cursada con tres grupos para elegir: martes de 19 a 21 h (arranca el 11 de agosto), miércoles de 10 a 12 h (arranca el 12 de agosto) — ambos con 12 clases semanales — o sábados de 15 a 18:30 h cada 15 días, en 6 encuentros extendidos (arranca el 22 de agosto).</p></div>
@@ -625,15 +625,32 @@
 <script src="nav.js" defer></script>
 <script src="track.js?v=20260718" defer></script>
 <script>
+  function activarTab(nombre, moverHash) {
+    var panel = document.getElementById('tab-' + nombre);
+    var btn = document.querySelector('.tab-btn[data-tab="' + nombre + '"]');
+    if (!panel || !btn) return false;
+    document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected','true');
+    panel.classList.add('active');
+    if (moverHash && history.replaceState) history.replaceState(null, '', '#' + nombre);
+    return true;
+  }
   document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected','true');
-      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-    });
+    btn.addEventListener('click', () => activarTab(btn.dataset.tab, true));
   });
+  // Permite compartir el link exacto de una pestaña: /curso#incluye, #temas, #equipo
+  function tabDesdeHash() {
+    var h = (location.hash || '').replace('#', '');
+    if (!h) return;
+    if (activarTab(h, false)) {
+      var cont = document.querySelector('.tabs-container');
+      if (cont) cont.scrollIntoView({ block: 'start' });
+    }
+  }
+  tabDesdeHash();
+  window.addEventListener('hashchange', tabDesdeHash);
   document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('open')));
   const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
   document.querySelectorAll('.fade-up, .reveal-img').forEach(el => obs.observe(el));
