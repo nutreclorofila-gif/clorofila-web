@@ -10,23 +10,28 @@
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#20301f">
   <title>Leonardo Lemes — Chef, Docente e Investigador Gastronómico</title>
-  <meta name="description" content="25 años cocinando, 13 enseñando. Chef, docente e investigador gastronómico. Fundador de Clorofila Estudio de Cocina en Parque Rodó, Montevideo.">
+  <meta name="description" content="25 años cocinando, 13 enseñando. Chef, docente e investigador especializado en cocina vegana y basada en plantas. Fundador de Clorofila, Parque Rodó, Montevideo.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://clorofila.uy/leonardo">
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://clorofila.uy/leonardo">
   <meta property="og:title"       content="Leonardo Lemes — Chef, Docente e Investigador Gastronómico · Clorofila">
   <meta property="og:description" content="25 años cocinando, 13 enseñando. Fundador de Clorofila Estudio de Cocina en Parque Rodó, Montevideo.">
-  <meta property="og:image"       content="https://clorofila.uy/img-leo-cocina.jpg">
+  <meta property="og:image"       content="https://clorofila.uy/og/og-leonardo.jpg">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type"   content="image/jpeg">
+  <meta property="og:image:alt"    content="Leonardo Lemes, chef, docente e investigador gastronómico">
+  <meta name="twitter:image:alt"   content="Leonardo Lemes, chef, docente e investigador gastronómico">
   <meta property="og:locale"      content="es_UY">
   <meta name="twitter:card"       content="summary_large_image">
-  <meta name="twitter:image"      content="https://clorofila.uy/img-leo-cocina.jpg">
+  <meta name="twitter:image"      content="https://clorofila.uy/og/og-leonardo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Jost:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Jost:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Jost:wght@300;400;500;600&display=swap"></noscript>
-  <link rel="stylesheet" href="shared.css?v=20260721">
+  <link rel="stylesheet" href="shared.css?v=20260726">
 
   <style>
     /* ── HERO ── */
@@ -207,9 +212,16 @@
       .temas-grid { grid-template-columns: 1fr; }
       .hero-leo-stats { gap: 1.5rem; }
     }
+    .leo-articulos { padding: 5rem 2rem; background: var(--crema-osc); }
+    .leo-articulos-inner { max-width: var(--max-narrow); margin: 0 auto; }
+    .leo-articulos h2 { margin-bottom: .75rem; }
+    .leo-articulos-lead { color: var(--texto-med); margin-bottom: 2rem; max-width: 54ch; }
+    .leo-articulos-list { display: flex; flex-direction: column; gap: .85rem; margin-bottom: 2rem; }
+    .leo-articulos-list a { color: var(--verde); font-family: var(--ff-d); font-size: 1.08rem; line-height: 1.45; display: block; padding-bottom: .85rem; border-bottom: 1px solid rgba(36,51,36,.12); }
+    .leo-articulos-list a:hover { color: var(--acento-osc); }
   </style>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Person","name":"Leonardo Lemes","jobTitle":"Chef, docente e investigador gastronómico","description":"Chef, docente e investigador gastronómico con 25 años de experiencia. Fundador de Clorofila Estudio de Cocina en Parque Rodó, Montevideo.","image":"https://clorofila.uy/img-leo-cocina.jpg","url":"https://clorofila.uy/leonardo","worksFor":{"@type":"Organization","name":"Clorofila Estudio de Cocina"},"knowsAbout":["Cocina basada en plantas","Fermentación","Masa madre","Pastelería sin gluten","Desarrollo de productos gastronómicos"]}
+  {"@context": "https://schema.org", "@graph": [{"@type": "Person", "name": "Leonardo Lemes", "jobTitle": "Chef, docente e investigador gastronómico", "description": "Chef, docente e investigador gastronómico con 25 años de experiencia. Fundador de Clorofila Estudio de Cocina en Parque Rodó, Montevideo.", "image": "https://clorofila.uy/img-leo-cocina.jpg", "url": "https://clorofila.uy/leonardo", "worksFor": {"@id": "https://clorofila.uy/#organization"}, "knowsAbout": ["Cocina basada en plantas", "Fermentación", "Masa madre", "Pastelería sin gluten", "Desarrollo de productos gastronómicos", "Cocina vegana", "Quesos vegetales", "Investigación gastronómica"], "@id": "https://clorofila.uy/leonardo#person", "founderOf": {"@id": "https://clorofila.uy/#organization"}, "nationality": {"@type": "Country", "name": "Uruguay"}, "knowsLanguage": "es", "sameAs": ["https://instagram.com/clorofilaclases"]}]}
   </script>
   <!-- Analítica con consentimiento (GA4 + Meta Pixel) — reemplazar los IDs -->
   <script>
@@ -416,6 +428,22 @@
   </div>
 </section>
 
+<!-- LO QUE ESCRIBE -->
+<section class="leo-articulos">
+  <div class="leo-articulos-inner">
+    <span class="section-label">Lo que investiga</span>
+    <h2>Algunas cosas que <em>escribió</em>.</h2>
+    <p class="leo-articulos-lead">Preguntas que aparecen seguido en clase, respondidas con la evidencia disponible y sin alarmismo.</p>
+    <ul class="leo-articulos-list">
+      <li><a href="articulos/aceite-de-oliva-punto-de-humo.html">Aceite de oliva y punto de humo: el mito que no muere →</a></li>
+      <li><a href="articulos/omega-3-lino-horneado.html">¿Qué le pasa al omega-3 del lino cuando horneás? →</a></li>
+      <li><a href="articulos/lavado-de-frutas-bicarbonato.html">Lavado de frutas: bicarbonato vs agua sola →</a></li>
+      <li><a href="articulos/mas-alla-del-colesterol-total.html">Más allá del colesterol total →</a></li>
+    </ul>
+    <a href="articulos.html" class="btn btn-outline">Ver todos los artículos →</a>
+  </div>
+</section>
+
 <!-- FOOTER -->
 </main>
 <footer class="footer">
@@ -451,7 +479,7 @@
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">© 2026 Clorofila Estudio de Cocina · Parque Rodó · Montevideo · Uruguay</div>
+  <div class="footer-bottom">Escuela de cocina vegana y basada en plantas · © 2026 Clorofila Estudio de Cocina · Parque Rodó · Montevideo · Uruguay</div>
 </footer>
 
 <!-- CTA FLOTANTE -->

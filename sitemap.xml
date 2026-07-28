@@ -1,15 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://clorofila.uy/</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://clorofila.uy/curso</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://clorofila.uy/servicios</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://clorofila.uy/talleres</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://clorofila.uy/leonardo</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://clorofila.uy/articulos</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://clorofila.uy/articulos/aceite-de-oliva-punto-de-humo</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://clorofila.uy/articulos/omega-3-lino-horneado</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://clorofila.uy/articulos/lavado-de-frutas-bicarbonato</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://clorofila.uy/articulos/mas-alla-del-colesterol-total</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://clorofila.uy/sobre</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://clorofila.uy/contacto</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://clorofila.uy/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-home.jpg</image:loc>
+      <image:title>Clorofila — Estudio de Cocina en Montevideo</image:title>
+      <image:caption>Alumnas y alumnos de Clorofila con los platos que elaboraron en clase, Parque Rodó, Montevideo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/curso</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-curso.jpg</image:loc>
+      <image:title>Curso de Cocina Basada en Plantas — Clorofila Montevideo</image:title>
+      <image:caption>Alumnos trabajando la masa en una clase del curso de Clorofila</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/servicios</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-servicios.jpg</image:loc>
+      <image:title>Trabajemos juntos — Clorofila &amp; Leonardo Lemes</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/talleres</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-talleres.jpg</image:loc>
+      <image:title>Talleres de Cocina — Clorofila Montevideo</image:title>
+      <image:caption>Mesa de tapas basada en plantas del taller de tapeo de Clorofila</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/leonardo</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-leonardo.jpg</image:loc>
+      <image:title>Leonardo Lemes — Chef, Docente e Investigador Gastronómico</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/articulos</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/articulos/aceite-de-oliva-punto-de-humo</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-art-aceite.jpg</image:loc>
+      <image:title>Aceite de oliva y punto de humo: el mito que no muere</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/articulos/omega-3-lino-horneado</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-art-omega3.jpg</image:loc>
+      <image:title>¿Qué le pasa al omega-3 del lino cuando horneás?</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/articulos/lavado-de-frutas-bicarbonato</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-art-lavado.jpg</image:loc>
+      <image:title>Lavado de frutas: bicarbonato vs agua sola</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/articulos/mas-alla-del-colesterol-total</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-art-colesterol.jpg</image:loc>
+      <image:title>Más allá del colesterol total</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/sobre</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-sobre.jpg</image:loc>
+      <image:title>Sobre Clorofila — Estudio de Cocina en Montevideo desde 2013</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/contacto</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

@@ -16,3 +16,26 @@ s.tachada::after{content:'';position:absolute;left:-3%;right:-3%;top:50%;height:
 .hero-botanic>*{position:relative;z-index:1}
 .photo-arch{border-radius:180px 180px 16px 16px!important}
 @media(max-width:700px){.photo-arch{border-radius:140px 140px 14px 14px!important}.hero-botanic::after{width:270px;height:270px;top:-42px;right:-50px}}
+
+
+/* Acordeón de preguntas frecuentes — usado en /curso y /talleres */
+.faq { padding: 4.5rem 2rem; max-width: 720px; margin: 0 auto; background: var(--crema-osc); }
+.faq-item { border-bottom: 1px solid var(--crema-osc); }
+button.faq-q {
+  width: 100%; background: none; border: none;
+  text-align: left; font-family: var(--ff-b);
+}
+.faq-q {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 2rem;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: .93rem;
+  color: var(--texto);
+  gap: 1rem;
+}
+.faq-q:hover { color: var(--verde); }
+.faq-icon { font-size: 1.2rem; color: var(--acento); flex-shrink: 0; transition: transform .3s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a { display: none; padding: 0 2rem 1.2rem; font-size: .9rem; color: var(--texto-med); line-height: 1.7; }
+.faq-item.open .faq-a { display: block; }
