@@ -101,6 +101,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://clorofila.uy/articulos/pan-sin-gluten-no-es-saludable</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:title>Pan sin gluten no es automáticamente saludable</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://clorofila.uy/sobre</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
