@@ -121,6 +121,46 @@
     </image:image>
   </url>
   <url>
+    <loc>https://clorofila.uy/articulos/remojo-legumbres</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:title>Remojo de legumbres: cuánto importa y cuánto no</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/articulos/endulzantes-guia-sin-sesgo</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:title>Endulzantes: la guía sin sesgo</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/articulos/como-funciona-la-fermentacion</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:title>Cómo funciona la fermentación: el mecanismo completo</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/articulos/proteina-vegetal-mitos-realidades</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:title>Proteína vegetal: mitos y realidades</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://clorofila.uy/sobre</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
