@@ -183,6 +183,16 @@ datos.curso.calendario = abiertos.length
       'Primera clase del curso de tres meses de Clorofila, en Parque Rodó.')
   : '';
 datos.curso.estado = abiertos.length ? 'abierto' : 'sin-fecha';
+
+// Cuando no hay edición abierta, la web deja de pedir una inscripción que no
+// existe y pasa sola a juntar lista de espera. Nadie tiene que acordarse.
+datos.curso.cta_texto = abiertos.length ? 'Reservar mi lugar →' : 'Sumate a la lista de espera →';
+datos.curso.cta_nota = abiertos.length
+  ? 'Grupos reducidos · te escribimos por WhatsApp en menos de 24h para confirmar tu lugar'
+  : 'No hay edición abierta ahora. Dejanos tus datos y sos de los primeros en enterarte cuando abramos la próxima.';
+datos.curso.titulo_reserva_html = abiertos.length
+  ? 'Reservá tu <em style="color:var(--verde-luz)">lugar</em>.'
+  : 'Avisame de la <em style="color:var(--verde-luz)">próxima edición</em>.';
 for (const g of datos.curso.grupos) {
   datos.curso['grupo_' + g.id + '_estado_texto'] = g.estado === 'abierto' ? 'Abierto' : 'Grupo cerrado';
   datos.curso['grupo_' + g.id + '_inicio'] = g.inicio_texto;
