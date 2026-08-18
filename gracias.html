@@ -8,8 +8,8 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#20301f">
-  <title>Recibimos tu reserva — Clorofila</title>
-  <meta name="description" content="Recibimos tu reserva en Clorofila. Te escribimos por WhatsApp para confirmar el lugar.">
+  <title>Gracias — Clorofila</title>
+  <meta name="description" content="Gracias por escribirnos. Te contamos qué sigue.">
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://clorofila.uy/gracias">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,14 +100,31 @@
 <main id="main-content">
 <div class="gracias">
   <div class="gracias-tilde" aria-hidden="true">✓</div>
-  <h1>Recibimos tu reserva.</h1>
-  <p class="lead">Ya está anotada. Ahora te escribimos por WhatsApp para confirmarte el lugar y coordinar el pago — normalmente en el día, siempre en menos de 24 horas.</p>
+  <h1 data-titulo>Recibimos tu mensaje.</h1>
+  <p class="lead" data-bajada>Ya lo tenemos. Te escribimos en breve.</p>
 
-  <ol class="pasos">
+  <ol class="pasos" data-solo-reserva>
     <li><strong>Te escribimos por WhatsApp</strong><span>Desde el 094 064 148. Guardá el número así no se te va a spam ni a mensajes filtrados.</span></li>
     <li><strong>Confirmamos tu lugar</strong><span>Te decimos el cupo disponible y coordinamos el pago: transferencia, Abitab, RedPagos o MercadoPago.</span></li>
     <li><strong>Te llega el recordatorio</strong><span>Unos días antes te reescribimos con la dirección y todo lo que necesitás saber.</span></li>
   </ol>
+
+
+  <!-- PROGRAMA DEL CURSO -->
+  <div data-para="programa">
+    <div class="datos">
+      <ul>
+        <li><strong>Qué pediste</strong><span>El programa completo del curso</span></li>
+        <li><strong>Grupo abierto</strong><span><!--o:curso.grupos_abiertos_texto-->Sábados 15:00–18:30<!--/o--></span></li>
+        <li><strong>Inicio</strong><span><!--o:curso.inicio_texto-->Arranca el 22 de agosto<!--/o--></span></li>
+        <li><strong>Precio</strong><span><!--o:curso.precio_total-->$12.200<!--/o--> o <!--o:curso.precio_cuotas-->3 cuotas de $4.800<!--/o--></span></li>
+      </ul>
+    </div>
+    <div class="acciones">
+      <a href="curso.html" class="btn btn-primary" data-producto="curso">Ver todo el curso →</a>
+      <a href="https://wa.me/59894064148?text=Hola%2C%20ped%C3%AD%20el%20programa%20del%20curso%20y%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-producto="curso">💬 Tengo una pregunta</a>
+    </div>
+  </div>
 
   <!-- CURSO -->
   <div data-para="curso">
@@ -141,7 +158,7 @@
     </div>
   </div>
 
-  <div class="llevar">
+  <div class="llevar" data-solo-reserva>
     <h2>Qué llevar</h2>
     <ul>
       <li>Nada especial: delantal, herramientas e ingredientes están incluidos.</li>
@@ -200,7 +217,18 @@
   // Muestra el bloque de la propuesta reservada: /gracias?p=tapeo o ?p=curso.
   (function () {
     var p = new URLSearchParams(location.search).get('p');
-    var elegido = (p === 'tapeo') ? 'tapeo' : 'curso';
+    var valido = { tapeo: 1, curso: 1, programa: 1 };
+    var elegido = valido[p] ? p : 'programa';
+    var textos = {
+      programa: ['Te mandamos el programa.', 'Fijate en tu correo — si no aparece, mirá en spam o en promociones. Cualquier duda, escribinos por WhatsApp.'],
+      curso: ['Recibimos tu reserva.', 'Ya está anotada. Ahora te escribimos por WhatsApp para confirmarte el lugar y coordinar el pago — normalmente en el día, siempre en menos de 24 horas.'],
+      tapeo: ['Recibimos tu reserva.', 'Ya está anotada. Ahora te escribimos por WhatsApp para confirmarte el lugar y coordinar el pago — normalmente en el día, siempre en menos de 24 horas.']
+    };
+    document.querySelector('[data-titulo]').textContent = textos[elegido][0];
+    document.querySelector('[data-bajada]').textContent = textos[elegido][1];
+    if (elegido === 'programa') {
+      document.querySelectorAll('[data-solo-reserva]').forEach(function (el) { el.remove(); });
+    }
     var bloque = document.querySelector('[data-para="' + elegido + '"]');
     if (bloque) bloque.classList.add('activo');
     document.body.setAttribute('data-producto', elegido);
