@@ -188,6 +188,50 @@ for (const g of datos.curso.grupos) {
   datos.curso['grupo_' + g.id + '_inicio'] = g.inicio_texto;
 }
 
+/* ---- Agenda: lo que se puede comprar hoy, ordenado por fecha ---- */
+const agenda = [];
+if (t.estado !== 'sin-fecha' && t.fecha_iso) {
+  agenda.push({
+    iso: t.fecha_iso, nombre: 'Cena y Taller de Tapeo', fecha: t.fecha_texto,
+    hora: t.horario_texto, precio: t.precio, estado: t.estado,
+    etiqueta: t.estado_texto, link: 'tapeo.html', cta: 'Ver la experiencia →'
+  });
+  if (t.segunda_fecha && t.segunda_fecha.texto) {
+    agenda.push({
+      iso: (t.segunda_fecha.iso || t.fecha_iso) + '-b', nombre: 'Cena y Taller de Tapeo',
+      fecha: t.segunda_fecha.texto, hora: t.horario_texto, precio: t.precio,
+      estado: 'abierto', etiqueta: 'Segunda fecha', link: 'tapeo.html', cta: 'Ver la experiencia →'
+    });
+  }
+}
+for (const [id, w] of Object.entries(datos.talleres)) {
+  if (w.estado === 'sin-fecha' || !w.fecha_iso) continue;
+  agenda.push({
+    iso: w.fecha_iso, nombre: w.nombre, fecha: w.fecha_texto, hora: w.hora,
+    precio: w.precio, estado: w.estado, etiqueta: w.estado_texto,
+    link: 'talleres.html#' + id, cta: 'Ver el taller →'
+  });
+  if (w.segunda_fecha && w.segunda_fecha.texto) {
+    agenda.push({
+      iso: w.fecha_iso + '-b', nombre: w.nombre, fecha: w.segunda_fecha.texto,
+      hora: w.hora, precio: w.precio, estado: 'abierto', etiqueta: 'Segunda fecha',
+      link: 'talleres.html#' + id, cta: 'Ver el taller →'
+    });
+  }
+}
+agenda.sort(function (a, b) { return a.iso < b.iso ? -1 : 1; });
+
+datos.agenda_html = agenda.map(function (e) {
+  return '<li class="agenda-item" data-estado="' + e.estado + '">' +
+    '<span class="agenda-etiqueta">' + escapar(e.etiqueta) + '</span>' +
+    '<p class="agenda-nombre">' + escapar(e.nombre) + '</p>' +
+    '<p class="agenda-cuando">' + escapar(e.fecha) + (e.hora ? ' · ' + escapar(e.hora) : '') + '</p>' +
+    (e.precio ? '<p class="agenda-precio">' + escapar(e.precio) + '</p>' : '') +
+    '<a href="' + e.link + '" class="agenda-link" data-producto="agenda">' + escapar(e.cta) + '</a>' +
+    '</li>';
+}).join('');
+datos.tiene_agenda = agenda.length ? 'si' : 'no';
+
 /* ---- Reemplazo en los HTML ---- */
 
 function valor(ruta) {
