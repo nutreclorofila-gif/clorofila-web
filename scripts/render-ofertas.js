@@ -187,6 +187,11 @@ datos.curso.estado = abiertos.length ? 'abierto' : 'sin-fecha';
 // Cuando no hay edición abierta, la web deja de pedir una inscripción que no
 // existe y pasa sola a juntar lista de espera. Nadie tiene que acordarse.
 datos.curso.cta_texto = abiertos.length ? 'Reservar mi lugar →' : 'Sumate a la lista de espera →';
+// Con edición abierta se reserva por WhatsApp, que es como se reserva de verdad.
+// Sin edición abierta, el formulario pasa a ser la lista de espera.
+datos.curso.cta_link = abiertos.length
+  ? waBase + encodeURIComponent('Hola, quiero reservar un lugar en el curso. ' + datos.curso.grupos_abiertos_texto + '.')
+  : 'https://tally.so/r/EkMbWL';
 datos.curso.cta_nota = abiertos.length
   ? 'Grupos reducidos · te escribimos por WhatsApp en menos de 24h para confirmar tu lugar'
   : 'No hay edición abierta ahora. Dejanos tus datos y sos de los primeros en enterarte cuando abramos la próxima.';

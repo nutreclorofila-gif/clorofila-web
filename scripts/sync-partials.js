@@ -10,6 +10,7 @@ const ROOT_PAGES = [
   'talleres.html',
   'tapeo.html',
   'gracias.html',
+  'programa.html',
   'articulos.html',
   'leonardo.html',
   'servicios.html',
