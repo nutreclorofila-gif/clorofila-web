@@ -62,6 +62,36 @@ y deja de ofrecerse en Google como disponible.
 
 Para la próxima edición: cambiás `inicio_iso`, `inicio_texto` y ponés `estado: "abierto"`.
 
+## Abrir la fecha de un taller
+
+Los seis talleres (`fermentacion`, `pan-sin-gluten`, `pastas-sin-gluten`, `alfajores`,
+`quesos-vegetales`, `buncheo`) funcionan **igual que el tapeo**, con los mismos estados:
+
+```json
+"fermentacion": {
+  "nombre": "Fermentación de vegetales",
+  "estado": "abierto",
+  "fecha_iso": "2026-09-13",
+  "fecha_texto": "sábado 13 de septiembre",
+  "hora": "10:00 a 14:00 h",
+  "precio": "$1.400",
+  "cupos_total": 10,
+  "cupos_disponibles": 10
+}
+```
+
+En `/talleres` eso cambia solo tres cosas, que son las que deciden la compra:
+la etiqueta de estado, la línea de fecha y precio, y el botón —que pasa de
+*avisame cuando haya fecha* a *reservar mi lugar*, con el WhatsApp ya escrito
+mencionando el taller y la fecha.
+
+En los talleres el aviso de "últimos lugares" salta con 3 cupos o menos (en el tapeo,
+con 4), porque los grupos son un poco más grandes.
+
+Si un taller no tiene fecha pero querés decir algo distinto a lo genérico, agregale
+`"linea_sin_fecha": "el texto que quieras"` (así está el Domingo de Buncheo, que se
+anuncia por Instagram).
+
 ## El menú y el recorrido del tapeo
 
 Son las dos listas dentro de `"tapeo"`. Agregar, sacar o reordenar renglones

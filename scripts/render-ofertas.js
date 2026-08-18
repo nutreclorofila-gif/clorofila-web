@@ -118,6 +118,35 @@ function linkCalendario(titulo, iso, horaIni, horaFin, detalle) {
 t.calendario = linkCalendario('Cena y Taller de Tapeo — Clorofila', t.fecha_iso, t.hora, t.hora_fin,
   'Cocinamos juntos y después cenamos todo lo que preparamos. Clorofila, Parque Rodó.');
 
+/* Cada taller usa exactamente las mismas reglas que el tapeo. */
+for (const [id, w] of Object.entries(datos.talleres)) {
+  if (id.startsWith('_')) { delete datos.talleres[id]; continue; }
+  const libresW = Number(w.cupos_disponibles);
+  if (w.estado === 'abierto' && libresW <= 0) w.estado = 'agotado';
+  if (w.estado === 'abierto' && libresW > 0 && libresW <= 3) w.estado = 'ultimos';
+
+  w.estado_texto =
+    w.estado === 'agotado' ? 'Agotado' :
+    w.estado === 'ultimos' ? 'Últimos lugares' :
+    w.estado === 'abierto' ? 'Fecha abierta' :
+    'Sin fecha por ahora';
+
+  // Una sola línea con lo que decide la compra: cuándo y cuánto.
+  w.linea = w.estado === 'sin-fecha'
+    ? (w.linea_sin_fecha || 'Se abre según la demanda — dejá tu interés y te avisamos.')
+    : [w.fecha_texto, w.hora, w.precio].filter(Boolean).join(' · ');
+
+  w.wa_link = waBase + encodeURIComponent(
+    w.estado === 'sin-fecha' || w.estado === 'agotado'
+      ? 'Hola, me interesa el taller de ' + w.nombre + '. Avisame cuando abran fecha.'
+      : 'Hola, quiero reservar un lugar en el taller de ' + w.nombre + ' del ' + w.fecha_texto + '.'
+  );
+  w.wa_texto =
+    w.estado === 'sin-fecha' ? 'Avisame cuando haya fecha →' :
+    w.estado === 'agotado'   ? 'Avisame si se libera un lugar →' :
+    'Reservar mi lugar →';
+}
+
 const abiertos = datos.curso.grupos.filter(function (g) { return g.estado === 'abierto'; });
 datos.curso.grupos_abiertos_texto = abiertos.length
   ? abiertos.map(function (g) { return g.nombre + ' ' + g.horario.replace(' a ', '–').replace(' h', ''); }).join(' · ')

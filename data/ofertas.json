@@ -45,11 +45,12 @@
   },
 
   "talleres": {
-    "fermentacion":    { "estado": "sin-fecha", "fecha_texto": "Sin fecha confirmada", "fecha_iso": "", "precio": "" },
-    "pan-sin-gluten":  { "estado": "sin-fecha", "fecha_texto": "Sin fecha confirmada", "fecha_iso": "", "precio": "" },
-    "pastas-sin-gluten": { "estado": "sin-fecha", "fecha_texto": "Sin fecha confirmada", "fecha_iso": "", "precio": "" },
-    "alfajores":       { "estado": "sin-fecha", "fecha_texto": "Sin fecha confirmada", "fecha_iso": "", "precio": "" },
-    "quesos-vegetales":{ "estado": "sin-fecha", "fecha_texto": "Sin fecha confirmada", "fecha_iso": "", "precio": "" },
-    "buncheo":         { "estado": "sin-fecha", "fecha_texto": "Sin fecha confirmada", "fecha_iso": "", "precio": "" }
+    "_leeme": "Cada taller: mismo sistema que el tapeo. estado sin-fecha | abierto | ultimos | agotado.",
+    "fermentacion":      { "nombre": "Fermentación de vegetales",   "estado": "sin-fecha", "fecha_iso": "", "fecha_texto": "Sin fecha confirmada", "hora": "", "precio": "", "cupos_total": 10, "cupos_disponibles": 10 },
+    "pan-sin-gluten":    { "nombre": "Pan sin gluten con masa madre", "estado": "sin-fecha", "fecha_iso": "", "fecha_texto": "Sin fecha confirmada", "hora": "", "precio": "", "cupos_total": 10, "cupos_disponibles": 10 },
+    "pastas-sin-gluten": { "nombre": "Pastas sin gluten",            "estado": "sin-fecha", "fecha_iso": "", "fecha_texto": "Sin fecha confirmada", "hora": "", "precio": "", "cupos_total": 10, "cupos_disponibles": 10 },
+    "alfajores":         { "nombre": "Alfajores plant-based",        "estado": "sin-fecha", "fecha_iso": "", "fecha_texto": "Sin fecha confirmada", "hora": "", "precio": "", "cupos_total": 10, "cupos_disponibles": 10 },
+    "quesos-vegetales":  { "nombre": "Quesos vegetales",             "estado": "sin-fecha", "fecha_iso": "", "fecha_texto": "Sin fecha confirmada", "hora": "", "precio": "", "cupos_total": 10, "cupos_disponibles": 10 },
+    "buncheo":           { "nombre": "Domingo de Buncheo", "linea_sin_fecha": "Un domingo al mes — la fecha se anuncia en Instagram y por WhatsApp.", "estado": "sin-fecha", "fecha_iso": "", "fecha_texto": "Sin fecha confirmada", "hora": "", "precio": "", "cupos_total": 16, "cupos_disponibles": 16 }
   }
 }
