@@ -205,6 +205,14 @@
     .grupo-hora { font-size: .95rem; color: var(--texto); font-weight: 500; }
     .grupo-detalle { font-size: .82rem; color: var(--texto-med); line-height: 1.55; margin-top: .4rem; padding-top: .75rem; border-top: 1px solid var(--crema-osc); }
     .grupo-inicio { font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--acento); margin-bottom: .2rem; }
+    /* Estado del grupo: el que ya empezó se ve claramente cerrado, no disponible. */
+    .grupo-estado { font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; display: inline-flex; align-items: center; gap: .4rem; align-self: flex-start; padding: .25rem .6rem; border-radius: 999px; margin-bottom: .5rem; }
+    .grupo-estado::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    [data-estado="abierto"] .grupo-estado { background: var(--verde-tinte); color: var(--verde-med); }
+    [data-estado="cerrado"] .grupo-estado { background: var(--crema-osc); color: var(--texto-med); }
+    .grupo-card[data-estado="cerrado"] { opacity: .62; }
+    .grupo-card[data-estado="cerrado"] .grupo-inicio { color: var(--texto-med); }
+    .grupo-card[data-estado="abierto"] { border-color: var(--verde-med); box-shadow: var(--shadow); }
     @media (max-width: 900px) { .grupos-grid { grid-template-columns: 1fr; } }
 
     .precio-quote { max-width: 560px; margin: 0 auto 2.5rem; text-align: center; }
@@ -281,7 +289,7 @@
     @media (max-width: 860px) { .prueba-grid { grid-template-columns: 1fr; } }
   </style>
   <script type="application/ld+json">
-  {"@context": "https://schema.org", "@graph": [{"@type": "Course", "name": "Curso de Cocina Basada en Plantas", "description": "Curso presencial de 3 meses (12 clases presenciales) en Parque Rodó, Montevideo. Cocina basada en plantas, fermentación, técnica y criterio culinario.", "provider": {"@id": "https://clorofila.uy/#organization"}, "hasCourseInstance": [{"@type": "CourseInstance", "name": "Grupo martes 19:00-21:00", "courseMode": "Onsite", "startDate": "2026-08-11", "location": {"@type": "Place", "name": "Clorofila", "address": {"@type": "PostalAddress", "streetAddress": "Maldonado 1976 esq. Blanes", "addressLocality": "Montevideo", "addressCountry": "UY"}}, "offers": {"@type": "Offer", "price": "12200", "priceCurrency": "UYU", "availability": "https://schema.org/InStock", "url": "https://clorofila.uy/curso", "category": "Curso presencial"}, "courseWorkload": "PT2H", "inLanguage": "es-UY"}, {"@type": "CourseInstance", "name": "Grupo miércoles 10:00-12:00", "courseMode": "Onsite", "startDate": "2026-08-12", "location": {"@type": "Place", "name": "Clorofila", "address": {"@type": "PostalAddress", "streetAddress": "Maldonado 1976 esq. Blanes", "addressLocality": "Montevideo", "addressCountry": "UY"}}, "offers": {"@type": "Offer", "price": "12200", "priceCurrency": "UYU", "availability": "https://schema.org/InStock", "url": "https://clorofila.uy/curso", "category": "Curso presencial"}, "courseWorkload": "PT2H", "inLanguage": "es-UY"}, {"@type": "CourseInstance", "name": "Grupo sábados quincenal 15:00-18:30", "courseMode": "Onsite", "startDate": "2026-08-22", "location": {"@type": "Place", "name": "Clorofila", "address": {"@type": "PostalAddress", "streetAddress": "Maldonado 1976 esq. Blanes", "addressLocality": "Montevideo", "addressCountry": "UY"}}, "offers": {"@type": "Offer", "price": "12200", "priceCurrency": "UYU", "availability": "https://schema.org/InStock", "url": "https://clorofila.uy/curso", "category": "Curso presencial"}, "courseWorkload": "PT2H", "inLanguage": "es-UY"}], "@id": "https://clorofila.uy/curso#course", "url": "https://clorofila.uy/curso", "inLanguage": "es-UY", "educationalLevel": "Principiante a intermedio", "teaches": ["Cocina basada en plantas", "Fermentación", "Panificación sin gluten", "Pastelería sin lácteos ni huevos", "Criterio culinario"], "about": ["Cocina vegana", "Cocina basada en plantas", "Cocina plant based", "Técnica culinaria"], "keywords": "curso de cocina vegana Montevideo, curso de cocina vegetariana Montevideo, curso de cocina plant based Montevideo, curso de cocina basada en plantas", "courseWorkload": "PT24H", "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "21", "bestRating": "5"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://clorofila.uy/"}, {"@type": "ListItem", "position": 2, "name": "El curso", "item": "https://clorofila.uy/curso"}]}]}
+  {"@context":"https://schema.org","@graph":[{"@type":"Course","name":"Curso de Cocina Basada en Plantas","description":"Curso presencial de 3 meses (12 clases presenciales) en Parque Rodó, Montevideo. Cocina basada en plantas, fermentación, técnica y criterio culinario.","provider":{"@id":"https://clorofila.uy/#organization"},"hasCourseInstance":[{"@type":"CourseInstance","name":"Grupo martes 19:00-21:00","courseMode":"Onsite","startDate":"2026-08-11","location":{"@type":"Place","name":"Clorofila","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"}},"offers":{"@type":"Offer","price":"12200","priceCurrency":"UYU","availability":"https://schema.org/SoldOut","url":"https://clorofila.uy/curso","category":"Curso presencial"},"courseWorkload":"PT2H","inLanguage":"es-UY"},{"@type":"CourseInstance","name":"Grupo miércoles 10:00-12:00","courseMode":"Onsite","startDate":"2026-08-12","location":{"@type":"Place","name":"Clorofila","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"}},"offers":{"@type":"Offer","price":"12200","priceCurrency":"UYU","availability":"https://schema.org/SoldOut","url":"https://clorofila.uy/curso","category":"Curso presencial"},"courseWorkload":"PT2H","inLanguage":"es-UY"},{"@type":"CourseInstance","name":"Grupo sábados quincenal 15:00-18:30","courseMode":"Onsite","startDate":"2026-08-22","location":{"@type":"Place","name":"Clorofila","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"}},"offers":{"@type":"Offer","price":"12200","priceCurrency":"UYU","availability":"https://schema.org/InStock","url":"https://clorofila.uy/curso","category":"Curso presencial"},"courseWorkload":"PT2H","inLanguage":"es-UY"}],"@id":"https://clorofila.uy/curso#course","url":"https://clorofila.uy/curso","inLanguage":"es-UY","educationalLevel":"Principiante a intermedio","teaches":["Cocina basada en plantas","Fermentación","Panificación sin gluten","Pastelería sin lácteos ni huevos","Criterio culinario"],"about":["Cocina vegana","Cocina basada en plantas","Cocina plant based","Técnica culinaria"],"keywords":"curso de cocina vegana Montevideo, curso de cocina vegetariana Montevideo, curso de cocina plant based Montevideo, curso de cocina basada en plantas","courseWorkload":"PT24H","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"21","bestRating":"5"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://clorofila.uy/"},{"@type":"ListItem","position":2,"name":"El curso","item":"https://clorofila.uy/curso"}]}]}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -323,7 +331,7 @@
     if (localStorage.getItem('cookieConsent') === 'accepted') window.loadAnalytics();
   </script>
 </head>
-<body>
+<body data-producto="curso">
 <a class="skip-link" href="#main-content">Ir al contenido principal</a>
 
 <!-- NAV -->
@@ -334,6 +342,7 @@
     <button type="button" class="nav-close" id="nav-close" aria-label="Cerrar menú">✕</button>
     <ul class="nav-links" id="nav-links">
       <li><a href="curso.html" class="active" aria-current="page">El curso</a></li>
+      <li><a href="tapeo.html">Tapeo</a></li>
       <li><a href="talleres.html">Talleres</a></li>
       <li><a href="articulos.html">Artículos</a></li>
       <li><a href="leonardo.html">Leonardo</a></li>
@@ -353,7 +362,7 @@
   <div class="hero-curso-img"><picture><source srcset="img-clase-masa.webp" type="image/webp"><img src="img-clase-masa.jpg" width="975" height="1300" alt="Clase del curso de cocina vegana y basada en plantas de Clorofila, en Parque Rodó, Montevideo" loading="eager"></picture></div>
   <div class="hero-curso-content">
     <ul class="hero-tags">
-      <li><span class="hero-tag" id="curso-countdown-tag">Agosto 2026</span></li>
+      <li><span class="hero-tag" id="curso-countdown-tag" data-set="data-inicio-iso=curso.inicio_iso" data-inicio-iso="2026-08-22"><!--o:curso.inicio_texto-->Arranca el 22 de agosto<!--/o--></span></li>
       <li><span class="hero-tag">3 meses · 12 clases</span></li>
       <li><span class="hero-tag">Presencial · Parque Rodó</span></li>
       <li><span class="hero-tag">Grupos reducidos</span></li>
@@ -496,23 +505,26 @@
   <div class="fade-up">
     <span class="section-label">Edición agosto 2026</span>
     <h2 class="section-title">Grupos y <em>horarios</em></h2>
-    <p class="section-lead">Mismo programa en tres horarios — elegís el grupo que mejor te queda.</p>
+    <p class="section-lead">Mismo programa en tres horarios. Los grupos de martes y miércoles ya empezaron esta edición — el de sábados todavía no.</p>
   </div>
   <div class="grupos-grid">
-    <div class="grupo-card fade-up">
-      <p class="grupo-inicio">Arranca el 11 de agosto</p>
+    <div class="grupo-card fade-up" data-estado-de="curso.grupos.0" data-estado="cerrado">
+      <p class="grupo-estado"><!--o:curso.grupo_martes_estado_texto-->Grupo cerrado<!--/o--></p>
+      <p class="grupo-inicio"><!--o:curso.grupo_martes_inicio-->Arrancó el 11 de agosto<!--/o--></p>
       <p class="grupo-dia">Martes</p>
       <p class="grupo-hora">19:00 a 21:00 h</p>
       <p class="grupo-detalle">Clase semanal · 12 encuentros. Para quienes salen de trabajar y quieren cerrar el día cocinando.</p>
     </div>
-    <div class="grupo-card fade-up" style="transition-delay:.1s">
-      <p class="grupo-inicio">Arranca el 12 de agosto</p>
+    <div class="grupo-card fade-up" style="transition-delay:.1s" data-estado-de="curso.grupos.1" data-estado="cerrado">
+      <p class="grupo-estado"><!--o:curso.grupo_miercoles_estado_texto-->Grupo cerrado<!--/o--></p>
+      <p class="grupo-inicio"><!--o:curso.grupo_miercoles_inicio-->Arrancó el 12 de agosto<!--/o--></p>
       <p class="grupo-dia">Miércoles</p>
       <p class="grupo-hora">10:00 a 12:00 h</p>
       <p class="grupo-detalle">Clase semanal · 12 encuentros. El grupo de mañana, con el estudio tranquilo y luz de día.</p>
     </div>
-    <div class="grupo-card fade-up" style="transition-delay:.2s">
-      <p class="grupo-inicio">Arranca el 22 de agosto</p>
+    <div class="grupo-card fade-up" style="transition-delay:.2s" data-estado-de="curso.grupos.2" data-estado="abierto">
+      <p class="grupo-estado"><!--o:curso.grupo_sabados_estado_texto-->Abierto<!--/o--></p>
+      <p class="grupo-inicio"><!--o:curso.grupo_sabados_inicio-->Arranca el 22 de agosto<!--/o--></p>
       <p class="grupo-dia">Sábados</p>
       <p class="grupo-hora">15:00 a 18:30 h</p>
       <p class="grupo-detalle">Cada 15 días · 6 encuentros extendidos. El mismo recorrido, en jornadas más largas y espaciadas.</p>
@@ -554,9 +566,9 @@
     </div>
     <p class="precio-ahorro">↓ Ahorrás $2.200 pagando el curso completo</p>
     <ul class="precio-grid">
-      <li><strong>Inicio</strong>Semana del 11 de agosto</li>
+      <li><strong>Inicio</strong><!--o:curso.inicio_texto-->Arranca el 22 de agosto<!--/o--></li>
       <li><strong>Clases</strong>12 presenciales</li>
-      <li><strong>Grupos</strong>Martes 19 h · Miércoles 10 h · Sábados 15 h</li>
+      <li><strong>Grupo abierto</strong><!--o:curso.grupos_abiertos_texto-->Sábados 15:00–18:30<!--/o--></li>
       <li><strong>Lugar</strong>Parque Rodó, Montevideo</li>
     </ul>
     <p class="precio-pagos">Tarjeta hasta 12 cuotas de $1.016 · Transferencia · Abitab · RedPagos · MercadoPago</p>
@@ -669,17 +681,19 @@
   })();
 </script>
 <script>
+  // La cuenta regresiva se calcula en el navegador a partir de la fecha real del
+  // grupo abierto (viene de data/ofertas.json). Si la fecha ya pasó, no inventa
+  // urgencia: muestra el texto que dejó el render.
   (function () {
     var el = document.getElementById('curso-countdown-tag');
     if (!el) return;
-    var start = new Date('2026-08-22T00:00:00');
-    var days = Math.ceil((start - new Date()) / 86400000);
-    if (days > 0) {
-      var weeks = Math.ceil(days / 7);
-      el.textContent = 'Empieza en ' + weeks + ' semana' + (weeks === 1 ? '' : 's');
-    } else {
-      el.textContent = 'Agosto 2026';
-    }
+    var iso = el.getAttribute('data-inicio-iso');
+    if (!iso) return;
+    var days = Math.ceil((new Date(iso + 'T00:00:00') - new Date()) / 86400000);
+    if (days <= 0) return;
+    if (days <= 7) { el.textContent = days === 1 ? 'Empieza mañana' : 'Empieza en ' + days + ' días'; return; }
+    var weeks = Math.ceil(days / 7);
+    el.textContent = 'Empieza en ' + weeks + ' semana' + (weeks === 1 ? '' : 's');
   })();
 </script>
 </body>

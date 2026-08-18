@@ -16,6 +16,57 @@
   status = 301
   force  = true
 
+# --- URL propia por propuesta: cada producto se puede linkear y medir por separado.
+# Instagram manda a clorofila.uy/fermentacion y cae en el bloque exacto, no en la lista.
+[[redirects]]
+  from = "/fermentacion"
+  to   = "/talleres#fermentacion"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/pan-sin-gluten"
+  to   = "/talleres#pan-sin-gluten"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/pastas-sin-gluten"
+  to   = "/talleres#pastas-sin-gluten"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/alfajores"
+  to   = "/talleres#alfajores"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/quesos-vegetales"
+  to   = "/talleres#quesos-vegetales"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/buncheo"
+  to   = "/talleres#buncheo"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/brunch"
+  to   = "/talleres#buncheo"
+  status = 301
+  force  = true
+
+# Variantes que la gente escribe o que quedaron en flyers viejos.
+[[redirects]]
+  from = "/cena-y-taller-de-tapeo"
+  to   = "/tapeo"
+  status = 301
+  force  = true
+
 [[redirects]]
   from = "/recetas"
   to   = "/articulos"
@@ -76,3 +127,6 @@
 
 [build]
   publish = "."
+  # Regenera fechas, precios, cupos y estado desde data/ofertas.json.
+  # Gracias a esto, editar ese archivo alcanza para actualizar la web.
+  command = "node scripts/render-ofertas.js"

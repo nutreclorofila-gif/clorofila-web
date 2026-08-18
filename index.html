@@ -274,12 +274,12 @@
     if (localStorage.getItem('cookieConsent') === 'accepted') window.loadAnalytics();
   </script>
 </head>
-<body>
+<body data-producto="home">
 <a class="skip-link" href="#main-content">Ir al contenido principal</a>
 
 <div class="announce-bar">
   <span class="dot"></span>
-  <span id="curso-countdown">Agosto 2026</span> · Grupos reducidos · Inscripciones abiertas · cupos limitados
+  <span id="curso-countdown" data-set="data-inicio-iso=curso.inicio_iso" data-inicio-iso="2026-08-22"><!--o:curso.inicio_texto-->Arranca el 22 de agosto<!--/o--></span> · Grupos reducidos · <!--o:curso.grupos_abiertos_texto-->Sábados 15:00–18:30<!--/o--> · cupos limitados
   <a href="curso.html">Conocer el curso →</a>
 </div>
 
@@ -290,6 +290,7 @@
     <button type="button" class="nav-close" id="nav-close" aria-label="Cerrar menú">✕</button>
     <ul class="nav-links" id="nav-links">
       <li><a href="curso.html">El curso</a></li>
+      <li><a href="tapeo.html">Tapeo</a></li>
       <li><a href="talleres.html">Talleres</a></li>
       <li><a href="articulos.html">Artículos</a></li>
       <li><a href="leonardo.html">Leonardo</a></li>
@@ -575,12 +576,13 @@
     </div>
 
     <!-- TAPEO: tarjeta destacada -->
-    <div class="fade-up tapeo-card" style="background:var(--verde); border-radius:var(--r-lg); overflow:hidden; margin-bottom:1.5rem;">
+    <div class="fade-up tapeo-card" data-estado-de="tapeo" data-estado="sin-fecha" style="background:var(--verde); border-radius:var(--r-lg); overflow:hidden; margin-bottom:1.5rem;">
       <div style="padding:2.5rem; display:flex; flex-direction:column; justify-content:center; gap:1rem;">
         <span style="font-family:var(--ff-b); font-size:.68rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--verde-luz); display:inline-flex; align-items:center; gap:.5rem;">● Experiencia</span>
         <h3 style="color:var(--crema); font-size:clamp(1.5rem,2.8vw,2.1rem); margin:0;">Cena y Taller de Tapeo.</h3>
         <p style="color:rgba(245,240,231,.72); font-size:.9rem; line-height:1.7; margin:0; max-width:42ch;">Cocinamos juntos platos reales — patés, panes, encurtidos, pequeñas elaboraciones — y después nos sentamos a comer lo que hicimos. Solo 12 lugares.</p>
-        <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20taller%20de%20Tapeo.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-light" style="align-self:flex-start; margin-top:.5rem;">Avisame cuando haya fecha →</a>
+        <p style="color:var(--verde-luz); font-size:.8rem; font-weight:500; letter-spacing:.02em; margin:0;"><!--o:tapeo.estado_texto-->Próxima fecha a confirmar<!--/o--> · <!--o:tapeo.fecha_texto-->Sin fecha confirmada<!--/o--></p>
+        <a href="tapeo.html" class="btn btn-light" style="align-self:flex-start; margin-top:.5rem;" data-producto="tapeo">Ver la experiencia →</a>
       </div>
       <div style="overflow:hidden;">
         <picture><source srcset="img-tapeo.webp" type="image/webp"><img src="img-tapeo.jpg" width="1600" height="1200" alt="Tapeo en Clorofila — cocinar y cenar juntos" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;"></picture>
@@ -682,17 +684,18 @@
   })();
 </script>
 <script>
+  // Cuenta regresiva a partir de la fecha real del grupo abierto (data/ofertas.json).
+  // Si ya pasó, no inventa urgencia: deja el texto renderizado.
   (function () {
     var el = document.getElementById('curso-countdown');
     if (!el) return;
-    var start = new Date('2026-08-22T00:00:00');
-    var days = Math.ceil((start - new Date()) / 86400000);
-    if (days > 0) {
-      var weeks = Math.ceil(days / 7);
-      el.textContent = 'Empieza en ' + weeks + ' semana' + (weeks === 1 ? '' : 's');
-    } else {
-      el.textContent = 'Agosto 2026';
-    }
+    var iso = el.getAttribute('data-inicio-iso');
+    if (!iso) return;
+    var days = Math.ceil((new Date(iso + 'T00:00:00') - new Date()) / 86400000);
+    if (days <= 0) return;
+    if (days <= 7) { el.textContent = days === 1 ? 'Empieza mañana' : 'Empieza en ' + days + ' días'; return; }
+    var weeks = Math.ceil(days / 7);
+    el.textContent = 'Empieza en ' + weeks + ' semana' + (weeks === 1 ? '' : 's');
   })();
 </script>
 </body>

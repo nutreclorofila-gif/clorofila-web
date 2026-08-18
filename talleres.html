@@ -111,7 +111,7 @@
     if (localStorage.getItem('cookieConsent') === 'accepted') window.loadAnalytics();
   </script>
 </head>
-<body>
+<body data-producto="talleres">
 <a class="skip-link" href="#main-content">Ir al contenido principal</a>
 
 <!--#include nav active="talleres.html"-->
@@ -121,6 +121,7 @@
     <button type="button" class="nav-close" id="nav-close" aria-label="Cerrar menú">✕</button>
     <ul class="nav-links" id="nav-links">
       <li><a href="curso.html">El curso</a></li>
+      <li><a href="tapeo.html">Tapeo</a></li>
       <li><a href="talleres.html" class="active" aria-current="page">Talleres</a></li>
       <li><a href="articulos.html">Artículos</a></li>
       <li><a href="leonardo.html">Leonardo</a></li>
@@ -246,11 +247,12 @@
       <span class="taller-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="21" cy="18" r="9"/><circle cx="21" cy="18" r="5.5"/><line x1="9.5" y1="8" x2="9.5" y2="28"/><path d="M7 8v5.5a2.5 2.5 0 0 0 5 0V8"/><line x1="7" y1="8" x2="7" y2="13.5"/><line x1="12" y1="8" x2="12" y2="13.5"/></svg></span>
       <h2 id="tapeo">Cena y Taller de Tapeo</h2>
       <p class="taller-body">Una experiencia distinta: cocinás vos, armamos juntos una mesa de tapas basada en plantas y después nos sentamos a disfrutarla, con una copa y buena charla. Patés, encurtidos, pan, hummus, pequeños platos. Para quienes disfrutan tanto del proceso como de la mesa.</p>
-      <div class="taller-tags">
+      <div class="taller-tags" data-estado-de="tapeo" data-estado="sin-fecha">
         <span class="taller-tag">Solo 12 lugares</span>
         <span class="taller-tag">Todo incluido</span>
+        <span class="taller-tag"><!--o:tapeo.estado_texto-->Próxima fecha a confirmar<!--/o--></span>
       </div>
-      <a href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20el%20taller%20de%20Tapeo.%20Avisame%20cuando%20haya%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Avisame cuando haya fecha →</a>
+      <a href="tapeo.html" class="btn btn-primary" data-producto="tapeo">Ver la experiencia completa →</a>
     </div>
     <div class="taller-img reveal-img"><picture><source srcset="img-tapeo.webp" type="image/webp"><img src="img-tapeo.jpg" width="1600" height="1200" alt="Tapeo — cocinar y cenar" loading="lazy"></picture></div>
   </div>

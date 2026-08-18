@@ -8,6 +8,8 @@ const ROOT_PAGES = [
   'index.html',
   'curso.html',
   'talleres.html',
+  'tapeo.html',
+  'gracias.html',
   'articulos.html',
   'leonardo.html',
   'servicios.html',
@@ -21,6 +23,12 @@ const ARTICLE_PAGES = [
   'articulos/omega-3-lino-horneado.html',
   'articulos/lavado-de-frutas-bicarbonato.html',
   'articulos/mas-alla-del-colesterol-total.html',
+  'articulos/masa-madre-digestibilidad.html',
+  'articulos/pan-sin-gluten-no-es-saludable.html',
+  'articulos/como-funciona-la-fermentacion.html',
+  'articulos/endulzantes-guia-sin-sesgo.html',
+  'articulos/proteina-vegetal-mitos-realidades.html',
+  'articulos/remojo-legumbres.html',
 ];
 
 const files = [...ROOT_PAGES, ...ARTICLE_PAGES];

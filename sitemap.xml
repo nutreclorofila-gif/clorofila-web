@@ -34,6 +34,17 @@
     </image:image>
   </url>
   <url>
+    <loc>https://clorofila.uy/tapeo</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/img-tapeo.jpg</image:loc>
+      <image:title>Cena y Taller de Tapeo — Clorofila Montevideo</image:title>
+      <image:caption>Mesa de tapas basada en plantas preparada por el grupo en la Cena y Taller de Tapeo de Clorofila, Parque Rodó</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://clorofila.uy/talleres</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>

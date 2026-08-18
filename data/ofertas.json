@@ -1,0 +1,55 @@
+{
+  "_leeme": "Este archivo manda sobre las fechas, precios, cupos y estado de cada propuesta. Editalo y publicá: la web se regenera sola. Ver docs/editar-ofertas.md antes de tocarlo.",
+
+  "tapeo": {
+    "estado": "sin-fecha",
+    "_estados_posibles": "sin-fecha | abierto | ultimos | agotado",
+    "fecha_iso": "",
+    "fecha_texto": "Sin fecha confirmada",
+    "hora": "19:00",
+    "hora_fin": "23:00",
+    "precio": "",
+    "precio_num": "",
+    "cupos_total": 12,
+    "cupos_disponibles": 12,
+    "lugar": "Maldonado 1976 esq. Blanes · Parque Rodó",
+    "menu": [
+      "Pan casero de fermentación lenta",
+      "Patés vegetales",
+      "Hummus",
+      "Encurtidos de estación",
+      "Pequeñas elaboraciones calientes",
+      "Algo dulce para cerrar"
+    ],
+    "recorrido": [
+      { "hora": "19:00", "que": "Llegada", "detalle": "Te recibimos, delantal y una copa mientras se arma el grupo." },
+      { "hora": "19:15", "que": "Empezamos a cocinar", "detalle": "Cada quien con su espacio en la mesa grande. Leonardo va guiando preparación por preparación." },
+      { "hora": "20:30", "que": "Terminamos las elaboraciones", "detalle": "Las últimas cocciones, los ajustes de sal y de punto." },
+      { "hora": "20:45", "que": "Armamos la mesa", "detalle": "Entre todos: la mesa también es parte de lo que se aprende." },
+      { "hora": "21:00", "que": "Cenamos", "detalle": "Nos sentamos a comer todo lo que hicimos, sin apuro." }
+    ]
+  },
+
+  "curso": {
+    "estado": "abierto",
+    "edicion": "Agosto 2026",
+    "precio_total": "$12.200",
+    "precio_cuotas": "3 cuotas de $4.800",
+    "precio_tarjeta": "hasta 12 cuotas de $1.016",
+    "ahorro": "$2.200",
+    "grupos": [
+      { "id": "martes",    "nombre": "Martes",    "horario": "19:00 a 21:00 h", "inicio_iso": "2026-08-11", "inicio_texto": "Arrancó el 11 de agosto", "estado": "cerrado" },
+      { "id": "miercoles", "nombre": "Miércoles", "horario": "10:00 a 12:00 h", "inicio_iso": "2026-08-12", "inicio_texto": "Arrancó el 12 de agosto", "estado": "cerrado" },
+      { "id": "sabados",   "nombre": "Sábados",   "horario": "15:00 a 18:30 h", "inicio_iso": "2026-08-22", "inicio_texto": "Arranca el 22 de agosto", "estado": "abierto" }
+    ]
+  },
+
+  "talleres": {
+    "fermentacion":    { "estado": "sin-fecha", "fecha_texto": "Sin fecha confirmada", "fecha_iso": "", "precio": "" },
+    "pan-sin-gluten":  { "estado": "sin-fecha", "fecha_texto": "Sin fecha confirmada", "fecha_iso": "", "precio": "" },
+    "pastas-sin-gluten": { "estado": "sin-fecha", "fecha_texto": "Sin fecha confirmada", "fecha_iso": "", "precio": "" },
+    "alfajores":       { "estado": "sin-fecha", "fecha_texto": "Sin fecha confirmada", "fecha_iso": "", "precio": "" },
+    "quesos-vegetales":{ "estado": "sin-fecha", "fecha_texto": "Sin fecha confirmada", "fecha_iso": "", "precio": "" },
+    "buncheo":         { "estado": "sin-fecha", "fecha_texto": "Sin fecha confirmada", "fecha_iso": "", "precio": "" }
+  }
+}

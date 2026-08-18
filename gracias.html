@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#20301f">
+  <title>Recibimos tu reserva — Clorofila</title>
+  <meta name="description" content="Recibimos tu reserva en Clorofila. Te escribimos por WhatsApp para confirmar el lugar.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://clorofila.uy/gracias">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Jost:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Jost:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Jost:wght@300;400;500;600&display=swap"></noscript>
+  <link rel="stylesheet" href="shared.css?v=20260726">
+  <style>
+    .gracias { max-width: 720px; margin: 0 auto; padding: 4.5rem 2rem 5rem; }
+    .gracias-tilde { width: 62px; height: 62px; border-radius: 50%; background: var(--verde-luz); color: var(--verde); display: flex; align-items: center; justify-content: center; font-size: 1.9rem; margin-bottom: 1.5rem; }
+    .gracias h1 { font-size: clamp(2.1rem, 5vw, 3.1rem); margin-bottom: .9rem; }
+    .gracias .lead { font-size: 1.08rem; line-height: 1.75; margin-bottom: 2.5rem; }
+    .pasos { list-style: none; counter-reset: paso; margin-bottom: 2.5rem; }
+    .pasos li { counter-increment: paso; position: relative; padding: 0 0 1.4rem 3rem; border-left: 1px solid var(--crema-osc); margin-left: .9rem; }
+    .pasos li:last-child { border-left-color: transparent; padding-bottom: 0; }
+    .pasos li::before { content: counter(paso); position: absolute; left: -.95rem; top: -.15rem; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--verde); color: var(--crema); font-size: .82rem; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+    .pasos strong { display: block; color: var(--texto); font-weight: 500; font-size: 1rem; margin-bottom: .2rem; }
+    .pasos span { font-size: .9rem; color: var(--texto-med); line-height: 1.65; }
+    .datos { background: var(--blanco); border: 1px solid var(--crema-osc); border-radius: var(--r-lg); padding: 1.6rem; margin-bottom: 2rem; }
+    .datos ul { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; }
+    .datos li { display: flex; flex-direction: column; gap: .1rem; }
+    .datos strong { font-size: .66rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--texto-suave); }
+    .datos span { font-size: .98rem; color: var(--texto); font-weight: 500; }
+    .acciones { display: flex; flex-wrap: wrap; gap: .8rem; margin-bottom: 2.5rem; }
+    .llevar { border-top: 1px solid var(--crema-osc); padding-top: 1.8rem; }
+    .llevar h2 { font-size: 1.25rem; margin-bottom: .8rem; }
+    .llevar ul { display: grid; gap: .5rem; }
+    .llevar li { font-size: .92rem; color: var(--texto-med); padding-left: 1.2rem; position: relative; }
+    .llevar li::before { content: "·"; position: absolute; left: .35rem; color: var(--acento); font-weight: 700; }
+    /* Solo se muestra el bloque de la propuesta que corresponde. */
+    [data-para] { display: none; }
+    [data-para].activo { display: block; }
+    .sin-calendario [data-calendario] { display: none; }
+    @media (max-width: 560px) { .datos ul { grid-template-columns: 1fr; } .acciones .btn { width: 100%; justify-content: center; } }
+  </style>
+</head>
+<body data-producto="gracias">
+<a href="#main-content" class="skip-link">Ir al contenido principal</a>
+
+<!--#include nav active=""-->
+<nav class="nav" aria-label="Principal">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>Clorofila</span><span>Estudio de Cocina</span></a>
+    <button type="button" class="nav-close" id="nav-close" aria-label="Cerrar menú">✕</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="curso.html">El curso</a></li>
+      <li><a href="tapeo.html">Tapeo</a></li>
+      <li><a href="talleres.html">Talleres</a></li>
+      <li><a href="articulos.html">Artículos</a></li>
+      <li><a href="leonardo.html">Leonardo</a></li>
+      <li><a href="servicios.html">Trabajemos juntos</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="nav-cta">Inscribirme →</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
+  </div>
+</nav>
+<!--#include-end nav-->
+
+<main id="main-content">
+<div class="gracias">
+  <div class="gracias-tilde" aria-hidden="true">✓</div>
+  <h1>Recibimos tu reserva.</h1>
+  <p class="lead">Ya está anotada. Ahora te escribimos por WhatsApp para confirmarte el lugar y coordinar el pago — normalmente en el día, siempre en menos de 24 horas.</p>
+
+  <ol class="pasos">
+    <li><strong>Te escribimos por WhatsApp</strong><span>Desde el 094 064 148. Guardá el número así no se te va a spam ni a mensajes filtrados.</span></li>
+    <li><strong>Confirmamos tu lugar</strong><span>Te decimos el cupo disponible y coordinamos el pago: transferencia, Abitab, RedPagos o MercadoPago.</span></li>
+    <li><strong>Te llega el recordatorio</strong><span>Unos días antes te reescribimos con la dirección y todo lo que necesitás saber.</span></li>
+  </ol>
+
+  <!-- CURSO -->
+  <div data-para="curso">
+    <div class="datos">
+      <ul>
+        <li><strong>Propuesta</strong><span>Curso de tres meses</span></li>
+        <li><strong>Grupo abierto</strong><span><!--o:curso.grupos_abiertos_texto-->Sábados 15:00–18:30<!--/o--></span></li>
+        <li><strong>Inicio</strong><span><!--o:curso.inicio_texto-->Arranca el 22 de agosto<!--/o--></span></li>
+        <li><strong>Lugar</strong><span>Maldonado 1976 esq. Blanes, Parque Rodó</span></li>
+      </ul>
+    </div>
+    <div class="acciones">
+      <a data-set="href=curso.calendario" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Primera+clase+%E2%80%94+Curso+de+Clorofila&amp;dates=20260822T150000%2F20260822T183000&amp;details=Primera+clase+del+curso+de+tres+meses+de+Clorofila%2C+en+Parque+Rod%C3%B3.&amp;location=Clorofila%2C+Maldonado+1976+esq.+Blanes%2C+Parque+Rod%C3%B3%2C+Montevideo&amp;ctz=America%2FMontevideo" data-calendario class="btn btn-primary" target="_blank" rel="noopener noreferrer">Agregar la primera clase al calendario →</a>
+      <a href="https://wa.me/59894064148?text=Hola%2C%20acabo%20de%20reservar%20un%20lugar%20en%20el%20curso." target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-producto="curso">💬 Escribirnos ahora</a>
+    </div>
+  </div>
+
+  <!-- TAPEO -->
+  <div data-para="tapeo" data-estado-de="tapeo" data-estado="sin-fecha">
+    <div class="datos">
+      <ul>
+        <li><strong>Propuesta</strong><span>Cena y Taller de Tapeo</span></li>
+        <li><strong>Fecha</strong><span><!--o:tapeo.fecha_texto-->Sin fecha confirmada<!--/o--></span></li>
+        <li><strong>Hora</strong><span><!--o:tapeo.horario_texto-->19:00 a 23:00 h<!--/o--></span></li>
+        <li><strong>Lugar</strong><span>Maldonado 1976 esq. Blanes, Parque Rodó</span></li>
+      </ul>
+    </div>
+    <div class="acciones">
+      <a data-set="href=tapeo.calendario" href="" data-calendario class="btn btn-primary" target="_blank" rel="noopener noreferrer">Agregar la fecha al calendario →</a>
+      <a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%2C%20me%20interesa%20la%20Cena%20y%20Taller%20de%20Tapeo.%20Avisame%20cuando%20abran%20la%20pr%C3%B3xima%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-producto="tapeo">💬 Escribirnos ahora</a>
+    </div>
+  </div>
+
+  <div class="llevar">
+    <h2>Qué llevar</h2>
+    <ul>
+      <li>Nada especial: delantal, herramientas e ingredientes están incluidos.</li>
+      <li>Ropa cómoda y calzado cerrado — se está de pie y se trabaja con fuego.</li>
+      <li>Si tenés alguna alergia o intolerancia, contanos antes así adaptamos las preparaciones.</li>
+      <li>Ganas de meter las manos: acá se cocina, no se mira.</li>
+    </ul>
+    <p style="margin-top:1.5rem;font-size:.9rem">¿Alguna duda antes? Escribinos al <a href="https://wa.me/59894064148" target="_blank" rel="noopener noreferrer" style="color:var(--verde-med);font-weight:500">094 064 148</a> o a <a href="mailto:nutreclorofila@gmail.com" style="color:var(--verde-med);font-weight:500">nutreclorofila@gmail.com</a>.</p>
+  </div>
+</div>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Clorofila</a>
+      <p class="tagline">No enseñamos recetas.<br>Enseñamos a <s class="tachada">entender</s> entender.</p>
+      <p class="sub">Estudio de cocina · Parque Rodó, Montevideo · Desde 2013</p>
+    </div>
+    <div><h2>Propuesta</h2><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="tapeo.html">Cena y Taller de Tapeo</a></li><li><a href="articulos.html">Artículos</a></li></ul></div>
+    <div><h2>Clorofila</h2><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
+    <div><h2>Contacto</h2><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">@clorofilaclases</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 Clorofila · Estudio de Cocina · Montevideo, Uruguay</div>
+</footer>
+
+<script src="nav.js" defer></script>
+<script src="track.js" defer></script>
+<script>
+  // Muestra el bloque de la propuesta reservada: /gracias?p=tapeo o ?p=curso.
+  (function () {
+    var p = new URLSearchParams(location.search).get('p');
+    var elegido = (p === 'tapeo') ? 'tapeo' : 'curso';
+    var bloque = document.querySelector('[data-para="' + elegido + '"]');
+    if (bloque) bloque.classList.add('activo');
+    document.body.setAttribute('data-producto', elegido);
+    // Si esa propuesta no tiene fecha cargada, no ofrecemos agregarla al calendario.
+    var cal = bloque && bloque.querySelector('[data-calendario]');
+    if (cal && !cal.getAttribute('href')) cal.remove();
+    // Conversión: acá termina el camino que empezó en Instagram.
+    if (typeof gtag === 'function') gtag('event', 'reserva_recibida', { producto: elegido });
+    if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: elegido });
+  })();
+</script>
+</body>
+</html>
