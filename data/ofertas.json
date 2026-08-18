@@ -1,18 +1,16 @@
 {
   "_leeme": "Este archivo manda sobre las fechas, precios, cupos y estado de cada propuesta. Editalo y publicá: la web se regenera sola. Ver docs/editar-ofertas.md antes de tocarlo.",
-
   "tapeo": {
     "estado": "abierto",
     "_estados_posibles": "sin-fecha | abierto | ultimos | agotado",
-    "_proxima_tentativa": "viernes 11/9/2026 — sin confirmar, por eso no se publica",
     "fecha_iso": "2026-08-20",
     "fecha_texto": "jueves 20 de agosto",
     "hora": "19:00",
     "hora_fin": "23:00",
-    "precio": "",
-    "precio_num": "",
-    "cupos_total": 12,
-    "cupos_disponibles": null,
+    "precio": "$2.600 por persona",
+    "precio_num": "2600",
+    "cupos_total": 11,
+    "cupos_disponibles": 2,
     "lugar": "Maldonado 1976 esq. Blanes · Parque Rodó",
     "menu": [
       "Pan casero de fermentación lenta",
@@ -23,14 +21,38 @@
       "Algo dulce para cerrar"
     ],
     "recorrido": [
-      { "hora": "19:00", "que": "Llegada", "detalle": "Te recibimos, delantal y una copa mientras se arma el grupo." },
-      { "hora": "19:15", "que": "Empezamos a cocinar", "detalle": "Cada quien con su espacio en la mesa grande. Leonardo va guiando preparación por preparación." },
-      { "hora": "20:30", "que": "Terminamos las elaboraciones", "detalle": "Las últimas cocciones, los ajustes de sal y de punto." },
-      { "hora": "20:45", "que": "Armamos la mesa", "detalle": "Entre todos: la mesa también es parte de lo que se aprende." },
-      { "hora": "21:00", "que": "Cenamos", "detalle": "Nos sentamos a comer todo lo que hicimos, sin apuro." }
-    ]
+      {
+        "hora": "19:00",
+        "que": "Llegada",
+        "detalle": "Te recibimos, delantal y una copa mientras se arma el grupo."
+      },
+      {
+        "hora": "19:15",
+        "que": "Empezamos a cocinar",
+        "detalle": "Cada quien con su espacio en la mesa grande. Leonardo va guiando preparación por preparación."
+      },
+      {
+        "hora": "20:30",
+        "que": "Terminamos las elaboraciones",
+        "detalle": "Las últimas cocciones, los ajustes de sal y de punto."
+      },
+      {
+        "hora": "20:45",
+        "que": "Armamos la mesa",
+        "detalle": "Entre todos: la mesa también es parte de lo que se aprende."
+      },
+      {
+        "hora": "21:00",
+        "que": "Cenamos",
+        "detalle": "Nos sentamos a comer todo lo que hicimos, sin apuro."
+      }
+    ],
+    "link_compra": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila",
+    "segunda_fecha": {
+      "texto": "viernes 21 de agosto",
+      "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-4384"
+    }
   },
-
   "curso": {
     "estado": "abierto",
     "edicion": "Agosto 2026",
@@ -39,19 +61,99 @@
     "precio_tarjeta": "hasta 12 cuotas de $1.016",
     "ahorro": "$2.200",
     "grupos": [
-      { "id": "martes",    "nombre": "Martes",    "horario": "19:00 a 21:00 h", "inicio_iso": "2026-08-11", "inicio_texto": "Arrancó el 11 de agosto", "estado": "cerrado" },
-      { "id": "miercoles", "nombre": "Miércoles", "horario": "10:00 a 12:00 h", "inicio_iso": "2026-08-12", "inicio_texto": "Arrancó el 12 de agosto", "estado": "cerrado" },
-      { "id": "sabados",   "nombre": "Sábados",   "horario": "15:00 a 18:30 h", "inicio_iso": "2026-08-22", "inicio_texto": "Arranca el 22 de agosto", "estado": "abierto" }
+      {
+        "id": "martes",
+        "nombre": "Martes",
+        "horario": "19:00 a 21:00 h",
+        "inicio_iso": "2026-08-11",
+        "inicio_texto": "Arrancó el 11 de agosto",
+        "estado": "cerrado"
+      },
+      {
+        "id": "miercoles",
+        "nombre": "Miércoles",
+        "horario": "10:00 a 12:00 h",
+        "inicio_iso": "2026-08-12",
+        "inicio_texto": "Arrancó el 12 de agosto",
+        "estado": "cerrado"
+      },
+      {
+        "id": "sabados",
+        "nombre": "Sábados",
+        "horario": "15:00 a 18:30 h",
+        "inicio_iso": "2026-08-22",
+        "inicio_texto": "Arranca el 22 de agosto",
+        "estado": "abierto"
+      }
     ]
   },
-
   "talleres": {
     "_leeme": "Cada taller: mismo sistema que el tapeo. estado sin-fecha | abierto | ultimos | agotado.",
-    "fermentacion":      { "nombre": "Fermentación de vegetales",   "estado": "sin-fecha", "fecha_iso": "", "fecha_texto": "Sin fecha confirmada", "hora": "", "precio": "", "cupos_total": 10, "cupos_disponibles": 10 },
-    "pan-sin-gluten":    { "nombre": "Pan sin gluten con masa madre", "estado": "sin-fecha", "fecha_iso": "", "fecha_texto": "Sin fecha confirmada", "hora": "", "precio": "", "cupos_total": 10, "cupos_disponibles": 10 },
-    "pastas-sin-gluten": { "nombre": "Pastas sin gluten",            "estado": "sin-fecha", "fecha_iso": "", "fecha_texto": "Sin fecha confirmada", "hora": "", "precio": "", "cupos_total": 10, "cupos_disponibles": 10 },
-    "alfajores":         { "nombre": "Alfajores plant-based",        "estado": "sin-fecha", "fecha_iso": "", "fecha_texto": "Sin fecha confirmada", "hora": "", "precio": "", "cupos_total": 10, "cupos_disponibles": 10 },
-    "quesos-vegetales":  { "nombre": "Quesos vegetales",             "estado": "sin-fecha", "fecha_iso": "", "fecha_texto": "Sin fecha confirmada", "hora": "", "precio": "", "cupos_total": 10, "cupos_disponibles": 10 },
-    "buncheo":           { "nombre": "Domingo de Buncheo", "linea_sin_fecha": "Un domingo al mes — la fecha se anuncia en Instagram y por WhatsApp.", "estado": "sin-fecha", "fecha_iso": "", "fecha_texto": "Sin fecha confirmada", "hora": "", "precio": "", "cupos_total": 16, "cupos_disponibles": 16 }
+    "fermentacion": {
+      "nombre": "Fermentación de vegetales",
+      "estado": "sin-fecha",
+      "fecha_iso": "",
+      "fecha_texto": "Sin fecha confirmada",
+      "hora": "",
+      "precio": "",
+      "cupos_total": 10,
+      "cupos_disponibles": 10
+    },
+    "pan-sin-gluten": {
+      "nombre": "Pan sin gluten con masa madre",
+      "estado": "sin-fecha",
+      "fecha_iso": "",
+      "fecha_texto": "Sin fecha confirmada",
+      "hora": "",
+      "precio": "",
+      "cupos_total": 10,
+      "cupos_disponibles": 10
+    },
+    "pastas-sin-gluten": {
+      "nombre": "Pastas sin gluten",
+      "estado": "abierto",
+      "fecha_iso": "2026-09-03",
+      "fecha_texto": "jueves 3 de septiembre",
+      "hora": "",
+      "precio": "$2.897",
+      "cupos_total": 12,
+      "cupos_disponibles": 10,
+      "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten",
+      "segunda_fecha": {
+        "texto": "viernes 4 de septiembre",
+        "link": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten-ae88"
+      }
+    },
+    "alfajores": {
+      "nombre": "Alfajores plant-based",
+      "estado": "sin-fecha",
+      "fecha_iso": "",
+      "fecha_texto": "Sin fecha confirmada",
+      "hora": "",
+      "precio": "",
+      "cupos_total": 10,
+      "cupos_disponibles": 10
+    },
+    "quesos-vegetales": {
+      "nombre": "Quesos vegetales",
+      "estado": "sin-fecha",
+      "fecha_iso": "",
+      "fecha_texto": "Sin fecha confirmada",
+      "hora": "",
+      "precio": "",
+      "cupos_total": 10,
+      "cupos_disponibles": 10
+    },
+    "buncheo": {
+      "nombre": "Domingo de Buncheo",
+      "linea_sin_fecha": "Un domingo al mes — la fecha se anuncia en Instagram y por WhatsApp.",
+      "estado": "sin-fecha",
+      "fecha_iso": "",
+      "fecha_texto": "Sin fecha confirmada",
+      "hora": "",
+      "precio": "",
+      "cupos_total": 16,
+      "cupos_disponibles": 16
+    }
   }
 }

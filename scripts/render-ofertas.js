@@ -98,6 +98,19 @@ t.resumen_texto =
   t.estado === 'agotado'   ? 'fecha ' + t.fecha_texto + ', sin lugares disponibles' :
   'próxima fecha ' + t.fecha_texto + ', ' + t.horario_texto + (t.precio ? ', ' + t.precio : '') + ', ' + t.cupos_texto.toLowerCase();
 
+// Si hay link de venta online, ese es el botón principal: se paga solo,
+// sin esperar respuesta por WhatsApp. El WhatsApp queda como segunda opción.
+t.cta_link = t.link_compra || t.wa_link;
+t.cta_texto =
+  !t.link_compra ? t.wa_texto :
+  t.estado === 'agotado' ? 'Ver si se libera un lugar →' :
+  'Comprar mi entrada →';
+t.tiene_segunda = t.segunda_fecha && t.segunda_fecha.texto ? 'si' : 'no';
+t.segunda_texto = t.segunda_fecha && t.segunda_fecha.texto
+  ? '¿No podés ese día? También hay fecha el ' + t.segunda_fecha.texto + '.'
+  : '';
+t.segunda_link = (t.segunda_fecha && t.segunda_fecha.link) || '';
+
 t.menu_html = t.menu.map(function (x) { return '<li>' + escapar(x) + '</li>'; }).join('');
 t.recorrido_html = t.recorrido.map(function (p) {
   return '<li class="paso"><span class="paso-hora">' + escapar(p.hora) + '</span>' +
@@ -150,6 +163,12 @@ for (const [id, w] of Object.entries(datos.talleres)) {
     w.estado === 'sin-fecha' ? 'Avisame cuando haya fecha →' :
     w.estado === 'agotado'   ? 'Avisame si se libera un lugar →' :
     'Reservar mi lugar →';
+
+  w.cta_link = (w.estado !== 'sin-fecha' && w.link_compra) ? w.link_compra : w.wa_link;
+  w.cta_texto = (w.estado !== 'sin-fecha' && w.link_compra) ? 'Comprar mi entrada →' : w.wa_texto;
+  if (w.segunda_fecha && w.segunda_fecha.texto && w.estado !== 'sin-fecha') {
+    w.linea += ' · también el ' + w.segunda_fecha.texto;
+  }
 }
 
 const abiertos = datos.curso.grupos.filter(function (g) { return g.estado === 'abierto'; });
@@ -198,26 +217,38 @@ for (const archivo of archivos) {
     }
   );
 
+  // El estado se escribe en el mismo tag, sin importar qué otros atributos haya.
   salida = salida.replace(
-    /data-estado-de="([a-zA-Z0-9_.\-]+)"(\s+data-estado="[^"]*")?/g,
-    function (_m, ruta_) {
+    /data-estado-de="([a-zA-Z0-9_.\-]+)"([\s\S]*?)(?=>)/g,
+    function (_m, ruta_, resto) {
       const obj = valor(ruta_);
-      const estado = obj && obj.estado ? obj.estado : 'sin-fecha';
       if (!obj) errores.push(archivo + ': no existe "' + ruta_ + '" en ofertas.json');
-      return 'data-estado-de="' + ruta_ + '" data-estado="' + estado + '"';
+      const estado = obj && obj.estado ? obj.estado : 'sin-fecha';
+      const limpio = resto.replace(/\s+data-estado="[^"]*"/g, '');
+      return 'data-estado-de="' + ruta_ + '" data-estado="' + estado + '"' + limpio;
     }
   );
 
+  // data-set="attr=ruta" o varios separados por ";"
   salida = salida.replace(
-    /data-set="([a-zA-Z0-9_\-]+)=([a-zA-Z0-9_.\-]+)"([\s\S]*?)(?=>)/g,
-    function (_m, attr, ruta_, resto) {
-      const v = valor(ruta_);
-      if (v === undefined) {
-        errores.push(archivo + ': no existe "' + ruta_ + '" en ofertas.json');
-        return _m;
-      }
-      const limpio = resto.replace(new RegExp('\\s+' + attr + '="[^"]*"'), '');
-      return 'data-set="' + attr + '=' + ruta_ + '" ' + attr + '="' + escapar(v) + '"' + limpio;
+    /data-set="([^"]+)"([\s\S]*?)(?=>)/g,
+    function (_m, pares, resto) {
+      let limpio = resto;
+      const escritos = [];
+      pares.split(';').forEach(function (par) {
+        const trozos = par.split('=');
+        if (trozos.length !== 2) return;
+        const attr = trozos[0].trim();
+        const ruta_ = trozos[1].trim();
+        const v = valor(ruta_);
+        if (v === undefined) {
+          errores.push(archivo + ': no existe "' + ruta_ + '" en ofertas.json');
+          return;
+        }
+        limpio = limpio.replace(new RegExp('\\s+' + attr + '="[^"]*"'), '');
+        escritos.push(attr + '="' + escapar(v) + '"');
+      });
+      return 'data-set="' + pares + '" ' + escritos.join(' ') + limpio;
     }
   );
 
