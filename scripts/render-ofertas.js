@@ -112,8 +112,8 @@ t.segunda_texto = t.segunda_fecha && t.segunda_fecha.texto
 t.segunda_link = (t.segunda_fecha && t.segunda_fecha.link) || '';
 
 t.menu_html = t.menu.map(function (x) { return '<li>' + escapar(x) + '</li>'; }).join('');
-t.recorrido_html = t.recorrido.map(function (p) {
-  return '<li class="paso"><span class="paso-hora">' + escapar(p.hora) + '</span>' +
+t.recorrido_html = t.recorrido.map(function (p, i) {
+  return '<li class="paso"><span class="paso-num">' + (i + 1) + '</span>' +
          '<span class="paso-que">' + escapar(p.que) + '</span>' +
          '<span class="paso-detalle">' + escapar(p.detalle) + '</span></li>';
 }).join('');

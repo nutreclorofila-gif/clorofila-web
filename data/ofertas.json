@@ -6,7 +6,7 @@
     "fecha_iso": "2026-08-20",
     "fecha_texto": "jueves 20 de agosto",
     "hora": "19:00",
-    "hora_fin": "23:00",
+    "hora_fin": "22:30",
     "precio": "$2.600 por persona",
     "precio_num": "2600",
     "cupos_total": 11,
@@ -22,29 +22,20 @@
     ],
     "recorrido": [
       {
-        "hora": "19:00",
-        "que": "Llegada",
-        "detalle": "Te recibimos, delantal y una copa mientras se arma el grupo."
+        "que": "Cocinás",
+        "detalle": "Con las manos en la masa desde el minuto uno, guiado paso a paso."
       },
       {
-        "hora": "19:15",
-        "que": "Empezamos a cocinar",
-        "detalle": "Cada quien con su espacio en la mesa grande. Leonardo va guiando preparación por preparación."
+        "que": "Compartís",
+        "detalle": "Armamos la mesa entre todos con lo que preparó el grupo."
       },
       {
-        "hora": "20:30",
-        "que": "Terminamos las elaboraciones",
-        "detalle": "Las últimas cocciones, los ajustes de sal y de punto."
-      },
-      {
-        "hora": "20:45",
-        "que": "Armamos la mesa",
-        "detalle": "Entre todos: la mesa también es parte de lo que se aprende."
-      },
-      {
-        "hora": "21:00",
-        "que": "Cenamos",
+        "que": "Cenás",
         "detalle": "Nos sentamos a comer todo lo que hicimos, sin apuro."
+      },
+      {
+        "que": "Dos copas de vino o kombucha",
+        "detalle": "Incluidas, para acompañar la mesa."
       }
     ],
     "link_compra": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila",
