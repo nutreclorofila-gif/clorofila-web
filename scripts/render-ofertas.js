@@ -58,11 +58,15 @@ for (const g of datos.curso.grupos) {
 const t = datos.tapeo;
 const libres = Number(t.cupos_disponibles);
 const total = Number(t.cupos_total);
-if (t.estado === 'abierto' && libres <= 0) t.estado = 'agotado';
-if (t.estado === 'abierto' && libres > 0 && libres <= 4) t.estado = 'ultimos';
+if (t.cupos_disponibles !== null && t.cupos_disponibles !== '') {
+  if (t.estado === 'abierto' && libres <= 0) t.estado = 'agotado';
+  if (t.estado === 'abierto' && libres > 0 && libres <= 4) t.estado = 'ultimos';
+}
 
+var cuposConocidos = t.cupos_disponibles !== null && t.cupos_disponibles !== '';
 t.cupos_texto =
   t.estado === 'agotado' ? 'Sin lugares disponibles' :
+  !cuposConocidos ? 'Solo ' + total + ' lugares · consultanos disponibilidad' :
   t.estado === 'ultimos' ? (libres === 1 ? 'Queda 1 lugar' : 'Quedan ' + libres + ' lugares') :
   t.estado === 'abierto' ? 'Quedan ' + libres + ' de ' + total + ' lugares' :
   'Solo ' + total + ' lugares';
@@ -73,7 +77,8 @@ t.estado_texto =
   t.estado === 'abierto' ? 'Inscripciones abiertas' :
   'Próxima fecha a confirmar';
 
-t.precio_texto = t.precio || 'A confirmar';
+t.precio_texto = t.precio || '';
+t.tiene_precio = t.precio ? 'si' : 'no';
 t.horario_texto = t.hora && t.hora_fin ? t.hora + ' a ' + t.hora_fin + ' h' : (t.hora || '');
 
 // El WhatsApp cambia según haya fecha o no: nunca pide reservar algo que no existe.
@@ -254,15 +259,21 @@ for (const archivo of archivos) {
             nodo.endDate = t.fecha_iso + 'T' + t.hora_fin + ':00-03:00';
             nodo.eventStatus = 'https://schema.org/EventScheduled';
             nodo.maximumAttendeeCapacity = Number(t.cupos_total);
-            nodo.offers = {
-              '@type': 'Offer',
-              url: 'https://clorofila.uy/tapeo',
-              priceCurrency: 'UYU',
-              availability: t.estado === 'agotado'
-                ? 'https://schema.org/SoldOut'
-                : 'https://schema.org/InStock'
-            };
-            if (t.precio_num) nodo.offers.price = String(t.precio_num);
+            // Sin precio cargado no publicamos oferta: una Offer sin price
+            // es un error para los validadores de Google.
+            if (t.precio_num) {
+              nodo.offers = {
+                '@type': 'Offer',
+                url: 'https://clorofila.uy/tapeo',
+                priceCurrency: 'UYU',
+                price: String(t.precio_num),
+                availability: t.estado === 'agotado'
+                  ? 'https://schema.org/SoldOut'
+                  : 'https://schema.org/InStock'
+              };
+            } else {
+              delete nodo.offers;
+            }
           }
           tocado = true;
         }

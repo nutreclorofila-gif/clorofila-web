@@ -2,16 +2,17 @@
   "_leeme": "Este archivo manda sobre las fechas, precios, cupos y estado de cada propuesta. Editalo y publicá: la web se regenera sola. Ver docs/editar-ofertas.md antes de tocarlo.",
 
   "tapeo": {
-    "estado": "sin-fecha",
+    "estado": "abierto",
     "_estados_posibles": "sin-fecha | abierto | ultimos | agotado",
-    "fecha_iso": "",
-    "fecha_texto": "Sin fecha confirmada",
+    "_proxima_tentativa": "viernes 11/9/2026 — sin confirmar, por eso no se publica",
+    "fecha_iso": "2026-08-20",
+    "fecha_texto": "jueves 20 de agosto",
     "hora": "19:00",
     "hora_fin": "23:00",
     "precio": "",
     "precio_num": "",
     "cupos_total": 12,
-    "cupos_disponibles": 12,
+    "cupos_disponibles": null,
     "lugar": "Maldonado 1976 esq. Blanes · Parque Rodó",
     "menu": [
       "Pan casero de fermentación lenta",
