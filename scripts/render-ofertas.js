@@ -56,20 +56,11 @@ for (const g of datos.curso.grupos) {
 /* ---- Campos calculados ---- */
 
 const t = datos.tapeo;
-const libres = Number(t.cupos_disponibles);
 const total = Number(t.cupos_total);
-if (t.cupos_disponibles !== null && t.cupos_disponibles !== '') {
-  if (t.estado === 'abierto' && libres <= 0) t.estado = 'agotado';
-  if (t.estado === 'abierto' && libres > 0 && libres <= 4) t.estado = 'ultimos';
-}
 
-var cuposConocidos = t.cupos_disponibles !== null && t.cupos_disponibles !== '';
-t.cupos_texto =
-  t.estado === 'agotado' ? 'Sin lugares disponibles' :
-  !cuposConocidos ? 'Solo ' + total + ' lugares · consultanos disponibilidad' :
-  t.estado === 'ultimos' ? (libres === 1 ? 'Queda 1 lugar' : 'Quedan ' + libres + ' lugares') :
-  t.estado === 'abierto' ? 'Quedan ' + libres + ' de ' + total + ' lugares' :
-  'Solo ' + total + ' lugares';
+// No se publica cuantos lugares quedan: es un dato que depende de que
+// alguien lo actualice a mano. Se muestra el cupo total, que es fijo.
+t.cupos_texto = t.estado === 'agotado' ? 'Sin lugares disponibles' : 'Solo ' + total + ' lugares';
 
 t.estado_texto =
   t.estado === 'agotado' ? 'Agotado' :
@@ -157,9 +148,6 @@ t.calendario = linkCalendario('Cena y Taller de Tapeo — Clorofila', t.fecha_is
 /* Cada taller usa exactamente las mismas reglas que el tapeo. */
 for (const [id, w] of Object.entries(datos.talleres)) {
   if (id.startsWith('_')) { delete datos.talleres[id]; continue; }
-  const libresW = Number(w.cupos_disponibles);
-  if (w.estado === 'abierto' && libresW <= 0) w.estado = 'agotado';
-  if (w.estado === 'abierto' && libresW > 0 && libresW <= 3) w.estado = 'ultimos';
 
   w.estado_texto =
     w.estado === 'agotado' ? 'Agotado' :
@@ -182,13 +170,8 @@ for (const [id, w] of Object.entries(datos.talleres)) {
     w.estado === 'agotado'   ? 'Avisame si se libera un lugar →' :
     'Reservar mi lugar →';
 
-  var cuposW = (w.cupos_disponibles !== null && w.cupos_disponibles !== '');
-  w.cupos_texto =
-    w.estado === 'agotado' ? 'Sin lugares disponibles' :
-    !cuposW ? 'Cupos limitados' :
-    w.estado === 'ultimos' ? (libresW === 1 ? 'Queda 1 lugar' : 'Quedan ' + libresW + ' lugares') :
-    w.estado === 'abierto' ? 'Quedan ' + libresW + ' de ' + w.cupos_total + ' lugares' :
-    'Cupos limitados';
+  w.cupos_texto = w.estado === 'agotado' ? 'Sin lugares disponibles'
+                : (w.cupos_total ? 'Solo ' + w.cupos_total + ' lugares' : 'Cupos limitados');
   w.horario_texto = w.hora || '';
   w.precio_texto = w.precio || '';
   w.tiene_precio = w.precio ? 'si' : 'no';

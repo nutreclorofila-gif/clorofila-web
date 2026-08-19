@@ -1,5 +1,5 @@
 {
-  "_leeme": "Este archivo manda sobre las fechas, precios, cupos y estado de cada propuesta. Editalo y publicá: la web se regenera sola. Ver docs/editar-ofertas.md antes de tocarlo.",
+  "_leeme": "Este archivo manda sobre las fechas, precios y estado de cada propuesta. Editalo y publicá: la web se regenera sola. Ver docs/editar-ofertas.md antes de tocarlo. No se publica cuántos lugares quedan: es un dato que depende de que alguien lo actualice a mano.",
   "tapeo": {
     "estado": "abierto",
     "_estados_posibles": "sin-fecha | abierto | ultimos | agotado",
@@ -10,7 +10,6 @@
     "precio": "$2.600 por persona",
     "precio_num": "2600",
     "cupos_total": 11,
-    "cupos_disponibles": 2,
     "lugar": "Maldonado 1976 esq. Blanes · Parque Rodó",
     "menu": [
       "Gyozas de hongos y verduras con salsa teriyaki",
@@ -85,8 +84,7 @@
       "fecha_texto": "Sin fecha confirmada",
       "hora": "",
       "precio": "",
-      "cupos_total": 10,
-      "cupos_disponibles": 10
+      "cupos_total": 10
     },
     "pan-sin-gluten": {
       "nombre": "Pan sin gluten con masa madre",
@@ -95,8 +93,7 @@
       "fecha_texto": "Sin fecha confirmada",
       "hora": "",
       "precio": "",
-      "cupos_total": 10,
-      "cupos_disponibles": 10
+      "cupos_total": 10
     },
     "pastas-sin-gluten": {
       "nombre": "Pastas sin gluten",
@@ -106,7 +103,6 @@
       "hora": "10:00 a 13:30 h",
       "precio": "$2.897",
       "cupos_total": 12,
-      "cupos_disponibles": 10,
       "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten",
       "segunda_fecha": {
         "texto": "viernes 4 de septiembre",
@@ -120,8 +116,7 @@
       "fecha_texto": "Sin fecha confirmada",
       "hora": "",
       "precio": "",
-      "cupos_total": 10,
-      "cupos_disponibles": 10
+      "cupos_total": 10
     },
     "quesos-vegetales": {
       "nombre": "Quesos vegetales",
@@ -130,8 +125,7 @@
       "fecha_texto": "Sin fecha confirmada",
       "hora": "",
       "precio": "",
-      "cupos_total": 10,
-      "cupos_disponibles": 10
+      "cupos_total": 10
     },
     "buncheo": {
       "nombre": "Domingo de Buncheo",
@@ -141,8 +135,7 @@
       "fecha_texto": "Sin fecha confirmada",
       "hora": "",
       "precio": "",
-      "cupos_total": 16,
-      "cupos_disponibles": 16
+      "cupos_total": 16
     }
   }
 }

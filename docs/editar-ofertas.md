@@ -26,8 +26,7 @@ No hay que tocar HTML.
   "hora_fin": "23:00",
   "precio": "$1.900",
   "precio_num": "1900",
-  "cupos_total": 12,
-  "cupos_disponibles": 12
+  "cupos_total": 12
 }
 ```
 
@@ -36,23 +35,22 @@ No hay que tocar HTML.
   Nunca más queda un banner viejo colgado.
 - `fecha_texto` es lo que lee la gente. Escribilo como lo dirías.
 - `precio` es lo que se muestra; `precio_num` es solo el número, para Google.
-- `cupos_disponibles` es el que vas bajando a medida que reservan.
 
 ## Los estados
 
 | `estado` | Qué muestra la web |
 |---|---|
 | `sin-fecha` | "Próxima fecha a confirmar" y el botón pasa a *avisame la próxima fecha*. No se ofrece nada que no exista. |
-| `abierto` | Fecha, hora, precio y "quedan X de 12 lugares". Botón de reservar. |
-| `ultimos` | Igual, con el aviso de últimos lugares. |
+| `abierto` | Fecha, hora, precio y el cupo total. Botón de reservar o comprar. |
+| `ultimos` | Igual, con el aviso de últimos lugares. Se pone a mano cuando de verdad quedan pocos. |
 | `agotado` | "Sin lugares disponibles" y el botón pasa a *avisame si se libera un lugar*. |
 
-Dos cosas se calculan solas, así que no hace falta acordarse:
+**La web no dice cuántos lugares quedan, a propósito.** Es un dato que depende de
+que alguien lo actualice a mano cada vez que entra una reserva, y no hay forma de
+garantizar eso. Se publica el cupo total (`cupos_total`), que es fijo.
 
-- Si `cupos_disponibles` baja a 4 o menos, pasa a `ultimos`.
-- Si llega a 0, pasa a `agotado`.
-
-Es decir: para el día a día alcanza con bajar `cupos_disponibles`.
+Si en algún momento querés apurar una fecha que se está llenando, poné el estado
+en `ultimos` a mano, y en `agotado` cuando se llenó.
 
 
 ## Vender online (Tikzet)
@@ -87,8 +85,7 @@ Aparece como "¿No podés ese día? También hay fecha el…" y en la agenda de 
 
 - Si `precio` queda vacío, la fila de precio **no se muestra** (mejor eso que un
   "a confirmar" ocupando el lugar más importante de la ficha).
-- Si ponés `"cupos_disponibles": null`, la web dice "solo X lugares, consultanos
-  disponibilidad" en vez de afirmar cuántos quedan.
+- El cupo que se muestra es siempre `cupos_total`, nunca cuántos quedan.
 
 Así se puede publicar una fecha el mismo día sin inventar nada.
 
@@ -113,8 +110,7 @@ Los seis talleres (`fermentacion`, `pan-sin-gluten`, `pastas-sin-gluten`, `alfaj
   "fecha_texto": "sábado 13 de septiembre",
   "hora": "10:00 a 14:00 h",
   "precio": "$1.400",
-  "cupos_total": 10,
-  "cupos_disponibles": 10
+  "cupos_total": 10
 }
 ```
 
@@ -122,9 +118,6 @@ En `/talleres` eso cambia solo tres cosas, que son las que deciden la compra:
 la etiqueta de estado, la línea de fecha y precio, y el botón —que pasa de
 *avisame cuando haya fecha* a *reservar mi lugar*, con el WhatsApp ya escrito
 mencionando el taller y la fecha.
-
-En los talleres el aviso de "últimos lugares" salta con 3 cupos o menos (en el tapeo,
-con 4), porque los grupos son un poco más grandes.
 
 Si un taller no tiene fecha pero querés decir algo distinto a lo genérico, agregale
 `"linea_sin_fecha": "el texto que quieras"` (así está el Domingo de Buncheo, que se
