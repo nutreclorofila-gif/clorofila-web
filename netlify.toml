@@ -32,7 +32,7 @@
 
 [[redirects]]
   from = "/pastas-sin-gluten"
-  to   = "/talleres#pastas-sin-gluten"
+  to   = "/pastas"
   status = 301
   force  = true
 
@@ -61,6 +61,12 @@
   force  = true
 
 # Variantes que la gente escribe o que quedaron en flyers viejos.
+[[redirects]]
+  from = "/taller-de-pastas-sin-gluten"
+  to   = "/pastas"
+  status = 301
+  force  = true
+
 [[redirects]]
   from = "/cena-y-taller-de-tapeo"
   to   = "/tapeo"

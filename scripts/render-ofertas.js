@@ -164,6 +164,21 @@ for (const [id, w] of Object.entries(datos.talleres)) {
     w.estado === 'agotado'   ? 'Avisame si se libera un lugar →' :
     'Reservar mi lugar →';
 
+  var cuposW = (w.cupos_disponibles !== null && w.cupos_disponibles !== '');
+  w.cupos_texto =
+    w.estado === 'agotado' ? 'Sin lugares disponibles' :
+    !cuposW ? 'Cupos limitados' :
+    w.estado === 'ultimos' ? (libresW === 1 ? 'Queda 1 lugar' : 'Quedan ' + libresW + ' lugares') :
+    w.estado === 'abierto' ? 'Quedan ' + libresW + ' de ' + w.cupos_total + ' lugares' :
+    'Cupos limitados';
+  w.horario_texto = w.hora || '';
+  w.precio_texto = w.precio || '';
+  w.tiene_precio = w.precio ? 'si' : 'no';
+  w.tiene_segunda = (w.segunda_fecha && w.segunda_fecha.texto) ? 'si' : 'no';
+  w.segunda_texto = (w.segunda_fecha && w.segunda_fecha.texto)
+    ? '¿No podés ese día? También hay fecha el ' + w.segunda_fecha.texto + '.' : '';
+  w.segunda_link = (w.segunda_fecha && w.segunda_fecha.link) || '';
+
   w.cta_link = (w.estado !== 'sin-fecha' && w.link_compra) ? w.link_compra : w.wa_link;
   w.cta_texto = (w.estado !== 'sin-fecha' && w.link_compra) ? 'Comprar mi entrada →' : w.wa_texto;
   if (w.segunda_fecha && w.segunda_fecha.texto && w.estado !== 'sin-fecha') {
@@ -224,13 +239,13 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   agenda.push({
     iso: w.fecha_iso, nombre: w.nombre, fecha: w.fecha_texto, hora: w.hora,
     precio: w.precio, estado: w.estado, etiqueta: w.estado_texto,
-    link: 'talleres.html#' + id, cta: 'Ver el taller →'
+    link: (id === 'pastas-sin-gluten') ? 'pastas.html' : 'talleres.html#' + id, cta: 'Ver el taller →'
   });
   if (w.segunda_fecha && w.segunda_fecha.texto) {
     agenda.push({
       iso: w.fecha_iso + '-b', nombre: w.nombre, fecha: w.segunda_fecha.texto,
       hora: w.hora, precio: w.precio, estado: 'abierto', etiqueta: 'Segunda fecha',
-      link: 'talleres.html#' + id, cta: 'Ver el taller →'
+      link: (id === 'pastas-sin-gluten') ? 'pastas.html' : 'talleres.html#' + id, cta: 'Ver el taller →'
     });
   }
 }

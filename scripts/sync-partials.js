@@ -11,6 +11,7 @@ const ROOT_PAGES = [
   'tapeo.html',
   'gracias.html',
   'programa.html',
+  'pastas.html',
   'articulos.html',
   'leonardo.html',
   'servicios.html',

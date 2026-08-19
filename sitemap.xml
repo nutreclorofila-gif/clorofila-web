@@ -45,6 +45,17 @@
     </image:image>
   </url>
   <url>
+    <loc>https://clorofila.uy/pastas</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/img-clase-masa.jpg</image:loc>
+      <image:title>Taller de Pastas Sin Gluten — Clorofila Montevideo</image:title>
+      <image:caption>Trabajo de masa en el Taller de Pastas Sin Gluten de Clorofila, Parque Rodó</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://clorofila.uy/talleres</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>

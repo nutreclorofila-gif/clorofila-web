@@ -39,12 +39,18 @@ comparar entre sí.
 
 ## Talleres
 
-Cada taller tiene URL propia y corta:
+Los dos que se venden hoy tienen landing propia:
+
+```
+https://clorofila.uy/tapeo
+https://clorofila.uy/pastas
+```
+
+El resto tiene URL propia y corta, que lleva a su bloque:
 
 ```
 https://clorofila.uy/fermentacion
 https://clorofila.uy/pan-sin-gluten
-https://clorofila.uy/pastas-sin-gluten
 https://clorofila.uy/alfajores
 https://clorofila.uy/quesos-vegetales
 https://clorofila.uy/buncheo
