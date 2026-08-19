@@ -58,6 +58,18 @@
     .ficha-datos > li { display: flex; flex-direction: column; gap: .1rem; }
     .ficha-datos strong { font-size: .66rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--texto-suave); }
     .ficha-datos span { font-size: .98rem; color: var(--texto); font-weight: 500; }
+    /* Las fechas disponibles se eligen, no se leen en una nota al pie. */
+    .fechas { list-style: none; display: grid; gap: .5rem; margin-bottom: 1.2rem; }
+    .fechas a { display: flex; flex-direction: column; gap: .1rem; padding: .7rem .9rem; border: 1px solid var(--crema-osc); border-radius: var(--r-md); background: var(--crema); transition: border-color .2s, background .2s, transform .2s; }
+    .fechas a:hover { border-color: var(--verde-med); background: var(--blanco); transform: translateY(-1px); }
+    .fechas strong { font-size: .98rem; color: var(--verde); font-weight: 500; }
+    .fechas span { font-size: .8rem; color: var(--texto-med); }
+    .fechas-titulo { font-size: .66rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--texto-suave); margin-bottom: .5rem; }
+    [data-estado="sin-fecha"] .fechas-bloque, [data-segunda="no"] .fechas-bloque { display: none; }
+    .cierre .fechas a { background: rgba(245,240,231,.06); border-color: rgba(245,240,231,.16); }
+    .cierre .fechas strong { color: var(--crema); }
+    .cierre .fechas span { color: rgba(245,240,231,.6); }
+    .cierre .fechas-titulo { color: rgba(245,240,231,.6); }
     .ficha-acciones { display: flex; flex-wrap: wrap; gap: .7rem; }
     .ficha-nota { font-size: .78rem; color: var(--texto-suave); margin-top: .9rem; line-height: 1.6; }
 
@@ -222,11 +234,14 @@
           <li class="solo-con-fecha solo-con-precio"><strong>Precio</strong><span><!--o:tapeo.precio_texto-->$2.600 por persona<!--/o--></span></li>
           <li><strong>Incluye</strong><span>Cocina, cena y bebida</span></li>
         </ul>
-        <div class="ficha-acciones">
+        <div class="fechas-bloque">
+          <p class="fechas-titulo">Elegí tu fecha</p>
+          <ul class="fechas"><!--o:html:tapeo.fechas_html--><li><a href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila" target="_blank" rel="noopener noreferrer" data-producto="tapeo"><strong>jueves 20 de agosto</strong><span>19:00 a 22:30 h · Quedan 2 lugares</span></a></li><li><a href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-4384" target="_blank" rel="noopener noreferrer" data-producto="tapeo"><strong>viernes 21 de agosto</strong><span>19:00 a 22:30 h</span></a></li><!--/o--></ul>
+        </div>
+      <div class="ficha-acciones">
           <a data-set="href=tapeo.cta_link" href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila" target="_blank" rel="noopener noreferrer" class="btn btn-accent" data-producto="tapeo"><!--o:tapeo.cta_texto-->Comprar mi entrada →<!--/o--></a>
           <a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20jueves%2020%20de%20agosto.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-producto="tapeo">💬 Consultar por WhatsApp</a>
         </div>
-        <p class="ficha-nota segunda-fecha"><!--o:tapeo.segunda_texto-->¿No podés ese día? También hay fecha el viernes 21 de agosto.<!--/o--> <a data-set="href=tapeo.segunda_link" href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-4384" target="_blank" rel="noopener noreferrer" data-producto="tapeo">Ver esa fecha →</a></p>
         <p class="ficha-nota solo-sin-fecha">Las fechas se abren según la demanda y los cupos son pocos: quienes dejan su interés se enteran primero.</p>
         <p class="ficha-nota solo-con-fecha">Te respondemos por WhatsApp y coordinamos el pago. Sin formularios largos.</p>
       </div>
@@ -423,6 +438,10 @@
         <li class="solo-con-fecha solo-con-precio"><strong>Precio</strong><span><!--o:tapeo.precio_texto-->$2.600 por persona<!--/o--></span></li>
         <li><strong>Lugares</strong><span><!--o:tapeo.cupos_texto-->Quedan 2 lugares<!--/o--></span></li>
       </ul>
+      <div class="fechas-bloque">
+        <p class="fechas-titulo">Elegí tu fecha</p>
+        <ul class="fechas"><!--o:html:tapeo.fechas_html--><li><a href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila" target="_blank" rel="noopener noreferrer" data-producto="tapeo"><strong>jueves 20 de agosto</strong><span>19:00 a 22:30 h · Quedan 2 lugares</span></a></li><li><a href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-4384" target="_blank" rel="noopener noreferrer" data-producto="tapeo"><strong>viernes 21 de agosto</strong><span>19:00 a 22:30 h</span></a></li><!--/o--></ul>
+      </div>
       <div class="ficha-acciones">
         <a data-set="href=tapeo.cta_link" href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila" target="_blank" rel="noopener noreferrer" class="btn btn-light" data-producto="tapeo"><!--o:tapeo.cta_texto-->Comprar mi entrada →<!--/o--></a>
         <a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20jueves%2020%20de%20agosto.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light" data-producto="tapeo">💬 WhatsApp</a>

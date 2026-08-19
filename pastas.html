@@ -52,6 +52,18 @@
     .ficha-datos > li { display: flex; flex-direction: column; gap: .1rem; }
     .ficha-datos strong { font-size: .66rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--texto-suave); }
     .ficha-datos span { font-size: .98rem; color: var(--texto); font-weight: 500; }
+    /* Las fechas disponibles se eligen, no se leen en una nota al pie. */
+    .fechas { list-style: none; display: grid; gap: .5rem; margin-bottom: 1.2rem; }
+    .fechas a { display: flex; flex-direction: column; gap: .1rem; padding: .7rem .9rem; border: 1px solid var(--crema-osc); border-radius: var(--r-md); background: var(--crema); transition: border-color .2s, background .2s, transform .2s; }
+    .fechas a:hover { border-color: var(--verde-med); background: var(--blanco); transform: translateY(-1px); }
+    .fechas strong { font-size: .98rem; color: var(--verde); font-weight: 500; }
+    .fechas span { font-size: .8rem; color: var(--texto-med); }
+    .fechas-titulo { font-size: .66rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--texto-suave); margin-bottom: .5rem; }
+    [data-estado="sin-fecha"] .fechas-bloque, [data-segunda="no"] .fechas-bloque { display: none; }
+    .cierre .fechas a { background: rgba(245,240,231,.06); border-color: rgba(245,240,231,.16); }
+    .cierre .fechas strong { color: var(--crema); }
+    .cierre .fechas span { color: rgba(245,240,231,.6); }
+    .cierre .fechas-titulo { color: rgba(245,240,231,.6); }
     .ficha-acciones { display: flex; flex-wrap: wrap; gap: .7rem; }
     .ficha-nota { font-size: .78rem; color: var(--texto-suave); margin-top: .9rem; line-height: 1.6; }
     [data-estado="sin-fecha"] .solo-con-fecha { display: none; }
@@ -161,11 +173,14 @@
           <li class="solo-con-fecha solo-con-precio"><strong>Precio</strong><span><!--o:talleres.pastas-sin-gluten.precio_texto-->$2.897<!--/o--></span></li>
           <li><strong>Incluye</strong><span>Ingredientes y manual</span></li>
         </ul>
-        <div class="ficha-acciones">
+        <div class="fechas-bloque">
+          <p class="fechas-titulo">Elegí tu fecha</p>
+          <ul class="fechas"><!--o:html:talleres.pastas-sin-gluten.fechas_html--><li><a href="https://www.tikzet.com/events/taller-de-pastas-sin-gluten" target="_blank" rel="noopener noreferrer" data-producto="taller-pastas-sin-gluten"><strong>jueves 3 de septiembre</strong><span>10:00 a 13:30 h · Quedan 10 de 12 lugares</span></a></li><li><a href="https://www.tikzet.com/events/taller-de-pastas-sin-gluten-ae88" target="_blank" rel="noopener noreferrer" data-producto="taller-pastas-sin-gluten"><strong>viernes 4 de septiembre</strong><span>10:00 a 13:30 h</span></a></li><!--/o--></ul>
+        </div>
+      <div class="ficha-acciones">
           <a data-set="href=talleres.pastas-sin-gluten.cta_link" href="https://www.tikzet.com/events/taller-de-pastas-sin-gluten" target="_blank" rel="noopener noreferrer" class="btn btn-accent" data-producto="pastas"><!--o:talleres.pastas-sin-gluten.cta_texto-->Comprar mi entrada →<!--/o--></a>
           <a data-set="href=talleres.pastas-sin-gluten.wa_link" href="https://wa.me/59894064148?text=Hola%2C%20quiero%20reservar%20un%20lugar%20en%20el%20taller%20de%20Pastas%20sin%20gluten%20del%20jueves%203%20de%20septiembre." target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-producto="pastas">💬 Consultar por WhatsApp</a>
         </div>
-        <p class="ficha-nota segunda-fecha"><!--o:talleres.pastas-sin-gluten.segunda_texto-->¿No podés ese día? También hay fecha el viernes 4 de septiembre.<!--/o--> <a data-set="href=talleres.pastas-sin-gluten.segunda_link" href="https://www.tikzet.com/events/taller-de-pastas-sin-gluten-ae88" target="_blank" rel="noopener noreferrer" data-producto="pastas">Ver esa fecha →</a></p>
       </div>
     </div>
     <div class="hero-pastas-img reveal-img fade-up">
@@ -277,6 +292,10 @@
         <li class="solo-con-fecha solo-con-precio"><strong>Precio</strong><span><!--o:talleres.pastas-sin-gluten.precio_texto-->$2.897<!--/o--></span></li>
         <li><strong>Lugares</strong><span><!--o:talleres.pastas-sin-gluten.cupos_texto-->Quedan 10 de 12 lugares<!--/o--></span></li>
       </ul>
+      <div class="fechas-bloque">
+        <p class="fechas-titulo">Elegí tu fecha</p>
+        <ul class="fechas"><!--o:html:talleres.pastas-sin-gluten.fechas_html--><li><a href="https://www.tikzet.com/events/taller-de-pastas-sin-gluten" target="_blank" rel="noopener noreferrer" data-producto="taller-pastas-sin-gluten"><strong>jueves 3 de septiembre</strong><span>10:00 a 13:30 h · Quedan 10 de 12 lugares</span></a></li><li><a href="https://www.tikzet.com/events/taller-de-pastas-sin-gluten-ae88" target="_blank" rel="noopener noreferrer" data-producto="taller-pastas-sin-gluten"><strong>viernes 4 de septiembre</strong><span>10:00 a 13:30 h</span></a></li><!--/o--></ul>
+      </div>
       <div class="ficha-acciones">
         <a data-set="href=talleres.pastas-sin-gluten.cta_link" href="https://www.tikzet.com/events/taller-de-pastas-sin-gluten" target="_blank" rel="noopener noreferrer" class="btn btn-light" data-producto="pastas"><!--o:talleres.pastas-sin-gluten.cta_texto-->Comprar mi entrada →<!--/o--></a>
         <a data-set="href=talleres.pastas-sin-gluten.wa_link" href="https://wa.me/59894064148?text=Hola%2C%20quiero%20reservar%20un%20lugar%20en%20el%20taller%20de%20Pastas%20sin%20gluten%20del%20jueves%203%20de%20septiembre." target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light" data-producto="pastas">💬 WhatsApp</a>

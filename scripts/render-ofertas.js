@@ -111,6 +111,24 @@ t.segunda_texto = t.segunda_fecha && t.segunda_fecha.texto
   : '';
 t.segunda_link = (t.segunda_fecha && t.segunda_fecha.link) || '';
 
+// Cuando hay dos fechas, se muestran como opciones para elegir, no como
+// una nota al pie: son dos productos a la venta, no un detalle.
+function listaFechas(o, sufijo) {
+  if (o.estado === 'sin-fecha' || !o.fecha_texto) return '';
+  var items = [
+    '<li><a href="' + (o.link_compra || o.wa_link) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
+      '<strong>' + escapar(o.fecha_texto) + '</strong>' +
+      '<span>' + escapar([o.horario_texto, o.cupos_texto].filter(Boolean).join(' · ')) + '</span></a></li>'
+  ];
+  if (o.segunda_fecha && o.segunda_fecha.texto) {
+    items.push('<li><a href="' + (o.segunda_fecha.link || o.wa_link) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
+      '<strong>' + escapar(o.segunda_fecha.texto) + '</strong>' +
+      '<span>' + escapar(o.horario_texto) + '</span></a></li>');
+  }
+  return items.join('');
+}
+t.fechas_html = listaFechas(t, 'tapeo');
+
 t.menu_html = t.menu.map(function (x) { return '<li>' + escapar(x) + '</li>'; }).join('');
 t.recorrido_html = t.recorrido.map(function (p, i) {
   return '<li class="paso"><span class="paso-num">' + (i + 1) + '</span>' +
@@ -179,6 +197,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
     ? '¿No podés ese día? También hay fecha el ' + w.segunda_fecha.texto + '.' : '';
   w.segunda_link = (w.segunda_fecha && w.segunda_fecha.link) || '';
 
+  w.fechas_html = listaFechas(w, 'taller-' + id);
   w.cta_link = (w.estado !== 'sin-fecha' && w.link_compra) ? w.link_compra : w.wa_link;
   w.cta_texto = (w.estado !== 'sin-fecha' && w.link_compra) ? 'Comprar mi entrada →' : w.wa_texto;
   if (w.segunda_fecha && w.segunda_fecha.texto && w.estado !== 'sin-fecha') {
