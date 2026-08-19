@@ -8,8 +8,8 @@ Actualizado el 19/8/2026, con las 28 fotos de la edición anterior que pasó Leo
 |---|---|---|---|
 | Hero de `/tapeo` | `img-tapeo-hero` | Clorofila-01 | La mesa larga con el grupo cocinando y las luces al fondo |
 | "Qué pasa esa noche" | `img-tapeo-cocinando` | Clorofila-21 | El grupo trabajando alrededor de la mesa |
-| Menú (izquierda) | `img-tapeo-ingredientes` | Clorofila-18 | Gírgolas y espárragos crudos — el menú real |
-| Menú (derecha) | `img-tapeo-terminadas` | Clorofila-25 | Las elaboraciones ya armadas |
+| Menú (izquierda) | `img-tapeo-ingredientes` | Clorofila-11 | La mesa con los ingredientes: verdes, cítricos, flores |
+| Menú (derecha) | `img-tapeo-armando` | Clorofila-20 | Manos armando las elaboraciones |
 | "Con quién" | `img-tapeo-leo` | Clorofila-07 | Leonardo explicando esa misma noche |
 | Bloque social | `img-tapeo-grupo` | Clorofila-27 | Tres participantes cocinando juntos |
 | "La edición anterior" | `img-tapeo-g1/g2/g3` | Clorofila-15, 17, 28 | Ingredientes, Leonardo con un participante, el grupo armando |
@@ -21,6 +21,14 @@ Actualizado el 19/8/2026, con las 28 fotos de la edición anterior que pasó Leo
 
 Los originales están en `~/Documents/Clorofila/fotos-tapeo/` y en el Drive,
 en "Fotos Tapeo — para la web".
+
+### Cambiadas después de verlas en la página
+
+Las dos primeras del bloque del menú eran la 18 (gírgolas en su bandeja de plástico)
+y la 25 (las elaboraciones en blanco y negro). En la página no funcionaban: en una
+sección que se llama "¿Qué vamos a preparar?", una bandeja de supermercado y unas
+masas grises en B&N juegan en contra. Se cambiaron por ingredientes con color y por
+el momento de armar, y el recorte pasó de cuadrado a 4:3.
 
 ## Descartadas y por qué
 
