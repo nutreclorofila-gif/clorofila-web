@@ -82,7 +82,9 @@
     .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .9rem; list-style: none; max-width: 820px; margin: 0 auto; }
     .menu-grid li { background: var(--blanco); border: 1px solid var(--crema-osc); border-radius: var(--r-md); padding: 1rem 1.2rem; font-size: .95rem; color: var(--texto); display: flex; align-items: center; gap: .7rem; }
     .menu-grid li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--verde-luz); border: 1.5px solid var(--verde-med); flex-shrink: 0; }
-    .menu-foto { max-width: 820px; margin: 2rem auto 0; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); }
+    .menu-fotos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 820px; margin: 2rem auto 0; }
+    .menu-fotos figure { border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 1; }
+    .menu-fotos img { width: 100%; height: 100%; object-fit: cover; }
     .menu-nota { text-align: center; font-size: .85rem; color: var(--texto-suave); margin: 1.5rem auto 0; max-width: 52ch; font-style: italic; font-family: var(--ff-d); }
 
     /* — Incluye — */
@@ -205,7 +207,7 @@
         <ul class="ficha-datos">
           <li><strong>Fecha</strong><span><!--o:tapeo.fecha_texto-->jueves 20 de agosto<!--/o--></span></li>
           <li><strong>Hora</strong><span><!--o:tapeo.horario_texto-->19:00 a 22:30 h<!--/o--></span></li>
-          <li><strong>Lugar</strong><span>Parque Rodó, Montevideo</span></li>
+          <li><strong>Lugar</strong><span><a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Parque Rodó, Montevideo</a></span></li>
           <li><strong>Lugares</strong><span><!--o:tapeo.cupos_texto-->Quedan 2 lugares<!--/o--></span></li>
           <li class="solo-con-fecha solo-con-precio"><strong>Precio</strong><span><!--o:tapeo.precio_texto-->$2.600 por persona<!--/o--></span></li>
           <li><strong>Incluye</strong><span>Cocina, cena y bebida</span></li>
@@ -220,7 +222,7 @@
       </div>
     </div>
     <div class="hero-tapeo-img reveal-img fade-up">
-      <picture><source srcset="img-tapeo.webp" type="image/webp"><img src="img-tapeo.jpg" width="1600" height="1200" alt="Mesa de tapas basada en plantas preparada en la Cena y Taller de Tapeo de Clorofila" loading="eager" fetchpriority="high"></picture>
+      <picture><source srcset="img-tapeo-hero.webp" type="image/webp"><img src="img-tapeo-hero.jpg" width="1400" height="1050" alt="La mesa larga de Clorofila durante la Cena y Taller de Tapeo, con el grupo cocinando" loading="eager" fetchpriority="high"></picture>
     </div>
   </div>
 </header>
@@ -263,8 +265,9 @@
       <p class="section-lead" style="margin-inline:auto">Todo basado en plantas, todo elaborado esa misma noche por el grupo.</p>
     </div>
     <ul class="menu-grid fade-up"><!--o:html:tapeo.menu_html--><li>Gyozas de hongos y verduras con salsa teriyaki</li><li>Gírgolas asadas sobre puré de coliflor</li><li>Buñuelos de chucrut con salsa picante</li><li>Croquetas de puerro con alioli de lima</li><!--/o--></ul>
-    <div class="menu-foto reveal-img fade-up">
-      <picture><source srcset="img-tapeo-elaboraciones.webp" type="image/webp"><img src="img-tapeo-elaboraciones.jpg" width="1100" height="733" alt="Elaboraciones del tapeo recién armadas sobre la mesa de trabajo" loading="lazy"></picture>
+    <div class="menu-fotos fade-up">
+      <figure class="reveal-img"><picture><source srcset="img-tapeo-ingredientes.webp" type="image/webp"><img src="img-tapeo-ingredientes.jpg" width="900" height="900" alt="Gírgolas y espárragos sobre la mesa, antes de empezar" loading="lazy"></picture></figure>
+      <figure class="reveal-img"><picture><source srcset="img-tapeo-terminadas.webp" type="image/webp"><img src="img-tapeo-terminadas.jpg" width="900" height="900" alt="Las elaboraciones ya armadas, listas para cocinar" loading="lazy"></picture></figure>
     </div>
     <p class="menu-nota">Si tenés alguna alergia o intolerancia, avisanos al reservar y lo adaptamos.</p>
   </div>
@@ -329,7 +332,7 @@
         <p>Si venís solo, no vas a quedar solo: se cocina en grupo, alrededor de la misma mesa.</p>
       </div>
       <div class="social-img reveal-img">
-        <picture><source srcset="img-tapeo-grupo.webp" type="image/webp"><img src="img-tapeo-grupo.jpg" width="1200" height="675" alt="Dos participantes armando las elaboraciones del tapeo, entre risas" loading="lazy"></picture>
+        <picture><source srcset="img-tapeo-grupo.webp" type="image/webp"><img src="img-tapeo-grupo.jpg" width="1200" height="675" alt="Tres participantes cocinando juntos en la mesa del tapeo" loading="lazy"></picture>
       </div>
     </div>
   </div>
@@ -398,7 +401,7 @@
         <a data-set="href=tapeo.cta_link" href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila" target="_blank" rel="noopener noreferrer" class="btn btn-light" data-producto="tapeo"><!--o:tapeo.cta_texto-->Comprar mi entrada →<!--/o--></a>
         <a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20jueves%2020%20de%20agosto.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light" data-producto="tapeo">💬 WhatsApp</a>
       </div>
-      <p class="ficha-nota"><!--o:tapeo.lugar-->Maldonado 1976 esq. Blanes · Parque Rodó<!--/o--></p>
+      <p class="ficha-nota"><!--o:tapeo.lugar-->Maldonado 1976 esq. Blanes · Parque Rodó<!--/o--> · <a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" style="color:var(--verde-luz);text-decoration:underline;text-underline-offset:2px">Cómo llegar →</a></p>
     </div>
     <p style="font-size:.85rem;color:rgba(245,240,231,.6)">¿Preferís algo más profundo? <a href="curso.html" style="color:var(--verde-luz);text-decoration:underline">El curso de tres meses →</a></p>
   </div>
