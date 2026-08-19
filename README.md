@@ -16,6 +16,16 @@ Una fecha que ya pasó se retira sola: no quedan banners viejos colgados.
 Todos los links importantes llevan UTM para poder medir qué canal vende.
 👉 **[Links armados, listos para copiar](docs/links-instagram.md)**
 
+## Si tocás shared.css
+
+`shared.css` se sirve con caché de un año (`immutable`). Si cambiás el CSS y no
+cambiás el `?v=` con el que se pide en el HTML, **quien ya visitó el sitio sigue
+viendo el CSS viejo**. Al editarlo, actualizá la versión en todas las páginas:
+
+```bash
+grep -rl 'shared.css?v=' *.html articulos/*.html partials/ | xargs sed -i '' 's/shared.css?v=[0-9]*/shared.css?v=AAAAMMDD/'
+```
+
 ## Comandos
 
 ```bash

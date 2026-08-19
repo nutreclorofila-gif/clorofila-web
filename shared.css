@@ -35,7 +35,7 @@ button.faq-q {
   gap: 1rem;
 }
 .faq-q:hover { color: var(--verde); }
-.faq-icon { font-size: 1.2rem; color: var(--acento); flex-shrink: 0; transition: transform .3s; }
+.faq-icon { font-size: 1.2rem; color: var(--acento-osc); flex-shrink: 0; transition: transform .3s; }
 .faq-item.open .faq-icon { transform: rotate(45deg); }
 .faq-a { display: none; padding: 0 2rem 1.2rem; font-size: .9rem; color: var(--texto-med); line-height: 1.7; }
 .faq-item.open .faq-a { display: block; }
