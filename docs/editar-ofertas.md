@@ -54,6 +54,44 @@ Dos cosas se calculan solas, así que no hace falta acordarse:
 
 Es decir: para el día a día alcanza con bajar `cupos_disponibles`.
 
+
+## Vender online (Tikzet)
+
+Si el evento se vende por Tikzet, pegá el link en `link_compra`:
+
+```json
+"link_compra": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila"
+```
+
+Con ese campo cargado, el botón principal pasa de "reservar por WhatsApp" a
+**"Comprar mi entrada"** y lleva directo al pago. WhatsApp queda como segunda
+opción, para quien prefiere preguntar antes.
+
+El link sale del panel de Tikzet: Eventos → el evento → **Enlace del evento**.
+
+## Dos fechas del mismo taller
+
+Cuando abrís dos fechas seguidas (por ejemplo jueves y viernes), la segunda se
+carga así:
+
+```json
+"segunda_fecha": {
+  "texto": "viernes 21 de agosto",
+  "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-4384"
+}
+```
+
+Aparece como "¿No podés ese día? También hay fecha el…" y en la agenda de la home.
+
+## Publicar la fecha sin saber todavía el precio o los cupos
+
+- Si `precio` queda vacío, la fila de precio **no se muestra** (mejor eso que un
+  "a confirmar" ocupando el lugar más importante de la ficha).
+- Si ponés `"cupos_disponibles": null`, la web dice "solo X lugares, consultanos
+  disponibilidad" en vez de afirmar cuántos quedan.
+
+Así se puede publicar una fecha el mismo día sin inventar nada.
+
 ## Cerrar o abrir un grupo del curso
 
 Cada grupo tiene su `estado` (`abierto` o `cerrado`) y su `inicio_iso`.
@@ -96,6 +134,15 @@ anuncia por Instagram).
 
 Son las dos listas dentro de `"tapeo"`. Agregar, sacar o reordenar renglones
 cambia directamente lo que se ve en la landing.
+
+## La lista de espera del curso
+
+Cuando **ningún grupo del curso está abierto**, los botones de la web cambian
+solos: dejan de decir "Reservar mi lugar" y pasan a **"Sumate a la lista de
+espera"**, abriendo el formulario. No hay que tocar nada: se activa por fecha.
+
+Cuando abrís la próxima edición (ponés un grupo en `"estado": "abierto"` con su
+`inicio_iso`), los botones vuelven a ser de reserva.
 
 ## Si algo sale mal
 
