@@ -16,7 +16,7 @@
   <meta property="og:url"         content="https://clorofila.uy/pastas">
   <meta property="og:title"       content="Taller de Pastas Sin Gluten — Clorofila Montevideo">
   <meta property="og:description" content="Dos masas base, pastas largas y rellenas, con sus rellenos y salsas. Una clase totalmente práctica en Parque Rodó.">
-  <meta property="og:image"       content="https://clorofila.uy/og/og-talleres.jpg">
+  <meta property="og:image"       content="https://clorofila.uy/og/og-pastas.jpg">
   <meta property="og:image:width"  content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type"   content="image/jpeg">
@@ -24,7 +24,7 @@
   <meta name="twitter:image:alt"   content="Taller de pastas sin gluten en Clorofila, Montevideo">
   <meta property="og:locale"      content="es_UY">
   <meta name="twitter:card"       content="summary_large_image">
-  <meta name="twitter:image"      content="https://clorofila.uy/og/og-talleres.jpg">
+  <meta name="twitter:image"      content="https://clorofila.uy/og/og-pastas.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Jost:wght@300;400;500;600&display=swap">
@@ -83,6 +83,12 @@
     .cierre .ficha-datos span { color: var(--crema); }
     .cierre .ficha-nota { color: rgba(245,240,231,.6); }
     @media (max-width: 900px) { .hero-pastas-inner { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; } .hero-pastas-img { aspect-ratio: 4/3; } .masas, .dos-col { grid-template-columns: 1fr; } }
+    /* En movil el cierre sumaba el padding de la seccion y el del container:
+       los botones quedaban angostos al centro. */
+    @media (max-width: 560px) {
+      .cierre { padding-inline: 1rem; }
+      .cierre .container { padding-inline: 0; }
+    }
     @media (max-width: 560px) { .ficha-acciones .btn { width: 100%; justify-content: center; } }
     @media (max-width: 780px) { body { padding-bottom: 4.5rem; } }
   </style>

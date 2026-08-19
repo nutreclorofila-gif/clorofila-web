@@ -135,6 +135,12 @@
       .quien, .social-block { grid-template-columns: 1fr; gap: 1.75rem; }
       .hero-tapeo-img { aspect-ratio: 3/2; }
     }
+    /* En movil el cierre sumaba el padding de la seccion y el del container:
+       los botones quedaban angostos al centro. */
+    @media (max-width: 560px) {
+      .cierre { padding-inline: 1rem; }
+      .cierre .container { padding-inline: 0; }
+    }
     @media (max-width: 560px) {
       .ficha-datos { grid-template-columns: 1fr 1fr; gap: .8rem 1rem; }
       .ficha-acciones .btn { width: 100%; justify-content: center; }
