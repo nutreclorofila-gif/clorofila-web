@@ -102,7 +102,11 @@
       .hero-sobre-inner, .historia-inner, .equipo-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .valores-grid { grid-template-columns: 1fr; }
     }
-  </style>
+      .banda-gente { max-width: var(--max); margin: 3rem auto 0; padding: 0 2rem; }
+    .banda-gente picture { display: block; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); }
+    .banda-gente img { width: 100%; height: auto; display: block; }
+    .banda-gente figcaption { font-family: var(--ff-d); font-style: italic; color: var(--verde-med); font-size: .92rem; text-align: center; margin-top: .8rem; }
+</style>
   <!-- Analítica con consentimiento (GA4 + Meta Pixel) — reemplazar los IDs -->
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -222,6 +226,11 @@
     </div>
   </div>
 </section>
+
+<figure class="banda-gente reveal-img">
+  <picture><source srcset="img-leo-grupo-700.webp 700w, img-leo-grupo.webp 1100w" sizes="(max-width: 900px) 100vw, 1180px" type="image/webp"><img src="img-leo-grupo.jpg" width="1100" height="733" alt="Leonardo explicando una preparación al grupo, alrededor de la mesa" loading="lazy"></picture>
+  <figcaption>Trece años después, esto sigue pasando alrededor de la misma mesa.</figcaption>
+</figure>
 
 <section class="equipo-sobre">
   <div class="equipo-sobre-inner">

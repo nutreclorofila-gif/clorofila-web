@@ -14,7 +14,10 @@ Actualizado el 19/8/2026, con las 28 fotos de la edición anterior que pasó Leo
 | Bloque social | `img-tapeo-grupo` | Clorofila-27 | Tres participantes cocinando juntos |
 | "La edición anterior" | `img-tapeo-g1/g2/g3` | Clorofila-15, 17, 28 | Ingredientes, Leonardo con un participante, el grupo armando |
 | Tarjeta en la home | `img-tapeo-card` | Clorofila-22 | Participantes cocinando |
-| Compartir en redes | `og/og-tapeo.jpg` | Clorofila-01 | La mesa larga, recortada a 1200×630 |
+| Compartir en redes (`/tapeo`) | `og/og-tapeo.jpg` | Clorofila-01 | La mesa larga, recortada a 1200×630 |
+| Compartir en redes (`/talleres`) | `og/og-talleres.jpg` | Clorofila-22 | La fila de gente trabajando concentrada |
+| Banda en `/curso` | `img-clase-grupo` | Clorofila-28 | El grupo alrededor de la mesa grande |
+| Banda en `/sobre` | `img-leo-grupo` | Clorofila-03 | Leonardo explicando al grupo (B&N) |
 
 Los originales están en `~/Documents/Clorofila/fotos-tapeo/` y en el Drive,
 en "Fotos Tapeo — para la web".

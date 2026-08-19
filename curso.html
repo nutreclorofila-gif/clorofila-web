@@ -198,6 +198,10 @@
     .docente-formacion li:last-child { border-bottom: none; }
     .docente-formacion li::before { content: '—'; color: var(--crema-osc); flex-shrink: 0; }
 
+    .banda-clase { max-width: var(--max); margin: 3.5rem auto 0; padding: 0 2rem; }
+    .banda-clase picture { display: block; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); }
+    .banda-clase img { width: 100%; height: auto; display: block; }
+    .banda-clase figcaption { font-family: var(--ff-d); font-style: italic; color: var(--verde-med); font-size: .92rem; text-align: center; margin-top: .8rem; }
     .grupos-section { padding: 4.5rem 2rem 1rem; max-width: var(--max); margin: 0 auto; }
     .grupos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
     .grupo-card { background: var(--blanco); border: 1px solid var(--crema-osc); border-radius: var(--r-lg); padding: 1.75rem; display: flex; flex-direction: column; gap: .35rem; }
@@ -501,6 +505,11 @@
 </div>
 
 <!-- GRUPOS Y HORARIOS -->
+<figure class="banda-clase reveal-img">
+  <picture><source srcset="img-clase-grupo-700.webp 700w, img-clase-grupo.webp 1200w" sizes="(max-width: 900px) 100vw, 1180px" type="image/webp"><img src="img-clase-grupo.jpg" width="1200" height="675" alt="Grupo trabajando alrededor de la mesa grande en una clase de Clorofila" loading="lazy"></picture>
+  <figcaption>Se trabaja alrededor de una sola mesa, cada quien con su espacio.</figcaption>
+</figure>
+
 <section class="grupos-section" id="grupos">
   <div class="fade-up">
     <span class="section-label">Edición agosto 2026</span>
