@@ -11,7 +11,8 @@ Actualizado el 19/8/2026, con las 28 fotos de la edición anterior que pasó Leo
 | Menú (izquierda) | `img-tapeo-ingredientes` | Clorofila-11 | La mesa con los ingredientes: verdes, cítricos, flores |
 | Menú (derecha) | `img-tapeo-armando` | Clorofila-20 | Manos armando las elaboraciones |
 | "Con quién" | `img-tapeo-leo` | Clorofila-07 | Leonardo explicando esa misma noche |
-| Bloque social | `img-tapeo-grupo` | Clorofila-27 | Tres participantes cocinando juntos |
+| Bloque social (`/tapeo`) | `img-tapeo-manos` | Clorofila-28 | El grupo amasando en la mesa |
+| Tarjeta del tapeo (home) | `img-tapeo-mesa` | Clorofila-22 | La fila de gente trabajando |
 | "La edición anterior" | `img-tapeo-g1/g2/g3` | Clorofila-15, 17, 28 | Ingredientes, Leonardo con un participante, el grupo armando |
 | Tarjeta en la home | `img-tapeo-card` | Clorofila-22 | Participantes cocinando |
 | Compartir en redes (`/tapeo`) | `og/og-tapeo.jpg` | Clorofila-01 | La mesa larga, recortada a 1200×630 |
@@ -37,6 +38,7 @@ el momento de armar, y el recorte pasó de cuadrado a 4:3.
 - **09, 12, 19**: blanco y negro oscuras, con la licuadora o la sartén como protagonista.
 - **10, 14, 16, 20, 23**: repiten encuadre de otras mejores.
 - **08**: un saludo fuera de contexto.
+- **27**: descartada por Leo — no le gusta cómo sale él. **No usar en ninguna parte.**
 
 ## Para la próxima
 

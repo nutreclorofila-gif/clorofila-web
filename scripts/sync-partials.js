@@ -5,7 +5,6 @@ const root = process.cwd();
 const checkMode = process.argv.includes('--check');
 
 const ROOT_PAGES = [
-  'index.html',
   'curso.html',
   'talleres.html',
   'tapeo.html',
