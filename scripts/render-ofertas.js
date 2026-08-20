@@ -70,6 +70,9 @@ t.estado_texto =
 
 t.precio_texto = t.precio || '';
 t.tiene_precio = t.precio ? 'si' : 'no';
+// Hay fecha publicada o no: lo usa /talleres para marcar en el índice
+// cuáles se pueden comprar hoy.
+t.tiene_fecha = (t.estado !== 'sin-fecha' && t.fecha_texto) ? 'si' : 'no';
 t.horario_texto = t.hora && t.hora_fin ? t.hora + ' a ' + t.hora_fin + ' h' : (t.hora || '');
 
 // El WhatsApp cambia según haya fecha o no: nunca pide reservar algo que no existe.
@@ -175,6 +178,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   w.horario_texto = w.hora || '';
   w.precio_texto = w.precio || '';
   w.tiene_precio = w.precio ? 'si' : 'no';
+  w.tiene_fecha = (w.estado !== 'sin-fecha' && w.fecha_texto) ? 'si' : 'no';
   w.tiene_segunda = (w.segunda_fecha && w.segunda_fecha.texto) ? 'si' : 'no';
   w.segunda_texto = (w.segunda_fecha && w.segunda_fecha.texto)
     ? '¿No podés ese día? También hay fecha el ' + w.segunda_fecha.texto + '.' : '';
