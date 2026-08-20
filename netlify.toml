@@ -85,6 +85,18 @@
   status = 301
   force  = true
 
+[[redirects]]
+  from = "/el-curso"
+  to   = "/curso"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/programa-del-curso"
+  to   = "/programa"
+  status = 301
+  force  = true
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -126,10 +138,18 @@
   [headers.values]
     Cache-Control = "public, max-age=86400"
 
+# CSS y JS con cache corta a proposito. Llevan ?v= en el HTML, pero ya nos
+# paso una vez olvidar de subirlo y dejar a los visitantes con la version
+# vieja durante meses. Son 21KB entre los dos: no vale el riesgo.
 [[headers]]
-  for = "/shared.css"
+  for = "/base.css"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
 
 [build]
   publish = "."
