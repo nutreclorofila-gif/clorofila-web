@@ -52,7 +52,9 @@
 .donde address strong{display:block;font-family:var(--display);font-size:1.15rem;color:var(--cal);letter-spacing:-.02em}
 .horarios{width:100%;border-collapse:collapse}
 .horarios caption{text-align:left;font-family:var(--dato);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cal-baja);padding-bottom:.6rem}
-.horarios td{border-top:1px solid var(--linea);padding-block:.6rem;font-family:var(--dato);font-size:.85rem;color:var(--cal)}
+.horarios th,.horarios td{border-top:1px solid var(--linea);padding-block:.6rem;font-family:var(--dato);font-size:.85rem;color:var(--cal);font-weight:400;text-align:left}
+.horarios thead th{font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cal-baja);border-top:0}
+.horarios thead th:last-child{text-align:right}
 .horarios td:last-child{text-align:right;color:var(--miel)}
 .horarios-nota{font-size:.82rem;color:var(--cal-baja);margin-top:.9rem;line-height:1.6}
 
@@ -134,10 +136,13 @@
       <address><strong>Maldonado 1976 esq. Blanes</strong>Parque Rodó, Montevideo, Uruguay</address>
       <table class="horarios">
         <caption>Horarios del curso</caption>
+        <thead>
+          <tr><th scope="col">Día</th><th scope="col">Horario</th></tr>
+        </thead>
         <tbody>
-          <tr><td>Martes</td><td>19:00 – 21:00 h</td></tr>
-          <tr><td>Miércoles</td><td>10:00 – 12:00 h</td></tr>
-          <tr><td>Sábados</td><td>15:00 – 18:30 h</td></tr>
+          <tr><th scope="row">Martes</th><td>19:00 – 21:00 h</td></tr>
+          <tr><th scope="row">Miércoles</th><td>10:00 – 12:00 h</td></tr>
+          <tr><th scope="row">Sábados</th><td>15:00 – 18:30 h</td></tr>
         </tbody>
       </table>
       <p class="horarios-nota">Tres meses, 12 clases presenciales. <!--o:curso.inicio_texto-->Arranca el 22 de agosto<!--/o--> · <a href="curso.html" class="enlace-vivo">Ver el curso →</a></p>

@@ -70,8 +70,8 @@
 .tema{border:1px solid var(--linea);border-radius:var(--r-lg);padding:1.5rem;background:var(--musgo);display:flex;flex-direction:column}
 .tema h3{font-size:1.15rem;margin-block:.5rem .6rem}
 .tema p{font-size:.9rem;color:var(--cal-med);margin-bottom:1.1rem}
-.tema-estado{margin-top:auto;font-family:var(--dato);font-size:.62rem;letter-spacing:.11em;text-transform:uppercase;border:1px solid var(--linea);border-radius:999px;padding:.3rem .75rem;align-self:flex-start;color:var(--cal-baja)}
-.tema-estado.publicado{border-color:rgba(143,192,138,.42);color:var(--brote)}
+.tema-leer{margin-top:auto;font-size:.87rem;font-weight:600;color:var(--cal);border-bottom:1px solid var(--linea-fuerte);width:fit-content;padding-block:.3rem;transition:border-color .2s,color .2s}
+.tema:hover .tema-leer{border-color:var(--brote);color:var(--brote)}
 
 .oficios{display:flex;flex-wrap:wrap;gap:.5rem;margin-block:2rem}
 .oficio{border:1px solid var(--linea);border-radius:999px;padding:.45rem .95rem;font-family:var(--dato);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cal-med)}
@@ -189,12 +189,12 @@
       <p style="max-width:58ch">La investigación de Leonardo no parte de papers sino de preguntas concretas que aparecen trabajando con los alimentos y dando clase. Cada tema que investiga termina en el aula.</p>
     </div>
     <div class="investiga sube">
-      <article class="tema"><span class="dato">Aceites y grasas</span><h3>Aceite de oliva y punto de humo</h3><p>El punto de humo no es el indicador relevante. Lo que importa es la estabilidad oxidativa, y ahí el aceite de oliva virgen extra gana por perfil de ácidos grasos y antioxidantes.</p><span class="tema-estado publicado">Publicado</span></article>
-      <article class="tema"><span class="dato">Omega-3</span><h3>El ALA del lino al calor</h3><p>El ALA es el ácido graso más inestable al calor. A 180 °C en horneado real la pérdida es significativa. Lo que queda —y qué hacer al respecto— importa saberlo.</p><span class="tema-estado publicado">Publicado</span></article>
-      <article class="tema"><span class="dato">Frutas y verduras</span><h3>Lavado de frutas: bicarbonato o agua</h3><p>El bicarbonato ayuda con residuos de contacto. Para plaguicidas sistémicos, ningún lavado sirve. La distinción entre contacto y sistémico es crítica.</p><span class="tema-estado publicado">Publicado</span></article>
-      <article class="tema"><span class="dato">Grasas y salud</span><h3>Más allá del colesterol total</h3><p>Apo-B, tamaño de partícula LDL, TMAO y microbioma dan una imagen más precisa. El análisis con marcadores modernos cambia el ranking de las grasas.</p><span class="tema-estado">En preparación</span></article>
-      <article class="tema"><span class="dato">Fermentación</span><h3>Masa madre y digestibilidad</h3><p>La fermentación larga degrada parte del gluten y reduce FODMAPs. El mecanismo existe, pero depende del tiempo, la temperatura y la cepa.</p><span class="tema-estado">En preparación</span></article>
-      <article class="tema"><span class="dato">Pan y gluten</span><h3>Sin gluten no es automáticamente saludable</h3><p>Muchos panes industriales sin gluten reemplazan con almidones refinados y gomas. El perfil nutricional puede terminar peor que el del pan de trigo.</p><span class="tema-estado">En preparación</span></article>
+      <article class="tema"><span class="dato">Aceites y grasas</span><h3>¿Se puede cocinar con aceite de oliva?</h3><p>El punto de humo no es el indicador relevante. Lo que importa es la estabilidad oxidativa, y ahí el aceite de oliva virgen extra gana por perfil de ácidos grasos y antioxidantes.</p><a href="articulos/aceite-de-oliva-punto-de-humo.html" class="tema-leer">Leer el artículo →</a></article>
+      <article class="tema"><span class="dato">Omega-3</span><h3>¿El lino pierde el omega-3 al hornear?</h3><p>El ALA es el ácido graso más inestable al calor. A 180 °C en horneado real la pérdida es significativa. Lo que queda —y qué hacer al respecto— importa saberlo.</p><a href="articulos/omega-3-lino-horneado.html" class="tema-leer">Leer el artículo →</a></article>
+      <article class="tema"><span class="dato">Frutas y verduras</span><h3>¿Sirve el bicarbonato para lavar frutas?</h3><p>El bicarbonato ayuda con residuos de contacto. Para plaguicidas sistémicos, ningún lavado sirve. La distinción entre contacto y sistémico es crítica.</p><a href="articulos/lavado-de-frutas-bicarbonato.html" class="tema-leer">Leer el artículo →</a></article>
+      <article class="tema"><span class="dato">Grasas y salud</span><h3>El colesterol total no alcanza</h3><p>Apo-B, tamaño de partícula LDL, TMAO y microbioma dan una imagen más precisa. El análisis con marcadores modernos cambia el ranking de las grasas.</p><a href="articulos/mas-alla-del-colesterol-total.html" class="tema-leer">Leer el artículo →</a></article>
+      <article class="tema"><span class="dato">Fermentación</span><h3>¿La masa madre se digiere mejor?</h3><p>La fermentación larga degrada parte del gluten y reduce FODMAPs. El mecanismo existe, pero depende del tiempo, la temperatura y la cepa.</p><a href="articulos/masa-madre-digestibilidad.html" class="tema-leer">Leer el artículo →</a></article>
+      <article class="tema"><span class="dato">Pan y gluten</span><h3>¿El pan sin gluten es más saludable?</h3><p>Muchos panes industriales sin gluten reemplazan con almidones refinados y gomas. El perfil nutricional puede terminar peor que el del pan de trigo.</p><a href="articulos/pan-sin-gluten-no-es-saludable.html" class="tema-leer">Leer el artículo →</a></article>
     </div>
     <p class="sube" style="margin-top:1.75rem;font-size:.9rem;color:var(--cal-baja)">Los temas se publican en <a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" class="enlace-vivo">@clorofilaclases</a> y en <a href="articulos.html" class="enlace-vivo">Artículos</a>.</p>
   </div>
@@ -231,10 +231,10 @@
       <p style="max-width:54ch">Preguntas que aparecen seguido en clase, respondidas con la evidencia disponible y sin alarmismo.</p>
     </div>
     <ul class="escribe sube" style="max-width:760px">
-      <li><a href="articulos/aceite-de-oliva-punto-de-humo.html">Aceite de oliva y punto de humo: el mito que no muere →</a></li>
-      <li><a href="articulos/omega-3-lino-horneado.html">¿Qué le pasa al omega-3 del lino cuando horneás? →</a></li>
-      <li><a href="articulos/lavado-de-frutas-bicarbonato.html">Lavado de frutas: bicarbonato o agua sola →</a></li>
-      <li><a href="articulos/mas-alla-del-colesterol-total.html">Más allá del colesterol total →</a></li>
+      <li><a href="articulos/aceite-de-oliva-punto-de-humo.html">¿Se puede cocinar con aceite de oliva? →</a></li>
+      <li><a href="articulos/omega-3-lino-horneado.html">¿El lino pierde el omega-3 al hornear? →</a></li>
+      <li><a href="articulos/lavado-de-frutas-bicarbonato.html">¿Sirve el bicarbonato para lavar frutas? →</a></li>
+      <li><a href="articulos/mas-alla-del-colesterol-total.html">El colesterol total no alcanza →</a></li>
     </ul>
     <p class="sube" style="margin-top:1.5rem"><a href="articulos.html" class="btn btn-linea">Ver todos los artículos →</a></p>
   </div>
