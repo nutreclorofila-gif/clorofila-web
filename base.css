@@ -232,7 +232,7 @@ strong{color:var(--cal);font-weight:600}
 .comanda-precio span{color:var(--miel)!important;font-size:1.05rem}
 .comanda-acciones{display:grid;gap:.5rem;margin-top:1rem}
 .comanda-acciones .btn{width:100%;padding-inline:1.1rem}
-@media (min-width:560px){.comanda-acciones.par{grid-template-columns:1.15fr 1fr}}
+@media (min-width:560px){.comanda-acciones.lado-a-lado{grid-template-columns:1fr 1fr}}
 .comanda-nota{font-size:.78rem;color:var(--cal-baja);line-height:1.5;margin-top:.8rem}
 
 /* Fechas seleccionables dentro de la comanda. */
