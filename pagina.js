@@ -62,12 +62,14 @@
 
   // La barra fija de reserva aparece cuando el botón de compra del hero sale
   // de pantalla, no cuando termina todo el hero: en móvil eso llega tarde.
+  // En las páginas de venta cuelga del botón del hero; en las demás, que no
+  // tienen comanda, aparece después de la primera pantalla.
   var barra = document.getElementById('sticky-cta');
   var ancla = document.querySelector('header .comanda-acciones');
-  if (barra && ancla) {
-    var evaluar = function () {
-      barra.classList.toggle('visible', ancla.getBoundingClientRect().bottom < 0);
-    };
+  if (barra) {
+    var evaluar = ancla
+      ? function () { barra.classList.toggle('visible', ancla.getBoundingClientRect().bottom < 0); }
+      : function () { barra.classList.toggle('visible', scrollY > innerHeight * 0.6); };
     addEventListener('scroll', evaluar, { passive: true });
     addEventListener('resize', evaluar, { passive: true });
     evaluar();
