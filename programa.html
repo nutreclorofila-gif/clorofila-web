@@ -1,146 +1,142 @@
 <!DOCTYPE html>
 <html lang="es-UY">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#20301f">
-  <title>Programa completo del curso — Clorofila</title>
-  <meta name="description" content="Programa completo del curso de cocina basada en plantas de Clorofila: los tres meses clase por clase, qué incluye, quién enseña, horarios y precio.">
-  <meta name="robots" content="noindex, follow">
-  <link rel="canonical" href="https://clorofila.uy/programa">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Jost:wght@300;400;500;600&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Jost:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Jost:wght@300;400;500;600&display=swap"></noscript>
-  <link rel="stylesheet" href="shared.css?v=20260819b">
-  <style>
-    .prog { max-width: 780px; margin: 0 auto; padding: 3.5rem 2rem 5rem; }
-    .prog-head { border-bottom: 1px solid var(--crema-osc); padding-bottom: 2rem; margin-bottom: 2.5rem; }
-    .prog-head h1 { font-size: clamp(2.1rem, 5vw, 3.2rem); margin-bottom: .8rem; }
-    .prog-head .lead { font-size: 1.05rem; line-height: 1.75; }
-    .prog-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
-    .prog-meta span { font-size: .74rem; font-weight: 500; letter-spacing: .04em; background: var(--verde-tinte); color: var(--verde-med); padding: .35rem .8rem; border-radius: 999px; }
-    .prog h2 { font-size: 1.55rem; margin: 2.75rem 0 1rem; }
-    .prog h3 { font-size: 1.1rem; margin-bottom: .3rem; }
-    .prog p { margin-bottom: .9rem; }
-    .mes { border-left: 2px solid var(--verde-luz); padding: 0 0 1.6rem 1.5rem; position: relative; }
-    .mes:last-child { padding-bottom: 0; }
-    .mes::before { content: ""; position: absolute; left: -7px; top: .35rem; width: 12px; height: 12px; border-radius: 50%; background: var(--acento); }
-    .mes-label { font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--acento-osc); margin-bottom: .25rem; }
-    .mes-sub { font-family: var(--ff-d); font-style: italic; color: var(--verde-med); margin-bottom: .5rem; }
-    .lista { list-style: none; display: grid; gap: .55rem; margin-bottom: 1rem; }
-    .lista li { font-size: .95rem; color: var(--texto-med); padding-left: 1.4rem; position: relative; line-height: 1.6; }
-    .lista li::before { content: "·"; position: absolute; left: .4rem; color: var(--acento); font-weight: 700; font-size: 1.2rem; line-height: 1; top: .15rem; }
-    .persona { border: 1px solid var(--crema-osc); border-radius: var(--r-lg); padding: 1.4rem; background: var(--blanco); margin-bottom: 1rem; }
-    .persona-rol { font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--acento-osc); margin-bottom: .3rem; }
-    .ficha-prog { background: var(--verde); color: var(--crema); border-radius: var(--r-lg); padding: 1.8rem; margin: 2.5rem 0; }
-    .ficha-prog h2 { color: var(--crema); margin-top: 0; }
-    .ficha-prog ul { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; margin-bottom: 1.5rem; }
-    .ficha-prog li { display: flex; flex-direction: column; gap: .1rem; }
-    .ficha-prog strong { font-size: .66rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: rgba(245,240,231,.6); }
-    .ficha-prog span { font-size: 1rem; color: var(--crema); font-weight: 500; }
-    .prog-acciones { display: flex; flex-wrap: wrap; gap: .8rem; }
-    .prog-print { background: none; border: 1px solid var(--crema-osc); border-radius: 26px; padding: .6rem 1.3rem; font-size: .82rem; color: var(--texto-med); cursor: pointer; }
-    .prog-print:hover { border-color: var(--verde-med); color: var(--verde); }
-    @media (max-width: 560px) { .ficha-prog ul { grid-template-columns: 1fr; } .prog-acciones .btn { width: 100%; justify-content: center; } }
-    @media print {
-      .nav, .footer, .prog-acciones, .prog-print, .cookie-banner, .skip-link { display: none !important; }
-      .prog { padding: 0; max-width: none; }
-      .ficha-prog { background: none; color: var(--texto); border: 1px solid #ccc; }
-      .ficha-prog h2, .ficha-prog span { color: var(--texto); }
-      .ficha-prog strong { color: #666; }
-    }
-  </style>
-  <!-- Analítica con consentimiento (GA4 + Meta Pixel) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    window.loadAnalytics = function () {
-      if (window.__analyticsLoaded) return;
-      if (location.hostname !== 'clorofila.uy' && location.hostname !== 'www.clorofila.uy') return;
-      window.__analyticsLoaded = true;
-      var ga = document.createElement('script');
-      ga.async = true;
-      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV';
-      document.head.appendChild(ga);
-      gtag('js', new Date());
-      gtag('config', 'G-BBLJT4TYCV');
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-      document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init','2002873889966452');
-      fbq('track','PageView');
-    };
-    if (localStorage.getItem('cookieConsent') === 'accepted') window.loadAnalytics();
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0E1A13">
+<title>Programa completo del curso — Clorofila Montevideo</title>
+<meta name="description" content="El programa completo del curso presencial de cocina saludable de Clorofila: tres meses, 12 clases, contenidos mes a mes, qué incluye, horarios y precio.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://clorofila.uy/programa">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://clorofila.uy/programa">
+<meta property="og:title" content="Programa completo del curso — Clorofila">
+<meta property="og:description" content="Tres meses, 12 clases presenciales en Parque Rodó. Contenidos mes a mes, qué incluye, horarios y precio.">
+<meta property="og:image" content="https://clorofila.uy/og/og-curso.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Alumnos trabajando la masa en una clase del curso de Clorofila">
+<meta name="twitter:image:alt" content="Alumnos trabajando la masa en una clase del curso de Clorofila">
+<meta property="og:locale" content="es_UY">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://clorofila.uy/og/og-curso.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="base.css?v=2">
+<style>
+/* /programa — el documento. Está pensado para leerse entero y también
+   para imprimirse o guardarse en PDF, así que la columna manda. */
+.prog{max-width:760px;margin-inline:auto;padding-block:clamp(2rem,4vw,3.25rem) clamp(3rem,6vw,5rem)}
+.prog h1{font-size:clamp(2.1rem,4.6vw,3.2rem);margin-block:.7rem .9rem}
+.prog .bajada{color:var(--cal-med);margin-bottom:1.5rem}
+.prog h2{font-size:clamp(1.4rem,2.6vw,1.9rem);margin-block:2.75rem 1rem;padding-top:1.5rem;border-top:1px solid var(--linea)}
+.prog h3{font-size:1.2rem;margin-block:.3rem .5rem}
+.prog p{color:var(--cal-med)}
+.prog-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem}
+.prog-meta span{border:1px solid var(--linea);border-radius:999px;padding:.4rem .85rem;font-family:var(--dato);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cal-med)}
+.mes-prog{border-left:1px solid var(--linea-fuerte);padding-left:1.25rem;margin-bottom:1.75rem}
+.mes-prog .dato{display:block;margin-bottom:.2rem}
+.mes-prog .detalle{font-size:.92rem;color:var(--cal);margin-bottom:.4rem}
+.lista li{border-top:1px solid var(--linea);padding-block:.7rem;font-size:.94rem;color:var(--cal-med);display:flex;gap:.8rem}
+.lista li::before{content:"—";color:var(--brote);flex-shrink:0}
+.persona{border:1px solid var(--linea);border-radius:var(--r-lg);padding:1.4rem;background:var(--musgo);margin-bottom:1rem}
+.persona-rol{font-family:var(--dato);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--miel);margin-bottom:.3rem}
+.persona p{font-size:.92rem}
+.prog-acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
+.prog-guardar{border:1px solid var(--linea-fuerte);border-radius:999px;padding:.85rem 1.6rem;font-size:.95rem;font-weight:600;color:var(--cal);min-height:48px;display:inline-flex;align-items:center;transition:border-color .2s}
+.prog-guardar:hover{border-color:var(--cal)}
+@media print{
+  .nav,.pie,.cookie-banner,.prog-acciones{display:none}
+  body{background:#fff;color:#111}
+  .prog h1,.prog h2,.prog h3,.comanda-datos li span{color:#111}
+  .comanda{box-shadow:none;background:#f6f6f2;border-color:#ccc}
+  .comanda::before,.comanda::after{display:none}
+}
+</style>
+<!-- Analítica con consentimiento (GA4 + Meta Pixel) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.loadAnalytics = function () {
+    if (window.__analyticsLoaded) return;
+    if (location.hostname !== 'clorofila.uy' && location.hostname !== 'www.clorofila.uy') return;
+    window.__analyticsLoaded = true;
+    var ga = document.createElement('script'); ga.async = true;
+    ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV';
+    document.head.appendChild(ga);
+    gtag('js', new Date()); gtag('config', 'G-BBLJT4TYCV');
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','2002873889966452'); fbq('track','PageView');
+  };
+  if (localStorage.getItem('cookieConsent') === 'accepted') window.loadAnalytics();
+</script>
 </head>
 <body data-producto="programa">
-<a href="#main-content" class="skip-link">Ir al contenido principal</a>
+<a href="#principal" class="saltar">Ir al contenido principal</a>
 
-<!--#include nav active="curso.html"-->
-<nav class="nav" aria-label="Principal">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo"><span>Clorofila</span><span>Estudio de Cocina</span></a>
-    <button type="button" class="nav-close" id="nav-close" aria-label="Cerrar menú">✕</button>
+<nav class="nav" id="nav" aria-label="Principal">
+  <div class="nav-caja">
+    <a href="index.html" class="marca"><b>Clorofila</b><span>Estudio de cocina</span></a>
+    <button type="button" class="cerrar-menu" id="cerrar-menu" aria-label="Cerrar menú">✕</button>
     <ul class="nav-links" id="nav-links">
-      <li><a href="curso.html" class="active" aria-current="page">El curso</a></li>
       <li><a href="tapeo.html">Tapeo</a></li>
+      <li><a href="curso.html">Curso</a></li>
       <li><a href="talleres.html">Talleres</a></li>
-      <li><a href="articulos.html">Artículos</a></li>
-      <li><a href="leonardo.html">Leonardo</a></li>
-      <li><a href="servicios.html">Trabajemos juntos</a></li>
       <li><a href="sobre.html">Sobre</a></li>
       <li><a href="contacto.html">Contacto</a></li>
-      <li><a href="curso.html" class="nav-cta">Ver el curso →</a></li>
+      <li><a href="curso.html" class="nav-cta">Ver el curso</a></li>
     </ul>
-    <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
+    <button class="hamburguesa" id="hamburguesa" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
   </div>
 </nav>
-<!--#include-end nav-->
 
-<main id="main-content">
-<article class="prog">
-  <header class="prog-head">
-    <span class="section-label">Programa completo</span>
-    <h1>Curso de cocina basada en plantas</h1>
-    <p class="lead">Tres meses con una progresión clara: 12 clases presenciales en grupos reducidos, en Parque Rodó. Cada mes construye sobre el anterior. No enseñamos recetas — enseñamos a entender.</p>
-    <div class="prog-meta">
-      <span>3 meses · 12 clases</span>
-      <span>Presencial · Parque Rodó</span>
-      <span>Grupos reducidos</span>
-      <span>Edición <!--o:curso.edicion-->Agosto 2026<!--/o--></span>
-    </div>
-  </header>
+<main id="principal">
+<article class="env prog">
+
+  <span class="senal">Programa completo</span>
+  <h1>Curso presencial de cocina saludable</h1>
+  <p class="bajada">Tres meses con una progresión clara: 12 clases presenciales en grupos reducidos, en Parque Rodó. Cada mes construye sobre el anterior. No enseñamos recetas: enseñamos a entender.</p>
+  <div class="prog-meta">
+    <span>3 meses · 12 clases</span>
+    <span>Presencial · Parque Rodó</span>
+    <span>Grupos reducidos</span>
+    <span>Edición <!--o:curso.edicion-->Agosto 2026<!--/o--></span>
+  </div>
 
   <h2>El recorrido, mes a mes</h2>
-  <div class="mes">
-    <p class="mes-label">Mes 1 · Fundamentos</p>
+  <div class="mes-prog">
+    <span class="dato">Mes 1 · Fundamentos</span>
     <h3>Las bases que lo cambian todo</h3>
-    <p class="mes-sub">Técnicas de corte y organización · Bases vegetales · Batidos verdes y sopas · Primera fermentación.</p>
+    <p class="detalle">Técnicas de corte y organización · Bases vegetales · Batidos verdes y sopas · Primera fermentación.</p>
     <p>Lo que debería saber cualquier cocinero antes de seguir una receta.</p>
   </div>
-  <div class="mes">
-    <p class="mes-label">Mes 2 · Profundización</p>
+  <div class="mes-prog">
+    <span class="dato">Mes 2 · Profundización</span>
     <h3>Procesos vivos y complejidad</h3>
-    <p class="mes-sub">Kéfir, kombucha, kimchi · Cocina con hongos · Platos salados complejos · Quesos vegetales · Seguridad alimentaria en fermentaciones.</p>
-    <p>El por qué detrás de cada proceso.</p>
+    <p class="detalle">Kéfir, kombucha, kimchi · Cocina con hongos · Platos salados complejos · Quesos vegetales · Seguridad alimentaria en fermentaciones.</p>
+    <p>El porqué detrás de cada proceso.</p>
   </div>
-  <div class="mes">
-    <p class="mes-label">Mes 3 · Integración</p>
+  <div class="mes-prog">
+    <span class="dato">Mes 3 · Integración</span>
     <h3>Autonomía y elaboraciones</h3>
-    <p class="mes-sub">Pastelería basada en plantas · Sushi vegetal · Pastas y dal · Menú completo · Recetario final.</p>
-    <p>El mes para demostrar que ya cocinás con criterio propio.</p>
+    <p class="detalle">Pastelería basada en plantas · Sushi vegetal · Pastas y dal · Menú completo · Recetario final.</p>
+    <p>El mes para comprobar que ya cocinás con criterio propio.</p>
   </div>
 
   <h2>Los contenidos centrales</h2>
-  <p>Se trabajan otras elaboraciones según el desarrollo de cada grupo.</p>
+  <p style="margin-bottom:1rem">Se trabajan otras elaboraciones según cómo avanza cada grupo.</p>
   <ul class="lista">
     <li>Técnicas y bases vegetales</li>
     <li>Fermentación aplicada</li>
@@ -157,7 +153,7 @@
     <li>Degustación de las preparaciones en cada encuentro</li>
     <li>Recetario completo al finalizar el curso</li>
     <li>Posibilidad de recuperar clases</li>
-    <li>Participación de Lic. Nut. Micaela Gago como referente nutricional</li>
+    <li>Participación de la Lic. Nut. Micaela Gago como referente nutricional</li>
   </ul>
 
   <h2>Qué te llevás</h2>
@@ -180,45 +176,61 @@
     <p>Licenciada en Nutrición y terapeuta nutricional. Articula alimentación, cocina y bienestar desde una mirada integradora que va más allá de los macronutrientes. Desde hace cuatro años acompaña procesos integrando Ayurveda, fitoterapia y nutrición informada en trauma.</p>
   </div>
 
-  <div class="ficha-prog" data-estado-de="curso" data-estado="abierto">
-    <h2 style="margin-top:0">Horarios y precio</h2>
-    <ul>
+  <h2>Horarios y precio</h2>
+  <div class="comanda" data-estado-de="curso" data-estado="abierto">
+    <div class="comanda-cabeza">
+      <span class="comanda-titulo">Inscripción</span>
+      <span class="comanda-estado"><!--o:curso.edicion-->Agosto 2026<!--/o--></span>
+    </div>
+    <ul class="comanda-datos">
       <li><strong>Grupo abierto</strong><span><!--o:curso.grupos_abiertos_texto-->Sábados 15:00–18:30<!--/o--></span></li>
       <li><strong>Inicio</strong><span><!--o:curso.inicio_texto-->Arranca el 22 de agosto<!--/o--></span></li>
-      <li><strong>Precio total</strong><span><!--o:curso.precio_total-->$12.200<!--/o--></span></li>
+      <li class="comanda-precio"><strong>Precio total</strong><span><!--o:curso.precio_total-->$12.200<!--/o--></span></li>
       <li><strong>En cuotas</strong><span><!--o:curso.precio_cuotas-->3 cuotas de $4.800<!--/o--></span></li>
       <li><strong>Tarjeta</strong><span><!--o:curso.precio_tarjeta-->hasta 12 cuotas de $1.016<!--/o--></span></li>
       <li><strong>Lugar</strong><span>Maldonado 1976 esq. Blanes, Parque Rodó</span></li>
     </ul>
-    <p style="color:rgba(245,240,231,.7);font-size:.85rem;margin-bottom:1.2rem">Transferencia · Abitab · RedPagos · MercadoPago. Ahorrás <!--o:curso.ahorro-->$2.200<!--/o--> pagando el curso completo.</p>
-    <div class="prog-acciones">
-      <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%2C%20quiero%20reservar%20un%20lugar%20en%20el%20curso.%20S%C3%A1bados%2015%3A00%E2%80%9318%3A30." target="_blank" rel="noopener noreferrer" class="btn btn-light" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar →<!--/o--></a>
-      <a href="https://wa.me/59894064148?text=Le%C3%AD%20el%20programa%20del%20curso%20y%20tengo%20una%20consulta." target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light" data-producto="curso">💬 Consultar por WhatsApp</a>
+    <p class="comanda-nota">Transferencia · Abitab · RedPagos · MercadoPago. Ahorrás <!--o:curso.ahorro-->$2.200<!--/o--> pagando el curso completo.</p>
+    <div class="comanda-acciones">
+      <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%2C%20quiero%20reservar%20un%20lugar%20en%20el%20curso.%20S%C3%A1bados%2015%3A00%E2%80%9318%3A30." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar →<!--/o--></a>
+      <a href="https://wa.me/59894064148?text=Le%C3%AD%20el%20programa%20del%20curso%20y%20tengo%20una%20consulta." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="curso">Tengo una consulta</a>
     </div>
   </div>
 
   <div class="prog-acciones">
-    <button type="button" class="prog-print" onclick="window.print()">Guardar o imprimir este programa</button>
-    <a href="curso.html" class="prog-print" style="text-decoration:none">Ver la página del curso →</a>
+    <button type="button" class="prog-guardar" id="prog-guardar">Guardar o imprimir este programa</button>
+    <a href="curso.html" class="prog-guardar">Ver la página del curso →</a>
   </div>
+
 </article>
 </main>
 
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="index.html" class="logo">Clorofila</a>
-      <p class="tagline">No enseñamos recetas.<br>Enseñamos a <s class="tachada">entender</s> entender.</p>
-      <p class="sub">Estudio de cocina · Parque Rodó, Montevideo · Desde 2013</p>
+<footer class="pie">
+  <div class="pie-caja">
+    <div class="pie-marca">
+      <a href="index.html" class="marca"><b>Clorofila</b><span>Estudio de cocina</span></a>
+      <p class="pie-lema">No enseñamos recetas. Enseñamos a entender.</p>
+      <p class="dato" style="color:var(--cal-baja);text-transform:none;letter-spacing:.02em">Maldonado 1976 esq. Blanes · Parque Rodó · Montevideo</p>
     </div>
-    <div><h2>Propuesta</h2><ul><li><a href="curso.html">El curso</a></li><li><a href="talleres.html">Talleres</a></li><li><a href="tapeo.html">Cena y Taller de Tapeo</a></li><li><a href="articulos.html">Artículos</a></li></ul></div>
-    <div><h2>Clorofila</h2><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
-    <div><h2>Contacto</h2><ul><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://wa.me/59894064148">094 064 148</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">@clorofilaclases</a></li></ul></div>
+    <div><h2>Propuestas</h2><ul><li><a href="tapeo.html">Cena y Taller de Tapeo</a></li><li><a href="curso.html">El curso</a></li><li><a href="pastas.html">Pastas sin gluten</a></li><li><a href="talleres.html">Todos los talleres</a></li></ul></div>
+    <div><h2>Clorofila</h2><ul><li><a href="leonardo.html">Leonardo Lemes</a></li><li><a href="sobre.html">Sobre nosotros</a></li><li><a href="articulos.html">Artículos</a></li><li><a href="servicios.html">Trabajemos juntos</a></li></ul></div>
+    <div><h2>Contacto</h2><ul><li><a href="https://wa.me/59894064148" target="_blank" rel="noopener noreferrer">094 064 148</a></li><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">@clorofilaclases</a></li></ul></div>
   </div>
-  <div class="footer-bottom">© 2026 Clorofila · Estudio de Cocina · Montevideo, Uruguay</div>
+  <p class="pie-fin">© 2026 Clorofila · Montevideo, Uruguay</p>
 </footer>
 
-<script src="nav.js" defer></script>
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+  <p>Usamos cookies para mejorar tu experiencia. <a href="contacto.html">Más info</a></p>
+  <div class="cookie-banner-actions">
+    <button type="button" id="cookie-decline">Rechazar</button>
+    <button type="button" id="cookie-accept">Aceptar</button>
+  </div>
+</div>
+
 <script src="track.js" defer></script>
+<script src="pagina.js?v=1" defer></script>
+<script>
+document.getElementById('prog-guardar').addEventListener('click',function(){print()});
+</script>
 </body>
 </html>
