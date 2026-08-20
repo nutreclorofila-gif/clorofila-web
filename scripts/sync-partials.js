@@ -7,9 +7,8 @@ const checkMode = process.argv.includes('--check');
 // Páginas ya migradas al diseño nuevo (base.css): llevan su propio nav y no
 // se sincronizan con partials/nav.html, que sigue sirviendo al diseño viejo.
 // Cuando esté migrado todo el sitio, nav.html pasa al markup nuevo y vuelven acá.
-// Migradas: index.html, tapeo.html
+// Migradas: index.html, tapeo.html, curso.html
 const ROOT_PAGES = [
-  'curso.html',
   'talleres.html',
   'gracias.html',
   'programa.html',
