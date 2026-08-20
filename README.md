@@ -18,6 +18,12 @@ Todos los links importantes llevan UTM para poder medir qué canal vende.
 
 ## Si tocás shared.css
 
+La regla global de imágenes es `img{display:block;max-width:100%;height:auto}`.
+El `height:auto` no es decorativo: sin él, el atributo `height` del HTML queda
+como altura fija y la foto se **deforma** al angostarse el contenedor. Si alguna
+vez se toca esa regla, revisar que las fotos no queden estiradas.
+
+
 `shared.css` se sirve con caché de un año (`immutable`). Si cambiás el CSS y no
 cambiás el `?v=` con el que se pide en el HTML, **quien ya visitó el sitio sigue
 viendo el CSS viejo**. Al editarlo, actualizá la versión en todas las páginas:
