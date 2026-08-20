@@ -7,22 +7,13 @@ const checkMode = process.argv.includes('--check');
 // Páginas ya migradas al diseño nuevo (base.css): llevan su propio nav y no
 // se sincronizan con partials/nav.html, que sigue sirviendo al diseño viejo.
 // Cuando esté migrado todo el sitio, nav.html pasa al markup nuevo y vuelven acá.
-// Migradas: index.html, tapeo.html, curso.html, pastas.html, talleres.html, 404.html, contacto.html, sobre.html, leonardo.html, servicios.html, articulos.html, programa.html, gracias.html
+// Migrado todo el sitio al diseno nuevo: ninguna pagina usa ya
+// partials/nav.html, asi que no queda nada que sincronizar. Las listas se
+// dejan vacias a proposito, no por olvido.
 const ROOT_PAGES = [
 ];
 
-const ARTICLE_PAGES = [
-  'articulos/aceite-de-oliva-punto-de-humo.html',
-  'articulos/omega-3-lino-horneado.html',
-  'articulos/lavado-de-frutas-bicarbonato.html',
-  'articulos/mas-alla-del-colesterol-total.html',
-  'articulos/masa-madre-digestibilidad.html',
-  'articulos/pan-sin-gluten-no-es-saludable.html',
-  'articulos/como-funciona-la-fermentacion.html',
-  'articulos/endulzantes-guia-sin-sesgo.html',
-  'articulos/proteina-vegetal-mitos-realidades.html',
-  'articulos/remojo-legumbres.html',
-];
+const ARTICLE_PAGES = [];
 
 const files = [...ROOT_PAGES, ...ARTICLE_PAGES];
 
