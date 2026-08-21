@@ -69,7 +69,9 @@ t.estado_texto =
   'Próxima fecha a confirmar';
 
 t.precio_texto = t.precio || '';
-t.tiene_precio = t.precio ? 'si' : 'no';
+// Sin fecha confirmada no se muestra precio: no está garantizado para la
+// próxima edición aunque haya quedado cargado el de la anterior.
+t.tiene_precio = (t.estado !== 'sin-fecha' && t.precio) ? 'si' : 'no';
 // Hay fecha publicada o no: lo usa /talleres para marcar en el índice
 // cuáles se pueden comprar hoy.
 t.tiene_fecha = (t.estado !== 'sin-fecha' && t.fecha_texto) ? 'si' : 'no';
@@ -179,7 +181,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
                 : (w.cupos_total ? 'Solo ' + w.cupos_total + ' lugares' : 'Cupos limitados');
   w.horario_texto = w.hora || '';
   w.precio_texto = w.precio || '';
-  w.tiene_precio = w.precio ? 'si' : 'no';
+  w.tiene_precio = (w.estado !== 'sin-fecha' && w.precio) ? 'si' : 'no';
   w.tiene_fecha = (w.estado !== 'sin-fecha' && w.fecha_texto) ? 'si' : 'no';
   w.tiene_segunda = (w.segunda_fecha && w.segunda_fecha.texto) ? 'si' : 'no';
   w.segunda_texto = (w.segunda_fecha && w.segunda_fecha.texto)
