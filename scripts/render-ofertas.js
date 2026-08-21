@@ -94,9 +94,11 @@ t.resumen_texto =
 
 // Si hay link de venta online, ese es el botón principal: se paga solo,
 // sin esperar respuesta por WhatsApp. El WhatsApp queda como segunda opción.
-t.cta_link = t.link_compra || t.wa_link;
+// Sin fecha, el link de venta de la edición anterior queda mudo: se ignora
+// aunque siga en el JSON, para no vender una entrada que ya no existe.
+t.cta_link = (t.estado !== 'sin-fecha' && t.link_compra) ? t.link_compra : t.wa_link;
 t.cta_texto =
-  !t.link_compra ? t.wa_texto :
+  (t.estado === 'sin-fecha' || !t.link_compra) ? t.wa_texto :
   t.estado === 'agotado' ? 'Ver si se libera un lugar →' :
   'Comprar mi entrada →';
 t.tiene_segunda = t.segunda_fecha && t.segunda_fecha.texto ? 'si' : 'no';

@@ -97,6 +97,17 @@
       return;
     }
 
+    // Clic al botón de compra directa (Tikzet): es el "inicio de compra"
+    // real del embudo. Sin esto, el CTA que más vende no dejaba ningún rastro.
+    var compra = e.target.closest('a[href*="tikzet.com"]');
+    if (compra) {
+      var prodCompra = productoDe(compra);
+      ga('begin_checkout', prodCompra);
+      ga('click_comprar', prodCompra);
+      meta('InitiateCheckout', prodCompra);
+      return;
+    }
+
     var cta = e.target.closest('.nav-cta, .cta-main, .btn-accent');
     if (cta) {
       ga('click_reservar', productoDe(cta));
@@ -116,29 +127,4 @@
       meta('CompleteRegistration', prod);
     }
   });
-
-  /* --------------------------------------------------------------
-     Red de seguridad de las animaciones de entrada: garantiza que
-     ninguna foto ni bloque quede oculto para siempre si el navegador
-     restaura el scroll, si se entra por un ancla (#seccion) o si se
-     scrollea rápido antes de que el IntersectionObserver alcance a
-     dispararse.
-     -------------------------------------------------------------- */
-  function revealInView() {
-    var pending = document.querySelectorAll('.fade-up:not(.visible), .reveal-img:not(.visible)');
-    if (!pending.length) {
-      window.removeEventListener('scroll', revealInView);
-      return;
-    }
-    var h = window.innerHeight;
-    for (var i = 0; i < pending.length; i++) {
-      if (pending[i].getBoundingClientRect().top < h) pending[i].classList.add('visible');
-    }
-  }
-  window.addEventListener('scroll', revealInView, { passive: true });
-  window.addEventListener('load', revealInView);
-  setTimeout(function () {
-    var all = document.querySelectorAll('.fade-up:not(.visible), .reveal-img:not(.visible)');
-    for (var i = 0; i < all.length; i++) all[i].classList.add('visible');
-  }, 2600);
 })();

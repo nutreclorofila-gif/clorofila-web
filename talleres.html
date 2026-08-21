@@ -132,7 +132,7 @@
   <nav class="indice" aria-label="Ir a un taller">
     <span class="indice-rotulo">Ir a</span>
     <a href="#pastas-sin-gluten" data-estado-de="talleres.pastas-sin-gluten" data-estado="abierto" data-set="data-abierto=talleres.pastas-sin-gluten.tiene_fecha" data-abierto="si">Pastas sin gluten</a>
-    <a href="#tapeo" data-estado-de="tapeo" data-estado="abierto" data-set="data-abierto=tapeo.tiene_fecha" data-abierto="si">Cena y Taller de Tapeo</a>
+    <a href="#tapeo" data-estado-de="tapeo" data-estado="sin-fecha" data-set="data-abierto=tapeo.tiene_fecha" data-abierto="no">Cena y Taller de Tapeo</a>
     <a href="#fermentacion">Fermentación</a>
     <a href="#pan-sin-gluten">Pan sin gluten</a>
     <a href="#quesos-vegetales">Quesos vegetales</a>
@@ -161,18 +161,18 @@
       <figure class="taller-foto"><picture><source srcset="img-clase-masa-700.webp 700w, img-clase-masa.webp 975w" sizes="(max-width: 820px) calc(100vw - 3rem), 38vw" type="image/webp"><img src="img-clase-masa.jpg" width="975" height="1300" alt="Trabajo de masa sin gluten en Clorofila" loading="lazy"></picture></figure>
     </article>
 
-    <article class="taller sube" data-estado-de="tapeo" data-estado="abierto">
+    <article class="taller sube" data-estado-de="tapeo" data-estado="sin-fecha">
       <div>
         <span class="senal">Cocina y mesa compartida</span>
         <h2 id="tapeo">Cena y Taller de Tapeo</h2>
         <p class="taller-cuerpo">Una experiencia distinta: cocinás vos, armamos juntos una mesa de tapas basada en plantas y después nos sentamos a disfrutarla, con dos copas de vino o kombucha. Para quienes disfrutan tanto del proceso como de la mesa.</p>
         <div class="taller-etiquetas">
-          <span class="taller-etiqueta taller-estado"><!--o:tapeo.estado_texto-->Inscripciones abiertas<!--/o--></span>
+          <span class="taller-etiqueta taller-estado"><!--o:tapeo.estado_texto-->Próxima fecha a confirmar<!--/o--></span>
           <span class="taller-etiqueta">Una noche</span>
           <span class="taller-etiqueta">Grupo chico</span>
           <span class="taller-etiqueta">Todo incluido</span>
         </div>
-        <p class="taller-linea"><!--o:tapeo.fecha_texto-->jueves 20 de agosto<!--/o--> · <!--o:tapeo.horario_texto-->19:00 a 22:30 h<!--/o--> · <!--o:tapeo.precio_texto-->$2.600 por persona<!--/o--></p>
+        <p class="taller-linea"><!--o:tapeo.fecha_texto-->Sin fecha confirmada<!--/o--> · <!--o:tapeo.horario_texto-->19:00 a 22:30 h<!--/o--> · <!--o:tapeo.precio_texto-->$2.600 por persona<!--/o--></p>
         <a href="tapeo.html" class="btn btn-primario" data-producto="tapeo">Ver la experiencia completa →</a>
       </div>
       <figure class="taller-foto"><picture><source srcset="img-tapeo-cocinando-700.webp 700w, img-tapeo-cocinando.webp 1200w" sizes="(max-width: 820px) calc(100vw - 3rem), 38vw" type="image/webp"><img src="img-tapeo-cocinando.jpg" width="1200" height="675" alt="El grupo cocinando en la Cena y Taller de Tapeo" loading="lazy"></picture></figure>
@@ -273,12 +273,12 @@
       <h2>Preguntas frecuentes</h2>
     </div>
     <div class="faq sube">
-      <div class="faq-item"><button type="button" class="faq-q">¿Cuánto dura un taller? <span class="faq-icon">+</span></button><p class="faq-a">Una jornada. Son encuentros intensivos de un solo día, con una técnica central por taller y un ritmo más relajado que el curso de tres meses.</p></div>
-      <div class="faq-item"><button type="button" class="faq-q">¿Necesito experiencia previa? <span class="faq-icon">+</span></button><p class="faq-a">No. Los talleres se trabajan desde el proceso: qué pasa, por qué pasa y cómo controlarlo. Se puede llegar sin haber cocinado nunca eso antes.</p></div>
-      <div class="faq-item"><button type="button" class="faq-q">¿Los ingredientes están incluidos? <span class="faq-icon">+</span></button><p class="faq-a">Sí, y te llevás lo que elaborás. Los ingredientes y materiales están incluidos en cada taller.</p></div>
-      <div class="faq-item"><button type="button" class="faq-q">¿Son veganos? <span class="faq-icon">+</span></button><p class="faq-a">Sí. Todo lo que se cocina en Clorofila es 100% vegetal, sin ingredientes de origen animal, así que también funcionan si sos vegetariano. Nosotros lo llamamos cocina basada en plantas porque el foco está en la técnica, no en la etiqueta.</p></div>
-      <div class="faq-item"><button type="button" class="faq-q">¿Cuándo son las próximas fechas? <span class="faq-icon">+</span></button><p class="faq-a">Los que tienen fecha abierta aparecen primero en esta página, con día, hora y precio. El resto se abre según la demanda y avisamos con anticipación a quienes dejaron su interés. El Domingo de Buncheo es una vez al mes y cada fecha se anuncia en Instagram.</p></div>
-      <div class="faq-item"><button type="button" class="faq-q">¿Dónde se hacen? <span class="faq-icon">+</span></button><p class="faq-a">En el estudio de Clorofila, en Maldonado 1976 esquina Blanes, Parque Rodó, Montevideo.</p></div>
+      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">¿Cuánto dura un taller? <span class="faq-icon">+</span></button><p class="faq-a">Una jornada. Son encuentros intensivos de un solo día, con una técnica central por taller y un ritmo más relajado que el curso de tres meses.</p></div>
+      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">¿Necesito experiencia previa? <span class="faq-icon">+</span></button><p class="faq-a">No. Los talleres se trabajan desde el proceso: qué pasa, por qué pasa y cómo controlarlo. Se puede llegar sin haber cocinado nunca eso antes.</p></div>
+      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">¿Los ingredientes están incluidos? <span class="faq-icon">+</span></button><p class="faq-a">Sí, y te llevás lo que elaborás. Los ingredientes y materiales están incluidos en cada taller.</p></div>
+      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">¿Son veganos? <span class="faq-icon">+</span></button><p class="faq-a">Sí. Todo lo que se cocina en Clorofila es 100% vegetal, sin ingredientes de origen animal, así que también funcionan si sos vegetariano. Nosotros lo llamamos cocina basada en plantas porque el foco está en la técnica, no en la etiqueta.</p></div>
+      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">¿Cuándo son las próximas fechas? <span class="faq-icon">+</span></button><p class="faq-a">Los que tienen fecha abierta aparecen primero en esta página, con día, hora y precio. El resto se abre según la demanda y avisamos con anticipación a quienes dejaron su interés. El Domingo de Buncheo es una vez al mes y cada fecha se anuncia en Instagram.</p></div>
+      <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">¿Dónde se hacen? <span class="faq-icon">+</span></button><p class="faq-a">En el estudio de Clorofila, en Maldonado 1976 esquina Blanes, Parque Rodó, Montevideo.</p></div>
     </div>
   </div>
 </section>
@@ -323,8 +323,8 @@
   </div>
 </div>
 
-<script src="track.js" defer></script>
-<script src="pagina.js?v=1" defer></script>
+<script src="track.js?v=20260821" defer></script>
+<script src="pagina.js?v=2" defer></script>
 <script>
 // En esta página la barra fija no cuelga de un hero con botón de compra:
 // aparece cuando el índice de talleres ya quedó atrás.

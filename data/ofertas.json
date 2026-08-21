@@ -1,10 +1,10 @@
 {
   "_leeme": "Este archivo manda sobre las fechas, precios y estado de cada propuesta. Editalo y publicá: la web se regenera sola. Ver docs/editar-ofertas.md antes de tocarlo. No se publica cuántos lugares quedan: es un dato que depende de que alguien lo actualice a mano.",
   "tapeo": {
-    "estado": "abierto",
+    "estado": "sin-fecha",
     "_estados_posibles": "sin-fecha | abierto | ultimos | agotado",
-    "fecha_iso": "2026-08-20",
-    "fecha_texto": "jueves 20 de agosto",
+    "fecha_iso": "",
+    "fecha_texto": "Sin fecha confirmada",
     "hora": "19:00",
     "hora_fin": "22:30",
     "precio": "$2.600 por persona",
@@ -34,12 +34,7 @@
         "que": "Dos copas de vino o kombucha",
         "detalle": "Incluidas, para acompañar la mesa."
       }
-    ],
-    "link_compra": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila",
-    "segunda_fecha": {
-      "texto": "viernes 21 de agosto",
-      "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-4384"
-    }
+    ]
   },
   "curso": {
     "estado": "abierto",

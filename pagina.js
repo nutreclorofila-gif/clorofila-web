@@ -57,7 +57,10 @@
   }
 
   document.querySelectorAll('.faq-q').forEach(function (b) {
-    b.addEventListener('click', function () { b.parentElement.classList.toggle('open'); });
+    b.addEventListener('click', function () {
+      var abierto = b.parentElement.classList.toggle('open');
+      b.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+    });
   });
 
   // La barra fija de reserva aparece cuando el botón de compra del hero sale
