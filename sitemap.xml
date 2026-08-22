@@ -63,7 +63,18 @@
     <image:image>
       <image:loc>https://clorofila.uy/og/og-talleres.jpg</image:loc>
       <image:title>Talleres de Cocina — Clorofila Montevideo</image:title>
-      <image:caption>Mesa de tapas basada en plantas del taller de tapeo de Clorofila</image:caption>
+      <image:caption>Trabajo de masa en un taller de Clorofila, Parque Rodó</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/experiencias</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-tapeo.jpg</image:loc>
+      <image:title>Experiencias gastronómicas — Clorofila Montevideo</image:title>
+      <image:caption>La mesa larga de Clorofila durante la Cena y Taller de Tapeo</image:caption>
     </image:image>
   </url>
   <url>

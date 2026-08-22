@@ -8,14 +8,14 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#0E1A13">
-<title>Clorofila — Estudio de Cocina en Montevideo</title>
-<meta name="description" content="Aprendé a cocinar entendiendo lo que hacés. Estudio de cocina en Parque Rodó, Montevideo: cenas, talleres intensivos y un curso presencial de tres meses.">
+<title>Clorofila — Estudio de Cocina Basada en Plantas en Montevideo</title>
+<meta name="description" content="Estudio de cocina basada en plantas en Parque Rodó, Montevideo: curso presencial de tres meses, talleres intensivos y experiencias gastronómicas.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://clorofila.uy/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://clorofila.uy/">
-<meta property="og:title" content="Clorofila — Estudio de Cocina en Montevideo">
-<meta property="og:description" content="Aprendé a cocinar entendiendo lo que hacés. Cenas, talleres intensivos y un curso de tres meses en Parque Rodó, Montevideo.">
+<meta property="og:title" content="Clorofila — Estudio de Cocina Basada en Plantas en Montevideo">
+<meta property="og:description" content="Estudio de cocina basada en plantas en Parque Rodó, Montevideo: curso presencial de tres meses, talleres intensivos y experiencias gastronómicas.">
 <meta property="og:image" content="https://clorofila.uy/og/og-home.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -88,6 +88,27 @@
 .prop p{font-size:.94rem;color:var(--cal-med);max-width:40ch;margin-bottom:1.1rem}
 .prop-pie{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 @media (max-width:820px){.propuestas{grid-template-columns:1fr}}
+.prop-solo{max-width:620px;margin-inline:auto}
+
+/* ---------- ARTÍCULOS (home) ---------- */
+.articulos-tira{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;margin-top:2.5rem}
+.articulo-mini{border-top:1px solid var(--linea);padding-top:1.1rem}
+.articulo-mini h3{font-size:1.08rem;margin-bottom:.5rem}
+.articulo-mini h3 a{color:var(--cal);letter-spacing:-.01em}
+.articulo-mini h3 a:hover{color:var(--brote)}
+.articulo-mini p{font-size:.88rem;color:var(--cal-med)}
+
+/* ---------- CURSO DESTACADO: el producto principal ---------- */
+.curso-destacado{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.curso-destacado-foto{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;box-shadow:0 32px 70px rgba(0,0,0,.5)}
+.curso-destacado-foto img{width:100%;height:100%;object-fit:cover}
+.curso-transforma{display:grid;grid-template-columns:1fr 1fr;gap:.4rem 1.5rem;margin:1.75rem 0}
+.curso-transforma li{font-size:.9rem;color:var(--cal-med);padding-block:.5rem;border-top:1px solid var(--linea);display:flex;gap:.6rem}
+.curso-transforma li::before{content:"—";color:var(--brote);flex-shrink:0}
+.curso-destacado-pie{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin-top:1.5rem}
+.curso-destacado-precio{font-family:var(--dato);font-size:1.05rem;color:var(--miel)}
+.curso-destacado-precio small{font-size:.72rem;color:var(--cal-baja);font-weight:400}
+@media (max-width:900px){.curso-destacado{grid-template-columns:1fr}.curso-destacado-foto{order:-1;aspect-ratio:16/10}.curso-transforma{grid-template-columns:1fr}}
 
 /* ---------- MÉTODO: señales, no números ---------- */
 .metodo{background:var(--tinta-2)}
@@ -109,6 +130,9 @@
 .senal-item{border-top:1px solid var(--linea);padding-top:1.1rem}
 .senal-item h3{font-size:1.12rem;margin-block:.7rem .4rem}
 .senal-item p{font-size:.92rem}
+.banda{position:relative;max-width:1200px;margin:2.5rem auto 0;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/9}
+.banda img{width:100%;height:100%;object-fit:cover}
+@media (max-width:620px){.banda{aspect-ratio:4/3}}
 
 /* ---------- PRUEBA ---------- */
 .prueba{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
@@ -127,6 +151,11 @@
 .cierre h2{margin-bottom:1rem}
 .cierre p{margin:0 auto 2rem}
 .cierre-acciones{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+
+.firma-leo{display:flex;align-items:center;gap:.85rem;justify-content:center;max-width:44ch;margin:0 auto 2rem}
+.firma-leo img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.firma-leo p{margin:0;text-align:left;color:var(--cal-med)}
+@media (max-width:480px){.firma-leo{text-align:left}}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel) -->
 <script>
@@ -158,12 +187,12 @@
     <a href="index.html" class="marca"><b>Clorofila</b><span>Estudio de cocina</span></a>
     <button type="button" class="cerrar-menu" id="cerrar-menu" aria-label="Cerrar menú">✕</button>
     <ul class="nav-links" id="nav-links">
-      <li><a href="#agenda">Próximas fechas</a></li>
-      <li><a href="tapeo.html">Tapeo</a></li>
       <li><a href="curso.html">Curso</a></li>
       <li><a href="talleres.html">Talleres</a></li>
-      <li><a href="sobre.html">Sobre</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="experiencias.html">Experiencias</a></li>
+      <li><a href="articulos.html">Artículos</a></li>
+      <li><a href="sobre.html">Sobre Clorofila</a></li>
+      <li><a href="servicios.html">Trabajemos juntos</a></li>
       <li><a href="#agenda" class="nav-cta">Reservar</a></li>
     </ul>
     <button class="hamburguesa" id="hamburguesa" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
@@ -177,10 +206,10 @@
     <div>
       <span class="senal">Parque Rodó · Montevideo · desde 2013</span>
       <h1>Aprendé a cocinar <span class="viva">entendiendo</span> lo que hacés.</h1>
-      <p class="hero-bajada">Un estudio de cocina en Parque Rodó. Cenas, talleres intensivos y un curso de tres meses, todos con la misma idea: que sepas <strong>por qué</strong> funciona, no solo cómo salió esa vez.</p>
+      <p class="hero-bajada">Estudio de cocina basada en plantas en Parque Rodó, Montevideo. Un curso de tres meses, talleres y experiencias puntuales, todos con la misma idea: que sepas <strong>por qué</strong> funciona, no solo cómo salió esa vez.</p>
       <div class="hero-acciones">
         <a href="#agenda" class="btn btn-primario">Ver próximas fechas</a>
-        <a href="#experiencias" class="btn btn-linea">Conocer las experiencias</a>
+        <a href="curso.html" class="btn btn-linea">Ver el curso de cocina saludable</a>
       </div>
       <ul class="hero-datos">
         <li class="hero-dato"><b>1.200</b><span>personas formadas</span></li>
@@ -193,7 +222,7 @@
         <source srcset="img-tapeo-hero-700.webp 700w, img-tapeo-hero.webp 1400w" sizes="(max-width: 900px) calc(100vw - 3rem), 46vw" type="image/webp">
         <img src="img-tapeo-hero.jpg" width="1400" height="1050" alt="El grupo cocinando alrededor de la mesa larga de Clorofila, de noche" loading="eager" fetchpriority="high">
       </picture>
-      <figcaption>21:00 · la mesa que armó el grupo</figcaption>
+      <figcaption>Cocinar es encontrarse · la mesa que armó el grupo</figcaption>
     </figure>
   </div>
 </header>
@@ -207,41 +236,46 @@
       </div>
       <p class="dato" style="max-width:30ch;text-transform:none;letter-spacing:.02em;font-size:.8rem;color:var(--cal-baja)">Los grupos son chicos. Cuando se llenan, se cierra la fecha.</p>
     </div>
-    <ul class="agenda-grid sube"><!--o:html:agenda_html--><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Fecha abierta</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">jueves 3 de septiembre · 10:00 a 13:30 h</p><p class="agenda-precio">$2.897</p><a href="pastas.html" class="agenda-link" data-producto="agenda">Ver el taller →</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Segunda fecha</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">viernes 4 de septiembre · 10:00 a 13:30 h</p><p class="agenda-precio">$2.897</p><a href="pastas.html" class="agenda-link" data-producto="agenda">Ver el taller →</a></li><!--/o--></ul>
+    <ul class="agenda-grid sube"><!--o:html:agenda_html--><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Fecha abierta</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">jueves 3 de septiembre · 10:00 a 13:30 h</p><a href="pastas.html" class="agenda-link" data-producto="agenda">Ver el taller →</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Segunda fecha</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">viernes 4 de septiembre · 10:00 a 13:30 h</p><a href="pastas.html" class="agenda-link" data-producto="agenda">Ver el taller →</a></li><!--/o--></ul>
   </div>
 </section>
 
-<section class="seccion" id="experiencias">
+<section class="seccion" id="curso">
   <div class="env">
-    <div class="sube">
-      <span class="senal">Elegí por dónde empezar</span>
-      <h2 style="margin-top:.8rem">Dos formas de vivir Clorofila.</h2>
+    <div class="curso-destacado sube">
+      <figure class="curso-destacado-foto"><picture><source srcset="img-clase-grupo-700.webp 700w, img-clase-grupo.webp 1200w" sizes="(max-width: 900px) calc(100vw - 3rem), 42vw" type="image/webp"><img src="img-clase-grupo.jpg" width="1200" height="675" alt="Grupo trabajando en una clase del curso de Clorofila" loading="lazy"></picture></figure>
+      <div>
+        <span class="senal">El curso</span>
+        <h2 style="margin-top:.8rem">El curso de tres meses.</h2>
+        <p>Es un curso completo de cocina basada en plantas: técnica, fermentación, panificación y pastelería. No es memorizar recetas — es desarrollar el criterio para cocinar cualquier cosa.</p>
+        <ul class="curso-transforma">
+          <li>No depender de recetas</li>
+          <li>Entender por qué ocurren los procesos</li>
+          <li>Poder corregir sobre la marcha</li>
+          <li>Poder adaptar lo que tenés</li>
+          <li>Poder improvisar con criterio</li>
+          <li>Cocinar el resto de tu vida</li>
+        </ul>
+        <div class="curso-destacado-pie">
+          <a data-set="href=curso.cta_link" href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso"><!--o:curso.cta_texto-->Avisarme de la próxima edición →<!--/o--></a>
+        </div>
+      </div>
     </div>
-    <div class="propuestas sube">
-      <article class="prop" data-set="data-precio=tapeo.tiene_precio" data-precio="no">
-        <div class="prop-foto"><picture><source srcset="img-tapeo-mesa-700.webp 700w, img-tapeo-mesa.webp 1200w" sizes="(max-width: 820px) calc(100vw - 3rem), 48vw" type="image/webp"><img src="img-tapeo-mesa.jpg" width="1200" height="675" alt="El grupo trabajando alrededor de la mesa en la Cena y Taller de Tapeo" loading="lazy"></picture></div>
-        <div class="prop-cuerpo">
-          <span class="dato">Experiencia · <!--o:tapeo.fecha_texto-->Sin fecha confirmada<!--/o--></span>
-          <h3>Cena y Taller de Tapeo</h3>
-          <p>Aprendés a resolver una mesa de tapas entera —masas, rellenos, salsas— y después te sentás a cenarla con el grupo. Te vas con las recetas y sabiendo repetirlas.</p>
-          <div class="prop-pie">
-            <a href="tapeo.html" class="btn btn-claro" data-producto="tapeo">Ver la experiencia</a>
-            <span class="dato-lg solo-con-precio" style="color:var(--miel)"><!--o:tapeo.precio_texto-->$2.600 por persona<!--/o--></span>
-          </div>
-        </div>
-      </article>
-      <article class="prop">
-        <div class="prop-foto"><picture><source srcset="img-clase-grupo-700.webp 700w, img-clase-grupo.webp 1200w" sizes="(max-width: 820px) calc(100vw - 3rem), 48vw" type="image/webp"><img src="img-clase-grupo.jpg" width="1200" height="675" alt="Grupo trabajando en una clase del curso de Clorofila" loading="lazy"></picture></div>
-        <div class="prop-cuerpo">
-          <span class="dato">Formación · <!--o:curso.inicio_texto-->Arranca el 22 de agosto<!--/o--></span>
-          <h3>El curso</h3>
-          <p>Tres meses para construir criterio propio: técnica, fermentación, panificación y pastelería. Terminás pudiendo cocinar y adaptar recetas con lo que tengas en casa.</p>
-          <div class="prop-pie">
-            <a href="curso.html" class="btn btn-claro" data-producto="curso">Ver el curso</a>
-            <span class="dato-lg" style="color:var(--miel)"><!--o:curso.precio_total-->$12.200<!--/o--></span>
-          </div>
-        </div>
-      </article>
+  </div>
+</section>
+
+<section class="seccion-sm borde-sup">
+  <div class="env sube">
+    <span class="senal">Talleres de un día</span>
+    <h2 style="margin-top:.8rem;font-size:clamp(1.5rem,2.6vw,2rem)">Talleres intensivos</h2>
+    <p style="margin-top:.7rem;max-width:52ch">Una jornada entera dedicada a una sola técnica, hasta que te sale. Salís sabiendo hacerla, no habiéndola visto.</p>
+    <div class="tira-talleres">
+      <a href="pastas.html">Pastas sin gluten</a>
+      <a href="talleres.html#fermentacion">Fermentación</a>
+      <a href="talleres.html#pan-sin-gluten">Pan sin gluten</a>
+      <a href="talleres.html#quesos-vegetales">Quesos vegetales</a>
+      <a href="talleres.html#alfajores">Alfajores</a>
+      <a href="talleres.html" class="btn-linea" style="padding:1rem 1.1rem">Ver todos los talleres →</a>
     </div>
   </div>
 </section>
@@ -256,12 +290,12 @@
       <div class="panel panel-receta">
         <span class="rotulo">Con una receta</span>
         <p class="panel-cita">«Zanahoria al horno: 200°C, 25 minutos, cubos de 2 cm.»</p>
-        <p>Esos números sirven solo en las condiciones exactas en que se escribieron. Si tu horno calienta distinto, el corte es otro o la zanahoria trae más agua, el resultado cambia — y no sabés por qué.</p>
+        <p>Esos números valen solo en las condiciones exactas en que se escribieron. Cambiá el horno, el corte o la zanahoria, y el resultado cambia sin que sepas por qué.</p>
       </div>
       <div class="panel panel-criterio">
         <span class="rotulo">Con criterio</span>
         <p class="panel-cita">«Buscás que los bordes se caramelicen y que el centro ceda al pincharlo.»</p>
-        <p>Puede pasar a los 18 minutos o a los 35: da igual. Estás leyendo la cocción real, no mirando el reloj. Las señales no mienten; los números, a veces sí.</p>
+        <p>Puede pasar a los 18 minutos o a los 35: da igual. Las señales no mienten; los números, a veces sí.</p>
       </div>
     </div>
     <p class="metodo-remate sube">El criterio se traslada.<br>La receta, <em>no</em>.</p>
@@ -291,6 +325,27 @@
         <p>Se prueba todo lo que se preparó, sentados y sin apuro. Comer lo que hiciste también enseña.</p>
       </div>
     </div>
+    <figure class="banda sube"><picture><source srcset="img-clase-practica-700.webp 700w, img-clase-practica.webp 1200w" sizes="(max-width: 1240px) 100vw, 1200px" type="image/webp"><img src="img-clase-practica.jpg" width="1200" height="675" alt="Leonardo Lemes armando pastas junto a una alumna en una clase de Clorofila" loading="lazy"></picture></figure>
+  </div>
+</section>
+
+<section class="seccion borde-sup" id="experiencia">
+  <div class="env">
+    <div class="sube" style="margin-bottom:1.5rem">
+      <span class="senal">Una noche puntual</span>
+      <h2 style="margin-top:.8rem">Vivir Clorofila sin el compromiso de un curso.</h2>
+    </div>
+    <article class="prop prop-solo sube" data-set="data-precio=tapeo.tiene_precio" data-precio="no">
+      <div class="prop-foto"><picture><source srcset="img-tapeo-mesa-700.webp 700w, img-tapeo-mesa.webp 1200w" sizes="(max-width: 820px) calc(100vw - 3rem), 48vw" type="image/webp"><img src="img-tapeo-mesa.jpg" width="1200" height="675" alt="El grupo trabajando alrededor de la mesa en la Cena y Taller de Tapeo" loading="lazy"></picture></div>
+      <div class="prop-cuerpo">
+        <span class="dato">Experiencia · <!--o:tapeo.fecha_texto-->Sin fecha confirmada<!--/o--></span>
+        <h3>Cena y Taller de Tapeo</h3>
+        <p>Cocinás una mesa de tapas entera —masas, rellenos, salsas— y después te sentás a cenarla con el grupo. Una noche, no un curso.</p>
+        <div class="prop-pie">
+          <a href="tapeo.html" class="btn btn-claro" data-producto="tapeo">Ver la experiencia</a>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -311,18 +366,28 @@
   </div>
 </section>
 
-<section class="seccion-sm">
-  <div class="env sube">
-    <span class="senal">Otras experiencias</span>
-    <h2 style="margin-top:.8rem;font-size:clamp(1.5rem,2.6vw,2rem)">Talleres intensivos</h2>
-    <p style="margin-top:.7rem;max-width:52ch">Una jornada entera dedicada a una sola técnica, hasta que te sale. Salís sabiendo hacerla, no habiéndola visto.</p>
-    <div class="tira-talleres">
-      <a href="pastas.html">Pastas sin gluten</a>
-      <a href="talleres.html#fermentacion">Fermentación</a>
-      <a href="talleres.html#pan-sin-gluten">Pan sin gluten</a>
-      <a href="talleres.html#quesos-vegetales">Quesos vegetales</a>
-      <a href="talleres.html#alfajores">Alfajores</a>
-      <a href="talleres.html#buncheo">Domingo de Buncheo</a>
+<section class="seccion borde-sup">
+  <div class="env">
+    <div class="agenda-cabeza sube">
+      <div>
+        <span class="senal">Antes de anotarte</span>
+        <h2 style="margin-top:.8rem">Lo que la ciencia dice<br>sobre lo que cocinás.</h2>
+      </div>
+      <a href="articulos.html" class="dato" style="color:var(--miel);border-bottom:1px solid var(--linea-fuerte);padding-block:.3rem">Ver todos los artículos →</a>
+    </div>
+    <div class="articulos-tira sube">
+      <div class="articulo-mini">
+        <h3><a href="articulos/aceite-de-oliva-punto-de-humo.html">¿Se puede cocinar con aceite de oliva?</a></h3>
+        <p>El punto de humo no es el indicador que importa — ni tampoco el de ebullición.</p>
+      </div>
+      <div class="articulo-mini">
+        <h3><a href="articulos/mas-alla-del-colesterol-total.html">El colesterol total no alcanza</a></h3>
+        <p>Qué mirar en un perfil lipídico además del número que todos conocen.</p>
+      </div>
+      <div class="articulo-mini">
+        <h3><a href="articulos/proteina-vegetal-mitos-realidades.html">Proteína vegetal: mitos y realidades</a></h3>
+        <p>Qué es cierto y qué no sobre cubrir los requerimientos sin carne.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -331,10 +396,13 @@
   <div class="env sube">
     <span class="senal" style="justify-content:center">Reservar</span>
     <h2 style="margin-top:.8rem">Guardate un lugar<br>en la mesa.</h2>
-    <p>Los grupos son chicos y las fechas se cierran. Escribinos y te contamos cuál te conviene: contesta Leonardo, no un formulario.</p>
+    <div class="firma-leo">
+      <picture><source srcset="img-leo-cocina-700.webp" type="image/webp"><img src="img-leo-cocina.jpg" alt="Leonardo Lemes" width="56" height="56" loading="lazy"></picture>
+      <p>Los grupos son chicos y las fechas se cierran. Escribinos y te contamos cuál te conviene: contesta Leonardo, no un formulario.</p>
+    </div>
     <div class="cierre-acciones">
       <a href="#agenda" class="btn btn-primario">Ver próximas fechas</a>
-      <a href="https://wa.me/59894064148?text=Hola%2C%20quiero%20info%20de%20Clorofila." target="_blank" rel="noopener noreferrer" class="btn btn-linea">Escribir por WhatsApp</a>
+      <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20info%20de%20Clorofila." target="_blank" rel="noopener noreferrer" class="btn btn-linea">Escribir por WhatsApp</a>
     </div>
   </div>
 </section>

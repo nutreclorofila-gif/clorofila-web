@@ -65,8 +65,8 @@
         "nombre": "Sábados",
         "horario": "15:00 a 18:30 h",
         "inicio_iso": "2026-08-22",
-        "inicio_texto": "Arranca el 22 de agosto",
-        "estado": "abierto"
+        "inicio_texto": "Arrancó el 22 de agosto",
+        "estado": "cerrado"
       }
     ]
   },
@@ -96,7 +96,10 @@
       "fecha_iso": "2026-09-03",
       "fecha_texto": "jueves 3 de septiembre",
       "hora": "10:00 a 13:30 h",
+      "hora_inicio": "10:00",
+      "hora_fin": "13:30",
       "precio": "$2.897",
+      "precio_num": "2897",
       "cupos_total": 12,
       "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten",
       "segunda_fecha": {

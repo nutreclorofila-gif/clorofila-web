@@ -81,8 +81,8 @@ t.horario_texto = t.hora && t.hora_fin ? t.hora + ' a ' + t.hora_fin + ' h' : (t
 const waBase = 'https://wa.me/59894064148?text=';
 t.wa_link = waBase + encodeURIComponent(
   t.estado === 'sin-fecha' || t.estado === 'agotado'
-    ? 'Hola, me interesa la Cena y Taller de Tapeo. Avisame cuando abran la próxima fecha.'
-    : 'Hola, quiero reservar para la Cena y Taller de Tapeo del ' + t.fecha_texto + '. Somos [cantidad] personas.'
+    ? 'Hola Leonardo, me interesa la Cena y Taller de Tapeo. Avisame cuando abran la próxima fecha.'
+    : 'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.fecha_texto + '. Somos [cantidad] personas.'
 );
 t.wa_texto =
   t.estado === 'sin-fecha' ? 'Avisame la próxima fecha →' :
@@ -169,8 +169,8 @@ for (const [id, w] of Object.entries(datos.talleres)) {
 
   w.wa_link = waBase + encodeURIComponent(
     w.estado === 'sin-fecha' || w.estado === 'agotado'
-      ? 'Hola, me interesa el taller de ' + w.nombre + '. Avisame cuando abran fecha.'
-      : 'Hola, quiero reservar un lugar en el taller de ' + w.nombre + ' del ' + w.fecha_texto + '.'
+      ? 'Hola Leonardo, me interesa el taller de ' + w.nombre + '. Avisame cuando abran fecha.'
+      : 'Hola Leonardo, quiero reservar un lugar en el taller de ' + w.nombre + ' del ' + w.fecha_texto + '.'
   );
   w.wa_texto =
     w.estado === 'sin-fecha' ? 'Avisame cuando haya fecha →' :
@@ -211,11 +211,11 @@ datos.curso.estado = abiertos.length ? 'abierto' : 'sin-fecha';
 
 // Cuando no hay edición abierta, la web deja de pedir una inscripción que no
 // existe y pasa sola a juntar lista de espera. Nadie tiene que acordarse.
-datos.curso.cta_texto = abiertos.length ? 'Reservar mi lugar →' : 'Sumate a la lista de espera →';
+datos.curso.cta_texto = abiertos.length ? 'Reservar mi lugar →' : 'Avisarme de la próxima edición →';
 // Con edición abierta se reserva por WhatsApp, que es como se reserva de verdad.
 // Sin edición abierta, el formulario pasa a ser la lista de espera.
 datos.curso.cta_link = abiertos.length
-  ? waBase + encodeURIComponent('Hola, quiero reservar un lugar en el curso. ' + datos.curso.grupos_abiertos_texto + '.')
+  ? waBase + encodeURIComponent('Hola Leonardo, quiero reservar mi lugar en el curso y me interesa el grupo de ' + datos.curso.grupos_abiertos_texto + '.')
   : 'https://tally.so/r/EkMbWL';
 datos.curso.cta_nota = abiertos.length
   ? 'Grupos reducidos · te escribimos por WhatsApp en menos de 24h para confirmar tu lugar'
@@ -266,7 +266,6 @@ datos.agenda_html = agenda.map(function (e) {
     '<span class="agenda-etiqueta">' + escapar(e.etiqueta) + '</span>' +
     '<p class="agenda-nombre">' + escapar(e.nombre) + '</p>' +
     '<p class="agenda-cuando">' + escapar(e.fecha) + (e.hora ? ' · ' + escapar(e.hora) : '') + '</p>' +
-    (e.precio ? '<p class="agenda-precio">' + escapar(e.precio) + '</p>' : '') +
     '<a href="' + e.link + '" class="agenda-link" data-producto="agenda">' + escapar(e.cta) + '</a>' +
     '</li>';
 }).join('');
@@ -383,6 +382,36 @@ for (const archivo of archivos) {
                 priceCurrency: 'UYU',
                 price: String(t.precio_num),
                 availability: t.estado === 'agotado'
+                  ? 'https://schema.org/SoldOut'
+                  : 'https://schema.org/InStock'
+              };
+            } else {
+              delete nodo.offers;
+            }
+          }
+          tocado = true;
+        }
+
+        // Pastas sin gluten: mismo tratamiento que el evento de tapeo.
+        if (nodo['@id'] === 'https://clorofila.uy/pastas#evento') {
+          const w = datos.talleres['pastas-sin-gluten'];
+          if (w.estado === 'sin-fecha' || !w.fecha_iso) {
+            delete nodo.startDate;
+            delete nodo.endDate;
+            delete nodo.offers;
+            nodo.eventStatus = 'https://schema.org/EventPostponed';
+          } else {
+            nodo.startDate = w.fecha_iso + 'T' + w.hora_inicio + ':00-03:00';
+            nodo.endDate = w.fecha_iso + 'T' + w.hora_fin + ':00-03:00';
+            nodo.eventStatus = 'https://schema.org/EventScheduled';
+            nodo.maximumAttendeeCapacity = Number(w.cupos_total);
+            if (w.precio_num) {
+              nodo.offers = {
+                '@type': 'Offer',
+                url: 'https://clorofila.uy/pastas',
+                priceCurrency: 'UYU',
+                price: String(w.precio_num),
+                availability: w.estado === 'agotado'
                   ? 'https://schema.org/SoldOut'
                   : 'https://schema.org/InStock'
               };

@@ -19,6 +19,8 @@ Actualizado el 19/8/2026, con las 28 fotos de la edición anterior que pasó Leo
 | Compartir en redes (`/talleres`) | `og/og-talleres.jpg` | Clorofila-22 | La fila de gente trabajando concentrada |
 | Banda en `/curso` | `img-clase-grupo` | Clorofila-28 | El grupo alrededor de la mesa grande |
 | Banda en `/sobre` | `img-leo-grupo` | Clorofila-03 | Leonardo explicando al grupo (B&N) |
+| Ficha del docente en `/curso` (agregada 22/8/2026) | `img-leo-explica` | Clorofila-13 | Leonardo explicando en primer plano, gesto de manos, bien iluminado |
+| Banda en "Cómo se trabaja acá" (home, agregada 22/8/2026) | `img-clase-practica` | Clorofila-24 | Leonardo armando pastas junto a una alumna, foco en el hacer |
 
 Los originales están en `~/Documents/Clorofila/fotos-tapeo/` y en el Drive,
 en "Fotos Tapeo — para la web".
