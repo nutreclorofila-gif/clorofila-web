@@ -194,6 +194,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://clorofila.uy/articulos/vitamina-b12-dieta-vegana</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:title>¿Hay alguna fuente vegetal de vitamina B12?</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://clorofila.uy/sobre</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
