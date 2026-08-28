@@ -16,25 +16,33 @@ Una fecha que ya pasó se retira sola: no quedan banners viejos colgados.
 Todos los links importantes llevan UTM para poder medir qué canal vende.
 👉 **[Links armados, listos para copiar](docs/links-instagram.md)**
 
-## Si tocás shared.css
+## Si tocás base.css
+
+Todo el CSS del sitio está en `base.css` (más lo específico de cada página, en
+un `<style>` dentro de su propio HTML).
 
 La regla global de imágenes es `img{display:block;max-width:100%;height:auto}`.
 El `height:auto` no es decorativo: sin él, el atributo `height` del HTML queda
 como altura fija y la foto se **deforma** al angostarse el contenedor. Si alguna
 vez se toca esa regla, revisar que las fotos no queden estiradas.
 
+## Al editar CSS o JS: subí el `?v=`
 
-`shared.css` se sirve con caché de un año (`immutable`). Si cambiás el CSS y no
-cambiás el `?v=` con el que se pide en el HTML, **quien ya visitó el sitio sigue
-viendo el CSS viejo**. Al editarlo, actualizá la versión en todas las páginas:
+`base.css`, `consent.js`, `track.js` y `pagina.js` se sirven con caché. El `?v=`
+del HTML es lo único que hace que quien ya visitó el sitio reciba la versión
+nueva: si no se cambia, **esa gente sigue viendo la versión vieja**. Se cambia
+en todas las páginas de una vez (`perl` viene en macOS y en Linux; `sed` cambia
+de sintaxis entre los dos):
 
 ```bash
-grep -rl 'shared.css?v=' *.html articulos/*.html partials/ | xargs sed -i '' 's/shared.css?v=[0-9]*/shared.css?v=AAAAMMDD/'
+perl -pi -e 's/base\.css\?v=[\w.-]+/base.css?v=AAAAMMDD/g' *.html articulos/*.html
+npm run check:assets   # falla si quedó alguna página con la versión vieja
 ```
 
 ## Comandos
 
 ```bash
 npm run ofertas   # aplica data/ofertas.json al HTML
-npm test          # revisa links, fechas, JSON-LD, sitemap, HTML y navegación
+npm test          # fechas, links, versiones de assets, imagen social, JSON-LD, sitemap y HTML
+npm audit         # vulnerabilidades de las dependencias de desarrollo
 ```

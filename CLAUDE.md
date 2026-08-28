@@ -22,8 +22,10 @@ publica la raíz del repo al hacer push a `main`; el único paso de build es
 
 ## Antes de tocar nada
 
-    npm ci        # una sola vez
-    npm test      # fechas, links, versiones de assets, JSON-LD, sitemap, HTML
+```bash
+npm ci        # una sola vez
+npm test      # fechas, links, versiones de assets, JSON-LD, sitemap, HTML
+```
 
 `npm test` es rápido (segundos) y hay que correrlo antes de cada commit: es lo
 mismo que corre CI (`.github/workflows/checks.yml`).

@@ -173,7 +173,12 @@
 .grupo-hora{font-family:var(--dato);font-size:.9rem;color:var(--miel);margin-block:.35rem .2rem}
 .grupo-inicio{font-family:var(--dato);font-size:.72rem;letter-spacing:.04em;color:var(--cal-baja);margin-bottom:.9rem}
 .grupo-detalle{font-size:.88rem;color:var(--cal-med)}
-.grupo[data-estado="cerrado"]{opacity:.62}
+/* El grupo cerrado se distingue por el fondo, no bajándole la opacidad a toda
+   la ficha: eso apagaba también el texto y lo dejaba en 2,7:1 cuando el mínimo
+   legible es 4,5:1. Y es justo el texto que dice cuándo arrancó cada grupo, que
+   es lo que alguien mira para saber si llega a la próxima edición. Así queda
+   igual de secundario y se lee (5,2:1). */
+.grupo[data-estado="cerrado"]{background:var(--tinta-2);border-color:var(--linea)}
 
 /* ---------- PRUEBA ---------- */
 .prueba{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
@@ -208,27 +213,8 @@
 .sticky-cta .wa-btn{display:flex;align-items:center;justify-content:center;width:48px;min-height:48px;border:1px solid var(--linea-fuerte);border-radius:999px;color:var(--cal);flex-shrink:0}
 @media (max-width:820px){.sticky-cta{display:flex}main{padding-bottom:4.5rem}}
 </style>
-<!-- Analítica con consentimiento (GA4 + Meta Pixel) -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  window.loadAnalytics = function () {
-    if (window.__analyticsLoaded) return;
-    if (location.hostname !== 'clorofila.uy' && location.hostname !== 'www.clorofila.uy') return;
-    window.__analyticsLoaded = true;
-    var ga = document.createElement('script'); ga.async = true;
-    ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV';
-    document.head.appendChild(ga);
-    gtag('js', new Date()); gtag('config', 'G-BBLJT4TYCV');
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','2002873889966452'); fbq('track','PageView');
-  };
-  if (localStorage.getItem('cookieConsent') === 'accepted') window.loadAnalytics();
-</script>
+<!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
+<script src="consent.js?v=20260827" defer></script>
 </head>
 <body data-producto="curso">
 <a href="#principal" class="saltar">Ir al contenido principal</a>
@@ -610,10 +596,10 @@
 
 </main>
 
-<div class="sticky-cta" id="sticky-cta">
+<aside class="sticky-cta" id="sticky-cta" aria-label="Reserva rápida">
   <a data-set="href=curso.cta_link" href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="cta-main" data-producto="curso"><!--o:curso.cta_texto-->Avisarme de la próxima edición →<!--/o--></a>
   <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20info%20del%20curso%20de%20Clorofila." target="_blank" rel="noopener noreferrer" class="wa-btn" aria-label="Consultar por WhatsApp" data-producto="curso">💬</a>
-</div>
+</aside>
 
 <footer class="pie">
   <div class="pie-caja">
@@ -637,8 +623,8 @@
   </div>
 </div>
 
-<script src="track.js?v=20260821" defer></script>
-<script src="pagina.js?v=2" defer></script>
+<script src="track.js?v=20260827" defer></script>
+<script src="pagina.js?v=20260827" defer></script>
 <script>
 // La cuenta regresiva se calcula a partir de la fecha real del grupo abierto
 // (viene de data/ofertas.json). Si la fecha ya pasó no inventa urgencia:

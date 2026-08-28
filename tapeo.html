@@ -212,27 +212,8 @@
 @media (max-width:820px){.sticky-cta{display:flex}main{padding-bottom:4.5rem}}
 [data-estado="sin-fecha"].sticky-cta{display:none}
 </style>
-<!-- Analítica con consentimiento (GA4 + Meta Pixel) -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  window.loadAnalytics = function () {
-    if (window.__analyticsLoaded) return;
-    if (location.hostname !== 'clorofila.uy' && location.hostname !== 'www.clorofila.uy') return;
-    window.__analyticsLoaded = true;
-    var ga = document.createElement('script'); ga.async = true;
-    ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-BBLJT4TYCV';
-    document.head.appendChild(ga);
-    gtag('js', new Date()); gtag('config', 'G-BBLJT4TYCV');
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','2002873889966452'); fbq('track','PageView');
-  };
-  if (localStorage.getItem('cookieConsent') === 'accepted') window.loadAnalytics();
-</script>
+<!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
+<script src="consent.js?v=20260827" defer></script>
 </head>
 <body data-producto="tapeo">
 <a href="#principal" class="saltar">Ir al contenido principal</a>
@@ -501,10 +482,10 @@
 
 </main>
 
-<div class="sticky-cta" id="sticky-cta" data-estado-de="tapeo" data-estado="sin-fecha" data-set="data-precio=tapeo.tiene_precio;data-segunda=tapeo.tiene_segunda" data-precio="no" data-segunda="no">
+<aside class="sticky-cta" id="sticky-cta" data-estado-de="tapeo" data-estado="sin-fecha" data-set="data-precio=tapeo.tiene_precio;data-segunda=tapeo.tiene_segunda" data-precio="no" data-segunda="no" aria-label="Reserva rápida">
   <a data-set="href=tapeo.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20me%20interesa%20la%20Cena%20y%20Taller%20de%20Tapeo.%20Avisame%20cuando%20abran%20la%20pr%C3%B3xima%20fecha." target="_blank" rel="noopener noreferrer" class="cta-main" data-producto="tapeo"><!--o:tapeo.cta_texto-->Avisame la próxima fecha →<!--/o--></a>
   <a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20me%20interesa%20la%20Cena%20y%20Taller%20de%20Tapeo.%20Avisame%20cuando%20abran%20la%20pr%C3%B3xima%20fecha." target="_blank" rel="noopener noreferrer" class="wa-btn" aria-label="Consultar por WhatsApp" data-producto="tapeo">💬</a>
-</div>
+</aside>
 
 <footer class="pie">
   <div class="pie-caja">
@@ -528,7 +509,7 @@
   </div>
 </div>
 
-<script src="track.js?v=20260821" defer></script>
-<script src="pagina.js?v=2" defer></script>
+<script src="track.js?v=20260827" defer></script>
+<script src="pagina.js?v=20260827" defer></script>
 </body>
 </html>

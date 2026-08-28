@@ -1,5 +1,6 @@
 .DS_Store
 node_modules/
+# .claude/settings.json se comparte (permisos del proyecto); lo personal, no.
 .claude/*
 !.claude/settings.json
 .claude/settings.local.json

@@ -5,22 +5,50 @@
 (function () {
   'use strict';
 
+  /* Un solo lector de scroll para todo lo que reacciona al scroll. Medir la
+     posición de un elemento (getBoundingClientRect) en cada evento de scroll
+     obliga al navegador a recalcular la página decenas de veces por segundo y
+     el scroll se traba en móviles. Con requestAnimationFrame se mide una vez
+     por cuadro dibujado, que es todo lo que se puede ver. */
+  var tareasScroll = [];
+  var cuadroPedido = false;
+
+  function correrTareas() {
+    cuadroPedido = false;
+    for (var i = 0; i < tareasScroll.length; i++) tareasScroll[i]();
+  }
+
+  function alScrollear() {
+    if (cuadroPedido) return;
+    cuadroPedido = true;
+    requestAnimationFrame(correrTareas);
+  }
+
+  function enScroll(tarea) {
+    if (!tareasScroll.length) {
+      addEventListener('scroll', alScrollear, { passive: true });
+      addEventListener('resize', alScrollear, { passive: true });
+    }
+    tareasScroll.push(tarea);
+    tarea();
+  }
+
   var nav = document.getElementById('nav');
   if (nav) {
-    addEventListener('scroll', function () {
+    enScroll(function () {
       nav.classList.toggle('pegada', scrollY > 16);
-    }, { passive: true });
+    });
   }
 
   var ham = document.getElementById('hamburguesa');
   var cerrar = document.getElementById('cerrar-menu');
   var links = document.getElementById('nav-links');
   if (ham && links) {
-    function cerrarMenu() {
+    var cerrarMenu = function () {
       links.classList.remove('abierto');
       ham.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('menu-abierto');
-    }
+    };
     ham.addEventListener('click', function () {
       links.classList.add('abierto');
       ham.setAttribute('aria-expanded', 'true');
@@ -44,16 +72,25 @@
       });
     }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
     subes.forEach(function (el) { obs.observe(el); });
+
+    // Última red: se muestra todo y se suelta el observador, que a esta altura
+    // ya no tiene nada que vigilar.
+    var plazoMaximo = setTimeout(function () {
+      document.querySelectorAll('.sube:not(.vista)').forEach(function (el) { el.classList.add('vista'); });
+      obs.disconnect();
+    }, 2800);
+
     addEventListener('load', function () {
       setTimeout(function () {
         document.querySelectorAll('.sube:not(.vista)').forEach(function (el) {
           if (el.getBoundingClientRect().top < innerHeight) el.classList.add('vista');
         });
+        if (!document.querySelector('.sube:not(.vista)')) {
+          clearTimeout(plazoMaximo);
+          obs.disconnect();
+        }
       }, 60);
     });
-    setTimeout(function () {
-      document.querySelectorAll('.sube:not(.vista)').forEach(function (el) { el.classList.add('vista'); });
-    }, 2800);
   }
 
   document.querySelectorAll('.faq-q').forEach(function (b) {
@@ -70,28 +107,33 @@
   var barra = document.getElementById('sticky-cta');
   var ancla = document.querySelector('header .comanda-acciones');
   if (barra) {
-    var evaluar = ancla
+    enScroll(ancla
       ? function () { barra.classList.toggle('visible', ancla.getBoundingClientRect().bottom < 0); }
-      : function () { barra.classList.toggle('visible', scrollY > innerHeight * 0.6); };
-    addEventListener('scroll', evaluar, { passive: true });
-    addEventListener('resize', evaluar, { passive: true });
-    evaluar();
+      : function () { barra.classList.toggle('visible', scrollY > innerHeight * 0.6); });
   }
+
+  /* El consentimiento se lee y se guarda por consent.js, que envuelve
+     localStorage en try/catch: con las cookies bloqueadas, acceder al
+     almacenamiento lanza excepción y sin el guardia el banner nunca aparecía. */
+  var almacen = window.consentimiento || {
+    leer: function () { return null; },
+    guardar: function () {}
+  };
 
   var banner = document.getElementById('cookie-banner');
   if (banner) {
-    if (!localStorage.getItem('cookieConsent')) {
+    if (!almacen.leer()) {
       setTimeout(function () { banner.classList.add('visible'); }, 700);
     }
     var ok = document.getElementById('cookie-accept');
     var no = document.getElementById('cookie-decline');
     if (ok) ok.addEventListener('click', function () {
-      localStorage.setItem('cookieConsent', 'accepted');
+      almacen.guardar('accepted');
       banner.classList.remove('visible');
       if (window.loadAnalytics) window.loadAnalytics();
     });
     if (no) no.addEventListener('click', function () {
-      localStorage.setItem('cookieConsent', 'declined');
+      almacen.guardar('declined');
       banner.classList.remove('visible');
     });
   }

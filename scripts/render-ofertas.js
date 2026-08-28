@@ -19,7 +19,17 @@ const path = require('path');
 
 const raiz = path.join(__dirname, '..');
 const CHECK = process.argv.includes('--check');
-const datos = JSON.parse(fs.readFileSync(path.join(raiz, 'data', 'ofertas.json'), 'utf8'));
+let datos;
+try {
+  datos = JSON.parse(fs.readFileSync(path.join(raiz, 'data', 'ofertas.json'), 'utf8'));
+} catch (e) {
+  // Este archivo lo edita quien publica las fechas, no quien programa. Sin este
+  // mensaje, un error de tipeo corta el deploy de Netlify con un stack trace.
+  console.error('✗ No se pudo leer data/ofertas.json: ' + e.message);
+  console.error('  Suele ser una coma de más, una coma que falta o unas comillas sin cerrar.');
+  console.error('  Paso a paso: docs/editar-ofertas.md');
+  process.exit(1);
+}
 
 const hoy = new Date();
 hoy.setHours(0, 0, 0, 0);
@@ -31,6 +41,23 @@ function esPasado(iso) {
 }
 function escapar(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/* Los links también salen del JSON, y hasta ahora entraban crudos al href.
+   Una comilla de más (pasa al copiar un link con parámetros) rompía el
+   atributo y desarmaba el HTML de la página; un esquema como javascript:
+   convertiría el botón de compra en código ejecutable. Ante un link que no
+   se entiende se corta el build: mejor no publicar que publicar roto. */
+function enlace(u) {
+  const url = String(u == null ? '' : u).trim();
+  if (!url) return '';
+  const valido = /^(https?:\/\/|mailto:|tel:|\/|#)/.test(url) || /^[a-zA-Z0-9._-]+\.html(#.*)?$/.test(url);
+  if (!valido) {
+    console.error('✗ Link inválido en data/ofertas.json: "' + url + '"');
+    console.error('  Tiene que empezar con https://, mailto:, tel:, / o # , o ser una página del sitio (curso.html).');
+    process.exit(1);
+  }
+  return escapar(url);
 }
 
 /* ---- Reglas derivadas: nadie tiene que acordarse de bajar una fecha vencida ---- */
@@ -114,12 +141,12 @@ t.segunda_link = (t.segunda_fecha && t.segunda_fecha.link) || '';
 function listaFechas(o, sufijo) {
   if (o.estado === 'sin-fecha' || !o.fecha_texto) return '';
   var items = [
-    '<li><a href="' + (o.link_compra || o.wa_link) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
+    '<li><a href="' + enlace(o.link_compra || o.wa_link) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
       '<strong>' + escapar(o.fecha_texto) + '</strong>' +
       '<span>' + escapar([o.horario_texto, o.cupos_texto].filter(Boolean).join(' · ')) + '</span></a></li>'
   ];
   if (o.segunda_fecha && o.segunda_fecha.texto) {
-    items.push('<li><a href="' + (o.segunda_fecha.link || o.wa_link) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
+    items.push('<li><a href="' + enlace(o.segunda_fecha.link || o.wa_link) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
       '<strong>' + escapar(o.segunda_fecha.texto) + '</strong>' +
       '<span>' + escapar(o.horario_texto) + '</span></a></li>');
   }
@@ -266,7 +293,7 @@ datos.agenda_html = agenda.map(function (e) {
     '<span class="agenda-etiqueta">' + escapar(e.etiqueta) + '</span>' +
     '<p class="agenda-nombre">' + escapar(e.nombre) + '</p>' +
     '<p class="agenda-cuando">' + escapar(e.fecha) + (e.hora ? ' · ' + escapar(e.hora) : '') + '</p>' +
-    '<a href="' + e.link + '" class="agenda-link" data-producto="agenda">' + escapar(e.cta) + '</a>' +
+    '<a href="' + enlace(e.link) + '" class="agenda-link" data-producto="agenda">' + escapar(e.cta) + '</a>' +
     '</li>';
 }).join('');
 datos.tiene_agenda = agenda.length ? 'si' : 'no';
@@ -329,7 +356,10 @@ for (const archivo of archivos) {
           return;
         }
         limpio = limpio.replace(new RegExp('\\s+' + attr + '="[^"]*"'), '');
-        escritos.push(attr + '="' + escapar(v) + '"');
+        // href y src son links: pasan por la misma validación de esquema que el
+        // resto, así el botón de compra no puede terminar siendo javascript:.
+        const esLink = attr === 'href' || attr === 'src';
+        escritos.push(attr + '="' + (esLink ? enlace(v) : escapar(v)) + '"');
       });
       return 'data-set="' + pares + '" ' + escritos.join(' ') + limpio;
     }
