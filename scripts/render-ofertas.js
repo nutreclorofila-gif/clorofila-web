@@ -125,12 +125,22 @@ t.resumen_texto =
 // sin esperar respuesta por WhatsApp. El WhatsApp queda como segunda opción.
 // Sin fecha, el link de venta de la edición anterior queda mudo: se ignora
 // aunque siga en el JSON, para no vender una entrada que ya no existe.
+// "jueves 3 de septiembre" -> "jueves 3", para que entre en un botón.
+function fechaCorta(texto) {
+  if (!texto) return '';
+  const partes = String(texto).trim().split(/\s+/);
+  return partes.slice(0, 2).join(' ');
+}
+
 t.cta_link = (t.estado !== 'sin-fecha' && t.link_compra) ? t.link_compra : t.wa_link;
+t.tiene_segunda = t.segunda_fecha && t.segunda_fecha.texto ? 'si' : 'no';
+// Con dos fechas a la venta, el botón tiene que decir cuál está comprando:
+// el link va siempre a la primera, y sin la aclaración se compra la otra sin querer.
 t.cta_texto =
   (t.estado === 'sin-fecha' || !t.link_compra) ? t.wa_texto :
   t.estado === 'agotado' ? 'Ver si se libera un lugar →' :
+  t.tiene_segunda === 'si' ? 'Comprar · ' + fechaCorta(t.fecha_texto) + ' →' :
   'Comprar mi entrada →';
-t.tiene_segunda = t.segunda_fecha && t.segunda_fecha.texto ? 'si' : 'no';
 t.segunda_texto = t.segunda_fecha && t.segunda_fecha.texto
   ? '¿No podés ese día? También hay fecha el ' + t.segunda_fecha.texto + '.'
   : '';
@@ -217,7 +227,9 @@ for (const [id, w] of Object.entries(datos.talleres)) {
 
   w.fechas_html = listaFechas(w, 'taller-' + id);
   w.cta_link = (w.estado !== 'sin-fecha' && w.link_compra) ? w.link_compra : w.wa_link;
-  w.cta_texto = (w.estado !== 'sin-fecha' && w.link_compra) ? 'Comprar mi entrada →' : w.wa_texto;
+  w.cta_texto = (w.estado !== 'sin-fecha' && w.link_compra)
+    ? (w.tiene_segunda === 'si' ? 'Comprar · ' + fechaCorta(w.fecha_texto) + ' →' : 'Comprar mi entrada →')
+    : w.wa_texto;
   if (w.segunda_fecha && w.segunda_fecha.texto && w.estado !== 'sin-fecha') {
     w.linea += ' · también el ' + w.segunda_fecha.texto;
   }
@@ -228,6 +240,14 @@ datos.curso.grupos_abiertos_texto = abiertos.length
   ? abiertos.map(function (g) { return g.nombre + ' ' + g.horario.replace(' a ', '–').replace(' h', ''); }).join(' · ')
   : 'Próxima edición a confirmar';
 datos.curso.inicio_texto = abiertos.length ? abiertos[0].inicio_texto : 'Próxima edición a confirmar';
+// La tabla de horarios de /contacto se generaba a mano y quedó publicando los
+// días de una edición ya terminada. Ahora sale de los grupos abiertos.
+datos.curso.horarios_html = abiertos.length
+  ? abiertos.map(function (g) {
+      return '<tr><th scope="row">' + escapar(g.nombre) + '</th><td>' +
+        escapar(g.horario.replace(' a ', ' – ')) + '</td></tr>';
+    }).join('')
+  : '<tr><td colspan="2">La próxima edición todavía no tiene fecha.</td></tr>';
 datos.curso.inicio_iso = abiertos.length ? abiertos[0].inicio_iso : '';
 datos.curso.calendario = abiertos.length
   ? linkCalendario('Primera clase — Curso de Clorofila', abiertos[0].inicio_iso,
