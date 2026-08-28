@@ -46,8 +46,7 @@
         "hooks": [
           {
             "type": "command",
-            "if": "Bash(git commit*)",
-            "command": "cd \"${CLAUDE_PROJECT_DIR:-.}\" && npm test >/tmp/claude-npm-test.log 2>&1 || { echo \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"permissionDecision\\\":\\\"deny\\\",\\\"permissionDecisionReason\\\":\\\"npm test fallo: no se puede commitear con el sitio roto. Detalle en /tmp/claude-npm-test.log\\\"}}\"; }",
+            "command": "entrada=$(cat); case \"$entrada\" in *'git commit'*) ;; *) exit 0 ;; esac; npm test >/tmp/claude-npm-test.log 2>&1 || { echo \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"permissionDecision\\\":\\\"deny\\\",\\\"permissionDecisionReason\\\":\\\"npm test fallo: no se puede commitear con el sitio roto. Detalle en /tmp/claude-npm-test.log\\\"}}\"; }",
             "timeout": 120,
             "statusMessage": "Revisando el sitio antes de commitear..."
           }

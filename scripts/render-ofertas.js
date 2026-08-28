@@ -296,6 +296,14 @@ datos.curso.cierre_bajada = abiertos.length
   ? 'Escribinos por WhatsApp y coordinamos tu lugar: contesta Leonardo, no un formulario.'
   : 'Los grupos de esta edición ya empezaron. Dejanos tus datos y sos de los primeros en enterarte cuando abramos la próxima: contesta Leonardo, no un formulario.';
 
+// El resumen que leen los modelos de lenguaje en llms.txt. Antes decía a mano
+// "los grupos de martes y miércoles ya empezaron", que quedó falso apenas
+// cambió la edición.
+datos.curso.resumen_grupos = abiertos.length
+  ? (abiertos.length === 1 ? 'Grupo abierto: ' : 'Grupos abiertos: ') +
+    datos.curso.grupos_abiertos_texto + '. ' + datos.curso.inicio_texto + '.'
+  : 'Los grupos de esta edición ya empezaron: se puede dejar el mail para avisar de la próxima.';
+
 // La FAQ de la cursada se arma con los grupos reales, para que no quede
 // prometiendo horarios de una edición que ya pasó.
 datos.curso.faq_cursada = 'Son 3 meses de cursada con ' + cuantos + ' para elegir: ' +
