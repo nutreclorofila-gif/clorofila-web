@@ -461,6 +461,30 @@ for (const [id, w] of Object.entries(datos.talleres)) {
     });
   }
 }
+// El curso es lo primero que se vende y no estaba en la agenda: la home
+// mostraba "lo que se puede reservar hoy" sin el producto principal, que tiene
+// la edición de octubre abierta.
+if (abiertos.length) {
+  agenda.push({
+    iso: abiertos[0].inicio_iso, nombre: 'Curso de tres meses',
+    fecha: datos.curso.inicio_texto, hora: datos.curso.dias_texto,
+    precio: datos.curso.precio_total, estado: 'abierto',
+    etiqueta: datos.curso.grupos_label, link: 'curso.html', cta: 'Ver el curso →'
+  });
+}
+
+// El tapeo aparece aunque no tenga fecha, para que la experiencia exista en la
+// home todo el año. Sin fecha va al final y dice que no la tiene: la agenda no
+// promete un día que no está.
+if (t.estado === 'sin-fecha' || !t.fecha_iso) {
+  agenda.push({
+    iso: '9999-12-31', nombre: 'Cena y Taller de Tapeo',
+    fecha: 'Se abre según la demanda', hora: '', precio: '',
+    estado: 'sin-fecha', etiqueta: t.estado_texto,
+    link: 'tapeo.html', cta: 'Avisame la próxima fecha →'
+  });
+}
+
 agenda.sort(function (a, b) { return a.iso < b.iso ? -1 : 1; });
 
 datos.agenda_html = agenda.map(function (e) {

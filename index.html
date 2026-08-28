@@ -70,6 +70,7 @@
 .agenda-etiqueta{font-family:var(--dato);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--brote);margin-bottom:.5rem}
 .agenda-item[data-estado="ultimos"] .agenda-etiqueta{color:var(--fermento)}
 .agenda-item[data-estado="agotado"] .agenda-etiqueta{color:var(--cal-baja)}
+.agenda-item[data-estado="sin-fecha"] .agenda-etiqueta{color:var(--cal-baja)}
 .agenda-nombre{font-family:var(--display);font-size:1.22rem;color:var(--cal);line-height:1.12;letter-spacing:-.02em}
 .agenda-cuando{font-family:var(--dato);font-size:.8rem;color:var(--cal-med);letter-spacing:.01em}
 .agenda-precio{font-family:var(--dato);font-size:.86rem;color:var(--miel)}
@@ -212,12 +213,12 @@
   <div class="env">
     <div class="agenda-cabeza sube">
       <div>
-        <span class="senal">Lo que se puede reservar hoy</span>
+        <span class="senal">Curso, talleres y experiencias</span>
         <h2 style="margin-top:.8rem">Próximas fechas</h2>
       </div>
       <p class="dato" style="max-width:30ch;text-transform:none;letter-spacing:.02em;font-size:.8rem;color:var(--cal-baja)">Los grupos son chicos. Cuando se llenan, se cierra la fecha.</p>
     </div>
-    <ul class="agenda-grid sube"><!--o:html:agenda_html--><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Fecha abierta</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">jueves 3 de septiembre · 10:00 a 13:30 h</p><a href="pastas.html" class="agenda-link" data-producto="agenda">Ver el taller →</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Segunda fecha</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">viernes 4 de septiembre · 10:00 a 13:30 h</p><a href="pastas.html" class="agenda-link" data-producto="agenda">Ver el taller →</a></li><!--/o--></ul>
+    <ul class="agenda-grid sube"><!--o:html:agenda_html--><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Fecha abierta</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">jueves 3 de septiembre · 10:00 a 13:30 h</p><a href="pastas.html" class="agenda-link" data-producto="agenda">Ver el taller →</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Segunda fecha</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">viernes 4 de septiembre · 10:00 a 13:30 h</p><a href="pastas.html" class="agenda-link" data-producto="agenda">Ver el taller →</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Grupos abiertos</span><p class="agenda-nombre">Curso de tres meses</p><p class="agenda-cuando">Arranca el miércoles 7 de octubre · miércoles y jueves</p><a href="curso.html" class="agenda-link" data-producto="agenda">Ver el curso →</a></li><li class="agenda-item" data-estado="sin-fecha"><span class="agenda-etiqueta">Próxima fecha a confirmar</span><p class="agenda-nombre">Cena y Taller de Tapeo</p><p class="agenda-cuando">Se abre según la demanda</p><a href="tapeo.html" class="agenda-link" data-producto="agenda">Avisame la próxima fecha →</a></li><!--/o--></ul>
   </div>
 </section>
 
