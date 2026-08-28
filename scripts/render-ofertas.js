@@ -308,6 +308,11 @@ datos.curso.horarios_tabla_html = datos.curso.grupos.map(function (g) {
 datos.curso.faq_cambio_grupo = 'Sí, y pasa seguido. Tenés ' + cuantos +
   ' y te movés entre ellos mientras haya lugar: si te cambia el trabajo, te sale un viaje o simplemente te queda mejor otro día, avisanos y te reubicamos. Nadie pierde el curso por un cambio de agenda.';
 
+// El chip del hero contaba las modalidades a mano y quedó en "3" con dos
+// grupos abiertos.
+datos.curso.chip_modalidades = '3 meses · ' + nombres.length + ' modalidad' +
+  (nombres.length === 1 ? '' : 'es');
+
 // El resumen que leen los modelos de lenguaje en llms.txt. Antes decía a mano
 // "los grupos de martes y miércoles ya empezaron", que quedó falso apenas
 // cambió la edición.
