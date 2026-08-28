@@ -242,6 +242,8 @@ datos.curso.grupos_abiertos_texto = abiertos.length
 datos.curso.inicio_texto = abiertos.length ? abiertos[0].inicio_texto : 'Próxima edición a confirmar';
 // La tabla de horarios de /contacto se generaba a mano y quedó publicando los
 // días de una edición ya terminada. Ahora sale de los grupos abiertos.
+// "3 cuotas de $4.800" -> "3 de $4.800": la etiqueta de la comanda ya dice "En cuotas".
+datos.curso.cuotas_corto = String(datos.curso.precio_cuotas || '').replace(' cuotas ', ' ');
 datos.curso.horarios_html = abiertos.length
   ? abiertos.map(function (g) {
       return '<tr><th scope="row">' + escapar(g.nombre) + '</th><td>' +
