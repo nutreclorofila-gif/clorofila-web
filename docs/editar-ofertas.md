@@ -34,6 +34,9 @@ No hay que tocar HTML.
   la web retira la fecha sola y vuelve a "próxima fecha a confirmar".
   Nunca más queda un banner viejo colgado.
 - `fecha_texto` es lo que lee la gente. Escribilo como lo dirías.
+  Si escribís el día de la semana, tiene que ser el que de verdad cae:
+  el build compara el texto con `fecha_iso` y corta si no coinciden.
+  Así nadie llega un jueves porque la página decía jueves y el calendario martes.
 - `precio` es lo que se muestra; `precio_num` es solo el número, para Google.
 
 ## Los estados
@@ -74,12 +77,14 @@ carga así:
 
 ```json
 "segunda_fecha": {
+  "iso": "2026-08-21",
   "texto": "viernes 21 de agosto",
   "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-4384"
 }
 ```
 
 Aparece como "¿No podés ese día? También hay fecha el…" y en la agenda de la home.
+El `iso` ordena la agenda y deja que el build controle el texto: ponelo siempre.
 
 ## Publicar la fecha sin saber todavía el precio o los cupos
 
@@ -96,6 +101,9 @@ Un grupo cuya fecha de inicio ya pasó se marca cerrado solo, se ve gris en la p
 y deja de ofrecerse en Google como disponible.
 
 Para la próxima edición: cambiás `inicio_iso`, `inicio_texto` y ponés `estado: "abierto"`.
+El `nombre` del grupo tiene que ser el día en que se cursa, y el texto tiene que
+coincidir con el `inicio_iso`: si movés la fecha y te olvidás del texto, el build
+te lo dice antes de publicar.
 
 ## Cambiar de edición (agregar o sacar grupos)
 
