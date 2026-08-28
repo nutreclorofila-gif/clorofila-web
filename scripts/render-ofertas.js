@@ -334,6 +334,21 @@ datos.curso.faq_cursada = 'Son 3 meses de cursada con ' + cuantos + ' para elegi
       g.inicio_texto.toLowerCase() + ')';
   }).join(' o ') + '. Cada grupo son 12 clases semanales.';
 
+// El chip decía "3 modalidades" a mano: quedó de la edición de agosto, que
+// tenía tres grupos. Con dos grupos la propia página se contradecía, porque
+// la ficha de abajo lista "Miércoles · Jueves".
+datos.curso.modalidades_chip = '3 meses · ' + nombres.length +
+  (nombres.length === 1 ? ' modalidad' : ' modalidades');
+
+// El FAQ prometía "tenés tres horarios y te movés entre ellos". Con una sola
+// modalidad no hay a dónde moverse, así que la respuesta cambia entera.
+datos.curso.faq_cambio_grupo = nombres.length > 1
+  ? 'Sí, y pasa seguido. Tenés ' + cuantos + ' y te movés entre ellos mientras haya lugar: ' +
+    'si te cambia el trabajo, te sale un viaje o simplemente te queda mejor otro día, avisanos ' +
+    'y te reubicamos. Nadie pierde el curso por un cambio de agenda.'
+  : 'Esta edición tiene un solo horario, así que no hay otro grupo al que pasarte. Si se te ' +
+    'complica una clase puntual avisanos y la recuperás: nadie pierde contenido por un cambio de agenda.';
+
 /* ---- Agenda: lo que se puede comprar hoy, ordenado por fecha ---- */
 const agenda = [];
 if (t.estado !== 'sin-fecha' && t.fecha_iso) {
@@ -520,6 +535,13 @@ for (const archivo of archivos) {
             }
             return inst;
           });
+          tocado = true;
+        }
+
+        // Lo mismo con "¿puedo cambiarme de grupo?": prometía tres horarios.
+        if (nodo['@type'] === 'Question' && /cambiarme de grupo/i.test(nodo.name || '') &&
+            nodo.acceptedAnswer && datos.curso.faq_cambio_grupo) {
+          nodo.acceptedAnswer.text = datos.curso.faq_cambio_grupo;
           tocado = true;
         }
 
