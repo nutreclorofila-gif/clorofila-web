@@ -123,6 +123,7 @@
     },
     "buncheo": {
       "nombre": "Domingo de Buncheo",
+      "publicar": false,
       "linea_sin_fecha": "Un domingo al mes — la fecha se anuncia en Instagram y por WhatsApp.",
       "estado": "sin-fecha",
       "fecha_iso": "",

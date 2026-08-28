@@ -447,6 +447,11 @@ if (t.estado !== 'sin-fecha' && t.fecha_iso) {
   }
 }
 for (const [id, w] of Object.entries(datos.talleres)) {
+  // "publicar": false lo deja fuera del sitio aunque tenga fecha cargada. El
+  // Domingo de Buncheo se coordina por Instagram y WhatsApp y no tiene bloque
+  // propio en /talleres: sin esto, cargarle una fecha lo haría aparecer en la
+  // agenda con un link a un ancla que no existe.
+  if (w.publicar === false) continue;
   if (w.estado === 'sin-fecha' || !w.fecha_iso) continue;
   agenda.push({
     iso: w.fecha_iso, nombre: w.nombre, fecha: w.fecha_texto, hora: w.hora,
