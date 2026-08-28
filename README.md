@@ -43,6 +43,6 @@ npm run check:assets   # falla si quedó alguna página con la versión vieja
 
 ```bash
 npm run ofertas   # aplica data/ofertas.json al HTML
-npm test          # revisa fechas, links, versiones de assets, JSON-LD, sitemap y HTML
+npm test          # fechas, links, versiones de assets, imagen social, JSON-LD, sitemap y HTML
 npm audit         # vulnerabilidades de las dependencias de desarrollo
 ```

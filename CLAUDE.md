@@ -38,6 +38,15 @@ con `<!--o:...-->` y `data-set=`. Editar el HTML directamente hace fallar
 en todas las páginas** (ver README). `npm run check:assets` falla si alguna
 queda atrás. Sin eso, quien ya visitó el sitio sigue con la versión vieja.
 
+**Cada página usa su propia imagen social.** Si existe `og/og-<pagina>.jpg`,
+la página tiene que pedirla en `og:image` y en `twitter:image`. Copiar el
+`<head>` de otra página es cómo se cuela la imagen equivocada, y solo se nota
+cuando alguien comparte el link. `npm run check:assets` lo verifica.
+
+**Los links de `data/ofertas.json` se validan en el build.** `render-ofertas.js`
+corta el deploy si un link no empieza con `https://`, `mailto:`, `tel:`, `/`
+o `#`, o si el JSON quedó mal escrito. El mensaje dice qué arreglar.
+
 **La analítica solo corre en `clorofila.uy`.** `consent.js` verifica el
 hostname, así que en local y en las previews de Netlify no se mide nada: es a
 propósito, no un bug.
