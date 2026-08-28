@@ -1,0 +1,60 @@
+# clorofila.uy
+
+Sitio estático (HTML + CSS + JS a mano, sin framework ni bundler). Netlify
+publica la raíz del repo al hacer push a `main`; el único paso de build es
+`node scripts/render-ofertas.js`.
+
+## Antes de tocar nada
+
+```bash
+npm ci        # una sola vez
+npm test      # fechas, links, versiones de assets, JSON-LD, sitemap, HTML
+```
+
+`npm test` es rápido (segundos) y hay que correrlo antes de cada commit: es lo
+mismo que corre CI (`.github/workflows/checks.yml`).
+
+## Dónde está cada cosa
+
+| Qué | Dónde |
+|---|---|
+| Fechas, precios, cupos, estado de cada propuesta | `data/ofertas.json` (**única fuente**) |
+| Estilos de todo el sitio | `base.css` |
+| Estilos de una sola página | `<style>` dentro de esa página |
+| Analítica con consentimiento (GA4 + Meta Pixel) | `consent.js` |
+| Medición de eventos (clics, conversiones) | `track.js` |
+| Nav, menú móvil, animaciones, banner de cookies | `pagina.js` |
+| Artículos del blog | `articulos/*.html` |
+| Chequeos de CI | `scripts/check-*.js` |
+
+## Reglas que importan
+
+**Nunca editar a mano fechas, precios ni cupos en el HTML.** Salen de
+`data/ofertas.json` vía `npm run ofertas`, que reescribe los bloques marcados
+con `<!--o:...-->` y `data-set=`. Editar el HTML directamente hace fallar
+`npm run check:ofertas` y se pierde en el siguiente build.
+
+**Al editar `base.css`, `consent.js`, `track.js` o `pagina.js`, subir el `?v=`
+en todas las páginas** (ver README). `npm run check:assets` falla si alguna
+queda atrás. Sin eso, quien ya visitó el sitio sigue con la versión vieja.
+
+**La analítica solo corre en `clorofila.uy`.** `consent.js` verifica el
+hostname, así que en local y en las previews de Netlify no se mide nada: es a
+propósito, no un bug.
+
+**El consentimiento se lee y escribe con `window.consentimiento`** (definido en
+`consent.js`), no con `localStorage` directo: con las cookies bloqueadas,
+acceder al almacenamiento lanza excepción.
+
+**Un solo lector de scroll.** `pagina.js` usa `enScroll()`, que agrupa todo en
+un `requestAnimationFrame`. Agregar un `addEventListener('scroll')` suelto que
+mida posiciones traba el scroll en móviles.
+
+**Todo el texto de cara al público está en español rioplatense** (voseo:
+"editás", "podés"). Los comentarios del código, también.
+
+## Cambios que tocan muchas páginas
+
+Son 25 HTML con estructura repetida (head, nav, footer). Para un cambio
+transversal conviene un script de Node de una sola vez sobre la lista de
+archivos, y después `npm test`, en vez de 25 ediciones a mano.

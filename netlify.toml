@@ -106,7 +106,11 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Strict-Transport-Security = "max-age=31536000"
     Cross-Origin-Opener-Policy = "same-origin-allow-popups"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://tally.so; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com; frame-src https://www.google.com https://tally.so; object-src 'none'; base-uri 'self'"
+    # frame-ancestors es la versión moderna de X-Frame-Options (el header viejo
+    # queda arriba para navegadores antiguos). form-action impide que un script
+    # inyectado mande un formulario a un servidor ajeno. img-src incluye
+    # googletagmanager porque GA4 sirve algunos píxeles desde ese dominio.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://tally.so; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com; frame-src https://www.google.com https://tally.so; frame-ancestors 'self'; form-action 'self' https://tally.so; manifest-src 'self'; object-src 'none'; base-uri 'self'"
 
 [[headers]]
   for = "/og/*"

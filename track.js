@@ -79,6 +79,10 @@
 
   /* --- Clics --- */
   document.addEventListener('click', function (e) {
+    // El objetivo del clic no siempre es un elemento con closest() (puede ser
+    // el propio documento). Sin este guardia, esos clics tiraban excepción.
+    if (!e.target || typeof e.target.closest !== 'function') return;
+
     var tally = e.target.closest('[data-tally-open]');
     if (tally) {
       var prod = productoDe(tally);
@@ -115,8 +119,15 @@
     }
   });
 
-  /* --- Formulario de Tally enviado = inscripción --- */
+  /* --- Formulario de Tally enviado = inscripción ---
+     Se exige que el mensaje venga del iframe de Tally. Sin esa verificación,
+     cualquier página que abra la nuestra en una ventana o la embeba puede
+     mandar el mismo mensaje y anotar inscripciones que nunca pasaron: los
+     eventos de conversión (sign_up, CompleteRegistration) son justo los que
+     alimentan la optimización de los anuncios. */
+  var ORIGEN_TALLY = 'https://tally.so';
   window.addEventListener('message', function (e) {
+    if (e.origin !== ORIGEN_TALLY) return;
     var data = e.data;
     if (typeof data === 'string') {
       try { data = JSON.parse(data); } catch (err) { return; }
