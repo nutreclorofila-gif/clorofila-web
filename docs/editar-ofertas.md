@@ -166,6 +166,21 @@ espera"**, abriendo el formulario. No hay que tocar nada: se activa por fecha.
 Cuando abrís la próxima edición (ponés un grupo en `"estado": "abierto"` con su
 `inicio_iso`), los botones vuelven a ser de reserva.
 
+## Las reseñas de Google
+
+Cuando entran reseñas nuevas, actualizá el bloque `"google"` del final:
+
+```json
+"google": {
+  "puntaje": 4.9,
+  "resenas": 21
+}
+```
+
+El puntaje va **con punto** (`4.9`), no con coma: la web lo escribe con coma sola.
+Con eso se actualizan los seis lugares donde aparece —el home, dos veces en el
+curso más el chip del hero, y el tapeo— y también la ficha que lee Google.
+
 ## Si algo sale mal
 
 El archivo tiene que seguir siendo JSON válido: comillas dobles, coma entre renglones,
