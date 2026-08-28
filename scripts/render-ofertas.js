@@ -383,8 +383,29 @@ datos.tiene_agenda = agenda.length ? 'si' : 'no';
 // acordarse de los seis: ahora salen de acá.
 {
   const g = datos.google;
+  // Este archivo lo edita quien publica, no quien programa. El error probable
+  // acá es escribir el puntaje con coma ("4,9"), porque así se ve en la web:
+  // la página quedaría bien pero la ficha de Google publicaría un ratingValue
+  // inválido, y nadie se enteraría. Mejor cortar el build que publicar roto.
+  if (!g || typeof g !== 'object') {
+    console.error('✗ Falta el bloque "google" en data/ofertas.json (puntaje y reseñas).');
+    process.exit(1);
+  }
+  if (typeof g.puntaje !== 'number' || !(g.puntaje >= 0 && g.puntaje <= 5)) {
+    console.error('✗ google.puntaje tiene que ser un número entre 0 y 5, con punto: 4.9');
+    console.error('  Está escrito así: ' + JSON.stringify(g.puntaje));
+    process.exit(1);
+  }
+  if (!Number.isInteger(g.resenas) || g.resenas < 0) {
+    console.error('✗ google.resenas tiene que ser un número entero: 21');
+    console.error('  Está escrito así: ' + JSON.stringify(g.resenas));
+    process.exit(1);
+  }
+  // Siempre un decimal: si se carga 5, se publica "5,0" y no "5".
+  const puntaje = g.puntaje.toFixed(1);
+  g.puntaje_schema = puntaje;
   // En el sitio el puntaje se escribe con coma, como se lee en español.
-  g.puntaje_texto = String(g.puntaje).replace('.', ',');
+  g.puntaje_texto = puntaje.replace('.', ',');
   g.resenas_texto = g.resenas + (Number(g.resenas) === 1 ? ' reseña' : ' reseñas') + ' en Google';
   g.linea_texto = '\u2605 ' + g.puntaje_texto + ' \u00b7 ' + g.resenas_texto + ' \u2192';
   g.chip_texto = '\u2605 ' + g.puntaje_texto + ' \u00b7 ' + g.resenas +
@@ -476,7 +497,7 @@ for (const archivo of archivos) {
         // El puntaje de Google que se publica en la ficha es el mismo que se
         // muestra en la página: sale de data/ofertas.json, no de acá.
         if (nodo.aggregateRating && nodo.aggregateRating['@type'] === 'AggregateRating') {
-          nodo.aggregateRating.ratingValue = String(datos.google.puntaje);
+          nodo.aggregateRating.ratingValue = datos.google.puntaje_schema;
           nodo.aggregateRating.reviewCount = String(datos.google.resenas);
           tocado = true;
         }
