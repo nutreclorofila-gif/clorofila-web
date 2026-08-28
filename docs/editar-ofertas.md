@@ -97,6 +97,35 @@ y deja de ofrecerse en Google como disponible.
 
 Para la próxima edición: cambiás `inicio_iso`, `inicio_texto` y ponés `estado: "abierto"`.
 
+## Cambiar de edición (agregar o sacar grupos)
+
+Se hace entero en `data/ofertas.json`, dentro de `"curso"`: cambiás `edicion` y
+reescribís la lista `grupos`. **No hay que tocar ningún HTML**, ni siquiera si la
+edición nueva tiene otra cantidad de grupos o cae en otros días.
+
+Cada grupo lleva:
+
+```json
+{
+  "id": "jueves",
+  "nombre": "Jueves",
+  "horario": "19:00 a 21:00 h",
+  "inicio_iso": "2026-10-08",
+  "inicio_texto": "Arranca el jueves 8 de octubre",
+  "detalle": "Clase semanal · 12 encuentros. Para quienes salen de trabajar.",
+  "estado": "abierto"
+}
+```
+
+A partir de eso se dibujan solos: los bloques de grupo de `/curso`, el título
+"Edición octubre 2026", la frase "3 meses · miércoles y jueves", la lista de
+modalidades, el texto del cierre, la respuesta de la FAQ sobre cómo se organiza
+la cursada, la bajada de `/programa` y los `CourseInstance` que ve Google (con
+su fecha, su precio y si está disponible o agotado).
+
+El `id` solo tiene que ser único; ya no hay HTML que dependa de que se llame
+`martes` o `sabados`.
+
 ## Abrir la fecha de un taller
 
 Los seis talleres (`fermentacion`, `pan-sin-gluten`, `pastas-sin-gluten`, `alfajores`,

@@ -255,6 +255,55 @@ for (const g of datos.curso.grupos) {
   datos.curso['grupo_' + g.id + '_inicio'] = g.inicio_texto;
 }
 
+// Los bloques de grupo se dibujan solos. Antes estaban escritos a mano, uno por
+// día, así que cambiar de edición obligaba a editar curso.html y a acordarse de
+// los placeholders de cada id: si un grupo desaparecía del JSON, el build se
+// caía por un `curso.grupo_martes_inicio` que ya no existía.
+datos.curso.grupos_html = datos.curso.grupos.map(function (g) {
+  return '<article class="grupo" data-estado="' + escapar(g.estado) + '">' +
+    '<p class="grupo-estado">' + escapar(g.estado === 'abierto' ? 'Abierto' : 'Grupo cerrado') + '</p>' +
+    '<p class="grupo-dia">' + escapar(g.nombre) + '</p>' +
+    '<p class="grupo-hora">' + escapar(g.horario) + '</p>' +
+    '<p class="grupo-inicio">' + escapar(g.inicio_texto) + '</p>' +
+    (g.detalle ? '<p class="grupo-detalle">' + escapar(g.detalle) + '</p>' : '') +
+    '</article>';
+}).join('');
+
+// Textos que nombraban los días a mano ("martes y miércoles o sábados").
+function enumerar(lista) {
+  if (lista.length <= 1) return lista.join('');
+  return lista.slice(0, -1).join(', ') + ' y ' + lista[lista.length - 1];
+}
+const nombres = datos.curso.grupos.map(function (g) { return g.nombre; });
+datos.curso.modalidades_texto = nombres.join(' · ');
+datos.curso.dias_texto = enumerar(nombres.map(function (n) { return n.toLowerCase(); }));
+datos.curso.edicion_titulo = 'Edición ' + String(datos.curso.edicion).toLowerCase();
+datos.curso.inscripcion_titulo = 'Inscripción · ' + datos.curso.edicion;
+datos.curso.porclase_texto = '3 meses · ' + datos.curso.dias_texto + ' · 12 encuentros semanales';
+
+// La cantidad de horarios se dice en palabras, y cambia si son dos o tres.
+const cuantos = { 1: 'un horario', 2: 'dos horarios', 3: 'tres horarios' }[nombres.length]
+  || nombres.length + ' horarios';
+datos.curso.intro_grupos = abiertos.length
+  ? 'El mismo programa en ' + cuantos + '. Son grupos reducidos a propósito: para que puedas cocinar, preguntar y recibir correcciones directamente de Leonardo.'
+  : 'El mismo programa en ' + cuantos + '. Los grupos de esta edición ya arrancaron. Son reducidos a propósito: para que puedas cocinar, preguntar y recibir correcciones directamente de Leonardo.';
+
+// El cierre cambia entero según haya edición abierta o no.
+datos.curso.cierre_titulo_html = abiertos.length
+  ? 'Empezá en<br>' + escapar(String(datos.curso.edicion).toLowerCase()) + '.'
+  : 'La edición de ' + escapar(String(datos.curso.edicion).split(' ')[0].toLowerCase()) + '<br>ya arrancó.';
+datos.curso.cierre_bajada = abiertos.length
+  ? 'Escribinos por WhatsApp y coordinamos tu lugar: contesta Leonardo, no un formulario.'
+  : 'Los grupos de esta edición ya empezaron. Dejanos tus datos y sos de los primeros en enterarte cuando abramos la próxima: contesta Leonardo, no un formulario.';
+
+// La FAQ de la cursada se arma con los grupos reales, para que no quede
+// prometiendo horarios de una edición que ya pasó.
+datos.curso.faq_cursada = 'Son 3 meses de cursada con ' + cuantos + ' para elegir: ' +
+  datos.curso.grupos.map(function (g) {
+    return g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '') + ' (' +
+      g.inicio_texto.toLowerCase() + ')';
+  }).join(' o ') + '. Cada grupo son 12 clases semanales.';
+
 /* ---- Agenda: lo que se puede comprar hoy, ordenado por fecha ---- */
 const agenda = [];
 if (t.estado !== 'sin-fecha' && t.fecha_iso) {
@@ -379,15 +428,33 @@ for (const archivo of archivos) {
         if (Array.isArray(nodo)) return nodo.forEach(recorrer);
         if (!nodo || typeof nodo !== 'object') return;
 
-        // Curso: cada grupo se ofrece solo si sigue abierto.
-        if (nodo['@type'] === 'CourseInstance' && nodo.startDate && nodo.offers) {
-          const grupo = datos.curso.grupos.find(function (g) { return g.inicio_iso === nodo.startDate; });
-          if (grupo) {
-            nodo.offers.availability = grupo.estado === 'abierto'
-              ? 'https://schema.org/InStock'
-              : 'https://schema.org/SoldOut';
-            tocado = true;
-          }
+        // Curso: la lista de grupos que ve Google se rehace desde ofertas.json.
+        // Antes cada CourseInstance estaba escrito a mano y solo se actualizaba
+        // si su startDate coincidía con un grupo: al cambiar de edición, los
+        // grupos viejos quedaban publicados con la fecha y el precio de antes.
+        if (nodo['@type'] === 'Course' && Array.isArray(nodo.hasCourseInstance)) {
+          const molde = nodo.hasCourseInstance[0] || {};
+          nodo.hasCourseInstance = datos.curso.grupos.map(function (g) {
+            const inst = JSON.parse(JSON.stringify(molde));
+            inst.name = 'Grupo ' + g.nombre.toLowerCase() + ' ' + g.horario.replace(' a ', '-').replace(' h', '');
+            inst.startDate = g.inicio_iso;
+            if (inst.offers) {
+              inst.offers.availability = g.estado === 'abierto'
+                ? 'https://schema.org/InStock'
+                : 'https://schema.org/SoldOut';
+              inst.offers.price = String(datos.curso.precio_total).replace(/[^\d]/g, '');
+            }
+            return inst;
+          });
+          tocado = true;
+        }
+
+        // La respuesta de "cómo se organiza la cursada" que ve Google sale de
+        // los mismos grupos que la página, para que no queden desfasadas.
+        if (nodo['@type'] === 'Question' && /organiza la cursada/i.test(nodo.name || '') &&
+            nodo.acceptedAnswer && datos.curso.faq_cursada) {
+          nodo.acceptedAnswer.text = datos.curso.faq_cursada;
+          tocado = true;
         }
 
         // Tapeo: fecha, precio y disponibilidad reales, o ninguna oferta si no hay fecha.

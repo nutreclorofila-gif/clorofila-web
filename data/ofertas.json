@@ -38,35 +38,30 @@
   },
   "curso": {
     "estado": "abierto",
-    "edicion": "Agosto 2026",
+    "edicion": "Octubre 2026",
     "precio_total": "$12.200",
     "precio_cuotas": "3 cuotas de $4.800",
     "precio_tarjeta": "hasta 12 cuotas de $1.016",
     "ahorro": "$2.200",
+    "_leeme_grupos": "Agregar, sacar o cambiar un grupo se hace acá y nada más: los bloques de la página del curso, el schema de Google y los textos que nombran los días se dibujan solos. El grupo se cierra automáticamente cuando inicio_iso ya pasó.",
     "grupos": [
-      {
-        "id": "martes",
-        "nombre": "Martes",
-        "horario": "19:00 a 21:00 h",
-        "inicio_iso": "2026-08-11",
-        "inicio_texto": "Arrancó el 11 de agosto",
-        "estado": "cerrado"
-      },
       {
         "id": "miercoles",
         "nombre": "Miércoles",
         "horario": "10:00 a 12:00 h",
-        "inicio_iso": "2026-08-12",
-        "inicio_texto": "Arrancó el 12 de agosto",
-        "estado": "cerrado"
+        "inicio_iso": "2026-10-07",
+        "inicio_texto": "Arranca el miércoles 7 de octubre",
+        "detalle": "Clase semanal · 12 encuentros. El grupo de mañana, con el estudio tranquilo y luz de día.",
+        "estado": "abierto"
       },
       {
-        "id": "sabados",
-        "nombre": "Sábados",
-        "horario": "15:00 a 18:30 h",
-        "inicio_iso": "2026-08-22",
-        "inicio_texto": "Arrancó el 22 de agosto",
-        "estado": "cerrado"
+        "id": "jueves",
+        "nombre": "Jueves",
+        "horario": "19:00 a 21:00 h",
+        "inicio_iso": "2026-10-08",
+        "inicio_texto": "Arranca el jueves 8 de octubre",
+        "detalle": "Clase semanal · 12 encuentros. Para quienes salen de trabajar y quieren cerrar el día cocinando.",
+        "estado": "abierto"
       }
     ]
   },
