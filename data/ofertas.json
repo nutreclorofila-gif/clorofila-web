@@ -43,7 +43,7 @@
     "precio_cuotas": "3 cuotas de $4.800",
     "precio_tarjeta": "hasta 12 cuotas de $1.016",
     "ahorro": "$2.200",
-    "_leeme_grupos": "Agregar, sacar o cambiar un grupo se hace acá y nada más: los bloques de la página del curso, el schema de Google y los textos que nombran los días se dibujan solos. El grupo se cierra automáticamente cuando inicio_iso ya pasó.",
+    "_leeme_grupos": "Agregar, sacar o cambiar un grupo se hace acá y nada más: los bloques de la página del curso, el schema de Google y los textos que nombran los días se dibujan solos. El grupo se cierra automáticamente cuando inicio_iso ya pasó. El nombre y el texto tienen que coincidir con inicio_iso: si no, el build avisa y no publica.",
     "grupos": [
       {
         "id": "miercoles",
@@ -98,6 +98,7 @@
       "cupos_total": 12,
       "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten",
       "segunda_fecha": {
+        "iso": "2026-09-04",
         "texto": "viernes 4 de septiembre",
         "link": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten-ae88"
       }

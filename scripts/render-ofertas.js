@@ -39,6 +39,38 @@ function esPasado(iso) {
   const d = new Date(iso + 'T00:00:00');
   return !isNaN(d) && d < hoy;
 }
+/* El día de la semana y la fecha viven dos veces: una como ISO (que es lo
+   que lee Google) y otra escrita a mano ("jueves 3 de septiembre"). Si se
+   cambia una y no la otra, la página anuncia un día y el schema otro, y no
+   se nota hasta que alguien llega el día equivocado. Acá se comparan. */
+const DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
+  'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+function revisarFecha(donde, iso, texto) {
+  if (!iso || !texto) return;
+  // "setiembre" y "septiembre" conviven en Uruguay: las dos valen.
+  const t = String(texto).toLowerCase().replace('setiembre', 'septiembre');
+  const m = t.match(/(domingo|lunes|martes|miércoles|jueves|viernes|sábado)\s+(\d{1,2})\s+de\s+([a-zé]+)/);
+  if (!m) return; // Textos sin fecha escrita ("Sin fecha confirmada") no se controlan.
+
+  const d = new Date(iso + 'T00:00:00');
+  if (isNaN(d)) {
+    console.error('✗ Fecha inválida en data/ofertas.json (' + donde + '): "' + iso + '"');
+    console.error('  Tiene que ser AAAA-MM-DD, por ejemplo 2026-10-07.');
+    process.exit(1);
+  }
+  const esperado = DIAS[d.getDay()] + ' ' + d.getDate() + ' de ' + MESES[d.getMonth()];
+  const escrito = m[1] + ' ' + Number(m[2]) + ' de ' + m[3];
+  if (esperado !== escrito) {
+    console.error('✗ La fecha escrita no coincide con la fecha real en data/ofertas.json (' + donde + ')');
+    console.error('  El texto dice: "' + escrito + '"');
+    console.error('  Pero ' + iso + ' cae ' + esperado + '.');
+    console.error('  Corregí el texto, o el ISO si el que está mal es él.');
+    process.exit(1);
+  }
+}
+
 function escapar(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
@@ -105,6 +137,26 @@ t.tiene_fecha = (t.estado !== 'sin-fecha' && t.fecha_texto) ? 'si' : 'no';
 t.horario_texto = t.hora && t.hora_fin ? t.hora + ' a ' + t.hora_fin + ' h' : (t.hora || '');
 
 // El WhatsApp cambia según haya fecha o no: nunca pide reservar algo que no existe.
+/* Se controla todo lo que tenga fecha antes de dibujar nada. */
+revisarFecha('tapeo', datos.tapeo.fecha_iso, datos.tapeo.fecha_texto);
+if (datos.tapeo.segunda_fecha) revisarFecha('tapeo.segunda_fecha', datos.tapeo.segunda_fecha.iso, datos.tapeo.segunda_fecha.texto);
+Object.keys(datos.talleres).forEach(function (k) {
+  const t = datos.talleres[k];
+  if (!t || typeof t !== 'object') return;
+  revisarFecha('talleres.' + k, t.fecha_iso, t.fecha_texto);
+  if (t.segunda_fecha) revisarFecha('talleres.' + k + '.segunda_fecha', t.segunda_fecha.iso, t.segunda_fecha.texto);
+});
+datos.curso.grupos.forEach(function (g) {
+  revisarFecha('curso.grupos.' + g.id, g.inicio_iso, g.inicio_texto);
+  // El nombre del grupo es el día en que se cursa: tiene que ser ese día.
+  const d = new Date(g.inicio_iso + 'T00:00:00');
+  if (!isNaN(d) && g.nombre && DIAS[d.getDay()] !== String(g.nombre).toLowerCase()) {
+    console.error('✗ El grupo "' + g.nombre + '" arranca un ' + DIAS[d.getDay()] + ' (' + g.inicio_iso + ')');
+    console.error('  El nombre del grupo tiene que ser el día en que se cursa.');
+    process.exit(1);
+  }
+});
+
 const waBase = 'https://wa.me/59894064148?text=';
 t.wa_link = waBase + encodeURIComponent(
   t.estado === 'sin-fecha' || t.estado === 'agotado'
@@ -354,7 +406,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   });
   if (w.segunda_fecha && w.segunda_fecha.texto) {
     agenda.push({
-      iso: w.fecha_iso + '-b', nombre: w.nombre, fecha: w.segunda_fecha.texto,
+      iso: (w.segunda_fecha.iso || w.fecha_iso) + '-b', nombre: w.nombre, fecha: w.segunda_fecha.texto,
       hora: w.hora, precio: w.precio, estado: 'abierto', etiqueta: 'Segunda fecha',
       link: (id === 'pastas-sin-gluten') ? 'pastas.html' : 'talleres.html#' + id, cta: 'Ver el taller →'
     });
