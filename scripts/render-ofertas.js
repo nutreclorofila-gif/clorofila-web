@@ -294,7 +294,13 @@ datos.curso.cta_texto = abiertos.length ? 'Reservar mi lugar →' : 'Avisarme de
 // Con edición abierta se reserva por WhatsApp, que es como se reserva de verdad.
 // Sin edición abierta, el formulario pasa a ser la lista de espera.
 datos.curso.cta_link = abiertos.length
-  ? waBase + encodeURIComponent('Hola Leonardo, quiero reservar mi lugar en el curso y me interesa el grupo de ' + datos.curso.grupos_abiertos_texto + '.')
+  ? waBase + encodeURIComponent(abiertos.length === 1
+      ? 'Hola Leonardo, quiero reservar mi lugar en el curso, en el grupo de los ' +
+        String(abiertos[0].nombre).toLowerCase() + ' de ' + abiertos[0].horario.replace(' h', '') + '.'
+      : 'Hola Leonardo, quiero reservar mi lugar en el curso. Me interesa el grupo de los ' +
+        abiertos.map(function (g) {
+          return String(g.nombre).toLowerCase() + ' de ' + g.horario.replace(' h', '');
+        }).join(' o el de los ') + '.')
   : 'https://tally.so/r/EkMbWL';
 datos.curso.cta_nota = abiertos.length
   ? 'Grupos reducidos · te escribimos por WhatsApp en menos de 24h para confirmar tu lugar'
@@ -318,6 +324,16 @@ datos.curso.grupos_html = datos.curso.grupos.map(function (g) {
     '<p class="grupo-hora">' + escapar(g.horario) + '</p>' +
     '<p class="grupo-inicio">' + escapar(g.inicio_texto) + '</p>' +
     (g.detalle ? '<p class="grupo-detalle">' + escapar(g.detalle) + '</p>' : '') +
+    /* Cada grupo abierto reserva por su cuenta. Con un botón único para los
+       dos, el mensaje llegaba diciendo "me interesa el grupo de Miércoles ·
+       Jueves" y había que preguntar cuál era antes de poder confirmar nada. */
+    (g.estado === 'abierto'
+      ? '<a class="grupo-cta" href="' + enlace(waBase + encodeURIComponent(
+          'Hola Leonardo, quiero reservar mi lugar en el curso, en el grupo de los ' +
+          String(g.nombre).toLowerCase() + ' de ' + g.horario.replace(' h', '') + '.')) +
+        '" target="_blank" rel="noopener noreferrer" data-producto="curso">' +
+        'Reservar este grupo →</a>'
+      : '') +
     '</article>';
 }).join('');
 
