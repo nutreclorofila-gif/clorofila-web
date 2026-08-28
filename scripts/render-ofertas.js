@@ -296,6 +296,18 @@ datos.curso.cierre_bajada = abiertos.length
   ? 'Escribinos por WhatsApp y coordinamos tu lugar: contesta Leonardo, no un formulario.'
   : 'Los grupos de esta edición ya empezaron. Dejanos tus datos y sos de los primeros en enterarte cuando abramos la próxima: contesta Leonardo, no un formulario.';
 
+// La tabla de horarios de /contacto salía de los mismos grupos, pero estaba
+// escrita a mano: se quedó anunciando martes y sábados de la edición anterior.
+datos.curso.horarios_tabla_html = datos.curso.grupos.map(function (g) {
+  return '<tr><th scope="row">' + escapar(g.nombre) + '</th><td>' +
+    escapar(g.horario.replace(' a ', ' – ')) + '</td></tr>';
+}).join('');
+
+// "Tenés tres horarios y te movés entre ellos": si la edición trae dos grupos,
+// el número tiene que acompañar.
+datos.curso.faq_cambio_grupo = 'Sí, y pasa seguido. Tenés ' + cuantos +
+  ' y te movés entre ellos mientras haya lugar: si te cambia el trabajo, te sale un viaje o simplemente te queda mejor otro día, avisanos y te reubicamos. Nadie pierde el curso por un cambio de agenda.';
+
 // El resumen que leen los modelos de lenguaje en llms.txt. Antes decía a mano
 // "los grupos de martes y miércoles ya empezaron", que quedó falso apenas
 // cambió la edición.
@@ -462,6 +474,11 @@ for (const archivo of archivos) {
         if (nodo['@type'] === 'Question' && /organiza la cursada/i.test(nodo.name || '') &&
             nodo.acceptedAnswer && datos.curso.faq_cursada) {
           nodo.acceptedAnswer.text = datos.curso.faq_cursada;
+          tocado = true;
+        }
+        if (nodo['@type'] === 'Question' && /cambiarme de grupo/i.test(nodo.name || '') &&
+            nodo.acceptedAnswer && datos.curso.faq_cambio_grupo) {
+          nodo.acceptedAnswer.text = datos.curso.faq_cambio_grupo;
           tocado = true;
         }
 
