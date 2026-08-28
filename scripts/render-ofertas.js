@@ -377,6 +377,21 @@ datos.agenda_html = agenda.map(function (e) {
 }).join('');
 datos.tiene_agenda = agenda.length ? 'si' : 'no';
 
+/* ---- Reseñas de Google ---- */
+// El puntaje y la cantidad estaban escritos a mano en seis lugares de tres
+// páginas más la ficha de Google. Al entrar una reseña nueva había que
+// acordarse de los seis: ahora salen de acá.
+{
+  const g = datos.google;
+  // En el sitio el puntaje se escribe con coma, como se lee en español.
+  g.puntaje_texto = String(g.puntaje).replace('.', ',');
+  g.resenas_texto = g.resenas + (Number(g.resenas) === 1 ? ' reseña' : ' reseñas') + ' en Google';
+  g.linea_texto = '\u2605 ' + g.puntaje_texto + ' \u00b7 ' + g.resenas_texto + ' \u2192';
+  g.chip_texto = '\u2605 ' + g.puntaje_texto + ' \u00b7 ' + g.resenas +
+    (Number(g.resenas) === 1 ? ' reseña' : ' reseñas');
+  g.chip_corto = '\u2605 ' + g.puntaje_texto + ' en Google';
+}
+
 /* ---- Reemplazo en los HTML ---- */
 
 function valor(ruta) {
@@ -457,6 +472,14 @@ for (const archivo of archivos) {
       (function recorrer(nodo) {
         if (Array.isArray(nodo)) return nodo.forEach(recorrer);
         if (!nodo || typeof nodo !== 'object') return;
+
+        // El puntaje de Google que se publica en la ficha es el mismo que se
+        // muestra en la página: sale de data/ofertas.json, no de acá.
+        if (nodo.aggregateRating && nodo.aggregateRating['@type'] === 'AggregateRating') {
+          nodo.aggregateRating.ratingValue = String(datos.google.puntaje);
+          nodo.aggregateRating.reviewCount = String(datos.google.resenas);
+          tocado = true;
+        }
 
         // Curso: la lista de grupos que ve Google se rehace desde ofertas.json.
         // Antes cada CourseInstance estaba escrito a mano y solo se actualizaba

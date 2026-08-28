@@ -130,5 +130,10 @@
       "precio": "",
       "cupos_total": 16
     }
+  },
+  "google": {
+    "_leeme": "El puntaje y la cantidad de reseñas del perfil de Google. Se muestran en el home, el curso y el tapeo, y también en la ficha que lee Google. Actualizalo cuando entren reseñas nuevas: escribí el puntaje con punto (4.9), no con coma.",
+    "puntaje": 4.9,
+    "resenas": 21
   }
 }
