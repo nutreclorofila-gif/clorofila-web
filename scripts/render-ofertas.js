@@ -240,6 +240,11 @@ datos.curso.grupos_abiertos_texto = abiertos.length
   ? abiertos.map(function (g) { return g.nombre + ' ' + g.horario.replace(' a ', '–').replace(' h', ''); }).join(' · ')
   : 'Próxima edición a confirmar';
 datos.curso.inicio_texto = abiertos.length ? abiertos[0].inicio_texto : 'Próxima edición a confirmar';
+// La etiqueta de esa fila estaba escrita a mano como "Grupo abierto": con dos
+// grupos quedaba en singular, y sin ninguno anunciaba un grupo abierto que no
+// existe ("Grupo abierto: Próxima edición a confirmar").
+datos.curso.grupos_label = abiertos.length === 0 ? 'Grupos'
+  : abiertos.length === 1 ? 'Grupo abierto' : 'Grupos abiertos';
 // La tabla de horarios de /contacto se generaba a mano y quedó publicando los
 // días de una edición ya terminada. Ahora sale de los grupos abiertos.
 // "3 cuotas de $4.800" -> "3 de $4.800": la etiqueta de la comanda ya dice "En cuotas".
