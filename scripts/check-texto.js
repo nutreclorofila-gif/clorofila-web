@@ -21,6 +21,21 @@ const PROMESAS = [
   /\blo entendés de verdad\b/i, /\btambién enseña\b/i, /\bte cambia la\b/i,
   /\bte vas sabiendo\b/i, /\bpara siempre\b/i,
   /\bcocin[áa]s sin receta\b/i, /\bsin mirar la receta\b/i,
+  // "te deja" y "te da el" son la misma promesa con otra cara: prometen un
+  // resultado sobre el lector en vez de contar lo que pasa en la clase.
+  /\bte deja\b/i, /\bte da el\b/i, /\bte da la\b/i,
+];
+
+/* Vender una propuesta por lo que NO es, en vez de contar qué es. Leo ya había
+   rechazado "vivir Clorofila sin el compromiso de un curso" y la frase volvió a
+   aparecer entera en /experiencias, en la página y en la descripción que sale en
+   Google. No aplica a los artículos: ahí "no es X, es Y" es la forma correcta de
+   corregir una creencia, y es de lo que trata el artículo. */
+const POR_LO_QUE_NO_ES = [
+  /\bsin el compromiso\b/i,
+  /\bla t[ée]cnica cerrada\b/i,
+  /\bsin la exigencia\b/i,
+  /\bsin tener que comprometerte\b/i,
 ];
 
 // «sabiendo hacerla» es agramatical: saber pide «sabiendo cómo hacerla»
@@ -61,7 +76,12 @@ function prosa(html) {
   let c = html.slice(html.indexOf('<body'));
   c = c.replace(/<!--[\s\S]*?-->/g, '');
   c = c.replace(/<div class="faq-item"[\s\S]*?<\/div>/gi, ' ');
-  for (const tag of ['script', 'style', 'svg', 'nav', 'footer', 'header', 'blockquote', 'cite', 'figcaption']) {
+  /* 'header' no se saca: en este sitio cada página envuelve su hero en
+     <header class="hero-*">, así que excluirlo dejaba sin revisar el texto que
+     más se lee, el primero de cada página. La navegación ya sale por <nav>.
+     Así fue como sobrevivió "vivir Clorofila sin el compromiso de un curso",
+     que Leo había rechazado a mano. */
+  for (const tag of ['script', 'style', 'svg', 'nav', 'footer', 'blockquote', 'cite', 'figcaption']) {
     c = c.replace(new RegExp(`<${tag}\\b[\\s\\S]*?<\\/${tag}>`, 'gi'), ' ');
   }
   return c;
@@ -130,6 +150,11 @@ for (const archivo of archivos) {
 
     for (const c of CLICHES) if (bajo.includes(c)) apunta(archivo, `cliché «${c}»`, frase);
     for (const p of PROMESAS) if (p.test(frase)) apunta(archivo, `promete un efecto en vez de contar el hecho`, frase);
+    if (!articulo) {
+      for (const p of POR_LO_QUE_NO_ES) {
+        if (p.test(frase)) apunta(archivo, `vende por lo que no es «${frase.match(p)[0]}»: contá qué es`, frase);
+      }
+    }
     for (const n of NEXOS) if (n.test(frase)) apunta(archivo, `choque de nexos «${frase.match(n)[0]}»`, frase);
     for (const n of NO_RIOPLATENSE) if (n.test(frase)) apunta(archivo, `no es rioplatense «${frase.match(n)[0]}»`, frase);
     if (IMPERSONAL.test(frase)) apunta(archivo, `impersonal «${frase.match(IMPERSONAL)[0]}»: va vos o nosotros`, frase);
