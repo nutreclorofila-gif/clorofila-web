@@ -20,6 +20,7 @@ const PROMESAS = [
   /\bte queda\b/i, /\bte sale\b/i, /\bte salga\b/i, /\bte va a quedar\b/i,
   /\blo entendés de verdad\b/i, /\btambién enseña\b/i, /\bte cambia la\b/i,
   /\bte vas sabiendo\b/i, /\bpara siempre\b/i,
+  /\bcocin[áa]s sin receta\b/i, /\bsin mirar la receta\b/i,
 ];
 
 // «sabiendo hacerla» es agramatical: saber pide «sabiendo cómo hacerla»

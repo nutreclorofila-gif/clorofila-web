@@ -30,7 +30,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=4">
+<link rel="stylesheet" href="base.css?v=5">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"Course","name":"Curso de Cocina Basada en Plantas","alternateName":"Curso de Cocina Vegana en Montevideo","description":"Curso presencial de 3 meses en Parque Rodó, Montevideo. Cocina vegana y basada en plantas, fermentación, técnica y criterio culinario.","provider":{"@id":"https://clorofila.uy/#organization"},"hasCourseInstance":[{"@type":"CourseInstance","name":"Grupo miércoles 10:00-12:00","courseMode":"Onsite","startDate":"2026-10-07","location":{"@type":"Place","name":"Clorofila","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"}},"offers":{"@type":"Offer","price":"12200","priceCurrency":"UYU","availability":"https://schema.org/InStock","url":"https://clorofila.uy/curso","category":"Curso presencial"},"courseWorkload":"PT2H","inLanguage":"es-UY"},{"@type":"CourseInstance","name":"Grupo jueves 19:00-21:00","courseMode":"Onsite","startDate":"2026-10-08","location":{"@type":"Place","name":"Clorofila","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"}},"offers":{"@type":"Offer","price":"12200","priceCurrency":"UYU","availability":"https://schema.org/InStock","url":"https://clorofila.uy/curso","category":"Curso presencial"},"courseWorkload":"PT2H","inLanguage":"es-UY"}],"@id":"https://clorofila.uy/curso#course","url":"https://clorofila.uy/curso","inLanguage":"es-UY","educationalLevel":"Principiante a intermedio","teaches":["Cocina basada en plantas","Fermentación","Panificación sin gluten","Pastelería sin lácteos ni huevos","Criterio culinario"],"about":["Cocina vegana","Cocina basada en plantas","Cocina plant based","Técnica culinaria"],"keywords":"curso de cocina vegana Montevideo, curso de cocina vegetariana Montevideo, curso de cocina plant based Montevideo, curso de cocina basada en plantas","courseWorkload":"PT24H","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"21","bestRating":"5"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Lucía Fernández"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"No es un curso de recetas. Es aprender a pensar la cocina de otra manera."},{"@type":"Review","author":{"@type":"Person","name":"Matías Acevedo"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Lo que más me sorprendió fue entender el porqué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien."}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://clorofila.uy/"},{"@type":"ListItem","position":2,"name":"El curso","item":"https://clorofila.uy/curso"}]}]}
   </script>
@@ -114,7 +114,7 @@
 @media (max-width:560px){.mes{grid-template-columns:3.4rem 1fr;gap:.35rem .8rem}.mes-num{white-space:nowrap}.mes-num::after{display:none}}
 
 /* ---------- TEMAS ---------- */
-.temas{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0 2rem;max-width:1000px}
+.temas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:0 2rem;max-width:1000px}
 .temas li{border-top:1px solid var(--linea);padding-block:.85rem;display:flex;gap:.9rem;align-items:baseline;font-size:.98rem;color:var(--cal)}
 .temas li::before{content:"—";color:var(--brote);flex-shrink:0}
 .temas-nota{margin-top:1.5rem;font-size:.88rem;color:var(--cal-baja);max-width:56ch}
@@ -152,7 +152,7 @@
 /* ---------- GRUPOS ---------- */
 /* El grupo abierto va primero: no hacer scrollear dos opciones muertas.
    Se resuelve por estado, asi sigue siendo correcto si cambia ofertas.json. */
-.grupos{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+.grupos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:1rem}
 .grupo[data-estado="abierto"]{order:-1}
 .grupo{border:1px solid var(--linea);border-radius:var(--r-lg);padding:1.5rem;background:var(--musgo);transition:border-color .25s,transform .25s var(--ease)}
 .grupo[data-estado="abierto"]{border-color:rgba(143,192,138,.4);background:var(--musgo-alto)}
@@ -173,7 +173,7 @@
 .grupo[data-estado="cerrado"]{background:var(--tinta-2);border-color:var(--linea)}
 
 /* ---------- PRUEBA ---------- */
-.prueba{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
+.prueba{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1rem}
 .voz{border:1px solid var(--linea);border-radius:var(--r);padding:1.4rem;background:var(--musgo)}
 .voz blockquote{font-family:var(--display);font-size:1.02rem;line-height:1.35;color:var(--cal);letter-spacing:-.01em;margin-bottom:.9rem}
 .voz cite{font-style:normal;font-family:var(--dato);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cal-baja)}

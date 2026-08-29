@@ -30,7 +30,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=4">
+<link rel="stylesheet" href="base.css?v=5">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"Event","@id":"https://clorofila.uy/tapeo#evento","name":"Cena y Taller de Tapeo","description":"Una noche de cocina y mesa compartida en Clorofila: se cocina un tapeo basado en plantas —panes, patés, hummus, encurtidos y pequeñas elaboraciones— y después se cena todo lo preparado. Grupo chico.","url":"https://clorofila.uy/tapeo","image":"https://clorofila.uy/img-tapeo.jpg","inLanguage":"es-UY","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","eventStatus":"https://schema.org/EventPostponed","organizer":{"@id":"https://clorofila.uy/#organization"},"performer":{"@type":"Person","name":"Leonardo Lemes"},"location":{"@type":"Place","name":"Clorofila Estudio de Cocina","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"}},"maximumAttendeeCapacity":11},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://clorofila.uy/"},{"@type":"ListItem","position":2,"name":"Talleres","item":"https://clorofila.uy/talleres"},{"@type":"ListItem","position":3,"name":"Cena y Taller de Tapeo","item":"https://clorofila.uy/tapeo"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Necesito saber cocinar?","acceptedAnswer":{"@type":"Answer","text":"No. La noche está pensada para que cualquiera pueda participar: Leonardo va guiando cada preparación y nadie queda mirando. Podés llegar sin haber cocinado nunca."}},{"@type":"Question","name":"¿Es una experiencia vegana?","acceptedAnswer":{"@type":"Answer","text":"Todo lo que cocinamos es 100% vegetal. No hace falta ser vegano ni vegetariano para venir: la mayoría de quienes participan no lo son."}},{"@type":"Question","name":"¿Puedo ir solo?","acceptedAnswer":{"@type":"Answer","text":"Sí, y es más común de lo que parece. Cocinamos todos alrededor de la misma mesa, así que a los diez minutos ya nadie está solo."}},{"@type":"Question","name":"¿Puedo ir con alguien?","acceptedAnswer":{"@type":"Answer","text":"Sí. Podés reservar más de un lugar en la misma reserva: avisanos cuántos son y los sentamos juntos."}},{"@type":"Question","name":"¿Qué incluye?","acceptedAnswer":{"@type":"Answer","text":"Los ingredientes, las herramientas y materiales del estudio, la clase guiada, la cena completa con todo lo que preparaste y dos copas de vino o kombucha."}},{"@type":"Question","name":"¿Cuánto dura?","acceptedAnswer":{"@type":"Answer","text":"De 19:00 a 22:30."}},{"@type":"Question","name":"¿Dónde es?","acceptedAnswer":{"@type":"Answer","text":"En el estudio de Clorofila, Maldonado 1976 esquina Blanes, Parque Rodó, Montevideo."}},{"@type":"Question","name":"¿Hay opciones para alergias o intolerancias?","acceptedAnswer":{"@type":"Answer","text":"Sí. Avisanos al reservar y adaptamos las preparaciones. Trabajamos habitualmente sin gluten y sin frutos secos cuando hace falta."}},{"@type":"Question","name":"¿Cómo reservo y cómo se paga?","acceptedAnswer":{"@type":"Answer","text":"Se reserva por WhatsApp: escribinos, te confirmamos el lugar y coordinamos el pago por transferencia, Abitab, RedPagos o MercadoPago."}}]}]}
   </script>
@@ -133,7 +133,7 @@
 .paso-detalle{font-size:.92rem;color:var(--cal-med)}
 
 /* ---------- MENÚ ---------- */
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:.7rem;max-width:860px;margin-inline:auto}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:.7rem;max-width:860px;margin-inline:auto}
 .menu-grid li{
   border:1px solid var(--linea);border-radius:var(--r);padding:1rem 1.15rem;
   background:var(--musgo);font-size:.95rem;color:var(--cal);display:flex;gap:.7rem;align-items:flex-start;line-height:1.45;
@@ -151,7 +151,7 @@
 .objecion p+p{margin-top:.8rem}
 
 /* ---------- INCLUYE ---------- */
-.incluye{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.75rem}
+.incluye{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:1.75rem}
 .incluye li{border-top:1px solid var(--linea);padding-top:1rem}
 .incluye strong{display:block;font-family:var(--display);font-size:1.08rem;color:var(--cal);letter-spacing:-.015em;margin-bottom:.35rem}
 .incluye span{font-size:.9rem;color:var(--cal-med)}
@@ -174,7 +174,7 @@
 @media (max-width:620px){.galeria{grid-template-columns:1fr 1fr}.galeria figure:last-child{grid-column:1/-1;aspect-ratio:16/9}}
 
 /* ---------- TESTIMONIOS ---------- */
-.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1rem}
 .testi{border:1px solid var(--linea);border-radius:var(--r);padding:1.4rem;background:var(--musgo)}
 .testi blockquote{font-family:var(--display);font-size:1.02rem;line-height:1.35;color:var(--cal);letter-spacing:-.01em;margin-bottom:.9rem}
 .testi cite{font-style:normal;font-family:var(--dato);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cal-baja)}
