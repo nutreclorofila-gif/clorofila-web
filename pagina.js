@@ -44,15 +44,34 @@
   var cerrar = document.getElementById('cerrar-menu');
   var links = document.getElementById('nav-links');
   if (ham && links) {
+    /* Con el menú abierto, la página de atrás queda tapada pero sus enlaces
+       seguían alcanzándose con el tabulador: se tabulaba a ciegas por 34
+       elementos invisibles. "inert" los saca del recorrido y del lector de
+       pantalla mientras el menú está arriba, y se los devuelve al cerrar.
+       Los navegadores que no lo entienden simplemente lo ignoran: se comportan
+       como antes, no peor. */
+    var detras = [document.getElementById('principal'), document.querySelector('footer')]
+      .filter(Boolean);
+    var apagarFondo = function (apagado) {
+      for (var i = 0; i < detras.length; i++) detras[i].inert = apagado;
+    };
+
     var cerrarMenu = function () {
       links.classList.remove('abierto');
       ham.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('menu-abierto');
+      apagarFondo(false);
+      // El foco vuelve al botón que lo abrió, no al principio de la página.
+      ham.focus();
     };
     ham.addEventListener('click', function () {
       links.classList.add('abierto');
       ham.setAttribute('aria-expanded', 'true');
       document.body.classList.add('menu-abierto');
+      apagarFondo(true);
+      // El primer tabulador tiene que caer dentro del menú, no detrás.
+      var primero = cerrar || links.querySelector('a');
+      if (primero) primero.focus();
     });
     if (cerrar) cerrar.addEventListener('click', cerrarMenu);
     links.addEventListener('click', function (e) { if (e.target.tagName === 'A') cerrarMenu(); });
