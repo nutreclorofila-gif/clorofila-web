@@ -39,7 +39,16 @@ for (const file of htmlFiles) {
     if (!target) return;
     const base = target.startsWith('/') ? root : fileDir;
     const resolved = path.join(base, target);
-    if (!fs.existsSync(resolved)) {
+    // Los links del sitio apuntan a la URL canónica, sin .html: /curso, no
+    // /curso.html. Netlify sirve curso.html en esa dirección, así que acá hay
+    // que resolverlo igual que él: probar la ruta tal cual, con .html pegado,
+    // y como index.html si termina en barra. Si ninguna existe, está roto.
+    const candidatos = [
+      resolved,
+      resolved + '.html',
+      path.join(resolved, 'index.html'),
+    ];
+    if (!candidatos.some((c) => fs.existsSync(c) && fs.statSync(c).isFile())) {
       console.error(`[${file}] broken local reference: "${raw}"`);
       errors++;
     }

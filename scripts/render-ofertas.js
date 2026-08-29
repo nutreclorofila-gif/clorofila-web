@@ -436,13 +436,13 @@ if (t.estado !== 'sin-fecha' && t.fecha_iso) {
   agenda.push({
     iso: t.fecha_iso, nombre: 'Cena y Taller de Tapeo', fecha: t.fecha_texto,
     hora: t.horario_texto, precio: t.precio, estado: t.estado,
-    etiqueta: t.estado_texto, link: 'tapeo.html', cta: 'Ver la experiencia →'
+    etiqueta: t.estado_texto, link: '/tapeo', cta: 'Ver la experiencia →'
   });
   if (t.segunda_fecha && t.segunda_fecha.texto) {
     agenda.push({
       iso: (t.segunda_fecha.iso || t.fecha_iso) + '-b', nombre: 'Cena y Taller de Tapeo',
       fecha: t.segunda_fecha.texto, hora: t.horario_texto, precio: t.precio,
-      estado: 'abierto', etiqueta: 'Segunda fecha', link: 'tapeo.html', cta: 'Ver la experiencia →'
+      estado: 'abierto', etiqueta: 'Segunda fecha', link: '/tapeo', cta: 'Ver la experiencia →'
     });
   }
 }
@@ -456,13 +456,13 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   agenda.push({
     iso: w.fecha_iso, nombre: w.nombre, fecha: w.fecha_texto, hora: w.hora,
     precio: w.precio, estado: w.estado, etiqueta: w.estado_texto,
-    link: (id === 'pastas-sin-gluten') ? 'pastas.html' : 'talleres.html#' + id, cta: 'Ver el taller →'
+    link: (id === 'pastas-sin-gluten') ? '/pastas' : '/talleres#' + id, cta: 'Ver el taller →'
   });
   if (w.segunda_fecha && w.segunda_fecha.texto) {
     agenda.push({
       iso: (w.segunda_fecha.iso || w.fecha_iso) + '-b', nombre: w.nombre, fecha: w.segunda_fecha.texto,
       hora: w.hora, precio: w.precio, estado: 'abierto', etiqueta: 'Segunda fecha',
-      link: (id === 'pastas-sin-gluten') ? 'pastas.html' : 'talleres.html#' + id, cta: 'Ver el taller →'
+      link: (id === 'pastas-sin-gluten') ? '/pastas' : '/talleres#' + id, cta: 'Ver el taller →'
     });
   }
 }
@@ -475,7 +475,7 @@ if (abiertos.length) {
     cuenta: abiertos[0].inicio_iso,
     fecha: datos.curso.inicio_texto, hora: datos.curso.dias_texto,
     precio: datos.curso.precio_total, estado: 'abierto',
-    etiqueta: datos.curso.grupos_label, link: 'curso.html', cta: 'Ver el curso →'
+    etiqueta: datos.curso.grupos_label, link: '/curso', cta: 'Ver el curso →'
   });
 }
 
@@ -487,7 +487,7 @@ if (t.estado === 'sin-fecha' || !t.fecha_iso) {
     iso: '9999-12-31', nombre: 'Cena y Taller de Tapeo',
     fecha: 'Se abre según la demanda', hora: '', precio: '',
     estado: 'sin-fecha', etiqueta: t.estado_texto,
-    link: 'tapeo.html', cta: 'Avisame la próxima fecha →'
+    link: '/tapeo', cta: 'Avisame la próxima fecha →'
   });
 }
 
