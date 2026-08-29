@@ -153,6 +153,10 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
 .marca b{font-family:var(--display);font-size:1.35rem;font-weight:600;color:var(--cal);letter-spacing:-.02em}
 .marca span{font-family:var(--dato);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cal-baja);margin-top:.25rem}
 .nav-links{display:flex;align-items:center;gap:1.6rem}
+/* "Inicio" solo en el menú del celular. En la compu el logo de arriba a la
+   izquierda ya lleva al home, pero acá el menú abierto ocupa toda la pantalla
+   y lo tapa: sin este ítem no había forma de volver sin cerrar el menú. */
+.solo-menu{display:none}
 .nav-links a{font-size:.88rem;color:var(--cal-med);transition:color .2s;position:relative;padding-block:.35rem}
 .nav-links a:hover,.nav-links a[aria-current]{color:var(--cal)}
 .nav-links a[aria-current]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--brote)}
@@ -164,6 +168,7 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
   .nav-links{display:none}
   .hamburguesa{display:block}
   .nav-links.abierto{display:flex;position:fixed;inset:0;background:var(--tinta);z-index:210;flex-direction:column;justify-content:center;align-items:center;gap:1.8rem}
+  .nav-links.abierto .solo-menu{display:block}
   .nav-links.abierto a{font-family:var(--display);font-size:1.9rem;color:var(--cal)}
   body.menu-abierto .cerrar-menu{display:block;position:fixed;top:1.1rem;right:1.1rem;font-size:1.8rem;color:var(--cal);z-index:211;min-width:44px;min-height:44px}
 }
