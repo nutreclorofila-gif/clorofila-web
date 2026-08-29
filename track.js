@@ -112,6 +112,21 @@
       return;
     }
 
+    /* Tally abierto como enlace, no como ventanita. Acá arriba ya se mide el
+       widget (data-tally-open), pero el botón "Quiero el temario" de los doce
+       artículos, de /curso y de /programa es un enlace común a tally.so: catorce
+       botones que no dejaban ningún rastro. Son la puerta de entrada del
+       contenido al embudo, así que sin esto no se sabe si los artículos sirven.
+       Se mandan los mismos eventos que el widget para poder compararlos. */
+    var tallyLink = e.target.closest('a[href*="tally.so"]');
+    if (tallyLink) {
+      var prodTally = productoDe(tallyLink);
+      ga('begin_reservation', prodTally);
+      ga('tally_form_open', prodTally);
+      meta('InitiateCheckout', prodTally);
+      return;
+    }
+
     var cta = e.target.closest('.nav-cta, .cta-main, .btn-accent');
     if (cta) {
       ga('click_reservar', productoDe(cta));
