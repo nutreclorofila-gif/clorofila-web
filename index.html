@@ -70,10 +70,13 @@
 .agenda-etiqueta{font-family:var(--dato);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--brote);margin-bottom:.5rem}
 .agenda-precio{font-family:var(--dato);font-size:.95rem;color:var(--cal);margin-top:.15rem}
 /* Una nota cálida sobre tanto verde, y en el único lugar donde suma: lo que
-   está abierto. El terracota da 5,6:1 sobre el fondo, así que se lee. */
-.agenda-item[data-estado="abierto"] .agenda-etiqueta{color:#D97544}
-.agenda-item[data-estado="abierto"]{border-color:rgba(217,117,68,.34)}
-.agenda-item[data-estado="abierto"]:hover{border-color:rgba(217,117,68,.62)}
+   está abierto. El contraste hay que medirlo contra el fondo de la tarjeta,
+   que es más claro que el de la página: ahí da 4,9:1 y la etiqueta mide 9,6px,
+   o sea que necesita 4,5. Contra el fondo de la página daría 6,5, pero ese
+   número no es el que corresponde mirar acá. */
+.agenda-item[data-estado="abierto"] .agenda-etiqueta{color:#E08556}
+.agenda-item[data-estado="abierto"]{border-color:rgba(224,133,86,.34)}
+.agenda-item[data-estado="abierto"]:hover{border-color:rgba(224,133,86,.62)}
 .agenda-item[data-estado="ultimos"] .agenda-etiqueta{color:var(--fermento)}
 .agenda-item[data-estado="agotado"] .agenda-etiqueta{color:var(--cal-baja)}
 .agenda-item[data-estado="sin-fecha"] .agenda-etiqueta{color:var(--cal-baja)}
