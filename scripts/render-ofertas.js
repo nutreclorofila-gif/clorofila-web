@@ -503,6 +503,11 @@ datos.agenda_html = agenda.map(function (e) {
       escapar(e.etiqueta) + '</span>' +
     '<p class="agenda-nombre">' + escapar(e.nombre) + '</p>' +
     '<p class="agenda-cuando">' + escapar(e.fecha) + (e.hora ? ' · ' + escapar(e.hora) : '') + '</p>' +
+    /* El precio ya se juntaba acá arriba y no se imprimía: la agenda decía qué
+       y cuándo, pero no cuánto, y ese es de los tres el que más se busca. Ya
+       está publicado en cada página; acá solo se muestra un clic antes. Lo que
+       no tiene fecha tampoco tiene precio, y ahí no se escribe nada. */
+    (e.precio ? '<p class="agenda-precio">' + escapar(e.precio) + '</p>' : '') +
     '<a href="' + enlace(e.link) + '" class="agenda-link" data-producto="agenda">' + escapar(e.cta) + '</a>' +
     '</li>';
 }).join('');
