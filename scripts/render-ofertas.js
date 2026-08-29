@@ -472,6 +472,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
 if (abiertos.length) {
   agenda.push({
     iso: abiertos[0].inicio_iso, nombre: 'Curso de tres meses',
+    cuenta: abiertos[0].inicio_iso,
     fecha: datos.curso.inicio_texto, hora: datos.curso.dias_texto,
     precio: datos.curso.precio_total, estado: 'abierto',
     etiqueta: datos.curso.grupos_label, link: 'curso.html', cta: 'Ver el curso →'
@@ -493,8 +494,13 @@ if (t.estado === 'sin-fecha' || !t.fecha_iso) {
 agenda.sort(function (a, b) { return a.iso < b.iso ? -1 : 1; });
 
 datos.agenda_html = agenda.map(function (e) {
-  return '<li class="agenda-item" data-estado="' + e.estado + '">' +
-    '<span class="agenda-etiqueta">' + escapar(e.etiqueta) + '</span>' +
+  /* Si el ítem tiene fecha de inicio, la etiqueta pasa a ser la cuenta
+     regresiva cuando corre el JS ("Empieza en 6 semanas"). El renglón de abajo
+     sigue diciendo el día exacto, así que no se pierde información. */
+  return '<li class="agenda-item" data-estado="' + e.estado + '"' +
+    (e.cuenta ? ' data-inicio-iso="' + escapar(e.cuenta) + '"' : '') + '>' +
+    '<span class="agenda-etiqueta"' + (e.cuenta ? ' data-cuenta' : '') + '>' +
+      escapar(e.etiqueta) + '</span>' +
     '<p class="agenda-nombre">' + escapar(e.nombre) + '</p>' +
     '<p class="agenda-cuando">' + escapar(e.fecha) + (e.hora ? ' · ' + escapar(e.hora) : '') + '</p>' +
     '<a href="' + enlace(e.link) + '" class="agenda-link" data-producto="agenda">' + escapar(e.cta) + '</a>' +

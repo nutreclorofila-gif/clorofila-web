@@ -112,6 +112,25 @@
       : function () { barra.classList.toggle('visible', scrollY > innerHeight * 0.6); });
   }
 
+  /* Cuenta regresiva al inicio del curso. Vivía como script suelto dentro de
+     curso.html, así que la home no la tenía. Acá sirve para cualquier elemento
+     con data-inicio-iso, y la fecha siempre sale de data/ofertas.json.
+     Si la fecha ya pasó no inventa urgencia: deja el texto del render. */
+  function cuantoFalta(iso) {
+    var dias = Math.ceil((new Date(iso + 'T00:00:00') - new Date()) / 86400000);
+    if (!(dias > 0)) return null;
+    if (dias <= 7) return dias === 1 ? 'Empieza mañana' : 'Empieza en ' + dias + ' días';
+    var semanas = Math.ceil(dias / 7);
+    return 'Empieza en ' + semanas + ' semana' + (semanas === 1 ? '' : 's');
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-inicio-iso]'), function (el) {
+    var texto = cuantoFalta(el.getAttribute('data-inicio-iso'));
+    if (!texto) return;
+    // El elemento puede ser el propio texto, o contener el destino marcado.
+    var destino = el.querySelector('[data-cuenta]');
+    (destino || el).textContent = texto;
+  });
+
   /* El consentimiento se lee y se guarda por consent.js, que envuelve
      localStorage en try/catch: con las cookies bloqueadas, acceder al
      almacenamiento lanza excepción y sin el guardia el banner nunca aparecía. */

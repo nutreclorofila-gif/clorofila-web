@@ -611,22 +611,6 @@
 </div>
 
 <script src="track.js?v=20260827" defer></script>
-<script src="pagina.js?v=20260827" defer></script>
-<script>
-// La cuenta regresiva se calcula a partir de la fecha real del grupo abierto
-// (viene de data/ofertas.json). Si la fecha ya pasó no inventa urgencia:
-// deja el texto que dejó el render.
-(function(){
-  var el=document.getElementById('curso-countdown-tag');
-  if(!el)return;
-  var iso=el.getAttribute('data-inicio-iso');
-  if(!iso)return;
-  var dias=Math.ceil((new Date(iso+'T00:00:00')-new Date())/86400000);
-  if(dias<=0)return;
-  if(dias<=7){el.textContent=dias===1?'Empieza mañana':'Empieza en '+dias+' días';return}
-  var semanas=Math.ceil(dias/7);
-  el.textContent='Empieza en '+semanas+' semana'+(semanas===1?'':'s');
-})();
-</script>
+<script src="pagina.js?v=20260829" defer></script>
 </body>
 </html>
