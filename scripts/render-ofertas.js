@@ -388,8 +388,8 @@ datos.curso.porclase_texto = '3 meses · ' + datos.curso.dias_texto + ' · 12 en
 const cuantos = { 1: 'un horario', 2: 'dos horarios', 3: 'tres horarios' }[nombres.length]
   || nombres.length + ' horarios';
 datos.curso.intro_grupos = abiertos.length
-  ? 'El mismo programa en ' + cuantos + '. Son grupos reducidos a propósito: para que puedas cocinar, preguntar y recibir correcciones directamente de Leonardo.'
-  : 'El mismo programa en ' + cuantos + '. Los grupos de esta edición ya arrancaron. Son reducidos a propósito: para que puedas cocinar, preguntar y recibir correcciones directamente de Leonardo.';
+  ? 'El mismo programa en ' + cuantos + '. Los grupos son chicos a propósito, para que puedas cocinar, preguntar y que Leonardo te corrija a vos.'
+  : 'El mismo programa en ' + cuantos + '. Los grupos de esta edición ya arrancaron. Son chicos a propósito, para que puedas cocinar, preguntar y que Leonardo te corrija a vos.';
 
 // El cierre cambia entero según haya edición abierta o no.
 datos.curso.cierre_titulo_html = abiertos.length
