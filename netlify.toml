@@ -48,15 +48,18 @@
   status = 301
   force  = true
 
+# El Domingo de Buncheo no tiene bloque propio en /talleres, así que estas dos
+# caían en un ancla inexistente: el visitante aterrizaba arriba de todo sin
+# entender por qué. Van a la página entera hasta que se publique.
 [[redirects]]
   from = "/buncheo"
-  to   = "/talleres#buncheo"
+  to   = "/talleres"
   status = 301
   force  = true
 
 [[redirects]]
   from = "/brunch"
-  to   = "/talleres#buncheo"
+  to   = "/talleres"
   status = 301
   force  = true
 

@@ -9,10 +9,11 @@
     "check:sitemap": "node scripts/check-sitemap.js",
     "check:assets": "node scripts/check-assets.js",
     "check:html": "html-validate --config .htmlvalidate.json *.html articulos/*.html",
-    "test": "npm run check:ofertas && npm run check:links && npm run check:assets && npm run check:jsonld && npm run check:sitemap && npm run check:html",
+    "test": "npm run check:ofertas && npm run check:links && npm run check:assets && npm run check:jsonld && npm run check:sitemap && npm run check:redirects && npm run check:html",
     "ofertas": "node scripts/render-ofertas.js",
     "check:ofertas": "node scripts/render-ofertas.js --check",
-    "build": "node scripts/render-ofertas.js"
+    "build": "node scripts/render-ofertas.js",
+    "check:redirects": "node scripts/check-redirects.js"
   },
   "devDependencies": {
     "html-validate": "^11.10.0"
