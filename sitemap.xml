@@ -154,6 +154,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://clorofila.uy/articulos/guia-practica-del-tofu</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:title>Remojo de legumbres: cuánto importa y cuánto no</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://clorofila.uy/articulos/remojo-legumbres</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
