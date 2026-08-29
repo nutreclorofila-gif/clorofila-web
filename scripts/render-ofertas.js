@@ -409,11 +409,11 @@ datos.curso.resumen_grupos = abiertos.length
 
 // La FAQ de la cursada se arma con los grupos reales, para que no quede
 // prometiendo horarios de una edición que ya pasó.
-datos.curso.faq_cursada = 'Son 3 meses de cursada con ' + cuantos + ' para elegir: ' +
+datos.curso.faq_cursada = 'Son 3 meses de cursada, 12 clases semanales por grupo. Elegís entre ' +
   datos.curso.grupos.map(function (g) {
-    return g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '') + ' (' +
-      g.inicio_texto.toLowerCase() + ')';
-  }).join(' o ') + '. Cada grupo son 12 clases semanales.';
+    return g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '') + ', que arranca el ' +
+      g.inicio_texto.toLowerCase().replace(/^arranca el /, '');
+  }).join(', o ') + '.';
 
 // El chip decía "3 modalidades" a mano: quedó de la edición de agosto, que
 // tenía tres grupos. Con dos grupos la propia página se contradecía, porque
@@ -424,9 +424,9 @@ datos.curso.modalidades_chip = '3 meses · ' + nombres.length +
 // El FAQ prometía "tenés tres horarios y te movés entre ellos". Con una sola
 // modalidad no hay a dónde moverse, así que la respuesta cambia entera.
 datos.curso.faq_cambio_grupo = nombres.length > 1
-  ? 'Sí, y pasa seguido. Tenés ' + cuantos + ' y te movés entre ellos mientras haya lugar: ' +
-    'si te cambia el trabajo, te sale un viaje o simplemente te queda mejor otro día, avisanos ' +
-    'y te reubicamos. Nadie pierde el curso por un cambio de agenda.'
+  ? 'Sí, y pasa seguido. Tenés ' + cuantos + ' y te movés entre ellos mientras haya lugar. ' +
+    'Si te cambia el trabajo o te surge un viaje, avisanos y te reubicamos: nadie pierde el ' +
+    'curso por un cambio de agenda.'
   : 'Esta edición tiene un solo horario, así que no hay otro grupo al que pasarte. Si se te ' +
     'complica una clase puntual avisanos y la recuperás: nadie pierde contenido por un cambio de agenda.';
 
