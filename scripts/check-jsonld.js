@@ -76,6 +76,40 @@ for (const file of htmlFiles) {
       }
     }
 
+    /* Los campos que Google exige por tipo. Si faltan, el bloque sigue siendo
+       JSON valido -y este chequeo pasaba- pero Google lo descarta y la pagina
+       pierde el resultado enriquecido. Paso con los doce articulos del indice
+       sin fecha y con el evento de /experiencias sin lugar. */
+    const OBLIGATORIOS = {
+      Event: ['name', 'startDate', 'location'],
+      Course: ['name', 'description', 'provider'],
+      FAQPage: ['mainEntity'],
+      Review: ['author', 'reviewRating'],
+      AggregateRating: ['ratingValue', 'reviewCount'],
+      Article: ['headline', 'datePublished'],
+      BlogPosting: ['headline', 'datePublished'],
+      LocalBusiness: ['name', 'address'],
+    };
+    (function revisar(nodo, ruta) {
+      if (!nodo || typeof nodo !== 'object') return;
+      if (Array.isArray(nodo)) {
+        nodo.forEach(function (n, i) { revisar(n, ruta + '[' + i + ']'); });
+        return;
+      }
+      for (const tipo of [].concat(nodo['@type'] || [])) {
+        const pide = OBLIGATORIOS[tipo];
+        if (!pide) continue;
+        const faltan = pide.filter(function (k) { return nodo[k] === undefined; });
+        if (faltan.length) {
+          console.error(`[${file}] ${tipo}${ruta ? ' en ' + ruta : ''}: le falta ${faltan.join(', ')}, que Google pide`);
+          errors++;
+        }
+      }
+      for (const [k, v] of Object.entries(nodo)) {
+        if (k !== '@type' && v && typeof v === 'object') revisar(v, ruta ? ruta + '.' + k : k);
+      }
+    })(data, '');
+
     // Google descarta el FAQPage cuyas preguntas no estan visibles en la pagina.
     const visible = textoVisible(html);
     for (const faq of faqsDe(data)) {
