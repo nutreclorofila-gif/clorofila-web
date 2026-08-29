@@ -68,6 +68,11 @@
 .agenda-item{background:var(--musgo-alto);border:1px solid var(--linea);border-radius:var(--r);padding:1.35rem;display:flex;flex-direction:column;gap:.3rem;transition:border-color .25s,transform .25s var(--ease)}
 .agenda-item:hover{border-color:var(--linea-fuerte);transform:translateY(-3px)}
 .agenda-etiqueta{font-family:var(--dato);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--brote);margin-bottom:.5rem}
+/* Una nota cálida sobre tanto verde, y en el único lugar donde suma: lo que
+   está abierto. El terracota da 5,6:1 sobre el fondo, así que se lee. */
+.agenda-item[data-estado="abierto"] .agenda-etiqueta{color:#D97544}
+.agenda-item[data-estado="abierto"]{border-color:rgba(217,117,68,.34)}
+.agenda-item[data-estado="abierto"]:hover{border-color:rgba(217,117,68,.62)}
 .agenda-item[data-estado="ultimos"] .agenda-etiqueta{color:var(--fermento)}
 .agenda-item[data-estado="agotado"] .agenda-etiqueta{color:var(--cal-baja)}
 .agenda-item[data-estado="sin-fecha"] .agenda-etiqueta{color:var(--cal-baja)}
