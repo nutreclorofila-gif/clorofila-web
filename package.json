@@ -13,7 +13,8 @@
     "ofertas": "node scripts/render-ofertas.js",
     "check:ofertas": "node scripts/render-ofertas.js --check",
     "build": "node scripts/render-ofertas.js",
-    "check:redirects": "node scripts/check-redirects.js"
+    "check:redirects": "node scripts/check-redirects.js",
+    "serve": "node scripts/servidor.js"
   },
   "devDependencies": {
     "html-validate": "^11.10.0"
