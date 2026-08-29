@@ -63,6 +63,10 @@
   .comanda{box-shadow:none;background:#f6f6f2;border-color:#ccc}
   .comanda::before,.comanda::after{display:none}
 }
+.captura{border:1px solid var(--linea);background:var(--musgo-alto);border-radius:var(--r-lg);padding:clamp(1.5rem,3.5vw,2.25rem);max-width:640px;margin-inline:auto;text-align:center}
+.captura h2{margin-block:.7rem;font-size:clamp(1.3rem,2.4vw,1.7rem)}
+.captura p{font-size:.95rem;margin-bottom:1.25rem}
+.captura .nota{font-size:.8rem;color:var(--cal-baja);margin-block:.9rem 0}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260827" defer></script>
@@ -181,6 +185,17 @@
       <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar →<!--/o--></a>
       <a href="https://wa.me/59894064148?text=Le%C3%AD%20el%20programa%20del%20curso%20y%20tengo%20una%20consulta." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="curso">Tengo una consulta</a>
     </div>
+  </div>
+
+  <!-- Mismo caso que /curso: quien lee el programa entero y no puede en esta
+       edición no tenía dónde dejar el dato. Con la edición cerrada no aparece,
+       porque el botón principal ya es la lista de espera. -->
+  <div class="captura solo-con-fecha" data-estado-de="curso" data-estado="abierto" style="margin-block:2rem">
+    <span class="senal">¿No podés en esta edición?</span>
+    <h2>Te avisamos de la próxima.</h2>
+    <p>Los grupos son chicos y las fechas se llenan. Dejanos tu mail y sos de los primeros en enterarte cuando abramos la próxima edición.</p>
+    <a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="btn btn-claro" data-producto="programa">Avisame de la próxima edición →</a>
+    <p class="nota">Tu mail no se comparte con nadie.</p>
   </div>
 
   <div class="prog-acciones">

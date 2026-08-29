@@ -204,6 +204,10 @@
 .sticky-cta .cta-main{flex:1;display:flex;align-items:center;justify-content:center;background:var(--miel);color:#20140A;border-radius:999px;font-weight:600;font-size:.92rem;min-height:48px;padding-inline:1rem}
 .sticky-cta .wa-btn{display:flex;align-items:center;justify-content:center;width:48px;min-height:48px;border:1px solid var(--linea-fuerte);border-radius:999px;color:var(--cal);flex-shrink:0}
 @media (max-width:820px){.sticky-cta{display:flex}main{padding-bottom:4.5rem}}
+.captura{border:1px solid var(--linea);background:var(--musgo-alto);border-radius:var(--r-lg);padding:clamp(1.5rem,3.5vw,2.25rem);max-width:640px;margin-inline:auto;text-align:center}
+.captura h2{margin-block:.7rem;font-size:clamp(1.3rem,2.4vw,1.7rem)}
+.captura p{font-size:.95rem;margin-bottom:1.25rem}
+.captura .nota{font-size:.8rem;color:var(--cal-baja);margin-block:.9rem 0}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260827" defer></script>
@@ -513,6 +517,22 @@
       <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">¿Los ingredientes están incluidos? <span class="faq-icon">+</span></button><p class="faq-a">Sí. Ingredientes, materiales, degustación y el recetario completo al finalizar. Todo incluido en el precio.</p></div>
       <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">¿Puedo cambiarme de grupo? <span class="faq-icon">+</span></button><p class="faq-a"><!--o:curso.faq_cambio_grupo-->Sí, y pasa seguido. Tenés dos horarios y te movés entre ellos mientras haya lugar: si te cambia el trabajo, te sale un viaje o simplemente te queda mejor otro día, avisanos y te reubicamos. Nadie pierde el curso por un cambio de agenda.<!--/o--></p></div>
       <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">¿Y si después no puedo hacerlo? <span class="faq-icon">+</span></button><p class="faq-a">Si el grupo no se arma, te devolvemos el 100%. Y si el que no puede seguir sos vos, lo primero es buscarte lugar en otro horario, que es como se resuelve casi siempre. La inscripción en sí no se reintegra: los grupos son reducidos y tu lugar queda guardado para vos desde que te anotás.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Quien quiere el curso pero no puede en esta edición no tenía dónde dejar
+     el dato: el único camino era WhatsApp. Solo se muestra con edición abierta;
+     sin edición, el botón principal de la página ya es la lista de espera. -->
+<section class="seccion-sm" data-estado-de="curso" data-estado="abierto">
+  <div class="env sube">
+    <div class="captura solo-con-fecha">
+      <span class="senal">¿No podés en esta edición?</span>
+      <h2>Te avisamos de la próxima.</h2>
+      <p>Los grupos son chicos y las fechas se llenan. Dejanos tu mail y sos de los primeros en enterarte cuando abramos la próxima edición.</p>
+      <a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="btn btn-claro" data-producto="curso">Avisame de la próxima edición →</a>
+      <p class="nota">Tu mail no se comparte con nadie.</p>
     </div>
   </div>
 </section>
