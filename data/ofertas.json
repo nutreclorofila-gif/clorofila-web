@@ -9,6 +9,7 @@
     "hora_fin": "22:30",
     "precio": "$2.600 por persona",
     "precio_num": "2600",
+    "link_compra": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-0e1f",
     "cupos_total": 12,
     "lugar": "Maldonado 1976 esq. Blanes · Parque Rodó",
     "menu": [
@@ -89,7 +90,7 @@
       "nombre": "Pastas sin gluten",
       "estado": "abierto",
       "fecha_iso": "2026-09-03",
-      "fecha_texto": "jueves 3 de septiembre",
+      "fecha_texto": "jueves 3 de setiembre",
       "hora": "10:00 a 13:30 h",
       "hora_inicio": "10:00",
       "hora_fin": "13:30",
@@ -99,7 +100,7 @@
       "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten",
       "segunda_fecha": {
         "iso": "2026-09-04",
-        "texto": "viernes 4 de septiembre",
+        "texto": "viernes 4 de setiembre",
         "link": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten-ae88"
       }
     },
