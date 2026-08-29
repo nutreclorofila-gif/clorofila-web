@@ -508,6 +508,19 @@ datos.agenda_html = agenda.map(function (e) {
 }).join('');
 datos.tiene_agenda = agenda.length ? 'si' : 'no';
 
+/* ---- A dónde lleva "Experiencias" en el menú ----
+   Una categoría con un solo ítem no es una categoría: es un escalón de más.
+   Se midió: /experiencias tuvo 1 visita de 9 segundos en un mes, mientras 7
+   personas entraron al tapeo por links directos. Así que mientras haya una
+   sola experiencia publicada, el menú lleva derecho a ella; cuando haya dos o
+   más, vuelve solo a llevar a la lista. Hoy la única experiencia es el tapeo;
+   si mañana se agregan otras, se suman acá y la cuenta se ajusta sola. */
+{
+  var experiencias = [];
+  if (datos.tapeo && datos.tapeo.publicar !== false) experiencias.push('/tapeo');
+  datos.menu_experiencias = experiencias.length === 1 ? experiencias[0] : '/experiencias';
+}
+
 /* ---- Reseñas de Google ---- */
 // El puntaje y la cantidad estaban escritos a mano en seis lugares de tres
 // páginas más la ficha de Google. Al entrar una reseña nueva había que
@@ -602,7 +615,14 @@ function valor(ruta) {
   }, datos);
 }
 
-const archivos = fs.readdirSync(raiz).filter(function (f) { return f.endsWith('.html'); });
+// Los artículos entran también: comparten el nav y el pie con el resto del
+// sitio, así que un dato que cambia en el menú tiene que cambiar en los 27.
+const archivos = fs.readdirSync(raiz).filter(function (f) { return f.endsWith('.html'); })
+  .concat(fs.existsSync(path.join(raiz, 'articulos'))
+    ? fs.readdirSync(path.join(raiz, 'articulos'))
+        .filter(function (f) { return f.endsWith('.html'); })
+        .map(function (f) { return path.join('articulos', f); })
+    : []);
 let cambiados = [];
 let errores = [];
 
