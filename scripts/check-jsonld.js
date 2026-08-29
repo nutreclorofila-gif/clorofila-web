@@ -60,6 +60,22 @@ for (const file of htmlFiles) {
       errors++;
       continue;
     }
+    // Un articulo copiado de otro como plantilla se lleva el headline del
+    // original: el lector ve un titulo y Google indexa otro. Paso una vez con
+    // la guia del tofu, calcada de la de legumbres.
+    const h1m = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+    if (h1m) {
+      const h1 = normalizar(h1m[1].replace(/<[^>]+>/g, ''));
+      const lista = Array.isArray(data) ? data : data['@graph'] || [data];
+      for (const nodo of lista) {
+        const hl = nodo.headline;
+        if (hl && normalizar(hl) !== h1) {
+          console.error(`[${file}] el headline del JSON-LD no es el <h1>: "${hl}" vs "${h1m[1].replace(/<[^>]+>/g, '').trim()}"`);
+          errors++;
+        }
+      }
+    }
+
     // Google descarta el FAQPage cuyas preguntas no estan visibles en la pagina.
     const visible = textoVisible(html);
     for (const faq of faqsDe(data)) {
