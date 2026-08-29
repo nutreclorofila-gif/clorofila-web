@@ -316,6 +316,20 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
 .faq-icon{font-family:var(--dato);color:var(--brote);font-size:1.1rem;flex-shrink:0;transition:transform .25s var(--ease)}
 .faq-item.open .faq-icon{transform:rotate(45deg)}
 .faq-a{max-height:0;overflow:hidden;font-size:.93rem;color:var(--cal-med);transition:max-height .35s var(--ease),padding .35s var(--ease)}
+
+/* Si el JS no corre, el sitio tiene que seguir sirviendo. Sin pagina.js las
+   respuestas quedaban en cero píxeles -el texto está en el HTML pero no se
+   puede leer- y en el celular el menú no abría: cero enlaces, salvo los del
+   pie. Estas reglas solo se aplican cuando falta la clase "js", así que no
+   tocan nada del funcionamiento normal. */
+html:not(.js) .faq-a{max-height:none;padding-bottom:1.15rem}
+html:not(.js) .faq-icon{display:none}
+html:not(.js) .nav{height:auto}
+@media (max-width:900px){
+  html:not(.js) .nav-caja{flex-wrap:wrap;height:auto;padding-block:.7rem}
+  html:not(.js) .nav-links{display:flex;flex-wrap:wrap;gap:.6rem 1.1rem;width:100%;padding-bottom:.3rem}
+  html:not(.js) .hamburguesa{display:none}
+}
 .faq-item.open .faq-a{max-height:420px;padding-bottom:1.15rem}
 
 /* --- Cierre --- */
