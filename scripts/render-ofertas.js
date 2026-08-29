@@ -378,7 +378,7 @@ function enumerar(lista) {
   return lista.slice(0, -1).join(', ') + ' y ' + lista[lista.length - 1];
 }
 const nombres = datos.curso.grupos.map(function (g) { return g.nombre; });
-datos.curso.modalidades_texto = nombres.join(' · ');
+datos.curso.horarios_texto = nombres.join(' · ');
 datos.curso.dias_texto = enumerar(nombres.map(function (n) { return n.toLowerCase(); }));
 datos.curso.edicion_titulo = 'Edición ' + String(datos.curso.edicion).toLowerCase();
 datos.curso.inscripcion_titulo = 'Inscripción · ' + datos.curso.edicion;
@@ -415,11 +415,15 @@ datos.curso.faq_cursada = 'Son 3 meses de cursada, 12 clases semanales por grupo
       g.inicio_texto.toLowerCase().replace(/^arranca el /, '');
   }).join(', o ') + '.';
 
-// El chip decía "3 modalidades" a mano: quedó de la edición de agosto, que
-// tenía tres grupos. Con dos grupos la propia página se contradecía, porque
-// la ficha de abajo lista "Miércoles · Jueves".
-datos.curso.modalidades_chip = '3 meses · ' + nombres.length +
-  (nombres.length === 1 ? ' modalidad' : ' modalidades');
+/* El chip decía "3 modalidades" a mano: quedó de la edición de agosto, que
+   tenía tres grupos. Pero además la palabra estaba mal: lo que hay son
+   horarios del mismo curso -miércoles a la mañana y jueves a la noche, los dos
+   semanales de 12 encuentros- y "modalidades" hacía esperar programas
+   distintos. La intensiva de 6 clases existe, pero es otra edición y ya
+   empezó; la de los sábados es del año que viene. Ninguna de las dos se vende
+   hoy, así que la página no las nombra. */
+datos.curso.horarios_chip = '3 meses · ' + nombres.length +
+  (nombres.length === 1 ? ' horario' : ' horarios');
 
 // El FAQ prometía "tenés tres horarios y te movés entre ellos". Con una sola
 // modalidad no hay a dónde moverse, así que la respuesta cambia entera.
