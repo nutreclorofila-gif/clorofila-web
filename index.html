@@ -8,14 +8,14 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#0E1A13">
-<title>Clorofila — Estudio de Cocina Saludable en Montevideo</title>
-<meta name="description" content="Estudio de cocina saludable en Parque Rodó, Montevideo: curso presencial de tres meses, talleres intensivos y experiencias gastronómicas.">
+<title>Curso de Cocina Saludable en Montevideo — Clorofila</title>
+<meta name="description" content="Curso presencial de tres meses en Parque Rodó, Montevideo, más talleres de un día y experiencias. Cocina saludable, sin gluten ni azúcares refinados.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://clorofila.uy/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://clorofila.uy/">
-<meta property="og:title" content="Clorofila — Estudio de Cocina Basada en Plantas en Montevideo">
-<meta property="og:description" content="Estudio de cocina saludable en Parque Rodó, Montevideo: curso presencial de tres meses, talleres intensivos y experiencias gastronómicas.">
+<meta property="og:title" content="Curso de Cocina Saludable en Montevideo — Clorofila">
+<meta property="og:description" content="Curso presencial de tres meses en Parque Rodó, Montevideo, más talleres de un día y experiencias. Cocina saludable, sin gluten ni azúcares refinados.">
 <meta property="og:image" content="https://clorofila.uy/og/og-home.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -28,7 +28,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=5">
+<link rel="stylesheet" href="base.css?v=6">
 <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://clorofila.uy/#organization","name":"Clorofila","url":"https://clorofila.uy/","email":"nutreclorofila@gmail.com","telephone":"+59894064148","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"},"sameAs":["https://instagram.com/clorofilaclases","https://www.facebook.com/clorofilaclases"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"21","bestRating":"5"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Valentina Pedreira"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado."},{"@type":"Review","author":{"@type":"Person","name":"Matías Acevedo"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Lo que más me sorprendió fue entender el porqué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien."}]},{"@type":"WebSite","url":"https://clorofila.uy/","name":"Clorofila","inLanguage":"es-UY","publisher":{"@id":"https://clorofila.uy/#organization"}}]}
   </script>
@@ -159,6 +159,9 @@
 .cierre-acciones{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
 
 .firma-leo{display:flex;align-items:center;gap:.85rem;justify-content:center;max-width:44ch;margin:0 auto 2rem}
+/* El hijo del flex es el <picture>, no el <img>: sin esto el texto de al lado
+   aplasta la foto de 56px a 23 y el círculo sale un óvalo. */
+.firma-leo>picture{flex-shrink:0;display:block;line-height:0}
 .firma-leo img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0}
 .firma-leo p{margin:0;text-align:left;color:var(--cal-med)}
 @media (max-width:480px){.firma-leo{text-align:left}}

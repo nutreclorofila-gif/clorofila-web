@@ -213,7 +213,27 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
 .hero-marcas{display:flex;flex-wrap:wrap;gap:.5rem}
 .marca-chip{display:inline-flex;align-items:center;border:1px solid var(--linea);border-radius:999px;padding:.4rem .85rem;font-family:var(--dato);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cal-med)}
 .marca-chip.destacado{border-color:rgba(240,179,85,.45);color:var(--miel)}
-@media (max-width:940px){.hero-caja{grid-template-columns:1fr}.hero-col-foto{order:-1}.hero-foto{aspect-ratio:4/3;margin-bottom:1rem}}
+/* Apilado en el celular, el hero de las páginas que venden una fecha se ordena
+   de corrido: foto, título, propuesta, ficha de reserva, sellos y recién ahí la
+   bajada. Antes los sellos viajaban con la columna de la foto y se metían entre
+   la foto y el título, y el gap pensado para separar las dos columnas se sumaba
+   entre cada elemento. Entre las dos cosas empujaban la fecha, el precio y el
+   botón abajo del pliegue: justo lo que viene a buscar quien abre el link desde
+   una conversación. El home y /sobre quedan afuera, su hero no lleva ficha. */
+@media (max-width:940px){
+  .hero-caja{grid-template-columns:1fr}
+  .hero-col-foto{order:-1}
+  .hero-foto{aspect-ratio:4/3;margin-bottom:1.25rem}
+  .hero-prod .hero-caja,.hero-curso .hero-caja,.hero-tapeo .hero-caja{gap:0}
+  .hero-prod .hero-caja >div,.hero-curso .hero-caja >div,.hero-tapeo .hero-caja >div{display:contents}
+  .hero-prod .hero-caja .hero-foto,.hero-curso .hero-caja .hero-foto,.hero-tapeo .hero-caja .hero-foto{order:1}
+  .hero-prod .hero-caja .senal,.hero-curso .hero-caja .senal,.hero-tapeo .hero-caja .senal{order:2}
+  .hero-prod .hero-caja h1,.hero-curso .hero-caja h1,.hero-tapeo .hero-caja h1{order:3}
+  .hero-prod .hero-caja .hero-tesis,.hero-curso .hero-caja .hero-tesis,.hero-tapeo .hero-caja .hero-tesis{order:4}
+  .hero-prod .hero-caja .comanda,.hero-curso .hero-caja .comanda,.hero-tapeo .hero-caja .comanda{order:5;margin-top:1.25rem}
+  .hero-prod .hero-caja .hero-marcas,.hero-curso .hero-caja .hero-marcas,.hero-tapeo .hero-caja .hero-marcas{order:6;margin-top:1.25rem}
+  .hero-prod .hero-caja .bajada,.hero-curso .hero-caja .bajada,.hero-tapeo .hero-caja .bajada{order:7;margin-top:1.25rem}
+}
 
 /* --- LA COMANDA ---
    El panel de reserva es la comanda de la cocina: papel térmico, mono y
