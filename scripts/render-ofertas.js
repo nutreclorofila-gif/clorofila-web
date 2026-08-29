@@ -538,6 +538,56 @@ datos.tiene_agenda = agenda.length ? 'si' : 'no';
   g.chip_corto = '\u2605 ' + g.puntaje_texto + ' en Google';
 }
 
+/* ---- Testimonios ---- */
+/* Estaban escritos a mano en el HTML de tres páginas y no existían en el schema,
+   aunque el spec de junio los daba por hechos. Se generan las dos cosas desde
+   acá: es el último dato del sitio que estaba duplicado, y hoy ya aparecieron
+   cuatro casos de un dato a mano contradiciendo a su versión estructurada. */
+{
+  const T = datos.testimonios;
+  if (!T || !Array.isArray(T.lista)) {
+    console.error('✗ Falta el bloque "testimonios" en data/ofertas.json.');
+    process.exit(1);
+  }
+  const porId = {};
+  T.lista.forEach(function (t) { porId[t.id] = t; });
+
+  Object.keys(T.paginas).forEach(function (pagina) {
+    const ids = T.paginas[pagina];
+    const elegidos = ids.map(function (id) {
+      if (!porId[id]) {
+        console.error('✗ testimonios.paginas.' + pagina + ' nombra "' + id + '", que no está en la lista.');
+        process.exit(1);
+      }
+      return porId[id];
+    });
+
+    // /tapeo maqueta cada testimonio con otra clase y en varias líneas.
+    const esTapeo = pagina === 'tapeo';
+    T[pagina + '_html'] = elegidos.map(function (t) {
+      const cuerpo = '<p class="estrellas">★★★★★</p>' +
+        '<blockquote>«' + escapar(t.cita) + '»</blockquote>' +
+        '<cite>' + escapar(t.nombre) + ' · ' + escapar(t.contexto) + '</cite>';
+      return esTapeo
+        ? '<div class="testi">' + cuerpo + '</div>'
+        : '<div class="voz">' + cuerpo + '</div>';
+    }).join(esTapeo ? '' : '');
+
+    /* Solo se publican como reseña propia las de quienes pasaron por Clorofila.
+       Las que dicen "reseña en Google" ya las cuenta Google en el puntaje del
+       perfil: republicarlas como nuestras va contra sus reglas. */
+    T[pagina + '_reviews'] = elegidos.filter(function (t) { return t.propio; })
+      .map(function (t) {
+        return {
+          '@type': 'Review',
+          author: { '@type': 'Person', name: t.nombre },
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+          reviewBody: t.cita
+        };
+      });
+  });
+}
+
 /* ---- Reemplazo en los HTML ---- */
 
 function valor(ruta) {
@@ -618,6 +668,16 @@ for (const archivo of archivos) {
       (function recorrer(nodo) {
         if (Array.isArray(nodo)) return nodo.forEach(recorrer);
         if (!nodo || typeof nodo !== 'object') return;
+
+        /* Las reseñas viajan junto al puntaje: van en el mismo nodo que ya
+           lleva aggregateRating (la Organization en el home, el Course en
+           /curso), que es lo que Google espera para mostrar las estrellas. */
+        if (nodo.aggregateRating && nodo.aggregateRating['@type'] === 'AggregateRating') {
+          const pag = archivo === 'index.html' ? 'index'
+            : archivo === 'curso.html' ? 'curso' : null;
+          const revs = pag && datos.testimonios[pag + '_reviews'];
+          if (revs && revs.length) { nodo.review = revs; tocado = true; }
+        }
 
         // El puntaje de Google que se publica en la ficha es el mismo que se
         // muestra en la página: sale de data/ofertas.json, no de acá.

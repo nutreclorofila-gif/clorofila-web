@@ -137,5 +137,69 @@
     "_leeme": "El puntaje y la cantidad de reseñas del perfil de Google. Se muestran en el home, el curso y el tapeo, y también en la ficha que lee Google. Actualizalo cuando entren reseñas nuevas: escribí el puntaje con punto (4.9), no con coma.",
     "puntaje": 4.9,
     "resenas": 21
+  },
+  "testimonios": {
+    "_leeme": "Los testimonios que se muestran en el home, el curso y el tapeo, y que además se publican como reseñas para Google. 'propio' distingue a quien pasó por Clorofila (se puede publicar como reseña nuestra) de quien dejó su opinión en Google: esas ya las cuenta Google y no se republican. Para sacar uno de una página, borralo de 'paginas'.",
+    "lista": [
+      {
+        "id": "valentina",
+        "nombre": "Valentina Pedreira",
+        "contexto": "curso de 3 meses",
+        "propio": true,
+        "cita": "No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado."
+      },
+      {
+        "id": "matias-acevedo",
+        "nombre": "Matías Acevedo",
+        "contexto": "curso de 3 meses",
+        "propio": true,
+        "cita": "Lo que más me sorprendió fue entender el porqué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien."
+      },
+      {
+        "id": "lucia",
+        "nombre": "Lucía Fernández",
+        "contexto": "curso de 3 meses",
+        "propio": true,
+        "cita": "No es un curso de recetas. Es aprender a pensar la cocina de otra manera."
+      },
+      {
+        "id": "alessandra",
+        "nombre": "Alessandra Nadile",
+        "contexto": "reseña en Google",
+        "propio": false,
+        "cita": "Excelente lugar para aprender a cocinar y a comer. Es mucho más que una receta."
+      },
+      {
+        "id": "alessandra-larga",
+        "nombre": "Alessandra Nadile",
+        "contexto": "reseña en Google",
+        "propio": false,
+        "cita": "Excelente lugar para aprender a cocinar y a comer. Es mucho más que una receta, es aprender a crear tus propias recetas de la mano de los que saben."
+      },
+      {
+        "id": "matias-arrieta",
+        "nombre": "Matías Arrieta",
+        "contexto": "reseña en Google",
+        "propio": false,
+        "cita": "Excelente los cursos, gran persona Leo, se nota la pasión por la cocina saludable, tuve el gusto de trabajar con él y es una fuente de conocimientos, hermoso el espacio, uso y recomiendo!"
+      }
+    ],
+    "paginas": {
+      "index": [
+        "valentina",
+        "matias-acevedo",
+        "alessandra"
+      ],
+      "curso": [
+        "lucia",
+        "matias-acevedo",
+        "alessandra-larga"
+      ],
+      "tapeo": [
+        "matias-arrieta",
+        "alessandra-larga",
+        "valentina"
+      ]
+    }
   }
 }
