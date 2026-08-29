@@ -728,6 +728,36 @@ for (const archivo of archivos) {
         Object.keys(nodo).forEach(function (k) { recorrer(nodo[k]); });
       })(ld);
 
+      /* Un taller con dos fechas se vendía como un solo evento: la segunda
+         tiene su propia entrada en Tikzet, pero Google solo veía la primera.
+         Se declara como un evento aparte, con su fecha y su link de compra. */
+      if (Array.isArray(ld['@graph'])) {
+        const w = datos.talleres['pastas-sin-gluten'];
+        const base = ld['@graph'].find(function (n) {
+          return n && n['@id'] === 'https://clorofila.uy/pastas#evento';
+        });
+        const yaEsta = ld['@graph'].some(function (n) {
+          return n && n['@id'] === 'https://clorofila.uy/pastas#evento-2';
+        });
+        const hay = w && w.estado !== 'sin-fecha' && w.segunda_fecha &&
+          w.segunda_fecha.iso && w.segunda_fecha.link;
+        if (base && hay && !yaEsta) {
+          const seg = JSON.parse(JSON.stringify(base));
+          seg['@id'] = 'https://clorofila.uy/pastas#evento-2';
+          seg.startDate = w.segunda_fecha.iso + 'T' + w.hora_inicio + ':00-03:00';
+          seg.endDate = w.segunda_fecha.iso + 'T' + w.hora_fin + ':00-03:00';
+          if (seg.offers) seg.offers.url = w.segunda_fecha.link;
+          ld['@graph'].push(seg);
+          tocado = true;
+        } else if (base && !hay && yaEsta) {
+          // Se cerró la segunda fecha: el evento deja de publicarse.
+          ld['@graph'] = ld['@graph'].filter(function (n) {
+            return !n || n['@id'] !== 'https://clorofila.uy/pastas#evento-2';
+          });
+          tocado = true;
+        }
+      }
+
       if (!tocado) return _m;
       return abre + '\n  ' + JSON.stringify(ld) + '\n  ' + cierra;
     }
