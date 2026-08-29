@@ -59,6 +59,29 @@
 
 .remate{text-align:center;max-width:54ch;margin:2.5rem auto 0;font-family:var(--display);font-size:clamp(1.1rem,2vw,1.35rem);color:var(--cal);letter-spacing:-.02em;line-height:1.3}
 .remate em{color:var(--brote);font-style:normal}
+
+/* En el celular, la ficha de reserva sube por encima del párrafo largo.
+   A esta página no se llega por Google: se llega desde un link mandado en una
+   conversación, y quien abre así busca la fecha, el precio y el botón. Con la
+   bajada primero, los tres quedaban abajo del pliegue. */
+@media (max-width:940px){
+  /* Las dos columnas se disuelven para poder ordenar todo el hero de corrido:
+     foto, título, propuesta, ficha de reserva, sellos y recién ahí la bajada.
+     Antes los sellos iban entre la foto y el título, empujando 100px hacia
+     abajo justo lo que la persona vino a ver. */
+  /* El gap estaba pensado para separar dos columnas; apilado se suma entre
+     cada elemento y aleja 130px la ficha. Los espacios van uno por uno. */
+  .hero-caja{display:flex;flex-direction:column;gap:0}
+  .hero-caja .hero-foto{margin-bottom:1.25rem}
+  .hero-caja>div{display:contents}
+  .hero-caja .hero-foto{order:1}
+  .hero-caja .senal{order:2}
+  .hero-caja h1{order:3}
+  .hero-caja .hero-tesis{order:4}
+  .hero-caja .comanda{order:5;margin-top:1.25rem}
+  .hero-caja .hero-marcas{order:6;margin-top:1.25rem}
+  .hero-caja .bajada{order:7;margin-top:1.25rem}
+}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260827" defer></script>
