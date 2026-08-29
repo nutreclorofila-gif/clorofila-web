@@ -112,6 +112,22 @@
     });
   }
 
+  /* La página de gracias trae tres fichas -el temario, el curso y el tapeo- y
+     muestra la que tenga la clase "activo". Venía marcada la del temario en el
+     HTML, que es la que corresponde al formulario, pero las otras dos no las
+     activaba nadie: quien reservaba el tapeo veía el temario del curso. Ahora
+     se elige con ?p= en la dirección, y sin parámetro queda la que ya estaba,
+     así que el camino de siempre no cambia. */
+  var fichas = document.querySelectorAll('[data-para]');
+  if (fichas.length) {
+    var pedido = new URLSearchParams(location.search).get('p');
+    var existe = pedido && document.querySelector('[data-para="' + pedido.replace(/[^a-z-]/gi, '') + '"]');
+    if (existe) {
+      for (var f = 0; f < fichas.length; f++) fichas[f].classList.remove('activo');
+      existe.classList.add('activo');
+    }
+  }
+
   document.querySelectorAll('.faq-q').forEach(function (b) {
     b.addEventListener('click', function () {
       var abierto = b.parentElement.classList.toggle('open');
