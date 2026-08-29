@@ -24,7 +24,7 @@ ingredientes de origen animal, pero no hace falta ser vegano para participar.
   y quesos vegetales. Se abren según la demanda.
 - [Cena y Taller de Tapeo](https://clorofila.uy/tapeo): experiencia de una noche — se
   cocina un tapeo basado en plantas (panes, patés, hummus, encurtidos) y después se
-  cena todo lo preparado, con bebida incluida. Solo 12 lugares, en Parque Rodó.
+  cena todo lo preparado, con bebida incluida. Solo 11 lugares, en Parque Rodó.
   Estado actual: sin fecha abierta por ahora; las fechas se publican según la demanda.
 - [Taller de Pastas Sin Gluten](https://clorofila.uy/pastas): clase práctica de un día.
   Dos masas base (una para pastas largas y cortas, otra para rellenas), spaghetti o
@@ -38,8 +38,19 @@ ingredientes de origen animal, pero no hace falta ser vegano para participar.
 ## Contenido
 
 - [Artículos](https://clorofila.uy/articulos): ciencia aplicada a la cocina cotidiana,
-  sin alarmismo. Aceite de oliva y punto de humo, omega-3 del lino al hornear,
-  lavado de frutas con bicarbonato, marcadores más allá del colesterol total.
+  sin alarmismo. Cada uno responde una pregunta concreta:
+
+- [¿Se puede cocinar con aceite de oliva?](https://clorofila.uy/articulos/aceite-de-oliva-punto-de-humo)
+- [Cómo funciona la fermentación: el mecanismo completo](https://clorofila.uy/articulos/como-funciona-la-fermentacion)
+- [¿Cuál es el mejor endulzante?](https://clorofila.uy/articulos/endulzantes-guia-sin-sesgo)
+- [¿Sirve el bicarbonato para lavar frutas y verduras?](https://clorofila.uy/articulos/lavado-de-frutas-bicarbonato)
+- [El colesterol total no alcanza para saber cómo estás](https://clorofila.uy/articulos/mas-alla-del-colesterol-total)
+- [¿La masa madre se digiere mejor?](https://clorofila.uy/articulos/masa-madre-digestibilidad)
+- [¿El lino pierde el omega-3 cuando lo horneás?](https://clorofila.uy/articulos/omega-3-lino-horneado)
+- [¿El pan sin gluten es más saludable?](https://clorofila.uy/articulos/pan-sin-gluten-no-es-saludable)
+- [¿La proteína vegetal es incompleta?](https://clorofila.uy/articulos/proteina-vegetal-mitos-realidades)
+- [¿Hay que remojar las legumbres?](https://clorofila.uy/articulos/remojo-legumbres)
+- [¿Hay alguna fuente vegetal de vitamina B12?](https://clorofila.uy/articulos/vitamina-b12-dieta-vegana)
 - [Leonardo Lemes](https://clorofila.uy/leonardo): 25 años cocinando, 13 enseñando.
 - [Sobre Clorofila](https://clorofila.uy/sobre): historia, valores y equipo.
 

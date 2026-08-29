@@ -739,6 +739,20 @@ for (const archivo of archivos) {
   }
 }
 
+/* --- La lista de artículos para llms.txt sale de los archivos, no de una lista
+   a mano: la plantilla nombraba cuatro de los once y el artículo nuevo de B12
+   no figuraba. Son las respuestas que un modelo puede citar. --- */
+{
+  const dir = path.join(raiz, 'articulos');
+  const arts = fs.readdirSync(dir).filter(function (f) { return f.endsWith('.html'); }).sort();
+  datos.articulos_lista = arts.map(function (f) {
+    const html = fs.readFileSync(path.join(dir, f), 'utf8');
+    const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
+    const titulo = h1 ? h1[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim() : f;
+    return '- [' + titulo + '](https://clorofila.uy/articulos/' + f.replace(/\.html$/, '') + ')';
+  }).join('\n');
+}
+
 /* --- llms.txt (el resumen que leen los buscadores de IA) sale de su plantilla --- */
 {
   const tmpl = fs.readFileSync(path.join(raiz, 'partials', 'llms.txt.tmpl'), 'utf8');
