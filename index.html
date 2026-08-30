@@ -103,6 +103,23 @@
 .prop-pie{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 @media (max-width:820px){.propuestas{grid-template-columns:1fr}}
 .prop-solo{max-width:620px;margin-inline:auto}
+/* Tres fotos debajo de la tarjeta. La noche del tapeo es lo más visual que
+   tiene el sitio y con una sola foto -de fondo, y bajo un degradado que la
+   oscurece- no se alcanzaba a ver de qué se trata. En el celular la tira se
+   desliza con el dedo y engancha foto por foto; en pantalla grande entran las
+   tres juntas. Es scroll del navegador: sin JavaScript y sin nada que se
+   mueva solo, que en un carrusel automático es lo que molesta. */
+.tira-tapeo{display:flex;gap:.6rem;overflow-x:auto;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;max-width:620px;
+  margin:.9rem auto 0;padding-bottom:.2rem}
+.tira-tapeo::-webkit-scrollbar{display:none}
+.tira-tapeo figure{flex:0 0 62%;scroll-snap-align:center;border-radius:var(--r);
+  overflow:hidden;aspect-ratio:1;margin:0}
+.tira-tapeo img{width:100%;height:100%;object-fit:cover;display:block}
+@media (min-width:821px){
+  .tira-tapeo{overflow:visible}
+  .tira-tapeo figure{flex:1 1 0}
+}
 
 /* ---------- ARTÍCULOS (home) ---------- */
 .articulos-tira{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:1.25rem;margin-top:2.5rem}
@@ -340,12 +357,13 @@
       <div class="prop-cuerpo">
         <span class="dato">Experiencia · <!--o:tapeo.fecha_texto-->viernes 18 de setiembre<!--/o--></span>
         <h3>Cena y Taller de Tapeo</h3>
-        <p>Armás una mesa de tapas entera con el grupo —masas, rellenos, salsas, encurtidos— y después la cenan juntos, con vino o kombucha y sin apuro. Es una sola noche y no te ata a nada.</p>
+        <p>Masas, rellenos, salsas y encurtidos, armados por el grupo entero alrededor de la misma mesa larga. Con vino o kombucha. <!--o:tapeo.cupos_texto-->Solo 12 lugares<!--/o--> por noche.</p>
         <div class="prop-pie">
           <a href="/tapeo" class="btn btn-claro" data-producto="tapeo">Ver la experiencia</a>
         </div>
       </div>
     </article>
+    <div class="tira-tapeo sube" role="group" aria-label="Una noche de tapeo, en fotos"><figure><picture><source srcset="img-tapeo-g1-400.webp 400w, img-tapeo-g1.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g1.jpg" width="760" height="760" alt="Verduras y cuencos de ingredientes sobre la mesa de trabajo" loading="lazy"></picture></figure><figure><picture><source srcset="img-tapeo-g2-400.webp 400w, img-tapeo-g2.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g2.jpg" width="760" height="760" alt="Leonardo cocinando junto a un participante" loading="lazy"></picture></figure><figure><picture><source srcset="img-tapeo-g3-400.webp 400w, img-tapeo-g3.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g3.jpg" width="760" height="760" alt="La mesa servida al final de la noche, con el grupo alrededor" loading="lazy"></picture></figure></div>
   </div>
 </section>
 
