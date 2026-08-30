@@ -517,6 +517,22 @@ datos.agenda_html = agenda.map(function (e) {
 }).join('');
 datos.tiene_agenda = agenda.length ? 'si' : 'no';
 
+/* ---- El menú del tapeo, en versión corta para el inicio ----
+   En /tapeo los platos van completos ("Gyozas de hongos y verduras con salsa
+   teriyaki"). En el inicio no entra esa lista, pero decir "masas, rellenos,
+   salsas y encurtidos" -que es lo que decía- no le abre el apetito a nadie.
+   Se recortan por "con" y "sobre", que es donde empieza el acompañamiento, y
+   salen del mismo array: si cambia el menú, cambian los dos lados. */
+if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
+  const cortos = datos.tapeo.menu.map(function (plato, i) {
+    const corto = String(plato).split(/ con | sobre /)[0].trim();
+    return i === 0 ? corto : corto.charAt(0).toLowerCase() + corto.slice(1);
+  });
+  datos.tapeo.menu_corto = cortos.length > 1
+    ? cortos.slice(0, -1).join(', ') + ' y ' + cortos[cortos.length - 1]
+    : cortos[0];
+}
+
 /* ---- La tira de talleres del inicio ----
    Estaban escritos a mano: los cinco se veían igual aunque solo uno tuviera
    fecha, y si se abría una nueva el inicio no se enteraba. Ahora salen del
