@@ -517,6 +517,30 @@ datos.agenda_html = agenda.map(function (e) {
 }).join('');
 datos.tiene_agenda = agenda.length ? 'si' : 'no';
 
+/* ---- La tira de talleres del inicio ----
+   Estaban escritos a mano: los cinco se veían igual aunque solo uno tuviera
+   fecha, y si se abría una nueva el inicio no se enteraba. Ahora salen del
+   mismo JSON, con el que se puede comprar primero y con su fecha a la vista.
+   Los que no tienen fecha siguen apareciendo, porque la página los ofrece
+   igual: lo que cambia es que ya no se confunden con el que sí se vende. */
+{
+  const conFecha = [];
+  const sinFecha = [];
+  for (const [id, w] of Object.entries(datos.talleres)) {
+    if (w.publicar === false || !w.nombre) continue;
+    const destino = (id === 'pastas-sin-gluten') ? '/pastas' : '/talleres#' + id;
+    const abierto = w.estado !== 'sin-fecha' && w.fecha_iso;
+    (abierto ? conFecha : sinFecha).push(
+      '<a href="' + enlace(destino) + '"' + (abierto ? ' data-estado="abierto"' : '') + '>' +
+      '<span>' + escapar(w.nombre_corto || w.nombre) + '</span>' +
+      (abierto ? '<small>' + escapar(w.fecha_texto) + '</small>' : '') +
+      '</a>'
+    );
+  }
+  datos.talleres_tira_html = conFecha.concat(sinFecha).join('') +
+    '<a href="/talleres" class="btn-linea" style="padding:1rem 1.1rem">Ver todos los talleres →</a>';
+}
+
 /* ---- A dónde lleva "Experiencias" en el menú ----
    Una categoría con un solo ítem no es una categoría: es un escalón de más.
    Se midió: /experiencias tuvo 1 visita de 9 segundos en un mes, mientras 7

@@ -70,6 +70,7 @@
     "_leeme": "Cada taller: mismo sistema que el tapeo. estado sin-fecha | abierto | ultimos | agotado.",
     "fermentacion": {
       "nombre": "Fermentación de vegetales",
+      "nombre_corto": "Fermentación",
       "estado": "sin-fecha",
       "fecha_iso": "",
       "fecha_texto": "Sin fecha confirmada",
@@ -79,6 +80,7 @@
     },
     "pan-sin-gluten": {
       "nombre": "Pan sin gluten con masa madre",
+      "nombre_corto": "Pan sin gluten",
       "estado": "sin-fecha",
       "fecha_iso": "",
       "fecha_texto": "Sin fecha confirmada",
@@ -88,6 +90,7 @@
     },
     "pastas-sin-gluten": {
       "nombre": "Pastas sin gluten",
+      "nombre_corto": "Pastas sin gluten",
       "estado": "abierto",
       "fecha_iso": "2026-09-03",
       "fecha_texto": "jueves 3 de setiembre",
@@ -106,6 +109,7 @@
     },
     "alfajores": {
       "nombre": "Alfajores plant-based",
+      "nombre_corto": "Alfajores",
       "estado": "sin-fecha",
       "fecha_iso": "",
       "fecha_texto": "Sin fecha confirmada",
@@ -115,6 +119,7 @@
     },
     "quesos-vegetales": {
       "nombre": "Quesos vegetales",
+      "nombre_corto": "Quesos vegetales",
       "estado": "sin-fecha",
       "fecha_iso": "",
       "fecha_texto": "Sin fecha confirmada",

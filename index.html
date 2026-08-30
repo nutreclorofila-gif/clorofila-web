@@ -176,6 +176,12 @@
 .tira-talleres{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:.75rem;margin-top:2rem}
 .tira-talleres a{border:1px solid var(--linea);border-radius:var(--r);padding:1rem 1.1rem;font-size:.92rem;color:var(--cal-med);transition:border-color .2s,color .2s;min-height:48px;display:flex;align-items:center}
 .tira-talleres a:hover{border-color:var(--brote);color:var(--cal)}
+.tira-talleres a{flex-direction:column;align-items:flex-start;justify-content:center;gap:.2rem}
+.tira-talleres small{font-family:var(--dato);font-size:.68rem;letter-spacing:.04em;color:var(--miel)}
+/* El único que se puede comprar hoy no puede verse igual que los cuatro que
+   no tienen fecha. Mismo terracota que la agenda del inicio. */
+.tira-talleres a[data-estado="abierto"]{border-color:rgba(224,133,86,.42);color:var(--cal)}
+.tira-talleres a[data-estado="abierto"]:hover{border-color:rgba(224,133,86,.75)}
 
 /* ---------- CIERRE ---------- */
 .cierre{text-align:center}
@@ -286,14 +292,7 @@
     <span class="senal">Talleres de un día</span>
     <h2 style="margin-top:.8rem;font-size:clamp(1.5rem,2.6vw,2rem)">Talleres intensivos</h2>
     <p style="margin-top:.7rem;max-width:52ch">Son encuentros de un día, cada uno dedicado a una sola técnica que trabajás de principio a fin.</p>
-    <div class="tira-talleres">
-      <a href="/pastas">Pastas sin gluten</a>
-      <a href="/talleres#fermentacion">Fermentación</a>
-      <a href="/talleres#pan-sin-gluten">Pan sin gluten</a>
-      <a href="/talleres#quesos-vegetales">Quesos vegetales</a>
-      <a href="/talleres#alfajores">Alfajores</a>
-      <a href="/talleres" class="btn-linea" style="padding:1rem 1.1rem">Ver todos los talleres →</a>
-    </div>
+    <div class="tira-talleres"><!--o:html:talleres_tira_html--><a href="/pastas" data-estado="abierto"><span>Pastas sin gluten</span><small>jueves 3 de setiembre</small></a><a href="/talleres#fermentacion"><span>Fermentación</span></a><a href="/talleres#pan-sin-gluten"><span>Pan sin gluten</span></a><a href="/talleres#alfajores"><span>Alfajores</span></a><a href="/talleres#quesos-vegetales"><span>Quesos vegetales</span></a><a href="/talleres" class="btn-linea" style="padding:1rem 1.1rem">Ver todos los talleres →</a><!--/o--></div>
   </div>
 </section>
 
