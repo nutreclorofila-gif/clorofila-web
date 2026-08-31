@@ -54,7 +54,7 @@
 .historia-caja{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(2rem,5vw,4rem);align-items:start}
 .historia p{color:var(--cal-med)}
 .historia p+p{margin-top:.9rem}
-.cifras{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:1.5rem}
 .cifra{border-top:1px solid var(--linea);padding-top:.9rem}
 .cifra b{display:block;font-family:var(--display);font-size:clamp(1.9rem,3.4vw,2.6rem);color:var(--cal);line-height:1;letter-spacing:-.04em}
 .cifra span{font-family:var(--dato);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cal-baja);display:block;margin-top:.45rem;line-height:1.5}
@@ -136,6 +136,7 @@
       <li class="cifra"><b>+1.200</b><span>Personas formadas</span></li>
       <li class="cifra"><b>13</b><span>Años enseñando</span></li>
       <li class="cifra"><b>25</b><span>Años de experiencia culinaria</span></li>
+          <li class="cifra"><b><!--o:google.puntaje_texto-->4,9<!--/o--></b><span><!--o:google.resenas_texto-->21 reseñas en Google<!--/o--></span></li>
     </ul>
   </div>
 </section>
