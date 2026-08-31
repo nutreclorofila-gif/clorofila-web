@@ -41,8 +41,15 @@ const TIPOS = {
 
 function resolver(urlPath) {
   // Nunca salir de la raíz del sitio, aunque pidan ../../
-  const limpio = path.normalize(decodeURIComponent(urlPath.split('?')[0]))
-    .replace(/^(\.\.[/\\])+/, '');
+  let crudo;
+  try {
+    crudo = decodeURIComponent(urlPath.split('?')[0]);
+  } catch (e) {
+    // Un % suelto en la URL hace saltar decodeURIComponent. Sin esto, una
+    // dirección mal escrita tumbaba el servidor entero.
+    return null;
+  }
+  const limpio = path.normalize(crudo).replace(/^(\.\.[/\\])+/, '');
   const dentro = path.join(raiz, limpio);
   if (!dentro.startsWith(raiz)) return null;
 
@@ -70,7 +77,14 @@ http.createServer(function (req, res) {
     // Sin cache: en local siempre se ve el último cambio.
     'Cache-Control': 'no-store'
   });
-  fs.createReadStream(archivo).pipe(res);
+  // Si el navegador corta la conexión a mitad de una imagen —pasa al navegar
+  // rápido o al cerrar la pestaña— el stream emite 'error'. Sin este oyente,
+  // ese error no lo escucha nadie y Node mata el proceso: el servidor se caía
+  // sola en medio de una revisión, sin dejar rastro.
+  const flujo = fs.createReadStream(archivo);
+  flujo.on('error', function () { res.destroy(); });
+  res.on('close', function () { flujo.destroy(); });
+  flujo.pipe(res);
 }).listen(puerto, function () {
   console.log('Clorofila en http://localhost:' + puerto);
 });
