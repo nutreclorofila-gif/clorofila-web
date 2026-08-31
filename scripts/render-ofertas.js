@@ -475,7 +475,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
 // la edición de octubre abierta.
 if (abiertos.length) {
   agenda.push({
-    iso: abiertos[0].inicio_iso, nombre: 'Curso de tres meses',
+    iso: abiertos[0].inicio_iso, nombre: 'Curso de cocina saludable',
     cuenta: abiertos[0].inicio_iso,
     fecha: datos.curso.inicio_texto, hora: datos.curso.dias_texto,
     precio: datos.curso.precio_total, estado: 'abierto',

@@ -250,25 +250,15 @@
   </div>
 </header>
 
-<section class="agenda seccion" id="agenda" data-set="data-agenda=tiene_agenda" data-agenda="si">
-  <div class="env">
-    <div class="agenda-cabeza sube">
-      <div>
-        <span class="senal">Curso, talleres y experiencias</span>
-        <h2 style="margin-top:.8rem">Próximas fechas</h2>
-      </div>
-      <p class="dato" style="max-width:30ch;text-transform:none;letter-spacing:.02em;font-size:.8rem;color:var(--cal-baja)">Trabajamos con grupos chicos. Cuando una fecha se completa, la cerramos.</p>
-    </div>
-    <ul class="agenda-grid sube"><!--o:html:agenda_html--><li class="agenda-item" data-estado="ultimos"><span class="agenda-etiqueta">Últimos lugares</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">jueves 3 de setiembre · 10:00 a 13:30 h</p><p class="agenda-precio">$2.897</p><a href="/pastas" class="agenda-link" data-producto="agenda">Ver el taller →</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Segunda fecha</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">viernes 4 de setiembre · 10:00 a 13:30 h</p><p class="agenda-precio">$2.897</p><a href="/pastas" class="agenda-link" data-producto="agenda">Ver el taller →</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Inscripciones abiertas</span><p class="agenda-nombre">Cena y Taller de Tapeo</p><p class="agenda-cuando">viernes 18 de setiembre · 19:00 a 22:30 h</p><p class="agenda-precio">$2.600 por persona</p><a href="/tapeo" class="agenda-link" data-producto="agenda">Ver la experiencia →</a></li><li class="agenda-item" data-estado="abierto" data-inicio-iso="2026-10-07"><span class="agenda-etiqueta" data-cuenta>Grupos abiertos</span><p class="agenda-nombre">Curso de tres meses</p><p class="agenda-cuando">Arranca el miércoles 7 de octubre · miércoles y jueves</p><p class="agenda-precio">$12.200</p><a href="/curso" class="agenda-link" data-producto="agenda">Ver el curso →</a></li><!--/o--></ul>
-  </div>
-</section>
+
 
 <section class="seccion" id="curso">
   <div class="env">
     <div class="curso-destacado sube">
       <figure class="curso-destacado-foto"><picture><source srcset="img-clase-grupo-700.webp 700w, img-clase-grupo.webp 1200w" sizes="(max-width: 900px) calc(100vw - 3rem), 42vw" type="image/webp"><img src="img-clase-grupo.jpg" width="1200" height="675" alt="Grupo trabajando en una clase del curso de Clorofila" loading="lazy"></picture></figure>
       <div>
-        <h2 style="margin-top:.8rem">El curso de tres meses.</h2>
+        <span class="senal">Tres meses · una clase por semana</span>
+        <h2>Curso de cocina saludable.</h2>
         <p>Trabajás pastas, sushi, tartas, platos principales, postres y chocolates, todo sin gluten, sin azúcares refinados ni grasas nocivas. Aprendés qué hace cada ingrediente y qué pasa si lo cambiás.</p>
         <ul class="curso-transforma">
           <li>No depender de recetas</li>
@@ -287,12 +277,26 @@
   </div>
 </section>
 
-<section class="seccion-sm borde-sup">
-  <div class="env sube">
-    <span class="senal">Talleres de un día</span>
-    <h2 style="margin-top:.8rem;font-size:clamp(1.5rem,2.6vw,2rem)">Talleres intensivos</h2>
-    <p style="margin-top:.7rem;max-width:52ch">Son encuentros de un día, cada uno dedicado a una sola técnica que trabajás de principio a fin.</p>
-    <div class="tira-talleres"><!--o:html:talleres_tira_html--><a href="/pastas" data-estado="abierto"><span>Pastas sin gluten</span><small>jueves 3 de setiembre</small></a><a href="/talleres#fermentacion"><span>Fermentación</span></a><a href="/talleres#pan-sin-gluten"><span>Pan sin gluten</span></a><a href="/talleres#alfajores"><span>Alfajores</span></a><a href="/talleres#quesos-vegetales"><span>Quesos vegetales</span></a><a href="/talleres" class="btn-linea" style="padding:1rem 1.1rem">Ver todos los talleres →</a><!--/o--></div>
+
+
+<section class="seccion borde-sup" id="experiencia">
+  <div class="env">
+    <div class="sube" style="margin-bottom:1.5rem">
+      <span class="senal">Cena y taller</span>
+      <h2 style="margin-top:.8rem">Una noche donde cocinás,<br>compartís y comés.</h2>
+    </div>
+    <article class="prop prop-solo sube" data-set="data-precio=tapeo.tiene_precio" data-precio="si">
+      <div class="prop-foto"><picture><source srcset="img-tapeo-mesa-700.webp 700w, img-tapeo-mesa.webp 1200w" sizes="(max-width: 820px) calc(100vw - 3rem), 48vw" type="image/webp"><img src="img-tapeo-mesa.jpg" width="1200" height="675" alt="El grupo trabajando alrededor de la mesa en la Cena y Taller de Tapeo" loading="lazy"></picture></div>
+      <div class="prop-cuerpo">
+        <span class="dato">Experiencia · <!--o:tapeo.fecha_texto-->viernes 18 de setiembre<!--/o--></span>
+        <h3>Cena y Taller de Tapeo</h3>
+        <p><!--o:tapeo.menu_corto-->Gyozas de hongos y verduras, gírgolas asadas, buñuelos de chucrut y croquetas de puerro<!--/o-->. Los hacemos entre todos y después nos sentamos a comerlos, con las dos copas de vino o kombucha que entran, y la sobremesa que salga. <!--o:tapeo.cupos_texto-->Solo 12 lugares<!--/o-->.</p>
+        <div class="prop-pie">
+          <a href="/tapeo" class="btn btn-claro" data-producto="tapeo">Ver la experiencia</a>
+        </div>
+      </div>
+    </article>
+    <div class="tira-tapeo sube" role="group" aria-label="Una noche de tapeo, en fotos"><figure><picture><source srcset="img-tapeo-g1-400.webp 400w, img-tapeo-g1.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g1.jpg" width="760" height="760" alt="Verduras y cuencos de ingredientes sobre la mesa de trabajo" loading="lazy"></picture></figure><figure><picture><source srcset="img-tapeo-g2-400.webp 400w, img-tapeo-g2.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g2.jpg" width="760" height="760" alt="Leonardo cocinando junto a un participante" loading="lazy"></picture></figure><figure><picture><source srcset="img-tapeo-g3-400.webp 400w, img-tapeo-g3.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g3.jpg" width="760" height="760" alt="La mesa servida al final de la noche, con el grupo alrededor" loading="lazy"></picture></figure></div>
   </div>
 </section>
 
@@ -345,24 +349,27 @@
   </div>
 </section>
 
-<section class="seccion borde-sup" id="experiencia">
+
+
+<section class="agenda seccion" id="agenda" data-set="data-agenda=tiene_agenda" data-agenda="si">
   <div class="env">
-    <div class="sube" style="margin-bottom:1.5rem">
-      <span class="senal">Cena y taller</span>
-      <h2 style="margin-top:.8rem">Una noche donde cocinás,<br>compartís y comés.</h2>
-    </div>
-    <article class="prop prop-solo sube" data-set="data-precio=tapeo.tiene_precio" data-precio="si">
-      <div class="prop-foto"><picture><source srcset="img-tapeo-mesa-700.webp 700w, img-tapeo-mesa.webp 1200w" sizes="(max-width: 820px) calc(100vw - 3rem), 48vw" type="image/webp"><img src="img-tapeo-mesa.jpg" width="1200" height="675" alt="El grupo trabajando alrededor de la mesa en la Cena y Taller de Tapeo" loading="lazy"></picture></div>
-      <div class="prop-cuerpo">
-        <span class="dato">Experiencia · <!--o:tapeo.fecha_texto-->viernes 18 de setiembre<!--/o--></span>
-        <h3>Cena y Taller de Tapeo</h3>
-        <p><!--o:tapeo.menu_corto-->Gyozas de hongos y verduras, gírgolas asadas, buñuelos de chucrut y croquetas de puerro<!--/o-->. Los hacemos entre todos y después nos sentamos a comerlos, con las dos copas de vino o kombucha que entran, y la sobremesa que salga. <!--o:tapeo.cupos_texto-->Solo 12 lugares<!--/o-->.</p>
-        <div class="prop-pie">
-          <a href="/tapeo" class="btn btn-claro" data-producto="tapeo">Ver la experiencia</a>
-        </div>
+    <div class="agenda-cabeza sube">
+      <div>
+        <span class="senal">Curso, talleres y experiencias</span>
+        <h2 style="margin-top:.8rem">Próximas fechas</h2>
       </div>
-    </article>
-    <div class="tira-tapeo sube" role="group" aria-label="Una noche de tapeo, en fotos"><figure><picture><source srcset="img-tapeo-g1-400.webp 400w, img-tapeo-g1.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g1.jpg" width="760" height="760" alt="Verduras y cuencos de ingredientes sobre la mesa de trabajo" loading="lazy"></picture></figure><figure><picture><source srcset="img-tapeo-g2-400.webp 400w, img-tapeo-g2.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g2.jpg" width="760" height="760" alt="Leonardo cocinando junto a un participante" loading="lazy"></picture></figure><figure><picture><source srcset="img-tapeo-g3-400.webp 400w, img-tapeo-g3.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g3.jpg" width="760" height="760" alt="La mesa servida al final de la noche, con el grupo alrededor" loading="lazy"></picture></figure></div>
+      <p class="dato" style="max-width:30ch;text-transform:none;letter-spacing:.02em;font-size:.8rem;color:var(--cal-baja)">Trabajamos con grupos chicos. Cuando una fecha se completa, la cerramos.</p>
+    </div>
+    <ul class="agenda-grid sube"><!--o:html:agenda_html--><li class="agenda-item" data-estado="ultimos"><span class="agenda-etiqueta">Últimos lugares</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">jueves 3 de setiembre · 10:00 a 13:30 h</p><p class="agenda-precio">$2.897</p><a href="/pastas" class="agenda-link" data-producto="agenda">Ver el taller →</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Segunda fecha</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">viernes 4 de setiembre · 10:00 a 13:30 h</p><p class="agenda-precio">$2.897</p><a href="/pastas" class="agenda-link" data-producto="agenda">Ver el taller →</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Inscripciones abiertas</span><p class="agenda-nombre">Cena y Taller de Tapeo</p><p class="agenda-cuando">viernes 18 de setiembre · 19:00 a 22:30 h</p><p class="agenda-precio">$2.600 por persona</p><a href="/tapeo" class="agenda-link" data-producto="agenda">Ver la experiencia →</a></li><li class="agenda-item" data-estado="abierto" data-inicio-iso="2026-10-07"><span class="agenda-etiqueta" data-cuenta>Grupos abiertos</span><p class="agenda-nombre">Curso de cocina saludable</p><p class="agenda-cuando">Arranca el miércoles 7 de octubre · miércoles y jueves</p><p class="agenda-precio">$12.200</p><a href="/curso" class="agenda-link" data-producto="agenda">Ver el curso →</a></li><!--/o--></ul>
+  </div>
+</section>
+
+<section class="seccion-sm borde-sup">
+  <div class="env sube">
+    <span class="senal">Talleres de un día</span>
+    <h2 style="margin-top:.8rem;font-size:clamp(1.5rem,2.6vw,2rem)">Talleres intensivos</h2>
+    <p style="margin-top:.7rem;max-width:52ch">Son encuentros de un día, cada uno dedicado a una sola técnica que trabajás de principio a fin.</p>
+    <div class="tira-talleres"><!--o:html:talleres_tira_html--><a href="/pastas" data-estado="abierto"><span>Pastas sin gluten</span><small>jueves 3 de setiembre</small></a><a href="/talleres#fermentacion"><span>Fermentación</span></a><a href="/talleres#pan-sin-gluten"><span>Pan sin gluten</span></a><a href="/talleres#alfajores"><span>Alfajores</span></a><a href="/talleres#quesos-vegetales"><span>Quesos vegetales</span></a><a href="/talleres" class="btn-linea" style="padding:1rem 1.1rem">Ver todos los talleres →</a><!--/o--></div>
   </div>
 </section>
 

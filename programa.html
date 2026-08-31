@@ -47,6 +47,11 @@
 .prog h2{font-size:clamp(1.4rem,2.6vw,1.9rem);margin-block:2.75rem 1rem;padding-top:1.5rem;border-top:1px solid var(--linea)}
 .prog h3{font-size:1.2rem;margin-block:.3rem .5rem}
 .prog p{color:var(--cal-med)}
+.prog-reserva{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:1.1rem;align-items:center;
+  border:1px solid rgba(224,133,86,.42);background:var(--musgo);border-radius:var(--r-lg);padding:clamp(1.1rem,2.6vw,1.5rem);margin-block:1.75rem}
+.prog-reserva strong{display:block;font-family:var(--display);font-size:1.35rem;color:var(--cal);line-height:1.1;margin-top:.3rem}
+.prog-reserva-nota{display:block;font-size:.78rem;color:var(--cal-baja);margin-top:.35rem;line-height:1.4}
+.prog-reserva .btn{width:100%;justify-content:center}
 .prog-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem}
 .prog-meta span{border:1px solid var(--linea);border-radius:999px;padding:.4rem .85rem;font-family:var(--dato);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cal-med)}
 .mes-prog{border-left:1px solid var(--linea-fuerte);padding-left:1.25rem;margin-bottom:1.75rem}
@@ -111,7 +116,20 @@
     <span>Edición <!--o:curso.edicion-->Octubre 2026<!--/o--></span>
   </div>
 
-  <h2>El recorrido, mes a mes</h2>
+  <div class="prog-reserva">
+        <div>
+          <span class="dato">Inicio</span>
+          <strong><!--o:curso.inicio_texto-->Arranca el miércoles 7 de octubre<!--/o--></strong>
+        </div>
+        <div>
+          <span class="dato">Precio</span>
+          <strong><!--o:curso.precio_tarjeta-->hasta 12 cuotas de $1.016<!--/o--></strong>
+          <span class="prog-reserva-nota"><!--o:curso.precio_total-->$12.200<!--/o--> al contado, con la bonificación · o <!--o:curso.precio_cuotas-->3 cuotas de $4.800<!--/o--></span>
+        </div>
+        <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso">Reservar mi lugar →</a>
+      </div>
+
+      <h2>El recorrido, mes a mes</h2>
   <div class="mes-prog">
     <span class="dato">Mes 1 · Fundamentos</span>
     <h3>Las bases que lo cambian todo</h3>
