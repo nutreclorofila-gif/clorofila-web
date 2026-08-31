@@ -337,6 +337,12 @@ datos.curso.cta_link = abiertos.length
           return String(g.nombre).toLowerCase() + ' de ' + g.horario.replace(' h', '');
         }).join(' o el de los ') + '.')
   : 'https://tally.so/r/EkMbWL';
+// El botón redondo de al lado es para preguntar, no para reservar: siempre va a
+// WhatsApp, también cuando no hay edición abierta y el botón grande lleva al
+// formulario. Sin esto mandaba un chat en blanco y Leo no sabía de qué venía.
+datos.curso.wa_link = waBase + encodeURIComponent(
+  'Hola Leonardo, tengo una pregunta sobre el curso de cocina.'
+);
 datos.curso.cta_nota = abiertos.length
   ? 'Grupos reducidos · te escribimos por WhatsApp en menos de 24h para confirmar tu lugar'
   : 'No hay edición abierta ahora. Dejanos tus datos y sos de los primeros en enterarte cuando abramos la próxima.';
