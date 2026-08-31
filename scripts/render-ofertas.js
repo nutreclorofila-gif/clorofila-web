@@ -570,6 +570,15 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
   }
   datos.talleres_tira_html = conFecha.concat(sinFecha).join('') +
     '<a href="/talleres" class="btn-linea" style="padding:1rem 1.1rem">Ver todos los talleres →</a>';
+  // La bajada de /talleres decía "algunos tienen fecha abierta ahora mismo".
+  // Casi siempre hay uno solo con fecha, y a veces ninguno: en ese caso la
+  // frase pasaba a ser falsa sola, sin que nadie tocara nada.
+  datos.talleres_bajada = 'Son encuentros de un día, cada uno dedicado a una sola técnica que trabajás de principio a fin. '
+    + (conFecha.length === 0
+        ? 'Ahora mismo no hay ninguno con fecha: se abren según la demanda, y te avisamos.'
+        : conFecha.length === 1
+          ? 'Hay uno con fecha abierta; el resto se abre según la demanda.'
+          : 'Hay ' + conFecha.length + ' con fecha abierta; el resto se abre según la demanda.');
 }
 
 /* ---- A dónde lleva "Experiencias" en el menú ----
