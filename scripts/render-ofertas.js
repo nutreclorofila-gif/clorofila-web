@@ -200,6 +200,8 @@ t.hero_boton = t.estado === 'sin-fecha'
   ? 'Ver la cena y taller de tapeo'
   : 'Cena de tapeo · ' + t.fecha_texto;
 t.tiene_segunda = t.segunda_fecha && t.segunda_fecha.texto ? 'si' : 'no';
+// Con una sola fecha, "Elegí tu fecha" pide algo que no se puede hacer.
+t.fechas_titulo = t.tiene_segunda === 'si' ? 'Elegí tu fecha' : 'La próxima fecha';
 // Con dos fechas a la venta, el botón tiene que decir cuál está comprando:
 // el link va siempre a la primera, y sin la aclaración se compra la otra sin querer.
 t.cta_texto =
@@ -287,6 +289,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   w.tiene_precio = (w.estado !== 'sin-fecha' && w.precio) ? 'si' : 'no';
   w.tiene_fecha = (w.estado !== 'sin-fecha' && w.fecha_texto) ? 'si' : 'no';
   w.tiene_segunda = (w.segunda_fecha && w.segunda_fecha.texto) ? 'si' : 'no';
+  w.fechas_titulo = w.tiene_segunda === 'si' ? 'Elegí tu fecha' : 'La próxima fecha';
   w.segunda_texto = (w.segunda_fecha && w.segunda_fecha.texto)
     ? '¿No podés ese día? También hay fecha el ' + w.segunda_fecha.texto + '.' : '';
   w.segunda_link = (w.segunda_fecha && w.segunda_fecha.link) || '';
