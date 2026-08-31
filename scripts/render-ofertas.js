@@ -394,7 +394,7 @@ datos.curso.horarios_texto = nombres.join(' · ');
 datos.curso.dias_texto = enumerar(nombres.map(function (n) { return n.toLowerCase(); }));
 datos.curso.edicion_titulo = 'Edición ' + String(datos.curso.edicion).toLowerCase();
 datos.curso.inscripcion_titulo = 'Inscripción · ' + datos.curso.edicion;
-datos.curso.porclase_texto = '3 meses · ' + datos.curso.dias_texto + ' · 12 encuentros semanales';
+datos.curso.porclase_texto = '3 meses · ' + datos.curso.dias_texto + ' · 12 encuentros, uno por semana';
 
 // La cantidad de horarios se dice en palabras, y cambia si son dos o tres.
 const cuantos = { 1: 'un horario', 2: 'dos horarios', 3: 'tres horarios' }[nombres.length]
