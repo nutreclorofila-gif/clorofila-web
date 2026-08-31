@@ -359,6 +359,18 @@ html:not(.js) .nav{height:auto}
    primera visita —la de quien llega de Instagram— el toque sobre "Reservar" y
    "Contacto" lo recibía el aviso. Vuelve solo al cerrar el menú. */
 body.menu-abierto .cookie-banner{display:none}
+/* En pantalla ancha el aviso caía justo encima de los botones del hero, que en
+   este sitio van siempre en la columna izquierda: en 1280x720 —la resolución
+   de laptop más común— los dos botones de la home no se podían tocar en la
+   primera visita. Del lado derecho está la foto, no hay nada que tocar. */
+@media (min-width:901px){.cookie-banner{left:auto;right:1.25rem}}
+/* En el celular el aviso caía sobre los botones del hero: en la home tapaba
+   "Ver el curso", que es el botón principal y el que reciben quienes llegan
+   desde Instagram. Arriba, pegado debajo de la barra, se apoya sobre la foto,
+   donde no hay nada que tocar. */
+@media (max-width:900px){
+  .cookie-banner{top:calc(var(--nav-h) + .6rem);bottom:auto;max-width:none}
+}
 .cookie-banner a{color:var(--cal);text-decoration:underline;display:inline-block;padding-block:.2rem}
 .cookie-banner-actions{display:flex;align-items:center;gap:1rem}
 #cookie-accept{background:var(--cal);color:var(--tinta);padding:.45rem 1rem;border-radius:999px;font-size:.8rem;font-weight:600;min-height:36px}
