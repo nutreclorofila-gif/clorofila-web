@@ -123,10 +123,13 @@
 
 /* ---------- ARTÍCULOS (home) ---------- */
 .articulos-tira{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:1.25rem;margin-top:2.5rem}
-.articulo-mini{border-top:1px solid var(--linea);padding-top:1.1rem}
+/* Toda la tarjeta lleva al artículo, no solo el renglón del título: con el dedo
+   el título medía 21px de alto, por debajo del mínimo de 24 que se puede tocar. */
+.articulo-mini{border-top:1px solid var(--linea);padding-top:1.1rem;position:relative}
 .articulo-mini h3{font-size:1.08rem;margin-bottom:.5rem}
 .articulo-mini h3 a{color:var(--cal);letter-spacing:-.01em}
-.articulo-mini h3 a:hover{color:var(--brote)}
+.articulo-mini h3 a::after{content:"";position:absolute;inset:0;z-index:1}
+.articulo-mini:hover h3 a{color:var(--brote)}
 .articulo-mini p{font-size:.88rem;color:var(--cal-med)}
 
 /* ---------- CURSO DESTACADO: el producto principal ---------- */
