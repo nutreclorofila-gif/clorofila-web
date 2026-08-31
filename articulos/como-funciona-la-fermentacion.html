@@ -57,6 +57,10 @@
 .art-cuerpo strong{color:var(--cal)}
 .destacado{border-left:2px solid var(--brote);background:var(--musgo);border-radius:0 var(--r) var(--r) 0;padding:1.4rem 1.6rem;margin-block:2rem;font-family:var(--display);font-size:1.12rem;line-height:1.4;color:var(--cal);letter-spacing:-.01em}
 
+.fuentes{list-style:none;margin-block:1.2rem 0;display:grid;gap:.9rem}
+.fuentes li{font-size:.92rem;line-height:1.6;color:var(--cal-baja);border-top:1px solid var(--linea);padding-top:.9rem}
+.fuentes em{color:var(--cal-med);font-style:italic}
+.fuentes a{color:var(--brote);text-decoration:underline;text-underline-offset:2px}
 .art-remate{border:1px solid rgba(143,192,138,.3);background:var(--musgo);border-radius:var(--r-lg);padding:clamp(1.5rem,3.5vw,2.25rem);margin-top:3rem}
 .art-remate p{font-size:.98rem;margin-bottom:1.25rem}
 .art-captura{border:1px solid var(--linea);background:var(--musgo-alto);border-radius:var(--r-lg);padding:clamp(1.5rem,3.5vw,2.25rem);margin-top:1rem}
@@ -124,6 +128,7 @@
 
   <h2>El pH: por qué una vez que arranca, se protege sola</h2>
   <p>A medida que las bacterias ácido-lácticas consumen azúcares del vegetal, producen ácido láctico como subproducto. Eso baja el pH del entorno. Un pH bajo (ácido) es hostil para la mayoría de los patógenos y organismos de descomposición, pero las bacterias fermentadoras están adaptadas a tolerarlo. Este es el motivo por el que una fermentación bien iniciada se vuelve progresivamente más segura con el tiempo, no menos: el propio proceso genera su defensa.</p>
+      <p>Y hay un número que conviene tener presente, porque es el que usa la industria alimentaria como línea: <strong>por debajo de pH 4,6 el <em>Clostridium botulinum</em> no se desarrolla</strong>, y por debajo de 4,0 —donde termina la mayoría de los fermentados activos— queda inhibida prácticamente toda la flora que preocupa. Un chucrut o un kimchi listos suelen estar entre 3,4 y 4,0. Por eso la fase delicada es el principio, cuando el pH todavía está alto: ahí es donde la sal hace el trabajo de aguantar la puerta hasta que el ácido tome el control.</p>
 
   <div class="destacado">Una fermentación funciona porque crea un entorno donde el organismo que querés (bacterias ácido-lácticas, levaduras) tiene ventaja competitiva sobre los que no querés. Sal, ácido, temperatura y ausencia de oxígeno son las herramientas para esa selección.</div>
 
@@ -141,7 +146,13 @@
     <li><strong>¿Cómo sé que está segura?</strong> Olor y sabor ácido evidentes, sin moho ni olores pútridos — la propia bajada de pH es la garantía principal.</li>
   </ul>
 
-  <div class="art-remate">
+  <h2>Fuentes</h2>
+<ul class="fuentes">
+<li>FAO. <em>Fermented fruits and vegetables: a global perspective</em>. <a href="https://www.fao.org/4/x0560e/x0560e10.htm" target="_blank" rel="noopener noreferrer">Ver documento</a> — el manual de referencia sobre fermentación de vegetales: qué hace la sal, cómo se suceden las bacterias y por qué el pH es la garantía.</li>
+<li>Steinkraus K.H. (ed.). <em>Lactic acid fermentations</em>, en <em>Applications of Biotechnology to Fermented Foods</em>. National Academies Press. <a href="https://www.ncbi.nlm.nih.gov/books/NBK234703/" target="_blank" rel="noopener noreferrer">Ver capítulo</a> — el mecanismo completo, incluido por qué las lácticas toleran la sal mejor que lo que echa a perder el frasco.</li>
+<li>USDA Agricultural Research Service. <em>Influence of sodium chloride, pH and lactic acid on the survival of pathogens in fermented vegetables</em>. <a href="https://www.ars.usda.gov/ARSUserFiles/60701000/Pickle%20Pubs/p377.pdf" target="_blank" rel="noopener noreferrer">Ver estudio</a> — los umbrales que importan para que un fermentado sea seguro.</li>
+</ul>
+      <div class="art-remate">
     <span class="senal">El taller</span>
     <p style="margin-top:.8rem">¿Querés aprender esto haciendo, no solo leyendo? En el taller de fermentación trabajás chucrut, kimchi y encurtidos desde el proceso: qué pasa biológicamente, cómo controlarlo y cómo saber si está bien.</p>
     <a href="/talleres#fermentacion" class="btn btn-primario" data-producto="taller-fermentacion">Ver el taller de fermentación →</a>
