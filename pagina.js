@@ -158,6 +158,19 @@
     var semanas = Math.ceil(dias / 7);
     return 'Empieza en ' + semanas + ' semana' + (semanas === 1 ? '' : 's');
   }
+  /* Una fecha que ya pasó deja de venderse, aunque nadie haya publicado desde
+     entonces. El build aplica la misma regla, pero solo corre cuando alguien
+     pushea: si el tapeo es el viernes y el lunes nadie tocó nada, el sitio
+     seguiría cobrando una entrada para una noche que ya fue. Al marcarlo
+     'sin-fecha' el CSS que ya existe esconde el botón de compra y la barra
+     de reserva, y deja a la vista el "avisame cuando haya fecha". */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-vence-iso]'), function (el) {
+    var iso = el.getAttribute('data-vence-iso');
+    if (!iso) return;
+    var hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+    if (new Date(iso + 'T00:00:00') < hoy) el.setAttribute('data-estado', 'sin-fecha');
+  });
+
   Array.prototype.forEach.call(document.querySelectorAll('[data-inicio-iso]'), function (el) {
     var texto = cuantoFalta(el.getAttribute('data-inicio-iso'));
     if (!texto) return;

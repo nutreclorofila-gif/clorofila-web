@@ -711,8 +711,15 @@ for (const archivo of archivos) {
       const obj = valor(ruta_);
       if (!obj) errores.push(archivo + ': no existe "' + ruta_ + '" en ofertas.json');
       const estado = obj && obj.estado ? obj.estado : 'sin-fecha';
-      const limpio = resto.replace(/\s+data-estado="[^"]*"/g, '');
-      return 'data-estado-de="' + ruta_ + '" data-estado="' + estado + '"' + limpio;
+      // La fecha también viaja al navegador. La regla que baja lo vencido corre
+      // en el build, y Netlify solo construye cuando alguien pushea: entre dos
+      // publicaciones el sitio puede quedar vendiendo una fecha que ya pasó.
+      // Con esto el propio navegador la da de baja. Ver pagina.js.
+      const vence = obj && obj.fecha_iso ? ' data-vence-iso="' + obj.fecha_iso + '"' : '';
+      const limpio = resto
+        .replace(/\s+data-estado="[^"]*"/g, '')
+        .replace(/\s+data-vence-iso="[^"]*"/g, '');
+      return 'data-estado-de="' + ruta_ + '" data-estado="' + estado + '"' + vence + limpio;
     }
   );
 
