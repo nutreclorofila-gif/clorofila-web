@@ -193,6 +193,12 @@ function fechaCorta(texto) {
 }
 
 t.cta_link = (t.estado !== 'sin-fecha' && t.link_compra) ? t.link_compra : t.wa_link;
+// El segundo botón del hero de la home. Antes decía "Ver próximas fechas" y
+// saltaba a la agenda, que después de reordenar la home quedó a seis pantallas:
+// el botón principal salteaba el curso, el tapeo y todo el método.
+t.hero_boton = t.estado === 'sin-fecha'
+  ? 'Ver la cena y taller de tapeo'
+  : 'Cena de tapeo · ' + t.fecha_texto;
 t.tiene_segunda = t.segunda_fecha && t.segunda_fecha.texto ? 'si' : 'no';
 // Con dos fechas a la venta, el botón tiene que decir cuál está comprando:
 // el link va siempre a la primera, y sin la aclaración se compra la otra sin querer.
