@@ -41,6 +41,11 @@
 <style>
 /* /servicios — el catálogo de lo que no es el curso.
    Se agrupa por para quién es, que es como llega la consulta. */
+/* La página que vende lo más caro no tenía una sola foto: solo listas de
+   servicios en abstracto. Una empresa que evalúa contratar necesita ver el
+   lugar y el clima antes de escribir. */
+.serv-foto{margin:0 0 2.6rem;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.45)}
+.serv-foto img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:16/9}
 .hero-serv{padding-block:clamp(2rem,4vw,3.25rem) clamp(2.5rem,5vw,4rem)}
 .hero-serv h1{font-size:clamp(2.4rem,5.5vw,4rem);margin-block:.7rem .8rem;max-width:14ch}
 .hero-serv h1 .viva{color:var(--brote)}
@@ -141,7 +146,13 @@
 </section>
 
 <section class="seccion borde-sup">
-  <div class="env">
+  <figure class="serv-foto">
+  <picture>
+    <source srcset="img-clase-plating-700.webp 700w, img-clase-plating.webp 867w" sizes="(max-width: 900px) calc(100vw - 3rem), min(1100px, 100vw)" type="image/webp">
+    <img src="img-clase-plating.jpg" width="867" height="1300" alt="Dos participantes emplatando juntos en el estudio de Clorofila" loading="lazy">
+  </picture>
+</figure>
+<div class="env">
     <div class="grupo-serv sube">
       <div class="grupo-cabeza">
         <span class="senal">Para eventos</span>
