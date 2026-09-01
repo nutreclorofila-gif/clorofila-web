@@ -51,7 +51,7 @@ function resolver(urlPath) {
   }
   const limpio = path.normalize(crudo).replace(/^(\.\.[/\\])+/, '');
   const dentro = path.join(raiz, limpio);
-  if (!dentro.startsWith(raiz)) return null;
+  if (dentro !== raiz && !dentro.startsWith(raiz + path.sep)) return null;
 
   const candidatos = limpio === '/' || limpio === '\\' || limpio === '.'
     ? [path.join(raiz, 'index.html')]
@@ -62,12 +62,27 @@ function resolver(urlPath) {
   }) || null;
 }
 
-http.createServer(function (req, res) {
-  const archivo = resolver(req.url);
+const servidor = http.createServer(function (req, res) {
+  // Un socket que se corta mientras se responde emite 'error' en req o en res.
+  // Sin estos dos oyentes ese error no lo escucha nadie y Node mata el proceso:
+  // el servidor se caía en medio de una revisión, sin dejar rastro.
+  req.on('error', function () { res.destroy(); });
+  res.on('error', function () { res.destroy(); });
+
+  let archivo;
+  try {
+    archivo = resolver(req.url);
+  } catch (e) {
+    // Cualquier ruta rara que haga saltar fs o path devuelve 404, no tumba nada.
+    archivo = null;
+  }
 
   if (!archivo) {
-    const p404 = path.join(raiz, '404.html');
-    const cuerpo = fs.existsSync(p404) ? fs.readFileSync(p404) : 'No encontrado';
+    let cuerpo = 'No encontrado';
+    try {
+      const p404 = path.join(raiz, '404.html');
+      if (fs.existsSync(p404)) cuerpo = fs.readFileSync(p404);
+    } catch (e) { /* el 404 de repuesto alcanza */ }
     res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
     return res.end(cuerpo);
   }
@@ -85,6 +100,21 @@ http.createServer(function (req, res) {
   flujo.on('error', function () { res.destroy(); });
   res.on('close', function () { flujo.destroy(); });
   flujo.pipe(res);
-}).listen(puerto, function () {
+});
+
+servidor.on('clientError', function (err, socket) {
+  if (socket.writable) socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
+});
+
+servidor.on('error', function (e) {
+  if (e.code === 'EADDRINUSE') {
+    console.error('El puerto ' + puerto + ' ya está ocupado. Probá: node scripts/servidor.js ' + (puerto + 1));
+  } else {
+    console.error('El servidor no pudo arrancar: ' + e.message);
+  }
+  process.exit(1);
+});
+
+servidor.listen(puerto, function () {
   console.log('Clorofila en http://localhost:' + puerto);
 });
