@@ -949,6 +949,44 @@ for (const archivo of archivos) {
   }).join('\n');
 }
 
+/* --- El índice de artículos, ordenado por fecha ---
+   Las tarjetas estaban a mano y en un orden que no era ni por fecha ni por
+   tema: el artículo más nuevo caía tercero. Quien ve uno en Instagram y entra
+   al sitio tiene que encontrarlo arriba. Se reordenan las tarjetas que ya
+   están escritas —no se toca su texto— usando el datePublished de cada
+   artículo, así el próximo que se agregue se acomoda solo. --- */
+{
+  const ruta = path.join(raiz, 'articulos.html');
+  let pagina = fs.readFileSync(ruta, 'utf8');
+  const bloque = pagina.match(/(<div class="articulos sube">)([\s\S]*?)(<\/div>)/);
+  if (bloque) {
+    const tarjetas = bloque[2].match(/<article class="art">[\s\S]*?<\/article>/g) || [];
+    const fechaDe = function (tarjeta) {
+      const href = tarjeta.match(/href="\/articulos\/([a-z0-9-]+)"/);
+      if (!href) return '';
+      try {
+        const art = fs.readFileSync(path.join(raiz, 'articulos', href[1] + '.html'), 'utf8');
+        const f = art.match(/"datePublished"\s*:\s*"([^"]+)"/);
+        return f ? f[1] : '';
+      } catch (e) { return ''; }
+    };
+    // Lo más nuevo primero. A igual fecha, se respeta el orden que ya tenían.
+    const conOrden = tarjetas.map(function (t, i) { return { t: t, f: fechaDe(t), i: i }; });
+    conOrden.sort(function (a, b) { return a.f === b.f ? a.i - b.i : (a.f < b.f ? 1 : -1); });
+    const ordenado = bloque[1] + '\n' +
+      conOrden.map(function (x) { return '        ' + x.t; }).join('\n') + '\n      ' + bloque[3];
+    if (ordenado !== bloque[0]) {
+      pagina = pagina.replace(bloque[0], ordenado);
+      if (CHECK) {
+        errores.push('articulos.html: las tarjetas no están ordenadas por fecha. Corré: npm run ofertas');
+      } else {
+        fs.writeFileSync(ruta, pagina);
+        if (!cambiados.includes('articulos.html')) cambiados.push('articulos.html');
+      }
+    }
+  }
+}
+
 /* --- llms.txt (el resumen que leen los buscadores de IA) sale de su plantilla --- */
 {
   const tmpl = fs.readFileSync(path.join(raiz, 'partials', 'llms.txt.tmpl'), 'utf8');
