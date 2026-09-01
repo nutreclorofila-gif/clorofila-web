@@ -195,6 +195,13 @@
 .firma-leo{display:flex;align-items:center;gap:.85rem;justify-content:center;max-width:44ch;margin:0 auto 2rem}
 /* El hijo del flex es el <picture>, no el <img>: sin esto el texto de al lado
    aplasta la foto de 56px a 23 y el círculo sale un óvalo. */
+/* La foto del final de una clase: el grupo entero detrás de la mesa servida.
+   Estaba en el repo sin usarse en ninguna página. Es la única del sitio donde
+   se ve gente disfrutando en vez de trabajando concentrada, y va justo donde
+   el título promete un lugar en esa mesa. */
+.cierre-foto{margin:0 0 2.2rem;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.cierre-foto img{width:100%;height:100%;object-fit:cover;display:block}
+.cierre-foto figcaption{margin-top:.7rem;font-family:var(--dato);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cal-baja);text-align:center}
 .firma-leo>picture{flex-shrink:0;display:block;line-height:0}
 .firma-leo img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0}
 .firma-leo p{margin:0;text-align:left;color:var(--cal-med)}
@@ -418,6 +425,12 @@
 
 <section class="seccion cierre borde-sup">
   <div class="env sube">
+    <figure class="cierre-foto">
+      <picture>
+        <source srcset="img-comunidad-700.webp 700w, img-comunidad.webp 1800w" sizes="(max-width: 900px) calc(100vw - 3rem), min(900px, 100vw)" type="image/webp">
+        <img src="img-comunidad.jpg" width="1800" height="1013" alt="El grupo entero al final de una clase, detrás de la mesa con todo lo que cocinaron" loading="lazy">
+      </picture>
+    </figure>
     <span class="senal" style="justify-content:center">Reservar</span>
     <h2 style="margin-top:.8rem">Guardate un lugar<br>en la mesa.</h2>
     <div class="firma-leo">
