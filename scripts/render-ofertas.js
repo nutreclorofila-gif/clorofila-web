@@ -416,9 +416,11 @@ datos.curso.intro_grupos = abiertos.length
   : 'El mismo programa en ' + cuantos + '. Los grupos de esta edición ya arrancaron. Son chicos a propósito, para que puedas cocinar, preguntar y que Leonardo te corrija a vos.';
 
 // El cierre cambia entero según haya edición abierta o no.
+// El espacio antes del <br> es a propósito: sin él, el texto que lee Google
+// dice "Empezá enoctubre". No cambia cómo se ve.
 datos.curso.cierre_titulo_html = abiertos.length
-  ? 'Empezá en<br>' + escapar(String(datos.curso.edicion).toLowerCase()) + '.'
-  : 'La edición de ' + escapar(String(datos.curso.edicion).split(' ')[0].toLowerCase()) + '<br>ya arrancó.';
+  ? 'Empezá en <br>' + escapar(String(datos.curso.edicion).toLowerCase()) + '.'
+  : 'La edición de ' + escapar(String(datos.curso.edicion).split(' ')[0].toLowerCase()) + ' <br>ya arrancó.';
 datos.curso.cierre_bajada = abiertos.length
   ? 'Escribinos por WhatsApp y coordinamos tu lugar: contesta Leonardo, no un formulario.'
   : 'Los grupos de esta edición ya empezaron. Dejanos tus datos y sos de los primeros en enterarte cuando abramos la próxima: contesta Leonardo, no un formulario.';
