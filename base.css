@@ -243,6 +243,11 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
   .hero-prod .hero-caja .comanda,.hero-curso .hero-caja .comanda,.hero-tapeo .hero-caja .comanda{order:5;margin-top:1.25rem}
   .hero-prod .hero-caja .hero-marcas,.hero-curso .hero-caja .hero-marcas,.hero-tapeo .hero-caja .hero-marcas{order:6;margin-top:1.25rem}
   .hero-prod .hero-caja .bajada,.hero-curso .hero-caja .bajada,.hero-tapeo .hero-caja .bajada{order:7;margin-top:1.25rem}
+  /* Sin esto la línea de credenciales de /curso queda en order 0 y se va
+     arriba de todo: en el celular lo primero que veía quien llegaba era
+     "Aprendés directamente con Leonardo Lemes — 25 años…", antes que la foto
+     y que el título de la página. */
+  .hero-curso .hero-caja .hero-leo{order:8;margin-top:1.25rem}
 }
 
 /* --- LA COMANDA ---
