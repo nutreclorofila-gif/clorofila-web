@@ -144,6 +144,11 @@
     "puntaje": 4.9,
     "resenas": 21
   },
+  "instagram": {
+    "_leeme": "El número de seguidores, verificado en el perfil. Actualizalo cuando cambie de miles.",
+    "seguidores_texto": "Ya somos 26.500",
+    "seguidores_corto": "26.500 seguidores"
+  },
   "testimonios": {
     "_leeme": "Los testimonios que se muestran en el home, el curso y el tapeo, y que además se publican como reseñas para Google. 'propio' distingue a quien pasó por Clorofila (se puede publicar como reseña nuestra) de quien dejó su opinión en Google: esas ya las cuenta Google y no se republican. Para sacar uno de una página, borralo de 'paginas'.",
     "lista": [
