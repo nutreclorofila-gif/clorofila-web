@@ -326,6 +326,11 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
    para siempre: 28 en /curso, 19 en /tapeo, 18 en el inicio. La página cargaba
    y no se veía casi nada. Quien tenga el JS bloqueado los ve quietos, que es
    como se ven igual una vez que entraron. */
+/* La respuesta arriba de todo. Los doce artículos arrancaban contextualizando
+   y respondían recién a la mitad: quien busca "¿hay que remojar las legumbres?"
+   —y quien le pregunta a una IA— se va antes de llegar. */
+.respuesta-corta{background:var(--musgo-alto);border-left:3px solid var(--brote);border-radius:0 var(--r) var(--r) 0;padding:1.1rem 1.3rem;margin-bottom:1.8rem;color:var(--cal)}
+.respuesta-corta strong{color:var(--brote)}
 html:not(.js) .sube{opacity:1;transform:none}
 html:not(.js) .faq-a{max-height:none;padding-bottom:1.15rem}
 html:not(.js) .faq-icon{display:none}
