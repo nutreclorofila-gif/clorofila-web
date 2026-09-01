@@ -803,6 +803,28 @@ for (const archivo of archivos) {
             const inst = JSON.parse(JSON.stringify(molde));
             inst.name = 'Grupo ' + g.nombre.toLowerCase() + ' ' + g.horario.replace(' a ', '-').replace(' h', '');
             inst.startDate = g.inicio_iso;
+            // Google pide endDate o courseSchedule para mostrar un curso en
+            // resultados enriquecidos. No ponemos endDate porque nadie declaró
+            // la fecha exacta de cierre y no se inventa: el calendario ya está
+            // dicho —12 encuentros, uno por semana, tal día y tal hora— y eso
+            // es exactamente lo que describe courseSchedule.
+            const DIAS_EN = {
+              domingo: 'Sunday', lunes: 'Monday', martes: 'Tuesday',
+              'miércoles': 'Wednesday', miercoles: 'Wednesday', jueves: 'Thursday',
+              viernes: 'Friday', 'sábado': 'Saturday', sabado: 'Saturday'
+            };
+            const dia = DIAS_EN[String(g.nombre).toLowerCase().trim()];
+            const horas = String(g.horario).replace(' h', '').split(' a ');
+            inst.courseSchedule = {
+              '@type': 'Schedule',
+              repeatFrequency: 'P1W',
+              repeatCount: 12,
+              startDate: g.inicio_iso,
+              scheduleTimezone: 'America/Montevideo'
+            };
+            if (dia) inst.courseSchedule.byDay = 'https://schema.org/' + dia;
+            if (horas[0]) inst.courseSchedule.startTime = horas[0].trim();
+            if (horas[1]) inst.courseSchedule.endTime = horas[1].trim();
             if (inst.offers) {
               inst.offers.availability = g.estado === 'abierto'
                 ? 'https://schema.org/InStock'
