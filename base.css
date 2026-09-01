@@ -322,6 +322,11 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
    puede leer- y en el celular el menú no abría: cero enlaces, salvo los del
    pie. Estas reglas solo se aplican cuando falta la clase "js", así que no
    tocan nada del funcionamiento normal. */
+/* Sin JavaScript, los bloques que entran al scrollear quedaban en opacity 0
+   para siempre: 28 en /curso, 19 en /tapeo, 18 en el inicio. La página cargaba
+   y no se veía casi nada. Quien tenga el JS bloqueado los ve quietos, que es
+   como se ven igual una vez que entraron. */
+html:not(.js) .sube{opacity:1;transform:none}
 html:not(.js) .faq-a{max-height:none;padding-bottom:1.15rem}
 html:not(.js) .faq-icon{display:none}
 html:not(.js) .nav{height:auto}
