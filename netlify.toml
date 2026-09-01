@@ -100,6 +100,25 @@
   status = 301
   force  = true
 
+# --- Un link corto para pedir la reseña ------------------------------------
+# En el paquete local de Google el peso lo llevan las reseñas, y ahí Clorofila
+# va 22 contra 132 de MDPAULA y 595 de La Obrería: por eso no aparece en
+# "clases de cocina montevideo" aunque sí en "curso de cocina vegana".
+# Esto es para mandar por WhatsApp después de una clase: cae directo en el
+# formulario, sin buscar el negocio. El place id está verificado contra el
+# perfil real (Clorofila, 4,9, Escuela de cocina).
+[[redirects]]
+  from = "/opinar"
+  to   = "https://search.google.com/local/writereview?placeid=ChIJnT7pnSOBn5URX6ytzyd5nDM"
+  status = 302
+  force  = true
+
+[[redirects]]
+  from = "/resena"
+  to   = "https://search.google.com/local/writereview?placeid=ChIJnT7pnSOBn5URX6ytzyd5nDM"
+  status = 302
+  force  = true
+
 # --- Lo que no es el sitio: fuera del alcance del público ---------------------
 # Netlify publica la raíz entera, así que las notas de trabajo, el código de los
 # chequeos y la fuente de datos quedaban servidos igual que una página. Nada de

@@ -355,6 +355,9 @@ datos.curso.cta_link = abiertos.length
 // El botón redondo de al lado es para preguntar, no para reservar: siempre va a
 // WhatsApp, también cuando no hay edición abierta y el botón grande lleva al
 // formulario. Sin esto mandaba un chat en blanco y Leo no sabía de qué venía.
+datos.curso.regalo_link = waBase + encodeURIComponent(
+  'Hola Leonardo, quiero regalar el curso de cocina. ¿Cómo hago con la gift card?'
+);
 datos.curso.wa_link = waBase + encodeURIComponent(
   'Hola Leonardo, tengo una pregunta sobre el curso de cocina.'
 );
