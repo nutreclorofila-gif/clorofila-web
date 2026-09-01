@@ -195,7 +195,12 @@
     # queda arriba para navegadores antiguos). form-action impide que un script
     # inyectado mande un formulario a un servidor ajeno. img-src incluye
     # googletagmanager porque GA4 sirve algunos píxeles desde ese dominio.
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://tally.so; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com; frame-src https://www.google.com https://tally.so; frame-ancestors 'self'; form-action 'self' https://tally.so; manifest-src 'self'; object-src 'none'; base-uri 'self'"
+    # Los dominios de Google van con comodín a propósito: GA4 no manda los datos
+    # siempre al mismo host, elige un subdominio regional (region1, region2...)
+    # según dónde esté el visitante. Con el host fijo, el diagnóstico de la
+    # etiqueta marcaba «la configuración de seguridad está bloqueando la
+    # medición». doubleclick y google.com son para las conversiones de Google Ads.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://connect.facebook.net https://tally.so; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.uy; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://connect.facebook.net https://www.facebook.com; frame-src https://www.google.com https://*.g.doubleclick.net https://tally.so; frame-ancestors 'self'; form-action 'self' https://tally.so; manifest-src 'self'; object-src 'none'; base-uri 'self'"
 
 [[headers]]
   for = "/og/*"
