@@ -196,6 +196,12 @@ t.cta_link = (t.estado !== 'sin-fecha' && t.link_compra) ? t.link_compra : t.wa_
 // El segundo botón del hero de la home. Antes decía "Ver próximas fechas" y
 // saltaba a la agenda, que después de reordenar la home quedó a seis pantallas:
 // el botón principal salteaba el curso, el tapeo y todo el método.
+// La gift card existe y el sitio no la nombraba en ninguna parte. No se
+// prometen condiciones (validez, canje) porque nadie las declaró: la
+// conversación arranca por WhatsApp, que es donde se cierra.
+t.regalo_link = waBase + encodeURIComponent(
+  'Hola Leonardo, quiero regalar una Cena y Taller de Tapeo. ¿Cómo hago con la gift card?'
+);
 t.hero_boton = t.estado === 'sin-fecha'
   ? 'Ver la cena y taller de tapeo'
   : 'Cena de tapeo · ' + t.fecha_texto;
