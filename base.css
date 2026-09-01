@@ -385,7 +385,10 @@ body.menu-abierto .cookie-banner{display:none}
 .cookie-banner-actions{display:flex;align-items:center;gap:1rem}
 #cookie-accept{background:var(--cal);color:var(--tinta);padding:.45rem 1rem;border-radius:999px;font-size:.8rem;font-weight:600;min-height:36px}
 #cookie-decline{color:var(--cal-baja);text-decoration:underline;font-size:.8rem;padding:.45rem .6rem;min-height:36px;display:inline-flex;align-items:center}
-/* El banner sube solo donde hay barra fija abajo que esquivar. Sin esto
-   se levanta 5rem en todas las páginas y tapa texto para nada. */
-@media (max-width:820px){body:has(.sticky-cta) .cookie-banner{bottom:5rem}}
+/* Esta regla subía el aviso 5rem para esquivar la barra fija de abajo, pero
+   arriba ya se le da "top" y "bottom:auto" en <=900px: con las dos juntas el
+   aviso se estiraba de arriba hasta abajo y ocupaba el 81% de la pantalla en
+   /tapeo, /curso, /pastas y las demás páginas con barra. La home no la tiene
+   y por eso ahí se veía bien. En móvil el aviso va arriba y la barra abajo:
+   no se pisan, así que no hay nada que esquivar. */
 @media (max-width:480px){.cookie-banner{left:.75rem;right:.75rem;max-width:none}}
