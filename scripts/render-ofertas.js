@@ -199,6 +199,12 @@ t.cta_link = (t.estado !== 'sin-fecha' && t.link_compra) ? t.link_compra : t.wa_
 // La gift card existe y el sitio no la nombraba en ninguna parte. No se
 // prometen condiciones (validez, canje) porque nadie las declaró: la
 // conversación arranca por WhatsApp, que es donde se cierra.
+// Después de reservar, el momento de más confianza de todo el recorrido: es
+// cuando alguien suma a un acompañante. Los lugares son 12 y la gente viene
+// en pareja o con amigas, así que la pregunta es real, no un empujón.
+t.sumar_link = waBase + encodeURIComponent(
+  'Hola Leonardo, ya reservé para la Cena y Taller de Tapeo. Quiero sumar a alguien más.'
+);
 t.regalo_link = waBase + encodeURIComponent(
   'Hola Leonardo, quiero regalar una Cena y Taller de Tapeo. ¿Cómo hago con la gift card?'
 );
