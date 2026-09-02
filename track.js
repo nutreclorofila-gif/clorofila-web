@@ -62,8 +62,20 @@
       }
 
       var origen = { utm_source: '', utm_medium: '', utm_campaign: '', utm_content: '', referrer: document.referrer || '' };
-      // Sin UTM, al menos distinguimos si vino de Instagram, de Google o directo.
-      if (/instagram\.com/.test(origen.referrer)) origen.utm_source = 'instagram_organico';
+
+      /* Google Ads no pone UTM: usa autoetiquetado, o sea que el clic llega con
+         gclid en la URL (gbraid y wbraid son las variantes de iOS y de campañas
+         de apps). Como además el referrer es google.com, sin este chequeo TODO
+         el tráfico pago quedaba anotado como "google_organico" y no había forma
+         de saber qué eventos vinieron de la campaña y cuáles de la búsqueda
+         gratis. GA4 igual atribuye bien por su lado; lo que se arruinaba eran
+         los parámetros que manda track.js, que son los que dicen qué producto
+         miró y a qué botón le dio cada persona. */
+      var pago = p.get('gclid') || p.get('gbraid') || p.get('wbraid');
+      if (pago) {
+        origen.utm_source = 'google_ads';
+        origen.utm_medium = 'cpc';
+      } else if (/instagram\.com/.test(origen.referrer)) origen.utm_source = 'instagram_organico';
       else if (/google\./.test(origen.referrer)) origen.utm_source = 'google_organico';
       else if (!origen.referrer) origen.utm_source = 'directo';
       return escribir(origen);
