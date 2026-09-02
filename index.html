@@ -141,8 +141,8 @@
 .curso-transforma li{font-size:.9rem;color:var(--cal-med);padding-block:.5rem;border-top:1px solid var(--linea);display:flex;gap:.6rem}
 .curso-transforma li::before{content:"—";color:var(--brote);flex-shrink:0}
 .curso-destacado-pie{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin-top:1.5rem}
-.curso-destacado-precio{font-family:var(--dato);font-size:1.05rem;color:var(--miel)}
-.curso-destacado-precio small{font-size:.72rem;color:var(--cal-baja);font-weight:400}
+.curso-destacado-precio{font-family:var(--texto);font-size:1.15rem;font-weight:600;color:var(--miel);font-variant-numeric:tabular-nums}
+.curso-destacado-precio small{font-size:.9rem;color:var(--cal-med);font-weight:400}
 @media (max-width:900px){.curso-destacado{grid-template-columns:1fr}.curso-destacado-foto{order:-1;aspect-ratio:16/10}.curso-transforma{grid-template-columns:1fr}}
 
 /* ---------- MÉTODO: señales, no números ---------- */
@@ -280,7 +280,7 @@
           <li>Cocinar el resto de tu vida</li>
         </ul>
         <div class="curso-destacado-pie">
-          <span class="curso-destacado-precio"><!--o:curso.precio_total-->$12.200<!--/o--> <small><!--o:curso.precio_cuotas-->3 cuotas de $4.800<!--/o--></small></span>
+          <span class="curso-destacado-precio"><!--o:curso.precio_total-->$12.200<!--/o--> <small><!--o:curso.precio_tarjeta-->hasta 12 cuotas de $1.016<!--/o--></small></span>
           <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar<!--/o--></a>
           <a href="/curso" class="enlace-vivo">Ver el programa completo</a>
         </div>
