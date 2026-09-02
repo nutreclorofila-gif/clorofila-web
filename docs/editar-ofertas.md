@@ -86,6 +86,26 @@ carga así:
 Aparece como "¿No podés ese día? También hay fecha el…" y en la agenda de la home.
 El `iso` ordena la agenda y deja que el build controle el texto: ponelo siempre.
 
+**Si la segunda fecha va a otra hora**, agregale `hora_inicio` y `hora_fin`. Pasó
+con las pastas: el jueves era de mañana y el viernes de noche, y el sitio anunciaba
+las dos a las 10:00.
+
+```json
+"segunda_fecha": {
+  "iso": "2026-09-04",
+  "texto": "viernes 4 de setiembre",
+  "hora": "19:00 a 22:30 h",
+  "hora_inicio": "19:00",
+  "hora_fin": "22:30"
+}
+```
+
+Sin esos campos hereda el horario de la primera fecha, que es lo habitual.
+
+**El `link` es opcional.** Si la segunda fecha todavía no tiene su entrada en
+Tikzet, dejalo afuera: el botón lleva a WhatsApp en vez de a un link roto, y el
+evento se sigue publicando para Google con su fecha y hora.
+
 ## Publicar la fecha sin saber todavía el precio o los cupos
 
 - Si `precio` queda vacío, la fila de precio **no se muestra** (mejor eso que un

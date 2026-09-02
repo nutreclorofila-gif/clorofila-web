@@ -101,7 +101,9 @@
       "segunda_fecha": {
         "iso": "2026-09-04",
         "texto": "viernes 4 de setiembre",
-        "link": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten-ae88"
+        "hora": "19:00 a 22:30 h",
+        "hora_inicio": "19:00",
+        "hora_fin": "22:30"
       }
     },
     "alfajores": {

@@ -208,6 +208,12 @@ t.segunda_link = (t.segunda_fecha && t.segunda_fecha.link) || '';
 
 // Cuando hay dos fechas, se muestran como opciones para elegir, no como
 // una nota al pie: son dos productos a la venta, no un detalle.
+// Horario propio de una fecha suelta, cuando lo declara.
+function horarioDe(f) {
+  if (!f || !f.hora_inicio) return '';
+  return f.hora_fin ? f.hora_inicio + ' a ' + f.hora_fin + ' h' : f.hora_inicio;
+}
+
 function listaFechas(o, sufijo) {
   if (o.estado === 'sin-fecha' || !o.fecha_texto) return '';
   var items = [
@@ -216,9 +222,12 @@ function listaFechas(o, sufijo) {
       '<span>' + escapar([o.horario_texto, o.cupos_texto].filter(Boolean).join(' · ')) + '</span></a></li>'
   ];
   if (o.segunda_fecha && o.segunda_fecha.texto) {
+    // La segunda fecha puede ir a otra hora que la primera: el taller de pastas
+    // del viernes es de noche y el del jueves de mañana. Si no declara horario,
+    // hereda el de la primera.
     items.push('<li><a href="' + enlace(o.segunda_fecha.link || o.wa_link) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
       '<strong>' + escapar(o.segunda_fecha.texto) + '</strong>' +
-      '<span>' + escapar(o.horario_texto) + '</span></a></li>');
+      '<span>' + escapar(horarioDe(o.segunda_fecha) || o.horario_texto) + '</span></a></li>');
   }
   return items.join('');
 }
@@ -291,7 +300,8 @@ for (const [id, w] of Object.entries(datos.talleres)) {
     ? (w.tiene_segunda === 'si' ? 'Comprar · ' + fechaCorta(w.fecha_texto) + ' →' : 'Comprar mi entrada →')
     : w.wa_texto;
   if (w.segunda_fecha && w.segunda_fecha.texto && w.estado !== 'sin-fecha') {
-    w.linea += ' · también el ' + w.segunda_fecha.texto;
+    w.linea += ' · también el ' + w.segunda_fecha.texto +
+      (horarioDe(w.segunda_fecha) ? ' ' + horarioDe(w.segunda_fecha) : '');
   }
 }
 
@@ -441,7 +451,7 @@ if (t.estado !== 'sin-fecha' && t.fecha_iso) {
   if (t.segunda_fecha && t.segunda_fecha.texto) {
     agenda.push({
       iso: (t.segunda_fecha.iso || t.fecha_iso) + '-b', nombre: 'Cena y Taller de Tapeo',
-      fecha: t.segunda_fecha.texto, hora: t.horario_texto, precio: t.precio,
+      fecha: t.segunda_fecha.texto, hora: horarioDe(t.segunda_fecha) || t.horario_texto, precio: t.precio,
       estado: 'abierto', etiqueta: 'Segunda fecha', link: '/tapeo', cta: 'Ver la experiencia →'
     });
   }
@@ -461,7 +471,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   if (w.segunda_fecha && w.segunda_fecha.texto) {
     agenda.push({
       iso: (w.segunda_fecha.iso || w.fecha_iso) + '-b', nombre: w.nombre, fecha: w.segunda_fecha.texto,
-      hora: w.hora, precio: w.precio, estado: 'abierto', etiqueta: 'Segunda fecha',
+      hora: horarioDe(w.segunda_fecha) || w.hora, precio: w.precio, estado: 'abierto', etiqueta: 'Segunda fecha',
       link: (id === 'pastas-sin-gluten') ? '/pastas' : '/talleres#' + id, cta: 'Ver el taller →'
     });
   }
@@ -830,14 +840,17 @@ for (const archivo of archivos) {
         const yaEsta = ld['@graph'].some(function (n) {
           return n && n['@id'] === 'https://clorofila.uy/pastas#evento-2';
         });
+        // La segunda fecha no siempre tiene entrada propia en Tikzet: cuando
+        // se vende por WhatsApp, el evento igual existe y Google tiene que
+        // verlo. Lo que decide es que haya fecha, no que haya link.
         const hay = w && w.estado !== 'sin-fecha' && w.segunda_fecha &&
-          w.segunda_fecha.iso && w.segunda_fecha.link;
+          w.segunda_fecha.iso;
         if (base && hay && !yaEsta) {
           const seg = JSON.parse(JSON.stringify(base));
           seg['@id'] = 'https://clorofila.uy/pastas#evento-2';
-          seg.startDate = w.segunda_fecha.iso + 'T' + w.hora_inicio + ':00-03:00';
-          seg.endDate = w.segunda_fecha.iso + 'T' + w.hora_fin + ':00-03:00';
-          if (seg.offers) seg.offers.url = w.segunda_fecha.link;
+          seg.startDate = w.segunda_fecha.iso + 'T' + (w.segunda_fecha.hora_inicio || w.hora_inicio) + ':00-03:00';
+          seg.endDate = w.segunda_fecha.iso + 'T' + (w.segunda_fecha.hora_fin || w.hora_fin) + ':00-03:00';
+          if (seg.offers) seg.offers.url = w.segunda_fecha.link || 'https://clorofila.uy/pastas';
           ld['@graph'].push(seg);
           tocado = true;
         } else if (base && !hay && yaEsta) {
