@@ -9,11 +9,30 @@
      -------------------------------------------------------------- */
 
   var CLAVE_ORIGEN = 'clorofila_origen';
+  // Ventana de atribución: 30 días, igual que la de Meta y la de Google Ads.
+  var DIAS_ORIGEN = 30;
 
-  // El origen se guarda la primera vez y no se pisa: si alguien llega
-  // por un anuncio y vuelve directo tres días después, la venta se le
-  // sigue atribuyendo al anuncio.
+  /* El origen se guarda la primera vez y no se pisa: si alguien llega por un
+     anuncio y vuelve directo tres días después, la venta se le sigue
+     atribuyendo al anuncio.
+
+     Va en localStorage, no en sessionStorage: sessionStorage se borra al
+     cerrar la pestaña, así que la promesa de arriba no se cumplía y el
+     segundo día la persona figuraba como "directo". Con la fecha guardada,
+     al mes vence y deja de arrastrar una campaña vieja. */
+  function almacen() {
+    try {
+      var x = window.localStorage;
+      x.setItem('__t', '1'); x.removeItem('__t');
+      return x;
+    } catch (e) {
+      try { return window.sessionStorage; } catch (e2) { return null; }
+    }
+  }
+
   function guardarOrigen() {
+    var store = almacen();
+    var vacio = { utm_source: '', utm_medium: '', utm_campaign: '', utm_content: '', referrer: '' };
     try {
       var p = new URLSearchParams(location.search);
       var utm = {
@@ -23,22 +42,33 @@
         utm_content: p.get('utm_content') || ''
       };
       var hayUtm = utm.utm_source || utm.utm_medium || utm.utm_campaign;
-      var guardado = sessionStorage.getItem(CLAVE_ORIGEN);
+
+      function escribir(o) {
+        o.ts = Date.now();
+        if (store) store.setItem(CLAVE_ORIGEN, JSON.stringify(o));
+        return o;
+      }
+
       if (hayUtm) {
         utm.referrer = document.referrer || '';
-        sessionStorage.setItem(CLAVE_ORIGEN, JSON.stringify(utm));
-        return utm;
+        return escribir(utm);
       }
-      if (guardado) return JSON.parse(guardado);
+
+      var crudo = store ? store.getItem(CLAVE_ORIGEN) : null;
+      if (crudo) {
+        var previo = JSON.parse(crudo);
+        var vigente = previo.ts && (Date.now() - previo.ts) < DIAS_ORIGEN * 864e5;
+        if (vigente) return previo;
+      }
+
       var origen = { utm_source: '', utm_medium: '', utm_campaign: '', utm_content: '', referrer: document.referrer || '' };
       // Sin UTM, al menos distinguimos si vino de Instagram, de Google o directo.
       if (/instagram\.com/.test(origen.referrer)) origen.utm_source = 'instagram_organico';
       else if (/google\./.test(origen.referrer)) origen.utm_source = 'google_organico';
       else if (!origen.referrer) origen.utm_source = 'directo';
-      sessionStorage.setItem(CLAVE_ORIGEN, JSON.stringify(origen));
-      return origen;
+      return escribir(origen);
     } catch (e) {
-      return { utm_source: '', utm_medium: '', utm_campaign: '', utm_content: '', referrer: '' };
+      return vacio;
     }
   }
 
@@ -57,24 +87,79 @@
       pagina: location.pathname,
       utm_source: origen.utm_source,
       utm_medium: origen.utm_medium,
-      utm_campaign: origen.utm_campaign
+      utm_campaign: origen.utm_campaign,
+      // Es el que dice QUÉ anuncio trajo a la persona, no solo qué campaña.
+      // Se venía guardando y se tiraba antes de mandarlo.
+      utm_content: origen.utm_content
     };
     if (extra) Object.keys(extra).forEach(function (k) { p[k] = extra[k]; });
     return p;
   }
 
-  function ga(evento, producto, extra) {
-    if (typeof gtag === 'function') gtag('event', evento, parametros(producto, extra));
+  /* Precio de la propuesta, leído del JSON-LD que ya arma el build a partir de
+     data/ofertas.json. No se duplica en un atributo aparte justamente para que
+     no se pueda desincronizar: la única fuente sigue siendo el JSON.
+     Sin value, GA4 informa "hubo 12 inicios de compra" sin decir cuánta plata
+     representaban, y Google Ads no puede optimizar por valor. */
+  function precioDeLaPagina() {
+    try {
+      var bloques = document.querySelectorAll('script[type="application/ld+json"]');
+      for (var i = 0; i < bloques.length; i++) {
+        var datos = JSON.parse(bloques[i].textContent);
+        var pila = [datos];
+        while (pila.length) {
+          var n = pila.shift();
+          if (!n || typeof n !== 'object') continue;
+          if (Array.isArray(n)) { pila = pila.concat(n); continue; }
+          if (n.price && n.priceCurrency) {
+            var v = parseFloat(n.price);
+            if (v > 0) return { value: v, currency: n.priceCurrency };
+          }
+          for (var k in n) if (Object.prototype.hasOwnProperty.call(n, k)) pila.push(n[k]);
+        }
+      }
+    } catch (e) { /* sin precio se mide igual, solo sin valor */ }
+    return null;
   }
-  function meta(evento, producto) {
-    if (typeof fbq === 'function') fbq('track', evento, { content_name: producto, content_category: 'clorofila' });
+
+  /* Hasta que la persona no acepta las cookies, GA4 y el pixel no existen y
+     todo lo que se midiera se perdía: la vista de producto ocurre al abrir la
+     página, o sea SIEMPRE antes de aceptar. En 28 días eso fue 232 page_view
+     contra 120 view_producto. Los eventos se guardan y se mandan cuando
+     consent.js avisa que la analítica arrancó. */
+  var pendientes = [];
+  var TOPE_PENDIENTES = 30;
+
+  function encolar(fn) {
+    if (window.__analyticsLoaded) { fn(); return; }
+    if (pendientes.length < TOPE_PENDIENTES) pendientes.push(fn);
+  }
+
+  window.addEventListener('analytics:listo', function () {
+    var cola = pendientes;
+    pendientes = [];
+    cola.forEach(function (fn) { try { fn(); } catch (e) { /* uno malo no corta el resto */ } });
+  });
+
+  function ga(evento, producto, extra) {
+    var p = parametros(producto, extra);
+    encolar(function () {
+      if (typeof gtag === 'function') gtag('event', evento, p);
+    });
+  }
+  function meta(evento, producto, extra) {
+    var datos = { content_name: producto, content_category: 'clorofila' };
+    if (extra) Object.keys(extra).forEach(function (k) { datos[k] = extra[k]; });
+    encolar(function () {
+      if (typeof fbq === 'function') fbq('track', evento, datos);
+    });
   }
 
   /* --- Vista de producto: cuántos llegan a mirar cada propuesta --- */
   var productoPagina = document.body.getAttribute('data-producto');
   if (productoPagina) {
     ga('view_producto', productoPagina);
-    if (typeof fbq === 'function') fbq('track', 'ViewContent', { content_name: productoPagina });
+    meta('ViewContent', productoPagina);
   }
 
   /* --- Clics --- */
@@ -106,9 +191,10 @@
     var compra = e.target.closest('a[href*="tikzet.com"]');
     if (compra) {
       var prodCompra = productoDe(compra);
-      ga('begin_checkout', prodCompra);
+      var precio = precioDeLaPagina();
+      ga('begin_checkout', prodCompra, precio || undefined);
       ga('click_comprar', prodCompra);
-      meta('InitiateCheckout', prodCompra);
+      meta('InitiateCheckout', prodCompra, precio ? { value: precio.value, currency: precio.currency } : null);
       return;
     }
 

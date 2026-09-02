@@ -66,6 +66,17 @@
     }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', META_ID);
     fbq('track', 'PageView');
+
+    /* track.js guarda los eventos que ocurrieron antes de que la persona
+       aceptara las cookies (la vista de producto, sobre todo) y los manda
+       recién acá. Sin este aviso se perdían: eran casi la mitad. */
+    try {
+      window.dispatchEvent(new Event('analytics:listo'));
+    } catch (e) {
+      var ev = document.createEvent('Event');
+      ev.initEvent('analytics:listo', false, false);
+      window.dispatchEvent(ev);
+    }
   };
 
   if (leer() === 'accepted') window.loadAnalytics();
