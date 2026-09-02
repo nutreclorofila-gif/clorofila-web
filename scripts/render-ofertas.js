@@ -226,6 +226,14 @@ t.segunda_texto = t.segunda_fecha && t.segunda_fecha.texto
   : '';
 t.segunda_link = (t.segunda_fecha && t.segunda_fecha.link) || '';
 
+// El mismo taller a veces va de mañana y a veces de noche: la segunda fecha
+// puede traer su propio horario. Si no lo trae, hereda el de la primera.
+function horarioDe(f, porDefecto) {
+  if (!f) return porDefecto;
+  if (f.hora && f.hora_fin) return f.hora + ' a ' + f.hora_fin + ' h';
+  return f.hora || porDefecto;
+}
+
 // Cuando hay dos fechas, se muestran como opciones para elegir, no como
 // una nota al pie: son dos productos a la venta, no un detalle.
 function listaFechas(o, sufijo) {
@@ -238,7 +246,7 @@ function listaFechas(o, sufijo) {
   if (o.segunda_fecha && o.segunda_fecha.texto) {
     items.push('<li><a href="' + enlace(o.segunda_fecha.link || o.wa_link) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
       '<strong>' + escapar(o.segunda_fecha.texto) + '</strong>' +
-      '<span>' + escapar(o.horario_texto) + '</span></a></li>');
+      '<span>' + escapar(horarioDe(o.segunda_fecha, o.horario_texto)) + '</span></a></li>');
   }
   return items.join('');
 }
@@ -946,14 +954,26 @@ for (const archivo of archivos) {
         });
         const hay = w && w.estado !== 'sin-fecha' && w.segunda_fecha &&
           w.segunda_fecha.iso && w.segunda_fecha.link;
-        if (base && hay && !yaEsta) {
+        if (base && hay) {
           const seg = JSON.parse(JSON.stringify(base));
           seg['@id'] = 'https://clorofila.uy/pastas#evento-2';
-          seg.startDate = w.segunda_fecha.iso + 'T' + w.hora_inicio + ':00-03:00';
-          seg.endDate = w.segunda_fecha.iso + 'T' + w.hora_fin + ':00-03:00';
+          // La segunda fecha puede ir a otra hora: el mismo taller a veces es
+          // de mañana y a veces de noche. Si no trae horario, hereda el primero.
+          seg.startDate = w.segunda_fecha.iso + 'T' + (w.segunda_fecha.hora || w.hora_inicio) + ':00-03:00';
+          seg.endDate = w.segunda_fecha.iso + 'T' + (w.segunda_fecha.hora_fin || w.hora_fin) + ':00-03:00';
           if (seg.offers) seg.offers.url = w.segunda_fecha.link;
-          ld['@graph'].push(seg);
-          tocado = true;
+          // Se rehace desde el evento principal en vez de dejar el que ya estaba:
+          // si cambió el precio o el horario, el bloque viejo seguía mintiendo.
+          const donde = ld['@graph'].findIndex(function (n) {
+            return n && n['@id'] === 'https://clorofila.uy/pastas#evento-2';
+          });
+          if (donde === -1) {
+            ld['@graph'].push(seg);
+            tocado = true;
+          } else if (JSON.stringify(ld['@graph'][donde]) !== JSON.stringify(seg)) {
+            ld['@graph'][donde] = seg;
+            tocado = true;
+          }
         } else if (base && !hay && yaEsta) {
           // Se cerró la segunda fecha: el evento deja de publicarse.
           ld['@graph'] = ld['@graph'].filter(function (n) {
