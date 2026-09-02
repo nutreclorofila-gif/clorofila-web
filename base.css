@@ -79,6 +79,7 @@ h1{font-size:clamp(2.9rem,7.4vw,5.4rem);letter-spacing:-.04em}
 h2{font-size:clamp(2rem,4.4vw,3.2rem);letter-spacing:-.03em}
 h3{font-size:clamp(1.25rem,2.2vw,1.6rem);letter-spacing:-.02em}
 p{max-width:var(--max-texto);text-wrap:pretty}
+li,blockquote{text-wrap:pretty}
 em{font-style:italic;color:var(--fermento)}
 strong{color:var(--cal);font-weight:600}
 
@@ -183,6 +184,7 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
 .pie .marca{margin-bottom:.2rem}
 .pie-lema{font-family:var(--display);font-size:1.2rem;color:var(--cal);line-height:1.25;margin-block:.6rem 1rem;max-width:22ch}
 .pie-fin{max-width:var(--max);margin:2.5rem auto 0;padding-inline:clamp(1.25rem,4vw,2.5rem);padding-top:1.5rem;border-top:1px solid var(--linea);font-family:var(--texto);font-size:.82rem;color:var(--cal-baja);letter-spacing:0}
+.pie-fin a{display:inline-block;padding-block:.35rem}
 @media (max-width:760px){.pie-caja{grid-template-columns:1fr 1fr}.pie-marca{grid-column:1/-1}}
 
 /* --- Entradas -----------------------------------------------------------
