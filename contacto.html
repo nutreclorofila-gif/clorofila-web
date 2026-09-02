@@ -34,7 +34,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=15">
+<link rel="stylesheet" href="base.css?v=16">
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@graph": [{"@type": "ContactPage", "@id": "https://clorofila.uy/contacto#page", "url": "https://clorofila.uy/contacto", "inLanguage": "es-UY", "name": "Contacto — Clorofila Estudio de Cocina", "about": {"@id": "https://clorofila.uy/#organization"}, "mainEntity": {"@id": "https://clorofila.uy/#organization"}, "significantLink": ["https://wa.me/59894064148", "https://instagram.com/clorofilaclases"]}, {"@type": "Place", "@id": "https://clorofila.uy/#place", "name": "Clorofila Estudio de Cocina", "address": {"@type": "PostalAddress", "streetAddress": "Maldonado 1976 esq. Blanes", "addressLocality": "Montevideo", "addressRegion": "Montevideo", "addressCountry": "UY"}, "geo": {"@type": "GeoCoordinates", "latitude": -34.9106, "longitude": -56.185}, "publicAccess": true, "hasMap": "https://maps.app.goo.gl/DnqBneEmi1GHNUjG9"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://clorofila.uy/"}, {"@type": "ListItem", "position": 2, "name": "Contacto", "item": "https://clorofila.uy/contacto"}]}]}
 </script>
@@ -49,15 +49,15 @@
 .canal{display:flex;flex-direction:column;gap:.2rem;border:1px solid var(--linea);border-radius:var(--r);padding:1rem 1.15rem;background:var(--musgo);transition:border-color .2s,transform .2s var(--ease)}
 .canal:hover{border-color:var(--brote);transform:translateX(3px)}
 .canal b{font-family:var(--dato);font-size:1rem;color:var(--cal);font-weight:500;letter-spacing:.01em}
-.canal span{font-family:var(--dato);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cal-baja)}
+.canal span{font-family:var(--texto);font-size:.85rem;color:var(--cal-baja)}
 
 .donde h2{font-size:1.4rem;margin-bottom:.7rem}
 .donde address{font-style:normal;color:var(--cal-med);margin-bottom:1.75rem;line-height:1.7}
 .donde address strong{display:block;font-family:var(--display);font-size:1.15rem;color:var(--cal);letter-spacing:-.02em}
 .horarios{width:100%;border-collapse:collapse}
-.horarios caption{text-align:left;font-family:var(--dato);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cal-baja);padding-bottom:.6rem}
+.horarios caption{text-align:left;font-family:var(--texto);font-size:.85rem;color:var(--cal-baja);padding-bottom:.6rem}
 .horarios th,.horarios td{border-top:1px solid var(--linea);padding-block:.6rem;font-family:var(--dato);font-size:.85rem;color:var(--cal);font-weight:400;text-align:left}
-.horarios thead th{font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cal-baja);border-top:0}
+.horarios thead th{font-size:.85rem;color:var(--cal-baja);border-top:0}
 .horarios thead th:last-child{text-align:right}
 .horarios td:last-child{text-align:right;color:var(--miel)}
 .horarios-nota{font-size:.82rem;color:var(--cal-baja);margin-top:.9rem;line-height:1.6}
@@ -129,7 +129,7 @@
         </thead>
         <tbody><!--o:html:curso.horarios_html--><tr><th scope="row">Miércoles</th><td>10:00 – 12:00 h</td></tr><tr><th scope="row">Jueves</th><td>19:00 – 21:00 h</td></tr><!--/o--></tbody>
       </table>
-      <p class="horarios-nota">Tres meses, 12 clases presenciales. <!--o:curso.inicio_texto-->Arranca el miércoles 7 de octubre<!--/o--> · <a href="/curso" class="enlace-vivo">Ver el curso →</a></p>
+      <p class="horarios-nota">Tres meses, 12 clases presenciales. <!--o:curso.inicio_texto-->Arranca el miércoles 7 de octubre<!--/o--> · <a href="/curso" class="enlace-vivo">Ver el curso</a></p>
     </div>
   </div>
 
@@ -141,7 +141,7 @@
         <span class="mapa-aviso">El mapa se carga cuando lo tocás, así no cargamos las cookies de Google antes de tiempo.</span>
       </button>
     </div>
-    <p class="mapa-pie"><span>Maldonado 1976 esq. Blanes · Parque Rodó</span><a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo">Cómo llegar →</a></p>
+    <p class="mapa-pie"><span>Maldonado 1976 esq. Blanes · Parque Rodó</span><a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo">Cómo llegar</a></p>
     <figure class="foto-espacio">
       <picture><source srcset="img-espacio.webp" type="image/webp"><img src="img-espacio.jpg" width="867" height="1300" alt="El estudio de Clorofila en Parque Rodó" loading="lazy"></picture>
     </figure>

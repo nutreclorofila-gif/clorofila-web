@@ -34,7 +34,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=15">
+<link rel="stylesheet" href="base.css?v=16">
 <script type="application/ld+json">
   {"@context": "https://schema.org", "@graph": [{"@type": "Person", "name": "Leonardo Lemes", "jobTitle": "Chef, docente e investigador gastronómico", "description": "Chef, docente e investigador gastronómico con 25 años de experiencia. Fundador de Clorofila Estudio de Cocina en Parque Rodó, Montevideo.", "image": "https://clorofila.uy/img-leo-cocina.jpg", "url": "https://clorofila.uy/leonardo", "worksFor": {"@id": "https://clorofila.uy/#organization"}, "knowsAbout": ["Cocina basada en plantas", "Fermentación", "Masa madre", "Pastelería sin gluten", "Desarrollo de productos gastronómicos", "Cocina vegana", "Quesos vegetales", "Investigación gastronómica"], "@id": "https://clorofila.uy/leonardo#person", "founderOf": {"@id": "https://clorofila.uy/#organization"}, "nationality": {"@type": "Country", "name": "Uruguay"}, "knowsLanguage": "es", "sameAs": ["https://instagram.com/clorofilaclases"]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://clorofila.uy/"}, {"@type": "ListItem", "position": 2, "name": "Leonardo Lemes", "item": "https://clorofila.uy/leonardo"}]}]}
   </script>
@@ -44,7 +44,6 @@
 .hero-leo{padding-block:clamp(2rem,4vw,3.25rem) clamp(2.5rem,5vw,4rem)}
 .hero-leo-caja{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,5vw,4rem);align-items:center}
 .hero-leo h1{font-size:clamp(2.6rem,6vw,4.4rem);margin-block:.7rem .9rem}
-.hero-leo h1 .viva{color:var(--brote)}
 .hero-leo .bajada{color:var(--cal-med);max-width:48ch;margin-bottom:2rem}
 .foto-leo{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:3/4;box-shadow:0 36px 80px rgba(0,0,0,.55)}
 .foto-leo img{width:100%;height:100%;object-fit:cover}
@@ -52,7 +51,7 @@
 .cifras-leo li{padding-right:1.75rem;margin-right:1.75rem;border-right:1px solid var(--linea)}
 .cifras-leo li:last-child{border-right:0;margin-right:0;padding-right:0}
 .cifras-leo b{display:block;font-family:var(--display);font-size:clamp(1.6rem,2.8vw,2.1rem);color:var(--cal);line-height:1;letter-spacing:-.03em}
-.cifras-leo span{font-family:var(--dato);font-size:.63rem;letter-spacing:.11em;text-transform:uppercase;color:var(--cal-baja)}
+.cifras-leo span{font-family:var(--texto);font-size:.85rem;color:var(--cal-baja)}
 @media (max-width:860px){.hero-leo-caja{grid-template-columns:1fr}.foto-leo{aspect-ratio:4/3;order:-1}}
 
 .cita{background:var(--musgo);border-block:1px solid var(--linea);text-align:center}
@@ -78,7 +77,7 @@
 .tema:hover .tema-leer{border-color:var(--brote);color:var(--brote)}
 
 .oficios{display:flex;flex-wrap:wrap;gap:.5rem;margin-block:2rem}
-.oficio{border:1px solid var(--linea);border-radius:999px;padding:.45rem .95rem;font-family:var(--dato);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cal-med)}
+.oficio{border:1px solid var(--linea);border-radius:999px;padding:.45rem .95rem;font-family:var(--texto);font-size:.85rem;color:var(--cal-med)}
 
 .escribe li{border-top:1px solid var(--linea)}
 .escribe a{display:block;padding-block:1rem;font-family:var(--display);font-size:clamp(1.05rem,1.9vw,1.3rem);color:var(--cal);letter-spacing:-.02em;transition:color .2s,padding-left .2s var(--ease)}
@@ -117,8 +116,8 @@
       <picture><source srcset="img-leo-cocina-700.webp 700w, img-leo-cocina.webp 975w" sizes="(max-width: 860px) calc(100vw - 3rem), 36vw" type="image/webp"><img src="img-leo-cocina.jpg" width="975" height="1300" alt="Leonardo Lemes cocinando en el estudio de Clorofila" loading="eager" fetchpriority="high"></picture>
     </figure>
     <div>
-      <span class="senal">Fundador de Clorofila · Parque Rodó</span>
-      <h1>Leonardo <span class="viva">Lemes</span>.</h1>
+      <span class="senal">Fundador de Clorofila, en Parque Rodó</span>
+      <h1>Leonardo Lemes.</h1>
       <p class="bajada">Chef, docente e investigador gastronómico con 25 años de experiencia y 13 enseñando. Pionero en Uruguay en cocina basada en plantas, fermentación y comprensión científica del alimento.</p>
       <ul class="cifras-leo">
         <li><b>25</b><span>años cocinando</span></li>
@@ -177,12 +176,12 @@
       <p style="max-width:58ch">La investigación de Leonardo no parte de papers sino de preguntas concretas que aparecen trabajando con los alimentos y dando clase. Cada tema que investiga termina en el aula.</p>
     </div>
     <div class="investiga sube">
-      <article class="tema"><span class="dato">Aceites y grasas</span><h3>¿Se puede cocinar con aceite de oliva?</h3><p>El punto de humo no es el indicador relevante. Lo que importa es la estabilidad oxidativa, y ahí el aceite de oliva virgen extra gana por perfil de ácidos grasos y antioxidantes.</p><a href="/articulos/aceite-de-oliva-punto-de-humo" class="tema-leer" aria-label="Leer el artículo: ¿Se puede cocinar con aceite de oliva?">Leer el artículo →</a></article>
-      <article class="tema"><span class="dato">Omega-3</span><h3>¿El lino pierde el omega-3 al hornear?</h3><p>El ALA es el ácido graso más inestable al calor. A 180 °C en horneado real la pérdida es significativa. Lo que queda —y qué hacer al respecto— importa saberlo.</p><a href="/articulos/omega-3-lino-horneado" class="tema-leer" aria-label="Leer el artículo: ¿El lino pierde el omega-3 al hornear?">Leer el artículo →</a></article>
-      <article class="tema"><span class="dato">Frutas y verduras</span><h3>¿Sirve el bicarbonato para lavar frutas?</h3><p>El bicarbonato ayuda con residuos de contacto. Para plaguicidas sistémicos, ningún lavado sirve. La distinción entre contacto y sistémico es crítica.</p><a href="/articulos/lavado-de-frutas-bicarbonato" class="tema-leer" aria-label="Leer el artículo: ¿Sirve el bicarbonato para lavar frutas?">Leer el artículo →</a></article>
-      <article class="tema"><span class="dato">Grasas y salud</span><h3>El colesterol total no alcanza</h3><p>Apo-B, tamaño de partícula LDL, TMAO y microbioma dan una imagen más precisa. El análisis con marcadores modernos cambia el ranking de las grasas.</p><a href="/articulos/mas-alla-del-colesterol-total" class="tema-leer" aria-label="Leer el artículo: El colesterol total no alcanza">Leer el artículo →</a></article>
-      <article class="tema"><span class="dato">Fermentación</span><h3>¿La masa madre se digiere mejor?</h3><p>La fermentación larga degrada parte del gluten y reduce FODMAPs. El mecanismo existe, pero depende del tiempo, la temperatura y la cepa.</p><a href="/articulos/masa-madre-digestibilidad" class="tema-leer" aria-label="Leer el artículo: ¿La masa madre se digiere mejor?">Leer el artículo →</a></article>
-      <article class="tema"><span class="dato">Pan y gluten</span><h3>¿El pan sin gluten es más saludable?</h3><p>Muchos panes industriales sin gluten reemplazan con almidones refinados y gomas. El perfil nutricional puede terminar peor que el del pan de trigo.</p><a href="/articulos/pan-sin-gluten-no-es-saludable" class="tema-leer" aria-label="Leer el artículo: ¿El pan sin gluten es más saludable?">Leer el artículo →</a></article>
+      <article class="tema"><span class="dato">Aceites y grasas</span><h3>¿Se puede cocinar con aceite de oliva?</h3><p>El punto de humo no es el indicador relevante. Lo que importa es la estabilidad oxidativa, y ahí el aceite de oliva virgen extra gana por perfil de ácidos grasos y antioxidantes.</p><a href="/articulos/aceite-de-oliva-punto-de-humo" class="tema-leer" aria-label="Leer el artículo: ¿Se puede cocinar con aceite de oliva?">Leer el artículo</a></article>
+      <article class="tema"><span class="dato">Omega-3</span><h3>¿El lino pierde el omega-3 al hornear?</h3><p>El ALA es el ácido graso más inestable al calor. A 180 °C en horneado real la pérdida es significativa. Lo que queda —y qué hacer al respecto— importa saberlo.</p><a href="/articulos/omega-3-lino-horneado" class="tema-leer" aria-label="Leer el artículo: ¿El lino pierde el omega-3 al hornear?">Leer el artículo</a></article>
+      <article class="tema"><span class="dato">Frutas y verduras</span><h3>¿Sirve el bicarbonato para lavar frutas?</h3><p>El bicarbonato ayuda con residuos de contacto. Para plaguicidas sistémicos, ningún lavado sirve. La distinción entre contacto y sistémico es crítica.</p><a href="/articulos/lavado-de-frutas-bicarbonato" class="tema-leer" aria-label="Leer el artículo: ¿Sirve el bicarbonato para lavar frutas?">Leer el artículo</a></article>
+      <article class="tema"><span class="dato">Grasas y salud</span><h3>El colesterol total no alcanza</h3><p>Apo-B, tamaño de partícula LDL, TMAO y microbioma dan una imagen más precisa. El análisis con marcadores modernos cambia el ranking de las grasas.</p><a href="/articulos/mas-alla-del-colesterol-total" class="tema-leer" aria-label="Leer el artículo: El colesterol total no alcanza">Leer el artículo</a></article>
+      <article class="tema"><span class="dato">Fermentación</span><h3>¿La masa madre se digiere mejor?</h3><p>La fermentación larga degrada parte del gluten y reduce FODMAPs. El mecanismo existe, pero depende del tiempo, la temperatura y la cepa.</p><a href="/articulos/masa-madre-digestibilidad" class="tema-leer" aria-label="Leer el artículo: ¿La masa madre se digiere mejor?">Leer el artículo</a></article>
+      <article class="tema"><span class="dato">Pan y gluten</span><h3>¿El pan sin gluten es más saludable?</h3><p>Muchos panes industriales sin gluten reemplazan con almidones refinados y gomas. El perfil nutricional puede terminar peor que el del pan de trigo.</p><a href="/articulos/pan-sin-gluten-no-es-saludable" class="tema-leer" aria-label="Leer el artículo: ¿El pan sin gluten es más saludable?">Leer el artículo</a></article>
     </div>
     <p class="sube" style="margin-top:1.75rem;font-size:.9rem;color:var(--cal-baja)">Los temas se publican en <a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" class="enlace-vivo">@clorofilaclases</a> y en <a href="/articulos" class="enlace-vivo">Artículos</a>.</p>
   </div>
@@ -206,8 +205,8 @@
         <li class="oficio">Formador de equipos</li>
         <li class="oficio">Conferencista</li>
       </ul>
-      <a href="/servicios" class="btn btn-linea">Ver eventos y consultoría →</a>
-      <p class="otras" style="margin-top:1.2rem">Clorofila abrió en Parque Rodó en 2013. <a href="/sobre" class="enlace-vivo">La historia del estudio →</a></p>
+      <a href="/servicios" class="btn btn-linea">Ver eventos y consultoría</a>
+      <p class="otras" style="margin-top:1.2rem">Clorofila abrió en Parque Rodó en 2013. <a href="/sobre" class="enlace-vivo">La historia del estudio</a></p>
     </div>
   </div>
 </section>
@@ -219,12 +218,12 @@
       <p style="max-width:54ch">Preguntas que aparecen seguido en clase, respondidas con la evidencia disponible y sin alarmismo.</p>
     </div>
     <ul class="escribe sube" style="max-width:760px">
-      <li><a href="/articulos/aceite-de-oliva-punto-de-humo">¿Se puede cocinar con aceite de oliva? →</a></li>
-      <li><a href="/articulos/omega-3-lino-horneado">¿El lino pierde el omega-3 al hornear? →</a></li>
-      <li><a href="/articulos/lavado-de-frutas-bicarbonato">¿Sirve el bicarbonato para lavar frutas? →</a></li>
-      <li><a href="/articulos/mas-alla-del-colesterol-total">El colesterol total no alcanza →</a></li>
+      <li><a href="/articulos/aceite-de-oliva-punto-de-humo">¿Se puede cocinar con aceite de oliva?</a></li>
+      <li><a href="/articulos/omega-3-lino-horneado">¿El lino pierde el omega-3 al hornear?</a></li>
+      <li><a href="/articulos/lavado-de-frutas-bicarbonato">¿Sirve el bicarbonato para lavar frutas?</a></li>
+      <li><a href="/articulos/mas-alla-del-colesterol-total">El colesterol total no alcanza</a></li>
     </ul>
-    <p class="sube" style="margin-top:1.5rem"><a href="/articulos" class="btn btn-linea">Ver todos los artículos →</a></p>
+    <p class="sube" style="margin-top:1.5rem"><a href="/articulos" class="btn btn-linea">Ver todos los artículos</a></p>
   </div>
 </section>
 
@@ -233,8 +232,8 @@
     <div class="encabezado centrado sube" style="margin-bottom:1.75rem">
       <h2 style="font-size:clamp(1.6rem,3vw,2.3rem)">Lo que dicen quienes cursaron con él.</h2>
     </div>
-    <div class="prueba sube"><!--o:html:testimonios.leonardo_html--><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«Excelente los cursos, gran persona Leo, se nota la pasión por la cocina saludable, tuve el gusto de trabajar con él y es una fuente de conocimientos, hermoso el espacio, uso y recomiendo!»</blockquote><cite>Matías Arrieta · reseña en Google</cite></div><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«Lo que más me sorprendió fue entender el porqué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien.»</blockquote><cite>Matías Acevedo · curso de 3 meses</cite></div><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«No es un curso de recetas. Es aprender a pensar la cocina de otra manera.»</blockquote><cite>Lucía Fernández · curso de 3 meses</cite></div><!--/o--></div>
-    <p class="sube" style="margin-top:1.5rem;text-align:center"><a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo" style="color:var(--miel)"><!--o:google.linea_texto-->★ 4,9 · 21 reseñas en Google →<!--/o--></a></p>
+    <div class="prueba sube"><!--o:html:testimonios.leonardo_html--><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«Excelente los cursos, gran persona Leo, se nota la pasión por la cocina saludable, tuve el gusto de trabajar con él y es una fuente de conocimientos, hermoso el espacio, uso y recomiendo!»</blockquote><cite>Matías Arrieta, reseña en Google</cite></div><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«Lo que más me sorprendió fue entender el porqué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien.»</blockquote><cite>Matías Acevedo, curso de 3 meses</cite></div><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«No es un curso de recetas. Es aprender a pensar la cocina de otra manera.»</blockquote><cite>Lucía Fernández, curso de 3 meses</cite></div><!--/o--></div>
+    <p class="sube" style="margin-top:1.5rem;text-align:center"><a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo" style="color:var(--miel)"><!--o:google.linea_texto-->★ 4,9 en Google, sobre 21 reseñas<!--/o--></a></p>
   </div>
 </section>
 
@@ -247,7 +246,7 @@
     </div>
     <div class="sube" style="display:flex;flex-wrap:wrap;gap:.75rem">
       <a href="/curso" class="btn btn-primario" data-producto="curso">Ver el curso completo</a>
-      <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar →<!--/o--></a>
+      <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar<!--/o--></a>
     </div>
   </div>
 </section>
@@ -255,7 +254,7 @@
 </main>
 
 <aside class="sticky-cta" id="sticky-cta" aria-label="Reserva rápida">
-  <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="cta-main" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar →<!--/o--></a>
+  <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="cta-main" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar<!--/o--></a>
   <a data-set="href=curso.wa_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20tengo%20una%20pregunta%20sobre%20el%20curso%20de%20cocina." target="_blank" rel="noopener noreferrer" class="wa-btn" aria-label="Consultar por WhatsApp" data-producto="curso">💬</a>
 </aside>
 <footer class="pie">

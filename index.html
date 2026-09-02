@@ -32,7 +32,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=15">
+<link rel="stylesheet" href="base.css?v=16">
 <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":["LocalBusiness","EducationalOrganization"],"@id":"https://clorofila.uy/#organization","name":"Clorofila","description":"Escuela de cocina basada en plantas en Parque Rodó, Montevideo, desde 2013. Curso presencial de tres meses, talleres intensivos de un día y experiencias de una noche. Todo lo que se cocina es 100% vegetal, sin gluten ni azúcares refinados.","url":"https://clorofila.uy/","email":"nutreclorofila@gmail.com","telephone":"+59894064148","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressRegion":"Montevideo","addressCountry":"UY"},"geo":{"@type":"GeoCoordinates","latitude":-34.9106,"longitude":-56.185},"image":"https://clorofila.uy/og/og-home.jpg","logo":"https://clorofila.uy/og/og-home.jpg","foundingDate":"2013","founder":{"@id":"https://clorofila.uy/leonardo#person"},"areaServed":{"@type":"City","name":"Montevideo"},"sameAs":["https://instagram.com/clorofilaclases","https://www.facebook.com/clorofilaclases"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"21","bestRating":"5"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Valentina Pedreira"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado."},{"@type":"Review","author":{"@type":"Person","name":"Matías Acevedo"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Lo que más me sorprendió fue entender el porqué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien."}],"knowsAbout":["Cocina basada en plantas","Cocina vegana","Cocina sin gluten","Fermentación de vegetales","Pastelería sin gluten","Quesos vegetales","Masa madre","Ciencia del alimento","Cocina saludable"]},{"@type":"WebSite","url":"https://clorofila.uy/","name":"Clorofila","inLanguage":"es-UY","publisher":{"@id":"https://clorofila.uy/#organization"}}]}
   </script>
@@ -49,19 +49,20 @@
 @media (prefers-reduced-motion:reduce){.hero::before{opacity:1;transform:none;animation:none}}
 .hero-caja{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
 .hero h1{margin-block:1rem 1.15rem;font-size:clamp(2.35rem,5vw,3.9rem);max-width:15ch;line-height:1.03}
-.hero h1 .viva{color:var(--brote);font-style:normal}
 .hero-bajada{font-size:clamp(.98rem,1.35vw,1.06rem);color:var(--cal-med);max-width:48ch;margin-bottom:1.75rem}
 .hero-acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:2.25rem}
-.hero-datos{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--linea);padding-top:1.25rem}
-.hero-dato{padding-right:1.6rem;margin-right:1.6rem;border-right:1px solid var(--linea)}
-.hero-dato:last-child{border-right:0;margin-right:0;padding-right:0}
-.hero-dato b{display:block;font-family:var(--display);font-size:1.75rem;font-weight:600;color:var(--cal);line-height:1;letter-spacing:-.02em}
-.hero-dato span{font-family:var(--dato);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cal-baja)}
+/* Tres cifras enormes con su etiqueta debajo, separadas por líneas, es el
+   panel de control que trae cualquier plantilla. Son datos que uno diría en
+   voz alta, así que se leen en una línea. */
+.hero-datos{display:flex;flex-wrap:wrap;gap:.5rem 2.25rem;border-top:1px solid var(--linea);padding-top:1.15rem}
+.hero-dato{display:flex;align-items:baseline;gap:.4rem;font-size:.95rem;color:var(--cal-med)}
+.hero-dato b{font-family:var(--texto);font-size:.95rem;font-weight:600;color:var(--cal)}
+.hero-dato span{font-family:var(--texto);font-size:.95rem;color:var(--cal-med)}
 .hero-foto{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;box-shadow:0 40px 90px rgba(0,0,0,.55)}
 .hero-foto img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) brightness(.86);animation:calentar 2.8s var(--ease-out) .3s forwards}
 @keyframes calentar{to{filter:saturate(1.04) brightness(1)}}
 @media (prefers-reduced-motion:reduce){.hero-foto img{filter:none;animation:none}}
-.hero-foto figcaption{position:absolute;left:1rem;bottom:1rem;right:1rem;font-family:var(--dato);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cal);background:rgba(14,26,19,.55);backdrop-filter:blur(8px);border:1px solid var(--linea);padding:.5rem .8rem;border-radius:999px;display:inline-flex;width:fit-content}
+.hero-foto figcaption{position:absolute;left:1rem;bottom:1rem;right:1rem;font-family:var(--texto);font-size:.85rem;color:var(--cal);background:rgba(14,26,19,.55);backdrop-filter:blur(8px);border:1px solid var(--linea);padding:.5rem .8rem;border-radius:999px;display:inline-flex;width:fit-content}
 @media (max-width:900px){.hero-caja{grid-template-columns:1fr}.hero-foto{aspect-ratio:4/3;order:-1}}
 
 /* ---------- AGENDA ---------- */
@@ -71,7 +72,7 @@
 .agenda-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(228px,100%),1fr));gap:1rem}
 .agenda-item{background:var(--musgo-alto);border:1px solid var(--linea);border-radius:var(--r);padding:1.35rem;display:flex;flex-direction:column;gap:.3rem;transition:border-color .25s,transform .25s var(--ease)}
 .agenda-item:hover{border-color:var(--linea-fuerte);transform:translateY(-3px)}
-.agenda-etiqueta{font-family:var(--dato);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--brote);margin-bottom:.5rem}
+.agenda-etiqueta{font-family:var(--texto);font-size:.6rem;color:var(--brote);margin-bottom:.5rem}
 .agenda-precio{font-family:var(--dato);font-size:.95rem;color:var(--cal);margin-top:.15rem}
 /* Una nota cálida sobre tanto verde, y en el único lugar donde suma: lo que
    está abierto. El contraste hay que medirlo contra el fondo de la tarjeta,
@@ -150,7 +151,7 @@
 .panel{border:1px solid var(--linea);border-radius:var(--r-lg);padding:clamp(1.5rem,3vw,2.2rem)}
 .panel-receta{background:transparent}
 .panel-criterio{background:var(--musgo);border-color:rgba(143,192,138,.32)}
-.panel .rotulo{font-family:var(--dato);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem;display:block}
+.panel .rotulo{font-family:var(--texto);font-size:.85rem;margin-bottom:1rem;display:block}
 .panel-receta .rotulo{color:var(--cal-baja)}
 .panel-criterio .rotulo{color:var(--brote)}
 .panel-cita{font-family:var(--display);font-size:clamp(1.15rem,1.9vw,1.42rem);color:var(--cal);line-height:1.28;letter-spacing:-.015em;margin-bottom:1rem}
@@ -172,7 +173,7 @@
 .prueba{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:1rem}
 .voz{border:1px solid var(--linea);border-radius:var(--r);padding:1.4rem;background:var(--musgo)}
 .voz blockquote{font-family:var(--display);font-size:1.04rem;line-height:1.35;color:var(--cal);letter-spacing:-.01em;margin-bottom:.9rem}
-.voz cite{font-style:normal;font-family:var(--dato);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cal-baja)}
+.voz cite{font-style:normal;font-family:var(--texto);font-size:.85rem;color:var(--cal-baja)}
 .estrellas{color:var(--miel);font-size:.8rem;letter-spacing:.14em;margin-bottom:.7rem}
 
 /* ---------- TALLERES ---------- */
@@ -201,7 +202,7 @@
    el título promete un lugar en esa mesa. */
 .cierre-foto{margin:0 0 2.2rem;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5)}
 .cierre-foto img{width:100%;height:100%;object-fit:cover;display:block}
-.cierre-foto figcaption{margin-top:.7rem;font-family:var(--dato);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cal-baja);text-align:center}
+.cierre-foto figcaption{margin-top:.7rem;font-family:var(--texto);font-size:.85rem;color:var(--cal-baja);text-align:center}
 .firma-leo>picture{flex-shrink:0;display:block;line-height:0}
 .firma-leo img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0}
 .firma-leo p{margin:0;text-align:left;color:var(--cal-med)}
@@ -237,12 +238,12 @@
 <header class="hero">
   <div class="env hero-caja">
     <div>
-      <span class="senal">Parque Rodó · Montevideo · desde 2013</span>
-      <h1>Aprendé a cocinar <span class="viva">entendiendo</span> lo que hacés.</h1>
+      <span class="senal">En Parque Rodó, Montevideo, desde 2013</span>
+      <h1>Aprendé a cocinar entendiendo lo que hacés.</h1>
       <p class="hero-bajada">Somos un estudio de cocina saludable en Parque Rodó, Montevideo. Damos un curso de tres meses, talleres de un día y experiencias para una noche. En todos aprendés <strong>por qué</strong> funciona cada cosa.</p>
       <div class="hero-acciones">
         <a href="/curso" class="btn btn-primario">Ver el curso</a>
-        <a href="/tapeo" class="btn btn-linea"><!--o:tapeo.hero_boton-->Cena de tapeo · viernes 18 de setiembre<!--/o--></a>
+        <a href="/tapeo" class="btn btn-linea"><!--o:tapeo.hero_boton-->Cena de tapeo del viernes 18 de setiembre<!--/o--></a>
       </div>
       <ul class="hero-datos">
         <li class="hero-dato"><b>1.200</b><span>personas formadas</span></li>
@@ -267,7 +268,7 @@
     <div class="curso-destacado sube">
       <figure class="curso-destacado-foto"><picture><source srcset="img-clase-grupo-700.webp 700w, img-clase-grupo.webp 1200w" sizes="(max-width: 900px) calc(100vw - 3rem), 42vw" type="image/webp"><img src="img-clase-grupo.jpg" width="1200" height="675" alt="Grupo trabajando en una clase del curso de Clorofila" loading="lazy"></picture></figure>
       <div>
-        <span class="senal">Tres meses · una clase por semana</span>
+        <span class="senal">Tres meses, una clase por semana</span>
         <h2>Curso de cocina saludable.</h2>
         <p>Trabajás pastas, sushi, tartas, platos principales, postres y chocolates, todo sin gluten, sin azúcares refinados ni grasas nocivas. Aprendés qué hace cada ingrediente y qué pasa si lo cambiás.</p>
         <ul class="curso-transforma">
@@ -280,8 +281,8 @@
         </ul>
         <div class="curso-destacado-pie">
           <span class="curso-destacado-precio"><!--o:curso.precio_total-->$12.200<!--/o--> <small><!--o:curso.precio_cuotas-->3 cuotas de $4.800<!--/o--></small></span>
-          <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar →<!--/o--></a>
-          <a href="/curso" class="enlace-vivo">Ver el programa completo →</a>
+          <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar<!--/o--></a>
+          <a href="/curso" class="enlace-vivo">Ver el programa completo</a>
         </div>
       </div>
     </div>
@@ -372,7 +373,7 @@
       </div>
       <p class="dato" style="max-width:30ch;text-transform:none;letter-spacing:.02em;font-size:.8rem;color:var(--cal-baja)">Trabajamos con grupos chicos. Cuando una fecha se completa, la cerramos.</p>
     </div>
-    <ul class="agenda-grid sube"><!--o:html:agenda_html--><li class="agenda-item" data-estado="ultimos"><span class="agenda-etiqueta">Últimos lugares</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">jueves 3 de setiembre · 10:00 a 13:30 h</p><p class="agenda-precio">$2.700</p><a href="/pastas" class="agenda-link" data-producto="agenda">Ver el taller →</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Segunda fecha</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">viernes 4 de setiembre · 10:00 a 13:30 h</p><p class="agenda-precio">$2.700</p><a href="/pastas" class="agenda-link" data-producto="agenda">Ver el taller →</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Inscripciones abiertas</span><p class="agenda-nombre">Cena y Taller de Tapeo</p><p class="agenda-cuando">viernes 18 de setiembre · 19:00 a 22:30 h</p><p class="agenda-precio">$2.600 por persona</p><a href="/tapeo" class="agenda-link" data-producto="agenda">Ver la experiencia →</a></li><li class="agenda-item" data-estado="abierto" data-inicio-iso="2026-10-07"><span class="agenda-etiqueta" data-cuenta>Grupos abiertos</span><p class="agenda-nombre">Curso de cocina saludable</p><p class="agenda-cuando">Arranca el miércoles 7 de octubre · miércoles y jueves</p><p class="agenda-precio">$12.200</p><a href="/curso" class="agenda-link" data-producto="agenda">Ver el curso →</a></li><!--/o--></ul>
+    <ul class="agenda-grid sube"><!--o:html:agenda_html--><li class="agenda-item" data-estado="ultimos"><span class="agenda-etiqueta">Últimos lugares</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">jueves 3 de setiembre · 10:00 a 13:30 h</p><p class="agenda-precio">$2.700</p><a href="/pastas" class="agenda-link" data-producto="agenda">Ver el taller</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Segunda fecha</span><p class="agenda-nombre">Pastas sin gluten</p><p class="agenda-cuando">viernes 4 de setiembre · 10:00 a 13:30 h</p><p class="agenda-precio">$2.700</p><a href="/pastas" class="agenda-link" data-producto="agenda">Ver el taller</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Inscripciones abiertas</span><p class="agenda-nombre">Cena y Taller de Tapeo</p><p class="agenda-cuando">viernes 18 de setiembre · 19:00 a 22:30 h</p><p class="agenda-precio">$2.600 por persona</p><a href="/tapeo" class="agenda-link" data-producto="agenda">Ver la experiencia</a></li><li class="agenda-item" data-estado="abierto" data-inicio-iso="2026-10-07"><span class="agenda-etiqueta" data-cuenta>Grupos abiertos</span><p class="agenda-nombre">Curso de cocina saludable</p><p class="agenda-cuando">Arranca el miércoles 7 de octubre · miércoles y jueves</p><p class="agenda-precio">$12.200</p><a href="/curso" class="agenda-link" data-producto="agenda">Ver el curso</a></li><!--/o--></ul>
   </div>
 </section>
 
@@ -381,7 +382,7 @@
     <span class="senal">Talleres de un día</span>
     <h2 style="margin-top:.8rem;font-size:clamp(1.5rem,2.6vw,2rem)">Talleres intensivos</h2>
     <p style="margin-top:.7rem;max-width:52ch">Son encuentros de un día, cada uno dedicado a una sola técnica que trabajás de principio a fin.</p>
-    <div class="tira-talleres"><!--o:html:talleres_tira_html--><a href="/pastas" data-estado="abierto"><span>Pastas sin gluten</span><small>jueves 3 de setiembre</small></a><a href="/talleres#fermentacion"><span>Fermentación</span></a><a href="/talleres#pan-sin-gluten"><span>Pan sin gluten</span></a><a href="/talleres#alfajores"><span>Alfajores</span></a><a href="/talleres#quesos-vegetales"><span>Quesos vegetales</span></a><a href="/talleres" class="btn-linea" style="padding:1rem 1.1rem">Ver todos los talleres →</a><!--/o--></div>
+    <div class="tira-talleres"><!--o:html:talleres_tira_html--><a href="/pastas" data-estado="abierto"><span>Pastas sin gluten</span><small>jueves 3 de setiembre</small></a><a href="/talleres#fermentacion"><span>Fermentación</span></a><a href="/talleres#pan-sin-gluten"><span>Pan sin gluten</span></a><a href="/talleres#alfajores"><span>Alfajores</span></a><a href="/talleres#quesos-vegetales"><span>Quesos vegetales</span></a><a href="/talleres" class="btn-linea" style="padding:1rem 1.1rem">Ver todos los talleres</a><!--/o--></div>
   </div>
 </section>
 
@@ -392,9 +393,9 @@
         <span class="senal">Testimonios</span>
         <h2 style="margin-top:.8rem">Lo que dicen quienes ya vinieron.</h2>
       </div>
-      <a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="dato" style="color:var(--miel);border-bottom:1px solid var(--linea-fuerte);padding-block:.3rem"><!--o:google.linea_texto-->★ 4,9 · 21 reseñas en Google →<!--/o--></a>
+      <a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="dato" style="color:var(--miel);border-bottom:1px solid var(--linea-fuerte);padding-block:.3rem"><!--o:google.linea_texto-->★ 4,9 en Google, sobre 21 reseñas<!--/o--></a>
     </div>
-    <div class="prueba sube"><!--o:html:testimonios.index_html--><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado.»</blockquote><cite>Valentina Pedreira · curso de 3 meses</cite></div><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«Lo que más me sorprendió fue entender el porqué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien.»</blockquote><cite>Matías Acevedo · curso de 3 meses</cite></div><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«Excelente lugar para aprender a cocinar y a comer. Es mucho más que una receta.»</blockquote><cite>Alessandra Nadile · reseña en Google</cite></div><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«Fue una gran experiencia además de aprender y conocer prácticas, y elaborar postres deliciosos y saludables.»</blockquote><cite>Natalia Montejo · reseña en Google</cite></div><!--/o--></div>
+    <div class="prueba sube"><!--o:html:testimonios.index_html--><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado.»</blockquote><cite>Valentina Pedreira, curso de 3 meses</cite></div><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«Lo que más me sorprendió fue entender el porqué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien.»</blockquote><cite>Matías Acevedo, curso de 3 meses</cite></div><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«Excelente lugar para aprender a cocinar y a comer. Es mucho más que una receta.»</blockquote><cite>Alessandra Nadile, reseña en Google</cite></div><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«Fue una gran experiencia además de aprender y conocer prácticas, y elaborar postres deliciosos y saludables.»</blockquote><cite>Natalia Montejo, reseña en Google</cite></div><!--/o--></div>
   </div>
 </section>
 
@@ -404,7 +405,7 @@
       <div>
         <h2 style="margin-top:.8rem">Lo que la ciencia dice <br>sobre lo que cocinás.</h2>
       </div>
-      <a href="/articulos" class="dato" style="color:var(--miel);border-bottom:1px solid var(--linea-fuerte);padding-block:.3rem">Ver todos los artículos →</a>
+      <a href="/articulos" class="dato" style="color:var(--miel);border-bottom:1px solid var(--linea-fuerte);padding-block:.3rem">Ver todos los artículos</a>
     </div>
     <div class="articulos-tira sube">
       <div class="articulo-mini">

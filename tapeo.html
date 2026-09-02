@@ -34,7 +34,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=15">
+<link rel="stylesheet" href="base.css?v=16">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"Event","@id":"https://clorofila.uy/tapeo#evento","name":"Cena y Taller de Tapeo","description":"Una noche de cocina y mesa compartida en Clorofila: se cocina un tapeo basado en plantas —panes, patés, hummus, encurtidos y pequeñas elaboraciones— y después se cena todo lo preparado. Grupo chico.","url":"https://clorofila.uy/tapeo","image":"https://clorofila.uy/img-tapeo.jpg","inLanguage":"es-UY","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","eventStatus":"https://schema.org/EventScheduled","organizer":{"@id":"https://clorofila.uy/#organization"},"performer":{"@type":"Person","name":"Leonardo Lemes"},"location":{"@type":"Place","name":"Clorofila Estudio de Cocina","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"}},"maximumAttendeeCapacity":12,"startDate":"2026-09-18T19:00:00-03:00","endDate":"2026-09-18T22:30:00-03:00","offers":{"@type":"Offer","url":"https://clorofila.uy/tapeo","priceCurrency":"UYU","price":"2600","availability":"https://schema.org/InStock"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://clorofila.uy/"},{"@type":"ListItem","position":2,"name":"Talleres","item":"https://clorofila.uy/talleres"},{"@type":"ListItem","position":3,"name":"Cena y Taller de Tapeo","item":"https://clorofila.uy/tapeo"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Necesito saber cocinar?","acceptedAnswer":{"@type":"Answer","text":"No. La noche está pensada para que cualquiera pueda participar: Leonardo va guiando cada preparación y nadie queda mirando. Podés llegar sin haber cocinado nunca."}},{"@type":"Question","name":"¿Es una experiencia vegana?","acceptedAnswer":{"@type":"Answer","text":"Todo lo que cocinamos es 100% vegetal. No hace falta ser vegano ni vegetariano para venir: la mayoría de quienes participan no lo son."}},{"@type":"Question","name":"¿Puedo ir solo?","acceptedAnswer":{"@type":"Answer","text":"Sí, y es más común de lo que parece. Cocinamos todos alrededor de la misma mesa, así que a los diez minutos ya nadie está solo."}},{"@type":"Question","name":"¿Puedo ir con alguien?","acceptedAnswer":{"@type":"Answer","text":"Sí. Podés reservar más de un lugar en la misma reserva: avisanos cuántos son y los sentamos juntos."}},{"@type":"Question","name":"¿Qué incluye?","acceptedAnswer":{"@type":"Answer","text":"Los ingredientes, las herramientas y materiales del estudio, la clase guiada, la cena completa con todo lo que preparaste y dos copas de vino o kombucha."}},{"@type":"Question","name":"¿Cuánto dura?","acceptedAnswer":{"@type":"Answer","text":"De 19:00 a 22:30."}},{"@type":"Question","name":"¿Dónde es?","acceptedAnswer":{"@type":"Answer","text":"En el estudio de Clorofila, Maldonado 1976 esquina Blanes, Parque Rodó, Montevideo."}},{"@type":"Question","name":"¿Hay opciones para alergias o intolerancias?","acceptedAnswer":{"@type":"Answer","text":"Sí. Avisanos al reservar y adaptamos las preparaciones. Trabajamos habitualmente sin gluten y sin frutos secos cuando hace falta."}},{"@type":"Question","name":"¿Lo puedo regalar?","acceptedAnswer":{"@type":"Answer","text":"Sí, tenemos gift card. Escribinos por WhatsApp y te la armamos."}},{"@type":"Question","name":"¿Cómo reservo y cómo se paga?","acceptedAnswer":{"@type":"Answer","text":"Se reserva por WhatsApp: escribinos, te confirmamos el lugar y coordinamos el pago por transferencia, Abitab, RedPagos o MercadoPago."}}]}]}
   </script>
@@ -62,7 +62,7 @@
 .hero-foto{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:5/6;box-shadow:0 36px 80px rgba(0,0,0,.55);margin-bottom:1.25rem}
 .hero-foto img{width:100%;height:100%;object-fit:cover}
 .hero-marcas{display:flex;flex-wrap:wrap;gap:.5rem}
-.marca-chip{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--linea);border-radius:999px;padding:.4rem .85rem;font-family:var(--dato);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cal-med)}
+.marca-chip{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--linea);border-radius:999px;padding:.4rem .85rem;font-family:var(--texto);font-size:.85rem;color:var(--cal-med)}
 @media (max-width:940px){.hero-caja{grid-template-columns:1fr}.hero-col-foto{order:-1}.hero-foto{aspect-ratio:4/3;margin-bottom:1rem}}
 
 /* ---------- LA COMANDA (firma) ---------- */
@@ -93,7 +93,7 @@
 .comanda-precio span{color:var(--miel)!important;font-size:1.05rem}
 
 .fechas-bloque{border-top:1px dashed var(--linea-fuerte);padding-top:.85rem;margin-top:.3rem}
-.fechas-titulo{font-family:var(--dato);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cal-baja);margin-bottom:.6rem}
+.fechas-titulo{font-family:var(--texto);font-size:.85rem;color:var(--cal-baja);margin-bottom:.6rem}
 .fechas{display:grid;gap:.4rem}
 .fechas a{
   display:flex;flex-direction:column;gap:.1rem;
@@ -164,7 +164,7 @@
 .quien{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(1.75rem,4vw,3.5rem);align-items:center}
 .quien-foto{border-radius:var(--r-lg);overflow:hidden;box-shadow:0 28px 64px rgba(0,0,0,.45)}
 .quien-nombre{font-family:var(--display);font-size:clamp(1.6rem,3vw,2.2rem);color:var(--cal);letter-spacing:-.03em;line-height:1.05;margin-top:.7rem}
-.quien-rol{font-family:var(--dato);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--miel);margin-bottom:1.1rem}
+.quien-rol{font-family:var(--texto);font-size:.7rem;color:var(--miel);margin-bottom:1.1rem}
 .quien p{color:var(--cal-med)}
 .quien p+p{margin-top:.85rem}
 .enlace-vivo{color:var(--brote);font-weight:600;border-bottom:1px solid transparent;transition:border-color .2s;display:inline-block;padding-block:.3rem}
@@ -181,7 +181,7 @@
 .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1rem}
 .testi{border:1px solid var(--linea);border-radius:var(--r);padding:1.4rem;background:var(--musgo)}
 .testi blockquote{font-family:var(--display);font-size:1.02rem;line-height:1.35;color:var(--cal);letter-spacing:-.01em;margin-bottom:.9rem}
-.testi cite{font-style:normal;font-family:var(--dato);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cal-baja)}
+.testi cite{font-style:normal;font-family:var(--texto);font-size:.85rem;color:var(--cal-baja)}
 .estrellas{color:var(--miel);font-size:.8rem;letter-spacing:.14em;margin-bottom:.7rem}
 
 /* ---------- FAQ ---------- */
@@ -248,7 +248,7 @@ html:not(.js) .faq-icon{display:none}
 <header class="hero-tapeo" data-estado-de="tapeo" data-estado="abierto" data-vence-iso="2026-09-18" data-set="data-precio=tapeo.tiene_precio;data-segunda=tapeo.tiene_segunda" data-precio="si" data-segunda="no">
   <div class="env hero-caja">
     <div>
-      <span class="senal">Una noche · Parque Rodó, Montevideo</span>
+      <span class="senal">Una noche en Parque Rodó, Montevideo</span>
       <h1>Cena y Taller de Tapeo</h1>
       <p class="hero-tesis">Una mesa que se arma entre desconocidos y a las tres horas ya no lo son tanto.</p>
       <p class="bajada">Aprendés técnicas claras y repetibles para transformar un mismo ingrediente en texturas y sabores distintos, junto a otras personas y en un formato divertido. Al final nos sentamos todos a comer lo que salió, con vino o kombucha.</p>
@@ -269,7 +269,7 @@ html:not(.js) .faq-icon{display:none}
           <ul class="fechas"><!--o:html:tapeo.fechas_html--><li><a href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-0e1f" target="_blank" rel="noopener noreferrer" data-producto="tapeo"><strong>viernes 18 de setiembre</strong><span>19:00 a 22:30 h · Solo 12 lugares</span></a></li><!--/o--></ul>
         </div>
         <div class="comanda-acciones">
-          <a data-set="href=tapeo.cta_link" href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-0e1f" target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="tapeo"><!--o:tapeo.cta_texto-->Comprar mi entrada →<!--/o--></a>
+          <a data-set="href=tapeo.cta_link" href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-0e1f" target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="tapeo"><!--o:tapeo.cta_texto-->Comprar mi entrada<!--/o--></a>
           <a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%2018%20de%20setiembre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="tapeo">Preguntar por WhatsApp</a>
         </div>
         <p class="comanda-nota solo-sin-fecha">Todavía no hay fecha abierta. Escribinos y te avisamos cuando abramos la próxima.</p>
@@ -281,7 +281,7 @@ html:not(.js) .faq-icon{display:none}
         <picture><source srcset="img-tapeo-hero-700.webp 700w, img-tapeo-hero.webp 1400w" sizes="(max-width: 940px) calc(100vw - 3rem), 44vw" type="image/webp"><img src="img-tapeo-hero.jpg" width="1400" height="1050" alt="La mesa larga de Clorofila durante la Cena y Taller de Tapeo, con el grupo cocinando" loading="eager" fetchpriority="high"></picture>
       </figure>
       <ul class="hero-marcas">
-        <li class="marca-chip destacado"><!--o:google.chip_texto-->★ 4,9 · 21 reseñas<!--/o--></li>
+        <li class="marca-chip destacado"><!--o:google.chip_texto-->★ 4,9 de 21 reseñas<!--/o--></li>
         <li class="marca-chip">Grupo chico</li>
         <li class="marca-chip">Todo incluido</li>
         <li class="marca-chip">100 % vegetal</li>
@@ -373,7 +373,7 @@ html:not(.js) .faq-icon{display:none}
         <p class="quien-rol">Chef, docente y fundador de Clorofila</p>
         <p>25 años cocinando y 13 enseñando, con más de 1.200 personas formadas en el estudio de Parque Rodó.</p>
         <p>Leonardo explica lo que está pasando en la olla mientras pasa: por qué algo se dora, por qué una masa pide más agua, cómo darte cuenta de que ya está. Aun en una noche suelta, salís con preparaciones que podés repetir en tu casa.</p>
-        <p style="margin-top:1.1rem"><a href="/leonardo" class="enlace-vivo">Conocer más sobre Leonardo →</a></p>
+        <p style="margin-top:1.1rem"><a href="/leonardo" class="enlace-vivo">Conocer más sobre Leonardo</a></p>
       </div>
     </div>
   </div>
@@ -414,9 +414,9 @@ html:not(.js) .faq-icon{display:none}
     <div class="encabezado centrado sube">
       <span class="senal">Testimonios</span>
       <h2>Lo que dicen quienes ya vinieron.</h2>
-      <p><a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo" style="color:var(--miel)"><!--o:google.linea_texto-->★ 4,9 · 21 reseñas en Google →<!--/o--></a></p>
+      <p><a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo" style="color:var(--miel)"><!--o:google.linea_texto-->★ 4,9 en Google, sobre 21 reseñas<!--/o--></a></p>
     </div>
-    <div class="testi-grid sube"><!--o:html:testimonios.tapeo_html--><div class="testi"><p class="estrellas">★★★★★</p><blockquote>«Recomiendo sus clases, son toda una experiencia, te vas con un montón de momentos lindos, y aprendizajes muy útiles y únicos.»</blockquote><cite>Isabella Soumastre · reseña en Google</cite></div><div class="testi"><p class="estrellas">★★★★★</p><blockquote>«Excelente los cursos, gran persona Leo, se nota la pasión por la cocina saludable, tuve el gusto de trabajar con él y es una fuente de conocimientos, hermoso el espacio, uso y recomiendo!»</blockquote><cite>Matías Arrieta · reseña en Google</cite></div><div class="testi"><p class="estrellas">★★★★★</p><blockquote>«Excelente lugar para aprender a cocinar y a comer. Es mucho más que una receta, es aprender a crear tus propias recetas de la mano de los que saben.»</blockquote><cite>Alessandra Nadile · reseña en Google</cite></div><div class="testi"><p class="estrellas">★★★★★</p><blockquote>«No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado.»</blockquote><cite>Valentina Pedreira · curso de 3 meses</cite></div><!--/o--></div>
+    <div class="testi-grid sube"><!--o:html:testimonios.tapeo_html--><div class="testi"><p class="estrellas">★★★★★</p><blockquote>«Recomiendo sus clases, son toda una experiencia, te vas con un montón de momentos lindos, y aprendizajes muy útiles y únicos.»</blockquote><cite>Isabella Soumastre, reseña en Google</cite></div><div class="testi"><p class="estrellas">★★★★★</p><blockquote>«Excelente los cursos, gran persona Leo, se nota la pasión por la cocina saludable, tuve el gusto de trabajar con él y es una fuente de conocimientos, hermoso el espacio, uso y recomiendo!»</blockquote><cite>Matías Arrieta, reseña en Google</cite></div><div class="testi"><p class="estrellas">★★★★★</p><blockquote>«Excelente lugar para aprender a cocinar y a comer. Es mucho más que una receta, es aprender a crear tus propias recetas de la mano de los que saben.»</blockquote><cite>Alessandra Nadile, reseña en Google</cite></div><div class="testi"><p class="estrellas">★★★★★</p><blockquote>«No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado.»</blockquote><cite>Valentina Pedreira, curso de 3 meses</cite></div><!--/o--></div>
   </div>
 </section>
 
@@ -447,7 +447,7 @@ html:not(.js) .faq-icon{display:none}
       <h2>Nos vemos alrededor <br>de la mesa.</h2>
       <p class="bajada solo-con-fecha">El grupo es chico y las fechas se cierran cuando se llenan. Si vas a venir, guardate el lugar ahora.</p>
       <p class="bajada solo-sin-fecha">Todavía no hay fecha abierta. Dejanos tu mensaje y sos de los primeros en enterarte cuando abramos la próxima.</p>
-      <p class="otras">También está abierto el <a href="/pastas" class="enlace-vivo">Taller de Pastas sin gluten →</a> <br>¿Preferís algo más profundo? <a href="/curso" class="enlace-vivo">El curso de tres meses →</a> <br>¿La querés para tu grupo o tu equipo? <a href="/servicios" class="enlace-vivo">Armamos la cena privada →</a> <br>¿Es para regalar? <a data-set="href=tapeo.regalo_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20regalar%20una%20Cena%20y%20Taller%20de%20Tapeo.%20%C2%BFC%C3%B3mo%20hago%20con%20la%20gift%20card%3F" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="tapeo-regalo">Tenemos <span lang="en">gift card</span> →</a></p>
+      <p class="otras">También está abierto el <a href="/pastas" class="enlace-vivo">Taller de Pastas sin gluten</a> <br>¿Preferís algo más profundo? <a href="/curso" class="enlace-vivo">El curso de tres meses</a> <br>¿La querés para tu grupo o tu equipo? <a href="/servicios" class="enlace-vivo">Armamos la cena privada</a> <br>¿Es para regalar? <a data-set="href=tapeo.regalo_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20regalar%20una%20Cena%20y%20Taller%20de%20Tapeo.%20%C2%BFC%C3%B3mo%20hago%20con%20la%20gift%20card%3F" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="tapeo-regalo">Tenemos <span lang="en">gift card</span></a></p>
     </div>
     <div class="comanda sube">
       <div class="comanda-cabeza">
@@ -465,10 +465,10 @@ html:not(.js) .faq-icon{display:none}
         <ul class="fechas"><!--o:html:tapeo.fechas_html--><li><a href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-0e1f" target="_blank" rel="noopener noreferrer" data-producto="tapeo"><strong>viernes 18 de setiembre</strong><span>19:00 a 22:30 h · Solo 12 lugares</span></a></li><!--/o--></ul>
       </div>
       <div class="comanda-acciones">
-        <a data-set="href=tapeo.cta_link" href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-0e1f" target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="tapeo"><!--o:tapeo.cta_texto-->Comprar mi entrada →<!--/o--></a>
+        <a data-set="href=tapeo.cta_link" href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-0e1f" target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="tapeo"><!--o:tapeo.cta_texto-->Comprar mi entrada<!--/o--></a>
         <a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%2018%20de%20setiembre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="tapeo">Preguntar por WhatsApp</a>
       </div>
-      <p class="comanda-nota"><!--o:tapeo.lugar-->Maldonado 1976 esq. Blanes · Parque Rodó<!--/o--> · <a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo">Cómo llegar →</a></p>
+      <p class="comanda-nota"><!--o:tapeo.lugar-->Maldonado 1976 esq. Blanes · Parque Rodó<!--/o--> · <a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo">Cómo llegar</a></p>
     </div>
   </div>
 </section>
@@ -476,7 +476,7 @@ html:not(.js) .faq-icon{display:none}
 </main>
 
 <aside class="sticky-cta" id="sticky-cta" data-estado-de="tapeo" data-estado="abierto" data-vence-iso="2026-09-18" data-set="data-precio=tapeo.tiene_precio;data-segunda=tapeo.tiene_segunda" data-precio="si" data-segunda="no" aria-label="Reserva rápida">
-  <a data-set="href=tapeo.cta_link" href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-0e1f" target="_blank" rel="noopener noreferrer" class="cta-main" data-producto="tapeo"><!--o:tapeo.cta_texto-->Comprar mi entrada →<!--/o--></a>
+  <a data-set="href=tapeo.cta_link" href="https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-0e1f" target="_blank" rel="noopener noreferrer" class="cta-main" data-producto="tapeo"><!--o:tapeo.cta_texto-->Comprar mi entrada<!--/o--></a>
   <a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%2018%20de%20setiembre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" class="wa-btn" aria-label="Consultar por WhatsApp" data-producto="tapeo">💬</a>
 </aside>
 

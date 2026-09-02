@@ -3,10 +3,10 @@
  * Inyecta en el HTML los datos de data/ofertas.json (fechas, precios, cupos, estado).
  *
  * En el HTML se marca así:
- *   <!--o:tapeo.fecha_texto-->lo que sea<!--/o-->        → reemplaza el texto
- *   <!--o:html:tapeo.menu_html-->...<!--/o-->            → reemplaza con HTML generado
- *   <div data-estado-de="tapeo">                          → le pone data-estado="abierto|ultimos|agotado|sin-fecha"
- *   <span data-set="data-inicio-iso=curso.inicio_iso">     → le escribe ese atributo con el valor del JSON
+ *   <!--o:tapeo.fecha_texto-->lo que sea<!--/o-->        reemplaza el texto
+ *   <!--o:html:tapeo.menu_html-->...<!--/o-->            reemplaza con HTML generado
+ *   <div data-estado-de="tapeo">                          le pone data-estado="abierto|ultimos|agotado|sin-fecha"
+ *   <span data-set="data-inicio-iso=curso.inicio_iso">     le escribe ese atributo con el valor del JSON
  *
  * Es idempotente: se puede correr mil veces sobre el mismo archivo.
  * Corre en el build de Netlify, así que editar el JSON alcanza para actualizar la web.
@@ -172,9 +172,9 @@ t.wa_link = waBase + encodeURIComponent(
     : 'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.fecha_texto + '. Somos [cantidad] personas.'
 );
 t.wa_texto =
-  t.estado === 'sin-fecha' ? 'Avisame la próxima fecha →' :
-  t.estado === 'agotado'   ? 'Avisame si se libera un lugar →' :
-  'Reservar mi lugar →';
+  t.estado === 'sin-fecha' ? 'Avisame la próxima fecha' :
+  t.estado === 'agotado'   ? 'Avisame si se libera un lugar' :
+  'Reservar mi lugar';
 
 t.resumen_texto =
   t.estado === 'sin-fecha' ? 'sin fecha abierta por ahora; las fechas se publican según la demanda' :
@@ -210,7 +210,7 @@ t.regalo_link = waBase + encodeURIComponent(
 );
 t.hero_boton = t.estado === 'sin-fecha'
   ? 'Ver la cena y taller de tapeo'
-  : 'Cena de tapeo · ' + t.fecha_texto;
+  : 'Cena de tapeo del ' + t.fecha_texto;
 t.tiene_segunda = t.segunda_fecha && t.segunda_fecha.texto ? 'si' : 'no';
 // Con una sola fecha, "Elegí tu fecha" pide algo que no se puede hacer.
 t.fechas_titulo = t.tiene_segunda === 'si' ? 'Elegí tu fecha' : 'La próxima fecha';
@@ -218,9 +218,9 @@ t.fechas_titulo = t.tiene_segunda === 'si' ? 'Elegí tu fecha' : 'La próxima fe
 // el link va siempre a la primera, y sin la aclaración se compra la otra sin querer.
 t.cta_texto =
   (t.estado === 'sin-fecha' || !t.link_compra) ? t.wa_texto :
-  t.estado === 'agotado' ? 'Ver si se libera un lugar →' :
-  t.tiene_segunda === 'si' ? 'Comprar · ' + fechaCorta(t.fecha_texto) + ' →' :
-  'Comprar mi entrada →';
+  t.estado === 'agotado' ? 'Ver si se libera un lugar' :
+  t.tiene_segunda === 'si' ? 'Comprar · ' + fechaCorta(t.fecha_texto) + '' :
+  'Comprar mi entrada';
 t.segunda_texto = t.segunda_fecha && t.segunda_fecha.texto
   ? '¿No podés ese día? También hay fecha el ' + t.segunda_fecha.texto + '.'
   : '';
@@ -298,9 +298,9 @@ for (const [id, w] of Object.entries(datos.talleres)) {
       : 'Hola Leonardo, quiero reservar un lugar en el taller de ' + w.nombre + ' del ' + w.fecha_texto + '.'
   );
   w.wa_texto =
-    w.estado === 'sin-fecha' ? 'Avisame cuando haya fecha →' :
-    w.estado === 'agotado'   ? 'Avisame si se libera un lugar →' :
-    'Reservar mi lugar →';
+    w.estado === 'sin-fecha' ? 'Avisame cuando haya fecha' :
+    w.estado === 'agotado'   ? 'Avisame si se libera un lugar' :
+    'Reservar mi lugar';
 
   w.cupos_texto = w.estado === 'agotado' ? 'Sin lugares disponibles'
                 : (w.cupos_total ? 'Solo ' + w.cupos_total + ' lugares' : 'Cupos limitados');
@@ -317,7 +317,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   w.fechas_html = listaFechas(w, 'taller-' + id);
   w.cta_link = (w.estado !== 'sin-fecha' && w.link_compra) ? w.link_compra : w.wa_link;
   w.cta_texto = (w.estado !== 'sin-fecha' && w.link_compra)
-    ? (w.tiene_segunda === 'si' ? 'Comprar · ' + fechaCorta(w.fecha_texto) + ' →' : 'Comprar mi entrada →')
+    ? (w.tiene_segunda === 'si' ? 'Comprar · ' + fechaCorta(w.fecha_texto) + '' : 'Comprar mi entrada')
     : w.wa_texto;
   if (w.segunda_fecha && w.segunda_fecha.texto && w.estado !== 'sin-fecha') {
     w.linea += ' · también el ' + w.segunda_fecha.texto;
@@ -354,7 +354,7 @@ datos.curso.estado = abiertos.length ? 'abierto' : 'sin-fecha';
 
 // Cuando no hay edición abierta, la web deja de pedir una inscripción que no
 // existe y pasa sola a juntar lista de espera. Nadie tiene que acordarse.
-datos.curso.cta_texto = abiertos.length ? 'Reservar mi lugar →' : 'Avisarme de la próxima edición →';
+datos.curso.cta_texto = abiertos.length ? 'Reservar mi lugar' : 'Avisarme de la próxima edición';
 // Con edición abierta se reserva por WhatsApp, que es como se reserva de verdad.
 // Sin edición abierta, el formulario pasa a ser la lista de espera.
 datos.curso.cta_link = abiertos.length
@@ -405,7 +405,7 @@ datos.curso.grupos_html = datos.curso.grupos.map(function (g) {
           'Hola Leonardo, quiero reservar mi lugar en el curso, en el grupo de los ' +
           String(g.nombre).toLowerCase() + ' de ' + g.horario.replace(' h', '') + '.')) +
         '" target="_blank" rel="noopener noreferrer" data-producto="curso">' +
-        'Reservar este grupo →</a>'
+        'Reservar este grupo</a>'
       : '') +
     '</article>';
 }).join('');
@@ -480,13 +480,13 @@ if (t.estado !== 'sin-fecha' && t.fecha_iso) {
   agenda.push({
     iso: t.fecha_iso, nombre: 'Cena y Taller de Tapeo', fecha: t.fecha_texto,
     hora: t.horario_texto, precio: t.precio, estado: t.estado,
-    etiqueta: t.estado_texto, link: '/tapeo', cta: 'Ver la experiencia →'
+    etiqueta: t.estado_texto, link: '/tapeo', cta: 'Ver la experiencia'
   });
   if (t.segunda_fecha && t.segunda_fecha.texto) {
     agenda.push({
       iso: (t.segunda_fecha.iso || t.fecha_iso) + '-b', nombre: 'Cena y Taller de Tapeo',
       fecha: t.segunda_fecha.texto, hora: t.horario_texto, precio: t.precio,
-      estado: 'abierto', etiqueta: 'Segunda fecha', link: '/tapeo', cta: 'Ver la experiencia →'
+      estado: 'abierto', etiqueta: 'Segunda fecha', link: '/tapeo', cta: 'Ver la experiencia'
     });
   }
 }
@@ -500,13 +500,13 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   agenda.push({
     iso: w.fecha_iso, nombre: w.nombre, fecha: w.fecha_texto, hora: w.hora,
     precio: w.precio, estado: w.estado, etiqueta: w.estado_texto,
-    link: (id === 'pastas-sin-gluten') ? '/pastas' : '/talleres#' + id, cta: 'Ver el taller →'
+    link: (id === 'pastas-sin-gluten') ? '/pastas' : '/talleres#' + id, cta: 'Ver el taller'
   });
   if (w.segunda_fecha && w.segunda_fecha.texto) {
     agenda.push({
       iso: (w.segunda_fecha.iso || w.fecha_iso) + '-b', nombre: w.nombre, fecha: w.segunda_fecha.texto,
       hora: w.hora, precio: w.precio, estado: 'abierto', etiqueta: 'Segunda fecha',
-      link: (id === 'pastas-sin-gluten') ? '/pastas' : '/talleres#' + id, cta: 'Ver el taller →'
+      link: (id === 'pastas-sin-gluten') ? '/pastas' : '/talleres#' + id, cta: 'Ver el taller'
     });
   }
 }
@@ -519,7 +519,7 @@ if (abiertos.length) {
     cuenta: abiertos[0].inicio_iso,
     fecha: datos.curso.inicio_texto, hora: datos.curso.dias_texto,
     precio: datos.curso.precio_total, estado: 'abierto',
-    etiqueta: datos.curso.grupos_label, link: '/curso', cta: 'Ver el curso →'
+    etiqueta: datos.curso.grupos_label, link: '/curso', cta: 'Ver el curso'
   });
 }
 
@@ -531,7 +531,7 @@ if (t.estado === 'sin-fecha' || !t.fecha_iso) {
     iso: '9999-12-31', nombre: 'Cena y Taller de Tapeo',
     fecha: 'Se abre según la demanda', hora: '', precio: '',
     estado: 'sin-fecha', etiqueta: t.estado_texto,
-    link: '/tapeo', cta: 'Avisame la próxima fecha →'
+    link: '/tapeo', cta: 'Avisame la próxima fecha'
   });
 }
 
@@ -594,7 +594,7 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
     );
   }
   datos.talleres_tira_html = conFecha.concat(sinFecha).join('') +
-    '<a href="/talleres" class="btn-linea" style="padding:1rem 1.1rem">Ver todos los talleres →</a>';
+    '<a href="/talleres" class="btn-linea" style="padding:1rem 1.1rem">Ver todos los talleres</a>';
   // La bajada de /talleres decía "algunos tienen fecha abierta ahora mismo".
   // Casi siempre hay uno solo con fecha, y a veces ninguno: en ese caso la
   // frase pasaba a ser falsa sola, sin que nadie tocara nada.
@@ -649,8 +649,11 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
   // En el sitio el puntaje se escribe con coma, como se lee en español.
   g.puntaje_texto = puntaje.replace('.', ',');
   g.resenas_texto = g.resenas + (Number(g.resenas) === 1 ? ' reseña' : ' reseñas') + ' en Google';
-  g.linea_texto = '\u2605 ' + g.puntaje_texto + ' \u00b7 ' + g.resenas_texto + ' \u2192';
-  g.chip_texto = '\u2605 ' + g.puntaje_texto + ' \u00b7 ' + g.resenas +
+  // La estrella se queda: es la calificación, no un adorno. El punto medio y
+  // la flecha eran el modo "fila de metadatos"; esto se dice hablando.
+  g.linea_texto = '\u2605 ' + g.puntaje_texto + ' en Google, sobre ' + g.resenas +
+    (Number(g.resenas) === 1 ? ' reseña' : ' reseñas');
+  g.chip_texto = '\u2605 ' + g.puntaje_texto + ' de ' + g.resenas +
     (Number(g.resenas) === 1 ? ' reseña' : ' reseñas');
   g.chip_corto = '\u2605 ' + g.puntaje_texto + ' en Google';
 }
@@ -684,7 +687,7 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
     T[pagina + '_html'] = elegidos.map(function (t) {
       const cuerpo = '<p class="estrellas">★★★★★</p>' +
         '<blockquote>«' + escapar(t.cita) + '»</blockquote>' +
-        '<cite>' + escapar(t.nombre) + ' · ' + escapar(t.contexto) + '</cite>';
+        '<cite>' + escapar(t.nombre) + ', ' + escapar(t.contexto) + '</cite>';
       return esTapeo
         ? '<div class="testi">' + cuerpo + '</div>'
         : '<div class="voz">' + cuerpo + '</div>';

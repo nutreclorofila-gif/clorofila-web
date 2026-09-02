@@ -34,7 +34,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=15">
+<link rel="stylesheet" href="base.css?v=16">
 <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"Course","educationalCredentialAwarded":"Certificado del curso","@id":"https://clorofila.uy/programa#course","name":"Programa del Curso Presencial de Cocina Saludable","description":"Programa completo del curso de tres meses de Clorofila: contenidos mes a mes, temas centrales, qué incluye, quiénes enseñan, horarios y precio.","url":"https://clorofila.uy/programa","inLanguage":"es-UY","provider":{"@id":"https://clorofila.uy/#organization"},"educationalLevel":"Principiante a intermedio","courseWorkload":"PT24H","instructor":[{"@type":"Person","@id":"https://clorofila.uy/leonardo#persona","name":"Leonardo Lemes","jobTitle":"Chef y docente"},{"@type":"Person","name":"Micaela Gago Moral","jobTitle":"Licenciada en Nutrición y terapeuta nutricional"}],"teaches":["Cocina basada en plantas","Fermentación","Panificación sin gluten","Pastelería sin lácteos ni huevos","Criterio culinario"],"about":["Cocina vegana","Cocina basada en plantas","Cocina plant based","Técnica culinaria"],"keywords":"curso de cocina vegana Montevideo, curso de cocina vegetariana Montevideo, curso de cocina plant based Montevideo, curso de cocina basada en plantas","hasCourseInstance":[{"@type":"CourseInstance","name":"Grupo miércoles 10:00-12:00","courseMode":"Onsite","startDate":"2026-10-07","courseWorkload":"PT3H30M","inLanguage":"es-UY","location":{"@type":"Place","name":"Clorofila","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"}},"offers":{"@type":"Offer","price":"12200","priceCurrency":"UYU","availability":"https://schema.org/InStock","url":"https://clorofila.uy/programa","category":"Curso presencial"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","repeatCount":12,"startDate":"2026-10-07","scheduleTimezone":"America/Montevideo","byDay":"https://schema.org/Wednesday","startTime":"10:00","endTime":"12:00"}},{"@type":"CourseInstance","name":"Grupo jueves 19:00-21:00","courseMode":"Onsite","startDate":"2026-10-08","courseWorkload":"PT3H30M","inLanguage":"es-UY","location":{"@type":"Place","name":"Clorofila","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"}},"offers":{"@type":"Offer","price":"12200","priceCurrency":"UYU","availability":"https://schema.org/InStock","url":"https://clorofila.uy/programa","category":"Curso presencial"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","repeatCount":12,"startDate":"2026-10-08","scheduleTimezone":"America/Montevideo","byDay":"https://schema.org/Thursday","startTime":"19:00","endTime":"21:00"}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://clorofila.uy/"},{"@type":"ListItem","position":2,"name":"El curso","item":"https://clorofila.uy/curso"},{"@type":"ListItem","position":3,"name":"Programa completo","item":"https://clorofila.uy/programa"}]}]}
   </script>
@@ -57,14 +57,14 @@
 .prog-foto{margin:2.4rem 0;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.45)}
 .prog-foto img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:16/10}
 .prog-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem}
-.prog-meta span{border:1px solid var(--linea);border-radius:999px;padding:.4rem .85rem;font-family:var(--dato);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cal-med)}
+.prog-meta span{border:1px solid var(--linea);border-radius:999px;padding:.4rem .85rem;font-family:var(--texto);font-size:.85rem;color:var(--cal-med)}
 .mes-prog{border-left:1px solid var(--linea-fuerte);padding-left:1.25rem;margin-bottom:1.75rem}
 .mes-prog .dato{display:block;margin-bottom:.2rem}
 .mes-prog .detalle{font-size:.92rem;color:var(--cal);margin-bottom:.4rem}
 .lista li{border-top:1px solid var(--linea);padding-block:.7rem;font-size:.94rem;color:var(--cal-med);display:flex;gap:.8rem}
 .lista li::before{content:"—";color:var(--brote);flex-shrink:0}
 .persona{border:1px solid var(--linea);border-radius:var(--r-lg);padding:1.4rem;background:var(--musgo);margin-bottom:1rem}
-.persona-rol{font-family:var(--dato);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--miel);margin-bottom:.3rem}
+.persona-rol{font-family:var(--texto);font-size:.85rem;color:var(--miel);margin-bottom:.3rem}
 .persona p{font-size:.92rem}
 .prog-acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
 .prog-guardar{border:1px solid var(--linea-fuerte);border-radius:999px;padding:.85rem 1.6rem;font-size:.95rem;font-weight:600;color:var(--cal);min-height:48px;display:inline-flex;align-items:center;transition:border-color .2s}
@@ -130,7 +130,7 @@
           <strong><!--o:curso.precio_tarjeta-->hasta 12 cuotas de $1.016<!--/o--></strong>
           <span class="prog-reserva-nota"><!--o:curso.precio_total-->$12.200<!--/o--> al contado, con la bonificación · o <!--o:curso.precio_cuotas-->3 cuotas de $4.800<!--/o--></span>
         </div>
-        <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso">Reservar mi lugar →</a>
+        <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso">Reservar mi lugar</a>
       </div>
 
       <figure class="prog-foto">
@@ -202,8 +202,8 @@
   </div>
 
   <h2>Lo que dicen quienes ya lo hicieron</h2>
-  <p style="color:var(--cal-med);margin-bottom:1.2rem"><a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo" style="color:var(--miel)"><!--o:google.linea_texto-->★ 4,9 · 21 reseñas en Google →<!--/o--></a></p>
-  <div class="prueba" style="margin-bottom:2.4rem"><!--o:html:testimonios.programa_html--><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado.»</blockquote><cite>Valentina Pedreira · curso de 3 meses</cite></div><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«Excelente curso, muy recomendable. Más allá de mis expectativas.»</blockquote><cite>Mariela Pardo · reseña en Google</cite></div><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«No es un curso de recetas. Es aprender a pensar la cocina de otra manera.»</blockquote><cite>Lucía Fernández · curso de 3 meses</cite></div><!--/o--></div>
+  <p style="color:var(--cal-med);margin-bottom:1.2rem"><a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo" style="color:var(--miel)"><!--o:google.linea_texto-->★ 4,9 en Google, sobre 21 reseñas<!--/o--></a></p>
+  <div class="prueba" style="margin-bottom:2.4rem"><!--o:html:testimonios.programa_html--><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado.»</blockquote><cite>Valentina Pedreira, curso de 3 meses</cite></div><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«Excelente curso, muy recomendable. Más allá de mis expectativas.»</blockquote><cite>Mariela Pardo, reseña en Google</cite></div><div class="voz"><p class="estrellas">★★★★★</p><blockquote>«No es un curso de recetas. Es aprender a pensar la cocina de otra manera.»</blockquote><cite>Lucía Fernández, curso de 3 meses</cite></div><!--/o--></div>
 
   <h2>Horarios y precio</h2>
   <div class="comanda" data-estado-de="curso" data-estado="abierto">
@@ -221,7 +221,7 @@
     </ul>
     <p class="comanda-nota">Transferencia · Abitab · RedPagos · MercadoPago. Ahorrás <!--o:curso.ahorro-->$2.200<!--/o--> pagando el curso completo.</p>
     <div class="comanda-acciones">
-      <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar →<!--/o--></a>
+      <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar<!--/o--></a>
       <a href="https://wa.me/59894064148?text=Le%C3%AD%20el%20programa%20del%20curso%20y%20tengo%20una%20consulta." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="curso">Preguntar por WhatsApp</a>
     </div>
   </div>
@@ -233,20 +233,20 @@
     <span class="senal">¿No podés en esta edición?</span>
     <h2>Te avisamos de la próxima.</h2>
     <p>Los grupos son chicos y las fechas se llenan. Dejanos tu mail y sos de los primeros en enterarte cuando abramos la próxima edición.</p>
-    <a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="btn btn-claro" data-producto="programa">Avisame de la próxima edición →</a>
+    <a href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="btn btn-claro" data-producto="programa">Avisame de la próxima edición</a>
     <p class="nota">Tu mail no se comparte con nadie.</p>
   </div>
 
   <div class="prog-acciones">
     <button type="button" class="prog-guardar" id="prog-guardar">Guardar o imprimir este programa</button>
-    <a href="/curso" class="prog-guardar">Ver la página del curso →</a>
+    <a href="/curso" class="prog-guardar">Ver la página del curso</a>
   </div>
 
 </article>
 </main>
 
 <aside class="sticky-cta" id="sticky-cta" aria-label="Reserva rápida">
-  <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="cta-main" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar →<!--/o--></a>
+  <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20jueves%20de%2019%3A00%20a%2021%3A00." target="_blank" rel="noopener noreferrer" class="cta-main" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar<!--/o--></a>
   <a data-set="href=curso.wa_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20tengo%20una%20pregunta%20sobre%20el%20curso%20de%20cocina." target="_blank" rel="noopener noreferrer" class="wa-btn" aria-label="Consultar por WhatsApp" data-producto="curso">💬</a>
 </aside>
 <footer class="pie">
