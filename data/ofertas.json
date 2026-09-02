@@ -92,22 +92,15 @@
       "nombre": "Pastas sin gluten",
       "nombre_corto": "Pastas sin gluten",
       "estado": "ultimos",
-      "fecha_iso": "2026-09-03",
-      "fecha_texto": "jueves 3 de setiembre",
-      "hora": "10:00 a 13:30 h",
-      "hora_inicio": "10:00",
-      "hora_fin": "13:30",
+      "fecha_iso": "2026-09-04",
+      "fecha_texto": "viernes 4 de setiembre",
+      "hora": "19:00 a 22:30 h",
+      "hora_inicio": "19:00",
+      "hora_fin": "22:30",
       "precio": "$2.700",
       "precio_num": "2700",
       "cupos_total": 12,
-      "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten",
-      "segunda_fecha": {
-        "iso": "2026-09-04",
-        "texto": "viernes 4 de setiembre",
-        "hora": "19:00",
-        "hora_fin": "22:30",
-        "link": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten-ae88"
-      }
+      "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten-ae88"
     },
     "alfajores": {
       "nombre": "Alfajores plant-based",
