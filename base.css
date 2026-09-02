@@ -171,6 +171,10 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
   .nav-links.abierto{display:flex;position:fixed;inset:0;background:var(--tinta);z-index:210;flex-direction:column;justify-content:center;align-items:center;gap:1.8rem}
   .nav-links.abierto .solo-menu{display:block}
   .nav-links.abierto a{font-family:var(--display);font-size:1.9rem;color:var(--cal)}
+  /* En el menú a pantalla completa los enlaces miden 30px y el botón de
+     reservar medía 13,6: lo que queremos que toquen era lo más chico de la
+     pantalla. Ahora entra en la misma escala. */
+  .nav-links.abierto .nav-cta{font-size:1.25rem!important;padding:.7rem 1.9rem!important}
   body.menu-abierto .cerrar-menu{display:block;position:fixed;top:1.1rem;right:1.1rem;font-size:1.8rem;color:var(--cal);z-index:211;min-width:44px;min-height:44px}
 }
 
