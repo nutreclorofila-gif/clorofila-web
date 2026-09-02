@@ -338,6 +338,10 @@ datos.curso.grupos_label = abiertos.length === 0 ? 'Grupos'
 // días de una edición ya terminada. Ahora sale de los grupos abiertos.
 // "3 cuotas de $4.800" -> "3 de $4.800": la etiqueta de la comanda ya dice "En cuotas".
 datos.curso.cuotas_corto = String(datos.curso.precio_cuotas || '').replace(' cuotas ', ' ');
+// La cuota con tarjeta es con la que se entra de verdad: $1.016 contra $4.800.
+// "hasta 12 cuotas de $1.016" -> "12 de $1.016".
+datos.curso.cuotas_tarjeta_corto = String(datos.curso.precio_tarjeta || '')
+  .replace(/^hasta\s+/, '').replace(' cuotas ', ' ');
 datos.curso.horarios_html = abiertos.length
   ? abiertos.map(function (g) {
       return '<tr><th scope="row">' + escapar(g.nombre) + '</th><td>' +
@@ -485,7 +489,7 @@ if (t.estado !== 'sin-fecha' && t.fecha_iso) {
   if (t.segunda_fecha && t.segunda_fecha.texto) {
     agenda.push({
       iso: (t.segunda_fecha.iso || t.fecha_iso) + '-b', nombre: 'Cena y Taller de Tapeo',
-      fecha: t.segunda_fecha.texto, hora: t.horario_texto, precio: t.precio,
+      fecha: t.segunda_fecha.texto, hora: horarioDe(t.segunda_fecha, t.horario_texto), precio: t.precio,
       estado: 'abierto', etiqueta: 'Segunda fecha', link: '/tapeo', cta: 'Ver la experiencia'
     });
   }
@@ -505,7 +509,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   if (w.segunda_fecha && w.segunda_fecha.texto) {
     agenda.push({
       iso: (w.segunda_fecha.iso || w.fecha_iso) + '-b', nombre: w.nombre, fecha: w.segunda_fecha.texto,
-      hora: w.hora, precio: w.precio, estado: 'abierto', etiqueta: 'Segunda fecha',
+      hora: horarioDe(w.segunda_fecha, w.hora), precio: w.precio, estado: 'abierto', etiqueta: 'Segunda fecha',
       link: (id === 'pastas-sin-gluten') ? '/pastas' : '/talleres#' + id, cta: 'Ver el taller'
     });
   }
@@ -551,7 +555,6 @@ datos.agenda_html = agenda.map(function (e) {
        y cuándo, pero no cuánto, y ese es de los tres el que más se busca. Ya
        está publicado en cada página; acá solo se muestra un clic antes. Lo que
        no tiene fecha tampoco tiene precio, y ahí no se escribe nada. */
-    (e.precio ? '<p class="agenda-precio">' + escapar(e.precio) + '</p>' : '') +
     '<a href="' + enlace(e.link) + '" class="agenda-link" data-producto="agenda">' + escapar(e.cta) + '</a>' +
     '</li>';
 }).join('');
