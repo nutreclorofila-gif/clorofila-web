@@ -191,9 +191,15 @@
   // Si esa propuesta no tiene fecha cargada, no ofrecemos agregarla al calendario.
   var cal = bloque && bloque.querySelector('[data-calendario]');
   if (cal && !cal.getAttribute('href')) cal.remove();
-  // Conversión: acá termina el camino que empezó en Instagram.
-  if (typeof gtag === 'function') gtag('event', 'reserva_recibida', { producto: elegido });
-  if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: elegido });
+  /* Conversión: acá termina el camino que empezó en Instagram.
+     Si la persona todavía no aceptó las cookies, GA4 y el pixel no existen y la
+     conversión se perdía. Se espera el aviso de consent.js, igual que track.js. */
+  function medirReserva() {
+    if (typeof gtag === 'function') gtag('event', 'reserva_recibida', { producto: elegido });
+    if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: elegido });
+  }
+  if (window.__analyticsLoaded) medirReserva();
+  else window.addEventListener('analytics:listo', medirReserva);
 })();
 </script>
 </body>
