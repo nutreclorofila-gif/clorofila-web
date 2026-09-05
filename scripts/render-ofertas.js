@@ -706,6 +706,10 @@ for (const archivo of archivos) {
         return _m;
       }
       let tocado = false;
+      /* Los @id de eventos que se quedaron sin fecha: se sacan del @graph al
+         final, cuando el recorrido terminó (borrar mientras se recorre es
+         cómo se saltean elementos). */
+      const sinFecha = [];
       (function recorrer(nodo) {
         if (Array.isArray(nodo)) return nodo.forEach(recorrer);
         if (!nodo || typeof nodo !== 'object') return;
@@ -768,10 +772,11 @@ for (const archivo of archivos) {
         if (nodo['@id'] === 'https://clorofila.uy/tapeo#evento') {
           const t = datos.tapeo;
           if (t.estado === 'sin-fecha' || !t.fecha_iso) {
-            delete nodo.startDate;
-            delete nodo.endDate;
-            delete nodo.offers;
-            nodo.eventStatus = 'https://schema.org/EventPostponed';
+            /* Sin fecha el evento no se publica. Antes se le sacaba el
+               startDate y se lo dejaba como EventPostponed, pero Google exige
+               startDate en todo Event: quedaba un dato estructurado que Search
+               Console marca como error y que no sirve para nada. */
+            sinFecha.push(nodo['@id']);
           } else {
             nodo.startDate = t.fecha_iso + 'T' + t.hora + ':00-03:00';
             nodo.endDate = t.fecha_iso + 'T' + t.hora_fin + ':00-03:00';
@@ -800,10 +805,7 @@ for (const archivo of archivos) {
         if (nodo['@id'] === 'https://clorofila.uy/pastas#evento') {
           const w = datos.talleres['pastas-sin-gluten'];
           if (w.estado === 'sin-fecha' || !w.fecha_iso) {
-            delete nodo.startDate;
-            delete nodo.endDate;
-            delete nodo.offers;
-            nodo.eventStatus = 'https://schema.org/EventPostponed';
+            sinFecha.push(nodo['@id']);
           } else {
             nodo.startDate = w.fecha_iso + 'T' + w.hora_inicio + ':00-03:00';
             nodo.endDate = w.fecha_iso + 'T' + w.hora_fin + ':00-03:00';
@@ -860,6 +862,13 @@ for (const archivo of archivos) {
           });
           tocado = true;
         }
+      }
+
+      if (sinFecha.length && Array.isArray(ld['@graph'])) {
+        ld['@graph'] = ld['@graph'].filter(function (n) {
+          return !n || sinFecha.indexOf(n['@id']) === -1;
+        });
+        tocado = true;
       }
 
       if (!tocado) return _m;
