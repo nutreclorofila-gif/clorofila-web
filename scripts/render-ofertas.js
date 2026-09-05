@@ -989,6 +989,19 @@ for (const archivo of archivos) {
         }
       }
 
+      /* Cuando una fecha vence, arriba se le sacan startDate, endDate y la
+         oferta al evento. Pero schema.org pide startDate en todo Event, así que
+         lo que quedaba era un evento inválido: Google lo rechazaba entero.
+         Un evento sin fecha no es un evento. Sale del @graph; el Course y las
+         preguntas siguen describiendo la propuesta, que es lo que no cambia. */
+      if (Array.isArray(ld['@graph'])) {
+        const antes = ld['@graph'].length;
+        ld['@graph'] = ld['@graph'].filter(function (n) {
+          return !(n && n['@type'] === 'Event' && !n.startDate);
+        });
+        if (ld['@graph'].length !== antes) tocado = true;
+      }
+
       if (!tocado) return _m;
       return abre + '\n  ' + JSON.stringify(ld) + '\n  ' + cierra;
     }
