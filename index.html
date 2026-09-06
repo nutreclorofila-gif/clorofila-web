@@ -51,7 +51,12 @@
 .hero h1{margin-block:1rem 1.15rem;font-size:clamp(2.35rem,5vw,3.9rem);max-width:15ch;line-height:1.03}
 .hero h1 .viva{color:var(--brote);font-style:normal}
 .hero-bajada{font-size:clamp(.98rem,1.35vw,1.06rem);color:var(--cal-med);max-width:48ch;margin-bottom:1.75rem}
-.hero-acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:2.25rem}
+.hero-acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:.9rem}
+/* La home tenía 113 visitas y cero contactos en 28 días: los dos botones de
+   arriba llevan a otra página y el primer WhatsApp aparecía pasada la mitad
+   del scroll. Las páginas que sí convierten -/talleres 13%, /tapeo 18%- son
+   las que tienen la reserva a mano. Esta línea es el camino corto. */
+.hero-ayuda{font-size:.92rem;color:var(--cal-baja);max-width:44ch;margin-bottom:2.25rem}
 .hero-datos{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--linea);padding-top:1.25rem}
 .hero-dato{padding-right:1.6rem;margin-right:1.6rem;border-right:1px solid var(--linea)}
 .hero-dato:last-child{border-right:0;margin-right:0;padding-right:0}
@@ -211,6 +216,7 @@
         <a href="#agenda" class="btn btn-primario">Ver próximas fechas</a>
         <a href="/curso" class="btn btn-linea">Ver el curso de cocina saludable</a>
       </div>
+      <p class="hero-ayuda">¿No sabés cuál te conviene? <a class="enlace-vivo" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20info%20de%20Clorofila." target="_blank" rel="noopener noreferrer">Escribile a Leonardo</a>, contesta él.</p>
       <ul class="hero-datos">
         <li class="hero-dato"><b>1.200</b><span>personas formadas</span></li>
         <li class="hero-dato"><b>13</b><span>años enseñando</span></li>
