@@ -25,7 +25,7 @@
   /* Tipografía */
   --display:'Bricolage Grotesque','Times New Roman',serif;
   --texto:'Karla',system-ui,sans-serif;
-  --dato:'JetBrains Mono',ui-monospace,monospace;
+  --dato:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
 
   /* Medidas */
   --max:1200px;
@@ -93,7 +93,7 @@ strong{color:var(--cal);font-weight:600}
   color:var(--miel);
   font-weight:600;
 }
-.dato-lg{font-family:var(--dato);font-size:1.05rem;letter-spacing:.01em;color:var(--cal)}
+.dato-lg{font-family:var(--texto);font-size:1.05rem;color:var(--cal)}
 
 /* La señal: lo que sitúa a la sección antes del título.
    Estaba en versalitas monoespaciadas con una rayita al costado, que es el
@@ -296,7 +296,7 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
 .fechas a{display:flex;flex-direction:column;gap:.1rem;border:1px solid var(--linea);border-radius:var(--r);padding:.6rem .85rem;transition:border-color .2s,background .2s,transform .2s var(--ease);min-height:48px;justify-content:center}
 .fechas a:hover{border-color:var(--brote);background:rgba(143,192,138,.07);transform:translateX(3px)}
 .fechas strong{font-family:var(--texto);font-size:.95rem;color:var(--cal);font-weight:600}
-.fechas span{font-family:var(--dato);font-size:.7rem;letter-spacing:.03em;color:var(--cal-med)}
+.fechas span{font-family:var(--texto);font-size:.7rem;color:var(--cal-med)}
 
 /* Lo que solo tiene sentido cuando hay una fecha publicada. */
 [data-estado="sin-fecha"] .solo-con-fecha{display:none}
