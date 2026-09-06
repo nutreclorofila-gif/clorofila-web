@@ -181,7 +181,12 @@
     # según dónde esté el visitante. Con el host fijo, el diagnóstico de la
     # etiqueta marcaba «la configuración de seguridad está bloqueando la
     # medición». doubleclick y google.com son para las conversiones de Google Ads.
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://connect.facebook.net https://tally.so; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.uy; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://connect.facebook.net https://www.facebook.com; frame-src https://www.google.com https://*.g.doubleclick.net https://tally.so; frame-ancestors 'self'; form-action 'self' https://tally.so; manifest-src 'self'; object-src 'none'; base-uri 'self'"
+    # google.com.uy y pagead2 van en connect-src, no solo en img-src: GA4 manda
+    # los pings de publicidad al dominio local del visitante, y en Uruguay ese es
+    # google.com.uy. Sin los dos, el diagnóstico de la etiqueta seguía en
+    # «Urgente: la configuración de seguridad de su sitio web está bloqueando la
+    # medición», que es lo que decía el 6/9/2026.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://connect.facebook.net https://tally.so; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.uy; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.uy https://pagead2.googlesyndication.com https://connect.facebook.net https://www.facebook.com; frame-src https://www.google.com https://*.g.doubleclick.net https://tally.so; frame-ancestors 'self'; form-action 'self' https://tally.so; manifest-src 'self'; object-src 'none'; base-uri 'self'"
 
 [[headers]]
   for = "/og/*"
