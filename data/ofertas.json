@@ -49,19 +49,19 @@
       {
         "id": "miercoles",
         "nombre": "Miércoles",
-        "horario": "10:00 a 12:00 h",
+        "horario": "19:00 a 21:00 h",
         "inicio_iso": "2026-10-07",
         "inicio_texto": "Arranca el miércoles 7 de octubre",
-        "detalle": "Clase semanal · 12 encuentros. El grupo de mañana, con el estudio tranquilo y luz de día.",
+        "detalle": "Clase semanal · 12 encuentros. Para quienes salen de trabajar y quieren cerrar el día cocinando.",
         "estado": "abierto"
       },
       {
         "id": "jueves",
         "nombre": "Jueves",
-        "horario": "19:00 a 21:00 h",
+        "horario": "10:00 a 12:00 h",
         "inicio_iso": "2026-10-08",
         "inicio_texto": "Arranca el jueves 8 de octubre",
-        "detalle": "Clase semanal · 12 encuentros. Para quienes salen de trabajar y quieren cerrar el día cocinando.",
+        "detalle": "Clase semanal · 12 encuentros. El grupo de mañana, con el estudio tranquilo y luz de día.",
         "estado": "abierto"
       }
     ]
