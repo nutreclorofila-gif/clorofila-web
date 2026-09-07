@@ -43,7 +43,38 @@
   // para no repetir los try/catch.
   window.consentimiento = { leer: leer, guardar: guardar };
 
-  window.loadAnalytics = function () {
+  var aceptado = leer() === 'accepted';
+
+  /* El estado por defecto tiene que declararse antes de cargar gtag.js, o el
+     primer ping sale con el permiso implícito y escribe cookies igual. */
+  gtag('consent', 'default', {
+    ad_storage: aceptado ? 'granted' : 'denied',
+    ad_user_data: aceptado ? 'granted' : 'denied',
+    ad_personalization: aceptado ? 'granted' : 'denied',
+    analytics_storage: aceptado ? 'granted' : 'denied'
+  });
+
+  /* Sin cookies, el gclid se pierde al pasar de una página a otra y la visita
+     queda en Analytics como "(not set)", con 0 % de interacción.
+     url_passthrough lo arrastra en la URL; ads_data_redaction saca los
+     identificadores de los pings de Ads mientras el permiso siga denegado. */
+  gtag('set', 'url_passthrough', true);
+  gtag('set', 'ads_data_redaction', !aceptado);
+
+  /* track.js guarda los eventos que ocurrieron antes de que la analítica
+     estuviera lista (la vista de producto, sobre todo) y los manda recién con
+     este aviso. Sin él se perdían: eran casi la mitad. */
+  function avisarQueEstaListo() {
+    try {
+      window.dispatchEvent(new Event('analytics:listo'));
+    } catch (e) {
+      var ev = document.createEvent('Event');
+      ev.initEvent('analytics:listo', false, false);
+      window.dispatchEvent(ev);
+    }
+  }
+
+  function cargarEtiquetas() {
     if (window.__analyticsLoaded) return;
     if (DOMINIOS.indexOf(location.hostname) === -1) return;
     window.__analyticsLoaded = true;
@@ -64,20 +95,32 @@
       t = b.createElement(e); t.async = !0; t.src = v;
       s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
     }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+    /* revoke tiene que ir antes de init: después, el pixel ya mandó el primer
+       evento con cookies. */
+    if (!aceptado) fbq('consent', 'revoke');
     fbq('init', META_ID);
     fbq('track', 'PageView');
 
-    /* track.js guarda los eventos que ocurrieron antes de que la persona
-       aceptara las cookies (la vista de producto, sobre todo) y los manda
-       recién acá. Sin este aviso se perdían: eran casi la mitad. */
-    try {
-      window.dispatchEvent(new Event('analytics:listo'));
-    } catch (e) {
-      var ev = document.createEvent('Event');
-      ev.initEvent('analytics:listo', false, false);
-      window.dispatchEvent(ev);
-    }
+    avisarQueEstaListo();
+  }
+
+  /* pagina.js llama a esto cuando alguien aprieta "Aceptar" en el banner. Las
+     etiquetas ya están cargadas: acá solo se concede el permiso. */
+  window.loadAnalytics = function () {
+    aceptado = true;
+    gtag('consent', 'update', {
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      analytics_storage: 'granted'
+    });
+    gtag('set', 'ads_data_redaction', false);
+    if (window.fbq) fbq('consent', 'grant');
+    cargarEtiquetas();
+    // Por si quedó algo en la cola de track.js entre la carga y el permiso.
+    if (window.__analyticsLoaded) avisarQueEstaListo();
   };
 
-  if (leer() === 'accepted') window.loadAnalytics();
+  cargarEtiquetas();
 })();
