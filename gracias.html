@@ -59,7 +59,7 @@
 
 .pasos{counter-reset:paso;display:grid}
 .pasos li{counter-increment:paso;display:grid;grid-template-columns:2rem 1fr;gap:.2rem 1rem;border-top:1px solid var(--linea);padding-block:1.1rem}
-.pasos li::before{content:counter(paso);grid-row:span 2;font-family:var(--texto);font-size:.72rem;color:var(--brote);padding-top:.3rem}
+.pasos li::before{content:counter(paso);grid-row:span 2;font-family:var(--texto);font-size:.75rem;color:var(--brote);padding-top:.3rem}
 .pasos strong{font-family:var(--display);font-size:1.1rem;color:var(--cal);letter-spacing:-.02em;font-weight:500}
 .pasos span{font-size:.92rem;color:var(--cal-med)}
 
@@ -111,7 +111,7 @@
 <figure class="gracias-foto">
   <picture>
     <source srcset="img-comunidad-700.webp 700w, img-comunidad.webp 1800w" sizes="(max-width: 900px) calc(100vw - 3rem), min(760px, 100vw)" type="image/webp">
-    <img src="img-comunidad.jpg" width="1800" height="1013" alt="El grupo al final de una clase, detrás de la mesa con todo lo que cocinaron" loading="lazy" decoding="async">
+    <img src="img-comunidad.jpg" width="1800" height="1013" alt="El grupo al final de una clase, detrás de la mesa con todo lo que cocinaron" loading="eager" decoding="async">
   </picture>
   <figcaption>Así termina una clase acá</figcaption>
 </figure>
