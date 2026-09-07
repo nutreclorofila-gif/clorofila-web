@@ -907,7 +907,8 @@ for (const archivo of archivos) {
                 price: String(t.precio_num),
                 availability: t.estado === 'agotado'
                   ? 'https://schema.org/SoldOut'
-                  : 'https://schema.org/InStock'
+                  : 'https://schema.org/InStock',
+                validThrough: t.fecha_iso + 'T' + t.hora + ':00-03:00'
               };
             } else {
               delete nodo.offers;
@@ -937,7 +938,8 @@ for (const archivo of archivos) {
                 price: String(w.precio_num),
                 availability: w.estado === 'agotado'
                   ? 'https://schema.org/SoldOut'
-                  : 'https://schema.org/InStock'
+                  : 'https://schema.org/InStock',
+                validThrough: w.fecha_iso + 'T' + w.hora_inicio + ':00-03:00'
               };
             } else {
               delete nodo.offers;
@@ -989,6 +991,23 @@ for (const archivo of archivos) {
           });
           tocado = true;
         }
+      }
+
+      /* El evento nombraba al organizador con una referencia al nodo del home.
+         Es válido en JSON-LD, pero Google lee cada página por separado y ahí
+         esa referencia no resuelve: pedía el nombre y la dirección sueltos. */
+      if (Array.isArray(ld['@graph'])) {
+        ld['@graph'].forEach(function (n) {
+          if (n && n['@type'] === 'Event' && n.organizer && !n.organizer.name) {
+            n.organizer = {
+              '@id': 'https://clorofila.uy/#organization',
+              '@type': 'Organization',
+              name: 'Clorofila',
+              url: 'https://clorofila.uy/'
+            };
+            tocado = true;
+          }
+        });
       }
 
       /* Cuando una fecha vence, arriba se le sacan startDate, endDate y la
