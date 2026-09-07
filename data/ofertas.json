@@ -139,6 +139,13 @@
     "puntaje": 4.9,
     "resenas": 22
   },
+  "estudio": {
+    "_leeme": "Los años que el sitio dice de Clorofila y de Leonardo. No se escriben en años sino en el año de inicio, para que npm test avise cuando cambia el año y el texto de las páginas quede viejo. Ver scripts/check-antiguedad.js.",
+    "fundacion": 2013,
+    "ensena_desde": 2013,
+    "cocina_desde": 2001,
+    "personas_formadas": "1.200"
+  },
   "instagram": {
     "_leeme": "El número de seguidores, verificado en el perfil. Actualizalo cuando cambie de miles.",
     "seguidores_texto": "Ya somos 26.500",
