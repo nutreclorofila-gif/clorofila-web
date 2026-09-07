@@ -93,7 +93,6 @@ strong{color:var(--cal);font-weight:600}
   color:var(--miel);
   font-weight:600;
 }
-.dato-lg{font-family:var(--texto);font-size:1.05rem;color:var(--cal)}
 
 /* La señal: lo que sitúa a la sección antes del título.
    Estaba en versalitas monoespaciadas con una rayita al costado, que es el
