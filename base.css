@@ -124,6 +124,11 @@ strong{color:var(--cal);font-weight:600}
   min-height:48px;
 }
 .btn:hover{transform:translateY(-2px)}
+/* En el teléfono no hay hover: al tocar el botón no pasaba nada hasta que
+   cambiaba la página, y con WhatsApp esa espera se siente. El brillo baja
+   apenas mientras el dedo está apoyado, y sirve igual con el movimiento
+   reducido porque no es movimiento. */
+.btn:active{transform:translateY(0);filter:brightness(.92)}
 .btn-primario{background:var(--miel);color:#20140A;box-shadow:0 6px 22px rgba(240,179,85,.24)}
 .btn-primario:hover{background:#F7C273;box-shadow:0 10px 30px rgba(240,179,85,.34)}
 .btn-linea{border:1.5px solid var(--linea-fuerte);color:var(--cal)}
