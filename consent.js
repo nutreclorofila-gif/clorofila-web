@@ -43,7 +43,37 @@
   // para no repetir los try/catch.
   window.consentimiento = { leer: leer, guardar: guardar };
 
-  window.loadAnalytics = function () {
+  /* Modo de consentimiento (Consent Mode v2).
+
+     Antes, Analytics solo arrancaba si la persona apretaba "Aceptar". Como
+     dos de cada tres se van sin tocar el cartel, esas visitas no existían:
+     en la semana del 31/8/2026 Ads cobró 41 clics y Analytics vio 13. Sin
+     esas visitas, el sitio no sabe qué anuncio ni qué búsqueda trae gente.
+
+     Ahora se declara de entrada que NO hay permiso para nada. Con los
+     permisos en "denied", Google no escribe cookies ni guarda nada en el
+     dispositivo: manda un aviso anónimo, sin identificador, que sirve para
+     contar la visita y de dónde vino. Al aceptar, recién ahí pasa a
+     "granted" y se comporta como siempre.
+
+     Esto tiene que quedar declarado ANTES de cargar gtag: lo que se manda
+     antes de esta línea viaja con los permisos de fábrica, que son todos
+     concedidos. */
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied'
+  });
+  // Sin cookies, la única forma de saber de qué anuncio vino alguien es que
+  // el gclid viaje en la dirección; y con los permisos denegados conviene
+  // que Google recorte los datos de publicidad que igual recibe.
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', true);
+
+  /* Carga Analytics con los permisos que haya en ese momento. Se llama
+     siempre (salvo que la persona haya dicho que no), no solo al aceptar. */
+  function cargarGA() {
     if (window.__analyticsLoaded) return;
     if (DOMINIOS.indexOf(location.hostname) === -1) return;
     window.__analyticsLoaded = true;
@@ -54,6 +84,36 @@
     document.head.appendChild(ga);
     gtag('js', new Date());
     gtag('config', GA_ID);
+
+    /* track.js guarda los eventos que ocurrieron antes de que Analytics
+       estuviera listo (la vista de producto, sobre todo) y los manda recién
+       acá. Sin este aviso se perdían: eran casi la mitad. */
+    try {
+      window.dispatchEvent(new Event('analytics:listo'));
+    } catch (e) {
+      var ev = document.createEvent('Event');
+      ev.initEvent('analytics:listo', false, false);
+      window.dispatchEvent(ev);
+    }
+  }
+
+  window.loadAnalytics = function () {
+    if (DOMINIOS.indexOf(location.hostname) === -1) return;
+
+    // Aceptó: se levantan los cuatro permisos. Si Analytics ya venía
+    // midiendo en modo anónimo, esto le avisa que ahora sí puede recordar.
+    gtag('consent', 'update', {
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      analytics_storage: 'granted'
+    });
+    cargarGA();
+
+    // El píxel de Meta no entiende de permisos parciales: o mide con cookies
+    // o no mide. Por eso sigue cargando solo cuando la persona acepta.
+    if (window.__metaCargado) return;
+    window.__metaCargado = true;
 
     !function (f, b, e, v, n, t, s) {
       if (f.fbq) return; n = f.fbq = function () {
@@ -66,18 +126,14 @@
     }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', META_ID);
     fbq('track', 'PageView');
-
-    /* track.js guarda los eventos que ocurrieron antes de que la persona
-       aceptara las cookies (la vista de producto, sobre todo) y los manda
-       recién acá. Sin este aviso se perdían: eran casi la mitad. */
-    try {
-      window.dispatchEvent(new Event('analytics:listo'));
-    } catch (e) {
-      var ev = document.createEvent('Event');
-      ev.initEvent('analytics:listo', false, false);
-      window.dispatchEvent(ev);
-    }
   };
 
-  if (leer() === 'accepted') window.loadAnalytics();
+  var decision = leer();
+  if (decision === 'accepted') {
+    window.loadAnalytics();
+  } else if (decision !== 'declined') {
+    // Todavía no decidió: se cuenta la visita sin cookies ni identificador.
+    // A quien apretó "No, gracias" no se lo mide de ninguna forma.
+    cargarGA();
+  }
 })();
