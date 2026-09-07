@@ -285,11 +285,15 @@ for (const [id, w] of Object.entries(datos.talleres)) {
     w.estado === 'agotado' ? 'Agotado' :
     w.estado === 'ultimos' ? 'Últimos lugares' :
     w.estado === 'abierto' ? 'Fecha abierta' :
-    'Sin fecha por ahora';
+    // "Sin fecha por ahora" arrancaba por la negación, y entre la etiqueta, la
+    // línea de abajo y el aviso de la intro, /talleres decía trece veces que no
+    // hay nada. Esto dice lo mismo contando cómo funciona, que es lo que la
+    // persona necesita para saber qué hacer.
+    'Se abre por demanda';
 
   // Una sola línea con lo que decide la compra: cuándo y cuánto.
   w.linea = w.estado === 'sin-fecha'
-    ? (w.linea_sin_fecha || 'Se abre según la demanda — dejá tu interés y te avisamos.')
+    ? (w.linea_sin_fecha || 'Dejanos tu interés y te avisamos apenas abramos fecha.')
     : [w.fecha_texto, w.hora, w.precio].filter(Boolean).join(' · ');
 
   w.wa_link = waBase + encodeURIComponent(
