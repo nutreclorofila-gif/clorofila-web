@@ -869,6 +869,19 @@ for (const archivo of archivos) {
           tocado = true;
         }
 
+        // Google no resuelve @id a otra página: el provider del curso va completo,
+        // igual que el organizer de los eventos. Y la categoría de la oferta
+        // solo puede ser Free, Partially Free, Subscription o Paid: con otra
+        // cosa Google descarta el curso entero.
+        if (nodo["@type"] === "Course") {
+          nodo.provider = { "@id": "https://clorofila.uy/#organization", "@type": "Organization",
+                            name: "Clorofila", url: "https://clorofila.uy/" };
+          const insts = [].concat(nodo.hasCourseInstance || []);
+          insts.forEach(function (i) { if (i.offers) i.offers.category = "Paid"; });
+          if (insts[0] && insts[0].offers) nodo.offers = Object.assign({}, insts[0].offers, { category: "Paid" });
+          tocado = true;
+        }
+
         // Lo mismo con "¿puedo cambiarme de grupo?": prometía tres horarios.
         if (nodo['@type'] === 'Question' && /cambiarme de grupo/i.test(nodo.name || '') &&
             nodo.acceptedAnswer && datos.curso.faq_cambio_grupo) {
