@@ -140,7 +140,11 @@
 .curso-transforma{display:grid;grid-template-columns:1fr 1fr;gap:.4rem 1.5rem;margin:1.75rem 0}
 .curso-transforma li{font-size:.9rem;color:var(--cal-med);padding-block:.5rem;border-top:1px solid var(--linea);display:flex;gap:.6rem}
 .curso-transforma li::before{content:"—";color:var(--brote);flex-shrink:0}
-.curso-destacado-pie{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin-top:1.5rem}
+/* La fecha de arranque estaba en cinco páginas menos en esta, que es donde
+   llega casi toda la gente. Sin ella, "Reservar mi lugar" pide una decisión
+   sin el dato que la define. */
+.curso-cuando{margin-top:1.5rem;color:var(--miel);font-weight:500}
+.curso-destacado-pie{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin-top:.9rem}
 .curso-destacado-precio small{font-size:.9rem;color:var(--cal-med);font-weight:400}
 @media (max-width:900px){.curso-destacado{grid-template-columns:1fr}.curso-destacado-foto{order:-1;aspect-ratio:16/10}.curso-transforma{grid-template-columns:1fr}}
 
@@ -277,6 +281,7 @@
           <li>Poder improvisar con criterio</li>
           <li>Cocinar el resto de tu vida</li>
         </ul>
+        <p class="curso-cuando"><!--o:curso.inicio_texto-->Arranca el miércoles 7 de octubre<!--/o-->.</p>
         <div class="curso-destacado-pie">
           <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2019%3A00%20a%2021%3A00%20o%20el%20de%20los%20jueves%20de%2010%3A00%20a%2012%3A00." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar<!--/o--></a>
           <a href="/programa" class="enlace-vivo">Ver el programa completo</a>
