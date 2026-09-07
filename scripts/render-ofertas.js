@@ -989,6 +989,23 @@ for (const archivo of archivos) {
         }
       }
 
+      /* Cuando una fecha vence, la regla de más arriba la baja sola y el
+         evento se queda sin startDate. Pero un Event sin startDate no es un
+         evento para Google: descarta el bloque entero, y con él se van también
+         el Course y las preguntas frecuentes de esa página. Así que el evento
+         sin fecha se saca del @graph en vez de quedar publicado a medias. Lo
+         que sigue siendo cierto -que el taller existe y de qué se trata- vive
+         en el Course, que no se toca. */
+      if (Array.isArray(ld['@graph'])) {
+        const conFecha = ld['@graph'].filter(function (n) {
+          return !(n && n['@type'] === 'Event' && !n.startDate);
+        });
+        if (conFecha.length !== ld['@graph'].length) {
+          ld['@graph'] = conFecha;
+          tocado = true;
+        }
+      }
+
       if (!tocado) return _m;
       return abre + '\n  ' + JSON.stringify(ld) + '\n  ' + cierra;
     }
