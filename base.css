@@ -191,6 +191,18 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
 .pie-fin a{display:inline-block;padding-block:.35rem}
 @media (max-width:760px){.pie-caja{grid-template-columns:1fr 1fr}.pie-marca{grid-column:1/-1}}
 
+/* --- Navegación entre páginas -------------------------------------------
+   Cada clic a otra página parpadeaba en blanco. Es un sitio de varias páginas
+   estáticas, que es el caso para el que se hizo esto: el navegador funde una
+   con la otra y la navegación deja de cortar. No es un efecto agregado, es lo
+   que pasa al moverse; por eso respeta a quien pidió menos movimiento y los
+   navegadores que no lo soportan siguen navegando como siempre. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation-duration: .22s; }
+}
+
 /* --- Entradas -----------------------------------------------------------
    Cada sección entraba con un fade y un desplazamiento de 18px: 126 elementos
    haciendo lo mismo. Cuando todo se mueve, el movimiento deja de significar
