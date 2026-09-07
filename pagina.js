@@ -186,7 +186,17 @@
   var banner = document.getElementById('cookie-banner');
   if (banner) {
     if (!almacen.leer()) {
-      setTimeout(function () { banner.classList.add('visible'); }, 700);
+      /* Aparecía a los 700 ms, de golpe y apoyado sobre el hero: lo primero
+         que pasaba al entrar era que algo tapaba la foto. Ahora espera a que
+         la persona empiece a leer —el primer scroll— y si no scrollea sale
+         igual a los 2,5 s, porque sin respuesta el pixel de Meta no carga. */
+      var mostrarAviso = function () {
+        if (banner.classList.contains('visible')) return;
+        banner.classList.add('visible');
+        window.removeEventListener('scroll', mostrarAviso);
+      };
+      window.addEventListener('scroll', mostrarAviso, { passive: true });
+      setTimeout(mostrarAviso, 2500);
     }
     var ok = document.getElementById('cookie-accept');
     var no = document.getElementById('cookie-decline');
