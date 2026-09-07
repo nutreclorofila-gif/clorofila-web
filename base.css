@@ -344,10 +344,15 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
 /* --- Preguntas frecuentes --- */
 .faq{max-width:760px;margin-inline:auto}
 .faq-item{border-bottom:1px solid var(--linea)}
-.faq-q{display:flex;justify-content:space-between;align-items:center;gap:1rem;width:100%;text-align:left;padding:1.15rem 0;font-size:1rem;color:var(--cal);font-weight:500;min-height:52px}
+/* El acordeón lo hace <details>: la respuesta se puede buscar con Ctrl+F, se
+   puede enlazar directo, y el navegador cierra la anterior al abrir otra por el
+   name compartido. Antes el texto tenía alto cero y buscar en la página no
+   encontraba nada de lo que dicen las respuestas. */
+.faq-q{display:flex;justify-content:space-between;align-items:center;gap:1rem;width:100%;text-align:left;padding:1.15rem 0;font-size:1rem;color:var(--cal);font-weight:500;min-height:52px;cursor:pointer;list-style:none}
+.faq-q::-webkit-details-marker{display:none}
 .faq-icon{font-family:var(--dato);color:var(--brote);font-size:1.1rem;flex-shrink:0;transition:transform .25s var(--ease)}
-.faq-item.open .faq-icon{transform:rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;font-size:.93rem;color:var(--cal-med);transition:max-height .35s var(--ease),padding .35s var(--ease)}
+.faq-item[open] .faq-icon{transform:rotate(45deg)}
+.faq-a{font-size:.93rem;color:var(--cal-med);padding-bottom:1.15rem}
 
 /* Si el JS no corre, el sitio tiene que seguir sirviendo. Sin pagina.js las
    respuestas quedaban en cero píxeles -el texto está en el HTML pero no se
@@ -364,15 +369,12 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
 .respuesta-corta{background:var(--musgo-alto);border-left:3px solid var(--brote);border-radius:0 var(--r) var(--r) 0;padding:1.1rem 1.3rem;margin-bottom:1.8rem;color:var(--cal)}
 .respuesta-corta strong{color:var(--brote)}
 html:not(.js) .sube{opacity:1;transform:none}
-html:not(.js) .faq-a{max-height:none;padding-bottom:1.15rem}
-html:not(.js) .faq-icon{display:none}
 html:not(.js) .nav{height:auto}
 @media (max-width:900px){
   html:not(.js) .nav-caja{flex-wrap:wrap;height:auto;padding-block:.7rem}
   html:not(.js) .nav-links{display:flex;flex-wrap:wrap;gap:.6rem 1.1rem;width:100%;padding-bottom:.3rem}
   html:not(.js) .hamburguesa{display:none}
 }
-.faq-item.open .faq-a{max-height:420px;padding-bottom:1.15rem}
 
 /* --- Cierre --- */
 .cierre{background:var(--musgo);border-block:1px solid var(--linea)}

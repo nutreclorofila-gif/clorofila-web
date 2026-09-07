@@ -128,13 +128,6 @@
     }
   }
 
-  document.querySelectorAll('.faq-q').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var abierto = b.parentElement.classList.toggle('open');
-      b.setAttribute('aria-expanded', abierto ? 'true' : 'false');
-    });
-  });
-
   // La barra fija de reserva aparece cuando el botón de compra del hero sale
   // de pantalla, no cuando termina todo el hero: en móvil eso llega tarde.
   // En las páginas de venta cuelga del botón del hero; en las demás, que no

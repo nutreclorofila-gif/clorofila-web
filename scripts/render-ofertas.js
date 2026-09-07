@@ -455,9 +455,11 @@ datos.curso.resumen_grupos = abiertos.length
 // prometiendo horarios de una edición que ya pasó.
 datos.curso.faq_cursada = 'Son 3 meses de cursada, 12 clases semanales por grupo. Elegís entre ' +
   datos.curso.grupos.map(function (g) {
-    return g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '') + ', que arranca el ' +
-      g.inicio_texto.toLowerCase().replace(/^arranca el /, '');
-  }).join(', o ') + '.';
+    return g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '');
+  }).join(' o ') + '. ' +
+  'Arrancan el ' + datos.curso.grupos.map(function (g) {
+    return g.inicio_texto.toLowerCase().replace(/^arranca el /, '');
+  }).join(' y el ') + '.';
 
 /* El chip decía "3 modalidades" a mano: quedó de la edición de agosto, que
    tenía tres grupos. Pero además la palabra estaba mal: lo que hay son
