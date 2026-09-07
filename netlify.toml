@@ -250,3 +250,15 @@
   # Regenera fechas, precios, cupos y estado desde data/ofertas.json.
   # Gracias a esto, editar ese archivo alcanza para actualizar la web.
   command = "node scripts/render-ofertas.js"
+
+# Cada construcción cuesta 15 créditos y el plan trae pocos: al 7/9/2026
+# quedaban 49, o sea tres publicaciones hasta que el período cierra el 15.
+# Solo main construye. Si alguien sube una rama de trabajo o abre un pull
+# request, Netlify cancela antes de empezar en vez de gastar una publicación
+# en algo que nadie va a mirar. Para volver a tener vistas previas por rama,
+# borrar estos dos bloques.
+[context.branch-deploy]
+  ignore = "/bin/true"
+
+[context.deploy-preview]
+  ignore = "/bin/true"
