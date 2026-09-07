@@ -147,8 +147,11 @@
   function cuantoFalta(iso) {
     var dias = Math.ceil((new Date(iso + 'T00:00:00') - new Date()) / 86400000);
     if (!(dias > 0)) return null;
-    if (dias <= 7) return dias === 1 ? 'Empieza mañana' : 'Empieza en ' + dias + ' días';
-    var semanas = Math.ceil(dias / 7);
+    if (dias <= 14) return dias === 1 ? 'Empieza mañana' : 'Empieza en ' + dias + ' días';
+    // Redondear siempre para arriba estiraba la espera: a 30 días del inicio
+    // decía "5 semanas" cuando faltaban 4 y pico. Y hasta la quincena se
+    // cuenta en días, que es más exacto y se siente más cerca.
+    var semanas = Math.round(dias / 7);
     return 'Empieza en ' + semanas + ' semana' + (semanas === 1 ? '' : 's');
   }
   /* Una fecha que ya pasó deja de venderse, aunque nadie haya publicado desde
