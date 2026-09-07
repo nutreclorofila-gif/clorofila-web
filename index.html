@@ -101,7 +101,10 @@
 .prop p{font-size:.94rem;color:var(--cal-med);max-width:40ch;margin-bottom:1.1rem}
 .prop-pie{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 @media (max-width:820px){.propuestas{grid-template-columns:1fr}}
-.prop-solo{max-width:620px;margin-inline:auto}
+/* Quedaba con el ancho de media columna, heredado de cuando había dos
+   propuestas lado a lado. El texto no se estira: sigue en su columna dentro
+   de la tarjeta. Lo que gana ancho es la foto. */
+.prop-solo{max-width:none}
 /* Tres fotos debajo de la tarjeta. La noche del tapeo es lo más visual que
    tiene el sitio y con una sola foto -de fondo, y bajo un degradado que la
    oscurece- no se alcanzaba a ver de qué se trata. En el celular la tira se
@@ -113,7 +116,6 @@
   margin:.9rem 0 0;padding-bottom:.2rem}
 /* La tira del tapeo acompaña a una tarjeta angosta y centrada; la del curso va
    debajo de un bloque que ocupa todo el ancho. Cada una sigue a lo suyo. */
-.tira-angosta{max-width:620px;margin-inline:auto}
 .tira-fotos::-webkit-scrollbar{display:none}
 .tira-fotos figure{flex:0 0 62%;scroll-snap-align:center;border-radius:var(--r);
   overflow:hidden;aspect-ratio:1;margin:0}
@@ -308,7 +310,7 @@
         </div>
       </div>
     </article>
-    <div class="tira-fotos tira-angosta sube" role="group" aria-label="Una noche de tapeo, en fotos"><figure><picture><source srcset="img-tapeo-g1-400.webp 400w, img-tapeo-g1.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g1.jpg" width="760" height="760" alt="Verduras y cuencos de ingredientes sobre la mesa de trabajo" loading="lazy" decoding="async"></picture></figure><figure><picture><source srcset="img-tapeo-g2-400.webp 400w, img-tapeo-g2.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g2.jpg" width="760" height="760" alt="Leonardo cocinando junto a un participante" loading="lazy" decoding="async"></picture></figure><figure><picture><source srcset="img-tapeo-g3-400.webp 400w, img-tapeo-g3.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g3.jpg" width="760" height="760" alt="Tres participantes amasando, con las manos llenas de harina" loading="lazy" decoding="async"></picture></figure></div>
+    <div class="tira-fotos sube" role="group" aria-label="Una noche de tapeo, en fotos"><figure><picture><source srcset="img-tapeo-g1-400.webp 400w, img-tapeo-g1.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g1.jpg" width="760" height="760" alt="Verduras y cuencos de ingredientes sobre la mesa de trabajo" loading="lazy" decoding="async"></picture></figure><figure><picture><source srcset="img-tapeo-g2-400.webp 400w, img-tapeo-g2.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g2.jpg" width="760" height="760" alt="Leonardo cocinando junto a un participante" loading="lazy" decoding="async"></picture></figure><figure><picture><source srcset="img-tapeo-g3-400.webp 400w, img-tapeo-g3.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g3.jpg" width="760" height="760" alt="Tres participantes amasando, con las manos llenas de harina" loading="lazy" decoding="async"></picture></figure></div>
   </div>
 </section>
 
