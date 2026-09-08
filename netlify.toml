@@ -176,6 +176,15 @@
   status = 404
   force  = true
 
+# La configuración de Lighthouse respondía 200 en clorofila.uy mientras
+# package.json y CLAUDE.md daban 404. No tiene secretos, pero es config de
+# build y no una página del sitio.
+[[redirects]]
+  from = "/lighthouserc.json"
+  to   = "/404.html"
+  status = 404
+  force  = true
+
 [[redirects]]
   from = "/package-lock.json"
   to   = "/404.html"
@@ -200,7 +209,7 @@
     # según dónde esté el visitante. Con el host fijo, el diagnóstico de la
     # etiqueta marcaba «la configuración de seguridad está bloqueando la
     # medición». doubleclick y google.com son para las conversiones de Google Ads.
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://connect.facebook.net https://tally.so; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.uy; connect-src 'self' https://*.google-analytics.com https://google-analytics.com https://*.analytics.google.com https://analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.uy https://pagead2.googlesyndication.com https://connect.facebook.net https://www.facebook.com; frame-src https://www.google.com https://*.g.doubleclick.net https://tally.so; frame-ancestors 'self'; form-action 'self' https://tally.so; manifest-src 'self'; object-src 'none'; base-uri 'self'"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://connect.facebook.net https://tally.so; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.uy; connect-src 'self' https://*.google-analytics.com https://google-analytics.com https://*.analytics.google.com https://analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.com.uy https://pagead2.googlesyndication.com https://connect.facebook.net https://www.facebook.com; frame-src https://www.google.com https://*.g.doubleclick.net https://tally.so; frame-ancestors 'self'; form-action 'self' https://tally.so; manifest-src 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests"
 
 [[headers]]
   for = "/og/*"
