@@ -41,7 +41,10 @@ window.SONDA=function(){
   });
 
   document.querySelectorAll('a').forEach(a=>{
-    const t=(a.innerText||'').trim(), h=a.getAttribute('href');
+    // innerText devuelve '' en lo que está con visibility:hidden — el aviso de
+    // cookies antes de aparecer — y la sonda lo denunciaba como enlace vacío en
+    // las 28 páginas. textContent no mira si se ve.
+    const t=(a.innerText||a.textContent||'').trim(), h=a.getAttribute('href');
     if(!t&&!a.getAttribute('aria-label')&&!a.querySelector('img,svg')) add('LINK sin texto '+(h||'').slice(0,40));
     if(h===''||h==='#') add('LINK vacío: «'+t.slice(0,26)+'»');
   });
@@ -57,7 +60,7 @@ window.SONDA=function(){
   document.querySelectorAll('img').forEach(i=>{ if(i.complete&&i.naturalWidth===0) add('IMG no carga '+i.src.split('/').pop()); });
 
   // Encabezados vacíos o duplicados exactos en la misma página
-  const hs=[...document.querySelectorAll('h1,h2,h3')].map(h=>(h.innerText||'').trim());
+  const hs=[...document.querySelectorAll('h1,h2,h3')].map(h=>(h.innerText||h.textContent||'').trim());
   hs.forEach((t,i)=>{ if(!t) add('ENCABEZADO vacío en posición '+i); });
   const dup=hs.filter((t,i)=>t&&hs.indexOf(t)!==i);
   [...new Set(dup)].forEach(t=>add('ENCABEZADO repetido: «'+t.slice(0,34)+'»'));
