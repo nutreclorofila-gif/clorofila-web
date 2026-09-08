@@ -353,6 +353,11 @@ datos.curso.horarios_html = abiertos.length
     }).join('')
   : '<tr><td colspan="2">La próxima edición todavía no tiene fecha.</td></tr>';
 datos.curso.inicio_iso = abiertos.length ? abiertos[0].inicio_iso : '';
+// Hasta cuándo se puede anotar: arranca de a un grupo, así que el curso deja de
+// estar abierto recién cuando empieza el último. Lo usa data-vence-iso.
+datos.curso.vence_iso = abiertos.length
+  ? abiertos.map(function (g) { return g.inicio_iso; }).sort().pop()
+  : '';
 datos.curso.calendario = abiertos.length
   ? linkCalendario('Primera clase — Curso de Clorofila', abiertos[0].inicio_iso,
       abiertos[0].horario.split(' a ')[0], abiertos[0].horario.split(' a ')[1].replace(' h', ''),
@@ -764,11 +769,16 @@ for (const archivo of archivos) {
       // en el build, y Netlify solo construye cuando alguien pushea: entre dos
       // publicaciones el sitio puede quedar vendiendo una fecha que ya pasó.
       // Con esto el propio navegador la da de baja. Ver pagina.js.
-      const vence = obj && obj.fecha_iso ? ' data-vence-iso="' + obj.fecha_iso + '"' : '';
+      /* El curso no tiene fecha_iso: sus fechas viven en cada grupo. Sin esto
+         nunca recibía esta red, y es el producto más caro del sitio. Se usa la
+         del último grupo que arranca, no la del primero: mientras haya un grupo
+         por empezar, el curso sigue abierto. */
+      const venceIso = (obj && (obj.fecha_iso || obj.vence_iso)) || '';
+      const vence = venceIso ? ' data-vence-iso="' + escapar(venceIso) + '"' : '';
       const limpio = resto
         .replace(/\s+data-estado="[^"]*"/g, '')
         .replace(/\s+data-vence-iso="[^"]*"/g, '');
-      return 'data-estado-de="' + ruta_ + '" data-estado="' + estado + '"' + vence + limpio;
+      return 'data-estado-de="' + ruta_ + '" data-estado="' + escapar(estado) + '"' + vence + limpio;
     }
   );
 
