@@ -905,8 +905,12 @@ for (const archivo of archivos) {
         if (nodo['@id'] === 'https://clorofila.uy/tapeo#evento') {
           const t = datos.tapeo;
           if (t.estado === 'sin-fecha' || !t.fecha_iso) {
-            delete nodo.startDate;
-            delete nodo.endDate;
+            /* La fecha se conserva a propósito. schema.org pide startDate en
+               todo Event, y así es como se declara uno pospuesto: con la fecha
+               que tenía, hasta que haya otra. Borrarla dejaba un bloque
+               inválido que después había que sacar del HTML, y eso no se podía
+               deshacer: al cargar la fecha nueva el evento no volvía. Probado
+               el 7/9/2026 poniendo el tapeo en "sin-fecha". */
             delete nodo.offers;
             nodo.eventStatus = 'https://schema.org/EventPostponed';
           } else {
@@ -938,8 +942,7 @@ for (const archivo of archivos) {
         if (nodo['@id'] === 'https://clorofila.uy/pastas#evento') {
           const w = datos.talleres['pastas-sin-gluten'];
           if (w.estado === 'sin-fecha' || !w.fecha_iso) {
-            delete nodo.startDate;
-            delete nodo.endDate;
+            // Igual que el tapeo: el evento pospuesto conserva su fecha.
             delete nodo.offers;
             nodo.eventStatus = 'https://schema.org/EventPostponed';
           } else {
