@@ -272,11 +272,16 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
   .hero-foto{aspect-ratio:4/3;margin-bottom:1.25rem}
   .hero-prod .hero-caja,.hero-curso .hero-caja,.hero-tapeo .hero-caja{gap:0}
   .hero-prod .hero-caja >div,.hero-curso .hero-caja >div,.hero-tapeo .hero-caja >div{display:contents}
-  .hero-prod .hero-caja .hero-foto,.hero-curso .hero-caja .hero-foto,.hero-tapeo .hero-caja .hero-foto{order:1}
-  .hero-prod .hero-caja .senal,.hero-curso .hero-caja .senal,.hero-tapeo .hero-caja .senal{order:2}
-  .hero-prod .hero-caja h1,.hero-curso .hero-caja h1,.hero-tapeo .hero-caja h1{order:3}
-  .hero-prod .hero-caja .hero-tesis,.hero-curso .hero-caja .hero-tesis,.hero-tapeo .hero-caja .hero-tesis{order:4}
-  .hero-prod .hero-caja .comanda,.hero-curso .hero-caja .comanda,.hero-tapeo .hero-caja .comanda{order:5;margin-top:1.25rem}
+  /* En el celular la foto abría la página y empujaba todo: en un teléfono de
+     812px el título caía en 430 y el precio en 713, o sea justo en el borde de
+     lo que se ve sin scrollear. Ahora primero se dice qué es y recién después
+     cuánto sale, con la foto abajo: el título sube a 163 y el precio a 446.
+     El orden es eyebrow, título, tesis, ficha de reserva, foto. */
+  .hero-prod .hero-caja .senal,.hero-curso .hero-caja .senal,.hero-tapeo .hero-caja .senal{order:1}
+  .hero-prod .hero-caja h1,.hero-curso .hero-caja h1,.hero-tapeo .hero-caja h1{order:2}
+  .hero-prod .hero-caja .hero-tesis,.hero-curso .hero-caja .hero-tesis,.hero-tapeo .hero-caja .hero-tesis{order:3}
+  .hero-prod .hero-caja .comanda,.hero-curso .hero-caja .comanda,.hero-tapeo .hero-caja .comanda{order:4;margin-top:1.25rem}
+  .hero-prod .hero-caja .hero-foto,.hero-curso .hero-caja .hero-foto,.hero-tapeo .hero-caja .hero-foto{order:5;margin-top:1.5rem}
   .hero-prod .hero-caja .hero-marcas,.hero-curso .hero-caja .hero-marcas,.hero-tapeo .hero-caja .hero-marcas{order:6;margin-top:1.25rem}
   .hero-prod .hero-caja .bajada,.hero-curso .hero-caja .bajada,.hero-tapeo .hero-caja .bajada{order:7;margin-top:1.25rem}
   /* Sin esto la línea de credenciales de /curso queda en order 0 y se va
