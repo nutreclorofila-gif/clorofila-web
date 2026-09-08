@@ -349,9 +349,12 @@ datos.curso.grupos_label = abiertos.length === 0 ? 'Grupos'
   : abiertos.length === 1 ? 'Grupo abierto' : 'Grupos abiertos';
 // La tabla de horarios de /contacto se generaba a mano y quedó publicando los
 // días de una edición ya terminada. Ahora sale de los grupos abiertos.
-// "3 cuotas de $4.800" -> "3 de $4.800": la etiqueta de la comanda ya dice "En cuotas".
+// "3 cuotas de $4.800" -> "3 de $4.800": la etiqueta de la comanda dice "Mes a mes".
+// Ojo con la historia de esta clave: se calculaba en cada build y no la usaba
+// ninguna página. La comanda mostraba la cuota de tarjeta bajo la etiqueta
+// "En cuotas", así que la opción de pagar en tres meses no figuraba en el sitio.
 datos.curso.cuotas_corto = String(datos.curso.precio_cuotas || '').replace(' cuotas ', ' ');
-// La cuota con tarjeta es con la que se entra de verdad: $1.016 contra $4.800.
+// La cuota con tarjeta es la más chica, pero no reemplaza a la otra: van las dos.
 // "hasta 12 cuotas de $1.016" -> "12 de $1.016".
 datos.curso.cuotas_tarjeta_corto = String(datos.curso.precio_tarjeta || '')
   .replace(/^hasta\s+/, '').replace(' cuotas ', ' ');
