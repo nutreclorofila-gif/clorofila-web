@@ -83,25 +83,28 @@
   // Entradas al hacer scroll. Con dos redes de seguridad: lo que ya está en
   // pantalla al cargar, y un plazo máximo, para que nada quede invisible si
   // el observador no llega a dispararse.
+  /* La guarda del observador no es cosmética: si tira acá, el error corta el
+     resto de este archivo y con él quedan sin enganchar los botones del aviso
+     de cookies. Esa visita no se mide nunca. */
   var subes = document.querySelectorAll('.sube');
-  if (subes.length) {
+  if (subes.length && typeof IntersectionObserver === 'function') {
     var obs = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add('vista'); obs.unobserve(e.target); }
       });
     }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
-    subes.forEach(function (el) { obs.observe(el); });
+    Array.prototype.forEach.call(subes, function (el) { obs.observe(el); });
 
     // Última red: se muestra todo y se suelta el observador, que a esta altura
     // ya no tiene nada que vigilar.
     var plazoMaximo = setTimeout(function () {
-      document.querySelectorAll('.sube:not(.vista)').forEach(function (el) { el.classList.add('vista'); });
+      Array.prototype.forEach.call(document.querySelectorAll('.sube:not(.vista)'), function (el) { el.classList.add('vista'); });
       obs.disconnect();
     }, 2800);
 
     addEventListener('load', function () {
       setTimeout(function () {
-        document.querySelectorAll('.sube:not(.vista)').forEach(function (el) {
+        Array.prototype.forEach.call(document.querySelectorAll('.sube:not(.vista)'), function (el) {
           if (el.getBoundingClientRect().top < innerHeight) el.classList.add('vista');
         });
         if (!document.querySelector('.sube:not(.vista)')) {
@@ -145,7 +148,8 @@
      con data-inicio-iso, y la fecha siempre sale de data/ofertas.json.
      Si la fecha ya pasó no inventa urgencia: deja el texto del render. */
   function cuantoFalta(iso) {
-    var dias = Math.ceil((new Date(iso + 'T00:00:00') - new Date()) / 86400000);
+    // -03:00 fijo: la fecha es la del estudio, no la del huso del visitante.
+    var dias = Math.ceil((new Date(iso + 'T00:00:00-03:00') - new Date()) / 86400000);
     if (!(dias > 0)) return null;
     if (dias <= 14) return dias === 1 ? 'Empieza mañana' : 'Empieza en ' + dias + ' días';
     // Redondear siempre para arriba estiraba la espera: a 30 días del inicio
@@ -164,7 +168,7 @@
     var iso = el.getAttribute('data-vence-iso');
     if (!iso) return;
     var hoy = new Date(); hoy.setHours(0, 0, 0, 0);
-    if (new Date(iso + 'T00:00:00') < hoy) el.setAttribute('data-estado', 'sin-fecha');
+    if (new Date(iso + 'T00:00:00-03:00') < hoy) el.setAttribute('data-estado', 'sin-fecha');
   });
 
   Array.prototype.forEach.call(document.querySelectorAll('[data-inicio-iso]'), function (el) {

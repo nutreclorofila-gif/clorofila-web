@@ -31,13 +31,22 @@ try {
   process.exit(1);
 }
 
-const hoy = new Date();
-hoy.setHours(0, 0, 0, 0);
+/* Netlify construye en UTC y no fija TZ, así que entre las 21:00 y las 24:00 de
+   Montevideo el proceso ya está en el día siguiente: una publicación en esa
+   franja apagaba una fecha que todavía corría. Todo se compara en -03:00, que
+   es la hora del estudio. */
+const hoy = (function () {
+  const ahora = new Date();
+  const mvd = new Date(ahora.getTime() - 3 * 3600 * 1000);
+  return new Date(mvd.getUTCFullYear(), mvd.getUTCMonth(), mvd.getUTCDate());
+})();
 
 function esPasado(iso) {
   if (!iso) return false;
-  const d = new Date(iso + 'T00:00:00');
-  return !isNaN(d) && d < hoy;
+  const d = new Date(iso + 'T00:00:00-03:00');
+  const dLocal = new Date(d.getTime() - 3 * 3600 * 1000);
+  const soloDia = new Date(dLocal.getUTCFullYear(), dLocal.getUTCMonth(), dLocal.getUTCDate());
+  return !isNaN(d) && soloDia < hoy;
 }
 /* El día de la semana y la fecha viven dos veces: una como ISO (que es lo
    que lee Google) y otra escrita a mano ("jueves 3 de septiembre"). Si se
@@ -1105,7 +1114,9 @@ for (const archivo of archivos) {
     const ordenado = bloque[1] + '\n' +
       conOrden.map(function (x) { return '        ' + x.t; }).join('\n') + '\n      ' + bloque[3];
     if (ordenado !== bloque[0]) {
-      pagina = pagina.replace(bloque[0], ordenado);
+      // Con función: si una tarjeta trae $& o $', un reemplazo por string lo
+      // reinterpreta. Ya nos pasó con el símbolo de peso en un precio.
+      pagina = pagina.replace(bloque[0], function () { return ordenado; });
       if (CHECK) {
         errores.push('articulos.html: las tarjetas no están ordenadas por fecha. Corré: npm run ofertas');
       } else {
