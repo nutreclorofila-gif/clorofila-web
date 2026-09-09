@@ -494,8 +494,12 @@ datos.curso.faq_cursada = 'Son 3 meses de cursada, 12 clases semanales por grupo
    distintos. La intensiva de 6 clases existe, pero es otra edición y ya
    empezó; la de los sábados es del año que viene. Ninguna de las dos se vende
    hoy, así que la página no las nombra. */
-datos.curso.horarios_chip = '3 meses · ' + nombres.length +
-  (nombres.length === 1 ? ' horario' : ' horarios');
+/* Decía "3 meses · 2 horarios" y Leo lo marcó: parece más carga horaria de la
+   real, como si fueran dos clases por semana. Son dos horarios entre los que se
+   elige uno. La chip pasa a decir la frecuencia, que es lo que tranquiliza a
+   quien calcula si le da el tiempo; cuántos grupos hay se dice en la ficha de
+   reserva, que es donde se elige. */
+datos.curso.horarios_chip = '3 meses · una clase por semana';
 
 // El FAQ prometía "tenés tres horarios y te movés entre ellos". Con una sola
 // modalidad no hay a dónde moverse, así que la respuesta cambia entera.
