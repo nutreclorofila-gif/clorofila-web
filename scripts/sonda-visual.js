@@ -34,9 +34,20 @@ window.SONDA=function(){
   });
 
   if(document.documentElement.scrollWidth>vw+2) add('SCROLL-H '+document.documentElement.scrollWidth+'/'+vw);
+  // Lo que vive dentro de algo que scrollea de costado a propósito —la tira de
+  // fotos del home— sale del viewport por diseño, no por error. Sin esta
+  // salvedad la sonda denunciaba 12 desbordes en la home teniendo la página
+  // scrollWidth 375 en un viewport de 375, o sea sin un pixel de más.
+  const enCarrusel = e => {
+    for (let p = e.parentElement; p && p !== document.body; p = p.parentElement) {
+      const ox = getComputedStyle(p).overflowX;
+      if (ox === 'auto' || ox === 'scroll') return true;
+    }
+    return false;
+  };
   document.querySelectorAll('body *').forEach(e=>{
     const b=e.getBoundingClientRect();
-    if(b.width>0&&b.right>vw+2&&getComputedStyle(e).position!=='fixed'&&!/saltar/.test(''+e.className))
+    if(b.width>0&&b.right>vw+2&&getComputedStyle(e).position!=='fixed'&&!/saltar/.test(''+e.className)&&!enCarrusel(e))
       add('DESBORDA '+e.tagName+'.'+(''+e.className).slice(0,22));
   });
 
