@@ -765,6 +765,9 @@ const archivos = fs.readdirSync(raiz).filter(function (f) { return f.endsWith('.
         .map(function (f) { return path.join('articulos', f); })
     : []);
 let cambiados = [];
+// Ruta -> contenido final. Se vuelca al disco al final, y solo si el build cerró
+// sin errores: ver el comentario junto a la barrera de errores.
+const porEscribir = new Map();
 let errores = [];
 
 for (const archivo of archivos) {
@@ -1086,7 +1089,7 @@ for (const archivo of archivos) {
 
   if (salida !== original) {
     cambiados.push(archivo);
-    if (!CHECK) fs.writeFileSync(ruta, salida);
+    if (!CHECK) porEscribir.set(ruta, salida);
   }
 }
 
@@ -1137,7 +1140,7 @@ for (const archivo of archivos) {
       if (CHECK) {
         errores.push('articulos.html: las tarjetas no están ordenadas por fecha. Corré: npm run ofertas');
       } else {
-        fs.writeFileSync(ruta, pagina);
+        porEscribir.set(ruta, pagina);
         if (!cambiados.includes('articulos.html')) cambiados.push('articulos.html');
       }
     }
@@ -1156,14 +1159,26 @@ for (const archivo of archivos) {
   const actual = fs.existsSync(rutaLlms) ? fs.readFileSync(rutaLlms, 'utf8') : '';
   if (actual !== generado) {
     cambiados.push('llms.txt');
-    if (!CHECK) fs.writeFileSync(rutaLlms, generado);
+    if (!CHECK) porEscribir.set(rutaLlms, generado);
   }
 }
 
+/* Antes cada página se escribía en disco apenas se armaba, y recién al final se
+   miraba si hubo errores. Con un problema en la página 20, las 19 de antes ya
+   habían quedado escritas: el build salía con error y el repo quedaba a medio
+   renderizar. Peor si el proceso se cortaba en el medio, porque media docena de
+   páginas quedaba con el precio nuevo y el resto con el viejo. Ahora se junta
+   todo en memoria y se vuelca de una sola vez, abajo, solo si no hubo errores. */
 if (errores.length) {
   console.error('✗ render-ofertas: ' + errores.length + ' problema(s):');
   errores.forEach(function (e) { console.error('  - ' + e); });
   process.exit(1);
+}
+
+/* Recién acá se toca el disco: pasada la barrera de errores de arriba, ya
+   sabemos que las 28 páginas se armaron enteras. */
+if (!CHECK && porEscribir.size) {
+  porEscribir.forEach(function (contenido, ruta) { fs.writeFileSync(ruta, contenido); });
 }
 
 if (CHECK) {
