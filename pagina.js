@@ -146,7 +146,15 @@
   // En las páginas de venta cuelga del botón del hero; en las demás, que no
   // tienen comanda, aparece después de la primera pantalla.
   var barra = document.getElementById('sticky-cta');
-  var ancla = document.querySelector('header .comanda-acciones');
+  /* Las páginas de venta cuelgan la barra del botón del hero. Las que no
+     tienen comanda pueden declarar su propio punto de partida con
+     data-ancla-barra: /talleres lo usa en el índice, para que la barra no
+     aparezca mientras ese índice todavía se ve. Antes eso vivía en un <script>
+     suelto dentro de talleres.html que medía en cada evento de scroll, sin
+     agrupar por cuadro; y encima no servía, porque pagina.js le pisaba el
+     resultado un cuadro después. */
+  var ancla = document.querySelector('header .comanda-acciones')
+    || document.querySelector('[data-ancla-barra]');
   if (barra) {
     /* La barra se esconde con transform: sigue ocupando su lugar en el árbol
        de foco aunque no se vea. Medido en /curso con un teléfono de 812 px:
