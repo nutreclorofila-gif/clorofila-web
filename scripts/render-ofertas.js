@@ -742,9 +742,14 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
 /* ---- Reemplazo en los HTML ---- */
 
 function valor(ruta) {
-  return ruta.split('.').reduce(function (o, k) {
+  const v = ruta.split('.').reduce(function (o, k) {
     return (o === undefined || o === null) ? undefined : o[k];
   }, datos);
+  // Un null en el JSON es un dato que alguien vació, no un dato que exista:
+  // se trata igual que si faltara. Si se devolviera tal cual, escapar() lo
+  // convierte en la cadena "null" y el sitio publica esa palabra donde va el
+  // precio, sin que el build diga nada.
+  return v === null ? undefined : v;
 }
 
 // Los artículos entran también: comparten el nav y el pie con el resto del
