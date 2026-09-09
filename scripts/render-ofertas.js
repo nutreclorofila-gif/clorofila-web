@@ -445,7 +445,12 @@ datos.curso.horarios_texto = nombres.join(' · ');
 datos.curso.dias_texto = enumerar(nombres.map(function (n) { return n.toLowerCase(); }));
 datos.curso.edicion_titulo = 'Edición ' + String(datos.curso.edicion).toLowerCase();
 datos.curso.inscripcion_titulo = 'Inscripción · ' + datos.curso.edicion;
-datos.curso.porclase_texto = '3 meses · ' + datos.curso.dias_texto + ' · 12 encuentros, uno por semana';
+// Decía "3 meses · miércoles y jueves · 12 encuentros": el "y" hacía parecer
+// que se cursa los dos días, o sea el doble de carga de la real. Son dos
+// grupos y se elige uno. Los días ya están en la línea de abajo, así que acá
+// va la carga horaria y nada más: 12 clases de 2 h son 24 h, que es lo que
+// declara courseWorkload en el schema.
+datos.curso.porclase_texto = '3 meses · 12 clases de 2 horas, una por semana';
 
 // La cantidad de horarios se dice en palabras, y cambia si son dos o tres.
 const cuantos = { 1: 'un horario', 2: 'dos horarios', 3: 'tres horarios' }[nombres.length]

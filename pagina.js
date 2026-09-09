@@ -50,8 +50,18 @@
        pantalla mientras el menú está arriba, y se los devuelve al cerrar.
        Los navegadores que no lo entienden simplemente lo ignoran: se comportan
        como antes, no peor. */
-    var detras = [document.getElementById('principal'), document.querySelector('footer')]
-      .filter(Boolean);
+    /* La marca y el propio botón ☰ también quedaban detrás del menú abierto y
+       seguían recibiendo el tabulador: Shift+Tab desde la ✕ caía en el logo,
+       tapado por el overlay, y Tab desde el último ítem caía en el ☰, tapado
+       por la ✕. Verificado con elementFromPoint sobre el centro de cada uno.
+       El ☰ se puede apagar sin problema: cerrarMenu() le devuelve el estado
+       antes de enfocarlo. */
+    var detras = [
+      document.getElementById('principal'),
+      document.querySelector('footer'),
+      document.querySelector('.marca'),
+      ham
+    ].filter(Boolean);
     var apagarFondo = function (apagado) {
       for (var i = 0; i < detras.length; i++) detras[i].inert = apagado;
     };
@@ -138,9 +148,20 @@
   var barra = document.getElementById('sticky-cta');
   var ancla = document.querySelector('header .comanda-acciones');
   if (barra) {
+    /* La barra se esconde con transform: sigue ocupando su lugar en el árbol
+       de foco aunque no se vea. Medido en /curso con un teléfono de 812 px:
+       la barra quedaba en y=816 y sus dos enlaces aceptaban el foco igual, o
+       sea que quien navega con teclado tabulaba a dos enlaces invisibles.
+       "inert" la saca del recorrido mientras está guardada. El aviso de
+       cookies ya resolvía esto con visibility:hidden; la barra no podía usar
+       lo mismo porque la anima con transform. */
+    var mostrarBarra = function (visible) {
+      barra.classList.toggle('visible', visible);
+      barra.inert = !visible;
+    };
     enScroll(ancla
-      ? function () { barra.classList.toggle('visible', ancla.getBoundingClientRect().bottom < 0); }
-      : function () { barra.classList.toggle('visible', scrollY > innerHeight * 0.6); });
+      ? function () { mostrarBarra(ancla.getBoundingClientRect().bottom < 0); }
+      : function () { mostrarBarra(scrollY > innerHeight * 0.6); });
   }
 
   /* Cuenta regresiva al inicio del curso. Vivía como script suelto dentro de
