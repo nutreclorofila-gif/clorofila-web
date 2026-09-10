@@ -498,3 +498,15 @@ body.menu-abierto .cookie-banner{display:none}
 .art-cuerpo thead th{border-top:0;font-size:.85rem;color:var(--cal-baja);padding-bottom:.6rem}
 .art-cuerpo tbody th{color:var(--cal);font-weight:500;padding-right:1.5rem}
 .art-cuerpo td:last-child,.art-cuerpo th:last-child{padding-right:0}
+
+/* --- Feedback al tocar --------------------------------------------------
+   En un teléfono no existe :hover. Si un elemento solo cambia con :hover,
+   tocarlo no devuelve absolutamente nada hasta que carga la página siguiente,
+   y en una conexión lenta eso se siente como que el botón no anduvo. .btn ya
+   tenía su :active desde antes; el resto de lo que se toca, no: eran trece
+   reglas :hover contra un solo :active en todo el archivo.
+   Va con opacidad y no con transform para que no sea movimiento: así no
+   depende de lo que cada quien haya pedido en prefers-reduced-motion. */
+.nav-links a:active,.nav-cta:active,.pie li a:active,.pie .dato a:active,
+.enlace-vivo:active,.comanda-datos li a:active,.fechas a:active,
+.miga a:active,.seguir li a:active{opacity:.6}
