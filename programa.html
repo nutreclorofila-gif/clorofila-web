@@ -80,6 +80,8 @@
 .captura h2{margin-block:.7rem;font-size:clamp(1.3rem,2.4vw,1.7rem)}
 .captura p{font-size:.95rem;margin-bottom:1.25rem}
 .captura .nota{font-size:.8rem;color:var(--cal-baja);margin-block:.9rem 0}
+.lista-dos{columns:2;column-gap:2rem}
+@media (max-width:640px){.lista-dos{columns:1}}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260907" defer></script>
@@ -177,6 +179,32 @@
     <li>Quesos vegetales</li>
     <li>Batidos y sopas</li>
     <li>Pastelería sin gluten</li>
+  </ul>
+
+  <!-- Las elaboraciones concretas salen del PDF que Leo le manda por mail a
+       cada persona que pregunta. Estaban solo ahí: la página decía "platos
+       salados complejos" y "pastelería sin gluten", que no le dicen a nadie qué
+       va a cocinar. Quien duda si anotarse quiere saber si sale sushi o si sale
+       cheesecake. Copiadas de su texto, sacándole los adjetivos de folleto
+       ("deliciosos", "innovadoras"). -->
+  <h2>Algunas de las elaboraciones</h2>
+  <p style="margin-bottom:1rem">Todas sin gluten, sin azúcares refinados y sin ingredientes de origen animal.</p>
+  <ul class="lista lista-dos">
+    <li>Batidos verdes y jugos</li>
+    <li>Ensaladas, aderezos y salsas</li>
+    <li>Patés, hummus y quesos vegetales</li>
+    <li>Sopas y cremas</li>
+    <li>Tartas saladas</li>
+    <li>Ceviches</li>
+    <li>Preparaciones con hongos</li>
+    <li>Hamburguesas y croquetas</li>
+    <li>Sushi vegetal</li>
+    <li>Snacks deshidratados</li>
+    <li>Kéfir, kombucha, chucrut y kimchi</li>
+    <li>Alfajores y chocolates</li>
+    <li>Cheesecake</li>
+    <li>Budines y pudines</li>
+    <li>Brownie, pastel de zanahoria y de chocolate</li>
   </ul>
 
   <h2>Qué incluye</h2>
