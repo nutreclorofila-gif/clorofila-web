@@ -36,40 +36,6 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
 <link rel="stylesheet" href="base.css?v=28">
 <style>
-/* /contacto — dos columnas: cómo escribirnos y dónde estamos. */
-.contacto{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start;padding-block:clamp(2rem,4vw,3.25rem) clamp(3rem,6vw,5rem)}
-.contacto h1{font-size:clamp(2.4rem,5.5vw,4rem);margin-block:.7rem .8rem}
-.contacto-intro{color:var(--cal-med);max-width:44ch;margin-bottom:2rem}
-@media (max-width:880px){.contacto{grid-template-columns:1fr}}
-
-.canales{display:grid;gap:.6rem;margin-bottom:2.5rem}
-.canal{display:flex;flex-direction:column;gap:.2rem;border:1px solid var(--linea);border-radius:var(--r);padding:1rem 1.15rem;background:var(--musgo);transition:border-color .2s,transform .2s var(--ease)}
-.canal:hover{border-color:var(--brote);transform:translateX(3px)}
-.canal b{font-family:var(--texto);font-size:1rem;color:var(--cal);font-weight:500;}
-.canal span{font-family:var(--texto);font-size:.85rem;color:var(--cal-baja)}
-
-.donde h2{font-size:1.4rem;margin-bottom:.7rem}
-.donde address{font-style:normal;color:var(--cal-med);margin-bottom:1.75rem;line-height:1.7}
-.donde address strong{display:block;font-family:var(--display);font-size:1.15rem;color:var(--cal);letter-spacing:-.02em}
-.horarios{width:100%;border-collapse:collapse}
-.horarios caption{text-align:left;font-family:var(--texto);font-size:.85rem;color:var(--cal-baja);padding-bottom:.6rem}
-.horarios th,.horarios td{border-top:1px solid var(--linea);padding-block:.6rem;font-family:var(--dato);font-size:.85rem;color:var(--cal);font-weight:400;text-align:left}
-.horarios thead th{font-size:.85rem;color:var(--cal-baja);border-top:0}
-.horarios thead th:last-child{text-align:right}
-.horarios td:last-child{text-align:right;color:var(--miel)}
-.horarios-nota{font-size:.82rem;color:var(--cal-baja);margin-top:.9rem;line-height:1.6}
-
-.mapa{border:1px solid var(--linea);border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3;background:var(--musgo)}
-.mapa iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(.35) contrast(1.05)}
-/* El mapa de Google se carga recién cuando lo pedís: embebido de entrada
-   deja sus cookies antes de que nadie acepte nada, y el sitio tiene banner. */
-.mapa-cargar{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;padding:2rem;text-align:center;transition:background .2s}
-.mapa-cargar:hover{background:var(--musgo-alto)}
-.mapa-cargar b{font-family:var(--display);font-size:clamp(1.1rem,2vw,1.4rem);color:var(--cal);letter-spacing:-.02em}
-.mapa-aviso{font-size:.78rem;color:var(--cal-baja);max-width:34ch;line-height:1.5}
-.mapa-pie{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:baseline;justify-content:space-between;font-family:var(--texto);font-size:.78rem;color:var(--cal-baja);margin-top:.8rem}
-.foto-espacio{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/10;margin-top:1rem}
-.foto-espacio img{width:100%;height:100%;object-fit:cover}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260907" defer></script>
@@ -147,20 +113,5 @@
 
 <script src="track.js?v=20260902" defer></script>
 <script src="pagina.js?v=30" defer></script>
-<script>
-(function(){
-  var b=document.getElementById('mapa-cargar');
-  if(!b)return;
-  b.addEventListener('click',function(){
-    var f=document.createElement('iframe');
-    f.src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3272.4!2d-56.1723695!3d-34.9085217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959f80f5a8b01d79%3A0x0!2sMaldonado%201976%2C%2011200%20Montevideo!5e0!3m2!1ses-419!2suy!4v1700000000000!5m2!1ses-419!2suy';
-    f.loading='lazy';
-    f.referrerPolicy='no-referrer-when-downgrade';
-    f.allowFullscreen=true;
-    f.title='Clorofila — Maldonado 1976 esq. Blanes, Parque Rodó, Montevideo';
-    document.getElementById('mapa').replaceChildren(f);
-  });
-})();
-</script>
 </body>
 </html>
