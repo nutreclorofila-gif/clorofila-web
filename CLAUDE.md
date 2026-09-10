@@ -28,7 +28,7 @@ npm test      # fechas, links, versiones de assets, JSON-LD, sitemap, HTML
 ```
 
 `npm test` es rápido (segundos) y hay que correrlo antes de cada commit: es lo
-mismo que corre CI (`.github/workflows/checks.yml`). Son 15 chequeos; el que
+mismo que corre CI (`.github/workflows/checks.yml`). Son 16 chequeos; el que
 más avisa es `check:integridad`, que compara el sitio contra lo publicado y
 corta si alguna página perdió el título, texto, enlaces, imágenes, precios o
 un bloque de schema. Para ver qué cambió respecto de lo que está en vivo:

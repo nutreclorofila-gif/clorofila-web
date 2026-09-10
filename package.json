@@ -10,7 +10,7 @@
     "check:assets": "node scripts/check-assets.js",
     "check:html": "html-validate --config .htmlvalidate.json *.html articulos/*.html",
     "check:integridad": "node scripts/check-integridad.js",
-    "test": "npm run check:ofertas && npm run check:links && npm run check:anclas && npm run check:assets && npm run check:jsonld && npm run check:citas && npm run check:sitemap && npm run check:fechas && npm run check:redirects && npm run check:html && npm run check:integridad && npm run check:css && npm run check:antiguedad && npm run check:consentimiento && npm run texto",
+    "test": "npm run check:ofertas && npm run check:links && npm run check:anclas && npm run check:assets && npm run check:jsonld && npm run check:citas && npm run check:sitemap && npm run check:fechas && npm run check:redirects && npm run check:html && npm run check:trayectoria && npm run check:integridad && npm run check:css && npm run check:antiguedad && npm run check:consentimiento && npm run texto",
     "ofertas": "node scripts/render-ofertas.js",
     "check:ofertas": "node scripts/render-ofertas.js --check",
     "build": "node scripts/render-ofertas.js",
@@ -24,7 +24,8 @@
     "fechas": "node scripts/fechas-sitemap.js",
     "check:fechas": "node scripts/fechas-sitemap.js --check",
     "citas": "node scripts/citas-schema.js",
-    "check:citas": "node scripts/citas-schema.js --check"
+    "check:citas": "node scripts/citas-schema.js --check",
+    "check:trayectoria": "node scripts/check-trayectoria.js"
   },
   "devDependencies": {
     "html-validate": "^11.10.0"
