@@ -42,7 +42,7 @@
     "edicion": "Octubre 2026",
     "precio_total": "$12.200",
     "precio_cuotas": "3 cuotas de $4.800",
-    "precio_tarjeta": "hasta 12 cuotas de $1.016",
+    "precio_tarjeta": "hasta 12 cuotas de $1.016 sin recargo",
     "ahorro": "$2.200",
     "_leeme_grupos": "Agregar, sacar o cambiar un grupo se hace acá y nada más: los bloques de la página del curso, el schema de Google y los textos que nombran los días se dibujan solos. El grupo se cierra automáticamente cuando inicio_iso ya pasó. El nombre y el texto tienen que coincidir con inicio_iso: si no, el build avisa y no publica.",
     "grupos": [
