@@ -186,6 +186,21 @@
       return;
     }
 
+    /* Clic a un mail. Mide INTENCION, no resultado: abre el cliente de
+       correo y ahi mucha gente abandona sin mandar nada. Para saber cuantos
+       escribieron de verdad hay que contar en Gmail los que llegan con el
+       asunto prellenado, que es distinto de cualquier otro del sitio. Si el
+       clic es alto y los correos son cero, el problema es el salto al
+       cliente de correo, no la falta de la opcion. */
+    var mail = e.target.closest('a[href^="mailto:"]');
+    if (mail) {
+      var prodMail = productoDe(mail);
+      ga('click_mail', prodMail);
+      ga('generate_lead', prodMail, { method: 'email' });
+      meta('Contact', prodMail);
+      return;
+    }
+
     // Clic al botón de compra directa (Tikzet): es el "inicio de compra"
     // real del embudo. Sin esto, el CTA que más vende no dejaba ningún rastro.
     var compra = e.target.closest('a[href*="tikzet.com"]');
