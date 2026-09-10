@@ -174,6 +174,10 @@ datos.curso.grupos.forEach(function (g) {
   }
 });
 
+// Con la fecha agotada o sin fecha abierta, el link de venta queda mudo:
+// no se manda a nadie a comprar una entrada que ya no existe.
+function ventaMuda(estado) { return estado === 'sin-fecha' || estado === 'agotado'; }
+
 const waBase = 'https://wa.me/59894064148?text=';
 t.wa_link = waBase + encodeURIComponent(
   t.estado === 'sin-fecha' || t.estado === 'agotado'
@@ -201,7 +205,7 @@ function fechaCorta(texto) {
   return partes.slice(0, 2).join(' ');
 }
 
-t.cta_link = (t.estado !== 'sin-fecha' && t.link_compra) ? t.link_compra : t.wa_link;
+t.cta_link = (!ventaMuda(t.estado) && t.link_compra) ? t.link_compra : t.wa_link;
 // El segundo botón del hero de la home. Antes decía "Ver próximas fechas" y
 // saltaba a la agenda, que después de reordenar la home quedó a seis pantallas:
 // el botón principal salteaba el curso, el tapeo y todo el método.
@@ -217,17 +221,17 @@ t.sumar_link = waBase + encodeURIComponent(
 t.regalo_link = waBase + encodeURIComponent(
   'Hola Leonardo, quiero regalar una Cena y Taller de Tapeo. ¿Cómo hago con la gift card?'
 );
-t.hero_boton = t.estado === 'sin-fecha'
-  ? 'Ver la cena y taller de tapeo'
-  : 'Cena de tapeo del ' + t.fecha_texto;
+t.hero_boton =
+  t.estado === 'sin-fecha' ? 'Ver la cena y taller de tapeo' :
+  t.estado === 'agotado'   ? 'Cena de tapeo · agotada' :
+  'Cena de tapeo del ' + t.fecha_texto;
 t.tiene_segunda = t.segunda_fecha && t.segunda_fecha.texto ? 'si' : 'no';
 // Con una sola fecha, "Elegí tu fecha" pide algo que no se puede hacer.
 t.fechas_titulo = t.tiene_segunda === 'si' ? 'Elegí tu fecha' : 'La próxima fecha';
 // Con dos fechas a la venta, el botón tiene que decir cuál está comprando:
 // el link va siempre a la primera, y sin la aclaración se compra la otra sin querer.
 t.cta_texto =
-  (t.estado === 'sin-fecha' || !t.link_compra) ? t.wa_texto :
-  t.estado === 'agotado' ? 'Ver si se libera un lugar' :
+  (ventaMuda(t.estado) || !t.link_compra) ? t.wa_texto :
   t.tiene_segunda === 'si' ? 'Comprar · ' + fechaCorta(t.fecha_texto) + '' :
   'Comprar mi entrada';
 t.segunda_texto = t.segunda_fecha && t.segunda_fecha.texto
@@ -247,13 +251,16 @@ function horarioDe(f, porDefecto) {
 // una nota al pie: son dos productos a la venta, no un detalle.
 function listaFechas(o, sufijo) {
   if (o.estado === 'sin-fecha' || !o.fecha_texto) return '';
+  // Agotada, la fecha se sigue mostrando (es informacion util: dice cuando es
+  // y que no hay lugar) pero el enlace lleva a preguntar, no a comprar.
+  var destino = ventaMuda(o.estado) ? o.wa_link : (o.link_compra || o.wa_link);
   var items = [
-    '<li><a href="' + enlace(o.link_compra || o.wa_link) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
+    '<li><a href="' + enlace(destino) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
       '<strong>' + escapar(o.fecha_texto) + '</strong>' +
       '<span>' + escapar([o.horario_texto, o.cupos_texto].filter(Boolean).join(' · ')) + '</span></a></li>'
   ];
   if (o.segunda_fecha && o.segunda_fecha.texto) {
-    items.push('<li><a href="' + enlace(o.segunda_fecha.link || o.wa_link) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
+    items.push('<li><a href="' + enlace(ventaMuda(o.estado) ? o.wa_link : (o.segunda_fecha.link || o.wa_link)) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
       '<strong>' + escapar(o.segunda_fecha.texto) + '</strong>' +
       '<span>' + escapar(horarioDe(o.segunda_fecha, o.horario_texto)) + '</span></a></li>');
   }
@@ -328,8 +335,8 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   w.segunda_link = (w.segunda_fecha && w.segunda_fecha.link) || '';
 
   w.fechas_html = listaFechas(w, 'taller-' + id);
-  w.cta_link = (w.estado !== 'sin-fecha' && w.link_compra) ? w.link_compra : w.wa_link;
-  w.cta_texto = (w.estado !== 'sin-fecha' && w.link_compra)
+  w.cta_link = (!ventaMuda(w.estado) && w.link_compra) ? w.link_compra : w.wa_link;
+  w.cta_texto = (!ventaMuda(w.estado) && w.link_compra)
     ? (w.tiene_segunda === 'si' ? 'Comprar · ' + fechaCorta(w.fecha_texto) + '' : 'Comprar mi entrada')
     : w.wa_texto;
   if (w.segunda_fecha && w.segunda_fecha.texto && w.estado !== 'sin-fecha') {
