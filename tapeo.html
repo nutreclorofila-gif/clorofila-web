@@ -154,6 +154,7 @@
   transform:translateY(105%);transition:transform .3s var(--ease);
 }
 @media (max-width:820px){.sticky-cta{display:flex}main{padding-bottom:4.5rem}}
+.comanda-datos li:has(span:empty){display:none}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260907" defer></script>
@@ -204,6 +205,7 @@
         </div>
         <ul class="comanda-datos">
           <li><strong>Fecha</strong><span><!--o:tapeo.fecha_texto-->viernes 18 de setiembre<!--/o--></span></li>
+          <li><strong>Cuándo</strong><span data-set="data-inicio-iso=tapeo.fecha_iso" data-inicio-iso="2026-09-18" data-cuenta></span></li>
           <li><strong>Hora</strong><span><!--o:tapeo.horario_texto-->19:00 a 22:30 h<!--/o--></span></li>
           <li><strong>Lugares</strong><span><!--o:tapeo.cupos_texto-->Solo 12 lugares<!--/o--></span></li>
           <li class="comanda-precio solo-con-fecha solo-con-precio"><strong>Precio</strong><span><!--o:tapeo.precio_texto-->$2.600 por persona<!--/o--></span></li>
@@ -400,6 +402,7 @@
       </div>
       <ul class="comanda-datos">
         <li><strong>Fecha</strong><span><!--o:tapeo.fecha_texto-->viernes 18 de setiembre<!--/o--></span></li>
+        <li><strong>Cuándo</strong><span data-set="data-inicio-iso=tapeo.fecha_iso" data-inicio-iso="2026-09-18" data-cuenta></span></li>
         <li><strong>Hora</strong><span><!--o:tapeo.horario_texto-->19:00 a 22:30 h<!--/o--></span></li>
         <li class="comanda-precio solo-con-fecha solo-con-precio"><strong>Precio</strong><span><!--o:tapeo.precio_texto-->$2.600 por persona<!--/o--></span></li>
         <li><strong>Lugares</strong><span><!--o:tapeo.cupos_texto-->Solo 12 lugares<!--/o--></span></li>
