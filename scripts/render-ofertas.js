@@ -692,6 +692,35 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
     console.error('  Está escrito así: ' + JSON.stringify(g.puntaje));
     process.exit(1);
   }
+  /* Los cupos se validan igual que el puntaje de Google. Sin esto, un
+     cupos_total borrado o mal tipeado no corta el build: publica "Solo NaN
+     lugares" en /tapeo, /experiencias y la agenda del home, y deja el schema
+     del evento con maximumAttendeeCapacity en null. Los talleres ya tenían su
+     resguardo ("Cupos limitados"); el tapeo y el curso no. Es el mismo tipo
+     de agujero que el que publicaba la palabra "null" donde va el precio. */
+  (function () {
+    var aRevisar = [];
+    // El tapeo si o si: su texto de cupos no tiene alternativa en el código.
+    if (datos.tapeo) aRevisar.push(['tapeo.cupos_total', datos.tapeo.cupos_total, true]);
+    (datos.curso.grupos || []).forEach(function (gr, i) {
+      aRevisar.push(['curso.grupos[' + i + '].cupos_total', gr.cupos_total]);
+    });
+    aRevisar.forEach(function (par) {
+      var ruta = par[0], v = par[1], obligatorio = par[2] === true;
+      if (v === undefined || v === null) {
+        if (!obligatorio) return;
+        console.error('\u2717 falta ' + ruta + ' en ofertas.json, y sin ese número la página publica "Solo NaN lugares".');
+        console.error('  Tiene que ser un entero mayor que cero: 12');
+        process.exit(1);
+      }
+      if (!Number.isInteger(v) || v <= 0) {
+        console.error('\u2717 ' + ruta + ' tiene que ser un número entero mayor que cero: 12');
+        console.error('  Está escrito así: ' + JSON.stringify(v));
+        process.exit(1);
+      }
+    });
+  }());
+
   if (!Number.isInteger(g.resenas) || g.resenas < 0) {
     console.error('✗ google.resenas tiene que ser un número entero: 21');
     console.error('  Está escrito así: ' + JSON.stringify(g.resenas));
