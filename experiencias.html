@@ -69,7 +69,9 @@
 .remate-curso h2{font-size:clamp(1.5rem,2.8vw,2.1rem);margin-block:.8rem .8rem}
 .remate-curso p{color:var(--cal-med);margin:0 auto 1.5rem}
 .taller-cuenta{font-family:var(--dato);font-size:.82rem;color:var(--miel);margin:.35rem 0 .9rem}
-.taller-cuenta:empty{display:none}
+/* Mismo criterio que en /tapeo: el renglón reserva su alto y no salta. */
+.taller-cuenta:empty{visibility:hidden;min-height:1.4em}
+.taller-cuenta[data-cuenta="no"]{display:none}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260907" defer></script>
@@ -176,6 +178,6 @@
 
 
 <script src="track.js?v=20260910b" defer></script>
-<script src="pagina.js?v=30" defer></script>
+<script src="pagina.js?v=31" defer></script>
 </body>
 </html>

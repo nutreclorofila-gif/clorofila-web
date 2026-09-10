@@ -154,7 +154,11 @@
   transform:translateY(105%);transition:transform .3s var(--ease);
 }
 @media (max-width:820px){.sticky-cta{display:flex}main{padding-bottom:4.5rem}}
-.comanda-datos li:has(span:empty){display:none}
+/* El hueco de la cuenta ocupa su lugar desde el principio: si colapsa, al
+   llenarlo por JS empuja 31px el botón de reserva. Solo desaparece cuando el
+   JS avisa que no hay cuenta que mostrar. */
+.comanda-datos li:has(span[data-cuenta]:empty){visibility:hidden}
+.comanda-datos li:has(span[data-cuenta="no"]){display:none}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260907" defer></script>
@@ -445,6 +449,6 @@
 
 
 <script src="track.js?v=20260910b" defer></script>
-<script src="pagina.js?v=30" defer></script>
+<script src="pagina.js?v=31" defer></script>
 </body>
 </html>

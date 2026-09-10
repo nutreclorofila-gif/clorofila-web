@@ -208,9 +208,15 @@
 
   Array.prototype.forEach.call(document.querySelectorAll('[data-inicio-iso]'), function (el) {
     var texto = cuantoFalta(el.getAttribute('data-inicio-iso'));
-    if (!texto) return;
     // El elemento puede ser el propio texto, o contener el destino marcado.
     var destino = el.querySelector('[data-cuenta]');
+    /* Sin cuenta que mostrar hay que decirlo: el hueco viene reservado para
+       no empujar el boton al llenarse, y sin esta marca quedaria un espacio
+       en blanco esperando un texto que no va a llegar. */
+    if (!texto) {
+      if (destino) destino.setAttribute('data-cuenta', 'no');
+      return;
+    }
     (destino || el).textContent = texto;
   });
 
