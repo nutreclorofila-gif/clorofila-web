@@ -45,11 +45,11 @@ Copiadas de CLAUDE.md y de lo que Leo dejó dicho. Valen para TODAS las tareas.
 
 | Tarea | Estado |
 |---|---|
-| 1 · El schema promete pan y el temario no lo tiene | **BLOQUEADA** — falta que Leo diga cuál es la verdad |
+| 1 · El schema promete pan y el temario no lo tiene | hecha — Leo confirmó que el curso NO da pan; commit `1f94686` |
 | 2 · Completar el schema del curso | hecha — commit `43fd4ae` |
 | 3 · Cuenta regresiva en /programa | hecha — commit `d7316bf` |
 | 4 · Los alt de dos fotos | hecha — commit `6f99f60` |
-| 5 · Decisiones de Leo | pendientes de él |
+| 5 · Decisiones de Leo | el cupo ya está (12 por grupo, commit `1f94686`); quedan las imágenes sin usar y publicar |
 
 ---
 
