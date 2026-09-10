@@ -52,6 +52,15 @@
 .cifras-leo li:last-child{border-right:0;margin-right:0;padding-right:0}
 .cifras-leo b{display:block;font-family:var(--display);font-size:clamp(1.6rem,2.8vw,2.1rem);color:var(--cal);line-height:1;letter-spacing:-.03em}
 .cifras-leo span{font-family:var(--texto);font-size:.85rem;color:var(--cal-baja)}
+/* En el celular los tres datos no entraban en una fila: quedaban dos arriba
+   y "+1.200 personas formadas" solo abajo, desalineado con el primero y con
+   el separador del segundo colgando en el aire. En tres columnas parejas los
+   tres arrancan a la misma altura y cada separador queda donde va. */
+@media (max-width:640px){
+  .cifras-leo{display:grid;grid-template-columns:repeat(3,1fr)}
+  .cifras-leo li{padding-right:.8rem;margin-right:.8rem}
+  .cifras-leo span{font-size:.78rem;line-height:1.25}
+}
 @media (max-width:860px){.hero-leo-caja{grid-template-columns:1fr}.foto-leo{aspect-ratio:4/3;order:1;margin-top:1.5rem}}
 
 .cita{background:var(--musgo);border-block:1px solid var(--linea);text-align:center}
