@@ -597,7 +597,13 @@ if (t.estado === 'sin-fecha' || !t.fecha_iso) {
   });
 }
 
-agenda.sort(function (a, b) { return a.iso < b.iso ? -1 : 1; });
+// Lo agotado va despues de lo que se puede comprar, aunque su fecha sea antes.
+agenda.sort(function (a, b) {
+  var ka = a.estado === 'agotado' ? 1 : 0;
+  var kb = b.estado === 'agotado' ? 1 : 0;
+  if (ka !== kb) return ka - kb;
+  return a.iso < b.iso ? -1 : 1;
+});
 
 datos.agenda_html = agenda.map(function (e) {
   /* Si el ítem tiene fecha de inicio, la etiqueta pasa a ser la cuenta
