@@ -157,8 +157,9 @@
 /* El hueco de la cuenta ocupa su lugar desde el principio: si colapsa, al
    llenarlo por JS empuja 31px el botón de reserva. Solo desaparece cuando el
    JS avisa que no hay cuenta que mostrar. */
-.comanda-datos li:has(span[data-cuenta]:empty){visibility:hidden}
-.comanda-datos li:has(span[data-cuenta="no"]){display:none}
+.comanda-datos li:has(span[data-cuenta]:empty){display:none}
+html.js .comanda-datos li:has(span[data-cuenta]:empty:not([data-cuenta="no"])){display:flex;visibility:hidden}
+html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260907" defer></script>
