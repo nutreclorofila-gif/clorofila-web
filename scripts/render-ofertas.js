@@ -189,6 +189,15 @@ t.wa_texto =
   t.estado === 'agotado'   ? 'Avisame si se libera un lugar' :
   'Reservar mi lugar';
 
+/* Cómo termina el párrafo del tapeo en la portada. Es la última frase de un
+   texto que describe la noche, así que tiene que sonar a cierre y no a
+   etiqueta de stock. */
+t.cupos_frase =
+  t.estado === 'agotado'   ? 'Esta fecha ya se llenó.' :
+  t.estado === 'ultimos'   ? 'Quedan pocos lugares.' :
+  t.estado === 'sin-fecha' ? 'Las fechas se abren según la demanda.' :
+  'Solo ' + t.cupos_total + ' lugares.';
+
 t.resumen_texto =
   t.estado === 'sin-fecha' ? 'sin fecha abierta por ahora; las fechas se publican según la demanda' :
   t.estado === 'agotado'   ? 'fecha ' + t.fecha_texto + ', sin lugares disponibles' :
@@ -221,10 +230,7 @@ t.sumar_link = waBase + encodeURIComponent(
 t.regalo_link = waBase + encodeURIComponent(
   'Hola Leonardo, quiero regalar una Cena y Taller de Tapeo. ¿Cómo hago con la gift card?'
 );
-t.hero_boton =
-  t.estado === 'sin-fecha' ? 'Ver la cena y taller de tapeo' :
-  t.estado === 'agotado'   ? 'Anotate para la próxima cena de tapeo' :
-  'Cena de tapeo del ' + t.fecha_texto;
+t.hero_boton = 'Ver la cena de tapeo';
 t.tiene_segunda = t.segunda_fecha && t.segunda_fecha.texto ? 'si' : 'no';
 // Con una sola fecha, "Elegí tu fecha" pide algo que no se puede hacer.
 t.fechas_titulo = t.tiene_segunda === 'si' ? 'Elegí tu fecha' : 'La próxima fecha';
