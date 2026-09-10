@@ -196,7 +196,11 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
 /* La dirección del pie lleva a /contacto, donde está el mapa: cómo llegar es
    lo que más se busca de Clorofila. Sin subrayado no se veía que fuera un
    enlace, y el color es el mismo del texto de al lado. */
-.pie .dato a{color:inherit;text-decoration:underline;text-decoration-color:var(--linea-fuerte);text-underline-offset:3px}
+/* El enlace de la dirección ocupa su propio párrafo, así que no entra en la
+   excepción de WCAG para enlaces dentro de una oración: medía 17px de alto
+   contra los 24 que pide el criterio de tamaño mínimo. El padding lo lleva
+   a 25 sin mover nada de lo que hay alrededor. */
+.pie .dato a{color:inherit;text-decoration:underline;text-decoration-color:var(--linea-fuerte);text-underline-offset:3px;display:inline-block;padding-block:4px}
 .pie .dato a:hover{text-decoration-color:var(--brote)}
 @media (max-width:760px){.pie-caja{grid-template-columns:1fr 1fr}.pie-marca{grid-column:1/-1}}
 
