@@ -223,7 +223,7 @@ t.regalo_link = waBase + encodeURIComponent(
 );
 t.hero_boton =
   t.estado === 'sin-fecha' ? 'Ver la cena y taller de tapeo' :
-  t.estado === 'agotado'   ? 'Cena de tapeo · agotada' :
+  t.estado === 'agotado'   ? 'Anotate para la próxima cena de tapeo' :
   'Cena de tapeo del ' + t.fecha_texto;
 t.tiene_segunda = t.segunda_fecha && t.segunda_fecha.texto ? 'si' : 'no';
 // Con una sola fecha, "Elegí tu fecha" pide algo que no se puede hacer.
