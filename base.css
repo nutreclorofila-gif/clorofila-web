@@ -202,6 +202,13 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
    a 25 sin mover nada de lo que hay alrededor. */
 .pie .dato a{color:inherit;text-decoration:underline;text-decoration-color:var(--linea-fuerte);text-underline-offset:3px;display:inline-block;padding-block:4px}
 .pie .dato a:hover{text-decoration-color:var(--brote)}
+
+/* Un h2 seguido directo de un párrafo quedaba sin aire: en la portada, el
+   título del curso arrancaba pegado a su texto —0px de separación, contra
+   los 11 de las secciones que usan .bajada—, y en el celular se lee
+   apretado. Los márgenes verticales entre hermanos colapsan, así que esto
+   solo levanta los que están en cero y no toca los que ya tienen aire. */
+h2 + p{margin-top:.55rem}
 @media (max-width:760px){.pie-caja{grid-template-columns:1fr 1fr}.pie-marca{grid-column:1/-1}}
 
 /* --- Navegación entre páginas -------------------------------------------
