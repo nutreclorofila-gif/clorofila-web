@@ -598,6 +598,22 @@ if (t.estado === 'sin-fecha' || !t.fecha_iso) {
 }
 
 // Lo agotado va despues de lo que se puede comprar, aunque su fecha sea antes.
+/* La frase con que cada página recomienda a la otra. Antes afirmaba a mano
+   que la otra propuesta estaba abierta y quedaba mintiendo apenas una de
+   las dos se llenaba o perdía la fecha, que es lo que estaba pasando. */
+function lineaCruce(estado, articulo, nombre, ruta) {
+  var enlace = '<a href="' + ruta + '" class="enlace-vivo">' + nombre + '</a>';
+  if (estado === 'agotado') return 'Se agotó ' + articulo + ' ' + enlace + ', pero podés anotarte para la próxima';
+  if (estado === 'sin-fecha') return 'También hacemos ' + articulo + ' ' + enlace;
+  if (estado === 'ultimos') return 'Quedan pocos lugares para ' + articulo + ' ' + enlace;
+  return 'También está abiert' + (articulo === 'la' ? 'a' : 'o') + ' ' + articulo + ' ' + enlace;
+}
+datos.tapeo.cruce_html = lineaCruce(
+  (datos.talleres['pastas-sin-gluten'] || {}).estado, 'el',
+  'Taller de Pastas sin gluten', '/pastas');
+datos.talleres['pastas-sin-gluten'].cruce_html = lineaCruce(
+  datos.tapeo.estado, 'la', 'Cena y Taller de Tapeo', '/tapeo');
+
 agenda.sort(function (a, b) {
   var ka = a.estado === 'agotado' ? 1 : 0;
   var kb = b.estado === 'agotado' ? 1 : 0;
