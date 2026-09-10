@@ -243,4 +243,28 @@
       banner.classList.remove('visible');
     });
   }
+
+  /* --- Avisar cuando un enlace abre otra pestaña ---------------------------
+     El sitio tiene 200 enlaces con target="_blank" —WhatsApp, Tikzet, Tally,
+     los estudios citados en los artículos— y ninguno avisaba que se abren
+     afuera. Con lector de pantalla eso es apretar un enlace y aparecer en otra
+     ventana sin saber por qué, ni cómo volver.
+
+     Va acá y no en el HTML por peso: son 200 enlaces repartidos en 28 páginas.
+     Hay dos casos, porque un aria-label pisa el contenido del enlace y un span
+     adentro no se leería: si el enlace ya tiene aria-label, el aviso se suma
+     ahí; si no, entra como texto oculto con .sr-only, que ya existe en el CSS. */
+  var AVISO = "(se abre en otra pestaña)";
+  document.querySelectorAll("a[target=\"_blank\"]").forEach(function (a) {
+    var etiqueta = a.getAttribute("aria-label");
+    if ((etiqueta || a.textContent || "").indexOf("otra pestaña") !== -1) return;
+    if (etiqueta) {
+      a.setAttribute("aria-label", etiqueta + " " + AVISO);
+    } else {
+      var s = document.createElement("span");
+      s.className = "sr-only";
+      s.textContent = " " + AVISO;
+      a.appendChild(s);
+    }
+  });
 })();
