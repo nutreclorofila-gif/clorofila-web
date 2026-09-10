@@ -41,6 +41,18 @@ Copiadas de CLAUDE.md y de lo que Leo dejó dicho. Valen para TODAS las tareas.
 
 ---
 
+## Estado al 9/9/2026
+
+| Tarea | Estado |
+|---|---|
+| 1 · El schema promete pan y el temario no lo tiene | **BLOQUEADA** — falta que Leo diga cuál es la verdad |
+| 2 · Completar el schema del curso | hecha — commit `43fd4ae` |
+| 3 · Cuenta regresiva en /programa | hecha — commit `d7316bf` |
+| 4 · Los alt de dos fotos | hecha — commit `6f99f60` |
+| 5 · Decisiones de Leo | pendientes de él |
+
+---
+
 ### Tarea 1: El schema promete pan y el programa no lo tiene
 
 **Bloqueada:** necesita que Leo diga cuál de las dos es la verdad.
