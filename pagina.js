@@ -56,14 +56,20 @@
        por la ✕. Verificado con elementFromPoint sobre el centro de cada uno.
        El ☰ se puede apagar sin problema: cerrarMenu() le devuelve el estado
        antes de enfocarlo. */
+    var barraFija = document.getElementById('sticky-cta');
     var detras = [
       document.getElementById('principal'),
       document.querySelector('footer'),
       document.querySelector('.marca'),
+      barraFija,
       ham
     ].filter(Boolean);
     var apagarFondo = function (apagado) {
       for (var i = 0; i < detras.length; i++) detras[i].inert = apagado;
+      /* La barra tiene su propio inert segun este visible o guardada: al
+         encender el fondo hay que devolverla a ese estado, no dejarla
+         siempre enfocable. */
+      if (!apagado && barraFija) barraFija.inert = !barraFija.classList.contains('visible');
     };
 
     var cerrarMenu = function () {
