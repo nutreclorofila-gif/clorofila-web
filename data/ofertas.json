@@ -53,7 +53,8 @@
         "inicio_iso": "2026-10-07",
         "inicio_texto": "Arranca el miércoles 7 de octubre",
         "detalle": "Una clase por semana, 12 en total. Para quienes salen de trabajar y quieren cerrar el día cocinando.",
-        "estado": "abierto"
+        "estado": "abierto",
+        "cupos_total": 12
       },
       {
         "id": "jueves",
@@ -62,7 +63,8 @@
         "inicio_iso": "2026-10-08",
         "inicio_texto": "Arranca el jueves 8 de octubre",
         "detalle": "Una clase por semana, 12 en total. El grupo de mañana, con el estudio tranquilo y luz de día.",
-        "estado": "abierto"
+        "estado": "abierto",
+        "cupos_total": 12
       }
     ]
   },

@@ -504,6 +504,17 @@ datos.curso.faq_cursada = 'Son 3 meses: 12 clases de 2 horas, una por semana. El
    reserva, que es donde se elige. */
 datos.curso.horarios_chip = '3 meses · una clase por semana';
 
+/* "Grupos reducidos" no dice nada: cada quien imagina un número distinto y
+   quien duda si va a poder preguntar en clase se queda con la duda. El cupo
+   está en ofertas.json desde que Leo lo confirmó; acá se arma la frase. Si los
+   dos grupos tienen distinto tamaño se dice el mayor, que es el peor caso. */
+(function () {
+  const cupos = datos.curso.grupos.map(function (g) { return g.cupos_total; }).filter(Boolean);
+  datos.curso.cupo_texto = cupos.length
+    ? 'Hasta ' + Math.max.apply(null, cupos) + ' por grupo'
+    : 'Grupos reducidos';
+}());
+
 // El FAQ prometía "tenés tres horarios y te movés entre ellos". Con una sola
 // modalidad no hay a dónde moverse, así que la respuesta cambia entera.
 datos.curso.faq_cambio_grupo = nombres.length > 1
@@ -887,6 +898,9 @@ for (const archivo of archivos) {
             const inst = JSON.parse(JSON.stringify(molde));
             inst.name = 'Grupo ' + g.nombre.toLowerCase() + ' ' + g.horario.replace(' a ', '-').replace(' h', '');
             inst.startDate = g.inicio_iso;
+            // El cupo sale de ofertas.json, no escrito a mano acá: si cambia el
+            // tamaño de los grupos, cambia en un solo lugar.
+            if (g.cupos_total) inst.maximumAttendeeCapacity = g.cupos_total;
             // Google pide endDate o courseSchedule para mostrar un curso en
             // resultados enriquecidos. No ponemos endDate porque nadie declaró
             // la fecha exacta de cierre y no se inventa: el calendario ya está
