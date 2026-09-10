@@ -267,9 +267,17 @@ h2 + p{margin-top:.55rem}
 .hero-prod .bajada{color:var(--cal-med);font-size:.98rem;max-width:46ch;margin-bottom:1.25rem}
 .hero-foto{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:5/6;box-shadow:0 36px 80px rgba(0,0,0,.55);margin-bottom:1.25rem}
 .hero-foto img{width:100%;height:100%;object-fit:cover}
-.hero-marcas{display:flex;flex-wrap:wrap;gap:.5rem}
+/* Sin align-items, los chips se estiran a lo alto de su línea del flex: en
+   /talleres, "Un día" salía como un óvalo vertical de 69x136 y el de reseñas
+   con 72 de alto, cuando la píldora mide 37. Se ve en el celular, donde los
+   chips van en varias líneas. */
+.hero-marcas{display:flex;flex-wrap:wrap;gap:.5rem;align-items:flex-start}
 .marca-chip{display:inline-flex;align-items:center;border:1px solid var(--linea);border-radius:999px;padding:.42rem .9rem;font-family:var(--texto);font-size:.82rem;letter-spacing:0;color:var(--cal-med)}
-.marca-chip.destacado{border-color:rgba(240,179,85,.45);color:var(--miel)}
+/* Se llamaba solo "destacado", que es además el nombre del bloque de cita
+   destacada de los artículos (más abajo en este archivo): el chip heredaba
+   su borde izquierdo, sus esquinas rectas, 1.4rem de padding y 2rem de
+   margen, y salía como un rectángulo del doble de alto que sus vecinos. */
+.marca-chip.marca-chip-alta{border-color:rgba(240,179,85,.45);color:var(--miel)}
 /* Apilado en el celular, el hero de las páginas que venden una fecha se ordena
    de corrido: foto, título, propuesta, ficha de reserva, sellos y recién ahí la
    bajada. Antes los sellos viajaban con la columna de la foto y se metían entre

@@ -687,6 +687,8 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
   // La bajada de /talleres decía "algunos tienen fecha abierta ahora mismo".
   // Casi siempre hay uno solo con fecha, y a veces ninguno: en ese caso la
   // frase pasaba a ser falsa sola, sin que nadie tocara nada.
+  datos.talleres_cta = conFecha.length ? 'Ver los que tienen fecha' : 'Ver los talleres';
+  datos.talleres_nav = conFecha.length ? 'Ver fechas' : 'Ver talleres';
   datos.talleres_bajada = 'Son encuentros de un día, cada uno dedicado a una sola técnica que trabajás de principio a fin. '
     + (conFecha.length === 0
         ? 'Ahora mismo no hay ninguno con fecha: se abren según la demanda, y te avisamos.'

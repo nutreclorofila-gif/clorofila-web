@@ -29,7 +29,13 @@ const afirmaciones = [
   /[úu]ltimos?\s+lugares?\b/gi,
   /hay\s+(?:fecha|cupo)\b/gi,
   /inscripciones\s+(?:abiertas|cerradas)/gi,
-  /se\s+(?:llen[óo]|agot[óo])\b/gi
+  /se\s+(?:llen[óo]|agot[óo])\b/gi,
+  /* Este se agregó después: la barra fija de /talleres decía "Ver los que
+     tienen fecha" y el menú "Ver fechas", con los cinco talleres sin fecha.
+     El chequeo no lo agarraba porque no afirma que algo esté abierto: promete
+     que hay fechas para ver, que es la misma mentira dicha de otro modo. */
+  /(?:los\s+que\s+tienen|ver)\s+fechas?\b/gi,
+  /pr[óo]ximas?\s+fechas?\s+disponibles?/gi
 ];
 /* Una afirmación solo cuenta si habla de una propuesta nuestra: sin esto, "el
    DM está abierto" de /contacto entraba como fecha abierta. Los nombres van
