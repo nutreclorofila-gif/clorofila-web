@@ -142,6 +142,16 @@
   });
 
   function ga(evento, producto, extra) {
+    /* generate_lead junta todos los canales de contacto (hoy WhatsApp y
+       mail). El parametro method es lo unico que permite volver a
+       separarlos, asi que sin el no se manda: es preferible perder un
+       evento y verlo en la consola a ensuciar la serie con "(not set)". */
+    if (evento === 'generate_lead' && !(extra && extra.method)) {
+      if (window.console && console.warn) {
+        console.warn('track.js: generate_lead sin method, no se envia. Producto:', producto);
+      }
+      return;
+    }
     var p = parametros(producto, extra);
     encolar(function () {
       if (typeof gtag === 'function') gtag('event', evento, p);
