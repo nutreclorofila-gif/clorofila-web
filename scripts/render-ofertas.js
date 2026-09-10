@@ -479,7 +479,10 @@ datos.curso.resumen_grupos = abiertos.length
 
 // La FAQ de la cursada se arma con los grupos reales, para que no quede
 // prometiendo horarios de una edición que ya pasó.
-datos.curso.faq_cursada = 'Son 3 meses de cursada, 12 clases semanales por grupo. Elegís entre ' +
+/* Decía "12 clases semanales por grupo", que se lee como doce clases por
+   semana: el mismo malentendido de carga horaria que Leo marcó en la chip del
+   hero. Son 12 clases en total, una por semana, de dos horas. */
+datos.curso.faq_cursada = 'Son 3 meses: 12 clases de 2 horas, una por semana. Elegís el grupo de ' +
   datos.curso.grupos.map(function (g) {
     return g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '');
   }).join(' o ') + '. ' +
@@ -553,7 +556,12 @@ if (abiertos.length) {
   agenda.push({
     iso: abiertos[0].inicio_iso, nombre: 'Curso de cocina saludable',
     cuenta: abiertos[0].inicio_iso,
-    fecha: datos.curso.inicio_texto, hora: datos.curso.dias_texto,
+    // dias_texto une los grupos con "y" —"miércoles y jueves"— y así queda bien
+    // en /programa, que habla de los dos como conjunto. Acá no: la agenda es lo
+    // que alguien puede reservar, y se reserva UNO. Con "y" la tarjeta se leía
+    // como que se cursan los dos días.
+    fecha: datos.curso.inicio_texto,
+    hora: datos.curso.grupos.map(function (g) { return g.nombre.toLowerCase(); }).join(' o '),
     precio: datos.curso.precio_total, estado: 'abierto',
     etiqueta: datos.curso.grupos_label, link: '/curso', cta: 'Ver el curso'
   });
