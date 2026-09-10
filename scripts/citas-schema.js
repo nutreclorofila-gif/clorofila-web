@@ -22,7 +22,10 @@ for (const archivo of fs.readdirSync(dir).filter(f => f.endsWith('.html'))) {
   const citas = [];
   for (const li of bloque[1].matchAll(/<li>([\s\S]*?)<\/li>/g)) {
     const url = (li[1].match(/href="(https?:\/\/[^"]+)"/) || [])[1];
-    const titulo = (li[1].match(/<em>([\s\S]*?)<\/em>/) || [])[1];
+    // <em[^>]*> y no <em>: los títulos de los estudios en inglés llevan
+    // lang="en" para que un lector de pantalla en español no los pronuncie
+    // como si fueran castellano. El título es el mismo; cambia el marcado.
+    const titulo = (li[1].match(/<em\b[^>]*>([\s\S]*?)<\/em>/) || [])[1];
     if (!url) continue;
     const cita = { '@type': 'CreativeWork', url };
     if (titulo) cita.name = titulo.replace(/<[^>]+>/g, '').trim();
