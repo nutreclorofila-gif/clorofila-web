@@ -1105,7 +1105,13 @@ for (const archivo of archivos) {
       }
 
       if (!tocado) return _m;
-      return abre + '\n  ' + JSON.stringify(ld) + '\n  ' + cierra;
+      /* JSON.stringify no escapa "<", así que un texto de ofertas.json que
+         contenga la cadena de cierre de un script partiría el bloque JSON-LD
+         al medio y Google perdería los datos estructurados de esa página, sin
+         que nada avise. Hoy no hay ningún "<" en el JSON, pero un testimonio
+         o una descripción futura puede traerlo. \u003c es el mismo carácter
+         para cualquier parser de JSON y ya no cierra la etiqueta. */
+      return abre + '\n  ' + JSON.stringify(ld).replace(/</g, '\\u003c') + '\n  ' + cierra;
     }
   );
 
