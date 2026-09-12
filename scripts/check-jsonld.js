@@ -83,6 +83,14 @@ for (const file of htmlFiles) {
     const OBLIGATORIOS = {
       Event: ['name', 'startDate', 'location'],
       Course: ['name', 'description', 'provider'],
+      /* Estos cuatro Google los pide como recomendados, no como obligatorios:
+         el curso aparece igual sin ellos. Se exigen igual porque Search Console
+         los reporta como problemas de Eventos —lee cada CourseInstance como un
+         evento— y ese aviso le llega a Leo por correo. Pasó: cuatro avisos
+         desde el 7/9/2026 que parecían ser del tapeo, y eran las nueve
+         instancias del curso y de los talleres. Los cuatro campos ya están en
+         el Course padre; el build los hereda. */
+      CourseInstance: ['organizer', 'performer', 'description', 'image'],
       FAQPage: ['mainEntity'],
       Review: ['author', 'reviewRating'],
       AggregateRating: ['ratingValue', 'reviewCount'],

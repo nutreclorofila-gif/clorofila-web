@@ -1005,6 +1005,23 @@ for (const archivo of archivos) {
         // solo puede ser Free, Partially Free, Subscription o Paid: con otra
         // cosa Google descarta el curso entero.
         if (nodo["@type"] === "Course") {
+          /* Cada CourseInstance hereda del curso lo que Google pide y el
+             curso ya declara. Sin esto Search Console los cuenta como
+             eventos incompletos, y son nueve. */
+          [].concat(nodo.hasCourseInstance || []).forEach(function (inst) {
+            if (!inst.organizer) inst.organizer = {
+              "@type": "Organization", name: "Clorofila", url: "https://clorofila.uy/"
+            };
+            if (!inst.performer) {
+              var docente = [].concat(nodo.instructor || [])[0];
+              inst.performer = docente || {
+                "@type": "Person", name: "Leonardo Lemes",
+                url: "https://clorofila.uy/leonardo"
+              };
+            }
+            if (!inst.description && nodo.description) inst.description = nodo.description;
+            if (!inst.image && nodo.image) inst.image = nodo.image;
+          });
           nodo.provider = { "@id": "https://clorofila.uy/#organization", "@type": "Organization",
                             name: "Clorofila", url: "https://clorofila.uy/" };
           const insts = [].concat(nodo.hasCourseInstance || []);
