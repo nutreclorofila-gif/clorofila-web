@@ -116,6 +116,31 @@ Todo el sitio quedó pasado a ese registro. Dos páginas volvieron a como
 estaban —`/tapeo` y `/pastas`—: sus frases originales eran de él y estaban
 bien donde estaban.
 
+## Las tres auditorías del 13/9
+
+Leo pidió "al menos 3 auditorías completas, revisa todo bien". Las tres
+corrieron sobre las 27 páginas.
+
+**1 · El registro.** Dieciocho frases que no estaban en el registro del PDF:
+muletillas ("de verdad" dos veces, "meter las manos"), promesas de
+sentimiento ("sin miedo", "más confianza"), coloquialismos ("arreglártelas
+solo", "el horno ande distinto", "que la masa le salga"), tres fichas de
+/servicios sin verbo conjugado, y dos incoherencias: el bloque de talleres
+de la portada decía otra cosa que /talleres, y la lista de "vas a poder"
+tenía dos veces armar un menú.
+
+**2 · Contra las fuentes.** Precio, cuotas, tarjeta, los dos grupos con su
+horario e inicio, y la fecha, la hora, el precio y el cupo del tapeo:
+cruzados uno por uno contra el mail y el carrusel, todos coinciden. De las
+32 elaboraciones del PDF faltaba una (crocante de manzana) y los helados no
+estaban nombrados. Y **"autonomía", una de sus tres palabras, no aparecía
+en ninguna de las 27 páginas.**
+
+**3 · Que nada se rompió.** Los 17 chequeos en verde. Las 13 páginas
+medidas a 375 px: ninguna desborda, los h1 van de 1 a 4 líneas y ninguno
+corta con una cola huérfana. Los errores de consola en local son los
+recursos externos que a propósito no cargan fuera de clorofila.uy.
+
 ## Lo que sigue pendiente de Leo
 
 Al 13/9 quedan dos cosas, y las dos son decisiones, no trabajo.
