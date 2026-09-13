@@ -15,8 +15,10 @@ lo que funciona, no lo que crees que funciona"*.
 
 **No entran:**
 
-- Los 12 artículos del blog. Son divulgación técnica, tienen otra vara en la
-  guía y traen el 39% de la visibilidad del sitio. No se toca su redacción.
+- El cuerpo de los 12 artículos del blog. Son divulgación técnica, tienen
+  otra vara en la guía y traen el 39% de la visibilidad del sitio. **Sí se
+  tocó su bloque de cierre**, que no es divulgación y era el mismo en los
+  doce: ver más abajo.
 - `404.html`, `privacidad.html` (legal), `googledccf1cf7e028ebab.html`.
 - Fechas, precios, cupos y horarios: salen de `data/ofertas.json`. No se tocan
   a mano en el HTML ni se cambian de valor.
@@ -68,6 +70,7 @@ commit. **Sin publicar**, como pidió Leo.
 | `contacto.html` | la nota del curso, que era solo el envase |
 | `articulos.html` | el cierre de Instagram |
 | `gracias.html` | el pase al curso, que era solo el envase |
+| `articulos/*.html` | el bloque de cierre de los 12, igual en todos |
 
 ## Lo que quedó decidido y por qué
 
@@ -90,6 +93,11 @@ commit. **Sin publicar**, como pidió Leo.
 2. **Las cinco imágenes al doble de tamaño** (`img-bts`, `img-espacio`,
    `img-sandwich`, `img-cheesecake`, `img-alfajores`): faltan las `-700.webp`
    y no hay herramienta para generarlas en este macOS.
-3. **Los enlaces internos no se miden como conversión.** Al cambiar el botón
+3. **Un puente distinto por artículo.** El cierre de los doce ya no dice
+   "Sin compromiso" ni ofrece el envase, pero sigue siendo el mismo texto
+   para los doce. Lo que probablemente mueva la aguja es que el artículo de
+   pan lleve al taller de pan y el de fermentación al de chucrut. Son 12
+   textos nuevos.
+4. **Los enlaces internos no se miden como conversión.** Al cambiar el botón
    del home de WhatsApp a /curso, ese clic dejó de contarse. Agregarlo a
    `track.js` obliga a subir el `?v=` en las 27 páginas.
