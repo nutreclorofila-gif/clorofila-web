@@ -81,7 +81,11 @@ for (const file of htmlFiles) {
        pierde el resultado enriquecido. Paso con los doce articulos del indice
        sin fecha y con el evento de /experiencias sin lugar. */
     const OBLIGATORIOS = {
-      Event: ['name', 'startDate', 'location'],
+      /* eventAttendanceMode es recomendado, no obligatorio. Se exige porque
+         el mismo evento vive en /tapeo y en /experiencias, y la copia salió
+         sin él: Google reportaba cinco problemas en la copia contra tres en
+         el original. Un campo que se pierde al copiar se pierde en silencio. */
+      Event: ['name', 'startDate', 'location', 'eventAttendanceMode'],
       Course: ['name', 'description', 'provider'],
       /* Estos cuatro Google los pide como recomendados, no como obligatorios:
          el curso aparece igual sin ellos. Se exigen igual porque Search Console

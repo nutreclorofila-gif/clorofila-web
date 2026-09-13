@@ -1157,6 +1157,20 @@ for (const archivo of archivos) {
         }
       }
 
+      /* Presencial, siempre: cocinar es presencial. Google lo recomienda para
+         todo Event y se perdía al copiar el evento de /tapeo a /experiencias,
+         donde además vive anidado dentro de otro nodo y no suelto en el
+         @graph: por eso esto recorre el árbol entero y no solo la raíz. */
+      (function ponerModo(o) {
+        if (!o || typeof o !== 'object') return;
+        if (Array.isArray(o)) return o.forEach(ponerModo);
+        if (typeof o['@type'] === 'string' && /Event$/.test(o['@type']) && !o.eventAttendanceMode) {
+          o.eventAttendanceMode = 'https://schema.org/OfflineEventAttendanceMode';
+          tocado = true;
+        }
+        Object.values(o).forEach(ponerModo);
+      }(ld));
+
       /* El evento nombraba al organizador con una referencia al nodo del home.
          Es válido en JSON-LD, pero Google lee cada página por separado y ahí
          esa referencia no resuelve: pedía el nombre y la dirección sueltos. */
