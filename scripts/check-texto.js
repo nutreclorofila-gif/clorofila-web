@@ -15,16 +15,43 @@ const CLICHES = [
   'a otro nivel', 'el arte de', 'todo un mundo', 'el mundo de la cocina',
 ];
 
-// Promesas sobre lo que el lector va a sentir o retener.
-const PROMESAS = [
+/* Promesas sobre lo que el lector va a SENTIR o RETENER: no se pueden filmar ni
+   comprobar, y suenan a folleto.
+
+   Ojo con lo que NO está en esta lista. Decir lo que alguien va a poder hacer en
+   su cocina —"cocinás sin mirar la receta", "arreglás una salsa cortada"— sí se
+   puede filmar: es un hecho, y es lo único que se compra. Esas dos estuvieron
+   prohibidas acá hasta el 12/9/2026, y prohibirlas es parte de por qué el sitio
+   terminó con 273 frases que describen y 43 que le hablan al lector. La línea
+   está explicada en GUIA-DE-TEXTO.md. */
+const EFECTO = [
   /\bte queda\b/i, /\bte sale\b/i, /\bte salga\b/i, /\bte va a quedar\b/i,
   /\blo entendés de verdad\b/i, /\btambién enseña\b/i, /\bte cambia la\b/i,
   /\bte vas sabiendo\b/i, /\bpara siempre\b/i,
-  /\bcocin[áa]s sin receta\b/i, /\bsin mirar la receta\b/i,
   // "te deja" y "te da el" son la misma promesa con otra cara: prometen un
   // resultado sobre el lector en vez de contar lo que pasa en la clase.
   /\bte deja\b/i, /\bte da el\b/i, /\bte da la\b/i,
 ];
+
+/* El envase —meses, clases, jornadas— y el nombre de la categoría puestos donde
+   va el motivo. "Damos un curso de tres meses eso no dice nada", dijo Leo el
+   12/9/2026. El dato va en la ficha; el h1 y el h2 se usan para lo que cambia.
+   Solo se mira el arranque del título: "en tres meses dejás de depender de la
+   receta" está bien, porque el envase va pegado a lo que pasa. */
+const ENVASE_AL_FRENTE = [
+  /^(tres|3|dos|2|un|1)\s+(mes|meses)\b/i,
+  /^(doce|12)\s+clases\b/i,
+  /^una jornada\b/i,
+  /^encuentros de\b/i,
+  /^curso (de|presencial)\b/i,
+  /^talleres? (intensivos?|de un d[íi]a)\b/i,
+];
+
+/* Hablarle solo a quien no sabe cocinar deja afuera a medio público del curso.
+   Es el mismo error que "vegana" en un botón, que Leo ya había marcado. No
+   aplica a contar la historia del estudio: "en 2013 no había dónde aprender a
+   cocinar saludable con rigor" es un hecho del pasado, no una oferta. */
+const EXCLUYE_AL_QUE_YA_COCINA = /\b(aprend[ée][sn]?|para aprender|vas a aprender)\s+a\s+cocinar\b/i;
 
 /* Vender una propuesta por lo que NO es, en vez de contar qué es. Leo ya había
    rechazado "vivir Clorofila sin el compromiso de un curso" y la frase volvió a
@@ -101,6 +128,18 @@ function bloques(c) {
   return salida;
 }
 
+// Los títulos grandes, solos: son el renglón que más gente lee de cada página.
+function titulos(c) {
+  const salida = [];
+  let m;
+  const re = /<(h1|h2)\b[^>]*>([\s\S]*?)<\/\1>/gi;
+  while ((m = re.exec(c))) {
+    const t = textoPlano(m[2]);
+    if (t) salida.push(t);
+  }
+  return salida;
+}
+
 // Pares encabezado → primer párrafo que le sigue.
 function pares(c) {
   const re = /<(h[1-3])\b[^>]*>([\s\S]*?)<\/\1>([\s\S]{0,600}?)<p\b[^>]*>([\s\S]*?)<\/p>/gi;
@@ -149,7 +188,10 @@ for (const archivo of archivos) {
     const bajo = frase.toLowerCase();
 
     for (const c of CLICHES) if (bajo.includes(c)) apunta(archivo, `cliché «${c}»`, frase);
-    for (const p of PROMESAS) if (p.test(frase)) apunta(archivo, `promete un efecto en vez de contar el hecho`, frase);
+    for (const p of EFECTO) if (p.test(frase)) apunta(archivo, `promete un efecto en vez de contar el hecho`, frase);
+    if (!articulo && EXCLUYE_AL_QUE_YA_COCINA.test(frase)) {
+      apunta(archivo, `«${frase.match(EXCLUYE_AL_QUE_YA_COCINA)[0]}» deja afuera a quien ya cocina`, frase);
+    }
     if (!articulo) {
       for (const p of POR_LO_QUE_NO_ES) {
         if (p.test(frase)) apunta(archivo, `vende por lo que no es «${frase.match(p)[0]}»: contá qué es`, frase);
@@ -165,6 +207,14 @@ for (const archivo of archivos) {
 
     const largo = (frase.match(/[\wáéíóúñü]+/gi) || []).length;
     if (largo > maxPalabras) apunta(archivo, `${largo} palabras en una oración (máximo ${maxPalabras})`, frase);
+  }
+
+  if (!articulo) {
+    for (const t of titulos(cuerpo)) {
+      for (const e of ENVASE_AL_FRENTE) {
+        if (e.test(t)) apunta(archivo, `el título arranca con el envase «${t.match(e)[0]}»: va lo que cambia`, t);
+      }
+    }
   }
 
   for (const [titulo, parrafo] of (articulo ? [] : pares(cuerpo))) {

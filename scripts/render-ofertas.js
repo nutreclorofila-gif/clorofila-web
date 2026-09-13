@@ -689,9 +689,9 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
   // frase pasaba a ser falsa sola, sin que nadie tocara nada.
   datos.talleres_cta = conFecha.length ? 'Ver los que tienen fecha' : 'Ver los talleres';
   datos.talleres_nav = conFecha.length ? 'Ver fechas' : 'Ver talleres';
-  datos.talleres_bajada = 'Son encuentros de un día, cada uno dedicado a una sola técnica que trabajás de principio a fin. '
+  datos.talleres_bajada = 'Cada taller toma una técnica y le dedica el día entero, de la primera mezcla hasta la mesa. '
     + (conFecha.length === 0
-        ? 'Ahora mismo no hay ninguno con fecha: se abren según la demanda, y te avisamos.'
+        ? 'Ahora mismo ninguno tiene fecha: los abrimos según la demanda y te avisamos.'
         : conFecha.length === 1
           ? 'Hay uno con fecha abierta; el resto se abre según la demanda.'
           : 'Hay ' + conFecha.length + ' con fecha abierta; el resto se abre según la demanda.');

@@ -6,17 +6,40 @@ alta y se rechazaron. `npm run texto` chequea automáticamente casi todo esto.
 
 ## La regla que ordena a las demás
 
-**Contá el hecho, no prometas el efecto.**
+**Contá lo que pasa y lo que vas a poder hacer. No prometas lo que vas a sentir.**
 
-El lector decide solo si algo le sirve. Cuando el texto le anticipa lo que va a
-sentir ("te queda", "te sale", "lo entendés de verdad", "también enseña"), suena
-a folleto y encima no se puede verificar. Un hecho concreto nunca suena raro.
+Cuando el texto le anticipa al lector lo que va a sentir o lo que le va a
+quedar ("te queda", "lo entendés de verdad", "también enseña"), suena a folleto
+y encima no se puede verificar. Eso sigue prohibido.
 
-| No | Sí |
+Pero hasta el 12/9/2026 esta regla decía solo "contá el hecho, no prometas el
+efecto", y se aplicó tan al pie de la letra que el sitio terminó siendo una
+ficha técnica: **de las frases de las diez páginas principales, 273 describen y
+43 le hablan al lector.** Leo lo marcó así: *"la redacción tiene una forma que es
+muy dura o no llega"*, *"damos un curso de tres meses eso no dice nada"*.
+
+Describir no es lo mismo que contar el hecho. **Lo que alguien va a poder hacer
+en su cocina también es un hecho, y es lo único que se compra.** El curso no se
+vende por durar tres meses: se vende porque después abrís la heladera y sale una
+comida sin buscar nada.
+
+**La línea: si lo podés filmar, se escribe.**
+
+Se puede filmar a alguien arreglando una salsa cortada sin mirar el teléfono, o
+cambiando una receta a mitad de camino. No se puede filmar "te queda", "te
+cambia la forma de cocinar" ni "para siempre".
+
+| No (un efecto) | Sí (un hecho) |
 |---|---|
 | La practicás hasta que te sale, y te vas sabiendo hacerla. | Repetís la técnica toda la jornada, con la masa en la mano. |
 | Comer lo que hiciste también enseña. | Al final nos sentamos a probar todo lo que salió. |
 | Ahí es cuando lo entendés de verdad y te queda. | Te muestra el punto de la masa mientras la estás amasando. |
+| Te cambia la forma de cocinar. | Cambiás una receta a mitad de camino y sabés por qué. |
+| Un curso de tres meses, completo. | En tres meses dejás de depender de la receta. |
+
+Los alumnos ya escriben así. En la reseña de Matías Acevedo, publicada en
+/curso: *"Ahora improviso con lo que hay en casa y me sale bien."* Esa frase
+dice en once palabras lo que la página tardaba cuatro pantallas en no decir.
 
 ## Reglas duras
 
@@ -64,15 +87,32 @@ Si no entrás, es porque hay dos ideas.
 "Antes de anotarte" arriba de las preguntas frecuentes le pone un trámite al
 lector justo donde estaba por decidir.
 
-## La prueba final
-
-Leé la frase en voz alta. Si nadie la diría hablando, se reescribe. Si tuviste
-que releerla, está mal escrita aunque sea gramaticalmente correcta.
-
 **12. «Saber» no toma infinitivo suelto en gerundio.**
 "te vas sabiendo hacerla" está mal: es "sabiendo cómo hacerla" o "sabiendo la
 técnica". Lo mismo con "salís sabiendo armar". Si te sale escribirlo así,
 la frase entera está de más.
+
+**13. El envase no es el argumento.**
+"Tres meses", "12 clases de 2 horas", "una jornada", "encuentros de un día" son
+el precio en tiempo. El que ya está decidiendo los busca en la ficha de datos,
+y ahí es donde van: nunca en el h1 ni en la primera frase. En prosa valen solo
+pegados a lo que cambia. "Tres meses para aprender a cocinar de forma completa"
+no dice nada; "en tres meses dejás de depender de la receta" sí.
+
+Lo mismo con el nombre del formato. "Curso de cocina saludable" y "Talleres
+intensivos" son la categoría del producto, no un motivo. El nombre ya está en
+el título de la pestaña, en la descripción de Google, en el schema y en la
+volanta: el h1 no lo tiene que repetir, puede usar su lugar para lo que cambia.
+
+**14. No le escribas solo al que no sabe.**
+"Aprendé a cocinar" deja afuera a quien ya cocina, que es medio público del
+curso. Es el mismo error que "vegana" en un botón: achica el público antes de
+que lea. Lo que se ofrece es criterio y autonomía, no los primeros pasos.
+
+## La prueba final
+
+Leé la frase en voz alta. Si nadie la diría hablando, se reescribe. Si tuviste
+que releerla, está mal escrita aunque sea gramaticalmente correcta.
 
 ## Dos registros, dos varas
 
