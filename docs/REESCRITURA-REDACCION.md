@@ -50,18 +50,46 @@ folleto y sigue prohibido.
 
 ## Avance
 
-- [x] La guía y el chequeo: separar la promesa de efecto de la de capacidad,
-      y dos redes nuevas (el envase al frente, y "aprendé a cocinar")
-- [ ] `index.html`
-- [ ] `curso.html`
-- [ ] `programa.html`
-- [ ] `talleres.html`
-- [ ] `pastas.html`
-- [ ] `tapeo.html`
-- [ ] `experiencias.html`
-- [ ] `leonardo.html`
-- [ ] `sobre.html`
-- [ ] `servicios.html`
-- [ ] `contacto.html`
-- [ ] `articulos.html`
-- [ ] `gracias.html`
+Las trece páginas del alcance, hechas. Los 17 chequeos en verde en cada
+commit. **Sin publicar**, como pidió Leo.
+
+| Página | Qué se tocó |
+|---|---|
+| `index.html` | h1, bajada, los dos h2 de producto, la lista de seis, el botón de la pantalla 2,4 |
+| `curso.html` | h1, tesis, bajada, 3 de las 7 cosas que vas a poder, los 3 títulos de mes, 2 impersonales |
+| `programa.html` | h1, bajada, 2 títulos de mes |
+| `talleres.html` | h1, la bajada (que la dibuja el build), la respuesta de cuánto dura |
+| `pastas.html` | h1, volanta, tesis, bajada, el párrafo de las dos masas |
+| `tapeo.html` | h1, volanta, tesis, bajada, el párrafo del menú |
+| `experiencias.html` | la volanta |
+| `leonardo.html` | la bajada del hero y el cierre del párrafo de la investigación |
+| `sobre.html` | el párrafo del "ecosistema" |
+| `servicios.html` | cinco fichas que eran frases sin verbo |
+| `contacto.html` | la nota del curso, que era solo el envase |
+| `articulos.html` | el cierre de Instagram |
+| `gracias.html` | el pase al curso, que era solo el envase |
+
+## Lo que quedó decidido y por qué
+
+- **El h1 de /servicios sigue siendo "Trabajamos con empresas, proyectos y
+  eventos".** Es B2B y ahí "trabajamos con" es el registro correcto: el que
+  llega es el que contrata, no el que cocina.
+- **El h1 de /sobre sigue siendo "Una cocina con historia".** Es la página
+  del estudio: hablar del estudio ahí no es el problema.
+- **"Próximas fechas" en el home sigue igual.** Es el rótulo de una agenda.
+  Convertirlo en una promesa lo haría peor.
+- **Los artículos no se tocaron.** Otra vara, y traen el 39% de la
+  visibilidad del sitio.
+
+## Lo que sigue pendiente de Leo
+
+1. **El orden del home.** El botón de la pantalla 2,4 ya no pide $12.200
+   —ahora dice "Ver el curso"—, pero el primer argumento sigue llegando en
+   la pantalla 4,9. Subir el bloque del método por encima del bloque del
+   curso es una decisión de estructura, no de redacción, y no está hecha.
+2. **Las cinco imágenes al doble de tamaño** (`img-bts`, `img-espacio`,
+   `img-sandwich`, `img-cheesecake`, `img-alfajores`): faltan las `-700.webp`
+   y no hay herramienta para generarlas en este macOS.
+3. **Los enlaces internos no se miden como conversión.** Al cambiar el botón
+   del home de WhatsApp a /curso, ese clic dejó de contarse. Agregarlo a
+   `track.js` obliga a subir el `?v=` en las 27 páginas.
