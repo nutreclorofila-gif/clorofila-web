@@ -51,7 +51,7 @@ const ENVASE_AL_FRENTE = [
    Es el mismo error que "vegana" en un botón, que Leo ya había marcado. No
    aplica a contar la historia del estudio: "en 2013 no había dónde aprender a
    cocinar saludable con rigor" es un hecho del pasado, no una oferta. */
-const EXCLUYE_AL_QUE_YA_COCINA = /\b(aprend[ée][sn]?|para aprender|vas a aprender)\s+a\s+cocinar\b/i;
+const EXCLUYE_AL_QUE_YA_COCINA = /\b(aprend[ée][sn]?|para aprender|vas a aprender)\s+a\s+cocinar\b(?!\s+(de forma|de manera|con m[áa]s|saludable))/i;
 
 /* Vender una propuesta por lo que NO es, en vez de contar qué es. Leo ya había
    rechazado "vivir Clorofila sin el compromiso de un curso" y la frase volvió a
