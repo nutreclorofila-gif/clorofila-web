@@ -32,7 +32,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=36">
+<link rel="stylesheet" href="base.css?v=37">
 <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":["LocalBusiness","EducationalOrganization"],"@id":"https://clorofila.uy/#organization","name":"Clorofila","description":"Escuela de cocina basada en plantas en Parque Rodó, Montevideo, desde 2013. Curso presencial de tres meses, talleres intensivos de un día y experiencias de una noche. Todo lo que se cocina es 100% vegetal, sin gluten ni azúcares refinados.","url":"https://clorofila.uy/","email":"nutreclorofila@gmail.com","telephone":"+59894064148","openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"15:00","closes":"19:00"},"address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressRegion":"Montevideo","addressCountry":"UY"},"geo":{"@type":"GeoCoordinates","latitude":-34.9085217,"longitude":-56.1723695},"priceRange":"$$","hasMap":"https://www.google.com/maps/place/Clorofila/@-34.9085217,-56.1723695,17z","image":"https://clorofila.uy/og/og-home.jpg","logo":"https://clorofila.uy/icon-512.png","foundingDate":"2013","founder":{"@id":"https://clorofila.uy/leonardo#person"},"areaServed":{"@type":"City","name":"Montevideo"},"sameAs":["https://instagram.com/clorofilaclases","https://www.facebook.com/clorofilaclases","https://linktr.ee/clorofilaestudio"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"22","bestRating":"5"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Valentina Pedreira"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado."},{"@type":"Review","author":{"@type":"Person","name":"Matías Acevedo"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Lo que más me sorprendió fue entender el porqué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien."}],"knowsAbout":["Cocina basada en plantas","Cocina vegana","Cocina sin gluten","Fermentación de vegetales","Pastelería sin gluten","Quesos vegetales","Masa madre","Ciencia del alimento","Cocina saludable"]},{"@type":"WebSite","url":"https://clorofila.uy/","name":"Clorofila","inLanguage":"es-UY","publisher":{"@id":"https://clorofila.uy/#organization"}}]}
   </script>
@@ -57,6 +57,10 @@
 .hero-foto img{width:100%;height:100%;object-fit:cover}
 .hero-foto figcaption{position:absolute;left:1rem;bottom:1rem;right:1rem;font-family:var(--texto);font-size:.85rem;color:var(--cal);background:rgba(14,26,19,.55);backdrop-filter:blur(8px);border:1px solid var(--linea);padding:.5rem .8rem;border-radius:var(--r);display:inline-flex;width:fit-content}
 @media (max-width:900px){.hero-caja{grid-template-columns:1fr}.hero-foto{aspect-ratio:4/3;margin-top:1.5rem}}
+/* En pantalla grande la foto no es una tarjeta dentro de la caja: es la luz de
+   la página, y llega hasta el borde derecho. El margen negativo es lo que la
+   caja de 1200px deja a cada lado más el padding de .env. */
+@media (min-width:901px){.hero .hero-foto{margin-right:calc(-1 * (max(0px, (100vw - var(--max)) / 2) + clamp(1.25rem,4vw,2.5rem)));border-top-right-radius:0;border-bottom-right-radius:0}}
 
 /* ---------- AGENDA ---------- */
 .agenda{background:var(--musgo);border-block:1px solid var(--linea)}
@@ -365,17 +369,14 @@
     </div>
     <div class="senales sube">
       <div class="senal-item">
-        <span class="dato">Cocinás</span>
         <h3>En equipo, cada uno con su lugar</h3>
         <p>Tenés tu lugar en la mesa grande, con tus herramientas y tus ingredientes, y practicás todas las preparaciones de la clase.</p>
       </div>
       <div class="senal-item">
-        <span class="dato">Preguntás</span>
         <h3>Leonardo corrige en el momento</h3>
         <p>Va puesto por puesto mientras trabajás: te muestra el punto de la masa, por qué se cortó una salsa, cómo se arregla.</p>
       </div>
       <div class="senal-item">
-        <span class="dato">Compartís</span>
         <h3>Terminamos comiendo</h3>
         <p>Nos sentamos a la mesa a probar todo lo que salió, sin apuro y con el grupo entero.</p>
       </div>

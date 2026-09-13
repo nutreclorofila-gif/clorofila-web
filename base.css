@@ -258,6 +258,9 @@ h2 + p{margin-top:.55rem}
 .hero-tesis{font-family:var(--display);font-size:clamp(1.1rem,1.8vw,1.38rem);color:var(--brote);letter-spacing:-.02em;line-height:1.22;margin-bottom:.8rem}
 .hero-prod .bajada{color:var(--cal-med);font-size:.98rem;max-width:46ch;margin-bottom:1.25rem}
 .hero-foto{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:5/6;margin-bottom:1.25rem}
+/* En pantalla grande la foto llega hasta el borde derecho: no es una tarjeta
+   dentro de la caja, es la luz de la página. */
+@media (min-width:941px){.hero-col-foto .hero-foto{margin-right:calc(-1 * (max(0px, (100vw - var(--max)) / 2) + clamp(1.25rem,4vw,2.5rem)));border-top-right-radius:0;border-bottom-right-radius:0}}
 .hero-foto img{width:100%;height:100%;object-fit:cover}
 /* Sin align-items, los chips se estiran a lo alto de su línea del flex: en
    /talleres, "Un día" salía como un óvalo vertical de 69x136 y el de reseñas

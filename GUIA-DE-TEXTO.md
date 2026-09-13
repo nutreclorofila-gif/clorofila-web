@@ -167,6 +167,24 @@ creativa y con más autonomía**", y así está bien. Lo que excluye es la frase
 pelada, no el verbo. Con el calificativo deja de hablarle al principiante y
 pasa a hablarle a cualquiera que quiera cocinar de otra manera.
 
+**15. Que se entienda a la primera.**
+Leo, 13/9/2026: *"algo que es necesario es que el lenguaje se entienda"*.
+Un título no es un acertijo. Si hay que leerlo dos veces, o si dice algo
+que suena bien pero no se sabe de qué habla, se reescribe plano. Lo que él
+marcó, y es la vara:
+
+| Se rechazó | Por qué | Quedó |
+|---|---|---|
+| Una receta funciona hasta que algo cambia. | ¿Qué cambia? ¿Qué receta? | Entender la cocina nos permite saber qué mejorar en una receta. |
+| Cocinás con el grupo, y ves cómo sale cada parte. | "cómo sale cada parte" no dice nada | Así es una clase en Clorofila. |
+| Una mesa que se arma entre desconocidos y a las tres horas ya no lo son tanto. | ingenio en vez de información | Es una experiencia para cocinar y aprender en grupo, conocer gente nueva y compartir una cena. |
+| Al terminar armás un menú con criterio propio. | "criterio propio", ¿de qué? | Aprendés a cocinar de forma consciente, creativa y con más autonomía. |
+
+Palabras que suenan a algo y no dicen nada si van solas: *criterio*,
+*proceso*, *bases*, *experiencia*, *elaboraciones*. Cada vez que aparezca
+una, o se le pone al lado de qué es, o se cambia por la cosa concreta:
+«fermentación, hongos y quesos vegetales» en vez de «los procesos vivos».
+
 ## La prueba final
 
 Leé la frase en voz alta. Si nadie la diría hablando, se reescribe. Si tuviste
