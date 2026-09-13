@@ -60,7 +60,7 @@
 /* En pantalla grande la foto no es una tarjeta dentro de la caja: es la luz de
    la página, y llega hasta el borde derecho. El margen negativo es lo que la
    caja de 1200px deja a cada lado más el padding de .env. */
-@media (min-width:901px){.hero .hero-foto{margin-right:calc(-1 * (max(0px, (100vw - var(--max)) / 2) + clamp(1.25rem,4vw,2.5rem)));border-top-right-radius:0;border-bottom-right-radius:0}}
+@media (min-width:901px){.hero .hero-foto{margin-right:calc(-1 * (max(0px, (100vw - var(--max)) / 2) + clamp(1.25rem,4vw,2.5rem)));border-top-right-radius:0;border-bottom-right-radius:0;aspect-ratio:auto;height:min(76vh,720px)}}
 
 /* ---------- AGENDA ---------- */
 .agenda{background:var(--musgo);border-block:1px solid var(--linea)}
