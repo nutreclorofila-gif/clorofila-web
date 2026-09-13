@@ -86,6 +86,14 @@ mida posiciones traba el scroll en móviles.
 **Todo el texto de cara al público está en español rioplatense** (voseo:
 "editás", "podés"). Los comentarios del código, también.
 
+**Antes de escribir una sola línea de cara al público, leé
+`GUIA-DE-TEXTO.md`.** Son catorce reglas que salieron de frases que Leo
+leyó en voz alta y rechazó, y `npm run texto` las hace cumplir: si
+escribís sin leerlas, el chequeo te frena y no vas a entender por qué. La
+regla que ordena a las demás es que se cuenta lo que pasa y lo que el
+lector va a poder hacer, nunca lo que va a sentir. La línea: **si lo podés
+filmar, se escribe.**
+
 ## Cambios que tocan muchas páginas
 
 Son 25 HTML con estructura repetida (head, nav, footer). Para un cambio
