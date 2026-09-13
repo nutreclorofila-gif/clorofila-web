@@ -40,7 +40,19 @@ y «damos un curso» hablan de la empresa y sobran. «Aprenderemos juntos»,
 «vamos a explorar», «empezamos por las bases» ponen al lector adentro de la
 clase, y esos se usan.
 
-**3. Las palabras son suyas, no sinónimos.** *Alimentación consciente*,
+**3. El argumento es todo lo que se aprende a elaborar.** Leo: *"pienso que
+es mejor decir todo lo que logramos que aprendas, como trasmite el pdf"*. La
+mitad del PDF es una lista larga y concreta —postres sin azúcares añadidos,
+quesos vegetales, kéfir, kombucha, chucrut, kimchi, patés, hummus, sushi,
+ceviches, dal de lentejas, tartas saladas, chocolates, ganache, helados,
+budines, elaboraciones con hongos— y esa abundancia es el argumento.
+
+Ojo con el reverso: hacer eje en **"sin depender de seguir una receta al pie de
+la letra"** suena exagerado, y él lo marcó. La frase es suya, pero es el cierre
+de un párrafo, no el titular. Decí cuánto se aprende, no de qué se deja de
+depender.
+
+**4. Las palabras son suyas, no sinónimos.** *Alimentación consciente*,
 *criterio propio*, *disfrute*, *autonomía*, *creativa*, *nutritiva*, *sin
 restricción*. «Alimentación consciente» está hasta en su firma de correo y no
 aparecía en ninguna parte del sitio.
