@@ -84,12 +84,44 @@ commit. **Sin publicar**, como pidió Leo.
 - **Los artículos no se tocaron.** Otra vara, y traen el 39% de la
   visibilidad del sitio.
 
+## El giro del 13/9: la voz estaba escrita y no la había leído
+
+Leo rechazó la primera reescritura entera: *"no tiene nada que ver con lo que
+trasmito lo que estás escribiendo, necesito que sea más formal y similar a lo
+que propongo"*. Y después: *"el tema de seguir una receta al pie de la letra es
+algo que lo tomaste como algo exagerado, pienso que es mejor decir todo lo que
+logramos que aprendas como trasmite el pdf"*.
+
+**La fuente estaba a mano y nunca la había abierto:** el PDF «Contenido del
+curso agosto 2026», que él manda por correo todos los días, y el mail con el
+que contesta cada consulta. Están en Gmail (`nutreclorofila`, en **/mail/u/1/**
+del Chrome de Leo); el PDF no está en Drive, así que se lee abriéndolo ahí.
+
+Lo que cambió, y quedó escrito en `GUIA-DE-TEXTO.md`, sección «De dónde sale
+la voz»:
+
+1. **El registro es formal y cuidado.** Él escribe «proponemos un espacio de
+   disfrute», no «te las arreglás». Corregir que la redacción era dura no
+   quería decir escribir suelto.
+2. **El argumento es todo lo que se aprende a elaborar.** Media hoja del PDF es
+   una lista larga y concreta, y esa abundancia es el argumento. Hacer eje en
+   «sin depender de seguir una receta al pie de la letra» suena exagerado.
+3. **Sus palabras:** alimentación consciente, criterio propio, disfrute,
+   autonomía, creativa, nutritiva. «Alimentación consciente» está hasta en su
+   firma de correo y no aparecía en ninguna parte del sitio.
+4. **Su «nosotros» no es el del negocio.** «Aprenderemos juntos» y «empezamos
+   por las bases» sí; «somos un estudio» y «damos un curso», no.
+
+Todo el sitio quedó pasado a ese registro. Dos páginas volvieron a como
+estaban —`/tapeo` y `/pastas`—: sus frases originales eran de él y estaban
+bien donde estaban.
+
 ## Lo que sigue pendiente de Leo
 
 Al 13/9 quedan dos cosas, y las dos son decisiones, no trabajo.
 
-1. **Los títulos.** La voz es de Leo. Los seis títulos nuevos están puestos
-   y andando; si alguno no suena a él, se cambia.
+1. **Los títulos.** La voz es de Leo. Los títulos están puestos en su
+   registro; si alguno no suena a él, se cambia.
 2. **El puente por artículo manda a talleres sin fecha.** Los doce cierres
    ya nombran el taller que corresponde (pan, fermentación, alfajores),
    pero ninguno de los cinco talleres tiene fecha abierta. Mientras no la
