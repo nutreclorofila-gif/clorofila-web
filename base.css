@@ -110,6 +110,10 @@ strong{color:var(--cal);font-weight:600}
 .seccion{padding-block:clamp(4rem,9vw,7.5rem)}
 .seccion-sm{padding-block:clamp(2.5rem,5vw,4rem)}
 .borde-sup{border-top:1px solid var(--linea)}
+/* El contenido se acerca a su propio filete y se aleja del siguiente bloque:
+   arriba menos aire que abajo. Con el mismo aire a los dos lados, cada filete
+   quedaba flotando en el medio de 15rem de nada. */
+.seccion.borde-sup{padding-top:clamp(2.75rem,6vw,5rem)}
 
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 .saltar{position:absolute;left:-9999px}

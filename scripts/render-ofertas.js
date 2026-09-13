@@ -543,13 +543,13 @@ if (t.estado !== 'sin-fecha' && t.fecha_iso) {
   agenda.push({
     iso: t.fecha_iso, nombre: 'Cena y Taller de Tapeo', fecha: t.fecha_texto,
     hora: t.horario_texto, precio: t.precio, estado: t.estado,
-    etiqueta: t.estado_texto, link: '/tapeo', cta: 'Ver la experiencia'
+    etiqueta: t.estado_texto, link: '/tapeo', cta: 'Ver la cena de tapeo'
   });
   if (t.segunda_fecha && t.segunda_fecha.texto) {
     agenda.push({
       iso: (t.segunda_fecha.iso || t.fecha_iso) + '-b', nombre: 'Cena y Taller de Tapeo',
       fecha: t.segunda_fecha.texto, hora: horarioDe(t.segunda_fecha, t.horario_texto), precio: t.precio,
-      estado: 'abierto', etiqueta: 'Segunda fecha', link: '/tapeo', cta: 'Ver la experiencia'
+      estado: 'abierto', etiqueta: 'Segunda fecha', link: '/tapeo', cta: 'Ver la cena de tapeo'
     });
   }
 }
