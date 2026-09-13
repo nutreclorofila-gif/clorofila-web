@@ -209,6 +209,7 @@ body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
    apretado. Los márgenes verticales entre hermanos colapsan, así que esto
    solo levanta los que están en cero y no toca los que ya tienen aire. */
 h2 + p{margin-top:.55rem}
+
 @media (max-width:760px){.pie-caja{grid-template-columns:1fr 1fr}.pie-marca{grid-column:1/-1}}
 
 /* --- Navegación entre páginas -------------------------------------------
@@ -262,7 +263,6 @@ h2 + p{margin-top:.55rem}
 @media (prefers-reduced-motion:reduce){.hero-prod::before{opacity:1;animation:none}}
 .hero-caja{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4.5vw,4rem);align-items:start}
 .hero-prod h1{font-size:clamp(2.2rem,4.4vw,3.35rem);margin-block:.7rem .6rem;max-width:13ch;line-height:1.03}
-.hero-prod h1 .viva{color:var(--brote)}
 .hero-tesis{font-family:var(--display);font-size:clamp(1.1rem,1.8vw,1.38rem);color:var(--brote);letter-spacing:-.02em;line-height:1.22;margin-bottom:.8rem}
 .hero-prod .bajada{color:var(--cal-med);font-size:.98rem;max-width:46ch;margin-bottom:1.25rem}
 .hero-foto{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:5/6;box-shadow:0 36px 80px rgba(0,0,0,.55);margin-bottom:1.25rem}
@@ -331,7 +331,6 @@ h2 + p{margin-top:.55rem}
 .comanda-precio span{color:var(--miel)!important;font-size:1.05rem}
 .comanda-acciones{display:grid;gap:.5rem;margin-top:1rem}
 .comanda-acciones .btn{width:100%;padding-inline:1.1rem}
-@media (min-width:560px){.comanda-acciones.lado-a-lado{grid-template-columns:1fr 1fr}}
 .comanda-nota{font-size:.78rem;color:var(--cal-baja);line-height:1.5;margin-top:.8rem}
 
 /* Fechas seleccionables dentro de la comanda. */
