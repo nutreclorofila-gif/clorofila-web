@@ -142,47 +142,69 @@ strong{color:var(--cal);font-weight:600}
 /* --- Navegación --------------------------------------------------------- */
 .nav{
   position:sticky;top:0;z-index:100;height:var(--nav-h);
-  background:rgba(14,26,19,.86);
-  /* Sin saturate y con poco desenfoque a propósito. Con saturate(1.4) la barra
-     levantaba el verde de lo que pasaba por debajo y se recortaba del fondo
-     como un rectángulo más claro, que al scrollear cambiaba de color solo.
-     Con el fondo casi opaco y blur chico, sobre la foto sigue difuminando y
-     sobre el fondo plano no se nota que está. */
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  border-bottom:1px solid transparent;transition:border-color .3s,background .3s;
+  /* Opaca, no de vidrio esmerilado. La barra nunca se monta sobre el hero
+     —sticky reserva su lugar en el flujo—, así que el desenfoque sólo se veía
+     mientras algo pasaba por debajo al scrollear, y a cambio creaba un
+     contenedor de posicionamiento que encerraba al menú del celular dentro de
+     los 68px de la barra. Sólida es una cabecera impresa y no hay que
+     apagarla en ningún estado. */
+  background:var(--tinta);
+  border-bottom:1px solid transparent;transition:border-color .3s;
 }
 .nav.pegada{border-bottom-color:var(--linea)}
-/* El backdrop-filter crea un nuevo contenedor de posicionamiento: si queda
-   activo, el menú mobile (position:fixed) se encierra dentro de la barra
-   de 64px en vez de cubrir la pantalla. Se apaga mientras el menú está abierto. */
-body.menu-abierto .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
-.nav-caja{max-width:var(--max);margin:0 auto;height:100%;padding-inline:clamp(1.25rem,4vw,2.5rem);display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.nav-caja{max-width:var(--max);margin:0 auto;height:100%;padding-inline:clamp(1.25rem,4vw,2.5rem);display:flex;align-items:center;justify-content:space-between;gap:2rem}
 .marca{display:flex;flex-direction:column;line-height:1;flex-shrink:0}
 .marca b{font-family:var(--display);font-size:1.35rem;font-weight:600;color:var(--cal);letter-spacing:-.02em}
 .marca span{font-family:var(--texto);font-size:.75rem;letter-spacing:.01em;color:var(--cal-baja);margin-top:.2rem}
-.nav-links{display:flex;align-items:center;gap:1.6rem}
+.nav-links{display:flex;align-items:center;gap:1.25rem;flex:1}
 /* "Inicio" solo en el menú del celular. En la compu el logo de arriba a la
    izquierda ya lleva al home, pero acá el menú abierto ocupa toda la pantalla
    y lo tapa: sin este ítem no había forma de volver sin cerrar el menú. */
 .solo-menu{display:none}
-.nav-links a{font-size:.88rem;color:var(--cal-med);transition:color .2s;position:relative;padding-block:.35rem}
+.nav-links a{font-size:.88rem;color:var(--cal-med);transition:color .2s;position:relative;padding-block:.35rem;white-space:nowrap}
 .nav-links a:hover,.nav-links a[aria-current]{color:var(--cal)}
 .nav-links a[aria-current]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--brote)}
+/* Los ocho enlaces pesaban lo mismo: el curso de $12.200 se leía igual que la
+   página de consultoría. Ahora los tres que se reservan quedan pegados a la
+   marca, y los cuatro que se leen se van al otro extremo, más chicos. El
+   margen automático abre el hueco cuando sobra lugar y se rinde a 2rem
+   cuando no, así los dos grupos nunca se tocan. */
+.nav-corte{margin-left:auto;padding-left:2rem}
+.nav-sec a{font-size:.8rem;color:var(--cal-baja)}
+.nav-sec a:hover,.nav-sec a[aria-current]{color:var(--cal)}
 .nav-cta{background:var(--cal);color:var(--tinta)!important;padding:.5rem 1.1rem!important;border-radius:var(--r);font-weight:600;font-size:.85rem!important}
 .nav-cta:hover{background:#fff}
-.hamburguesa{display:none;font-size:1.5rem;color:var(--cal);padding:.4rem;min-width:44px;min-height:44px}
-.cerrar-menu{display:none}
-@media (max-width:900px){
+/* El ☰ y la ✕ dibujados con el mismo filete de 1,5px del resto del sitio, en
+   vez de los dos caracteres tipográficos, que venían con el peso y el ancho
+   que les daba la fuente. Abrir son dos rayas; cerrar, las mismas cruzadas. */
+.hamburguesa,.cerrar-menu{display:none;position:relative;font-size:0;color:transparent;min-width:44px;min-height:44px}
+.hamburguesa::before,.hamburguesa::after,
+.cerrar-menu::before,.cerrar-menu::after{content:"";position:absolute;left:50%;width:22px;height:1.5px;background:var(--cal);transition:background .2s}
+.hamburguesa::before{transform:translateX(-50%);top:calc(50% - 4px)}
+.hamburguesa::after{transform:translateX(-50%);top:calc(50% + 2.5px)}
+.cerrar-menu::before{top:50%;transform:translate(-50%,-50%) rotate(45deg)}
+.cerrar-menu::after{top:50%;transform:translate(-50%,-50%) rotate(-45deg)}
+@media (max-width:999px){
   .nav-links{display:none}
   .hamburguesa{display:block}
-  .nav-links.abierto{display:flex;position:fixed;inset:0;background:var(--tinta);z-index:210;flex-direction:column;justify-content:center;align-items:center;gap:1.8rem}
+  /* El menú deja de ser una lista centrada en el medio de la pantalla y pasa
+     a ser el índice del sitio: alineado a la izquierda, una fila por línea
+     separadas por filete, y con las cuatro de leer en cuerpo chico abajo.
+     Arranca a la altura de la barra para que la ✕ caiga exactamente donde
+     estaba el ☰ y el dedo no tenga que buscarla. */
+  .nav-links.abierto{display:flex;position:fixed;inset:0;background:var(--tinta);z-index:210;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;padding:var(--nav-h) clamp(1.25rem,4vw,2.5rem) 1.5rem;overflow-y:auto}
   .nav-links.abierto .solo-menu{display:block}
-  .nav-links.abierto a{font-family:var(--display);font-size:1.9rem;color:var(--cal)}
-  /* En el menú a pantalla completa los enlaces miden 30px y el botón de
-     reservar medía 13,6: lo que queremos que toquen era lo más chico de la
-     pantalla. Ahora entra en la misma escala. */
-  .nav-links.abierto .nav-cta{font-size:1.25rem!important;padding:.7rem 1.9rem!important}
-  body.menu-abierto .cerrar-menu{display:block;position:fixed;top:1.1rem;right:1.1rem;font-size:1.8rem;color:var(--cal);z-index:211;min-width:44px;min-height:44px}
+  .nav-links.abierto li+li{border-top:1px solid var(--linea)}
+  .nav-links.abierto a{display:flex;align-items:center;min-height:50px;font-family:var(--display);font-size:1.5rem;color:var(--cal)}
+  /* En columna, el margen automático que abre el hueco en la compu empuja el
+     ítem contra el borde derecho y le come el filete: acá no corresponde. */
+  .nav-links.abierto .nav-corte{margin-left:0;padding-left:0;margin-top:.6rem}
+  .nav-links.abierto .nav-sec a{font-family:var(--texto);font-size:1rem;color:var(--cal-med);min-height:44px}
+  /* El botón de reservar no es una fila más del índice: se despega, ocupa el
+     ancho y es lo único lleno de la pantalla. */
+  .nav-links.abierto li:last-child{border-top:0;margin-top:1.25rem}
+  .nav-links.abierto .nav-cta{justify-content:center;font-size:1.1rem!important;padding:.85rem 1.5rem!important;font-family:var(--texto)}
+  body.menu-abierto .cerrar-menu{display:block;position:fixed;top:calc((var(--nav-h) - 44px) / 2);right:clamp(1.25rem,4vw,2.5rem);z-index:211}
 }
 
 /* --- Pie --------------------------------------------------------------- */
@@ -407,9 +429,12 @@ h2 + p{margin-top:.55rem}
 .respuesta-corta strong{color:var(--brote)}
 html:not(.js) .sube{opacity:1;transform:none}
 html:not(.js) .nav{height:auto}
-@media (max-width:900px){
+@media (max-width:999px){
   html:not(.js) .nav-caja{flex-wrap:wrap;height:auto;padding-block:.7rem}
   html:not(.js) .nav-links{display:flex;flex-wrap:wrap;gap:.6rem 1.1rem;width:100%;padding-bottom:.3rem}
+  /* Sin JS los ocho enlaces se acomodan en dos renglones: el margen automático
+     que separa los grupos en la compu acá dejaría un ítem solo contra el borde. */
+  html:not(.js) .nav-corte{margin-left:0;padding-left:0}
   html:not(.js) .hamburguesa{display:none}
 }
 
