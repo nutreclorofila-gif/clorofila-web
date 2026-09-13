@@ -86,18 +86,31 @@ commit. **Sin publicar**, como pidió Leo.
 
 ## Lo que sigue pendiente de Leo
 
-1. **El orden del home.** El botón de la pantalla 2,4 ya no pide $12.200
-   —ahora dice "Ver el curso"—, pero el primer argumento sigue llegando en
-   la pantalla 4,9. Subir el bloque del método por encima del bloque del
-   curso es una decisión de estructura, no de redacción, y no está hecha.
-2. **Las cinco imágenes al doble de tamaño** (`img-bts`, `img-espacio`,
-   `img-sandwich`, `img-cheesecake`, `img-alfajores`): faltan las `-700.webp`
-   y no hay herramienta para generarlas en este macOS.
-3. **Un puente distinto por artículo.** El cierre de los doce ya no dice
-   "Sin compromiso" ni ofrece el envase, pero sigue siendo el mismo texto
-   para los doce. Lo que probablemente mueva la aguja es que el artículo de
-   pan lleve al taller de pan y el de fermentación al de chucrut. Son 12
-   textos nuevos.
-4. **Los enlaces internos no se miden como conversión.** Al cambiar el botón
-   del home de WhatsApp a /curso, ese clic dejó de contarse. Agregarlo a
-   `track.js` obliga a subir el `?v=` en las 27 páginas.
+Al 13/9 quedan dos cosas, y las dos son decisiones, no trabajo.
+
+1. **Los títulos.** La voz es de Leo. Los seis títulos nuevos están puestos
+   y andando; si alguno no suena a él, se cambia.
+2. **El puente por artículo manda a talleres sin fecha.** Los doce cierres
+   ya nombran el taller que corresponde (pan, fermentación, alfajores),
+   pero ninguno de los cinco talleres tiene fecha abierta. Mientras no la
+   tengan, el que hace clic cae en "dejanos tu interés".
+
+## Lo que se cerró el 13/9
+
+- **El orden del home.** El bloque del método subió arriba de todo: el
+  primer argumento pasó de la pantalla 4,9 a la 1,4. Es un commit solo y
+  se revierte sin tocar nada más.
+- **Las cinco imágenes.** Tres eran falsa alarma: `img-sandwich`,
+  `img-cheesecake` e `img-alfajores` miden 667 px para un hueco de 335, que
+  es exactamente lo que pide una pantalla al doble. Las dos que sí sobraban
+  —`img-bts` e `img-espacio`, de 867— ya tienen su versión de 700: 23 KB y
+  16 KB menos. La herramienta existía: Pillow está instalado y escribe webp.
+- **El puente de los doce artículos**, cada uno con el suyo.
+
+## Lo que se decidió NO hacer
+
+**Medir el clic del botón "Ver el curso" del home.** Al pasarlo de WhatsApp
+a un enlace interno, ese clic dejó de disparar un evento. Agregarlo a
+`track.js` obliga a subir el `?v=` en las 27 páginas, y no hace falta: GA4
+ya mide el camino de la portada a /curso como navegación, que es de donde
+salió el dato de las 25 personas por mes.
