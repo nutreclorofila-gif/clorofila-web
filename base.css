@@ -105,7 +105,10 @@ h2{font-size:var(--th-seccion);letter-spacing:-.03em}
 h3{font-size:var(--th-bloque);letter-spacing:-.02em}
 p{max-width:var(--max-texto);text-wrap:pretty}
 li,blockquote{text-wrap:pretty}
-em{font-style:italic;color:var(--fermento)}
+/* Sin color: el rosa es el estado «últimos lugares» y nada más. Pintando
+   también las itálicas, «Clostridium botulinum» salía del mismo color que
+   una alerta de cupo y el acento dejaba de querer decir algo. */
+em{font-style:italic}
 strong{color:var(--cal);font-weight:600}
 
 /* El dato: fechas, precios, horarios, etiquetas.

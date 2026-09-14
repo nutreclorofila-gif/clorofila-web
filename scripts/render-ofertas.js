@@ -807,7 +807,6 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
     });
 
     // /tapeo maqueta cada testimonio con otra clase y en varias líneas.
-    const esTapeo = pagina === 'tapeo';
     T[pagina + '_html'] = elegidos.map(function (t) {
       /* Sin la fila de estrellas: eran cuatro o cinco iguales por página,
          todas de cinco, encima del texto. El puntaje ya está una vez arriba
@@ -815,10 +814,8 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
          Las estrellas de Google en el buscador salen del JSON-LD, no de acá. */
       const cuerpo = '<blockquote>«' + escapar(t.cita) + '»</blockquote>' +
         '<cite>' + escapar(t.nombre) + ', ' + escapar(t.contexto) + '</cite>';
-      return esTapeo
-        ? '<div class="testi">' + cuerpo + '</div>'
-        : '<div class="voz">' + cuerpo + '</div>';
-    }).join(esTapeo ? '' : '');
+      return '<div class="voz">' + cuerpo + '</div>';
+    }).join('');
 
     /* Solo se publican como reseña propia las de quienes pasaron por Clorofila.
        Las que dicen "reseña en Google" ya las cuenta Google en el puntaje del
