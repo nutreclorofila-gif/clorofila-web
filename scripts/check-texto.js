@@ -63,7 +63,7 @@ const EXCLUYE_AL_QUE_YA_COCINA = /\b(aprend[ée][sn]?|para aprender|vas a aprend
    Va sobre el bloque entero y no sobre cada oración, porque el contraste vive
    justo en la juntura de las dos. Probado contra las 28 páginas: no marca nada
    de lo que hoy está escrito. */
-const CONTRASTE_NEGADO = /\bno\s+([a-záéíóúñ]{3,}(?:amos|emos|imos|ás|és|ís)\b)[^.!?]{0,70}[.!?;]\s*(?:pero\s+|s[íi]\s+)?\1\b/i;
+const CONTRASTE_NEGADO = /\bno\s+([a-záéíóúñ]{3,}(?:amos|emos|imos|ás|és|ís)\b)[^.!?:;]{0,70}[.!?;:]\s*(?:pero\s+|s[íi]\s+)?\1\b/i;
 
 /* Regla 16, vender sin vender. Leo, 14/9/2026, sobre el cierre de la portada:
    *"lo cambiaria si aun te quedan dudas podes escribirnos, no poner reserva o

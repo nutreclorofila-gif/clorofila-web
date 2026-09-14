@@ -1,7 +1,7 @@
 {
   "name": "Clorofila Estudio de Cocina",
   "short_name": "Clorofila",
-  "description": "Estudio de cocina en Parque Rodó, Montevideo. No enseñamos recetas, enseñamos a entender.",
+  "description": "Estudio de cocina en Parque Rodó, Montevideo. Cocinamos y comemos de manera creativa, energética y nutritiva.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0E1A13",
