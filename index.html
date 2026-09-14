@@ -66,9 +66,17 @@
 .agenda{background:var(--musgo);border-block:1px solid var(--linea)}
 [data-agenda="no"]{display:none}
 .agenda-cabeza{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
-.agenda-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(228px,100%),1fr));gap:1rem}
-.agenda-item{background:var(--musgo-alto);border:1px solid var(--linea);border-radius:var(--r);padding:1.35rem;display:flex;flex-direction:column;gap:.3rem;transition:border-color .25s}
-.agenda-item:hover{border-color:var(--linea-fuerte)}
+/* La agenda es una cartelera de fechas, no una galería: una fila por fecha,
+   separadas por filete, con el enlace a la derecha en pantalla grande. Así
+   entra igual con dos fechas que con seis, y el estado se lee en la etiqueta
+   y en el color del filete. */
+.agenda-grid{display:grid;gap:0;border-top:1px solid var(--linea)}
+.agenda-item{border-bottom:1px solid var(--linea);padding-block:1.2rem;display:grid;grid-template-columns:1fr;gap:.3rem}
+@media (min-width:720px){
+  .agenda-item{grid-template-columns:1fr auto;align-items:center;column-gap:2rem}
+  .agenda-item > *{grid-column:1}
+  .agenda-link{grid-column:2;grid-row:1 / -1;align-self:center;margin-top:0}
+}
 .agenda-etiqueta{font-family:var(--texto);font-size:.8rem;color:var(--brote);margin-bottom:.5rem}
 /* Una nota cálida sobre tanto verde, y en el único lugar donde suma: lo que
    está abierto. El contraste hay que medirlo contra el fondo de la tarjeta,
@@ -76,8 +84,7 @@
    o sea que necesita 4,5. Contra el fondo de la página daría 6,5, pero ese
    número no es el que corresponde mirar acá. */
 .agenda-item[data-estado="abierto"] .agenda-etiqueta{color:#E08556}
-.agenda-item[data-estado="abierto"]{border-color:rgba(224,133,86,.34)}
-.agenda-item[data-estado="abierto"]:hover{border-color:rgba(224,133,86,.62)}
+.agenda-item[data-estado="abierto"]{border-bottom-color:rgba(224,133,86,.5)}
 .agenda-item[data-estado="ultimos"] .agenda-etiqueta{color:var(--fermento)}
 .agenda-item[data-estado="agotado"] .agenda-etiqueta{color:var(--cal-baja)}
 .agenda-item[data-estado="sin-fecha"] .agenda-etiqueta{color:var(--cal-baja)}

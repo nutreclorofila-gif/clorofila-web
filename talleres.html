@@ -77,7 +77,10 @@
   .taller-foto,.taller:nth-child(even) .taller-foto{order:-1;aspect-ratio:16/10}
 }
 
-.remate-curso{text-align:center;border:1px solid rgba(143,192,138,.32);background:var(--musgo);border-radius:var(--r-lg);padding:clamp(1.8rem,4vw,3rem);max-width:760px;margin-inline:auto}
+/* El remate no necesita recuadro: es lo último de la página y el botón ya
+   es lo único lleno que hay. Queda el filete verde arriba, que es lo que
+   marca dónde empieza. */
+.remate-curso{text-align:center;border-top:1px solid var(--brote);padding-top:clamp(1.6rem,3.5vw,2.4rem);max-width:760px;margin-inline:auto}
 .remate-curso h2{font-size:clamp(1.5rem,2.8vw,2.1rem);margin-block:.8rem .8rem}
 .remate-curso p{color:var(--cal-med);margin:0 auto 1.5rem}
 </style>
