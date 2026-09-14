@@ -184,9 +184,14 @@ t.wa_link = waBase + encodeURIComponent(
     ? 'Hola Leonardo, me interesa la Cena y Taller de Tapeo. Avisame cuando abran la próxima fecha.'
     : 'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.fecha_texto + '. Somos [cantidad] personas.'
 );
+/* Con la fecha llena, el botón decía "avisame si se libera un lugar" mientras
+   el mensaje que se manda pide la próxima fecha: dos promesas distintas en el
+   mismo clic. Y esperar una cancelación es lo más chico que se puede ofrecer
+   justo donde hay más intención: alguien que quiso entrar y no pudo. El tapeo
+   de setiembre se llenó en tres días y quedaron veinte personas afuera. */
 t.wa_texto =
   t.estado === 'sin-fecha' ? 'Avisame la próxima fecha' :
-  t.estado === 'agotado'   ? 'Avisame si se libera un lugar' :
+  t.estado === 'agotado'   ? 'Avisame la próxima fecha' :
   'Reservar mi lugar';
 
 /* Cómo termina el párrafo del tapeo en la portada. Es la última frase de un
@@ -325,7 +330,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   );
   w.wa_texto =
     w.estado === 'sin-fecha' ? 'Avisame cuando haya fecha' :
-    w.estado === 'agotado'   ? 'Avisame si se libera un lugar' :
+    w.estado === 'agotado'   ? 'Avisame cuando haya fecha' :
     'Reservar mi lugar';
 
   w.cupos_texto = w.estado === 'agotado' ? 'Sin lugares disponibles'
