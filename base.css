@@ -465,11 +465,19 @@ html:not(.js) .nav{height:auto}
 @media (max-width:940px){.cierre-caja{grid-template-columns:1fr}}
 
 /* --- Barra fija de reserva (móvil) --- */
-.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:90;display:none;gap:.5rem;padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom));background:rgba(14,26,19,.94);backdrop-filter:blur(14px);border-top:1px solid var(--linea);transform:translateY(105%);transition:transform .3s var(--ease)}
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:90;display:none;gap:.5rem;padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom));background:var(--tinta);border-top:1px solid var(--linea);transform:translateY(105%);transition:transform .3s var(--ease),bottom .3s var(--ease)}
+/* Con el aviso de cookies abajo, los dos se apoyaban uno sobre el otro y el
+   aviso tapaba el botón. Mientras el aviso está, la barra sube por encima.
+   Sube con "bottom" y no con transform, que es lo que la anima al entrar. */
+body:has(#cookie-banner.visible) .sticky-cta{bottom:6.25rem}
 .sticky-cta.visible{transform:none}
 .sticky-cta .cta-main{flex:1;display:flex;align-items:center;justify-content:center;background:var(--miel);color:#20140A;border-radius:var(--r);font-weight:600;font-size:.92rem;min-height:48px;padding-inline:1rem}
 .sticky-cta .wa-btn{display:flex;align-items:center;justify-content:center;width:48px;min-height:48px;border:1px solid var(--linea-fuerte);border-radius:var(--r);color:var(--cal);flex-shrink:0}
-@media (max-width:820px){.sticky-cta{display:flex}main{padding-bottom:4.5rem}}
+@media (max-width:820px){
+  .sticky-cta{display:flex}
+  main{padding-bottom:4.5rem}
+  body:has(#cookie-banner.visible) main{padding-bottom:10.5rem}
+}
 [data-estado="sin-fecha"].sticky-cta{display:none}
 
 /* --- Aviso de cookies --- */
