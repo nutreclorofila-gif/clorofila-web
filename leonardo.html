@@ -79,7 +79,8 @@
 /* Investigación: el estado (publicado / en preparación) es el dato que
    importa, así que va en mono y con color propio. */
 .investiga{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1rem}
-.tema{border:1px solid var(--linea);border-radius:var(--r-lg);padding:1.5rem;background:var(--musgo);display:flex;flex-direction:column}
+/* Era una tarjeta con borde, radio y fondo; ahora cuelga de su filete. */
+.tema{border-top:1px solid var(--linea);padding:1.15rem 0 0;display:flex;flex-direction:column}
 .tema h3{font-size:1.15rem;margin-block:.5rem .6rem}
 .tema p{font-size:.9rem;color:var(--cal-med);margin-bottom:1.1rem}
 .tema-leer{margin-top:auto;font-size:.87rem;font-weight:600;color:var(--cal);border-bottom:1px solid var(--linea-fuerte);width:fit-content;padding-block:.3rem;transition:border-color .2s,color .2s}

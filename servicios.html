@@ -57,8 +57,8 @@
 .grupo-cabeza h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-block:.8rem .8rem}
 .grupo-cabeza p{font-size:.94rem;color:var(--cal-med)}
 .fichas{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.ficha-serv{border:1px solid var(--linea);border-radius:var(--r-lg);padding:1.5rem;background:var(--musgo);transition:border-color .25s}
-.ficha-serv:hover{border-color:var(--linea-fuerte)}
+/* Era una tarjeta con borde, radio y fondo; ahora cuelga de su filete. */
+.ficha-serv{border-top:1px solid var(--linea);padding:1.2rem 0 0}
 .ficha-serv h3{font-size:1.15rem;margin-bottom:.6rem}
 .ficha-serv p{font-size:.9rem;color:var(--cal-med)}
 @media (max-width:900px){.grupo-serv{grid-template-columns:1fr}}

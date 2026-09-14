@@ -45,17 +45,20 @@
 .hero-art .bajada{color:var(--cal-med);max-width:58ch}
 .art-nota{font-size:.9rem;color:var(--cal-baja);margin-bottom:2rem}
 
-.articulos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:1rem}
-.art{border:1px solid var(--linea);border-radius:var(--r-lg);padding:1.6rem;background:var(--musgo);display:flex;flex-direction:column;transition:border-color .25s}
-.art:hover{border-color:var(--linea-fuerte)}
-.art h3{font-size:1.18rem;margin-block:.55rem .6rem}
-.art p{font-size:.9rem;color:var(--cal-med);margin-bottom:1.2rem}
-.art-leer{margin-top:auto;font-size:.88rem;font-weight:600;color:var(--cal);border-bottom:1px solid var(--linea-fuerte);width:fit-content;padding-block:.3rem;transition:border-color .2s,color .2s}
-.art:hover .art-leer{border-color:var(--brote);color:var(--brote)}
+.articulos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1.6rem 2rem}
+/* Doce tarjetas iguales en grilla de tres era el índice de blog de cualquier
+   plantilla, y adentro «Leer el artículo» doce veces, que es lo mismo que ya
+   dice el título. Ahora el título es el enlace —más grande para el dedo— y
+   cada nota cuelga de su filete. */
+.art{border-top:1px solid var(--linea);padding:1.15rem 0 0;display:flex;flex-direction:column}
+.art h3{font-size:1.18rem;margin-block:.5rem .55rem}
+.art h3 a{color:var(--cal);transition:color .2s}
+.art h3 a:hover{color:var(--brote)}
+.art p{font-size:.9rem;color:var(--cal-med)}
 /* Lo mismo que en base.css: sin :active, tocar una tarjeta en el celular no
    devuelve nada. Se aclara en vez de moverse, para no depender de
    prefers-reduced-motion. */
-.art:active{filter:brightness(1.14)}
+.art h3 a:active{filter:brightness(1.14)}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260907" defer></script>
@@ -103,18 +106,18 @@
     <p class="art-nota sube">Salen primero en Instagram: seguí <a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer" class="enlace-vivo">@clorofilaclases</a> para recibirlos cuando se publican.</p>
     <h2 class="sr-only">Artículos</h2>
     <div class="articulos sube">
-        <article class="art"><span class="dato">Proteína vegetal</span><h3>Guía práctica del tofu</h3><p>Qué tipo comprar, cómo conservarlo con sal y vinagre, por qué prensarlo antes de cocinar y cuatro recetas base para empezar.</p><a href="/articulos/guia-practica-del-tofu" class="art-leer" aria-label="Leer el artículo: Guía práctica del tofu">Leer el artículo</a></article>
-        <article class="art"><span class="dato">Vitamina B12</span><h3>¿Hay alguna fuente vegetal de vitamina B12?</h3><p>Ni las algas ni los fermentados aportan B12 confiable. En una dieta vegana o basada en plantas, la suplementación no es opcional: es necesaria.</p><a href="/articulos/vitamina-b12-dieta-vegana" class="art-leer" aria-label="Leer el artículo: ¿Hay alguna fuente vegetal de vitamina B12?">Leer el artículo</a></article>
-        <article class="art"><span class="dato">Pan y gluten</span><h3>¿El pan sin gluten es más saludable?</h3><p>Muchos panes industriales sin gluten agregan almidones refinados y gomas. El resultado nutricional puede terminar peor que el del pan de trigo.</p><a href="/articulos/pan-sin-gluten-no-es-saludable" class="art-leer" aria-label="Leer el artículo: ¿El pan sin gluten es más saludable?">Leer el artículo</a></article>
-        <article class="art"><span class="dato">Fermentación</span><h3>¿La masa madre se digiere mejor?</h3><p>La fermentación larga degrada parte del gluten y reduce FODMAPs. El mecanismo existe, pero depende del tiempo, la temperatura y la cepa.</p><a href="/articulos/masa-madre-digestibilidad" class="art-leer" aria-label="Leer el artículo: ¿La masa madre se digiere mejor?">Leer el artículo</a></article>
-        <article class="art"><span class="dato">Legumbres</span><h3>¿Hay que remojar las legumbres?</h3><p>El remojo reduce los antinutrientes pero no los elimina. Cuánto importa depende de qué legumbre, cuánto comés y cómo está tu digestión.</p><a href="/articulos/remojo-legumbres" class="art-leer" aria-label="Leer el artículo: ¿Hay que remojar las legumbres?">Leer el artículo</a></article>
-        <article class="art"><span class="dato">Endulzantes</span><h3>¿Cuál es el mejor endulzante?</h3><p>Azúcar, miel, coco, agave, stevia, eritritol. Cada uno tiene un perfil metabólico diferente. Análisis honesto, sin marketing ni alarmismo.</p><a href="/articulos/endulzantes-guia-sin-sesgo" class="art-leer" aria-label="Leer el artículo: ¿Cuál es el mejor endulzante?">Leer el artículo</a></article>
-        <article class="art"><span class="dato">Fermentación</span><h3>Cómo funciona la fermentación</h3><p>Bacterias, pH, sustrato, temperatura, tiempo. Cuando entendés las variables, podés fermentar cualquier cosa con seguridad y criterio.</p><a href="/articulos/como-funciona-la-fermentacion" class="art-leer" aria-label="Leer el artículo: Cómo funciona la fermentación">Leer el artículo</a></article>
-        <article class="art"><span class="dato">Proteína vegetal</span><h3>¿La proteína vegetal es incompleta?</h3><p>La proteína vegetal «incompleta» es un mito simplificado. La complementación tiene lógica, pero no hace falta hacerla en cada comida.</p><a href="/articulos/proteina-vegetal-mitos-realidades" class="art-leer" aria-label="Leer el artículo: ¿La proteína vegetal es incompleta?">Leer el artículo</a></article>
-        <article class="art"><span class="dato">Aceites y grasas</span><h3>¿Se puede cocinar con aceite de oliva?</h3><p>El punto de humo no es el indicador relevante para la estabilidad oxidativa. Lo que importa es el perfil de ácidos grasos y los antioxidantes — y ahí el oliva virgen extra gana.</p><a href="/articulos/aceite-de-oliva-punto-de-humo" class="art-leer" aria-label="Leer el artículo: ¿Se puede cocinar con aceite de oliva?">Leer el artículo</a></article>
-        <article class="art"><span class="dato">Omega-3</span><h3>¿El lino pierde el omega-3 al hornear?</h3><p>El ALA del lino es el ácido graso más inestable al calor. A 180 °C en horneado real la pérdida es significativa. Lo que queda —y qué podés hacer— vale la pena entenderlo.</p><a href="/articulos/omega-3-lino-horneado" class="art-leer" aria-label="Leer el artículo: ¿El lino pierde el omega-3 al hornear?">Leer el artículo</a></article>
-        <article class="art"><span class="dato">Frutas y verduras</span><h3>¿Sirve el bicarbonato para lavar frutas?</h3><p>El bicarbonato ayuda con residuos de contacto en la cáscara. Para plaguicidas sistémicos —los que están dentro del tejido— ningún lavado sirve. La distinción importa.</p><a href="/articulos/lavado-de-frutas-bicarbonato" class="art-leer" aria-label="Leer el artículo: ¿Sirve el bicarbonato para lavar frutas?">Leer el artículo</a></article>
-        <article class="art"><span class="dato">Grasas y salud</span><h3>El colesterol total no alcanza</h3><p>Apo-B, tamaño de partícula LDL, TMAO y microbioma dan una imagen más completa. El análisis con marcadores modernos cambia el ranking de las grasas.</p><a href="/articulos/mas-alla-del-colesterol-total" class="art-leer" aria-label="Leer el artículo: El colesterol total no alcanza">Leer el artículo</a></article>
+        <article class="art"><span class="dato">Proteína vegetal</span><h3><a href="/articulos/guia-practica-del-tofu">Guía práctica del tofu</a></h3><p>Qué tipo comprar, cómo conservarlo con sal y vinagre, por qué prensarlo antes de cocinar y cuatro recetas base para empezar.</p></article>
+        <article class="art"><span class="dato">Vitamina B12</span><h3><a href="/articulos/vitamina-b12-dieta-vegana">¿Hay alguna fuente vegetal de vitamina B12?</a></h3><p>Ni las algas ni los fermentados aportan B12 confiable. En una dieta vegana o basada en plantas, la suplementación no es opcional: es necesaria.</p></article>
+        <article class="art"><span class="dato">Pan y gluten</span><h3><a href="/articulos/pan-sin-gluten-no-es-saludable">¿El pan sin gluten es más saludable?</a></h3><p>Muchos panes industriales sin gluten agregan almidones refinados y gomas. El resultado nutricional puede terminar peor que el del pan de trigo.</p></article>
+        <article class="art"><span class="dato">Fermentación</span><h3><a href="/articulos/masa-madre-digestibilidad">¿La masa madre se digiere mejor?</a></h3><p>La fermentación larga degrada parte del gluten y reduce FODMAPs. El mecanismo existe, pero depende del tiempo, la temperatura y la cepa.</p></article>
+        <article class="art"><span class="dato">Legumbres</span><h3><a href="/articulos/remojo-legumbres">¿Hay que remojar las legumbres?</a></h3><p>El remojo reduce los antinutrientes pero no los elimina. Cuánto importa depende de qué legumbre, cuánto comés y cómo está tu digestión.</p></article>
+        <article class="art"><span class="dato">Endulzantes</span><h3><a href="/articulos/endulzantes-guia-sin-sesgo">¿Cuál es el mejor endulzante?</a></h3><p>Azúcar, miel, coco, agave, stevia y eritritol, uno por uno: cuáles son azúcar con otro nombre y cuál elegir para qué.</p></article>
+        <article class="art"><span class="dato">Fermentación</span><h3><a href="/articulos/como-funciona-la-fermentacion">Cómo funciona la fermentación</a></h3><p>Bacterias, pH, sustrato, temperatura, tiempo. Cuando entendés las variables, podés fermentar cualquier cosa con seguridad y criterio.</p></article>
+        <article class="art"><span class="dato">Proteína vegetal</span><h3><a href="/articulos/proteina-vegetal-mitos-realidades">¿La proteína vegetal es incompleta?</a></h3><p>La proteína vegetal «incompleta» es un mito simplificado. La complementación tiene lógica, pero no hace falta hacerla en cada comida.</p></article>
+        <article class="art"><span class="dato">Aceites y grasas</span><h3><a href="/articulos/aceite-de-oliva-punto-de-humo">¿Se puede cocinar con aceite de oliva?</a></h3><p>El punto de humo no es el indicador relevante para la estabilidad oxidativa. Lo que importa es el perfil de ácidos grasos y los antioxidantes — y ahí el oliva virgen extra gana.</p></article>
+        <article class="art"><span class="dato">Omega-3</span><h3><a href="/articulos/omega-3-lino-horneado">¿El lino pierde el omega-3 al hornear?</a></h3><p>El ALA del lino es el ácido graso más inestable al calor. A 180 °C en horneado real la pérdida es significativa. Lo que queda —y qué podés hacer— vale la pena entenderlo.</p></article>
+        <article class="art"><span class="dato">Frutas y verduras</span><h3><a href="/articulos/lavado-de-frutas-bicarbonato">¿Sirve el bicarbonato para lavar frutas?</a></h3><p>El bicarbonato ayuda con residuos de contacto en la cáscara. Para plaguicidas sistémicos —los que están dentro del tejido— ningún lavado sirve. La distinción importa.</p></article>
+        <article class="art"><span class="dato">Grasas y salud</span><h3><a href="/articulos/mas-alla-del-colesterol-total">El colesterol total no alcanza</a></h3><p>Apo-B, tamaño de partícula LDL, TMAO y microbioma dan una imagen más completa. El análisis con marcadores modernos cambia el ranking de las grasas.</p></article>
       </div>
   </div>
 </section>

@@ -94,10 +94,12 @@
 .paso-detalle{font-size:.92rem;color:var(--cal-med)}
 
 /* ---------- MENÚ ---------- */
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:.7rem;max-width:860px;margin-inline:auto}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:0 2rem;max-width:860px;margin-inline:auto}
+/* Un menú se escribe como un menú: una línea por plato, separadas por
+   filete. Encajonar cada uno era la grilla de tarjetas de siempre. */
 .menu-grid li{
-  border:1px solid var(--linea);border-radius:var(--r);padding:1rem 1.15rem;
-  background:var(--musgo);font-size:.95rem;color:var(--cal);display:flex;gap:.7rem;align-items:flex-start;line-height:1.45;
+  border-bottom:1px solid var(--linea);padding:.85rem .2rem;
+  font-size:.95rem;color:var(--cal);display:flex;gap:.7rem;align-items:flex-start;line-height:1.45;
 }
 .menu-grid li::before{content:"—";color:var(--brote);flex-shrink:0}
 .menu-fotos{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;max-width:860px;margin:1.5rem auto 0}
