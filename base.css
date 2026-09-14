@@ -305,13 +305,10 @@ h2 + p{margin-top:.55rem}
    /talleres, "Un día" salía como un óvalo vertical de 69x136 y el de reseñas
    con 72 de alto, cuando la píldora mide 37. Se ve en el celular, donde los
    chips van en varias líneas. */
-.hero-marcas{display:flex;flex-wrap:wrap;gap:.5rem;align-items:flex-start}
-.marca-chip{display:inline-flex;align-items:center;border:1px solid var(--linea);border-radius:var(--r);padding:.42rem .9rem;font-family:var(--texto);font-size:var(--t-nota);letter-spacing:0;color:var(--cal-med)}
 /* Se llamaba solo "destacado", que es además el nombre del bloque de cita
    destacada de los artículos (más abajo en este archivo): el chip heredaba
    su borde izquierdo, sus esquinas rectas, 1.4rem de padding y 2rem de
    margen, y salía como un rectángulo del doble de alto que sus vecinos. */
-.marca-chip.marca-chip-alta{border-color:rgba(240,179,85,.45);color:var(--miel)}
 /* Apilado en el celular, el hero de las páginas que venden una fecha se ordena
    de corrido: foto, título, propuesta, ficha de reserva, sellos y recién ahí la
    bajada. Antes los sellos viajaban con la columna de la foto y se metían entre
@@ -335,7 +332,6 @@ h2 + p{margin-top:.55rem}
   .hero-prod .hero-caja .hero-tesis,.hero-curso .hero-caja .hero-tesis,.hero-tapeo .hero-caja .hero-tesis{order:3}
   .hero-prod .hero-caja .comanda,.hero-curso .hero-caja .comanda,.hero-tapeo .hero-caja .comanda{order:4;margin-top:1.25rem}
   .hero-prod .hero-caja .hero-foto,.hero-curso .hero-caja .hero-foto,.hero-tapeo .hero-caja .hero-foto{order:5;margin-top:1.5rem}
-  .hero-prod .hero-caja .hero-marcas,.hero-curso .hero-caja .hero-marcas,.hero-tapeo .hero-caja .hero-marcas{order:6;margin-top:1.25rem}
   .hero-prod .hero-caja .bajada,.hero-curso .hero-caja .bajada,.hero-tapeo .hero-caja .bajada{order:7;margin-top:1.25rem}
   /* Sin esto la línea de credenciales de /curso queda en order 0 y se va
      arriba de todo: en el celular lo primero que veía quien llegaba era

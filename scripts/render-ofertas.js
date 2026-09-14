@@ -689,7 +689,11 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
   // frase pasaba a ser falsa sola, sin que nadie tocara nada.
   datos.talleres_cta = conFecha.length ? 'Ver los que tienen fecha' : 'Ver los talleres';
   datos.talleres_nav = conFecha.length ? 'Ver fechas' : 'Ver talleres';
+  /* Lo que vale para los cinco se dice acá una sola vez. Antes iba repetido
+     en una etiqueta debajo de cada taller: quince etiquetas que no
+     distinguían nada entre uno y otro. */
   datos.talleres_bajada = 'Cada taller toma una técnica y le dedica el día entero, de la primera mezcla hasta la mesa. '
+    + 'Los ingredientes van incluidos y te llevás a casa lo que preparaste. '
     + (conFecha.length === 0
         ? 'Ahora mismo ninguno tiene fecha: los abrimos según la demanda y te avisamos.'
         : conFecha.length === 1
