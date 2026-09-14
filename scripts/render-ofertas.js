@@ -805,8 +805,11 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
     // /tapeo maqueta cada testimonio con otra clase y en varias líneas.
     const esTapeo = pagina === 'tapeo';
     T[pagina + '_html'] = elegidos.map(function (t) {
-      const cuerpo = '<p class="estrellas">★★★★★</p>' +
-        '<blockquote>«' + escapar(t.cita) + '»</blockquote>' +
+      /* Sin la fila de estrellas: eran cuatro o cinco iguales por página,
+         todas de cinco, encima del texto. El puntaje ya está una vez arriba
+         de la grilla y enlaza al perfil de Google, que es donde se verifica.
+         Las estrellas de Google en el buscador salen del JSON-LD, no de acá. */
+      const cuerpo = '<blockquote>«' + escapar(t.cita) + '»</blockquote>' +
         '<cite>' + escapar(t.nombre) + ', ' + escapar(t.contexto) + '</cite>';
       return esTapeo
         ? '<div class="testi">' + cuerpo + '</div>'

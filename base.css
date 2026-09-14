@@ -395,10 +395,11 @@ h2 + p{margin-top:.55rem}
 
 /* --- Testimonios --- */
 .prueba{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1rem}
-.voz{border-top:1px solid var(--linea);padding:1.25rem 0 0}
+.voz{border-top:1px solid var(--linea);padding:1.25rem 0 0;display:flex;flex-direction:column}
 .voz blockquote{font-family:var(--display);font-size:1.02rem;line-height:1.35;color:var(--cal);letter-spacing:-.01em;margin-bottom:.9rem}
-.voz cite{font-style:normal;font-family:var(--texto);font-size:.9rem;font-weight:600;letter-spacing:0;color:var(--cal-med)}
-.estrellas{color:var(--miel);font-size:.8rem;letter-spacing:.14em;margin-bottom:.7rem}
+/* El nombre al pie de la columna: si no, cada cita lo dejaba a una altura
+   distinta según cuántos renglones ocupara la frase. */
+.voz cite{margin-top:auto;font-style:normal;font-family:var(--texto);font-size:.9rem;font-weight:600;letter-spacing:0;color:var(--cal-med)}
 
 /* --- Preguntas frecuentes --- */
 .faq{max-width:760px;margin-inline:auto}
