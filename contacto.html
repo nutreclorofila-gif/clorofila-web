@@ -34,7 +34,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=42">
+<link rel="stylesheet" href="base.css?v=43">
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@graph": [{"@type": "ContactPage", "@id": "https://clorofila.uy/contacto#page", "url": "https://clorofila.uy/contacto", "inLanguage": "es-UY", "name": "Contacto — Clorofila Estudio de Cocina", "about": {"@id": "https://clorofila.uy/#organization"}, "mainEntity": {"@id": "https://clorofila.uy/#organization"}, "significantLink": ["https://wa.me/59894064148", "https://instagram.com/clorofilaclases"]}, {"@type": "Place", "@id": "https://clorofila.uy/#place", "name": "Clorofila Estudio de Cocina", "address": {"@type": "PostalAddress", "streetAddress": "Maldonado 1976 esq. Blanes", "addressLocality": "Montevideo", "addressRegion": "Montevideo", "addressCountry": "UY"}, "geo": {"@type": "GeoCoordinates", "latitude":-34.9085217, "longitude":-56.1723695}, "publicAccess": true, "hasMap": "https://maps.app.goo.gl/DnqBneEmi1GHNUjG9"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://clorofila.uy/"}, {"@type": "ListItem", "position": 2, "name": "Contacto", "item": "https://clorofila.uy/contacto"}]}]}
 </script>
@@ -51,20 +51,20 @@
    baja de 56px, que es lo que hay que poder tocar con el dedo. */
 .canales{display:grid;margin-bottom:2.5rem;border-top:1px solid var(--linea)}
 .canal{display:flex;flex-direction:column;justify-content:center;gap:.15rem;min-height:56px;border-bottom:1px solid var(--linea);padding-block:.85rem}
-.canal b{font-family:var(--texto);font-size:1.05rem;color:var(--cal);font-weight:500;transition:color .2s}
+.canal b{font-family:var(--texto);font-size:var(--t-cuerpo);color:var(--cal);font-weight:500;transition:color .2s}
 .canal:hover b{color:var(--brote)}
-.canal span{font-family:var(--texto);font-size:.85rem;color:var(--cal-baja)}
+.canal span{font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja)}
 
-.donde h2{font-size:1.4rem;margin-bottom:.7rem}
+.donde h2{font-size:var(--t-alto);margin-bottom:.7rem}
 .donde address{font-style:normal;color:var(--cal-med);margin-bottom:1.75rem;line-height:1.7}
-.donde address strong{display:block;font-family:var(--display);font-size:1.15rem;color:var(--cal);letter-spacing:-.02em}
+.donde address strong{display:block;font-family:var(--display);font-size:var(--t-bajada);color:var(--cal);letter-spacing:-.02em}
 .horarios{width:100%;border-collapse:collapse}
-.horarios caption{text-align:left;font-family:var(--texto);font-size:.85rem;color:var(--cal-baja);padding-bottom:.6rem}
-.horarios th,.horarios td{border-top:1px solid var(--linea);padding-block:.6rem;font-family:var(--dato);font-size:.85rem;color:var(--cal);font-weight:400;text-align:left}
-.horarios thead th{font-size:.85rem;color:var(--cal-baja);border-top:0}
+.horarios caption{text-align:left;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja);padding-bottom:.6rem}
+.horarios th,.horarios td{border-top:1px solid var(--linea);padding-block:.6rem;font-family:var(--dato);font-size:var(--t-nota);color:var(--cal);font-weight:400;text-align:left}
+.horarios thead th{font-size:var(--t-nota);color:var(--cal-baja);border-top:0}
 .horarios thead th:last-child{text-align:right}
 .horarios td:last-child{text-align:right;color:var(--miel)}
-.horarios-nota{font-size:.82rem;color:var(--cal-baja);margin-top:.9rem;line-height:1.6}
+.horarios-nota{font-size:var(--t-nota);color:var(--cal-baja);margin-top:.9rem;line-height:1.6}
 
 .mapa{border:1px solid var(--linea);border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3;background:var(--musgo)}
 .mapa iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(.35) contrast(1.05)}
@@ -73,8 +73,8 @@
 .mapa-cargar{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;padding:2rem;text-align:center;transition:background .2s}
 .mapa-cargar:hover{background:var(--musgo-alto)}
 .mapa-cargar b{font-family:var(--display);font-size:clamp(1.1rem,2vw,1.4rem);color:var(--cal);letter-spacing:-.02em}
-.mapa-aviso{font-size:.78rem;color:var(--cal-baja);max-width:34ch;line-height:1.5}
-.mapa-pie{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:baseline;justify-content:space-between;font-family:var(--texto);font-size:.78rem;color:var(--cal-baja);margin-top:.8rem}
+.mapa-aviso{font-size:var(--t-dato);color:var(--cal-baja);max-width:34ch;line-height:1.5}
+.mapa-pie{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:baseline;justify-content:space-between;font-family:var(--texto);font-size:var(--t-dato);color:var(--cal-baja);margin-top:.8rem}
 .foto-espacio{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/10;margin-top:1rem}
 .foto-espacio img{width:100%;height:100%;object-fit:cover}
 </style>

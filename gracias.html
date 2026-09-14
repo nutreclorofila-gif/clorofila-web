@@ -33,12 +33,12 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=42">
+<link rel="stylesheet" href="base.css?v=43">
 <style>
 /* Lo que sigue después de reservar. La página terminaba en los datos: quien
    acaba de comprar es el que más confianza tiene y no se le ofrecía nada. */
 .gracias-luego{margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--linea)}
-.gracias-luego h2{font-family:var(--display);font-size:1.15rem;letter-spacing:-.015em;color:var(--cal);margin-bottom:.9rem}
+.gracias-luego h2{font-family:var(--display);font-size:var(--t-bajada);letter-spacing:-.015em;color:var(--cal);margin-bottom:.9rem}
 .gracias-luego p{color:var(--cal-med);margin-bottom:.5rem}
 .gracias-luego a{color:var(--miel)}
 
@@ -46,30 +46,30 @@
    pasos y los datos estaban, pero nada mostraba a dónde va a llegar. */
 .gracias-foto{margin:2.2rem 0 0;border-radius:var(--r-lg);overflow:hidden}
 .gracias-foto img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:16/9}
-.gracias-foto figcaption{margin-top:.7rem;font-family:var(--texto);font-size:.85rem;color:var(--cal-baja);text-align:center}
+.gracias-foto figcaption{margin-top:.7rem;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja);text-align:center}
 
 /* /gracias — tres variantes en una página: ?p=programa, ?p=curso, ?p=tapeo.
    El tilde y el «qué sigue» son lo primero, porque la pregunta que trae
    alguien recién reservado es siempre la misma: ¿y ahora qué? */
 .gracias{max-width:720px;margin-inline:auto;padding-block:clamp(2.5rem,5vw,4rem) clamp(3rem,6vw,5rem)}
-.tilde{width:56px;height:56px;border-radius:50%;border:1px solid rgba(143,192,138,.45);background:rgba(143,192,138,.1);color:var(--brote);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.5rem}
+.tilde{width:56px;height:56px;border-radius:50%;border:1px solid rgba(143,192,138,.45);background:rgba(143,192,138,.1);color:var(--brote);display:flex;align-items:center;justify-content:center;font-size:var(--t-mayor);margin-bottom:1.5rem}
 .gracias h1{font-size:clamp(2.1rem,4.6vw,3.2rem);margin-bottom:.8rem}
-.gracias .bajada{color:var(--cal-med);font-size:1.02rem;margin-bottom:2.5rem}
+.gracias .bajada{color:var(--cal-med);font-size:var(--t-cuerpo);margin-bottom:2.5rem}
 .gracias h2{font-size:clamp(1.3rem,2.4vw,1.7rem);margin-block:2.5rem 1rem}
 
 .pasos{counter-reset:paso;display:grid}
 .pasos li{counter-increment:paso;display:grid;grid-template-columns:2rem 1fr;gap:.2rem 1rem;border-top:1px solid var(--linea);padding-block:1.1rem}
-.pasos li::before{content:counter(paso);grid-row:span 2;font-family:var(--texto);font-size:.75rem;color:var(--brote);padding-top:.3rem}
-.pasos strong{font-family:var(--display);font-size:1.1rem;color:var(--cal);letter-spacing:-.02em;font-weight:500}
-.pasos span{font-size:.92rem;color:var(--cal-med)}
+.pasos li::before{content:counter(paso);grid-row:span 2;font-family:var(--texto);font-size:var(--t-dato);color:var(--brote);padding-top:.3rem}
+.pasos strong{font-family:var(--display);font-size:var(--t-cuerpo);color:var(--cal);letter-spacing:-.02em;font-weight:500}
+.pasos span{font-size:var(--t-chico);color:var(--cal-med)}
 
 [data-para]{display:none}
 [data-para].activo{display:block}
 .acciones{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.25rem}
 
-.llevar li{border-top:1px solid var(--linea);padding-block:.7rem;font-size:.94rem;color:var(--cal-med);display:flex;gap:.8rem}
+.llevar li{border-top:1px solid var(--linea);padding-block:.7rem;font-size:var(--t-chico);color:var(--cal-med);display:flex;gap:.8rem}
 .llevar li::before{content:"—";color:var(--brote);flex-shrink:0}
-.dudas{margin-top:1.5rem;font-size:.9rem;color:var(--cal-baja)}
+.dudas{margin-top:1.5rem;font-size:var(--t-chico);color:var(--cal-baja)}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260907" defer></script>

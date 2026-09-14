@@ -34,7 +34,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=42">
+<link rel="stylesheet" href="base.css?v=43">
 <script type="application/ld+json">
   {"@context": "https://schema.org", "@graph": [{"@type": "Person", "name": "Leonardo Lemes", "jobTitle": "Chef, docente e investigador gastronómico", "description": "Chef, docente e investigador gastronómico con 25 años de experiencia. Fundador de Clorofila Estudio de Cocina en Parque Rodó, Montevideo.", "image": "https://clorofila.uy/img-leo-cocina.jpg", "url": "https://clorofila.uy/leonardo", "worksFor": {"@id": "https://clorofila.uy/#organization"}, "alumniOf": [{"@type": "EducationalOrganization", "name": "Na Luum — Diseño en Permacultura"}, {"@type": "EducationalOrganization", "name": "Ipoema — Agricultura de Bosques de Alimentos", "address": {"@type": "PostalAddress", "addressCountry": "BR"}}, {"@type": "EducationalOrganization", "name": "CLAEH — Gestión Cultural", "address": {"@type": "PostalAddress", "addressCountry": "UY"}}, {"@type": "EducationalOrganization", "name": "Neijing — Medicina Tradicional China"}, {"@type": "EducationalOrganization", "name": "Escuela Tianshu — Shiatsu"}], "knowsAbout": ["Cocina basada en plantas", "Fermentación", "Masa madre", "Pastelería sin gluten", "Desarrollo de productos gastronómicos", "Cocina vegana", "Quesos vegetales", "Investigación gastronómica"], "@id": "https://clorofila.uy/leonardo#person", "founderOf": {"@id": "https://clorofila.uy/#organization"}, "nationality": {"@type": "Country", "name": "Uruguay"}, "knowsLanguage": "es", "sameAs": ["https://instagram.com/clorofilaclases"]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://clorofila.uy/"}, {"@type": "ListItem", "position": 2, "name": "Leonardo Lemes", "item": "https://clorofila.uy/leonardo"}]}]}
   </script>
@@ -51,7 +51,7 @@
 .cifras-leo li{padding-right:1.75rem;margin-right:1.75rem;border-right:1px solid var(--linea)}
 .cifras-leo li:last-child{border-right:0;margin-right:0;padding-right:0}
 .cifras-leo b{display:block;font-family:var(--display);font-size:clamp(1.6rem,2.8vw,2.1rem);color:var(--cal);line-height:1;letter-spacing:-.03em}
-.cifras-leo span{font-family:var(--texto);font-size:.85rem;color:var(--cal-baja)}
+.cifras-leo span{font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja)}
 /* En el celular los tres datos no entraban en una fila: quedaban dos arriba
    y "+1.200 personas formadas" solo abajo, desalineado con el primero y con
    el separador del segundo colgando en el aire. En tres columnas parejas los
@@ -59,7 +59,7 @@
 @media (max-width:640px){
   .cifras-leo{display:grid;grid-template-columns:repeat(3,1fr)}
   .cifras-leo li{padding-right:.8rem;margin-right:.8rem}
-  .cifras-leo span{font-size:.78rem;line-height:1.25}
+  .cifras-leo span{font-size:var(--t-dato);line-height:1.25}
 }
 @media (max-width:860px){.hero-leo-caja{grid-template-columns:1fr}.foto-leo{aspect-ratio:4/3;order:1;margin-top:1.5rem}}
 
@@ -71,8 +71,8 @@
 .cita-cuerpo p+p{margin-top:.9rem}
 
 .bloques{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.75rem,4vw,3rem)}
-.bloque h3{font-size:1.25rem;margin-bottom:1rem}
-.bloque li{border-top:1px solid var(--linea);padding-block:.7rem;font-size:.92rem;color:var(--cal-med);display:flex;gap:.8rem}
+.bloque h3{font-size:var(--t-alto);margin-bottom:1rem}
+.bloque li{border-top:1px solid var(--linea);padding-block:.7rem;font-size:var(--t-chico);color:var(--cal-med);display:flex;gap:.8rem}
 .bloque li::before{content:"—";color:var(--brote);flex-shrink:0}
 @media (max-width:760px){.bloques{grid-template-columns:1fr}}
 
@@ -81,13 +81,13 @@
 .investiga{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1rem}
 /* Era una tarjeta con borde, radio y fondo; ahora cuelga de su filete. */
 .tema{border-top:1px solid var(--linea);padding:1.15rem 0 0;display:flex;flex-direction:column}
-.tema h3{font-size:1.15rem;margin-block:.5rem .6rem}
-.tema p{font-size:.9rem;color:var(--cal-med);margin-bottom:1.1rem}
-.tema-leer{margin-top:auto;font-size:.87rem;font-weight:600;color:var(--cal);border-bottom:1px solid var(--linea-fuerte);width:fit-content;padding-block:.3rem;transition:border-color .2s,color .2s}
+.tema h3{font-size:var(--t-bajada);margin-block:.5rem .6rem}
+.tema p{font-size:var(--t-chico);color:var(--cal-med);margin-bottom:1.1rem}
+.tema-leer{margin-top:auto;font-size:var(--t-nota);font-weight:600;color:var(--cal);border-bottom:1px solid var(--linea-fuerte);width:fit-content;padding-block:.3rem;transition:border-color .2s,color .2s}
 .tema:hover .tema-leer{border-color:var(--brote);color:var(--brote)}
 
 .oficios{display:flex;flex-wrap:wrap;gap:.5rem;margin-block:2rem}
-.oficio{border:1px solid var(--linea);border-radius:var(--r);padding:.45rem .95rem;font-family:var(--texto);font-size:.85rem;color:var(--cal-med)}
+.oficio{border:1px solid var(--linea);border-radius:var(--r);padding:.45rem .95rem;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-med)}
 
 .escribe li{border-top:1px solid var(--linea)}
 .escribe a{display:block;padding-block:1rem;font-family:var(--display);font-size:clamp(1.05rem,1.9vw,1.3rem);color:var(--cal);letter-spacing:-.02em;transition:color .2s,padding-left .2s var(--ease)}
