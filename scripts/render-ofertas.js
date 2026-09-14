@@ -479,8 +479,8 @@ datos.curso.cierre_titulo_html = abiertos.length
   ? 'Empezá en <br>' + escapar(String(datos.curso.edicion).toLowerCase()) + '.'
   : 'La edición de ' + escapar(String(datos.curso.edicion).split(' ')[0].toLowerCase()) + ' <br>ya arrancó.';
 datos.curso.cierre_bajada = abiertos.length
-  ? 'Escribinos por WhatsApp y coordinamos tu lugar: contesta Leonardo, no un formulario.'
-  : 'Los grupos de esta edición ya empezaron. Dejanos tus datos y sos de los primeros en enterarte cuando abramos la próxima: contesta Leonardo, no un formulario.';
+  ? 'Escribinos por WhatsApp y coordinamos tu lugar: te contesta Leonardo.'
+  : 'Los grupos de esta edición ya empezaron. Dejanos tus datos y te avisamos cuando abra la próxima: te contesta Leonardo.';
 
 // El resumen que leen los modelos de lenguaje en llms.txt. Antes decía a mano
 // "los grupos de martes y miércoles ya empezaron", que quedó falso apenas

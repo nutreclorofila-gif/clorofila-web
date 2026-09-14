@@ -112,9 +112,25 @@ ya se sacaron del sitio.
 **4. Sin contrastes forzados "esto sí, aquello no".**
 "Te vas con la técnica en las manos, no en un apunte." Decí lo que es y listo.
 
+El caso más largo que tuvo el sitio fue el lema del pie: **"No enseñamos
+recetas. Enseñamos a entender."**, en las 27 páginas. Dice qué no hacemos,
+usa el mismo verbo negado y enseguida afirmado, y encima se apoya en el eje de
+la receta que Leo pidió dejar de usar como argumento. Quedó
+**"Cocinamos y comemos de manera creativa, energética y nutritiva."**, que son
+sus palabras del PDF. Sobrevivió tanto porque `npm run texto` sacaba el
+`<footer>` antes de revisar; desde el 13/9/2026 el pie se revisa (una vez, que
+es el mismo en todas) y esta forma tiene su propio detector.
+
 **5. Decí lo que la cosa es, no lo que no es.**
 "Vivir Clorofila sin el compromiso de un curso" no cuenta la noche. "Armás una
 mesa de tapas entera y después la cenan juntos" sí.
+
+El remate que termina nombrando lo que la cosa no es —**"contesta Leonardo, no
+un formulario"**, que estaba en la portada, en /curso y en /contacto— dice en
+la última palabra algo que no pasa. Quedó **"te contesta Leonardo"**, que es
+el hecho. `npm run texto` marca esa forma, pero solo en las páginas que venden:
+en los artículos la misma construcción es precisión técnica y está bien ("la
+B12 la producen bacterias, no las plantas").
 
 **6. Vos y nosotros, nunca el impersonal.**
 "se cocina", "se trabaja", "se puede llegar" → "cocinás", "trabajamos".

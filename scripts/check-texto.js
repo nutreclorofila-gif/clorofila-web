@@ -58,11 +58,25 @@ const EXCLUYE_AL_QUE_YA_COCINA = /\b(aprend[ée][sn]?|para aprender|vas a aprend
    aparecer entera en /experiencias, en la página y en la descripción que sale en
    Google. No aplica a los artículos: ahí "no es X, es Y" es la forma correcta de
    corregir una creencia, y es de lo que trata el artículo. */
+/* Regla 4 y 5: el mismo verbo negado y enseguida afirmado —«No enseñamos
+   recetas. Enseñamos a entender.»—, que es vender por lo que la cosa no es.
+   Va sobre el bloque entero y no sobre cada oración, porque el contraste vive
+   justo en la juntura de las dos. Probado contra las 28 páginas: no marca nada
+   de lo que hoy está escrito. */
+const CONTRASTE_NEGADO = /\bno\s+([a-záéíóúñ]{3,}(?:amos|emos|imos|ás|és|ís)\b)[^.!?]{0,70}[.!?;]\s*(?:pero\s+|s[íi]\s+)?\1\b/i;
+
 const POR_LO_QUE_NO_ES = [
   /\bsin el compromiso\b/i,
   /\bla t[ée]cnica cerrada\b/i,
   /\bsin la exigencia\b/i,
   /\bsin tener que comprometerte\b/i,
+  /* El remate «…, no un formulario», «…, no la receta»: la frase termina
+     nombrando aquello que la cosa no es. Solo rige en las páginas que venden:
+     en los artículos la misma forma es precisión técnica y está bien
+     («la B12 la producen bacterias, no las plantas»). Probado contra las 28
+     páginas: marca las tres comerciales y ninguna de las diez de los
+     artículos. */
+  /,\s*no\s+(?:un|una|unos|unas|el|la|los|las)\b/i,
 ];
 
 // «sabiendo hacerla» es agramatical: saber pide «sabiendo cómo hacerla»
@@ -175,17 +189,19 @@ const fallas = [];
 const apunta = (archivo, regla, texto) => fallas.push({ archivo, regla, texto });
 const recorta = (s, n = 110) => (s.length > n ? s.slice(0, n) + '…' : s);
 
-for (const archivo of archivos) {
-  const html = fs.readFileSync(path.join(raiz, archivo), 'utf8');
-  const cuerpo = prosa(html);
-  // Los artículos son divulgación técnica: ahí el subtítulo repite el término a
-  // propósito y las frases son más largas. Se les aplica la vara del registro.
-  const articulo = archivo.startsWith('articulos/');
-  const maxPalabras = articulo ? 45 : 30;
-  const maxQues = articulo ? 4 : 3;
+function revisaBloque(archivo, texto) {
+  const m = texto.match(CONTRASTE_NEGADO);
+  if (m) apunta(archivo, `contraste «no ${m[1]}… ${m[1]}»: contá qué es, no qué no es`, texto);
+}
 
-  for (const frase of bloques(cuerpo).flatMap(oraciones)) {
-    const bajo = frase.toLowerCase();
+// Las reglas que se miden frase por frase. Se aplican al cuerpo de cada página
+// y también al pie, que hasta el 13/9/2026 quedaba fuera: ahí sobrevivió dos
+// años «No enseñamos recetas. Enseñamos a entender.», que es exactamente la
+// regla 4 y la 5 de la guía, repetido en las 27 páginas.
+function revisaFrase(archivo, frase, articulo) {
+  const bajo = frase.toLowerCase();
+  const maxQues = articulo ? 4 : 3;
+  const maxPalabras = articulo ? 45 : 30;
 
     for (const c of CLICHES) if (bajo.includes(c)) apunta(archivo, `cliché «${c}»`, frase);
     for (const p of EFECTO) if (p.test(frase)) apunta(archivo, `promete un efecto en vez de contar el hecho`, frase);
@@ -207,6 +223,18 @@ for (const archivo of archivos) {
 
     const largo = (frase.match(/[\wáéíóúñü]+/gi) || []).length;
     if (largo > maxPalabras) apunta(archivo, `${largo} palabras en una oración (máximo ${maxPalabras})`, frase);
+}
+
+for (const archivo of archivos) {
+  const html = fs.readFileSync(path.join(raiz, archivo), 'utf8');
+  const cuerpo = prosa(html);
+  // Los artículos son divulgación técnica: ahí el subtítulo repite el término a
+  // propósito y las frases son más largas. Se les aplica la vara del registro.
+  const articulo = archivo.startsWith('articulos/');
+
+  for (const bloque of bloques(cuerpo)) {
+    revisaBloque(archivo, bloque);
+    for (const frase of oraciones(bloque)) revisaFrase(archivo, frase, articulo);
   }
 
   if (!articulo) {
@@ -225,6 +253,17 @@ for (const archivo of archivos) {
     if (repetidas.length) {
       apunta(archivo, `el párrafo repite el título (${repetidas.join(', ')})`, `«${recorta(titulo, 60)}» → «${recorta(parrafo, 90)}»`);
     }
+  }
+}
+
+// El pie es el mismo en las 27 páginas: se revisa una vez y se reporta una vez,
+// o cada desliz saldría veintisiete veces. No se le aplican las reglas de
+// título → párrafo ni la del envase al frente: no tiene esa estructura.
+const primerPie = fs.readFileSync(path.join(raiz, 'index.html'), 'utf8').match(/<footer[\s\S]*?<\/footer>/i);
+if (primerPie) {
+  for (const bloque of bloques(primerPie[0])) {
+    revisaBloque('(el pie, igual en las 27 páginas)', bloque);
+    for (const frase of oraciones(bloque)) revisaFrase('(el pie, igual en las 27 páginas)', frase, false);
   }
 }
 
