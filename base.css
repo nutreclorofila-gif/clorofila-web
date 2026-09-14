@@ -486,13 +486,20 @@ body.menu-abierto .cookie-banner{display:none}
    de laptop más común— los dos botones de la home no se podían tocar en la
    primera visita. Del lado derecho está la foto, no hay nada que tocar. */
 @media (min-width:901px){.cookie-banner{left:auto;right:1.25rem}}
-/* En el celular el aviso caía sobre los botones del hero: en la home tapaba
-   "Ver el curso", que es el botón principal y el que reciben quienes llegan
-   desde Instagram. Arriba, pegado debajo de la barra, se apoya sobre la foto,
-   donde no hay nada que tocar. */
+/* El aviso estuvo un tiempo arriba, pegado debajo de la barra, porque abajo
+   tapaba "Ver el curso". Medido el 14/9 en un teléfono de 393x852: arriba
+   ocupa de 78 a 177 y ahí están la volanta (116-141) y el primer renglón del
+   h1 (157-273) — o sea que el 68% que no toca el cartel no ve el título de la
+   portada. Y los botones ya no están donde estaban: con el hero más alto
+   quedan en 423-542, lejos del borde de abajo. Vuelve abajo, que además es
+   donde la gente lo busca. */
 @media (max-width:900px){
-  .cookie-banner{top:calc(var(--nav-h) + .6rem);bottom:auto;max-width:none}
+  .cookie-banner{max-width:none}
 }
+/* Mientras el aviso está abajo, el pie crece lo que el aviso mide: si no, la
+   última línea de la página queda atrapada debajo y no hay manera de leerla.
+   En los navegadores sin :has() simplemente no crece, que es como estaba. */
+body:has(#cookie-banner.visible) .pie{padding-bottom:5.75rem}
 .cookie-banner a{color:var(--cal);text-decoration:underline;display:inline-block;padding-block:.2rem}
 .cookie-banner-actions{display:flex;align-items:center;gap:1rem}
 #cookie-accept{background:var(--cal);color:var(--tinta);padding:.45rem 1rem;border-radius:var(--r);font-size:.8rem;font-weight:600;min-height:36px}
@@ -509,7 +516,10 @@ body.menu-abierto .cookie-banner{display:none}
    entran, baja a la mitad y deja de tapar la foto. */
 .cookie-banner{padding:.85rem 1rem;gap:.55rem;display:flex}
 .cookie-banner p{line-height:1.45}
-@media (min-width:400px){
+/* A 400px el corte dejaba afuera al iPhone de 393, que es de los teléfonos
+   más usados: ahí el aviso volvía a la versión apilada de 99px. Con el corte
+   en 360 entran casi todos y queda en la mitad de alto. */
+@media (min-width:360px){
   .cookie-banner{flex-direction:row;align-items:center;justify-content:space-between;gap:.9rem}
   .cookie-banner-actions{flex-shrink:0;gap:.6rem}
 }
