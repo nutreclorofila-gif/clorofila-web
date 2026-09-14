@@ -293,9 +293,15 @@ h2 + p{margin-top:.55rem}
    ========================================================================= */
 
 /* --- Encabezados de sección --- */
+/* El encabezado no tenía ancho: el h2 corría los 1200px del contenedor
+   mientras su propio párrafo medía 360, y la medida de cada párrafo estaba
+   puesta a mano en el HTML, uno por uno, con siete valores distintos entre
+   46ch y 58ch. Ahora el título y su texto comparten una sola columna: el
+   título en medida de titular, el párrafo en medida de lectura, y los dos
+   terminan en la misma línea vertical. */
 .encabezado{margin-bottom:2.25rem}
-.encabezado h2{margin-top:.8rem}
-.encabezado p{margin-top:.9rem;color:var(--cal-med)}
+.encabezado h2{margin-top:.8rem;max-width:26ch}
+.encabezado p{margin-top:.9rem;color:var(--cal-med);max-width:54ch}
 .centrado{text-align:center}
 .centrado p,.centrado h2{margin-inline:auto}
 .centrado .senal{justify-content:center}
