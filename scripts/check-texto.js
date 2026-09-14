@@ -65,6 +65,26 @@ const EXCLUYE_AL_QUE_YA_COCINA = /\b(aprend[ée][sn]?|para aprender|vas a aprend
    de lo que hoy está escrito. */
 const CONTRASTE_NEGADO = /\bno\s+([a-záéíóúñ]{3,}(?:amos|emos|imos|ás|és|ís)\b)[^.!?]{0,70}[.!?;]\s*(?:pero\s+|s[íi]\s+)?\1\b/i;
 
+/* Regla 16, vender sin vender. Leo, 14/9/2026, sobre el cierre de la portada:
+   *"lo cambiaria si aun te quedan dudas podes escribirnos, no poner reserva o
+   los grupos son chicos, aplica vender sin vender"*. La escasez y la ventaja
+   sobre otras personas ya las había rechazado en setiembre —"enterate antes
+   que el resto"— y volvieron escritas de otra manera: "sos de los primeros en
+   enterarte", en cuatro lugares. Por eso ahora las mide el chequeo.
+   Ojo: el botón sí dice lo que hace ("Reservar mi lugar"). Lo que no empuja es
+   la prosa. Y "los grupos son chicos a propósito, para que Leonardo te corrija
+   a vos" explica por qué son chicos, no apura: por eso el patrón pide el "y". */
+const EMPUJA = [
+  /\b(grupos? (son|es) chicos?|el grupo es chico)\s+y\b/i,
+  /\bfechas? se (llenan?|cierran?|agotan?)\b/i,
+  /\b[úu]ltimos?\s+lugares?\b/i,
+  /\bde los primeros en enterarte\b|\bantes que el resto\b|\bprimero en enterarte\b/i,
+  /\b(guardate|asegurate)\b/i,
+  /\breserv[áa] (tu|el) lugar\b/i,
+  /\bsi vas a venir\b/i,
+  /\bno te lo pierdas\b/i,
+];
+
 const POR_LO_QUE_NO_ES = [
   /\bsin el compromiso\b/i,
   /\bla t[ée]cnica cerrada\b/i,
@@ -208,6 +228,9 @@ function revisaFrase(archivo, frase, articulo) {
       apunta(archivo, `«${frase.match(EXCLUYE_AL_QUE_YA_COCINA)[0]}» deja afuera a quien ya cocina`, frase);
     }
     if (!articulo) {
+      for (const e of EMPUJA) {
+        if (e.test(frase)) apunta(archivo, `empuja «${frase.match(e)[0]}»: se vende sin vender`, frase);
+      }
       for (const p of POR_LO_QUE_NO_ES) {
         if (p.test(frase)) apunta(archivo, `vende por lo que no es «${frase.match(p)[0]}»: contá qué es`, frase);
       }

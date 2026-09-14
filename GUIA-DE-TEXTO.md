@@ -201,6 +201,42 @@ Palabras que suenan a algo y no dicen nada si van solas: *criterio*,
 una, o se le pone al lado de qué es, o se cambia por la cosa concreta:
 «fermentación, hongos y quesos vegetales» en vez de «los procesos vivos».
 
+**16. Vender sin vender.**
+Leo, 14/9/2026, sobre el cierre de la portada: *"lo cambiaria si aun te quedan
+dudas podes escribirnos, no poner reserva o los grupos son chicos, aplica
+vender sin vender"*.
+
+El cierre de una página no pide la venta: abre una puerta. La razón honesta
+para escribir no es que se acaben los lugares, es que al lector le quedaron
+dudas. Fuera, entonces:
+
+- **La escasez.** "Los grupos son chicos y las fechas se llenan", "el grupo es
+  chico y las fechas se cierran cuando se llenan", "guardate el lugar ahora".
+  Los lugares que quedan los dice la comanda, que es el dato real y sale de
+  `data/ofertas.json`. Escrito en prosa es presión, y encima puede ser falso:
+  en setiembre de 2026 el curso de octubre tenía cuatro inscriptos de treinta
+  mientras la página decía que las fechas se llenaban.
+- **La ventaja sobre otras personas.** "Sos de los primeros en enterarte" es
+  "enterate antes que el resto", que Leo ya había rechazado en setiembre,
+  escrito de otra manera. Volvió en cuatro lugares. Se dice "te avisamos
+  cuando abramos la próxima" y listo.
+- **La orden de comprar en el cuerpo del texto.** "Reservá tu lugar", "vení al
+  curso", "empezá en octubre", "si vas a venir…". El botón sí dice lo que
+  hace —"Reservar mi lugar" está bien, es la acción—; lo que no empuja es la
+  prosa que lo rodea.
+
+| Decía | Dice |
+|---|---|
+| Reservá tu lugar. / Los grupos son chicos. | Si te quedan dudas, escribinos. |
+| Empezá en octubre 2026. | Preguntanos lo que quieras. |
+| El grupo es chico y las fechas se cierran. Si vas a venir, reservá tu lugar. | Si querés saber cómo es la noche antes de venir, escribinos. |
+| Vení a aprenderlo al curso. | En el curso trabajamos todo esto. |
+| Aprendé con Leonardo en persona. | Leonardo da las clases él mismo. |
+
+Cuidado con el reverso: **"los grupos son chicos a propósito, para que puedas
+cocinar, preguntar y que Leonardo te corrija a vos"** no es escasez, explica
+por qué son chicos. Eso se queda. `npm run texto` lo distingue.
+
 ## La prueba final
 
 Leé la frase en voz alta. Si nadie la diría hablando, se reescribe. Si tuviste

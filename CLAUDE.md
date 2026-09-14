@@ -87,7 +87,7 @@ mida posiciones traba el scroll en móviles.
 "editás", "podés"). Los comentarios del código, también.
 
 **Antes de escribir una sola línea de cara al público, leé
-`GUIA-DE-TEXTO.md`.** Son catorce reglas que salieron de frases que Leo
+`GUIA-DE-TEXTO.md`.** Son dieciséis reglas que salieron de frases que Leo
 leyó en voz alta y rechazó, y `npm run texto` las hace cumplir: si
 escribís sin leerlas, el chequeo te frena y no vas a entender por qué. La
 regla que ordena a las demás es que se cuenta lo que pasa y lo que el

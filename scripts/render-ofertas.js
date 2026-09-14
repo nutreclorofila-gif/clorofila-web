@@ -415,7 +415,7 @@ datos.curso.wa_link = waBase + encodeURIComponent(
 );
 datos.curso.cta_nota = abiertos.length
   ? 'Grupos reducidos · te escribimos por WhatsApp en menos de 24h para confirmar tu lugar'
-  : 'No hay edición abierta ahora. Dejanos tus datos y sos de los primeros en enterarte cuando abramos la próxima.';
+  : 'No hay edición abierta ahora. Dejanos tus datos y te avisamos cuando abramos la próxima.';
 datos.curso.titulo_reserva_html = abiertos.length
   ? 'Reservá tu <em style="color:var(--verde-luz)">lugar</em>.'
   : 'Avisame de la <em style="color:var(--verde-luz)">próxima edición</em>.';
@@ -476,10 +476,10 @@ datos.curso.intro_grupos = abiertos.length
 // El espacio antes del <br> es a propósito: sin él, el texto que lee Google
 // dice "Empezá enoctubre". No cambia cómo se ve.
 datos.curso.cierre_titulo_html = abiertos.length
-  ? 'Empezá en <br>' + escapar(String(datos.curso.edicion).toLowerCase()) + '.'
+  ? 'Preguntanos <br>lo que quieras.'
   : 'La edición de ' + escapar(String(datos.curso.edicion).split(' ')[0].toLowerCase()) + ' <br>ya arrancó.';
 datos.curso.cierre_bajada = abiertos.length
-  ? 'Escribinos por WhatsApp y coordinamos tu lugar: te contesta Leonardo.'
+  ? 'Contanos qué estás buscando y te decimos si este curso te sirve. Te contesta Leonardo.'
   : 'Los grupos de esta edición ya empezaron. Dejanos tus datos y te avisamos cuando abra la próxima: te contesta Leonardo.';
 
 // El resumen que leen los modelos de lenguaje en llms.txt. Antes decía a mano
