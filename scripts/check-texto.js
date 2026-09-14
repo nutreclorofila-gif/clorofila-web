@@ -116,7 +116,6 @@ function textoPlano(html) {
 function prosa(html) {
   let c = html.slice(html.indexOf('<body'));
   c = c.replace(/<!--[\s\S]*?-->/g, '');
-  c = c.replace(/<div class="faq-item"[\s\S]*?<\/div>/gi, ' ');
   /* 'header' no se saca: en este sitio cada página envuelve su hero en
      <header class="hero-*">, así que excluirlo dejaba sin revisar el texto que
      más se lee, el primero de cada página. La navegación ya sale por <nav>.

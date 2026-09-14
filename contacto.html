@@ -45,10 +45,14 @@
 .contacto-intro{color:var(--cal-med);max-width:44ch;margin-bottom:2rem}
 @media (max-width:880px){.contacto{grid-template-columns:1fr}}
 
-.canales{display:grid;gap:.6rem;margin-bottom:2.5rem}
-.canal{display:flex;flex-direction:column;gap:.2rem;border:1px solid var(--linea);border-radius:var(--r);padding:1rem 1.15rem;background:var(--musgo);transition:border-color .2s}
-.canal:hover{border-color:var(--brote)}
-.canal b{font-family:var(--texto);font-size:1rem;color:var(--cal);font-weight:500;}
+/* Eran tres cajas idénticas, apiladas, con borde y fondo propio: la galería de
+   tarjetas de cualquier plantilla. Son tres renglones de la misma lista, así
+   que van separados por filete como el resto del sitio. El alto de cada uno no
+   baja de 56px, que es lo que hay que poder tocar con el dedo. */
+.canales{display:grid;margin-bottom:2.5rem;border-top:1px solid var(--linea)}
+.canal{display:flex;flex-direction:column;justify-content:center;gap:.15rem;min-height:56px;border-bottom:1px solid var(--linea);padding-block:.85rem}
+.canal b{font-family:var(--texto);font-size:1.05rem;color:var(--cal);font-weight:500;transition:color .2s}
+.canal:hover b{color:var(--brote)}
 .canal span{font-family:var(--texto);font-size:.85rem;color:var(--cal-baja)}
 
 .donde h2{font-size:1.4rem;margin-bottom:.7rem}
@@ -148,7 +152,7 @@
         <span class="mapa-aviso">El mapa se carga cuando lo tocás, así no cargamos las cookies de Google antes de tiempo.</span>
       </button>
     </div>
-    <p class="mapa-pie"><span>Maldonado 1976 esq. Blanes · Parque Rodó</span><a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo">Cómo llegar</a></p>
+    <p class="mapa-pie"><span>Maldonado 1976 esq. Blanes, Parque Rodó</span><a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo">Cómo llegar</a></p>
     <figure class="foto-espacio">
       <picture><source srcset="img-espacio-700.webp 700w, img-espacio.webp 867w" sizes="(max-width: 820px) calc(100vw - 3rem), 452px" type="image/webp"><img src="img-espacio.jpg" width="867" height="1300" alt="El estudio de Clorofila en Parque Rodó" loading="lazy" decoding="async"></picture>
     </figure>
