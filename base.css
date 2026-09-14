@@ -45,6 +45,7 @@
   --t-bajada:1.2rem;    /* 19,2  — bajadas y entradas */
   --t-alto:1.35rem;     /* 21,6  — tesis del hero, remates */
   --t-mayor:1.5rem;     /* 24    — el escalón más grande que no es título */
+  --t-tesis:clamp(1.1rem,1.9vw,1.4rem); /* 22,4 — la tesis del hero, los remates y las citas cortas */
 
   /* Títulos. Antes había once expresiones distintas para «el título de una
      página» y ocho para «el título de una sección»: nadie decidió que el de
@@ -315,7 +316,7 @@ h2 + p{margin-top:.55rem}
 .hero-prod{position:relative;overflow:hidden;padding-block:clamp(1.75rem,3.2vw,2.6rem) clamp(3rem,6vw,5rem)}
 .hero-caja{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4.5vw,4rem);align-items:start}
 .hero-prod h1{font-size:var(--th-pagina);margin-block:.7rem .6rem;max-width:13ch;line-height:1.03}
-.hero-tesis{font-family:var(--display);font-size:clamp(1.1rem,1.8vw,1.38rem);color:var(--brote);letter-spacing:-.02em;line-height:1.22;margin-bottom:.8rem}
+.hero-tesis{font-family:var(--display);font-size:var(--t-tesis);color:var(--brote);letter-spacing:-.02em;line-height:1.22;margin-bottom:.8rem}
 .hero-prod .bajada{color:var(--cal-med);font-size:var(--t-chico);max-width:46ch;margin-bottom:1.25rem}
 .hero-foto{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:5/6;margin-bottom:1.25rem}
 /* En pantalla grande la foto llega hasta el borde derecho: no es una tarjeta
