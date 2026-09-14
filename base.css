@@ -396,6 +396,21 @@ h2 + p{margin-top:.55rem}
 /* --- Testimonios --- */
 .prueba{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1rem}
 .voz{border-top:1px solid var(--linea);padding:1.25rem 0 0;display:flex;flex-direction:column}
+/* Ficha de quien enseña. Estaba escrita dos veces, idéntica, en /curso y en
+   /sobre. Era una tarjeta con borde, radio y fondo; ahora cuelga de su filete
+   como el resto de la página. El punteado de adentro se queda: es el mismo
+   gesto que el de la comanda. */
+.docente{border-top:1px solid var(--linea);padding:1.3rem 0 0}
+.docente-foto{width:88px;height:110px;border-radius:var(--r);overflow:hidden;margin-bottom:1rem}
+.docente-foto img{width:100%;height:100%;object-fit:cover;display:block}
+.docente-rol{font-family:var(--texto);font-size:.85rem;color:var(--miel);margin-bottom:.4rem}
+.docente h3{font-size:clamp(1.25rem,2.2vw,1.6rem);margin-bottom:.9rem}
+.docente p{font-size:.92rem;color:var(--cal-med)}
+.docente-formacion{margin-top:1.2rem;border-top:1px dashed var(--linea-fuerte);padding-top:1rem}
+.docente-formacion h4{font-family:var(--texto);font-size:.85rem;font-weight:500;color:var(--cal-baja);margin-bottom:.6rem}
+.docente-formacion li{font-size:.86rem;color:var(--cal-med);padding-block:.22rem;display:flex;gap:.6rem}
+.docente-formacion li::before{content:"·";color:var(--brote)}
+
 .voz blockquote{font-family:var(--display);font-size:1.02rem;line-height:1.35;color:var(--cal);letter-spacing:-.01em;margin-bottom:.9rem}
 /* El nombre al pie de la columna: si no, cada cita lo dejaba a una altura
    distinta según cuántos renglones ocupara la frase. */
