@@ -75,6 +75,10 @@
     var cerrarMenu = function () {
       links.classList.remove('abierto');
       ham.setAttribute('aria-expanded', 'false');
+      /* El nombre del botón dice lo que hace ahora, no lo que hizo: con el
+         menú arriba, "Abrir menú" contradice al aria-expanded que lo acompaña
+         y el lector de pantalla anuncia las dos cosas juntas. */
+      ham.setAttribute('aria-label', 'Abrir menú');
       document.body.classList.remove('menu-abierto');
       apagarFondo(false);
       // El foco vuelve al botón que lo abrió, no al principio de la página.
@@ -83,6 +87,7 @@
     ham.addEventListener('click', function () {
       links.classList.add('abierto');
       ham.setAttribute('aria-expanded', 'true');
+      ham.setAttribute('aria-label', 'Cerrar menú');
       document.body.classList.add('menu-abierto');
       apagarFondo(true);
       // El primer tabulador tiene que caer dentro del menú, no detrás.
