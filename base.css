@@ -639,3 +639,49 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.75rem}
 [data-estado="agotado"] .solo-comprando{display:none}
 .solo-agotado.solo-agotado{display:none}
 [data-estado="agotado"] .solo-agotado{display:block}
+
+/* --- Impresión ---
+   /programa ofrece un botón que dice "Guardar o imprimir este programa", y la
+   página salía casi en blanco: el bloque @media print de esa página recoloreaba
+   los títulos y la comanda, pero el resto seguía con el texto crema del
+   invernadero sobre papel. Medidos 86 elementos por debajo de 3:1 de contraste
+   contra el blanco —la bajada, el detalle de cada mes, las etiquetas, las
+   listas de recetas—, muchos en 1,13:1, o sea invisibles.
+
+   Se arregla dando vuelta los tokens y no cada selector: así vale para
+   cualquier página que alguien decida imprimir o guardar en PDF, no sólo para
+   la que tiene el botón. Los tres acentos se oscurecen lo suficiente para
+   pasar 4,5:1 sobre blanco sin dejar de ser el mismo color. */
+@media print{
+  :root{
+    --tinta:#fff;
+    --tinta-2:#fff;
+    --musgo:#f6f6f2;
+    --musgo-alto:#efefe8;
+    --linea:#ddd;
+    --linea-fuerte:#bbb;
+
+    --cal:#111;
+    --cal-med:#3a3a3a;
+    --cal-baja:#555;
+
+    --brote:#2F6B2C;
+    --fermento:#A8215C;
+    --fermento-hondo:#8C1A4B;
+    --miel:#7A5200;
+  }
+  body{background:#fff;color:#111}
+  /* Lo que no se puede tocar en papel. */
+  .nav,.pie,#cookie-banner,.sticky-cta,.saltar,.prog-acciones{display:none!important}
+  /* Nada de sombras ni fondos a sangre: gastan tinta y no aportan. */
+  *{box-shadow:none!important}
+  img,figure{break-inside:avoid}
+  h1,h2,h3{break-after:avoid}
+  li,p{break-inside:avoid}
+  /* Un botón impreso no se aprieta: queda como texto enmarcado. Rellenos
+     quedaban con tinta oscura sobre ámbar y daban 2,6:1 sobre el papel. */
+  .btn,.cta-main,.grupo-cta,.prog-guardar{background:transparent!important;color:#111!important;border:1px solid #777!important}
+  /* La dirección de un enlace no se ve en papel. */
+  main a[href^="http"]::after{content:" (" attr(href) ")";font-size:.75em;color:#555;word-break:break-all}
+  main a[href^="/"]::after{content:" (clorofila.uy" attr(href) ")";font-size:.75em;color:#555}
+}
