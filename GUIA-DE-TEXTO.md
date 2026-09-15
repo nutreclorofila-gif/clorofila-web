@@ -237,6 +237,13 @@ Cuidado con el reverso: **"los grupos son chicos a propósito, para que puedas
 cocinar, preguntar y que Leonardo te corrija a vos"** no es escasez, explica
 por qué son chicos. Eso se queda. `npm run texto` lo distingue.
 
+**Y volvió una tercera vez, con otras palabras.** El 14/9 la agenda de la
+portada todavía decía *"Trabajamos con grupos chicos. Cuando una fecha se
+completa, la cerramos."* El chequeo no la había agarrado porque buscaba "se
+llenan" y esto decía "se completa". Es la misma jugada: avisar que se cierra.
+Cuando aparezca una forma nueva, agregarla a `EMPUJA` en `check-texto.js` —
+ya pasó tres veces.
+
 ## La prueba final
 
 Leé la frase en voz alta. Si nadie la diría hablando, se reescribe. Si tuviste
