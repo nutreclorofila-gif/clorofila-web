@@ -207,9 +207,17 @@
   });
 
   Array.prototype.forEach.call(document.querySelectorAll('[data-inicio-iso]'), function (el) {
-    var texto = cuantoFalta(el.getAttribute('data-inicio-iso'));
-    // El elemento puede ser el propio texto, o contener el destino marcado.
-    var destino = el.querySelector('[data-cuenta]');
+    /* Una cuenta regresiva sobre algo agotado apura por algo que nadie puede
+       comprar: el 15/9 la tarjeta del tapeo lleno decía "Empieza en 3 días".
+       Con la fecha llena el renglón se calla, y el hueco se marca igual que
+       cuando no hay cuenta para que el botón no salte. */
+    var cerrado = el.closest && el.closest('[data-estado="agotado"]');
+    var texto = cerrado ? null : cuantoFalta(el.getAttribute('data-inicio-iso'));
+    /* El destino puede ser el propio elemento: en la tarjeta de /experiencias
+       el <p> lleva las dos marcas, y buscando solo adentro el "no" no se
+       ponía nunca. Quedaba el hueco reservado, vacío, para una cuenta que no
+       iba a llegar. */
+    var destino = el.hasAttribute('data-cuenta') ? el : el.querySelector('[data-cuenta]');
     /* Sin cuenta que mostrar hay que decirlo: el hueco viene reservado para
        no empujar el boton al llenarse, y sin esta marca quedaria un espacio
        en blanco esperando un texto que no va a llegar. */
