@@ -248,6 +248,11 @@ t.regalo_link = waBase + encodeURIComponent(
    ella: en la portada y en la agenda. Con la fecha llena no puede seguir
    invitando a comprarla; dice lo que hace, que es mostrarla. */
 t.ver_boton = ventaMuda(t.estado) ? 'Ver cómo es la noche' : 'Ver la cena de tapeo';
+/* El botón de la barra de arriba decía "Reservar" en /tapeo, /pastas y
+   /experiencias con la fecha llena o sin abrir: lleva al bloque de reserva,
+   donde lo único que hay es el "avisame". Es el mismo botón que ve alguien
+   que entra por primera vez. */
+t.nav_cta = ventaMuda(t.estado) ? 'Avisame' : 'Reservar';
 t.hero_boton      = ventaMuda(t.estado) ? 'Ver los talleres' : 'Ver la cena de tapeo';
 t.hero_boton_link = ventaMuda(t.estado) ? '/talleres'        : '/tapeo';
 t.tiene_segunda = t.segunda_fecha && t.segunda_fecha.texto ? 'si' : 'no';
@@ -346,6 +351,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   w.pregunta_link = waBase + encodeURIComponent(
     'Hola Leonardo, tengo una pregunta sobre el taller de ' + w.nombre + '.'
   );
+  w.nav_cta = ventaMuda(w.estado) ? 'Avisame' : 'Reservar';
   w.wa_texto =
     w.estado === 'sin-fecha' ? 'Avisame cuando haya fecha' :
     w.estado === 'agotado'   ? 'Avisame cuando haya fecha' :
