@@ -1,6 +1,6 @@
 # Qué cambia cuando se publique — rama `claude/nice-thompson-d2c69f`
 
-87 commits desde lo que está en vivo. 44 archivos: las 27 páginas, 4 scripts,
+93 commits desde lo que está en vivo. 46 archivos: las 27 páginas, 4 scripts,
 2 imágenes, el sitemap, el manifest, `llms.txt`, la plantilla de `llms.txt` y
 6 documentos. **No cambia `netlify.toml` ni `robots.txt`**, así que las
 cabeceras, el CSP y las redirecciones quedan como están.
@@ -36,7 +36,23 @@ portada: vuelve abajo. /leonardo tardaba 8,3 pantallas en ofrecer una salida
 
 **El ecosistema.** /servicios no tenía un solo enlace saliente, desde /curso
 no se llegaba a los talleres, y ninguna actividad enlazaba un artículo. Las
-seis páginas de actividad ahora tienen salida a las otras.
+seis páginas de actividad ahora tienen salida a las otras. /programa, /pastas
+y /contacto tenían una sola salida cada una, las tres al curso.
+
+**La puerta cerrada.** La Cena y Taller de Tapeo está agotada desde el 9, y el
+sitio la ofrecía como paso siguiente en cuatro lugares de mucho tráfico: el
+ítem «Experiencias» del menú en las 25 páginas, la frase de cierre de los doce
+artículos —idéntica en los doce—, el segundo botón del inicio y la barra fija
+de /experiencias. Esto ya estaba medido afuera: el anuncio del tapeo se dejó
+corriendo tres días después de llenarse, costó $614 y trajo veinte personas
+que escribieron para una noche sin lugares; ninguna se anotó para la próxima.
+Ahora, con la fecha llena, cada uno de esos cuatro lugares lleva a algo que sí
+se puede empezar, y vuelven solos a la cena cuando haya fecha. La cuenta
+regresiva también se calla: decía «Empieza en 3 días» al lado de «Agotado».
+
+**La barra fija.** En /sobre y /leonardo decía «Reservar mi lugar» mientras el
+cierre de esas mismas páginas ofrece «Ver el curso» y deja reservar en segundo
+lugar: la barra contradecía a la página desde la primera pantalla.
 
 **El trato del temario.** Veinticuatro botones pedían un mail a cambio del
 «contenido completo del curso», que está publicado en /programa y enlazado
