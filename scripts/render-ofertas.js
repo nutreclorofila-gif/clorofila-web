@@ -710,12 +710,13 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
    Una categoría con un solo ítem no es una categoría: es un escalón de más.
    Se midió: /experiencias tuvo 1 visita de 9 segundos en un mes, mientras 7
    personas entraron al tapeo por links directos. Así que mientras haya una
-   sola experiencia publicada, el menú lleva derecho a ella; cuando haya dos o
-   más, vuelve solo a llevar a la lista. Hoy la única experiencia es el tapeo;
-   si mañana se agregan otras, se suman acá y la cuenta se ajusta sola. */
+   sola experiencia publicada Y con lugar, el menú lleva derecho a ella.
+   Cuando se llena, el atajo se cae: un ítem del menú que abre en "Agotado"
+   cierra la categoría entera, y /experiencias al menos cuenta qué son las
+   cenas y ofrece avisar. Con dos o más, vuelve solo a llevar a la lista. */
 {
   var experiencias = [];
-  if (datos.tapeo && datos.tapeo.publicar !== false) experiencias.push('/tapeo');
+  if (datos.tapeo && datos.tapeo.publicar !== false && datos.tapeo.estado !== 'agotado') experiencias.push('/tapeo');
   datos.menu_experiencias = experiencias.length === 1 ? experiencias[0] : '/experiencias';
 }
 
