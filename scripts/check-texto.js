@@ -76,7 +76,9 @@ const CONTRASTE_NEGADO = /\bno\s+([a-záéíóúñ]{3,}(?:amos|emos|imos|ás|és
    a vos" explica por qué son chicos, no apura: por eso el patrón pide el "y". */
 const EMPUJA = [
   /\b(grupos? (son|es) chicos?|el grupo es chico)\s+y\b/i,
-  /\bfechas? se (llenan?|cierran?|agotan?)\b/i,
+  /\bfechas? se (llenan?|cierran?|agotan?|completan?)\b/i,
+  /\bcuando (una |la )?fecha se (completa|llena|cierra)\b/i,
+  /\btrabajamos con grupos chicos\b/i,
   /\b[úu]ltimos?\s+lugares?\b/i,
   /\bde los primeros en enterarte\b|\bantes que el resto\b|\bprimero en enterarte\b/i,
   /\b(guardate|asegurate)\b/i,
