@@ -191,6 +191,35 @@
   status = 404
   force  = true
 
+# Netlify publica la raíz del repo, así que todo lo versionado se sirve salvo
+# que se corte acá. Faltaban cuatro: la configuración de permisos del proyecto
+# —que cuenta qué comandos se pueden correr—, los dos workflows de CI y la
+# config del validador. No hay credenciales en ninguno, pero no son parte del
+# sitio y no tienen por qué leerse desde afuera.
+[[redirects]]
+  from = "/.claude/*"
+  to   = "/404.html"
+  status = 404
+  force  = true
+
+[[redirects]]
+  from = "/.github/*"
+  to   = "/404.html"
+  status = 404
+  force  = true
+
+[[redirects]]
+  from = "/.htmlvalidate.json"
+  to   = "/404.html"
+  status = 404
+  force  = true
+
+[[redirects]]
+  from = "/.gitignore"
+  to   = "/404.html"
+  status = 404
+  force  = true
+
 [[headers]]
   for = "/*"
   [headers.values]
