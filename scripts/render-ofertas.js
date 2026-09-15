@@ -235,7 +235,14 @@ t.sumar_link = waBase + encodeURIComponent(
 t.regalo_link = waBase + encodeURIComponent(
   'Hola Leonardo, quiero regalar una Cena y Taller de Tapeo. ¿Cómo hago con la gift card?'
 );
-t.hero_boton = 'Ver la cena de tapeo';
+/* El segundo botón del inicio llevaba siempre al tapeo. Con la fecha llena
+   eso es mandar a la puerta cerrada al que recién llega, y ya está medido lo
+   que pasa: el anuncio del tapeo del 18 se dejó corriendo tres días después
+   de llenarse, costó $614 y trajo 20 personas que escribieron para algo sin
+   lugares. Nadie se anotó para la próxima. Con la cena cerrada, el segundo
+   botón lleva a lo que sí se puede empezar hoy. */
+t.hero_boton      = ventaMuda(t.estado) ? 'Ver los talleres' : 'Ver la cena de tapeo';
+t.hero_boton_link = ventaMuda(t.estado) ? '/talleres'        : '/tapeo';
 t.tiene_segunda = t.segunda_fecha && t.segunda_fecha.texto ? 'si' : 'no';
 // Con una sola fecha, "Elegí tu fecha" pide algo que no se puede hacer.
 t.fechas_titulo = t.tiene_segunda === 'si' ? 'Elegí tu fecha' : 'La próxima fecha';
@@ -548,7 +555,9 @@ if (t.estado !== 'sin-fecha' && t.fecha_iso) {
   agenda.push({
     iso: t.fecha_iso, nombre: 'Cena y Taller de Tapeo', fecha: t.fecha_texto,
     hora: t.horario_texto, precio: t.precio, estado: t.estado,
-    etiqueta: t.estado_texto, link: '/tapeo', cta: 'Ver la cena de tapeo'
+    etiqueta: t.estado_texto, link: '/tapeo',
+    // Con la fecha llena el botón no puede seguir invitando a comprarla.
+    cta: t.estado === 'agotado' ? 'Ver cómo es la noche' : 'Ver la cena de tapeo'
   });
   if (t.segunda_fecha && t.segunda_fecha.texto) {
     agenda.push({
@@ -604,7 +613,7 @@ if (t.estado === 'sin-fecha' || !t.fecha_iso) {
     iso: '9999-12-31', nombre: 'Cena y Taller de Tapeo',
     fecha: 'Se abre según la demanda', hora: '', precio: '',
     estado: 'sin-fecha', etiqueta: t.estado_texto,
-    link: '/tapeo', cta: 'Avisame la próxima fecha'
+    link: '/tapeo', cta: 'Ver cómo es la noche'
   });
 }
 
