@@ -77,6 +77,9 @@ const CONTRASTE_NEGADO = /\bno\s+([a-záéíóúñ]{3,}(?:amos|emos|imos|ás|és
 const EMPUJA = [
   /\b(grupos? (son|es) chicos?|el grupo es chico)\s+y\b/i,
   /\bfechas? se (llenan?|cierran?|agotan?|completan?)\b/i,
+  // "Los lugares son 12 y se llenan" pasaba por al lado de la regla de arriba:
+  // el sujeto no era la fecha. El cupo es un dato; el verbo es el empujón.
+  /\b(lugares?|cupos?|grupos?|clases?|talleres?)\b[^.]{0,30}\bse (llenan|agotan|completan)\b/i,
   /\bcuando (una |la )?fecha se (completa|llena|cierra)\b/i,
   /\btrabajamos con grupos chicos\b/i,
   /\b[úu]ltimos?\s+lugares?\b/i,

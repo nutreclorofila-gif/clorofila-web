@@ -216,6 +216,9 @@ dudas. Fuera, entonces:
   `data/ofertas.json`. Escrito en prosa es presión, y encima puede ser falso:
   en setiembre de 2026 el curso de octubre tenía cuatro inscriptos de treinta
   mientras la página decía que las fechas se llenaban.
+  Cambiarle el sujeto no lo salva: "los lugares son 12 y se llenan" es lo
+  mismo con otra palabra, y así se coló hasta /gracias. El cupo es un dato; el
+  verbo es el empujón.
 - **La ventaja sobre otras personas.** "Sos de los primeros en enterarte" es
   "enterate antes que el resto", que Leo ya había rechazado en setiembre,
   escrito de otra manera. Volvió en cuatro lugares. Se dice "te avisamos
