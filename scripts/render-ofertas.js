@@ -241,6 +241,10 @@ t.regalo_link = waBase + encodeURIComponent(
    de llenarse, costó $614 y trajo 20 personas que escribieron para algo sin
    lugares. Nadie se anotó para la próxima. Con la cena cerrada, el segundo
    botón lleva a lo que sí se puede empezar hoy. */
+/* El botón que lleva a la página de la cena, donde ya se está hablando de
+   ella: en la portada y en la agenda. Con la fecha llena no puede seguir
+   invitando a comprarla; dice lo que hace, que es mostrarla. */
+t.ver_boton = ventaMuda(t.estado) ? 'Ver cómo es la noche' : 'Ver la cena de tapeo';
 t.hero_boton      = ventaMuda(t.estado) ? 'Ver los talleres' : 'Ver la cena de tapeo';
 t.hero_boton_link = ventaMuda(t.estado) ? '/talleres'        : '/tapeo';
 t.tiene_segunda = t.segunda_fecha && t.segunda_fecha.texto ? 'si' : 'no';
@@ -426,11 +430,8 @@ datos.curso.wa_link = waBase + encodeURIComponent(
   'Hola Leonardo, tengo una pregunta sobre el curso de cocina.'
 );
 datos.curso.cta_nota = abiertos.length
-  ? 'Grupos reducidos · te escribimos por WhatsApp en menos de 24h para confirmar tu lugar'
+  ? 'Te escribimos por WhatsApp en menos de 24 h para confirmar tu lugar'
   : 'No hay edición abierta ahora. Dejanos tus datos y te avisamos cuando abramos la próxima.';
-datos.curso.titulo_reserva_html = abiertos.length
-  ? 'Reservá tu <em style="color:var(--verde-luz)">lugar</em>.'
-  : 'Avisame de la <em style="color:var(--verde-luz)">próxima edición</em>.';
 for (const g of datos.curso.grupos) {
   datos.curso['grupo_' + g.id + '_estado_texto'] = g.estado === 'abierto' ? 'Abierto' : 'Grupo cerrado';
   datos.curso['grupo_' + g.id + '_inicio'] = g.inicio_texto;
@@ -556,8 +557,7 @@ if (t.estado !== 'sin-fecha' && t.fecha_iso) {
     iso: t.fecha_iso, nombre: 'Cena y Taller de Tapeo', fecha: t.fecha_texto,
     hora: t.horario_texto, precio: t.precio, estado: t.estado,
     etiqueta: t.estado_texto, link: '/tapeo',
-    // Con la fecha llena el botón no puede seguir invitando a comprarla.
-    cta: t.estado === 'agotado' ? 'Ver cómo es la noche' : 'Ver la cena de tapeo'
+    cta: t.ver_boton
   });
   if (t.segunda_fecha && t.segunda_fecha.texto) {
     agenda.push({
@@ -613,7 +613,7 @@ if (t.estado === 'sin-fecha' || !t.fecha_iso) {
     iso: '9999-12-31', nombre: 'Cena y Taller de Tapeo',
     fecha: 'Se abre según la demanda', hora: '', precio: '',
     estado: 'sin-fecha', etiqueta: t.estado_texto,
-    link: '/tapeo', cta: 'Ver cómo es la noche'
+    link: '/tapeo', cta: t.ver_boton
   });
 }
 
@@ -701,7 +701,16 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
   // La bajada de /talleres decía "algunos tienen fecha abierta ahora mismo".
   // Casi siempre hay uno solo con fecha, y a veces ninguno: en ese caso la
   // frase pasaba a ser falsa sola, sin que nadie tocara nada.
-  datos.talleres_cta = conFecha.length ? 'Ver los que tienen fecha' : 'Ver los talleres';
+  /* La barra fija de /talleres decía "Ver los talleres" y bajaba al índice,
+     en la misma página que los lista: sin ninguna fecha abierta, la única
+     acción de la página era un scroll a donde ya estabas. Cuando ninguno
+     tiene fecha, la barra ofrece lo mismo que ofrece cada tarjeta. */
+  datos.talleres_cta = conFecha.length ? 'Ver los que tienen fecha' : 'Avisame cuando haya fecha';
+  datos.talleres_cta_link = conFecha.length ? '#abiertos'
+    : waBase + encodeURIComponent('Hola Leonardo, me interesan los talleres de Clorofila. Avisame cuando abran fecha.');
+  /* Con fecha el botón baja al índice de esta misma página y no puede abrir
+     una pestaña; sin fecha va a WhatsApp, que sí. El target sale de acá. */
+  datos.talleres_cta_target = conFecha.length ? '' : '_blank';
   datos.talleres_nav = conFecha.length ? 'Ver fechas' : 'Ver talleres';
   /* Lo que vale para los cinco se dice acá una sola vez. Antes iba repetido
      en una etiqueta debajo de cada taller: quince etiquetas que no
