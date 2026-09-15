@@ -394,18 +394,6 @@ h2 + p{margin-top:.55rem}
 .fechas strong{font-family:var(--texto);font-size:var(--t-chico);color:var(--cal);font-weight:600}
 .fechas span{font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-med)}
 
-/* Lo que solo tiene sentido cuando hay una fecha publicada. */
-[data-estado="sin-fecha"] .solo-con-fecha{display:none}
-[data-precio="no"] .solo-con-precio{display:none}
-.solo-sin-fecha{display:none}
-[data-estado="sin-fecha"] .solo-sin-fecha{display:block}
-/* Agotado: la fecha sigue en pantalla porque es informacion util, pero lo
-   que invita a comprar se apaga y queda la unica salida que sirve, que es
-   preguntar. Es el momento en que mas gente entra: la que llega tarde. */
-[data-estado="agotado"] .solo-comprando{display:none}
-.solo-agotado{display:none}
-[data-estado="agotado"] .solo-agotado{display:block}
-
 /* --- Bloque de dos columnas con foto --- */
 .par{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.75rem,4vw,3.5rem);align-items:center}
 .par-foto{border-radius:var(--r-lg);overflow:hidden}
@@ -623,3 +611,26 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.75rem}
 .nav-links a:active,.nav-cta:active,.pie li a:active,.pie .dato a:active,
 .enlace-vivo:active,.comanda-datos li a:active,.fechas a:active,
 .miga a:active,.seguir li a:active{opacity:.6}
+
+/* --- Qué se muestra según el estado de la oferta ---
+   Esto vive al final del archivo a propósito. Son reglas de estado y tienen
+   que ganarle a las del componente, que dicen cómo se ve cada pieza cuando
+   está en pantalla. Con el bloque a mitad de archivo, "[data-estado=agotado]
+   .solo-comprando" empataba en especificidad con ".sticky-cta .cta-main" y
+   perdía por venir antes: la barra de /experiencias mostraba a la vez el
+   botón de comprar y el de avisar. Regla nueva de estado: va acá abajo. */
+
+/* La clase va doblada donde tiene que esconder por defecto: sola pesa menos
+   que cualquier regla de componente de dos clases y perdía igual. */
+
+/* Lo que solo tiene sentido cuando hay una fecha publicada. */
+[data-estado="sin-fecha"] .solo-con-fecha{display:none}
+[data-precio="no"] .solo-con-precio{display:none}
+.solo-sin-fecha.solo-sin-fecha{display:none}
+[data-estado="sin-fecha"] .solo-sin-fecha{display:block}
+/* Agotado: la fecha sigue en pantalla porque es informacion util, pero lo
+   que invita a comprar se apaga y queda la unica salida que sirve, que es
+   preguntar. Es el momento en que mas gente entra: la que llega tarde. */
+[data-estado="agotado"] .solo-comprando{display:none}
+.solo-agotado.solo-agotado{display:none}
+[data-estado="agotado"] .solo-agotado{display:block}
