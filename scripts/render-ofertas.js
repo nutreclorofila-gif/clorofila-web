@@ -189,6 +189,9 @@ t.wa_link = waBase + encodeURIComponent(
    mismo clic. Y esperar una cancelación es lo más chico que se puede ofrecer
    justo donde hay más intención: alguien que quiso entrar y no pudo. El tapeo
    de setiembre se llenó en tres días y quedaron veinte personas afuera. */
+t.pregunta_link = waBase + encodeURIComponent(
+  'Hola Leonardo, tengo una pregunta sobre la Cena y Taller de Tapeo.'
+);
 t.wa_texto =
   t.estado === 'sin-fecha' ? 'Avisame la próxima fecha' :
   t.estado === 'agotado'   ? 'Avisame la próxima fecha' :
@@ -338,6 +341,10 @@ for (const [id, w] of Object.entries(datos.talleres)) {
     w.estado === 'sin-fecha' || w.estado === 'agotado'
       ? 'Hola Leonardo, me interesa el taller de ' + w.nombre + '. Avisame cuando abran fecha.'
       : 'Hola Leonardo, quiero reservar un lugar en el taller de ' + w.nombre + ' del ' + w.fecha_texto + '.'
+  );
+  // El botón de al lado dice "preguntar": tiene que preguntar.
+  w.pregunta_link = waBase + encodeURIComponent(
+    'Hola Leonardo, tengo una pregunta sobre el taller de ' + w.nombre + '.'
   );
   w.wa_texto =
     w.estado === 'sin-fecha' ? 'Avisame cuando haya fecha' :
