@@ -1,6 +1,6 @@
 # Qué cambia cuando se publique — rama `claude/nice-thompson-d2c69f`
 
-93 commits desde lo que está en vivo. 46 archivos: las 27 páginas, 4 scripts,
+98 commits desde lo que está en vivo. 48 archivos: las 27 páginas, 5 scripts,
 2 imágenes, el sitemap, el manifest, `llms.txt`, la plantilla de `llms.txt` y
 6 documentos. **No cambia `netlify.toml` ni `robots.txt`**, así que las
 cabeceras, el CSP y las redirecciones quedan como están.
@@ -58,6 +58,13 @@ lugar: la barra contradecía a la página desde la primera pantalla.
 «contenido completo del curso», que está publicado en /programa y enlazado
 desde las 27 páginas. Ahora el programa se da, y el mail se pide sólo por lo
 que no está publicado: cuándo abre la próxima edición.
+
+**Lo que no se toca y quedó verificado.** Las 27 páginas se revisaron de
+nuevo entera y una por una: estructura, meta, texto, diseño en celular y en
+escritorio, y salidas. Ningún desborde horizontal, ningún texto cortado, la
+jerarquía de títulos correcta en todas y el contraste por encima de AA sin una
+sola falla. Se agregó `check:salidas`, que corta si una página queda
+encerrada en su propia actividad.
 
 ## Lo que queda igual a propósito
 
