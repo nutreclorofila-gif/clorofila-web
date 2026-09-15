@@ -681,6 +681,14 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
   datos.tapeo.menu_corto = cortos.length > 1
     ? cortos.slice(0, -1).join(', ') + ' y ' + cortos[cortos.length - 1]
     : cortos[0];
+  /* La descripción del Event que lee Google decía el menú de una edición
+     vieja —"panes, patés, hummus, encurtidos"— en /tapeo y en /experiencias.
+     Estaba escrita a mano dentro del JSON-LD, que es el último lugar donde
+     uno se acuerda de mirar. Ahora sale del mismo array que la página. */
+  datos.tapeo.descripcion_schema =
+    'Una noche de cocina y mesa compartida en Clorofila: se cocina en grupo ('
+    + datos.tapeo.menu_corto
+    + ') y después se cena todo lo preparado, con las dos copas de vino o kombucha que entran.';
 }
 
 /* ---- La tira de talleres del inicio ----
@@ -1204,6 +1212,21 @@ for (const archivo of archivos) {
           tocado = true;
         }
         Object.values(o).forEach(ponerModo);
+      }(ld));
+
+      /* El menú del evento vive en data/ofertas.json: escrito a mano dentro
+         del JSON-LD se quedó viejo sin que nadie lo notara, en las dos
+         páginas que lo declaran. */
+      (function ponerMenu(o) {
+        if (!o || typeof o !== 'object') return;
+        if (Array.isArray(o)) return o.forEach(ponerMenu);
+        if (o['@type'] === 'Event' && /Tapeo/i.test(o.name || '')
+            && datos.tapeo.descripcion_schema
+            && o.description !== datos.tapeo.descripcion_schema) {
+          o.description = datos.tapeo.descripcion_schema;
+          tocado = true;
+        }
+        Object.values(o).forEach(ponerMenu);
       }(ld));
 
       /* El evento nombraba al organizador con una referencia al nodo del home.
