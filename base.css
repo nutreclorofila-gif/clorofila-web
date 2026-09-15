@@ -23,7 +23,12 @@
   --miel:#F0B355;          /* ámbar de la luz del estudio: datos */
 
   /* Tipografía */
-  --display:'Bricolage Grotesque','Times New Roman',serif;
+  /* Bricolage Grotesque es una grotesca sans; el respaldo era Times New Roman,
+     una serif. Mientras la fuente carga —y para quien bloquea Google Fonts—
+     todos los títulos del sitio salían en otra familia y con otro carácter.
+     Medido sobre el h1 de la portada: Times da 708 px donde Bricolage da 828
+     (-14,5%, un salto visible al cambiar); Helvetica Neue da 816 (-1,4%). */
+  --display:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
   --texto:'Karla',system-ui,sans-serif;
   --dato:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
 
