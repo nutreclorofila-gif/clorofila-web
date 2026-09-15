@@ -1,9 +1,12 @@
 # Qué cambia cuando se publique — rama `claude/nice-thompson-d2c69f`
 
-98 commits desde lo que está en vivo. 48 archivos: las 27 páginas, 5 scripts,
-2 imágenes, el sitemap, el manifest, `llms.txt`, la plantilla de `llms.txt` y
-6 documentos. **No cambia `netlify.toml` ni `robots.txt`**, así que las
-cabeceras, el CSP y las redirecciones quedan como están.
+108 commits desde lo que está en vivo. 61 archivos: las 27 páginas, 6
+scripts, 11 imágenes, el sitemap, el manifest, `llms.txt`, su plantilla,
+`netlify.toml` y 7 documentos. **`netlify.toml` sí cambia**, con cuatro
+bloques de redirección nuevos al final que cortan rutas del repo que se
+servían como parte del sitio (/.claude/, /.github/, /.htmlvalidate.json y
+/.gitignore). **El CSP, las cabeceras y las redirecciones que ya existían no
+se tocan**, y `robots.txt` tampoco.
 
 `check:integridad` contra `main`: ninguna página pierde título, texto,
 enlaces, imágenes, precios ni bloques de schema. Los 18 chequeos en verde.
@@ -58,6 +61,19 @@ lugar: la barra contradecía a la página desde la primera pantalla.
 «contenido completo del curso», que está publicado en /programa y enlazado
 desde las 27 páginas. Ahora el programa se da, y el mail se pide sólo por lo
 que no está publicado: cuándo abre la próxima edición.
+
+**Las fotos.** Las tres de la tira de la clase —que se usan en seis
+páginas— tenían el negro levantado y los blancos tirando a amarillo. Se
+corrigieron con un ajuste calculado desde cada foto, no un filtro, y ninguna
+página quedó más pesada. Las del tapeo no se tocaron: ya estaban graduadas.
+
+**La impresión.** /programa tiene un botón que dice "Guardar o imprimir este
+programa" y la página salía casi en blanco: 86 elementos por debajo de 3:1
+sobre el papel. Ahora cualquier página del sitio se imprime legible.
+
+**Los títulos.** Mientras carga la tipografía —y para siempre, para quien
+bloquea Google Fonts— salían en Times New Roman, una serif, cuando la del
+sitio es una grotesca sans.
 
 **Lo que no se toca y quedó verificado.** Las 27 páginas se revisaron de
 nuevo entera y una por una: estructura, meta, texto, diseño en celular y en
