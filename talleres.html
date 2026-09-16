@@ -63,7 +63,17 @@
 .taller-foto{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3}
 .taller-foto img{width:100%;height:100%;object-fit:cover}
 .taller h2{font-size:var(--th-seccion);margin-block:.7rem .8rem}
-.taller-cuerpo{font-size:var(--t-chico);color:var(--cal-med);margin-bottom:1.1rem}
+/* La tesis de Clorofila es que no se enseñan recetas sino a entender lo que
+   pasa. Los cinco talleres ya lo decían —cada texto nombra qué se cocina y qué
+   se aprende a controlar— pero las dos mitades vivían juntas en el mismo
+   párrafo gris, así que el plato pesaba lo mismo que la técnica. Acá la
+   jerarquía se da vuelta: lo que se cocina va chico, y lo que uno se lleva a
+   su casa va grande. El rótulo va en minúscula y en la tipografía de texto, no
+   en versalitas: una etiqueta en mayúsculas arriba de cada bloque es de lo
+   primero que delata una página armada por defecto. */
+.taller-hace{font-size:var(--t-chico);color:var(--cal-med);margin-bottom:1.3rem}
+.taller-rotulo{font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja);margin-bottom:.4rem}
+.taller-maneja{font-family:var(--display);font-size:var(--t-bajada);line-height:1.32;letter-spacing:-.01em;color:var(--cal);margin-bottom:1.3rem;max-width:36ch}
 .taller-etiquetas{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1rem}
 .taller-etiqueta{border:1px solid var(--linea);border-radius:var(--r);padding:.32rem .8rem;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-med)}
 .taller-estado{border-color:var(--linea-fuerte);color:var(--cal-baja)}
@@ -148,7 +158,9 @@
     <article class="taller sube" data-estado-de="talleres.pastas-sin-gluten" data-estado="sin-fecha">
       <div>
         <h2 id="pastas-sin-gluten">Pastas sin gluten</h2>
-        <p class="taller-cuerpo">Trabajás dos masas base —una para pastas largas y cortas, otra para rellenas— y aprendés a combinar harinas para que la masa funcione también en tu casa. Armás spaghetti o linguini, farfalle, tortellini y anolini o sorrentinos, con sus rellenos y salsas, y el manejo de la cocción para que todo salga bien.</p>
+        <p class="taller-hace">Armás spaghetti o linguini, farfalle, tortellini y anolini o sorrentinos, con sus rellenos y salsas.</p>
+        <p class="taller-rotulo">Lo que vas a manejar</p>
+        <p class="taller-maneja">Dos masas base: una para pastas largas y cortas, otra para rellenas. Cómo combinar harinas para que la masa funcione también en tu casa. El manejo de la cocción.</p>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.pastas-sin-gluten.estado_texto-->Se abre por demanda<!--/o--></span>
         </div>
@@ -161,7 +173,9 @@
     <article class="taller sube" data-estado-de="talleres.fermentacion" data-estado="sin-fecha">
       <div>
         <h2 id="fermentacion">Fermentación de vegetales</h2>
-        <p class="taller-cuerpo">Hacemos chucrut, kimchi y encurtidos. Vas a ver qué hacen las bacterias mientras el frasco descansa, cómo manejar la sal y el tiempo, y cómo darte cuenta de que está en punto.</p>
+        <p class="taller-hace">Hacemos chucrut, kimchi y encurtidos.</p>
+        <p class="taller-rotulo">Lo que vas a manejar</p>
+        <p class="taller-maneja">Qué hacen las bacterias mientras el frasco descansa. Cómo manejar la sal y el tiempo. Cómo darte cuenta de que está en punto.</p>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.fermentacion.estado_texto-->Se abre por demanda<!--/o--></span>
         </div>
@@ -175,7 +189,9 @@
     <article class="taller sube" data-estado-de="talleres.pan-sin-gluten" data-estado="sin-fecha">
       <div>
         <h2 id="pan-sin-gluten">Pan sin gluten con masa madre</h2>
-        <p class="taller-cuerpo">El problema no está en la harina sino en la hidratación, la fermentación y la estructura de la miga. Trabajamos esas tres variables con masa madre real y sin aditivos, hasta entender por qué queda apelmazado y cómo resolverlo.</p>
+        <p class="taller-hace">Pan con masa madre real, sin aditivos.</p>
+        <p class="taller-rotulo">Lo que vas a manejar</p>
+        <p class="taller-maneja">La hidratación, la fermentación y la estructura de la miga. El problema no está en la harina: son esas tres variables, hasta entender por qué queda apelmazado y cómo resolverlo.</p>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.pan-sin-gluten.estado_texto-->Se abre por demanda<!--/o--></span>
         </div>
@@ -189,7 +205,9 @@
     <article class="taller sube" data-estado-de="talleres.quesos-vegetales" data-estado="sin-fecha">
       <div>
         <h2 id="quesos-vegetales">Quesos vegetales</h2>
-        <p class="taller-cuerpo">Quesos vegetales que se cortan y se untan. Partimos del cajú y otras semillas para llegar a piezas madurables. Manejás las cuatro variables que le dan a un queso su sabor y su corte: acidez, proteína, grasa y tiempo.</p>
+        <p class="taller-hace">Quesos vegetales que se cortan y se untan. Partimos del cajú y otras semillas para llegar a piezas madurables.</p>
+        <p class="taller-rotulo">Lo que vas a manejar</p>
+        <p class="taller-maneja">Acidez, proteína, grasa y tiempo: las cuatro variables que le dan a un queso su sabor y su corte.</p>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.quesos-vegetales.estado_texto-->Se abre por demanda<!--/o--></span>
         </div>
@@ -202,7 +220,9 @@
     <article class="taller sube" data-estado-de="talleres.alfajores" data-estado="sin-fecha">
       <div>
         <h2 id="alfajores">Alfajores <span lang="en">plant-based</span></h2>
-        <p class="taller-cuerpo">Alfajores sin lácteos ni huevos, con la textura de siempre. Armás la masa, la ganache y los rellenos con técnica pastelera: en vez de sustituir ingrediente por ingrediente, trabajás qué función cumple cada componente y con qué se reemplaza.</p>
+        <p class="taller-hace">Alfajores sin lácteos ni huevos, con la textura de siempre. Armás la masa, la ganache y los rellenos con técnica pastelera.</p>
+        <p class="taller-rotulo">Lo que vas a manejar</p>
+        <p class="taller-maneja">Qué función cumple cada componente y con qué se reemplaza, en vez de sustituir ingrediente por ingrediente.</p>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.alfajores.estado_texto-->Se abre por demanda<!--/o--></span>
         </div>
