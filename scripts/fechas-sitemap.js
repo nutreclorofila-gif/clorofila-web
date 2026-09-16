@@ -74,6 +74,40 @@ for (const nombre of articulos) {
   }
 }
 
+/* El índice /articulos repite las mismas fechas dentro de su Blog, una por
+   artículo. Quedaban viejas por el mismo motivo, y ahora además contradecían
+   a la página del artículo. Se rearman desde el dateModified de cada archivo,
+   que a esta altura ya salió de git. */
+{
+  const indice = path.join(raiz, 'articulos.html');
+  if (fs.existsSync(indice)) {
+    let html = fs.readFileSync(indice, 'utf8');
+    let tocado = 0;
+    html = html.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/, function (m, abre, cuerpo, cierra) {
+      let ld;
+      try { ld = JSON.parse(cuerpo); } catch (e) { return m; }
+      const nodos = Array.isArray(ld) ? ld : (ld['@graph'] || [ld]);
+      const blog = nodos.find(function (n) { return n && n['@type'] === 'Blog'; });
+      if (!blog || !Array.isArray(blog.blogPost)) return m;
+      for (const post of blog.blogPost) {
+        const slug = String(post.url || '').split('/').pop();
+        if (!slug) continue;
+        const art = path.join(raiz, 'articulos', slug + '.html');
+        if (!fs.existsSync(art)) continue;
+        const real = (fs.readFileSync(art, 'utf8').match(/"dateModified"\s*:\s*"([^"]*)"/) || [])[1];
+        if (!real || post.dateModified === real) continue;
+        cambios++;
+        desfasadas.push(`  articulos.html: ${slug} dice ${String(post.dateModified).slice(0, 10)}, el artículo dice ${real.slice(0, 10)}`);
+        post.dateModified = real;
+        tocado++;
+      }
+      if (!tocado) return m;
+      return abre + JSON.stringify(ld).replace(/</g, '\\u003c') + cierra;
+    });
+    if (tocado && !CHECK) fs.writeFileSync(indice, html);
+  }
+}
+
 if (CHECK) {
   if (cambios) {
     console.error('✗ Hay ' + cambios + ' fecha(s) vieja(s) en el sitemap o en el schema. Corré: npm run fechas');
