@@ -57,23 +57,36 @@
 .indice a[data-abierto="si"]::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brote);margin-right:.5rem;flex-shrink:0}
 
 .talleres{display:grid;gap:0}
-.taller{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(1.75rem,4vw,3.5rem);align-items:center;padding-block:clamp(2.5rem,5vw,4rem);border-bottom:1px solid var(--linea)}
+/* La foto alternaba de lado en cada taller y el texto iba centrado contra
+   ella: son las dos mitades del patrón de "filas de características" que trae
+   cualquier plantilla. Ahora la foto va siempre del mismo lado y todo alinea
+   arriba, así los cinco se leen como una lista que se puede comparar y no como
+   cinco folletos apilados. La foto además baja a 1 columna contra 1,4: en esta
+   página el producto es la técnica, no la imagen. */
+.taller{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(1.75rem,4vw,3.5rem);align-items:start;padding-block:clamp(2.5rem,5vw,4rem);border-bottom:1px solid var(--linea)}
 .taller:last-child{border-bottom:0}
-.taller:nth-child(even) .taller-foto{order:-1}
-.taller-foto{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3}
+/* Las cinco fotos son verticales —de 0,66 a 0,75— y estaban forzadas a 4/3,
+   que tira más de la mitad de cada una. Ahora la foto ocupa el alto del bloque:
+   tapa el hueco de hasta 228 px que quedaba abajo y además se ve más foto,
+   porque la columna es vertical como el original. */
+.taller-foto{position:relative;border-radius:var(--r-lg);overflow:hidden;align-self:stretch;min-height:19rem}
+/* La imagen va absoluta para que la foto no empuje el alto del bloque: el alto
+   lo pone el texto y la foto lo llena. Si contribuye al alto, con estas fotos
+   verticales la fila crece a 610 px y el hueco se pasa al texto. */
+.taller-foto picture{position:absolute;inset:0}
 .taller-foto img{width:100%;height:100%;object-fit:cover}
 .taller h2{font-size:var(--th-seccion);margin-block:.7rem .8rem}
 /* La tesis de Clorofila es que no se enseñan recetas sino a entender lo que
-   pasa. Los cinco talleres ya lo decían —cada texto nombra qué se cocina y qué
-   se aprende a controlar— pero las dos mitades vivían juntas en el mismo
-   párrafo gris, así que el plato pesaba lo mismo que la técnica. Acá la
-   jerarquía se da vuelta: lo que se cocina va chico, y lo que uno se lleva a
-   su casa va grande. El rótulo va en minúscula y en la tipografía de texto, no
-   en versalitas: una etiqueta en mayúsculas arriba de cada bloque es de lo
-   primero que delata una página armada por defecto. */
-.taller-hace{font-size:var(--t-chico);color:var(--cal-med);margin-bottom:1.3rem}
-.taller-rotulo{font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja);margin-bottom:.4rem}
-.taller-maneja{font-family:var(--display);font-size:var(--t-bajada);line-height:1.32;letter-spacing:-.01em;color:var(--cal);margin-bottom:1.3rem;max-width:36ch}
+   pasa. Los cinco textos ya nombran las variables de su técnica —la sal y el
+   tiempo, la hidratación, la acidez— pero estaban disueltas en prosa. Acá se
+   ven como lo que son: el conjunto de cosas que vas a poder mover. Cada una en
+   su renglón, colgando de un filete, que es cómo el sitio lista en /curso.
+   Sin rótulo arriba: una etiqueta que anuncia el bloque siguiente es el
+   movimiento por defecto, y en minúscula tampoco deja de serlo. */
+.taller-hace{font-size:var(--t-chico);color:var(--cal-med);margin-bottom:1.4rem;max-width:46ch}
+.taller-maneja{margin-bottom:1rem;max-width:40ch}
+.taller-maneja li{border-top:1px solid var(--linea);padding-block:.6rem;font-family:var(--display);font-size:var(--t-alto);line-height:1.2;letter-spacing:-.02em;color:var(--cal)}
+.taller-pie{font-size:var(--t-nota);color:var(--cal-baja);margin-bottom:1.2rem;max-width:44ch}
 .taller-etiquetas{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1rem}
 .taller-etiqueta{border:1px solid var(--linea);border-radius:var(--r);padding:.32rem .8rem;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-med)}
 .taller-estado{border-color:var(--linea-fuerte);color:var(--cal-baja)}
@@ -159,8 +172,7 @@
       <div>
         <h2 id="pastas-sin-gluten">Pastas sin gluten</h2>
         <p class="taller-hace">Armás spaghetti o linguini, farfalle, tortellini y anolini o sorrentinos, con sus rellenos y salsas.</p>
-        <p class="taller-rotulo">Lo que vas a manejar</p>
-        <p class="taller-maneja">Dos masas base: una para pastas largas y cortas, otra para rellenas. Cómo combinar harinas para que la masa funcione también en tu casa. El manejo de la cocción.</p>
+        <ul class="taller-maneja"><li>Dos masas base: una para largas y cortas, otra para rellenas</li><li>Cómo combinar harinas para que funcione también en tu casa</li><li>El manejo de la cocción</li></ul>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.pastas-sin-gluten.estado_texto-->Se abre por demanda<!--/o--></span>
         </div>
@@ -174,8 +186,7 @@
       <div>
         <h2 id="fermentacion">Fermentación de vegetales</h2>
         <p class="taller-hace">Hacemos chucrut, kimchi y encurtidos.</p>
-        <p class="taller-rotulo">Lo que vas a manejar</p>
-        <p class="taller-maneja">Qué hacen las bacterias mientras el frasco descansa. Cómo manejar la sal y el tiempo. Cómo darte cuenta de que está en punto.</p>
+        <ul class="taller-maneja"><li>Qué hacen las bacterias mientras el frasco descansa</li><li>Cómo manejar la sal y el tiempo</li><li>Cómo darte cuenta de que está en punto</li></ul>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.fermentacion.estado_texto-->Se abre por demanda<!--/o--></span>
         </div>
@@ -190,8 +201,8 @@
       <div>
         <h2 id="pan-sin-gluten">Pan sin gluten con masa madre</h2>
         <p class="taller-hace">Pan con masa madre real, sin aditivos.</p>
-        <p class="taller-rotulo">Lo que vas a manejar</p>
-        <p class="taller-maneja">La hidratación, la fermentación y la estructura de la miga. El problema no está en la harina: son esas tres variables, hasta entender por qué queda apelmazado y cómo resolverlo.</p>
+        <ul class="taller-maneja"><li>La hidratación</li><li>La fermentación</li><li>La estructura de la miga</li></ul>
+        <p class="taller-pie">El problema no está en la harina: son esas tres, hasta entender por qué queda apelmazado y cómo resolverlo.</p>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.pan-sin-gluten.estado_texto-->Se abre por demanda<!--/o--></span>
         </div>
@@ -206,8 +217,8 @@
       <div>
         <h2 id="quesos-vegetales">Quesos vegetales</h2>
         <p class="taller-hace">Quesos vegetales que se cortan y se untan. Partimos del cajú y otras semillas para llegar a piezas madurables.</p>
-        <p class="taller-rotulo">Lo que vas a manejar</p>
-        <p class="taller-maneja">Acidez, proteína, grasa y tiempo: las cuatro variables que le dan a un queso su sabor y su corte.</p>
+        <ul class="taller-maneja"><li>Acidez</li><li>Proteína</li><li>Grasa</li><li>Tiempo</li></ul>
+        <p class="taller-pie">Las cuatro variables que le dan a un queso su sabor y su corte.</p>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.quesos-vegetales.estado_texto-->Se abre por demanda<!--/o--></span>
         </div>
@@ -221,8 +232,8 @@
       <div>
         <h2 id="alfajores">Alfajores <span lang="en">plant-based</span></h2>
         <p class="taller-hace">Alfajores sin lácteos ni huevos, con la textura de siempre. Armás la masa, la ganache y los rellenos con técnica pastelera.</p>
-        <p class="taller-rotulo">Lo que vas a manejar</p>
-        <p class="taller-maneja">Qué función cumple cada componente y con qué se reemplaza, en vez de sustituir ingrediente por ingrediente.</p>
+        <ul class="taller-maneja"><li>Qué función cumple cada componente</li><li>Con qué se reemplaza</li></ul>
+        <p class="taller-pie">En vez de sustituir ingrediente por ingrediente.</p>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.alfajores.estado_texto-->Se abre por demanda<!--/o--></span>
         </div>
