@@ -88,6 +88,16 @@
 .paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.25rem 1.1rem;padding-block:1.25rem;border-bottom:1px solid var(--linea);align-items:baseline}
 .paso:last-child{border-bottom:0}
 .paso-num{grid-row:span 2;font-family:var(--texto);font-size:var(--t-dato);color:var(--brote);padding-top:.35rem}
+/* El mismo hilo que une los tres meses del curso. Acá el contenido lo pide
+   todavía más literal: "cuatro momentos, uno después del otro". Cuelga del
+   paso entero y no del número, porque .paso alinea por línea de base y la
+   celda del número no se estira: colgado de ahí, en el teléfono quedaban
+   hasta 103 px de aire entre tramo y tramo. Del borde de abajo baja otro
+   relleno para llegar al número siguiente, así lo único que lo corta es el
+   número. */
+.paso{position:relative}
+.paso::after{content:"";position:absolute;left:.15rem;top:calc(1.25rem + 1.65em + .3rem);bottom:-1.25rem;width:1px;background:var(--linea-fuerte)}
+.paso:last-child::after{display:none}
 .paso-que{font-family:var(--display);font-size:var(--t-bajada);color:var(--cal);letter-spacing:-.02em;line-height:1.2}
 .paso-detalle{font-size:var(--t-chico);color:var(--cal-med)}
 
