@@ -48,14 +48,40 @@ xml = xml.replace(/<url>([\s\S]*?)<\/url>/g, function (bloque) {
   return bloque.replace(/<lastmod>[^<]+<\/lastmod>/, '<lastmod>' + real + '</lastmod>');
 });
 
+/* El mismo criterio para el dateModified del JSON-LD de los artículos. Estaba
+   escrito a mano y se quedó en julio y agosto mientras el <lastmod> del
+   sitemap decía septiembre: dos señales contradictorias sobre la misma página,
+   y la que Google muestra al lado del resultado es la del schema. Sale de la
+   misma fuente, que es el historial. */
+const articulos = fs.existsSync(path.join(raiz, 'articulos'))
+  ? fs.readdirSync(path.join(raiz, 'articulos')).filter(f => f.endsWith('.html'))
+  : [];
+for (const nombre of articulos) {
+  const rel = path.join('articulos', nombre);
+  const real = fechaGit(rel);
+  if (!real) continue;
+  const ruta = path.join(raiz, rel);
+  let html = fs.readFileSync(ruta, 'utf8');
+  const actual = (html.match(/"dateModified"\s*:\s*"([^"]*)"/) || [])[1];
+  if (!actual) continue;
+  // La fecha de publicación no se toca nunca: sólo la de modificación.
+  if (actual.slice(0, 10) === real) continue;
+  cambios++;
+  desfasadas.push(`  ${rel}: dateModified dice ${actual.slice(0, 10)}, el archivo cambió el ${real}`);
+  if (!CHECK) {
+    html = html.replace(/("dateModified"\s*:\s*")[^"]*(")/, '$1' + real + '$2');
+    fs.writeFileSync(ruta, html);
+  }
+}
+
 if (CHECK) {
   if (cambios) {
-    console.error('✗ El sitemap tiene ' + cambios + ' fecha(s) vieja(s). Corré: npm run fechas');
+    console.error('✗ Hay ' + cambios + ' fecha(s) vieja(s) en el sitemap o en el schema. Corré: npm run fechas');
     console.error(desfasadas.join('\n'));
     process.exit(1);
   }
-  console.log('sitemap: las ' + (xml.match(/<lastmod>/g) || []).length + ' fechas coinciden con el historial.');
+  console.log('fechas: las ' + (xml.match(/<lastmod>/g) || []).length + ' del sitemap y las ' + articulos.length + ' de los artículos coinciden con el historial.');
 } else {
   fs.writeFileSync(sitemap, xml);
-  console.log(cambios ? 'sitemap: ' + cambios + ' fecha(s) actualizada(s) desde git.' : 'sitemap: las fechas ya estaban al día.');
+  console.log(cambios ? 'fechas: ' + cambios + ' actualizada(s) desde git.' : 'fechas: sitemap y schema ya estaban al día.');
 }
