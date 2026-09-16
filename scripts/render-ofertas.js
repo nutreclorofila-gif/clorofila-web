@@ -759,6 +759,14 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
   datos.menu_experiencias = experiencias.length === 1 ? experiencias[0] : '/experiencias';
 }
 
+/* ---- Instagram ----
+   Las dos frases del JSON empiezan en mayúscula porque abren oración en
+   /articulos. En /sobre el número va en medio de una frase, así que hace
+   falta el número solo: si no, queda "Y en Instagram Ya somos 26.500". */
+if (datos.instagram && datos.instagram.seguidores_corto) {
+  datos.instagram.seguidores_numero = String(datos.instagram.seguidores_corto).split(/\s+/)[0];
+}
+
 /* ---- Reseñas de Google ---- */
 // El puntaje y la cantidad estaban escritos a mano en seis lugares de tres
 // páginas más la ficha de Google. Al entrar una reseña nueva había que
