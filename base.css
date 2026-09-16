@@ -132,6 +132,10 @@ strong{color:var(--cal);font-weight:600}
    Estaba en versalitas monoespaciadas con una rayita al costado, que es el
    gesto con el que se reconoce una plantilla. Ahora es una voz: minúscula,
    la misma letra del texto, sin adornos. */
+/* El rótulo puede llevar un enlace sin cambiar de aspecto: subraya al pasar
+   el mouse, como el resto de los enlaces vivos del sitio. */
+.senal a{color:inherit;text-decoration:none}
+.senal a:hover,.senal a:focus-visible{text-decoration:underline;text-underline-offset:.2em}
 .senal{
   display:block;
   font-family:var(--texto);font-size:var(--t-chico);font-weight:500;

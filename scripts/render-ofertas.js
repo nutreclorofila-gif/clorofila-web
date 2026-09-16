@@ -662,7 +662,10 @@ datos.agenda_html = agenda.map(function (e) {
     (e.cuenta ? ' data-inicio-iso="' + escapar(e.cuenta) + '"' : '') + '>' +
     '<span class="agenda-etiqueta"' + (e.cuenta ? ' data-cuenta' : '') + '>' +
       escapar(e.etiqueta) + '</span>' +
-    '<p class="agenda-nombre">' + escapar(e.nombre) + '</p>' +
+    /* El nombre lleva a la misma página que el botón de abajo: es el texto
+       exacto que la gente busca, y suelto competía con la página que tiene
+       que responder por él. */
+    '<p class="agenda-nombre"><a href="' + enlace(e.link) + '" data-producto="agenda">' + escapar(e.nombre) + '</a></p>' +
     '<p class="agenda-cuando">' + escapar(e.fecha) + (e.hora ? ' · ' + escapar(e.hora) : '') + '</p>' +
     /* El precio ya se juntaba acá arriba y no se imprimía: la agenda decía qué
        y cuándo, pero no cuánto, y ese es de los tres el que más se busca. Ya
