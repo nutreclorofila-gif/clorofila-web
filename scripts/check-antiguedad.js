@@ -39,9 +39,18 @@ const patrones = [
   [/(\d+)\s+años?\s+de\s+experiencia/g, 'cocina'],
 ];
 
+// Deja los saltos de línea en su lugar para no correr los números que informa.
+function blanquear(trozo) { return trozo.replace(/[^\n]/g, ' '); }
+
 const fallas = [];
 for (const archivo of archivos) {
-  const texto = fs.readFileSync(path.join(raiz, archivo), 'utf8');
+  /* Los comentarios del código no son texto del sitio: en leonardo.html hay uno
+     que explica por qué "+1.200 personas formadas" iba desalineado, y el
+     chequeo lo leía como una afirmación. Se sacan los comentarios de CSS y los
+     de HTML, menos los marcadores <!--o:...--> , cuyo valor sí es texto. */
+  const texto = fs.readFileSync(path.join(raiz, archivo), 'utf8')
+    .replace(/\/\*[\s\S]*?\*\//g, blanquear)
+    .replace(/<!--(?!\/?o[:-])[\s\S]*?-->/g, blanquear);
   for (const [re, cual] of patrones) {
     re.lastIndex = 0;
     let m;
@@ -54,6 +63,21 @@ for (const archivo of archivos) {
       );
     }
   }
+  /* Las personas formadas están en data/ofertas.json ("estudio.personas_formadas")
+     y ninguna página las leía de ahí: el número estaba escrito a mano en doce
+     lugares de seis páginas, entre ellos cinco meta descriptions. Cambiarlo en
+     el JSON no cambiaba nada, que es peor que no tenerlo, porque quien lo
+     edita se queda tranquilo. */
+  const reP = /(?:\+|más de\s+)?([\d.]+)\s+personas\s+formadas/gi;
+  let mP;
+  while ((mP = reP.exec(texto))) {
+    if (mP[1] === e.personas_formadas) continue;
+    const linea = texto.slice(0, mP.index).split('\n').length;
+    fallas.push(
+      `${archivo}:${linea} dice "${mP[0].trim()}" y en data/ofertas.json son ${e.personas_formadas}`
+    );
+  }
+
   // El año de fundación no se calcula: si una página lo cambia sola, es un error.
   const re2 = /(?:desde|abrió en|en)\s+(20\d\d)\b/g;
   let m2;
@@ -69,7 +93,7 @@ for (const archivo of archivos) {
 
 if (fallas.length) {
   console.error(
-    'Números de antigüedad que quedaron viejos (cambian solos al pasar el año):\n  ' +
+    'Números que no coinciden con data/ofertas.json (los años cambian solos al pasar el año):\n  ' +
       fallas.join('\n  ') +
       '\n\n  Corregilos en esas líneas. Los años de inicio están en data/ofertas.json → "estudio".'
   );
