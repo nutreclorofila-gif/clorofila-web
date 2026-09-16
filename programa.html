@@ -58,7 +58,12 @@
 .prog-foto img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:16/10}
 .prog-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem}
 .prog-meta span{border:1px solid var(--linea);border-radius:var(--r);padding:.4rem .85rem;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-med)}
-.mes-prog{border-left:1px solid var(--linea-fuerte);padding-left:1.25rem;margin-bottom:1.75rem}
+/* Los tres meses colgaban cada uno de su propio filete, separados por
+   margen: tres trazos sueltos donde el texto dice que es un recorrido. Con
+   padding en vez de margen los filetes se tocan y queda una sola línea, que
+   termina donde termina el mes 3. */
+.mes-prog{border-left:1px solid var(--linea-fuerte);padding-left:1.25rem;padding-bottom:1.75rem}
+.mes-prog:last-of-type{padding-bottom:0}
 .mes-prog .dato{display:block;margin-bottom:.2rem}
 .mes-prog .detalle{font-size:var(--t-chico);color:var(--cal);margin-bottom:.4rem}
 .lista li{border-top:1px solid var(--linea);padding-block:.7rem;font-size:var(--t-chico);color:var(--cal-med);display:flex;gap:.8rem}

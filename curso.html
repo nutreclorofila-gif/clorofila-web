@@ -80,12 +80,20 @@
 .mes{display:grid;grid-template-columns:4.5rem 1fr;gap:.4rem 1.5rem;padding-block:1.75rem;border-bottom:1px solid var(--linea);position:relative}
 .mes:last-child{border-bottom:0}
 .mes-num{grid-row:span 3;font-family:var(--texto);font-size:var(--t-dato);color:var(--brote);padding-top:.5rem;position:relative}
-.mes-num::after{content:"";position:absolute;left:.15rem;top:2.1rem;bottom:-1.75rem;width:1px;background:linear-gradient(var(--linea-fuerte),transparent)}
+/* El hilo que une los tres meses. Se desvanecía a transparente antes de
+   llegar al mes siguiente, así que decía lo contrario del texto: cada mes se
+   apagaba en vez de sostener al que sigue. Ahora llega entero, y sólo se
+   corta en el último, que es donde el recorrido termina. */
+.mes-num::after{content:"";position:absolute;left:.15rem;top:calc(1.65em + .3rem);bottom:-3.5rem;width:1px;background:var(--linea-fuerte)}
 .mes:last-child .mes-num::after{display:none}
 .mes-etapa{font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja)}
 .mes h3{font-size:var(--th-bloque);margin-block:.2rem .5rem}
 .mes p{font-size:var(--t-chico);color:var(--cal-med)}
-@media (max-width:560px){.mes{grid-template-columns:3.4rem 1fr;gap:.35rem .8rem}.mes-num{white-space:nowrap}.mes-num::after{display:none}}
+/* En el teléfono el hilo estaba apagado, y ahí entra el 80% de la gente: el
+   recorrido quedaba en tres bloques apilados sin nada que los uniera. Medido:
+   la etiqueta "Mes 1" ocupa 20 px y el hilo arranca a 33,6, así que no se
+   pisan. */
+@media (max-width:560px){.mes{grid-template-columns:3.4rem 1fr;gap:.35rem .8rem}.mes-num{white-space:nowrap}}
 
 /* ---------- TEMAS ---------- */
 .temas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:0 2rem;max-width:1000px}
