@@ -95,11 +95,41 @@
    pisan. */
 @media (max-width:560px){.mes{grid-template-columns:3.4rem 1fr;gap:.35rem .8rem}.mes-num{white-space:nowrap}}
 
-/* ---------- TEMAS ---------- */
-.temas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:0 2rem;max-width:1000px}
-.temas li{border-top:1px solid var(--linea);padding-block:.85rem;display:flex;gap:.9rem;align-items:baseline;font-size:var(--t-chico);color:var(--cal)}
-.temas li::before{content:"—";color:var(--brote);flex-shrink:0}
+/* ---------- LA PROMESA ----------
+   Los siete no son items sueltos: son siete finales de la misma oracion.
+   "Despues del curso, vas a poder" + "armar un menu saludable y variado".
+   Ya estaban escritos asi. Por eso el titulo se queda fijo a la izquierda
+   mientras corren los finales, van en minuscula (continuan la frase) y no
+   llevan guion: no son viñetas. Era la lista mas importante de la pagina
+   y estaba vestida igual que "Posibilidad de cambiar de grupo". */
+.promesa{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(2rem,4.5vw,4rem);align-items:start}
+.promesa h2{font-family:var(--display);font-weight:500;font-size:var(--th-seccion);line-height:1.02;letter-spacing:-.03em;color:var(--cal);max-width:14ch}
+.promesa li{border-top:1px solid var(--linea);padding-block:.85rem;font-family:var(--display);font-weight:500;font-size:var(--t-tesis);line-height:1.22;letter-spacing:-.02em;color:var(--cal);text-wrap:balance}
+.promesa li:last-child{border-bottom:1px solid var(--linea)}
+@media (min-width:941px){.promesa h2{position:sticky;top:calc(var(--nav-h) + 1rem)}}
+@media (max-width:940px){.promesa{grid-template-columns:1fr;gap:1.5rem}}
+
+/* ---------- EL TEMARIO ----------
+   El temario y las comidas del dia si son enumeraciones, y comparten forma
+   entre si. En grilla dejaban la ultima fila coja (10 items daban 3+3+3+1);
+   con columnas el navegador reparte: 10 queda 5+5 y 6 queda 3+3. */
+.temario{columns:2;column-gap:clamp(1.75rem,4vw,3.5rem);max-width:1000px}
+.temario li{break-inside:avoid;border-top:1px solid var(--linea);padding-block:.85rem;font-size:var(--t-cuerpo);font-weight:400;color:var(--cal)}
+@media (max-width:820px){.temario{columns:1}}
 .temas-nota{margin-top:1.5rem;font-size:var(--t-nota);color:var(--cal-baja);max-width:56ch}
+
+/* ---------- LO QUE ENTRA EN EL PRECIO ----------
+   Era una seccion propia con su h2, y no es una seccion: es la letra chica
+   del precio. Va al cierre, al lado de la comanda, corrida. Y el titulo
+   dejo de ser titulo: como encabezado era el rotulo que anuncia lo de
+   abajo, asi que ahora abre la frase. */
+.incluye-corrido{font-size:var(--t-chico);color:var(--cal-med);line-height:1.65;max-width:44ch;margin-bottom:1.5rem}
+.incluye-corrido strong{color:var(--cal);font-weight:600}
+/* Es una lista, no una oracion: cada cosa que entra en el precio es un item.
+   Escrita como parrafo daba una oracion de 49 palabras y la frenaba la guia
+   de texto, con razon. Corre en linea y los puntos los pone el CSS. */
+.incluye-corrido ul,.incluye-corrido li{display:inline}
+.incluye-corrido li:not(:last-child)::after{content:" · ";color:var(--cal-baja)}
 
 /* ---------- INCLUYE / TE LLEVÁS ---------- */
 .dos-listas{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.75rem,4vw,3.5rem)}
@@ -257,18 +287,18 @@
 
 <section class="seccion" id="conseguis">
   <div class="env">
-    <div class="encabezado sube">
+    <div class="promesa sube">
       <h2>Después del curso, vas a poder</h2>
+      <ul>
+        <li>armar un menú saludable y variado</li>
+        <li>improvisar con lo que tengas en casa</li>
+        <li>adaptar una receta al horno que tengas</li>
+        <li>entender por qué algo funciona o falla</li>
+        <li>corregir una preparación a mitad de camino</li>
+        <li>amasar, fermentar y madurar un queso</li>
+        <li>sustituir el azúcar y las grasas nocivas</li>
+      </ul>
     </div>
-    <ul class="temas sube">
-      <li>Armar un menú saludable y variado</li>
-      <li>Improvisar con lo que tengas en casa</li>
-      <li>Adaptar una receta al horno que tengas</li>
-      <li>Entender por qué algo funciona o falla</li>
-      <li>Corregir una preparación a mitad de camino</li>
-      <li>Amasar, fermentar y madurar un queso</li>
-      <li>Sustituir el azúcar y las grasas nocivas</li>
-    </ul>
   </div>
 </section>
 
@@ -335,7 +365,7 @@
     <div class="encabezado sube">
       <h2>Qué vas a trabajar.</h2>
     </div>
-    <ul class="temas sube">
+    <ul class="temario sube">
       <li>Técnicas y bases vegetales</li>
       <li>Fermentación aplicada</li>
       <li>Cocina con hongos</li>
@@ -351,7 +381,7 @@
       <div class="encabezado sube" style="margin-top:clamp(2.5rem,5vw,4rem)">
         <h3 style="font-size:var(--th-bloque)">Cocinamos lo que comés todos los días.</h3>
       </div>
-      <ul class="temas sube">
+      <ul class="temario sube">
         <li>Desayunos y meriendas</li>
         <li>Almuerzos y cenas completas</li>
         <li>Snacks y colaciones</li>
@@ -359,24 +389,6 @@
         <li>Composición y planificación de platos</li>
         <li>Lectura y selección de ingredientes</li>
       </ul>
-  </div>
-</section>
-
-<section class="seccion" id="incluye">
-  <div class="env">
-    <div class="encabezado sube">
-      <h2>Todo entra en el precio.</h2>
-    </div>
-    <ul class="temas sube">
-      <li>Todos los ingredientes y materiales de trabajo en clase</li>
-      <li>Degustación de las preparaciones en cada clase</li>
-      <li>Recetario completo al finalizar el curso</li>
-        <li>Certificado al terminar el curso</li>
-      <li>Posibilidad de recuperar clases</li>
-      <li>Posibilidad de cambiar de grupo</li>
-      <li>Experiencia directa con Leonardo</li>
-      <li>Participación de la Lic. Nut. Micaela Gago como referente nutricional</li>
-    </ul>
   </div>
 </section>
 
@@ -493,6 +505,10 @@
     <div class="sube">
       <h2><!--o:html:curso.cierre_titulo_html-->Preguntanos <br>lo que quieras.<!--/o--></h2>
       <p class="bajada"><!--o:curso.cierre_bajada-->Contanos qué estás buscando y te decimos si este curso te sirve. Te contesta Leonardo.<!--/o--></p>
+      <div class="incluye-corrido">
+        <strong>Todo entra en el precio:</strong>
+        <ul><li>Todos los ingredientes y materiales de trabajo en clase</li><li>Degustación de las preparaciones en cada clase</li><li>Recetario completo al finalizar el curso</li><li>Certificado al terminar el curso</li><li>Posibilidad de recuperar clases</li><li>Posibilidad de cambiar de grupo</li><li>Experiencia directa con Leonardo</li><li>Participación de la Lic. Nut. Micaela Gago como referente nutricional</li></ul>
+      </div>
       <p class="otras">¿Querés ver todo el contenido clase por clase? <a href="/programa" class="enlace-vivo">El programa completo</a> <br>¿Preferís probar antes con algo más corto? <a href="/talleres" class="enlace-vivo">Los talleres de un día</a> <br>¿Es para regalar? <a data-set="href=curso.regalo_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20regalar%20el%20curso%20de%20cocina.%20%C2%BFC%C3%B3mo%20hago%20con%20la%20gift%20card%3F" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="curso-regalo">Tenemos <span lang="en">gift card</span></a></p>
     </div>
     <div class="comanda sube">
