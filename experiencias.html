@@ -36,7 +36,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
 <link rel="stylesheet" href="base.css?v=56">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://clorofila.uy/experiencias#page","url":"https://clorofila.uy/experiencias","name":"Experiencias gastronómicas — Clorofila Montevideo","inLanguage":"es-UY","about":{"@id":"https://clorofila.uy/#organization"},"mainEntity":{"@type":"ItemList","name":"Experiencias de cocina basada en plantas en Montevideo","description":"Actividades puntuales en Parque Rodó, Montevideo: se cocina en grupo y después se cena lo que se preparó.","numberOfItems":1,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Event","@id":"https://clorofila.uy/tapeo#evento","name":"Cena y Taller de Tapeo","url":"https://clorofila.uy/tapeo","eventStatus":"https://schema.org/EventScheduled","maximumAttendeeCapacity":12,"startDate":"2026-09-18T19:00:00-03:00","endDate":"2026-09-18T22:30:00-03:00","location":{"@type":"Place","name":"Clorofila Estudio de Cocina","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"}},"description":"Una noche de cocina y mesa compartida en Clorofila: se cocina en grupo (Gyozas de hongos y verduras, gírgolas asadas, buñuelos de chucrut y croquetas de puerro) y después se cena todo lo preparado, con las dos copas de vino o kombucha que entran.","performer":{"@type":"Person","name":"Leonardo Lemes"},"image":"https://clorofila.uy/img-tapeo.jpg","organizer":{"@id":"https://clorofila.uy/#organization","@type":"Organization","name":"Clorofila","url":"https://clorofila.uy/"},"offers":{"@type":"Offer","url":"https://clorofila.uy/tapeo","priceCurrency":"UYU","price":"2600","availability":"https://schema.org/SoldOut","validThrough":"2026-09-18T19:00:00-03:00"},"eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode"}}]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://clorofila.uy/"},{"@type":"ListItem","position":2,"name":"Experiencias","item":"https://clorofila.uy/experiencias"}]}]}
+  {"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://clorofila.uy/experiencias#page","url":"https://clorofila.uy/experiencias","name":"Experiencias gastronómicas — Clorofila Montevideo","inLanguage":"es-UY","about":{"@id":"https://clorofila.uy/#organization"},"mainEntity":{"@type":"ItemList","name":"Experiencias de cocina basada en plantas en Montevideo","description":"Actividades puntuales en Parque Rodó, Montevideo: se cocina en grupo y después se cena lo que se preparó.","numberOfItems":1,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Event","@id":"https://clorofila.uy/tapeo#evento","name":"Cena y Taller de Tapeo","url":"https://clorofila.uy/tapeo","eventStatus":"https://schema.org/EventScheduled","maximumAttendeeCapacity":12,"startDate":"2026-10-02T19:00:00-03:00","endDate":"2026-10-02T22:30:00-03:00","location":{"@type":"Place","name":"Clorofila Estudio de Cocina","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"}},"description":"Una noche de cocina y mesa compartida en Clorofila: se cocina en grupo (Gyozas de hongos y verduras, gírgolas asadas, buñuelos de chucrut y croquetas de puerro) y después se cena todo lo preparado, con las dos copas de vino o kombucha que entran.","performer":{"@type":"Person","name":"Leonardo Lemes"},"image":"https://clorofila.uy/img-tapeo.jpg","organizer":{"@id":"https://clorofila.uy/#organization","@type":"Organization","name":"Clorofila","url":"https://clorofila.uy/"},"offers":{"@type":"Offer","url":"https://clorofila.uy/tapeo","priceCurrency":"UYU","price":"2600","availability":"https://schema.org/InStock","validThrough":"2026-10-02T19:00:00-03:00"},"eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode"}}]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://clorofila.uy/"},{"@type":"ListItem","position":2,"name":"Experiencias","item":"https://clorofila.uy/experiencias"}]}]}
   </script>
 <style>
 /* /experiencias — catálogo de actividades puntuales, distinto del curso
@@ -110,12 +110,12 @@ html.js .taller-cuenta[data-cuenta="no"]{display:none}
       <li class="solo-menu"><a href="/">Inicio</a></li>
       <li><a href="/curso">Curso</a></li>
       <li><a href="/talleres">Talleres</a></li>
-      <li><a data-set="href=menu_experiencias" href="/experiencias" aria-current="true">Experiencias</a></li>
+      <li><a data-set="href=menu_experiencias" href="/tapeo" aria-current="true">Experiencias</a></li>
       <li class="nav-sec nav-corte"><a href="/articulos">Artículos</a></li>
       <li class="nav-sec"><a href="/sobre">Sobre Clorofila</a></li>
       <li class="nav-sec"><a href="/servicios">Eventos y consultoría</a></li>
       <li class="nav-sec"><a href="/contacto">Contacto</a></li>
-      <li><a href="#experiencia-tapeo" class="nav-cta"><!--o:tapeo.nav_cta-->Avisame<!--/o--></a></li>
+      <li><a href="#experiencia-tapeo" class="nav-cta"><!--o:tapeo.nav_cta-->Reservar<!--/o--></a></li>
     </ul>
     <button class="hamburguesa" id="hamburguesa" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
   </div>
@@ -135,21 +135,21 @@ html.js .taller-cuenta[data-cuenta="no"]{display:none}
 <div class="env">
   <div class="talleres">
 
-    <article class="taller sube" id="experiencia-tapeo" data-estado-de="tapeo" data-estado="agotado" data-vence-iso="2026-09-18">
+    <article class="taller sube" id="experiencia-tapeo" data-estado-de="tapeo" data-estado="abierto" data-vence-iso="2026-10-02">
       <div>
         <h2>Cena y Taller de Tapeo</h2>
         <p class="taller-cuerpo"><!--o:tapeo.menu_corto-->Gyozas de hongos y verduras, gírgolas asadas, buñuelos de chucrut y croquetas de puerro<!--/o-->, todo vegetal y armado por el grupo. Cuando está listo nos sentamos a comerlo, con las dos copas de vino o kombucha que entran.</p>
         <div class="taller-etiquetas">
-          <span class="taller-etiqueta taller-estado"><!--o:tapeo.estado_texto-->Agotado<!--/o--></span>
+          <span class="taller-etiqueta taller-estado"><!--o:tapeo.estado_texto-->Inscripciones abiertas<!--/o--></span>
           <span class="taller-etiqueta">Una noche</span>
           <span class="taller-etiqueta">Grupo chico</span>
           <span class="taller-etiqueta">Todo incluido</span>
         </div>
-        <p class="taller-linea"><!--o:tapeo.linea-->viernes 18 de setiembre · 19:00 a 22:30 h · $2.600 por persona<!--/o--></p>
-        <p class="taller-cuenta" data-set="data-inicio-iso=tapeo.fecha_iso" data-inicio-iso="2026-09-18" data-cuenta></p>
-        <p class="taller-nota solo-agotado"><!--o:tapeo.cupos_frase-->Esta fecha ya se llenó.<!--/o--> Escribinos y te avisamos apenas haya otra.</p>
+        <p class="taller-linea"><!--o:tapeo.linea-->viernes 2 de octubre · 19:00 a 22:30 h · $2.600 por persona<!--/o--></p>
+        <p class="taller-cuenta" data-set="data-inicio-iso=tapeo.fecha_iso" data-inicio-iso="2026-10-02" data-cuenta></p>
+        <p class="taller-nota solo-agotado"><!--o:tapeo.cupos_frase-->Solo 12 lugares.<!--/o--> Escribinos y te avisamos apenas haya otra.</p>
         <p class="taller-acciones solo-comprando"><a href="/tapeo" class="btn btn-primario" data-producto="tapeo">Ver la experiencia completa</a></p>
-        <p class="taller-acciones solo-agotado"><a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20me%20interesa%20la%20Cena%20y%20Taller%20de%20Tapeo.%20Avisame%20cuando%20abran%20la%20pr%C3%B3xima%20fecha." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="tapeo"><!--o:tapeo.wa_texto-->Avisame la próxima fecha<!--/o--></a> <a href="/tapeo" class="btn btn-linea" data-producto="tapeo">Ver cómo es la noche</a></p>
+        <p class="taller-acciones solo-agotado"><a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%202%20de%20octubre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="tapeo"><!--o:tapeo.wa_texto-->Reservar mi lugar<!--/o--></a> <a href="/tapeo" class="btn btn-linea" data-producto="tapeo">Ver cómo es la noche</a></p>
       </div>
       <figure class="taller-foto"><picture><source srcset="img-tapeo-cocinando-700.webp 700w, img-tapeo-cocinando.webp 1200w" sizes="(max-width: 820px) calc(100vw - 3rem), 38vw" type="image/webp"><img src="img-tapeo-cocinando.jpg" width="1200" height="675" alt="El grupo cocinando en la Cena y Taller de Tapeo" loading="lazy" decoding="async"></picture></figure>
     </article>
@@ -170,9 +170,9 @@ html.js .taller-cuenta[data-cuenta="no"]{display:none}
 
 </main>
 
-<aside class="sticky-cta" id="sticky-cta" aria-label="Acciones rápidas" data-estado-de="tapeo" data-estado="agotado" data-vence-iso="2026-09-18">
+<aside class="sticky-cta" id="sticky-cta" aria-label="Acciones rápidas" data-estado-de="tapeo" data-estado="abierto" data-vence-iso="2026-10-02">
   <a href="/tapeo" class="cta-main solo-comprando" data-producto="tapeo">Ver la experiencia</a>
-  <a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20me%20interesa%20la%20Cena%20y%20Taller%20de%20Tapeo.%20Avisame%20cuando%20abran%20la%20pr%C3%B3xima%20fecha." target="_blank" rel="noopener noreferrer" class="cta-main solo-agotado" data-producto="tapeo"><!--o:tapeo.wa_texto-->Avisame la próxima fecha<!--/o--></a>
+  <a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%202%20de%20octubre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" class="cta-main solo-agotado" data-producto="tapeo"><!--o:tapeo.wa_texto-->Reservar mi lugar<!--/o--></a>
   <a data-set="href=tapeo.pregunta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20tengo%20una%20pregunta%20sobre%20la%20Cena%20y%20Taller%20de%20Tapeo." target="_blank" rel="noopener noreferrer" class="wa-btn" aria-label="Consultar por WhatsApp" data-producto="tapeo">💬</a>
 </aside>
 
