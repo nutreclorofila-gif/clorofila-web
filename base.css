@@ -325,6 +325,17 @@ h2 + p{margin-top:.55rem}
 .centrado p,.centrado h2{margin-inline:auto}
 .centrado .senal{justify-content:center}
 .enlace-vivo{color:var(--brote);font-weight:600;border-bottom:1px solid transparent;transition:border-color .2s;display:inline-block;padding-block:.3rem}
+/* El tercer peldano de la escalera de acciones. Hasta ahora habia dos, .btn
+   lleno y .btn-linea con borde; este es sin caja pero con cuerpo.
+   .enlace-salida es el enlace que CIERRA la linea y es la accion del bloque
+   ("Como llegar", "El programa completo", "Conocer mas sobre Leonardo"). Son
+   44 de los 75 .enlace-vivo del sitio; los otros 31 viven dentro de una
+   oracion y NO se tocan: WCAG 2.2 los exime en el criterio 2.5.8, excepcion
+   Inline, y agrandarlos romperia el interlineado del parrafo.
+   La banda de 44 px es absoluta, asi que no ocupa lugar: el objetivo tactil
+   llega a la meta del sistema y el texto no se mueve un pixel. */
+.enlace-salida{position:relative}
+.enlace-salida::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
 .enlace-vivo:hover{border-bottom-color:var(--brote)}
 
 /* --- Hero de página de producto --- */
@@ -501,7 +512,12 @@ html:not(.js) .nav{height:auto}
 .cierre .bajada{color:var(--cal-med);max-width:44ch}
 .cierre .comanda{background:var(--musgo-alto)}
 .cierre .comanda::before,.cierre .comanda::after{background:radial-gradient(circle at 5px 0, transparent 0 5px, var(--musgo-alto) 5.5px) 0 0/10px 7px repeat-x}
-.otras{margin-top:1.5rem;font-size:var(--t-nota);color:var(--cal-baja);line-height:2}
+/* El paso va a 44 px exactos (2.75rem) porque cada linea de este bloque
+   termina en un .enlace-salida y sus bandas se pisaban: medido, "Los
+   talleres de un dia" y "Tenemos gift card" quedaban a 37 px, o sea 7 px
+   de pisada, compartiendo 25 px horizontales. Se abre el paso, no se
+   achica la banda. */
+.otras{margin-top:1.5rem;font-size:var(--t-nota);color:var(--cal-baja);line-height:2.75rem}
 @media (max-width:940px){.cierre-caja{grid-template-columns:1fr}}
 
 /* --- Barra fija de reserva (móvil) --- */

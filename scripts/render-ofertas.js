@@ -635,11 +635,21 @@ if (t.estado === 'sin-fecha' || !t.fecha_iso) {
    que la otra propuesta estaba abierta y quedaba mintiendo apenas una de
    las dos se llenaba o perdía la fecha, que es lo que estaba pasando. */
 function lineaCruce(estado, articulo, nombre, ruta) {
-  var enlace = '<a href="' + ruta + '" class="enlace-vivo">' + nombre + '</a>';
-  if (estado === 'agotado') return 'Se agotó ' + articulo + ' ' + enlace + ', pero podés anotarte para la próxima';
-  if (estado === 'sin-fecha') return 'También hacemos ' + articulo + ' ' + enlace;
-  if (estado === 'ultimos') return 'Quedan pocos lugares para ' + articulo + ' ' + enlace;
-  return 'También está abiert' + (articulo === 'la' ? 'a' : 'o') + ' ' + articulo + ' ' + enlace;
+  /* Dos variantes del mismo enlace, y la diferencia no es estética: cuando el
+     enlace CIERRA la frase es la acción del bloque y lleva .enlace-salida, que
+     le da el objetivo táctil de 44 px con una banda que no ocupa lugar. Cuando
+     la frase sigue después —el caso 'agotado', que termina en "pero podés
+     anotarte para la próxima"— el enlace vive dentro de la oración y NO se
+     toca: WCAG 2.2 lo exime (criterio 2.5.8, excepción Inline) y agrandarlo
+     rompería el interlineado del párrafo. Se resuelve acá y no en el HTML
+     porque el build reescribe esta línea en cada corrida. */
+  function a(clase) { return '<a href="' + ruta + '" class="' + clase + '">' + nombre + '</a>'; }
+  var enOracion = a('enlace-vivo');
+  var cierra = a('enlace-vivo enlace-salida');
+  if (estado === 'agotado') return 'Se agotó ' + articulo + ' ' + enOracion + ', pero podés anotarte para la próxima';
+  if (estado === 'sin-fecha') return 'También hacemos ' + articulo + ' ' + cierra;
+  if (estado === 'ultimos') return 'Quedan pocos lugares para ' + articulo + ' ' + cierra;
+  return 'También está abiert' + (articulo === 'la' ? 'a' : 'o') + ' ' + articulo + ' ' + cierra;
 }
 datos.tapeo.cruce_html = lineaCruce(
   (datos.talleres['pastas-sin-gluten'] || {}).estado, 'el',
@@ -721,7 +731,7 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
     );
   }
   datos.talleres_tira_html = conFecha.concat(sinFecha).join('') +
-    '<a href="/talleres" class="enlace-vivo">Ver todos los talleres</a>';
+    '<a href="/talleres" class="enlace-vivo enlace-salida">Ver todos los talleres</a>';
   // La bajada de /talleres decía "algunos tienen fecha abierta ahora mismo".
   // Casi siempre hay uno solo con fecha, y a veces ninguno: en ese caso la
   // frase pasaba a ser falsa sola, sin que nadie tocara nada.
