@@ -81,16 +81,10 @@
 .taller-foto picture{position:absolute;inset:0}
 .taller-foto img{width:100%;height:100%;object-fit:cover}
 .taller h2{font-size:var(--th-seccion);margin-block:.7rem .8rem}
-/* La tesis de Clorofila es que no se enseñan recetas sino a entender lo que
-   pasa. Los cinco textos ya nombran las variables de su técnica —la sal y el
-   tiempo, la hidratación, la acidez— pero estaban disueltas en prosa. Acá se
-   ven como lo que son: el conjunto de cosas que vas a poder mover. Cada una en
-   su renglón, colgando de un filete, que es cómo el sitio lista en /curso.
-   Sin rótulo arriba: una etiqueta que anuncia el bloque siguiente es el
-   movimiento por defecto, y en minúscula tampoco deja de serlo. */
-.taller-hace{font-size:var(--t-chico);color:var(--cal-med);margin-bottom:1.4rem;max-width:46ch}
-.taller-maneja{margin-bottom:1rem;max-width:40ch}
-.taller-maneja li{border-top:1px solid var(--linea);padding-block:.6rem;font-family:var(--display);font-size:var(--t-alto);line-height:1.2;letter-spacing:-.02em;color:var(--cal)}
+/* Prosa entera. Los textos habían quedado partidos en fragmentos sin verbo
+   —"La hidratación", "El manejo de la cocción"— y se leían como pedazos de
+   titular, no como alguien explicando qué se hace en el taller. */
+.taller-cuerpo{font-size:var(--t-chico);color:var(--cal-med);margin-bottom:1.2rem;max-width:52ch;line-height:1.65}
 .taller-pie{font-size:var(--t-nota);color:var(--cal-baja);margin-bottom:1.2rem;max-width:44ch}
 .taller-etiquetas{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1rem}
 .taller-estado{border-color:var(--linea-fuerte);color:var(--cal-baja)}
@@ -151,10 +145,10 @@
 
 <header class="hero-talleres">
   <div class="env">
-    <span class="senal">Una técnica por vez, en Parque Rodó, Montevideo</span>
-    <h1>Elaborás pan sin gluten, pastas, fermentos y quesos.</h1>
-    <p class="bajada"><!--o:talleres_bajada-->Cada taller toma una técnica y le dedica el día entero, de la primera mezcla hasta la mesa. Los ingredientes van incluidos y te llevás a casa lo que preparaste. Ahora mismo ninguno tiene fecha: los abrimos según la demanda y te avisamos.<!--/o--></p>
-    <p class="hero-datos"><b><!--o:google.puntaje_texto-->4,9<!--/o--></b> en <!--o:google.resenas_texto-->22 reseñas en Google<!--/o-->.</p>
+    <span class="senal">Talleres de un día en Parque Rodó, Montevideo</span>
+    <h1>Amasás, fermentás o madurás quesos.</h1>
+    <p class="bajada"><!--o:talleres_bajada-->En cada taller trabajamos una sola técnica. Los ingredientes están incluidos y te llevás lo que preparaste. Ahora mismo ninguno tiene fecha: los abrimos según la demanda y te avisamos.<!--/o--></p>
+    <p class="hero-datos"><b><!--o:google.puntaje_texto-->4,9<!--/o--></b> en Google, sobre <!--o:google.resenas-->22<!--/o--> reseñas.</p>
   </div>
 </header>
 
@@ -174,8 +168,7 @@
     <article class="taller sube" data-estado-de="talleres.pastas-sin-gluten" data-estado="sin-fecha">
       <div>
         <h2 id="pastas-sin-gluten">Pastas sin gluten</h2>
-        <p class="taller-hace">Armás spaghetti o linguini, farfalle, tortellini y anolini o sorrentinos, con sus rellenos y salsas.</p>
-        <ul class="taller-maneja"><li>Dos masas base: una para largas y cortas, otra para rellenas</li><li>Cómo combinar harinas para que funcione también en tu casa</li><li>El manejo de la cocción</li></ul>
+        <p class="taller-cuerpo">Trabajás dos masas base —una para pastas largas y cortas, otra para rellenas— y aprendés a combinar harinas para que la masa funcione también en tu casa. Armás spaghetti o linguini, farfalle, tortellini y anolini o sorrentinos, con sus rellenos y salsas, y el manejo de la cocción para que todo salga bien.</p>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.pastas-sin-gluten.estado_texto-->Se abre por demanda<!--/o--></span>
         </div>
@@ -188,8 +181,7 @@
     <article class="taller sube" data-estado-de="talleres.fermentacion" data-estado="sin-fecha">
       <div>
         <h2 id="fermentacion">Fermentación de vegetales</h2>
-        <p class="taller-hace">Hacemos chucrut, kimchi y encurtidos.</p>
-        <ul class="taller-maneja"><li>Qué hacen las bacterias mientras el frasco descansa</li><li>Cómo manejar la sal y el tiempo</li><li>Cómo darte cuenta de que está en punto</li></ul>
+        <p class="taller-cuerpo">Hacemos chucrut, kimchi y encurtidos. Vas a ver qué hacen las bacterias mientras el frasco descansa, cómo manejar la sal y el tiempo, y cómo darte cuenta de que está en punto.</p>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.fermentacion.estado_texto-->Se abre por demanda<!--/o--></span>
         </div>
@@ -203,8 +195,7 @@
     <article class="taller sube" data-estado-de="talleres.pan-sin-gluten" data-estado="sin-fecha">
       <div>
         <h2 id="pan-sin-gluten">Pan sin gluten con masa madre</h2>
-        <p class="taller-hace">Pan con masa madre real, sin aditivos.</p>
-        <ul class="taller-maneja"><li>La hidratación</li><li>La fermentación</li><li>La estructura de la miga</li></ul>
+        <p class="taller-cuerpo">El problema no está en la harina sino en la hidratación, la fermentación y la estructura de la miga. Trabajamos esas tres variables con masa madre real y sin aditivos, hasta entender por qué queda apelmazado y cómo resolverlo.</p>
         <p class="taller-pie">El problema no está en la harina: son esas tres, hasta entender por qué queda apelmazado y cómo resolverlo.</p>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.pan-sin-gluten.estado_texto-->Se abre por demanda<!--/o--></span>
@@ -219,8 +210,7 @@
     <article class="taller sube" data-estado-de="talleres.quesos-vegetales" data-estado="sin-fecha">
       <div>
         <h2 id="quesos-vegetales">Quesos vegetales</h2>
-        <p class="taller-hace">Quesos vegetales que se cortan y se untan. Partimos del cajú y otras semillas para llegar a piezas madurables.</p>
-        <ul class="taller-maneja"><li>Acidez</li><li>Proteína</li><li>Grasa</li><li>Tiempo</li></ul>
+        <p class="taller-cuerpo">Quesos vegetales que se cortan y se untan. Partimos del cajú y otras semillas para llegar a piezas madurables. Manejás las cuatro variables que le dan a un queso su sabor y su corte: acidez, proteína, grasa y tiempo.</p>
         <p class="taller-pie">Las cuatro variables que le dan a un queso su sabor y su corte.</p>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.quesos-vegetales.estado_texto-->Se abre por demanda<!--/o--></span>
@@ -234,8 +224,7 @@
     <article class="taller sube" data-estado-de="talleres.alfajores" data-estado="sin-fecha">
       <div>
         <h2 id="alfajores">Alfajores <span lang="en">plant-based</span></h2>
-        <p class="taller-hace">Alfajores sin lácteos ni huevos, con la textura de siempre. Armás la masa, la ganache y los rellenos con técnica pastelera.</p>
-        <ul class="taller-maneja"><li>Qué función cumple cada componente</li><li>Con qué se reemplaza</li></ul>
+        <p class="taller-cuerpo">Alfajores sin lácteos ni huevos, con la textura de siempre. Armás la masa, la ganache y los rellenos con técnica pastelera: en vez de sustituir ingrediente por ingrediente, trabajás qué función cumple cada componente y con qué se reemplaza.</p>
         <p class="taller-pie">En vez de sustituir ingrediente por ingrediente.</p>
         <div class="taller-etiquetas">
           <span class="taller-etiqueta taller-estado"><!--o:talleres.alfajores.estado_texto-->Se abre por demanda<!--/o--></span>

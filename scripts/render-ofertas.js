@@ -749,8 +749,12 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
   /* Lo que vale para los cinco se dice acá una sola vez. Antes iba repetido
      en una etiqueta debajo de cada taller: quince etiquetas que no
      distinguían nada entre uno y otro. */
-  datos.talleres_bajada = 'Cada taller toma una técnica y le dedica el día entero, de la primera mezcla hasta la mesa. '
-    + 'Los ingredientes van incluidos y te llevás a casa lo que preparaste. '
+  /* Decía "cada taller toma una técnica y le dedica el día entero, de la
+     primera mezcla hasta la mesa": el taller no toma ni dedica nada, y en
+     fermentación no hay primera mezcla ni se llega a la mesa ese día —el
+     chucrut tarda semanas. Ahora lo dice el "nosotros" de la clase. */
+  datos.talleres_bajada = 'En cada taller trabajamos una sola técnica. '
+    + 'Los ingredientes están incluidos y te llevás lo que preparaste. '
     + (conFecha.length === 0
         ? 'Ahora mismo ninguno tiene fecha: los abrimos según la demanda y te avisamos.'
         : conFecha.length === 1
