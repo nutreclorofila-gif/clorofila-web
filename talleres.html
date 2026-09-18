@@ -49,11 +49,14 @@
 .hero-talleres .bajada{color:var(--cal-med);max-width:54ch}
 
 /* Índice: además de navegar, dice de un vistazo qué está abierto. */
-.indice{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;border-block:1px solid var(--linea);padding-block:1rem}
+.indice{display:flex;flex-wrap:wrap;gap:.2rem 1.4rem;align-items:center;border-block:1px solid var(--linea);padding-block:.5rem}
 .indice-rotulo{font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja);margin-right:.4rem}
-.indice a{border:1px solid var(--linea);border-radius:var(--r);padding:.45rem .95rem;font-size:var(--t-nota);color:var(--cal-med);transition:border-color .2s,color .2s;min-height:34px;display:inline-flex;align-items:center}
-.indice a:hover{border-color:var(--brote);color:var(--cal)}
-.indice a[data-abierto="si"]{border-color:rgba(143,192,138,.45);color:var(--cal)}
+/* Cinco pildoras de 34 px de alto, cuando la regla del sitio pide 44 para
+   algo que se toca. Un enlace de navegacion no necesita borde: necesita
+   area. Sin caja, con el area completa y subrayado al pasar. */
+.indice a{padding:.7rem .2rem;font-size:var(--t-nota);color:var(--cal-med);transition:color .2s,text-decoration-color .2s;min-height:44px;display:inline-flex;align-items:center;text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--linea)}
+.indice a:hover,.indice a:focus-visible{color:var(--cal);text-decoration-color:var(--brote)}
+.indice a[data-abierto="si"]{color:var(--cal);text-decoration-color:var(--brote)}
 .indice a[data-abierto="si"]::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brote);margin-right:.5rem;flex-shrink:0}
 
 .talleres{display:grid;gap:0}
@@ -88,7 +91,6 @@
 .taller-maneja li{border-top:1px solid var(--linea);padding-block:.6rem;font-family:var(--display);font-size:var(--t-alto);line-height:1.2;letter-spacing:-.02em;color:var(--cal)}
 .taller-pie{font-size:var(--t-nota);color:var(--cal-baja);margin-bottom:1.2rem;max-width:44ch}
 .taller-etiquetas{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1rem}
-.taller-etiqueta{border:1px solid var(--linea);border-radius:var(--r);padding:.32rem .8rem;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-med)}
 .taller-estado{border-color:var(--linea-fuerte);color:var(--cal-baja)}
 [data-estado="abierto"] .taller-estado,[data-estado="ultimos"] .taller-estado{border-color:rgba(143,192,138,.45);color:var(--brote)}
 .taller-nota{margin-bottom:.9rem;font-size:var(--t-nota);color:var(--cal-baja)}

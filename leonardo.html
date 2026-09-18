@@ -86,8 +86,14 @@
 .tema-leer{margin-top:auto;font-size:var(--t-nota);font-weight:600;color:var(--cal);border-bottom:1px solid var(--linea-fuerte);width:fit-content;padding-block:.3rem;transition:border-color .2s,color .2s}
 .tema:hover .tema-leer{border-color:var(--brote);color:var(--brote)}
 
-.oficios{display:flex;flex-wrap:wrap;gap:.5rem;margin-block:2rem}
-.oficio{border:1px solid var(--linea);border-radius:var(--r);padding:.45rem .95rem;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-med)}
+.oficios{display:block;max-width:44ch;line-height:1.9}
+/* Ocho oficios adentro de ocho cajitas se leian como las etiquetas de
+   aptitudes de LinkedIn: el chip mas generico que hay, y ademas texto
+   que no se toca disfrazado de boton. No son etiquetas: son la lista de
+   lo que hace Leonardo, y como lista corrida se lee de una. Los puntos
+   los pone el CSS, no el texto. */
+.oficio{display:inline;font-family:var(--texto);font-size:var(--t-cuerpo);color:var(--cal)}
+.oficio:not(:last-child)::after{content:" · ";color:var(--cal-baja)}
 
 .escribe li{border-top:1px solid var(--linea)}
 .escribe a{display:block;padding-block:1rem;font-family:var(--display);font-size:var(--t-tesis);color:var(--cal);letter-spacing:-.02em;transition:color .2s,padding-left .2s var(--ease)}

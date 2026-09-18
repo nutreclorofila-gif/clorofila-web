@@ -55,7 +55,10 @@
 .taller h2{font-size:var(--th-seccion);margin-block:.7rem .8rem}
 .taller-cuerpo{font-size:var(--t-chico);color:var(--cal-med);margin-bottom:1.1rem}
 .taller-etiquetas{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1rem}
-.taller-etiqueta{border:1px solid var(--linea);border-radius:var(--r);padding:.32rem .8rem;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-med)}
+/* Tres datos de la noche encajonados como chips de plantilla. Son datos,
+   asi que van como los datos del sitio: seguidos y separados por un punto. */
+.taller-etiqueta{font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-med)}
+.taller-etiqueta:not(:last-child)::after{content:" · ";color:var(--cal-baja)}
 .taller-estado{border-color:var(--linea-fuerte);color:var(--cal-baja)}
 [data-estado="abierto"] .taller-estado,[data-estado="ultimos"] .taller-estado{border-color:rgba(143,192,138,.45);color:var(--brote)}
 .taller-linea{font-family:var(--texto);font-size:var(--t-dato);color:var(--cal-baja);margin-bottom:1.1rem;line-height:1.6}
