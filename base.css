@@ -327,6 +327,12 @@ h2 + p{margin-top:.55rem}
 .hero-prod h1{font-size:var(--th-pagina);margin-block:.7rem .6rem;max-width:13ch;line-height:1.03}
 .hero-tesis{font-family:var(--display);font-size:var(--t-tesis);color:var(--brote);letter-spacing:-.02em;line-height:1.22;margin-bottom:.8rem}
 .hero-prod .bajada{color:var(--cal-med);font-size:var(--t-chico);max-width:46ch;margin-bottom:1.25rem}
+/* La linea de prueba social del hero: "4,9 en 22 resenas en Google". La usan
+   seis paginas (/, /curso, /talleres, /experiencias, /pastas, /servicios) y
+   estaba declarada SOLO en el <style> de la portada. En las otras cinco salia
+   sin filete, sin cuerpo propio y con los <b> en la negrita del navegador. */
+.hero-datos{border-top:1px solid var(--linea);padding-top:1.15rem;font-size:var(--t-chico);color:var(--cal-med);max-width:none}
+.hero-datos b{font-weight:600;color:var(--cal)}
 .hero-foto{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:5/6;margin-bottom:1.25rem}
 /* En pantalla grande la foto llega hasta el borde derecho: no es una tarjeta
    dentro de la caja, es la luz de la página. */
