@@ -57,7 +57,16 @@
 .hero-curso .bajada{color:var(--cal-med);font-size:var(--t-chico);max-width:46ch;margin-bottom:1.05rem}
 .hero-leo{font-size:var(--t-nota);color:var(--cal-med);margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--linea)}
 .hero-leo strong{color:var(--cal)}
-@media (max-width:940px){.hero-caja{grid-template-columns:1fr}.hero-col-foto{order:-1}.hero-foto{aspect-ratio:4/3;margin-bottom:1rem}}
+/* En el telefono la foto del hero rompe el margen de .env y llega a los
+   dos bordes. Medido: de las 3 fotos de /curso y las 9 de /tapeo, NINGUNA
+   llegaba al borde a 390 px; /talleres tiene sus 5 y es la unica que se ve
+   bien. En escritorio la foto ya se sale hacia la derecha (base.css:345),
+   asi que esto es el mismo gesto donde faltaba. */
+@media (max-width:940px){
+  .hero-caja{grid-template-columns:1fr}
+  .hero-col-foto{order:-1}
+  .hero-foto{aspect-ratio:4/3;margin-bottom:1rem;margin-inline:calc(-1 * clamp(1.25rem,4vw,2.5rem));border-radius:0}
+}
 
 /* ---------- LA COMANDA ---------- */
 .comanda{position:relative;background:var(--musgo);border:1px solid var(--linea);border-radius:4px;padding:1.25rem 1.3rem 1.2rem;box-shadow:0 26px 60px rgba(0,0,0,.45)}
