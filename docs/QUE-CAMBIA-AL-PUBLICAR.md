@@ -9,7 +9,7 @@ servían como parte del sitio (/.claude/, /.github/, /.htmlvalidate.json y
 se tocan**, y `robots.txt` tampoco.
 
 `check:integridad` contra `main`: ninguna página pierde título, texto,
-enlaces, imágenes, precios ni bloques de schema. Los 18 chequeos en verde.
+enlaces, imágenes, precios ni bloques de schema. Los 19 chequeos en verde.
 
 ## Lo que se ve
 
