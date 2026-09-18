@@ -131,13 +131,13 @@
    del precio. Va al cierre, al lado de la comanda, corrida. Y el titulo
    dejo de ser titulo: como encabezado era el rotulo que anuncia lo de
    abajo, asi que ahora abre la frase. */
-.incluye-corrido{font-size:var(--t-chico);color:var(--cal-med);line-height:1.65;max-width:44ch;margin-bottom:1.5rem}
-.incluye-corrido strong{color:var(--cal);font-weight:600}
+.corrido{font-size:var(--t-chico);color:var(--cal-med);line-height:1.65;max-width:44ch;margin-bottom:1.5rem}
+.corrido strong{color:var(--cal);font-weight:600}
 /* Es una lista, no una oracion: cada cosa que entra en el precio es un item.
    Escrita como parrafo daba una oracion de 49 palabras y la frenaba la guia
    de texto, con razon. Corre en linea y los puntos los pone el CSS. */
-.incluye-corrido ul,.incluye-corrido li{display:inline}
-.incluye-corrido li:not(:last-child)::after{content:" · ";color:var(--cal-baja)}
+.corrido ul,.corrido li{display:inline}
+.corrido li:not(:last-child)::after{content:" · ";color:var(--cal-baja)}
 
 /* ---------- INCLUYE / TE LLEVÁS ---------- */
 /* Eran dos columnas iguales, una en positivo y una en negativo, cada una
@@ -524,7 +524,7 @@
     <div class="sube">
       <h2><!--o:html:curso.cierre_titulo_html-->Preguntanos <br>lo que quieras.<!--/o--></h2>
       <p class="bajada"><!--o:curso.cierre_bajada-->Contanos qué estás buscando y te decimos si este curso te sirve. Te contesta Leonardo.<!--/o--></p>
-      <div class="incluye-corrido">
+      <div class="corrido">
         <strong>Todo entra en el precio:</strong>
         <ul><li>Todos los ingredientes y materiales de trabajo en clase</li><li>Degustación de las preparaciones en cada clase</li><li>Recetario completo al finalizar el curso</li><li>Certificado al terminar el curso</li><li>Posibilidad de recuperar clases</li><li>Posibilidad de cambiar de grupo</li><li>Experiencia directa con Leonardo</li><li>Participación de la Lic. Nut. Micaela Gago como referente nutricional</li></ul>
       </div>
