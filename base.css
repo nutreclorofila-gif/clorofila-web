@@ -701,3 +701,13 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.75rem}
   main a[href^="http"]::after{content:" (" attr(href) ")";font-size:.75em;color:#555;word-break:break-all}
   main a[href^="/"]::after{content:" (clorofila.uy" attr(href) ")";font-size:.75em;color:#555}
 }
+
+/* Donde vive la barra fija, el boton del cierre repetia el mismo amarillo con
+   el mismo texto. Medido en /curso a 390 px: los dos se ven a la vez, a 325 px
+   uno del otro, los dos diciendo "Reservar mi lugar". El de la barra acompana
+   todo el scroll, asi que el que cede es el del cierre. En escritorio no hay
+   barra fija, asi que ahi no cambia nada. Afecta /curso, /tapeo y /pastas. */
+@media (max-width:820px){
+  .cierre .btn-primario{background:transparent;color:var(--cal);border:1.5px solid var(--linea-fuerte)}
+  .cierre .btn-primario:hover,.cierre .btn-primario:focus-visible{border-color:var(--cal);background:rgba(244,241,233,.06)}
+}
