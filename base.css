@@ -59,8 +59,14 @@
      chico que los subtítulos de abajo— y en /tapeo quedaban empatados.
      Cinco pasos, y la portada es la única que puede llevar el más grande. */
   --th-portada:clamp(2.4rem,5.4vw,3.9rem); /* 62,4 máx. — sólo la portada */
-  --th-pagina:clamp(2.1rem,4.3vw,3.1rem);  /* 49,6 — el título de una página */
-  --th-seccion:clamp(1.5rem,2.9vw,2.15rem);/* 34,4 — el título de una sección */
+  /* Sube el MINIMO de los dos pasos de titulo, no el maximo: en el telefono
+   los clamp caian a su piso y la escala se aplanaba justo donde es el unico
+   recurso que queda. Medido a 390 px: el titulo de seccion valia 24 px
+   contra un cuerpo de 17, o sea 1,41 veces; ahora 28 px, 1,65 veces. El de
+   pagina pasa de 1,98 a 2,26 veces. A 1280 px no cambia nada: ahi mandan
+   los maximos, que no se tocaron. El 80% del trafico es telefono. */
+  --th-pagina:clamp(2.4rem,4.3vw,3.1rem);  /* 49,6 — el título de una página */
+  --th-seccion:clamp(1.75rem,2.9vw,2.15rem);/* 34,4 — el título de una sección */
   --th-sub:clamp(1.35rem,2.4vw,1.8rem);    /* 28,8 — subtítulo dentro de un texto */
   --th-bloque:clamp(1.2rem,2vw,1.5rem);    /* 24   — el título de un bloque */
   --nav-h:68px;
