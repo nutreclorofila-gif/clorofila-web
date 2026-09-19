@@ -298,13 +298,7 @@ h2 + p{margin-top:.55rem}
    haciendo lo mismo. Cuando todo se mueve, el movimiento deja de significar
    algo y se nota el efecto en vez del contenido. Queda un solo momento, al
    abrir la página, y el resto del sitio está quieto. */
-.sube{opacity:1;transform:none}
 
-.hero .sube{opacity:0;transform:translateY(14px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
-.hero .sube.vista{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){
-  .hero .sube{opacity:1;transform:none;transition:none}
-}
 
 /* =========================================================================
    Piezas compartidas por las páginas de venta.
@@ -494,7 +488,6 @@ h2 + p{margin-top:.55rem}
    —y quien le pregunta a una IA— se va antes de llegar. */
 .respuesta-corta{background:var(--musgo-alto);border-left:3px solid var(--brote);border-radius:0 var(--r) var(--r) 0;padding:1.1rem 1.3rem;margin-bottom:1.8rem;color:var(--cal)}
 .respuesta-corta strong{color:var(--brote)}
-html:not(.js) .sube{opacity:1;transform:none}
 html:not(.js) .nav{height:auto}
 @media (max-width:999px){
   html:not(.js) .nav-caja{flex-wrap:wrap;height:auto;padding-block:.7rem}

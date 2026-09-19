@@ -101,41 +101,6 @@
     });
   }
 
-  // Entradas al hacer scroll. Con dos redes de seguridad: lo que ya está en
-  // pantalla al cargar, y un plazo máximo, para que nada quede invisible si
-  // el observador no llega a dispararse.
-  /* La guarda del observador no es cosmética: si tira acá, el error corta el
-     resto de este archivo y con él quedan sin enganchar los botones del aviso
-     de cookies. Esa visita no se mide nunca. */
-  var subes = document.querySelectorAll('.sube');
-  if (subes.length && typeof IntersectionObserver === 'function') {
-    var obs = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('vista'); obs.unobserve(e.target); }
-      });
-    }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
-    Array.prototype.forEach.call(subes, function (el) { obs.observe(el); });
-
-    // Última red: se muestra todo y se suelta el observador, que a esta altura
-    // ya no tiene nada que vigilar.
-    var plazoMaximo = setTimeout(function () {
-      Array.prototype.forEach.call(document.querySelectorAll('.sube:not(.vista)'), function (el) { el.classList.add('vista'); });
-      obs.disconnect();
-    }, 2800);
-
-    addEventListener('load', function () {
-      setTimeout(function () {
-        Array.prototype.forEach.call(document.querySelectorAll('.sube:not(.vista)'), function (el) {
-          if (el.getBoundingClientRect().top < innerHeight) el.classList.add('vista');
-        });
-        if (!document.querySelector('.sube:not(.vista)')) {
-          clearTimeout(plazoMaximo);
-          obs.disconnect();
-        }
-      }, 60);
-    });
-  }
-
   /* La página de gracias trae tres fichas -el temario, el curso y el tapeo- y
      muestra la que tenga la clase "activo". Venía marcada la del temario en el
      HTML, que es la que corresponde al formulario, pero las otras dos no las
