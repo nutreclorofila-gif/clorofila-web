@@ -96,7 +96,9 @@
 .taller[data-estado="abierto"],.taller[data-estado="ultimos"]{order:-1}
 @media (max-width:820px){
   .taller{grid-template-columns:1fr;gap:1.5rem}
-  .taller-foto,.taller:nth-child(even) .taller-foto{order:-1;aspect-ratio:16/10}
+  /* Sin min-height:0 el aspect-ratio manda: la caja se hace 304px de alto
+     por el minimo de arriba y deriva 486px de ancho, 136 mas que la columna. */
+  .taller-foto,.taller:nth-child(even) .taller-foto{order:-1;aspect-ratio:16/10;min-height:0;width:100%;align-self:auto}
 }
 
 /* El remate no necesita recuadro: es lo último de la página y el botón ya
