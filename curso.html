@@ -116,6 +116,15 @@
 .promesa li:last-child{border-bottom:1px solid var(--linea)}
 @media (min-width:941px){.promesa h2{position:sticky;top:calc(var(--nav-h) + 1rem)}}
 @media (max-width:940px){.promesa{grid-template-columns:1fr;gap:1.5rem}}
+/* El pico de la pagina. Es la decision de Cowork en las tareas sitio-plano
+   y fondos-contraste: una banda llena de color, UNA sola vez por pagina, y
+   encima de lo que mas vende. Aca eso es la promesa, los siete finales de
+   la frase que empieza en el h2. Brote sobre tinta da 8,57:1, medido por
+   ella. El par ya existe en la casa: .saltar:focus lo usa en base.css. */
+#conseguis{background:var(--brote);color:var(--tinta)}
+#conseguis .promesa h2{color:var(--tinta)}
+#conseguis .promesa li{color:var(--tinta);border-top-color:rgba(14,26,19,.22)}
+#conseguis .promesa li:last-child{border-bottom-color:rgba(14,26,19,.22)}
 
 /* ---------- EL TEMARIO ----------
    El temario y las comidas del dia si son enumeraciones, y comparten forma
