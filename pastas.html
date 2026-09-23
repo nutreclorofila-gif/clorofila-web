@@ -67,6 +67,8 @@
 .remate em{font-style:normal;color:inherit}
 
 }
+/* La nota promete una compra: sin link de compra el botón abre WhatsApp y la nota miente. */
+[data-compra="no"] .solo-con-compra{display:none}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260907" defer></script>
@@ -102,7 +104,7 @@
 
 <main id="principal">
 
-<header class="hero-prod" data-estado-de="talleres.pastas-sin-gluten" data-estado="sin-fecha" data-set="data-precio=talleres.pastas-sin-gluten.tiene_precio;data-segunda=talleres.pastas-sin-gluten.tiene_segunda" data-precio="no" data-segunda="no">
+<header class="hero-prod" data-estado-de="talleres.pastas-sin-gluten" data-estado="sin-fecha" data-set="data-precio=talleres.pastas-sin-gluten.tiene_precio;data-segunda=talleres.pastas-sin-gluten.tiene_segunda;data-compra=talleres.pastas-sin-gluten.tiene_compra" data-precio="no" data-segunda="no" data-compra="no">
   <div class="env hero-caja">
     <div>
       <span class="senal">Taller de pastas sin gluten, en Parque Rodó, Montevideo</span>
@@ -130,7 +132,7 @@
           <a data-set="href=talleres.pastas-sin-gluten.pregunta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20tengo%20una%20pregunta%20sobre%20el%20taller%20de%20Pastas%20sin%20gluten." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="pastas">Preguntar por WhatsApp</a>
         </div>
         <p class="comanda-nota solo-sin-fecha">Este taller se abre por demanda: cuando hay grupo, sale. Escribinos y te avisamos apenas haya fecha.</p>
-        <p class="comanda-nota solo-con-fecha solo-comprando">Comprás la entrada y ya está. Si preferís, coordinamos por WhatsApp.</p>
+        <p class="comanda-nota solo-con-fecha solo-comprando solo-con-compra">Comprás la entrada y ya está. Si preferís, coordinamos por WhatsApp.</p>
         <p class="comanda-nota solo-agotado">Esta fecha se llenó. Escribinos y te anotamos para la próxima.</p>
       </div>
     </div>
@@ -249,7 +251,7 @@
   </div>
 </section>
 
-<section class="cierre seccion" id="reservar" data-estado-de="talleres.pastas-sin-gluten" data-estado="sin-fecha" data-set="data-precio=talleres.pastas-sin-gluten.tiene_precio;data-segunda=talleres.pastas-sin-gluten.tiene_segunda" data-precio="no" data-segunda="no">
+<section class="cierre seccion" id="reservar" data-estado-de="talleres.pastas-sin-gluten" data-estado="sin-fecha" data-set="data-precio=talleres.pastas-sin-gluten.tiene_precio;data-segunda=talleres.pastas-sin-gluten.tiene_segunda;data-compra=talleres.pastas-sin-gluten.tiene_compra" data-precio="no" data-segunda="no" data-compra="no">
   <div class="env cierre-caja">
     <div>
       <h2>Te esperamos <br>en el estudio.</h2>

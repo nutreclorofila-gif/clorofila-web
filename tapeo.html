@@ -189,6 +189,8 @@
 .comanda-datos li:has(span[data-cuenta]:empty){display:none}
 html.js .comanda-datos li:has(span[data-cuenta]:empty:not([data-cuenta="no"])){display:flex;visibility:hidden}
 html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
+/* La nota promete una compra: sin link de compra el botón abre WhatsApp y la nota miente. */
+[data-compra="no"] .solo-con-compra{display:none}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260907" defer></script>
@@ -224,7 +226,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 
 <main id="principal">
 
-<header class="hero-tapeo" data-estado-de="tapeo" data-estado="abierto" data-vence-iso="2026-10-02" data-set="data-precio=tapeo.tiene_precio;data-segunda=tapeo.tiene_segunda" data-precio="si" data-segunda="si">
+<header class="hero-tapeo" data-estado-de="tapeo" data-estado="abierto" data-vence-iso="2026-10-02" data-set="data-precio=tapeo.tiene_precio;data-segunda=tapeo.tiene_segunda;data-compra=tapeo.tiene_compra" data-precio="si" data-segunda="si" data-compra="no">
   <div class="env hero-caja">
     <div>
       <span class="senal">Una noche en Parque Rodó, Montevideo</span>
@@ -246,14 +248,14 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
         </ul>
         <div class="fechas-bloque solo-con-fecha solo-comprando">
           <p class="fechas-titulo"><!--o:tapeo.fechas_titulo-->Elegí tu fecha<!--/o--></p>
-          <ul class="fechas"><!--o:html:tapeo.fechas_html--><li><a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%202%20de%20octubre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" data-producto="tapeo"><strong>viernes 2 de octubre</strong><span>19:00 a 22:30 h · Solo 12 lugares</span></a></li><li><a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%202%20de%20octubre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" data-producto="tapeo"><strong>viernes 16 de octubre</strong><span>19:00 a 22:30 h</span></a></li><!--/o--></ul>
+          <ul class="fechas"><!--o:html:tapeo.fechas_html--><li><a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%202%20de%20octubre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" data-producto="tapeo"><strong>viernes 2 de octubre</strong><span>19:00 a 22:30 h · Solo 12 lugares</span></a></li><li><a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%2016%20de%20octubre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" data-producto="tapeo"><strong>viernes 16 de octubre</strong><span>19:00 a 22:30 h</span></a></li><!--/o--></ul>
         </div>
         <div class="comanda-acciones">
           <a data-set="href=tapeo.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%202%20de%20octubre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="tapeo"><!--o:tapeo.cta_texto-->Reservar mi lugar<!--/o--></a>
           <a data-set="href=tapeo.pregunta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20tengo%20una%20pregunta%20sobre%20la%20Cena%20y%20Taller%20de%20Tapeo." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="tapeo">Preguntar por WhatsApp</a>
         </div>
         <p class="comanda-nota solo-sin-fecha">Todavía no hay fecha abierta. Escribinos y te avisamos cuando abramos la próxima.</p>
-        <p class="comanda-nota solo-con-fecha solo-comprando">Comprás la entrada y ya está: no hay formularios ni esperas. Si preferís, coordinamos por WhatsApp.</p>
+        <p class="comanda-nota solo-con-fecha solo-comprando solo-con-compra">Comprás la entrada y ya está: no hay formularios ni esperas. Si preferís, coordinamos por WhatsApp.</p>
         <p class="comanda-nota solo-agotado">Esta fecha se llenó. Escribinos y te anotamos para la próxima.</p>
       </div>
     </div>
@@ -405,7 +407,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
   </div>
 </section>
 
-<section class="cierre seccion" id="reservar" data-estado-de="tapeo" data-estado="abierto" data-vence-iso="2026-10-02" data-set="data-precio=tapeo.tiene_precio;data-segunda=tapeo.tiene_segunda" data-precio="si" data-segunda="si">
+<section class="cierre seccion" id="reservar" data-estado-de="tapeo" data-estado="abierto" data-vence-iso="2026-10-02" data-set="data-precio=tapeo.tiene_precio;data-segunda=tapeo.tiene_segunda;data-compra=tapeo.tiene_compra" data-precio="si" data-segunda="si" data-compra="no">
   <div class="env cierre-caja">
     <div>
       <h2>Nos vemos alrededor <br>de la mesa.</h2>
@@ -427,7 +429,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
       </ul>
       <div class="fechas-bloque solo-con-fecha solo-comprando">
         <p class="fechas-titulo"><!--o:tapeo.fechas_titulo-->Elegí tu fecha<!--/o--></p>
-        <ul class="fechas"><!--o:html:tapeo.fechas_html--><li><a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%202%20de%20octubre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" data-producto="tapeo"><strong>viernes 2 de octubre</strong><span>19:00 a 22:30 h · Solo 12 lugares</span></a></li><li><a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%202%20de%20octubre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" data-producto="tapeo"><strong>viernes 16 de octubre</strong><span>19:00 a 22:30 h</span></a></li><!--/o--></ul>
+        <ul class="fechas"><!--o:html:tapeo.fechas_html--><li><a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%202%20de%20octubre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" data-producto="tapeo"><strong>viernes 2 de octubre</strong><span>19:00 a 22:30 h · Solo 12 lugares</span></a></li><li><a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%2016%20de%20octubre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" data-producto="tapeo"><strong>viernes 16 de octubre</strong><span>19:00 a 22:30 h</span></a></li><!--/o--></ul>
       </div>
       <div class="comanda-acciones">
         <a data-set="href=tapeo.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%202%20de%20octubre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="tapeo"><!--o:tapeo.cta_texto-->Reservar mi lugar<!--/o--></a>
@@ -440,7 +442,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 
 </main>
 
-<aside class="sticky-cta" id="sticky-cta" data-estado-de="tapeo" data-estado="abierto" data-vence-iso="2026-10-02" data-set="data-precio=tapeo.tiene_precio;data-segunda=tapeo.tiene_segunda" data-precio="si" data-segunda="si" aria-label="Acciones rápidas">
+<aside class="sticky-cta" id="sticky-cta" data-estado-de="tapeo" data-estado="abierto" data-vence-iso="2026-10-02" data-set="data-precio=tapeo.tiene_precio;data-segunda=tapeo.tiene_segunda;data-compra=tapeo.tiene_compra" data-precio="si" data-segunda="si" data-compra="no" aria-label="Acciones rápidas">
   <a data-set="href=tapeo.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo%20del%20viernes%202%20de%20octubre.%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" class="cta-main" data-producto="tapeo"><!--o:tapeo.cta_texto-->Reservar mi lugar<!--/o--></a>
   <a data-set="href=tapeo.pregunta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20tengo%20una%20pregunta%20sobre%20la%20Cena%20y%20Taller%20de%20Tapeo." target="_blank" rel="noopener noreferrer" class="wa-btn" aria-label="Consultar por WhatsApp" data-producto="tapeo">💬</a>
 </aside>

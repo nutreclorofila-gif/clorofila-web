@@ -140,6 +140,9 @@ t.precio_texto = t.precio || '';
 // Sin fecha confirmada no se muestra precio: no está garantizado para la
 // próxima edición aunque haya quedado cargado el de la anterior.
 t.tiene_precio = (t.estado !== 'sin-fecha' && t.precio) ? 'si' : 'no';
+// Sin link de compra no se puede prometer una compra: la nota «Comprás la
+// entrada y ya está» se muestra solo cuando el botón compra de verdad.
+t.tiene_compra = (!ventaMuda(t.estado) && t.link_compra) ? 'si' : 'no';
 // Hay fecha publicada o no: lo usa /talleres para marcar en el índice
 // cuáles se pueden comprar hoy.
 t.tiene_fecha = (t.estado !== 'sin-fecha' && t.fecha_texto) ? 'si' : 'no';
@@ -179,11 +182,15 @@ datos.curso.grupos.forEach(function (g) {
 function ventaMuda(estado) { return estado === 'sin-fecha' || estado === 'agotado'; }
 
 const waBase = 'https://wa.me/59894064148?text=';
-t.wa_link = waBase + encodeURIComponent(
-  t.estado === 'sin-fecha' || t.estado === 'agotado'
-    ? 'Hola Leonardo, me interesa la Cena y Taller de Tapeo. Avisame cuando abran la próxima fecha.'
-    : 'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.fecha_texto + '. Somos [cantidad] personas.'
-);
+// Cada fecha pide su propio mensaje. Con una sola función para las dos, el
+// botón del viernes 16 mandaba «quiero reservar… del viernes 2»: quien
+// elegía la segunda fecha le escribía a Leo pidiendo la primera.
+t.wa_reserva = function (fecha) {
+  return waBase + encodeURIComponent('Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + fecha + '. Somos [cantidad] personas.');
+};
+t.wa_link = t.estado === 'sin-fecha' || t.estado === 'agotado'
+  ? waBase + encodeURIComponent('Hola Leonardo, me interesa la Cena y Taller de Tapeo. Avisame cuando abran la próxima fecha.')
+  : t.wa_reserva(t.fecha_texto);
 /* Con la fecha llena, el botón decía "avisame si se libera un lugar" mientras
    el mensaje que se manda pide la próxima fecha: dos promesas distintas en el
    mismo clic. Y esperar una cancelación es lo más chico que se puede ofrecer
@@ -290,7 +297,7 @@ function listaFechas(o, sufijo) {
       '<span>' + escapar([o.horario_texto, o.cupos_texto].filter(Boolean).join(' · ')) + '</span></a></li>'
   ];
   if (o.segunda_fecha && o.segunda_fecha.texto) {
-    items.push('<li><a href="' + enlace(ventaMuda(o.estado) ? o.wa_link : (o.segunda_fecha.link || o.wa_link)) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
+    items.push('<li><a href="' + enlace(ventaMuda(o.estado) ? o.wa_link : (o.segunda_fecha.link || (o.wa_reserva ? o.wa_reserva(o.segunda_fecha.texto) : o.wa_link))) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
       '<strong>' + escapar(o.segunda_fecha.texto) + '</strong>' +
       '<span>' + escapar(horarioDe(o.segunda_fecha, o.horario_texto)) + '</span></a></li>');
   }
@@ -362,6 +369,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   w.horario_texto = w.hora || '';
   w.precio_texto = w.precio || '';
   w.tiene_precio = (w.estado !== 'sin-fecha' && w.precio) ? 'si' : 'no';
+  w.tiene_compra = (!ventaMuda(w.estado) && w.link_compra) ? 'si' : 'no';
   w.tiene_fecha = (w.estado !== 'sin-fecha' && w.fecha_texto) ? 'si' : 'no';
   w.tiene_segunda = (w.segunda_fecha && w.segunda_fecha.texto) ? 'si' : 'no';
   w.fechas_titulo = w.tiene_segunda === 'si' ? 'Elegí tu fecha' : 'La próxima fecha';
