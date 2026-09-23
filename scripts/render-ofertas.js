@@ -184,6 +184,20 @@ t.wa_link = waBase + encodeURIComponent(
     ? 'Hola Leonardo, me interesa la Cena y Taller de Tapeo. Avisame cuando abran la próxima fecha.'
     : 'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.fecha_texto + '. Somos [cantidad] personas.'
 );
+/* Con dos fechas abiertas, cada botón de fecha pide su noche. Antes el de la
+   segunda caía en el mensaje de la primera: quien tocaba «viernes 16» mandaba
+   «quiero reservar para el viernes 2». Y los botones generales, que no eligen
+   fecha, nombran las dos en vez de empujar a la primera. */
+if (!ventaMuda(t.estado) && t.segunda_fecha && t.segunda_fecha.texto) {
+  t.wa_link_1 = t.wa_link;
+  t.wa_link_2 = waBase + encodeURIComponent(
+    'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.segunda_fecha.texto + '. Somos [cantidad] personas.'
+  );
+  t.wa_link = waBase + encodeURIComponent(
+    'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo. ¿Hay lugar el ' + t.fecha_texto +
+    ' o el ' + t.segunda_fecha.texto + '? Somos [cantidad] personas.'
+  );
+}
 /* Con la fecha llena, el botón decía "avisame si se libera un lugar" mientras
    el mensaje que se manda pide la próxima fecha: dos promesas distintas en el
    mismo clic. Y esperar una cancelación es lo más chico que se puede ofrecer
@@ -209,7 +223,10 @@ t.cupos_frase =
 t.resumen_texto =
   t.estado === 'sin-fecha' ? 'sin fecha abierta por ahora; las fechas se publican según la demanda' :
   t.estado === 'agotado'   ? 'fecha ' + t.fecha_texto + ', sin lugares disponibles' :
-  'próxima fecha ' + t.fecha_texto + ', ' + t.horario_texto + (t.precio ? ', ' + t.precio : '') + ', ' + t.cupos_texto.toLowerCase();
+  (t.segunda_fecha && t.segunda_fecha.texto
+    ? 'próximas fechas ' + t.fecha_texto + ' y ' + t.segunda_fecha.texto + ', ' + t.horario_texto +
+      (t.precio ? ', ' + t.precio : '') + ', ' + t.cupos_texto.toLowerCase() + ' por noche'
+    : 'próxima fecha ' + t.fecha_texto + ', ' + t.horario_texto + (t.precio ? ', ' + t.precio : '') + ', ' + t.cupos_texto.toLowerCase());
 
 // Si hay link de venta online, ese es el botón principal: se paga solo,
 // sin esperar respuesta por WhatsApp. El WhatsApp queda como segunda opción.
@@ -283,14 +300,14 @@ function listaFechas(o, sufijo) {
   if (o.estado === 'sin-fecha' || !o.fecha_texto) return '';
   // Agotada, la fecha se sigue mostrando (es informacion util: dice cuando es
   // y que no hay lugar) pero el enlace lleva a preguntar, no a comprar.
-  var destino = ventaMuda(o.estado) ? o.wa_link : (o.link_compra || o.wa_link);
+  var destino = ventaMuda(o.estado) ? o.wa_link : (o.link_compra || o.wa_link_1 || o.wa_link);
   var items = [
     '<li><a href="' + enlace(destino) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
       '<strong>' + escapar(o.fecha_texto) + '</strong>' +
       '<span>' + escapar([o.horario_texto, o.cupos_texto].filter(Boolean).join(' · ')) + '</span></a></li>'
   ];
   if (o.segunda_fecha && o.segunda_fecha.texto) {
-    items.push('<li><a href="' + enlace(ventaMuda(o.estado) ? o.wa_link : (o.segunda_fecha.link || o.wa_link)) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
+    items.push('<li><a href="' + enlace(ventaMuda(o.estado) ? o.wa_link : (o.segunda_fecha.link || o.wa_link_2 || o.wa_link)) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
       '<strong>' + escapar(o.segunda_fecha.texto) + '</strong>' +
       '<span>' + escapar(horarioDe(o.segunda_fecha, o.horario_texto)) + '</span></a></li>');
   }
@@ -347,6 +364,11 @@ for (const [id, w] of Object.entries(datos.talleres)) {
       ? 'Hola Leonardo, me interesa el taller de ' + w.nombre + '. Avisame cuando abran fecha.'
       : 'Hola Leonardo, quiero reservar un lugar en el taller de ' + w.nombre + ' del ' + w.fecha_texto + '.'
   );
+  if (!ventaMuda(w.estado) && w.segunda_fecha && w.segunda_fecha.texto) {
+    w.wa_link_2 = waBase + encodeURIComponent(
+      'Hola Leonardo, quiero reservar un lugar en el taller de ' + w.nombre + ' del ' + w.segunda_fecha.texto + '.'
+    );
+  }
   // El botón de al lado dice "preguntar": tiene que preguntar.
   w.pregunta_link = waBase + encodeURIComponent(
     'Hola Leonardo, tengo una pregunta sobre el taller de ' + w.nombre + '.'
@@ -1164,32 +1186,34 @@ for (const archivo of archivos) {
         Object.keys(nodo).forEach(function (k) { recorrer(nodo[k]); });
       })(ld);
 
-      /* Un taller con dos fechas se vendía como un solo evento: la segunda
-         tiene su propia entrada en Tikzet, pero Google solo veía la primera.
-         Se declara como un evento aparte, con su fecha y su link de compra. */
-      if (Array.isArray(ld['@graph'])) {
-        const w = datos.talleres['pastas-sin-gluten'];
-        const base = ld['@graph'].find(function (n) {
-          return n && n['@id'] === 'https://clorofila.uy/pastas#evento';
-        });
-        const yaEsta = ld['@graph'].some(function (n) {
-          return n && n['@id'] === 'https://clorofila.uy/pastas#evento-2';
-        });
-        const hay = w && w.estado !== 'sin-fecha' && w.segunda_fecha &&
-          w.segunda_fecha.iso && w.segunda_fecha.link;
+      /* Una propuesta con dos fechas se vendía como un solo evento: Google
+         solo veía la primera. Se declara la segunda como un evento aparte,
+         con su fecha. Antes esto exigía un link de Tikzet propio para la
+         segunda fecha, y el tapeo de octubre se vende por WhatsApp: sin ese
+         link, el viernes 16 no existía ni para Google ni para ChatGPT. Si no
+         hay link propio, la oferta apunta a la página, igual que la primera. */
+      function segundoEvento(idBase, o, horaBase, finBase) {
+        if (!Array.isArray(ld['@graph'])) return;
+        const idSeg = idBase + '-2';
+        const base = ld['@graph'].find(function (n) { return n && n['@id'] === idBase; });
+        const yaEsta = ld['@graph'].some(function (n) { return n && n['@id'] === idSeg; });
+        const s2 = o && o.segunda_fecha;
+        const hay = o && o.estado !== 'sin-fecha' && s2 && s2.iso;
         if (base && hay) {
           const seg = JSON.parse(JSON.stringify(base));
-          seg['@id'] = 'https://clorofila.uy/pastas#evento-2';
+          seg['@id'] = idSeg;
           // La segunda fecha puede ir a otra hora: el mismo taller a veces es
           // de mañana y a veces de noche. Si no trae horario, hereda el primero.
-          seg.startDate = w.segunda_fecha.iso + 'T' + (w.segunda_fecha.hora || w.hora_inicio) + ':00-03:00';
-          seg.endDate = w.segunda_fecha.iso + 'T' + (w.segunda_fecha.hora_fin || w.hora_fin) + ':00-03:00';
-          if (seg.offers) seg.offers.url = w.segunda_fecha.link;
+          seg.startDate = s2.iso + 'T' + (s2.hora_inicio || s2.hora || horaBase) + ':00-03:00';
+          seg.endDate = s2.iso + 'T' + (s2.hora_fin || finBase) + ':00-03:00';
+          if (seg.offers) {
+            if (s2.link) seg.offers.url = s2.link;
+            // La oferta de la segunda noche vale hasta esa noche, no hasta la primera.
+            if (seg.offers.validThrough) seg.offers.validThrough = seg.startDate;
+          }
           // Se rehace desde el evento principal en vez de dejar el que ya estaba:
           // si cambió el precio o el horario, el bloque viejo seguía mintiendo.
-          const donde = ld['@graph'].findIndex(function (n) {
-            return n && n['@id'] === 'https://clorofila.uy/pastas#evento-2';
-          });
+          const donde = ld['@graph'].findIndex(function (n) { return n && n['@id'] === idSeg; });
           if (donde === -1) {
             ld['@graph'].push(seg);
             tocado = true;
@@ -1199,12 +1223,13 @@ for (const archivo of archivos) {
           }
         } else if (base && !hay && yaEsta) {
           // Se cerró la segunda fecha: el evento deja de publicarse.
-          ld['@graph'] = ld['@graph'].filter(function (n) {
-            return !n || n['@id'] !== 'https://clorofila.uy/pastas#evento-2';
-          });
+          ld['@graph'] = ld['@graph'].filter(function (n) { return !n || n['@id'] !== idSeg; });
           tocado = true;
         }
       }
+      const wPastas = datos.talleres['pastas-sin-gluten'];
+      segundoEvento('https://clorofila.uy/pastas#evento', wPastas, wPastas && wPastas.hora_inicio, wPastas && wPastas.hora_fin);
+      segundoEvento('https://clorofila.uy/tapeo#evento', datos.tapeo, datos.tapeo.hora, datos.tapeo.hora_fin);
 
       /* Presencial, siempre: cocinar es presencial. Google lo recomienda para
          todo Event y se perdía al copiar el evento de /tapeo a /experiencias,

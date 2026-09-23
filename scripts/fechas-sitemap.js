@@ -26,6 +26,16 @@ function archivoDe(url) {
 
 function fechaGit(archivo) {
   try {
+    /* Un archivo con cambios sin commitear cambia hoy. Antes esto solo miraba
+       el historial, y como el hook corre npm test ANTES del commit, el chequeo
+       nunca veía el cambio que se estaba commiteando: el sitemap quedaba un
+       paso atrás cada vez. Pasó el 21/9 con las 24 páginas del tapeo. */
+    const pendiente = execSync(`git status --porcelain -- "${archivo}"`, { encoding: 'utf8' }).trim();
+    if (pendiente) {
+      const h = new Date();
+      const dos = (n) => String(n).padStart(2, '0');
+      return h.getFullYear() + '-' + dos(h.getMonth() + 1) + '-' + dos(h.getDate());
+    }
     const f = execSync(`git log -1 --format=%ad --date=short -- "${archivo}"`, { encoding: 'utf8' }).trim();
     return f || null;
   } catch (e) { return null; }
