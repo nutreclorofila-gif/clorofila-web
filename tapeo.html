@@ -55,7 +55,7 @@
   --pegado:clamp(.875rem,1.6vw,1.25rem);   /* entre una foto y su texto */
   --dentro:clamp(2.5rem,6vw,4rem);         /* dentro de un mismo momento */
   --cambio:clamp(5.5rem,16vw,10rem);       /* cambio de momento de la noche */
-  --verde-hondo:#163A24;                   /* bandas que alternan con el casi negro */
+  --tostado:#2A231D;                   /* bandas que alternan con el casi negro: marrón tostado, no verde vivo */
   --tercero:#1B201D;                       /* tercer fondo, entre los otros dos */
   --cruce:clamp(4rem,18vw,11rem);          /* lo que la foto de Leonardo se mete en la banda */
 }
@@ -149,15 +149,15 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 
 /* ---------- 3. LA MESA ----------
    Lo que se cocina, lo que entra en el precio y la duda de si hace falta
-   saber cocinar, todo sobre la misma banda verde. Antes era crema y a Leo no
-   le convenció. Son tres fondos que se turnan: casi negro, verde hondo
+   saber cocinar, todo sobre la misma banda marrón. Antes era crema y a Leo no
+   le convenció. Son tres fondos que se turnan: casi negro, marrón tostado
    (la mesa, las reseñas y las preguntas) y un gris grafito (la noche, con
    quién vas a cocinar y la tira de fotos). Nunca quedan dos iguales juntos. */
-.mesa{background:var(--verde-hondo);padding-bottom:calc(var(--cruce) + var(--dentro))}
+.mesa{background:var(--tostado);padding-bottom:calc(var(--cruce) + var(--dentro))}
 .mesa p{color:var(--cal-med)}
 .mesa-foto{aspect-ratio:5/3;min-height:0}
 /* Sin máscara: sobre el crema la mesa blanca de la foto se fundía con el
-   fondo; sobre el verde el fundido quedaba gris, así que la foto va entera. */
+   fondo; sobre el marrón el fundido quedaba gris, así que la foto va entera. */
 .mesa-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 100%}
 .mesa-texto h2{margin-top:var(--pegado);font-size:var(--th-seccion)}
 .mesa .frase{margin-top:.8rem;font-size:var(--t-cuerpo)}
@@ -181,7 +181,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 .mesa .duda~p+p{margin-top:.8rem}
 
 /* ---------- 4. LEONARDO ---------- */
-/* La foto se mete en la banda con margen negativo: arriba queda verde a los
+/* La foto se mete en la banda con margen negativo: arriba queda marrón a los
    dos lados y abajo el fondo, como una foto apoyada en el borde de la mesa.
    Como las secciones son grilla, el margen no colapsa. Ninguna sección lleva
    overflow:hidden. */
@@ -208,7 +208,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 
 /* ---------- 7. RESEÑAS ---------- */
 /* Una voz grande y tres chicas. La grande es la primera del bloque. */
-.dicen{padding-block:var(--cambio);background:var(--verde-hondo)}
+.dicen{padding-block:var(--cambio);background:var(--tostado)}
 .dicen .google{margin-top:.3rem}
 .dicen .prueba{display:block;margin-top:var(--dentro)}
 .dicen .voz{border:0;padding:0}
@@ -228,7 +228,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 .tira img{width:100%;height:100%;object-fit:cover}
 
 /* ---------- 9. LAS PREGUNTAS ---------- */
-.dudas{padding-block:var(--cambio);background:var(--verde-hondo)}
+.dudas{padding-block:var(--cambio);background:var(--tostado)}
 .dudas .faq{max-width:none;margin:1rem 0 0}
 .faq-icon{font-family:var(--texto);color:var(--cal-baja)}
 
