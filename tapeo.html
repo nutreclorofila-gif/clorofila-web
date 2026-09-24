@@ -236,6 +236,13 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 .cierre-f .bajada{margin-top:1rem;color:var(--cal-med)}
 .cierre-f .comanda{margin-top:var(--dentro);background:var(--musgo-alto);max-width:25rem;width:100%}
 .cierre-f .comanda::before,.cierre-f .comanda::after{background:radial-gradient(circle at 5px 0, transparent 0 5px, var(--musgo-alto) 5.5px) 0 0/10px 7px repeat-x}
+/* El dentado de base.css tenía los mordiscos del lado del ticket: abajo se
+   veía el ticket, una línea y después una fila de puntos oscuros. Acá los
+   mordiscos van hacia afuera, arriba y abajo, y el ticket va sin radio ni
+   línea en esos bordes, así el borde lo hace el dentado. */
+.cierre-f .comanda{border-block-color:transparent;border-radius:0}
+.cierre-f .comanda::before{transform:none}
+.cierre-f .comanda::after{transform:rotate(180deg)}
 /* Un dato por renglón, rótulo a la izquierda y valor a la derecha, sin partirse. */
 .cierre-f .comanda-datos li{padding-block:.2rem}
 .cierre-f .comanda-datos li strong{font-size:var(--t-nota)}
@@ -252,8 +259,16 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 .cierre-f[data-segunda="si"] .comanda-acciones .btn-primario{display:none}
 .cierre-f .comanda-nota{font-size:var(--t-chico);color:var(--cal-med)}
 .cierre-f .comanda-lugar{font-size:var(--t-chico);color:var(--cal-baja);margin-top:.8rem;line-height:1.5}
-/* Las otras propuestas van después de la comanda, no entre el título y el botón. */
-.cierre-f .otras{margin-top:var(--dentro);font-size:var(--t-chico)}
+/* Las otras propuestas van después de la comanda, no entre el título y el botón.
+   Cada pregunta va pegada a su enlace y los pares se separan entre sí: con el
+   paso parejo de base.css, en el teléfono el enlace caía solo en su renglón y
+   no se sabía de qué pregunta era. Entre par y par quedan 44 px de centro a
+   centro, así las bandas de toque de .enlace-salida no se pisan. */
+.cierre-f .otras{margin-top:var(--dentro);font-size:var(--t-chico);line-height:1.5}
+.cierre-f .otras .par{display:block}
+.cierre-f .otras .par+.par{margin-top:1.5rem}
+/* La letra chica del ticket sube a 14 px: en 12 px no se leía en el teléfono. */
+.cierre-f .comanda-titulo,.cierre-f .comanda-estado,.cierre-f .comanda-datos li strong{font-size:.875rem}
 
 /* ---------- LA BARRA FIJA ----------
    Se guarda mientras se ve algún botón de reserva (lo decide el script del
@@ -511,7 +526,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
     <p class="comanda-nota solo-con-fecha solo-comprando solo-con-compra">Comprás la entrada y ya está: no hay formularios ni esperas. Si preferís, coordinamos por WhatsApp.</p>
     <p class="comanda-lugar">Una noche en Parque Rodó, Montevideo</p>
   </div>
-  <p class="otras"><!--o:html:tapeo.cruce_html-->También hacemos el <a href="/pastas" class="enlace-vivo enlace-salida">Taller de Pastas sin gluten</a><!--/o--> <br>¿Preferís algo más profundo? <a href="/curso" class="enlace-vivo enlace-salida">El curso de tres meses</a> <br>¿La querés para tu grupo o tu equipo? <a href="/servicios" class="enlace-vivo enlace-salida">Armamos la cena privada</a> <br>¿Es para regalar? <a data-set="href=tapeo.regalo_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20regalar%20una%20Cena%20y%20Taller%20de%20Tapeo.%20%C2%BFC%C3%B3mo%20hago%20con%20la%20gift%20card%3F" target="_blank" rel="noopener noreferrer" class="enlace-vivo enlace-salida" data-producto="tapeo-regalo">Tenemos <span lang="en">gift card</span></a></p>
+  <p class="otras"><span class="par"><!--o:html:tapeo.cruce_html-->También hacemos el <a href="/pastas" class="enlace-vivo enlace-salida">Taller de Pastas sin gluten</a><!--/o--></span> <span class="par">¿Preferís algo más profundo? <a href="/curso" class="enlace-vivo enlace-salida">El curso de tres meses</a></span> <span class="par">¿La querés para tu grupo o tu equipo? <a href="/servicios" class="enlace-vivo enlace-salida">Armamos la cena privada</a></span> <span class="par">¿Es para regalar? <a data-set="href=tapeo.regalo_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20regalar%20una%20Cena%20y%20Taller%20de%20Tapeo.%20%C2%BFC%C3%B3mo%20hago%20con%20la%20gift%20card%3F" target="_blank" rel="noopener noreferrer" class="enlace-vivo enlace-salida" data-producto="tapeo-regalo">Tenemos <span lang="en">gift card</span></a></span></p>
 </section>
 
 </main>
