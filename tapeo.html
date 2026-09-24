@@ -95,7 +95,7 @@ main figure>picture{height:100%}
 .llegada .entrada{margin-top:var(--pegado);display:flex;flex-direction:column}
 .llegada .tesis{order:1;font-family:var(--display);font-weight:400;font-size:clamp(1.5rem,1rem + 2.2vw,2.35rem);line-height:1.15;letter-spacing:-.02em;color:var(--cal);max-width:19ch;text-wrap:balance}
 .llegada .al-paso{order:2}
-.llegada .bajada{order:3;margin-top:var(--dentro);font-size:var(--t-chico);color:var(--cal-med)}
+.llegada .bajada{order:3;margin-top:var(--dentro);color:var(--cal-med)}   /* en el celular, del mismo tamaño que el resto del texto */
 .llegada .donde{order:4;margin-top:.6rem;font-size:var(--t-chico);color:var(--cal-baja);line-height:1.5}
 .llegada .donde a{white-space:nowrap}
 /* En el teléfono «Cómo llegar» va en su renglón: si no, el corte lo dejaba
@@ -350,7 +350,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
   .llegada h1{min-height:0}
   .llegada .foto{grid-column:8/-1;grid-row:2;height:auto;aspect-ratio:4/3;min-height:0;max-width:45rem;justify-self:end;width:100%}
   .llegada .entrada{grid-column:2/7;grid-row:2;margin-top:0}
-  .llegada .bajada{order:2;margin-top:1.25rem}
+  .llegada .bajada{order:2;margin-top:1.25rem;font-size:var(--t-chico)}
   .llegada .al-paso{order:3;margin-top:1.75rem}
   .noche-titulo{grid-column:2/12}
   .noche>p{grid-column:7/12}
