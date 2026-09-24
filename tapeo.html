@@ -129,7 +129,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 [data-compra="no"] .solo-con-compra{display:none}
 
 /* ---------- 2. CÓMO ES LA NOCHE ---------- */
-.noche{padding-block:var(--cambio) var(--dentro);background:var(--tercero)}
+.noche{padding-block:var(--cambio) var(--dentro);--fondo:var(--tercero)}
 /* Los dos títulos de Leo van uno atrás del otro y al mismo tamaño, en el
    mismo renglón corrido. Siguen siendo dos h2: el párrafo cuelga del segundo,
    que es el que cuenta la noche, y así no repite el «cómo» del primero
@@ -147,13 +147,21 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
   .recorrido li{grid-template-columns:9rem minmax(0,1fr);align-items:baseline;gap:1.25rem}
 }
 
+/* ---------- EL PASO DE UN FONDO AL OTRO ----------
+   Las franjas de color no cortan en seco: arriba y abajo se funden con el
+   casi negro de la página a lo largo de --fundido. Así el cambio se siente
+   como luz que cambia en el estudio y no como bloques pegados. */
+.noche,.mesa,.grupo,.dicen,.tira-sec,.dudas{
+  --fundido:clamp(3rem,9vw,6rem);
+  background:linear-gradient(to bottom,transparent 0,var(--fondo) var(--fundido),var(--fondo) calc(100% - var(--fundido)),transparent 100%)}
+
 /* ---------- 3. LA MESA ----------
    Lo que se cocina, lo que entra en el precio y la duda de si hace falta
    saber cocinar, todo sobre la misma banda marrón. Antes era crema y a Leo no
    le convenció. Son tres fondos que se turnan: casi negro, marrón tostado
    (la mesa, las reseñas y las preguntas) y un gris grafito (la noche, con
    quién vas a cocinar y la tira de fotos). Nunca quedan dos iguales juntos. */
-.mesa{background:var(--tostado);padding-bottom:calc(var(--cruce) + var(--dentro))}
+.mesa{--fondo:var(--tostado);padding-bottom:calc(var(--cruce) + var(--dentro))}
 .mesa p{color:var(--cal-med)}
 .mesa-foto{aspect-ratio:5/3;min-height:0}
 /* Sin máscara: sobre el crema la mesa blanca de la foto se fundía con el
@@ -194,7 +202,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 .leo p+p{margin-top:.85rem}
 
 /* ---------- 5. CON QUIÉN ---------- */
-.grupo{padding-block:var(--cambio);background:var(--tercero)}
+.grupo{padding-block:var(--cambio);--fondo:var(--tercero)}
 .grupo p{color:var(--cal-med);margin-top:.85rem}
 .grupo h2+p{margin-top:1.1rem}
 .grupo .foto{margin-top:var(--dentro);aspect-ratio:16/9;min-height:0}
@@ -208,7 +216,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 
 /* ---------- 7. RESEÑAS ---------- */
 /* Una voz grande y tres chicas. La grande es la primera del bloque. */
-.dicen{padding-block:var(--cambio);background:var(--tostado)}
+.dicen{padding-block:var(--cambio);--fondo:var(--tostado)}
 .dicen .google{margin-top:.3rem}
 .dicen .prueba{display:block;margin-top:var(--dentro)}
 .dicen .voz{border:0;padding:0}
@@ -221,14 +229,14 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 /* ---------- 8. LA TIRA ----------
    Cuatro fotos de un tapeo, todas a la vista: en el teléfono de a dos, en
    la computadora en una fila que termina en el margen, sin cortarse. */
-.tira-sec{padding-block:var(--cambio);background:var(--tercero)}
+.tira-sec{padding-block:var(--cambio);--fondo:var(--tercero)}
 .tira-sec h2{margin-bottom:var(--pegado)}
 .tira{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
 .tira figure{aspect-ratio:1;min-height:0}
 .tira img{width:100%;height:100%;object-fit:cover}
 
 /* ---------- 9. LAS PREGUNTAS ---------- */
-.dudas{padding-block:var(--cambio);background:var(--tostado)}
+.dudas{padding-block:var(--cambio);--fondo:var(--tostado)}
 .dudas .faq{max-width:none;margin:1rem 0 0}
 .faq-icon{font-family:var(--texto);color:var(--cal-baja)}
 
