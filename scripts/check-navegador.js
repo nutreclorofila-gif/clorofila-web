@@ -77,8 +77,13 @@ async function abrirChrome() {
     '--disable-features=HttpsUpgrades,HttpsFirstBalancedModeAutoEnable',
     // El píxel de Meta no manda nada si el navegador se declara automatizado.
     '--disable-blink-features=AutomationControlled',
-    // clorofila.uy se resuelve al servidor local; el resto de internet, normal.
-    `--host-resolver-rules=MAP clorofila.uy:80 127.0.0.1:${PUERTO_SITIO}`,
+    // clorofila.uy se resuelve al servidor local, y fuera de los cuatro
+    // dominios de scripts nada resuelve. Es la primera capa: Fetch no ve los
+    // pedidos de un iframe de otro dominio ni los de un service worker, y
+    // gtag a veces manda desde un iframe de googletagmanager.com. Así, un
+    // envío a google-analytics.com, google.com, doubleclick.net o
+    // facebook.com no sale, venga de donde venga.
+    `--host-resolver-rules=MAP clorofila.uy:80 127.0.0.1:${PUERTO_SITIO}, MAP * ~NOTFOUND, EXCLUDE www.googletagmanager.com, EXCLUDE connect.facebook.net, EXCLUDE fonts.googleapis.com, EXCLUDE fonts.gstatic.com`,
     `--remote-debugging-port=${puerto}`, `--user-data-dir=${perfil}`, 'about:blank',
   ], { stdio: 'ignore' });
   // El primer arranque de Chrome en una máquina puede tardar más de 15 s.
@@ -158,7 +163,9 @@ const eventosMeta = (envios) => envios.filter((e) => e.url.includes('facebook.co
   return m && m[1];
 }).filter(Boolean);
 
-async function hasta(condicion, ms = 12000) {
+// 25 s: con gtag.js y fbevents.js bajando de internet, una vez de cuatro
+// la tanda tardó más de 12 s y la prueba fallaba sin que nada anduviera mal.
+async function hasta(condicion, ms = 25000) {
   for (let t = 0; t < ms; t += 250) {
     if (condicion()) return true;
     await espera(250);
@@ -208,7 +215,7 @@ async function escenario(titulo, ruta, pruebas) {
     await escenario('2) Reservó el tapeo: /gracias?p=tapeo', '/gracias?p=tapeo', async (c) => {
       await hasta(() => eventosGA(c.envios).some((p) => p.get('en') === 'reserva_recibida') && eventosMeta(c.envios).includes('Schedule'));
       const ga = eventosGA(c.envios).map((p) => p.get('en'));
-      check('Analytics recibe reserva_recibida', ga.includes('reserva_recibida'), ga);
+      check('Analytics recibe reserva_recibida', ga.includes('reserva_recibida'), [ga, c.salieron.filter((u) => !u.startsWith('http://clorofila.uy'))]);
       check('Meta recibe Schedule', eventosMeta(c.envios).includes('Schedule'), eventosMeta(c.envios));
       const capa = await c.evaluar(`JSON.stringify({sinVista: document.body.hasAttribute('data-sin-vista'), capa: (window.dataLayer || []).map((a) => [a[0], a[1]])})`);
       check('/gracias no manda vista de producto', !ga.includes('view_producto'), [ga, capa]);
