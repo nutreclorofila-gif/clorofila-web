@@ -155,8 +155,29 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
    borde y la de abajo arranca desde ese color: si las dos pasaran por el
    casi negro, en el medio quedaría una banda más oscura que ninguna. */
 .noche,.mesa,.grupo,.dicen,.tira-sec,.dudas{
-  --fundido:clamp(3rem,9vw,6rem);
-  background:linear-gradient(to bottom,var(--arriba,transparent) 0,var(--fondo) var(--fundido),var(--fondo) calc(100% - var(--fundido)),var(--abajo,transparent) 100%)}
+  --fundido:clamp(4rem,12vw,7rem);
+  background:linear-gradient(to bottom,var(--arriba,transparent) 0,var(--fondo) var(--fundido),var(--fondo) calc(100% - var(--fundido)),var(--abajo,transparent) 100%);
+  /* El color entra despacio, acelera en el medio y vuelve a frenar: con un
+     cambio en línea recta el ojo marca un escalón donde empieza y donde termina. */
+  background:linear-gradient(to bottom,
+    var(--arriba,transparent) calc(var(--fundido)*0),
+    color-mix(in oklab,var(--fondo) 4.3%,var(--arriba,transparent)) calc(var(--fundido)*0.125),
+    color-mix(in oklab,var(--fondo) 15.6%,var(--arriba,transparent)) calc(var(--fundido)*0.25),
+    color-mix(in oklab,var(--fondo) 31.6%,var(--arriba,transparent)) calc(var(--fundido)*0.375),
+    color-mix(in oklab,var(--fondo) 50.0%,var(--arriba,transparent)) calc(var(--fundido)*0.5),
+    color-mix(in oklab,var(--fondo) 68.4%,var(--arriba,transparent)) calc(var(--fundido)*0.625),
+    color-mix(in oklab,var(--fondo) 84.4%,var(--arriba,transparent)) calc(var(--fundido)*0.75),
+    color-mix(in oklab,var(--fondo) 95.7%,var(--arriba,transparent)) calc(var(--fundido)*0.875),
+    var(--fondo) calc(var(--fundido)*1),
+    var(--fondo) calc(100% - var(--fundido)*1),
+    color-mix(in oklab,var(--fondo) 95.7%,var(--abajo,transparent)) calc(100% - var(--fundido)*0.875),
+    color-mix(in oklab,var(--fondo) 84.4%,var(--abajo,transparent)) calc(100% - var(--fundido)*0.75),
+    color-mix(in oklab,var(--fondo) 68.4%,var(--abajo,transparent)) calc(100% - var(--fundido)*0.625),
+    color-mix(in oklab,var(--fondo) 50.0%,var(--abajo,transparent)) calc(100% - var(--fundido)*0.5),
+    color-mix(in oklab,var(--fondo) 31.6%,var(--abajo,transparent)) calc(100% - var(--fundido)*0.375),
+    color-mix(in oklab,var(--fondo) 15.6%,var(--abajo,transparent)) calc(100% - var(--fundido)*0.25),
+    color-mix(in oklab,var(--fondo) 4.3%,var(--abajo,transparent)) calc(100% - var(--fundido)*0.125),
+    var(--abajo,transparent) calc(100% - var(--fundido)*0))}
 .noche,.dicen,.tira-sec{--abajo:var(--fondo)}
 .mesa{--arriba:var(--tercero)}
 .tira-sec{--arriba:var(--tostado)}
