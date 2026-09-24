@@ -5,8 +5,12 @@
  * check-consentimiento.js prueba el código con un navegador simulado. Esto
  * prueba lo que de verdad le llega a Google y a Meta: sirve el sitio local
  * como si fuera clorofila.uy (consent.js solo mide ahí), carga gtag.js y el
- * píxel reales, y ataja cada envío (/g/collect de Analytics, /tr de Meta)
- * para leerlo y cortarlo antes de que salga. Nada llega a los informes.
+ * píxel reales, y ataja todo lo demás para leerlo y cortarlo antes de que
+ * salga. Nada llega a los informes ni a las listas de remarketing.
+ *
+ * Es una lista blanca, no negra: solo sale lo de PERMITIDO. Cortar nada más
+ * /g/collect y /tr dejaba pasar, por ejemplo, google.com.uy/ads/ga-audiences,
+ * que carga al visitante de prueba en las audiencias de Ads, y corre en CI.
  *
  * Es el chequeo que habría frenado el error del 7/9: el primer page_view de
  * quien aceptaba salía sin cookies y sin la dirección de llegada.
@@ -41,6 +45,17 @@ if (typeof WebSocket === 'undefined') {
 }
 
 const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Lo único que puede salir de la máquina: el sitio local y los scripts que
+// hacen falta para que gtag y el píxel corran. Envíos de datos, ninguno.
+const PERMITIDO = [
+  /^http:\/\/clorofila\.uy(\/|$)/,
+  /^https:\/\/www\.googletagmanager\.com\/gtag\/js\?/,
+  /^https:\/\/connect\.facebook\.net\/[a-z]{2}_[A-Z]{2}\/fbevents\.js/,
+  /^https:\/\/connect\.facebook\.net\/signals\/config\//,
+  /^https:\/\/fonts\.(googleapis|gstatic)\.com\//,
+];
+const permitido = (url) => PERMITIDO.some((r) => r.test(url));
 const PUERTO_SITIO = 8700 + Math.floor(Math.random() * 200);
 
 let fallas = 0;
@@ -82,6 +97,7 @@ async function abrirChrome() {
   let id = 0;
   const pendientes = new Map();
   const envios = [];
+  const salieron = [];
   const cmd = (method, params = {}) => new Promise((r) => {
     const n = ++id;
     pendientes.set(n, r);
@@ -92,8 +108,13 @@ async function abrirChrome() {
     if (d.id && pendientes.has(d.id)) { pendientes.get(d.id)(d); pendientes.delete(d.id); return; }
     if (d.method === 'Fetch.requestPaused') {
       const q = d.params.request;
+      if (permitido(q.url)) {
+        salieron.push(q.url);
+        cmd('Fetch.continueRequest', { requestId: d.params.requestId });
+        return;
+      }
+      // Todo lo demás se lee y se corta: nunca sale de la máquina.
       envios.push({ url: q.url, cuerpo: q.postData || '' });
-      // Se lee y se corta: el envío nunca sale de la máquina.
       cmd('Fetch.failRequest', { requestId: d.params.requestId, errorReason: 'BlockedByClient' });
     }
   });
@@ -103,9 +124,10 @@ async function abrirChrome() {
   // Tampoco si el navegador dice «HeadlessChrome».
   const version = await cmd('Browser.getVersion');
   await cmd('Network.setUserAgentOverride', { userAgent: version.result.userAgent.replace('HeadlessChrome', 'Chrome') });
-  await cmd('Fetch.enable', { patterns: [{ urlPattern: '*/g/collect*' }, { urlPattern: '*facebook.com/tr*' }] });
+  await cmd('Fetch.enable', { patterns: [{ urlPattern: '*' }] });
   return {
     envios,
+    salieron,
     cmd,
     evaluar: async (expr) => (await cmd('Runtime.evaluate', { expression: expr, awaitPromise: true, returnByValue: true })).result.result.value,
     cerrar: () => { try { ws.close(); } catch (e) { /* ya estaba cerrado */ } proceso.kill('SIGKILL'); },
@@ -150,10 +172,12 @@ async function escenario(titulo, ruta, pruebas) {
   try {
     await c.cmd('Page.navigate', { url: `http://clorofila.uy${ruta}` });
     await espera(3500); // tiempo para que un error mande algo sin permiso
-    check('antes de decidir no sale nada', c.envios.length === 0, c.envios.map((e) => e.url.slice(0, 80)));
+    check('antes de decidir no sale nada', c.envios.length === 0 && !c.salieron.some((u) => /googletagmanager|facebook/.test(u)), c.envios.map((e) => e.url.slice(0, 80)));
     const hayBoton = await c.evaluar(`(() => { const b = document.getElementById('cookie-accept'); if (!b) return false; b.click(); return true; })()`);
     check('el aviso de cookies tiene el botón Aceptar', hayBoton, hayBoton);
     await pruebas(c);
+    const ajenos = c.salieron.filter((u) => !permitido(u));
+    check('solo salió lo de la lista blanca (' + c.envios.length + ' envíos cortados)', ajenos.length === 0, ajenos);
   } finally {
     c.cerrar();
   }

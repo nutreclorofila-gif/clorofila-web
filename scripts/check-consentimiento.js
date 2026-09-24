@@ -108,14 +108,14 @@ const htmlGracias = fs.readFileSync(path.join(raiz, 'gracias.html'), 'utf8');
 const enLinea = [...htmlGracias.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => m[1]);
 const codigoGracias = enLinea.find((c) => c.includes('reserva_recibida'));
 
-function pagina({ ruta, busqueda = '', producto, sinVista = false, conGracias = false, sesion = {} }) {
+function pagina({ ruta, busqueda = '', producto, sinVista = false, conGracias = false, sesion = {}, referrer = '' }) {
   const oyentes = {};
   const almacen = {};
   const atributos = { 'data-producto': producto };
   if (sinVista) atributos['data-sin-vista'] = '';
   const nodo = () => ({ textContent: '', classList: { add() {} }, querySelector: () => null, getAttribute: () => null, remove() {} });
   const doc = {
-    referrer: '',
+    referrer,
     body: {
       getAttribute: (k) => (k in atributos ? atributos[k] : null),
       setAttribute: (k, v) => { atributos[k] = v; },
@@ -140,6 +140,7 @@ function pagina({ ruta, busqueda = '', producto, sinVista = false, conGracias = 
     sessionStorage: guardado(sesion),
     document: doc,
     URLSearchParams,
+    URL,
     console,
     addEventListener: (t, f) => { (oyentes[t] = oyentes[t] || []).push(f); },
     dispatchEvent: (e) => { (oyentes[e.type] || []).forEach((f) => f(e)); },
@@ -166,6 +167,11 @@ p.win.loadAnalytics();
 check('Meta recibe la vista de producto (ViewContent)', p.meta.includes('track:ViewContent'), p.meta);
 check('Analytics recibe la vista de producto', p.ga.includes('view_producto'), p.ga);
 check('el gclid queda anotado como google_ads', /google_ads/.test(p.almacen.clorofila_origen || ''), p.almacen);
+
+console.log('\n6b) Acepta recién en la segunda página del sitio');
+p = pagina({ ruta: '/tapeo', producto: 'tapeo', referrer: 'https://clorofila.uy/curso' });
+p.win.loadAnalytics();
+check('no guarda un origen vacío que tape al próximo', !('clorofila_origen' in p.almacen), p.almacen);
 
 console.log('\n7) /gracias?p=tapeo, acepta ahí');
 p = pagina({ ruta: '/gracias', busqueda: '?p=tapeo', producto: 'gracias', sinVista: true, conGracias: true });

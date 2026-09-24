@@ -78,6 +78,12 @@
       }
 
       var origen = { utm_source: '', utm_medium: '', utm_campaign: '', utm_content: '', referrer: document.referrer || '' };
+      /* Viene de otra página del sitio: el origen de verdad era el de la
+         página de llegada, que no se guardó porque todavía no había aceptado.
+         Guardar esto anotaría 30 días un origen vacío que tapa al próximo. */
+      try {
+        if (origen.referrer && new URL(origen.referrer).hostname === location.hostname) return origen;
+      } catch (e) { /* referrer raro: se sigue como siempre */ }
       // Sin UTM, al menos distinguimos si vino de Instagram, de Google o directo.
       // Google, solo si la página de origen es google.algo: /google\./ también
       // agarraba cualquier dirección que tuviera «google.» en el medio.
