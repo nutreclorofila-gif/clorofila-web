@@ -45,34 +45,37 @@
 
   /* Modo de consentimiento (Consent Mode v2).
 
-     Antes, Analytics solo arrancaba si la persona apretaba "Aceptar". Como
-     dos de cada tres se van sin tocar el cartel, esas visitas no existían:
-     en la semana del 31/8/2026 Ads cobró 41 clics y Analytics vio 13. Sin
-     esas visitas, el sitio no sabe qué anuncio ni qué búsqueda trae gente.
+     Se declara de entrada que NO hay permiso para nada, y Analytics se carga
+     recién cuando la persona aprieta "Aceptar" (o si ya había aceptado en
+     otra visita). Esto tiene que quedar declarado ANTES de cargar gtag: lo
+     que se manda antes de esta línea viaja con los permisos de fábrica, que
+     son todos concedidos.
 
-     Ahora se declara de entrada que NO hay permiso para nada. Con los
-     permisos en "denied", Google no escribe cookies ni guarda nada en el
-     dispositivo: manda un aviso anónimo, sin identificador, que sirve para
-     contar la visita y de dónde vino. Al aceptar, recién ahí pasa a
-     "granted" y se comporta como siempre.
-
-     Esto tiene que quedar declarado ANTES de cargar gtag: lo que se manda
-     antes de esta línea viaja con los permisos de fábrica, que son todos
-     concedidos. */
+     Del 7/9 al 23/9/2026 Analytics se cargaba también mientras la persona no
+     decidía, en modo anónimo. Salió mal por dos lados:
+     - Los avisos anónimos no aparecen en ningún informe: la propiedad no
+       tiene el volumen que Google pide para modelarlos.
+     - Quien aceptaba en la primera página perdía su visita de llegada. Al
+       pasar a "granted", gtag no vuelve a mandar el page_view ni marca el
+       inicio de sesión ni la primera visita, así que la fuente de esa
+       persona nunca llegaba. first_visit bajó de 74 a 28 en dos semanas, y
+       de los clics de Ads se veía entre el 4 y el 6%.
+     Cargando gtag después del "granted", el primer page_view sale con
+     cookies y con la dirección de llegada intacta (utm y gclid). */
   gtag('consent', 'default', {
     ad_storage: 'denied',
     ad_user_data: 'denied',
     ad_personalization: 'denied',
     analytics_storage: 'denied'
   });
-  // Sin cookies, la única forma de saber de qué anuncio vino alguien es que
-  // el gclid viaje en la dirección; y con los permisos denegados conviene
-  // que Google recorte los datos de publicidad que igual recibe.
+  // Solo cuentan si gtag llega a correr con los permisos denegados: que el
+  // gclid viaje en la dirección y que Google recorte los datos de publicidad.
+  // Con Analytics cargando recién al aceptar no debería pasar, pero no cuestan nada.
   gtag('set', 'ads_data_redaction', true);
   gtag('set', 'url_passthrough', true);
 
-  /* Carga Analytics con los permisos que haya en ese momento. Se llama
-     siempre (salvo que la persona haya dicho que no), no solo al aceptar. */
+  /* Carga Analytics. La llama solo loadAnalytics(), después de levantar los
+     permisos: así el primer page_view ya sale con cookies. */
   function cargarGA() {
     if (window.__analyticsLoaded) return;
     if (DOMINIOS.indexOf(location.hostname) === -1) return;
@@ -100,8 +103,8 @@
   window.loadAnalytics = function () {
     if (DOMINIOS.indexOf(location.hostname) === -1) return;
 
-    // Aceptó: se levantan los cuatro permisos. Si Analytics ya venía
-    // midiendo en modo anónimo, esto le avisa que ahora sí puede recordar.
+    // Aceptó: se levantan los cuatro permisos, y recién después se carga
+    // Analytics.
     gtag('consent', 'update', {
       ad_storage: 'granted',
       ad_user_data: 'granted',
@@ -128,12 +131,8 @@
     fbq('track', 'PageView');
   };
 
-  var decision = leer();
-  if (decision === 'accepted') {
-    window.loadAnalytics();
-  } else if (decision !== 'declined') {
-    // Todavía no decidió: se cuenta la visita sin cookies ni identificador.
-    // A quien apretó "No, gracias" no se lo mide de ninguna forma.
-    cargarGA();
-  }
+  // Solo se mide a quien aceptó. Mientras la persona no decide no se carga
+  // nada, y a quien apretó "Rechazar" tampoco: el banner de pagina.js llama a
+  // loadAnalytics() cuando aprieta "Aceptar".
+  if (leer() === 'accepted') window.loadAnalytics();
 })();

@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 // Qué se mide, y cuándo, según lo que la persona haya decidido en el cartel
 // de cookies. Es la parte del sitio donde una línea de más manda datos de un
-// visitante sin permiso, y donde una de menos borra dos tercios de las
-// visitas del panel: hasta el 7/9/2026 Analytics solo arrancaba al aceptar,
-// y en una semana Ads cobró 41 clics donde Analytics vio 13.
+// visitante sin permiso, y donde un orden equivocado borra visitas del panel.
+// Del 7/9 al 23/9/2026 Analytics se cargaba en modo anónimo antes de que la
+// persona decidiera: esos avisos no aparecían en ningún informe, y quien
+// aceptaba perdía su visita de llegada (first_visit bajó de 74 a 28 en dos
+// semanas). La regla es: nada hasta aceptar, y el permiso antes que gtag.
 //
 // Corre consent.js con un navegador simulado, porque en local el propio
 // script se apaga a propósito (solo mide en clorofila.uy) y ahí no se puede
@@ -50,7 +52,9 @@ function correr(guardado, hostname = 'clorofila.uy') {
 }
 
 let fallas = 0;
+let total = 0;
 const check = (nombre, ok, detalle) => {
+  total++;
   console.log((ok ? '  ok   ' : '  FALLA') + '  ' + nombre + (ok ? '' : '  → ' + JSON.stringify(detalle)));
   if (!ok) fallas++;
 };
@@ -59,8 +63,8 @@ console.log('\n1) Nadie tocó el cartel (el 68% de las visitas)');
 let r = correr(null);
 check('declara los cuatro permisos denegados', JSON.stringify(r.consent[0]) === JSON.stringify(['default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' }]), r.consent);
 check('conserva el gclid y recorta datos de anuncios', r.sets.join(',') === 'ads_data_redaction=true,url_passthrough=true', r.sets);
-check('carga Analytics (sin cookies) y NO carga Meta', r.scripts.join(',') === 'GA', r.scripts);
-check('avisa a track.js que puede medir', r.eventos.length === 1, r.eventos);
+check('no carga nada hasta que decida', r.scripts.length === 0, r.scripts);
+check('no avisa a track.js', r.eventos.length === 0, r.eventos);
 
 console.log('\n2) Apretó "Rechazar"');
 r = correr('declined');
@@ -74,15 +78,19 @@ check('levanta los cuatro permisos', JSON.stringify(r.consent[1]) === JSON.strin
 check('el "denied" va antes que el "granted"', r.consent[0][0] === 'default' && r.consent[1][0] === 'update', r.consent.map((c) => c[0]));
 check('carga Analytics y Meta', r.scripts.join(',') === 'GA,META', r.scripts);
 
-console.log('\n4) Acepta durante la visita (ya venía midiendo sin cookies)');
+console.log('\n4) Acepta durante la visita (hasta ahí no se medía nada)');
 r = correr(null);
 const antes = r.scripts.slice();
 r.aceptar();
-check('antes solo estaba GA', antes.join(',') === 'GA', antes);
-check('ahora suma Meta sin recargar GA', r.scripts.join(',') === 'GA,META', r.scripts);
-check('levanta los permisos', r.consent.some((c) => c[0] === 'update'), r.consent.map((c) => c[0]));
+check('antes no había nada cargado', antes.length === 0, antes);
+check('ahora carga Analytics y Meta', r.scripts.join(',') === 'GA,META', r.scripts);
+// Si el "granted" llega después del config, el primer page_view sale sin
+// cookies y la visita de llegada se pierde: es lo que pasó del 7/9 al 23/9.
+const capa = r.win.dataLayer.map((a) => a[0] + (a[0] === 'consent' ? ':' + a[1] : ''));
+check('el permiso llega antes que la primera visita medida', capa.indexOf('consent:update') > -1 && capa.indexOf('consent:update') < capa.indexOf('config'), capa);
+check('avisa a track.js una vez', r.eventos.length === 1, r.eventos);
 r.aceptar();
-check('apretar dos veces no duplica el pixel', r.scripts.filter((s) => s === 'META').length === 1, r.scripts);
+check('apretar dos veces no duplica nada', r.scripts.join(',') === 'GA,META', r.scripts);
 
 console.log('\n5) En local y en las previews no se mide');
 r = correr(null, 'localhost');
@@ -91,6 +99,6 @@ check('no carga nada fuera de produccion', r.scripts.length === 0, r.scripts);
 console.log(
   fallas
     ? '\n✗ consentimiento: ' + fallas + ' comprobación(es) fallan. Revisá consent.js.\n'
-    : 'consentimiento: 14 comprobaciones, se mide lo que corresponde en cada caso.'
+    : 'consentimiento: ' + total + ' comprobaciones, se mide lo que corresponde en cada caso.'
 );
 process.exit(fallas ? 1 : 0);
