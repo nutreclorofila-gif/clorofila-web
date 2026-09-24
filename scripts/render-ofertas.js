@@ -1098,6 +1098,39 @@ for (const archivo of archivos) {
           const insts = [].concat(nodo.hasCourseInstance || []);
           insts.forEach(function (i) { if (i.offers) i.offers.category = "Paid"; });
           if (insts[0] && insts[0].offers) nodo.offers = Object.assign({}, insts[0].offers, { category: "Paid" });
+
+          /* Los talleres también son Course —el de /pastas y los cinco de
+             /talleres— y no tenían offers: Google no les podía mostrar el
+             precio. La oferta sale del mismo taller en ofertas.json, igual
+             que la del evento. Sin fecha en el JSON no lleva fecha; sin
+             precio cargado no lleva oferta, porque una Offer sin price es un
+             error para Google y el precio no se inventa. */
+          const claveTaller = archivo === 'pastas.html' ? 'pastas-sin-gluten'
+            : archivo === 'talleres.html'
+              ? Object.keys(datos.talleres).find(function (k) {
+                  return datos.talleres[k] && datos.talleres[k].nombre === nodo.name;
+                })
+              : null;
+          const taller = claveTaller && datos.talleres[claveTaller];
+          if (taller) {
+            if (taller.precio_num) {
+              nodo.offers = {
+                '@type': 'Offer',
+                category: 'Paid',
+                url: claveTaller === 'pastas-sin-gluten'
+                  ? 'https://clorofila.uy/pastas' : 'https://clorofila.uy/talleres',
+                priceCurrency: 'UYU',
+                price: String(taller.precio_num)
+              };
+              if (taller.estado === 'agotado') nodo.offers.availability = 'https://schema.org/SoldOut';
+              else if (taller.estado === 'abierto' || taller.estado === 'ultimos') nodo.offers.availability = 'https://schema.org/InStock';
+              if (taller.fecha_iso && taller.estado !== 'sin-fecha') {
+                nodo.offers.validThrough = taller.fecha_iso + 'T' + (taller.hora_inicio || '00:00') + ':00-03:00';
+              }
+            } else {
+              delete nodo.offers;
+            }
+          }
           tocado = true;
         }
 

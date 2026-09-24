@@ -72,9 +72,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://clorofila.uy/og/og-tapeo.jpg</image:loc>
+      <image:loc>https://clorofila.uy/og/og-experiencias.jpg</image:loc>
       <image:title>Experiencias gastronómicas — Clorofila Montevideo</image:title>
-      <image:caption>La mesa larga de Clorofila durante la Cena y Taller de Tapeo</image:caption>
+      <image:caption>Participantes cocinando juntos en la mesada de Clorofila</image:caption>
     </image:image>
   </url>
   <url>
@@ -139,7 +139,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:loc>https://clorofila.uy/og/og-pan-sin-gluten-no-es-saludable.jpg</image:loc>
       <image:title>Pan sin gluten no es automáticamente saludable</image:title>
     </image:image>
   </url>
@@ -149,7 +149,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:loc>https://clorofila.uy/og/og-masa-madre-digestibilidad.jpg</image:loc>
       <image:title>Masa madre y digestibilidad: qué pasa realmente</image:title>
     </image:image>
   </url>
@@ -159,7 +159,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:loc>https://clorofila.uy/og/og-guia-practica-del-tofu.jpg</image:loc>
       <image:title>Remojo de legumbres: cuánto importa y cuánto no</image:title>
     </image:image>
   </url>
@@ -169,7 +169,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:loc>https://clorofila.uy/og/og-remojo-legumbres.jpg</image:loc>
       <image:title>Remojo de legumbres: cuánto importa y cuánto no</image:title>
     </image:image>
   </url>
@@ -179,7 +179,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:loc>https://clorofila.uy/og/og-endulzantes-guia-sin-sesgo.jpg</image:loc>
       <image:title>Endulzantes: la guía sin sesgo</image:title>
     </image:image>
   </url>
@@ -189,7 +189,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:loc>https://clorofila.uy/og/og-como-funciona-la-fermentacion.jpg</image:loc>
       <image:title>Cómo funciona la fermentación: el mecanismo completo</image:title>
     </image:image>
   </url>
@@ -199,7 +199,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:loc>https://clorofila.uy/og/og-proteina-vegetal-mitos-realidades.jpg</image:loc>
       <image:title>Proteína vegetal: mitos y realidades</image:title>
     </image:image>
   </url>
@@ -209,7 +209,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://clorofila.uy/og/og-articulos.jpg</image:loc>
+      <image:loc>https://clorofila.uy/og/og-vitamina-b12-dieta-vegana.jpg</image:loc>
       <image:title>¿Hay alguna fuente vegetal de vitamina B12?</image:title>
     </image:image>
   </url>
