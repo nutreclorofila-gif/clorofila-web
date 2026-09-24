@@ -150,10 +150,17 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 /* ---------- EL PASO DE UN FONDO AL OTRO ----------
    Las franjas de color no cortan en seco: arriba y abajo se funden con el
    casi negro de la página a lo largo de --fundido. Así el cambio se siente
-   como luz que cambia en el estudio y no como bloques pegados. */
+   como luz que cambia en el estudio y no como bloques pegados.
+   Cuando dos franjas de color van pegadas, la de arriba llega entera al
+   borde y la de abajo arranca desde ese color: si las dos pasaran por el
+   casi negro, en el medio quedaría una banda más oscura que ninguna. */
 .noche,.mesa,.grupo,.dicen,.tira-sec,.dudas{
   --fundido:clamp(3rem,9vw,6rem);
-  background:linear-gradient(to bottom,transparent 0,var(--fondo) var(--fundido),var(--fondo) calc(100% - var(--fundido)),transparent 100%)}
+  background:linear-gradient(to bottom,var(--arriba,transparent) 0,var(--fondo) var(--fundido),var(--fondo) calc(100% - var(--fundido)),var(--abajo,transparent) 100%)}
+.noche,.dicen,.tira-sec{--abajo:var(--fondo)}
+.mesa{--arriba:var(--tercero)}
+.tira-sec{--arriba:var(--tostado)}
+.dudas{--arriba:var(--tercero)}
 
 /* ---------- 3. LA MESA ----------
    Lo que se cocina, lo que entra en el precio y la duda de si hace falta
