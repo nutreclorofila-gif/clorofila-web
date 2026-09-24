@@ -115,6 +115,8 @@ servidor.on('error', function (e) {
   process.exit(1);
 });
 
-servidor.listen(puerto, function () {
-  console.log('Clorofila en http://localhost:' + puerto);
+// Solo en esta máquina: sin el host, Node escucha en todas las interfaces y
+// cualquiera en la misma red wifi podía abrir la vista previa.
+servidor.listen(puerto, '127.0.0.1', function () {
+  console.log('Clorofila en http://127.0.0.1:' + puerto);
 });
