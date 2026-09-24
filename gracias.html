@@ -72,9 +72,9 @@
 .dudas{margin-top:1.5rem;font-size:var(--t-chico);color:var(--cal-baja)}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
-<script src="consent.js?v=20260923" defer></script>
+<script src="consent.js?v=20260924" defer></script>
 </head>
-<body data-producto="gracias">
+<body data-producto="gracias" data-sin-vista>
 <a href="#principal" class="saltar">Ir al contenido principal</a>
 <div class="cookie-banner" id="cookie-banner" role="status" aria-label="Aviso de cookies">
   <p>¿Aceptás cookies para saber qué se lee? <a href="/privacidad">Más info</a></p>
@@ -194,7 +194,7 @@
 </footer>
 
 
-<script src="track.js?v=20260910b" defer></script>
+<script src="track.js?v=20260924" defer></script>
 <script src="pagina.js?v=33" defer></script>
 <script>
 // Muestra el bloque de la propuesta reservada: /gracias?p=tapeo o ?p=curso.
@@ -220,13 +220,34 @@
   if (cal && !cal.getAttribute('href')) cal.remove();
   /* Conversión: acá termina el camino que empezó en Instagram.
      Si la persona todavía no aceptó las cookies, GA4 y el pixel no existen y la
-     conversión se perdía. Se espera el aviso de consent.js, igual que track.js. */
-  function medirReserva() {
-    if (typeof gtag === 'function') gtag('event', 'reserva_recibida', { producto: elegido });
-    if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: elegido });
+     conversión se perdía. Se espera el aviso de consent.js, igual que track.js.
+
+     Solo el curso y el tapeo son una reserva. Sin ?p=, o con p=programa, la
+     persona pidió el temario: antes eso también salía como reserva_recibida,
+     que en Ads es la conversión principal de «Reserva de cita». Ahora sale
+     como generate_lead con method «temario» (en Ads, «Envío de formulario»).
+
+     Una sola vez por visita: al recargar la página, o al volver con el botón
+     de atrás, antes se contaba otra vez la misma persona. */
+  var clave = 'gracias_medido_' + elegido;
+  function yaMedido() {
+    try { return window.sessionStorage.getItem(clave) === '1'; } catch (e) { return false; }
   }
-  if (window.__analyticsLoaded) medirReserva();
-  else window.addEventListener('analytics:listo', medirReserva);
+  function medir() {
+    if (yaMedido()) return;
+    var reserva = elegido === 'curso' || elegido === 'tapeo';
+    if (typeof gtag === 'function') {
+      if (reserva) gtag('event', 'reserva_recibida', { producto: elegido });
+      else gtag('event', 'generate_lead', { producto: 'programa', method: 'temario' });
+    }
+    if (typeof fbq === 'function') {
+      if (reserva) fbq('track', 'Schedule', { content_name: elegido });
+      else fbq('track', 'CompleteRegistration', { content_name: 'programa' });
+    }
+    try { window.sessionStorage.setItem(clave, '1'); } catch (e) { /* sin almacenamiento, se mide igual */ }
+  }
+  if (window.__analyticsAvisado) medir();
+  else window.addEventListener('analytics:listo', medir);
 })();
 </script>
 </body>

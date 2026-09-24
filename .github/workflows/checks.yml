@@ -15,3 +15,5 @@ jobs:
           node-version: 22
       - run: npm ci
       - run: npm test
+      # Chrome real contra Google y Meta, con los envíos cortados antes de salir.
+      - run: npm run check:navegador

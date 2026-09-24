@@ -20,6 +20,7 @@
     "check:css": "node scripts/check-css.js",
     "check:antiguedad": "node scripts/check-antiguedad.js",
     "check:consentimiento": "node scripts/check-consentimiento.js",
+    "check:navegador": "node scripts/check-navegador.js",
     "check:anclas": "node scripts/check-anclas.js",
     "fechas": "node scripts/fechas-sitemap.js",
     "check:fechas": "node scripts/fechas-sitemap.js --check",

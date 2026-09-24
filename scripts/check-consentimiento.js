@@ -96,6 +96,94 @@ console.log('\n5) En local y en las previews no se mide');
 r = correr(null, 'localhost');
 check('no carga nada fuera de produccion', r.scripts.length === 0, r.scripts);
 
+// ---------------------------------------------------------------------------
+// consent.js, track.js y el script de /gracias juntos, en el orden en que los
+// corre el navegador: el script de /gracias va en línea (corre al leer la
+// página) y los otros dos son defer. Del 23/9 hacia atrás el aviso de
+// "analytics listo" salía antes de crear fbq: track.js vaciaba su cola sin
+// píxel y se perdían el ViewContent de la llegada y el Schedule de /gracias.
+const raiz = path.join(__dirname, '..');
+const codigoTrack = fs.readFileSync(path.join(raiz, 'track.js'), 'utf8');
+const htmlGracias = fs.readFileSync(path.join(raiz, 'gracias.html'), 'utf8');
+const enLinea = [...htmlGracias.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => m[1]);
+const codigoGracias = enLinea.find((c) => c.includes('reserva_recibida'));
+
+function pagina({ ruta, busqueda = '', producto, sinVista = false, conGracias = false, sesion = {} }) {
+  const oyentes = {};
+  const almacen = {};
+  const atributos = { 'data-producto': producto };
+  if (sinVista) atributos['data-sin-vista'] = '';
+  const nodo = () => ({ textContent: '', classList: { add() {} }, querySelector: () => null, getAttribute: () => null, remove() {} });
+  const doc = {
+    referrer: '',
+    body: {
+      getAttribute: (k) => (k in atributos ? atributos[k] : null),
+      setAttribute: (k, v) => { atributos[k] = v; },
+      hasAttribute: (k) => k in atributos,
+    },
+    head: { appendChild() {} },
+    createElement: () => ({}),
+    getElementsByTagName: () => [{ parentNode: { insertBefore() {} } }],
+    createEvent: () => ({ initEvent() {} }),
+    querySelector: nodo,
+    querySelectorAll: () => [],
+    addEventListener() {},
+  };
+  const guardado = (obj) => ({
+    getItem: (k) => (k in obj ? obj[k] : null),
+    setItem: (k, v) => { obj[k] = String(v); },
+    removeItem: (k) => { delete obj[k]; },
+  });
+  const win = {
+    location: { hostname: 'clorofila.uy', search: busqueda, pathname: ruta },
+    localStorage: guardado(almacen),
+    sessionStorage: guardado(sesion),
+    document: doc,
+    URLSearchParams,
+    console,
+    addEventListener: (t, f) => { (oyentes[t] = oyentes[t] || []).push(f); },
+    dispatchEvent: (e) => { (oyentes[e.type] || []).forEach((f) => f(e)); },
+    Event: function (t) { this.type = t; },
+  };
+  win.window = win;
+  const ctx = vm.createContext(win);
+  if (conGracias) vm.runInContext(codigoGracias, ctx);
+  vm.runInContext(codigo, ctx);
+  vm.runInContext(codigoTrack, ctx);
+  return {
+    win,
+    almacen,
+    sesion,
+    get meta() { return win.fbq ? win.fbq.queue.map((a) => a[0] + ':' + a[1]) : []; },
+    get ga() { return (win.dataLayer || []).filter((a) => a[0] === 'event').map((a) => a[1] + (a[2] && a[2].method ? '/' + a[2].method : '')); },
+  };
+}
+
+console.log('\n6) Llega a /curso, acepta en esa misma página');
+let p = pagina({ ruta: '/curso', busqueda: '?gclid=PRUEBA', producto: 'curso' });
+check('antes de aceptar no guarda el origen', !('clorofila_origen' in p.almacen), p.almacen);
+p.win.loadAnalytics();
+check('Meta recibe la vista de producto (ViewContent)', p.meta.includes('track:ViewContent'), p.meta);
+check('Analytics recibe la vista de producto', p.ga.includes('view_producto'), p.ga);
+check('el gclid queda anotado como google_ads', /google_ads/.test(p.almacen.clorofila_origen || ''), p.almacen);
+
+console.log('\n7) /gracias?p=tapeo, acepta ahí');
+p = pagina({ ruta: '/gracias', busqueda: '?p=tapeo', producto: 'gracias', sinVista: true, conGracias: true });
+p.win.loadAnalytics();
+check('Meta recibe la reserva (Schedule)', p.meta.includes('track:Schedule'), p.meta);
+check('Analytics recibe reserva_recibida', p.ga.includes('reserva_recibida'), p.ga);
+check('/gracias no cuenta como vista de producto', !p.ga.includes('view_producto') && !p.meta.includes('track:ViewContent'), p.ga);
+const sesion = p.sesion;
+p = pagina({ ruta: '/gracias', busqueda: '?p=tapeo', producto: 'gracias', sinVista: true, conGracias: true, sesion });
+p.win.loadAnalytics();
+check('al recargar no se cuenta otra vez', !p.ga.includes('reserva_recibida') && !p.meta.includes('track:Schedule'), p.ga);
+
+console.log('\n8) /gracias sin ?p= (pidió el temario)');
+p = pagina({ ruta: '/gracias', producto: 'gracias', sinVista: true, conGracias: true });
+p.win.loadAnalytics();
+check('no cuenta como reserva', !p.ga.includes('reserva_recibida') && !p.meta.includes('track:Schedule'), p.ga);
+check('cuenta como pedido de temario', p.ga.includes('generate_lead/temario'), p.ga);
+
 console.log(
   fallas
     ? '\n✗ consentimiento: ' + fallas + ' comprobación(es) fallan. Revisá consent.js.\n'

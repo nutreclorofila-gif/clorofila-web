@@ -87,10 +87,18 @@
     document.head.appendChild(ga);
     gtag('js', new Date());
     gtag('config', GA_ID);
+  }
 
-    /* track.js guarda los eventos que ocurrieron antes de que Analytics
-       estuviera listo (la vista de producto, sobre todo) y los manda recién
-       acá. Sin este aviso se perdían: eran casi la mitad. */
+  /* track.js guarda los eventos que ocurrieron antes de que Analytics
+     estuviera listo (la vista de producto, sobre todo) y los manda recién
+     con este aviso. Sin él se perdían: eran casi la mitad.
+     Sale una sola vez y al final de loadAnalytics(), con gtag y fbq ya
+     creados. Antes salía dentro de cargarGA(), antes de fbq('init'): track.js
+     vaciaba la cola, no encontraba fbq y tiraba los eventos de Meta. Así se
+     perdían el ViewContent de la página de llegada y el Schedule de /gracias. */
+  function avisarListo() {
+    if (window.__analyticsAvisado) return;
+    window.__analyticsAvisado = true;
     try {
       window.dispatchEvent(new Event('analytics:listo'));
     } catch (e) {
@@ -115,7 +123,12 @@
 
     // El píxel de Meta no entiende de permisos parciales: o mide con cookies
     // o no mide. Por eso sigue cargando solo cuando la persona acepta.
-    if (window.__metaCargado) return;
+    if (!window.__metaCargado) cargarMeta();
+
+    avisarListo();
+  };
+
+  function cargarMeta() {
     window.__metaCargado = true;
 
     !function (f, b, e, v, n, t, s) {
@@ -129,7 +142,7 @@
     }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', META_ID);
     fbq('track', 'PageView');
-  };
+  }
 
   // Solo se mide a quien aceptó. Mientras la persona no decide no se carga
   // nada, y a quien apretó "Rechazar" tampoco: el banner de pagina.js llama a

@@ -19,16 +19,25 @@
      Va en localStorage, no en sessionStorage: sessionStorage se borra al
      cerrar la pestaña, así que la promesa de arriba no se cumplía y el
      segundo día la persona figuraba como "directo". Con la fecha guardada,
-     al mes vence y deja de arrastrar una campaña vieja. */
+     al mes vence y deja de arrastrar una campaña vieja.
+
+     Se escribe recién cuando la persona acepta las cookies (aviso
+     analytics:listo de consent.js). Antes se guardaba al abrir la página,
+     también a quien no había decidido o había rechazado, y eso contradecía
+     lo que dice /privacidad. Leer sí se puede: solo hay algo guardado si
+     antes aceptó. */
   function almacen() {
     try {
       var x = window.localStorage;
-      x.setItem('__t', '1'); x.removeItem('__t');
+      x.getItem('__t');
       return x;
     } catch (e) {
       try { return window.sessionStorage; } catch (e2) { return null; }
     }
   }
+
+  // Lo que hay que escribir cuando la persona acepte; null si no hay nada nuevo.
+  var origenPendiente = null;
 
   function guardarOrigen() {
     var store = almacen();
@@ -41,11 +50,18 @@
         utm_campaign: p.get('utm_campaign') || '',
         utm_content: p.get('utm_content') || ''
       };
+      /* Un anuncio sin UTM igual trae su marca: gclid, gbraid o wbraid los
+         pone Google Ads y fbclid los pone Meta. Sin esto, el clic pago que
+         llegaba desde google.com quedaba anotado como google_organico. */
+      if (!utm.utm_source) {
+        if (p.get('gclid') || p.get('gbraid') || p.get('wbraid')) utm.utm_source = 'google_ads';
+        else if (p.get('fbclid')) utm.utm_source = 'meta_ads';
+      }
       var hayUtm = utm.utm_source || utm.utm_medium || utm.utm_campaign;
 
       function escribir(o) {
         o.ts = Date.now();
-        if (store) store.setItem(CLAVE_ORIGEN, JSON.stringify(o));
+        origenPendiente = o;
         return o;
       }
 
@@ -63,8 +79,10 @@
 
       var origen = { utm_source: '', utm_medium: '', utm_campaign: '', utm_content: '', referrer: document.referrer || '' };
       // Sin UTM, al menos distinguimos si vino de Instagram, de Google o directo.
+      // Google, solo si la página de origen es google.algo: /google\./ también
+      // agarraba cualquier dirección que tuviera «google.» en el medio.
       if (/instagram\.com/.test(origen.referrer)) origen.utm_source = 'instagram_organico';
-      else if (/google\./.test(origen.referrer)) origen.utm_source = 'google_organico';
+      else if (/^https?:\/\/(www\.)?google\./.test(origen.referrer)) origen.utm_source = 'google_organico';
       else if (!origen.referrer) origen.utm_source = 'directo';
       return escribir(origen);
     } catch (e) {
@@ -73,6 +91,17 @@
   }
 
   var origen = guardarOrigen();
+
+  function escribirOrigen() {
+    if (!origenPendiente) return;
+    try {
+      var store = almacen();
+      if (store) store.setItem(CLAVE_ORIGEN, JSON.stringify(origenPendiente));
+    } catch (e) { /* sin almacenamiento se mide igual, solo sin memoria */ }
+    origenPendiente = null;
+  }
+  if (window.__analyticsLoaded) escribirOrigen();
+  window.addEventListener('analytics:listo', escribirOrigen);
 
   // El producto sale del botón; si el botón no lo declara, de la página.
   function productoDe(el) {
@@ -157,17 +186,21 @@
       if (typeof gtag === 'function') gtag('event', evento, p);
     });
   }
-  function meta(evento, producto, extra) {
+  // propio: true para un evento que no es de la lista estándar de Meta.
+  function meta(evento, producto, extra, propio) {
     var datos = { content_name: producto, content_category: 'clorofila' };
     if (extra) Object.keys(extra).forEach(function (k) { datos[k] = extra[k]; });
     encolar(function () {
-      if (typeof fbq === 'function') fbq('track', evento, datos);
+      if (typeof fbq === 'function') fbq(propio ? 'trackCustom' : 'track', evento, datos);
     });
   }
 
-  /* --- Vista de producto: cuántos llegan a mirar cada propuesta --- */
+  /* --- Vista de producto: cuántos llegan a mirar cada propuesta ---
+     /gracias no cuenta: es la página de después, no una propuesta, y su
+     script cambia data-producto a curso o tapeo para que los clics de ahí
+     se atribuyan bien. Sin esta excepción sumaba vistas falsas. */
   var productoPagina = document.body.getAttribute('data-producto');
-  if (productoPagina) {
+  if (productoPagina && !document.body.hasAttribute('data-sin-vista')) {
     ga('view_producto', productoPagina);
     meta('ViewContent', productoPagina);
   }
@@ -228,20 +261,29 @@
        artículos, de /curso y de /programa es un enlace común a tally.so: catorce
        botones que no dejaban ningún rastro. Son la puerta de entrada del
        contenido al embudo, así que sin esto no se sabe si los artículos sirven.
-       Se mandan los mismos eventos que el widget para poder compararlos. */
+
+       Todos los enlaces van al mismo formulario, el del temario, así que el
+       producto es siempre «programa»: antes salía «curso» desde /curso y
+       «programa» desde el resto, y el mismo pedido quedaba partido en dos.
+       Para Meta es un Lead (deja sus datos), no un InitiateCheckout: nadie
+       empieza a pagar al pedir el temario. */
     var tallyLink = e.target.closest('a[href*="tally.so"]');
     if (tallyLink) {
-      var prodTally = productoDe(tallyLink);
-      ga('begin_reservation', prodTally);
-      ga('tally_form_open', prodTally);
-      meta('InitiateCheckout', prodTally);
+      ga('begin_reservation', 'programa');
+      ga('tally_form_open', 'programa');
+      meta('Lead', 'programa');
       return;
     }
 
+    /* Botones grandes de acción (.nav-cta, .cta-main, .btn-accent). Muchos
+       solo llevan a otra página o a otra parte de la misma (/curso,
+       #reservar, #inscribirme), así que se cuentan como clic a un botón, no
+       como reserva: antes salían como click_reservar y como Lead de Meta, y
+       Ads los tomaba por intención de compra. */
     var cta = e.target.closest('.nav-cta, .cta-main, .btn-accent');
     if (cta) {
-      ga('click_reservar', productoDe(cta));
-      meta('Lead', productoDe(cta));
+      ga('click_cta', productoDe(cta));
+      meta('ClickCTA', productoDe(cta), null, true);
     }
   });
 
