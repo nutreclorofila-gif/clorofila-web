@@ -8,14 +8,18 @@
    Fonts, el texto se dibuja con Arial (o Roboto en Android) estirada al ancho
    y al alto de línea de la fuente web: cuando la web llega, las líneas no
    cambian de largo y la página no salta (CLS). Los porcentajes salen de
-   comparar las métricas de cada fuente con las de Arial y Roboto. */
+   comparar las métricas de cada fuente con las de Arial y Roboto.
+   Cada una lleva su propio nombre: con el mismo nombre para las dos, el
+   navegador se queda solo con la última (Roboto), y en iPhone y Mac, que no
+   la tienen, no quedaba ningún respaldo ajustado. Primero va la de Android;
+   donde no hay Roboto se salta a la de Arial. */
 @font-face{
   font-family:'Karla Fallback';
   src:local('Arial');
   size-adjust:102.4%;ascent-override:89.55%;descent-override:24.61%;line-gap-override:0%;
 }
 @font-face{
-  font-family:'Karla Fallback';
+  font-family:'Karla Fallback Android';
   src:local('Roboto');
   size-adjust:102.62%;ascent-override:89.35%;descent-override:24.56%;line-gap-override:0%;
 }
@@ -25,7 +29,7 @@
   size-adjust:105.43%;ascent-override:88.21%;descent-override:25.61%;line-gap-override:0%;
 }
 @font-face{
-  font-family:'Bricolage Grotesque Fallback';
+  font-family:'Bricolage Grotesque Fallback Android';
   src:local('Roboto');
   size-adjust:105.66%;ascent-override:88.02%;descent-override:25.55%;line-gap-override:0%;
 }
@@ -54,8 +58,8 @@
      todos los títulos del sitio salían en otra familia y con otro carácter.
      Medido sobre el h1 de la portada: Times da 708 px donde Bricolage da 828
      (-14,5%, un salto visible al cambiar); Helvetica Neue da 816 (-1,4%). */
-  --display:'Bricolage Grotesque','Bricolage Grotesque Fallback','Helvetica Neue',Arial,sans-serif;
-  --texto:'Karla','Karla Fallback',system-ui,sans-serif;
+  --display:'Bricolage Grotesque','Bricolage Grotesque Fallback Android','Bricolage Grotesque Fallback','Helvetica Neue',Arial,sans-serif;
+  --texto:'Karla','Karla Fallback Android','Karla Fallback',system-ui,sans-serif;
   --dato:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
 
   /* Medidas */
