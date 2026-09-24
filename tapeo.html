@@ -55,6 +55,7 @@
   --pegado:clamp(.875rem,1.6vw,1.25rem);   /* entre una foto y su texto */
   --dentro:clamp(2.5rem,6vw,4rem);         /* dentro de un mismo momento */
   --cambio:clamp(5.5rem,16vw,10rem);       /* cambio de momento de la noche */
+  --verde-hondo:#163A24;                   /* bandas que alternan con el casi negro */
   --cruce:clamp(4rem,18vw,11rem);          /* lo que la foto de Leonardo se mete en la banda */
 }
 /* En /tapeo ninguna foto lleva radio ni el contorno de base.css. */
@@ -147,13 +148,14 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 
 /* ---------- 3. LA MESA ----------
    Lo que se cocina, lo que entra en el precio y la duda de si hace falta
-   saber cocinar, todo sobre la misma banda de musgo. Antes era crema y a Leo
-   no le convenció: ahora usa el verde de las superficies de base.css. */
-.mesa{background:var(--musgo-alto);padding-bottom:calc(var(--cruce) + var(--dentro))}
+   saber cocinar, todo sobre la misma banda verde. Antes era crema y a Leo no
+   le convenció. El verde hondo alterna con el casi negro: la mesa, las
+   reseñas y las preguntas van en verde, lo demás queda como estaba. */
+.mesa{background:var(--verde-hondo);padding-bottom:calc(var(--cruce) + var(--dentro))}
 .mesa p{color:var(--cal-med)}
 .mesa-foto{aspect-ratio:5/3;min-height:0}
 /* Sin máscara: sobre el crema la mesa blanca de la foto se fundía con el
-   fondo; sobre el musgo el fundido quedaba gris, así que la foto va entera. */
+   fondo; sobre el verde el fundido quedaba gris, así que la foto va entera. */
 .mesa-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 100%}
 .mesa-texto h2{margin-top:var(--pegado);font-size:var(--th-seccion)}
 .mesa .frase{margin-top:.8rem;font-size:var(--t-cuerpo)}
@@ -177,7 +179,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 .mesa .duda~p+p{margin-top:.8rem}
 
 /* ---------- 4. LEONARDO ---------- */
-/* La foto se mete en la banda con margen negativo: arriba queda musgo a los
+/* La foto se mete en la banda con margen negativo: arriba queda verde a los
    dos lados y abajo el fondo, como una foto apoyada en el borde de la mesa.
    Como las secciones son grilla, el margen no colapsa. Ninguna sección lleva
    overflow:hidden. */
@@ -204,7 +206,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 
 /* ---------- 7. RESEÑAS ---------- */
 /* Una voz grande y tres chicas. La grande es la primera del bloque. */
-.dicen{padding-top:var(--cambio)}
+.dicen{padding-block:var(--cambio);background:var(--verde-hondo)}
 .dicen .google{margin-top:.3rem}
 .dicen .prueba{display:block;margin-top:var(--dentro)}
 .dicen .voz{border:0;padding:0}
@@ -224,7 +226,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 .tira img{width:100%;height:100%;object-fit:cover}
 
 /* ---------- 9. LAS PREGUNTAS ---------- */
-.dudas{padding-top:var(--cambio)}
+.dudas{padding-block:var(--cambio);background:var(--verde-hondo)}
 .dudas .faq{max-width:none;margin:1rem 0 0}
 .faq-icon{font-family:var(--texto);color:var(--cal-baja)}
 
