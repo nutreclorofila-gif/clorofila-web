@@ -56,6 +56,7 @@
   --dentro:clamp(2.5rem,6vw,4rem);         /* dentro de un mismo momento */
   --cambio:clamp(5.5rem,16vw,10rem);       /* cambio de momento de la noche */
   --verde-hondo:#163A24;                   /* bandas que alternan con el casi negro */
+  --tercero:#1B201D;                       /* tercer fondo, entre los otros dos */
   --cruce:clamp(4rem,18vw,11rem);          /* lo que la foto de Leonardo se mete en la banda */
 }
 /* En /tapeo ninguna foto lleva radio ni el contorno de base.css. */
@@ -128,7 +129,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 [data-compra="no"] .solo-con-compra{display:none}
 
 /* ---------- 2. CÓMO ES LA NOCHE ---------- */
-.noche{padding-block:var(--cambio) var(--dentro)}
+.noche{padding-block:var(--cambio) var(--dentro);background:var(--tercero)}
 /* Los dos títulos de Leo van uno atrás del otro y al mismo tamaño, en el
    mismo renglón corrido. Siguen siendo dos h2: el párrafo cuelga del segundo,
    que es el que cuenta la noche, y así no repite el «cómo» del primero
@@ -149,8 +150,9 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 /* ---------- 3. LA MESA ----------
    Lo que se cocina, lo que entra en el precio y la duda de si hace falta
    saber cocinar, todo sobre la misma banda verde. Antes era crema y a Leo no
-   le convenció. El verde hondo alterna con el casi negro: la mesa, las
-   reseñas y las preguntas van en verde, lo demás queda como estaba. */
+   le convenció. Son tres fondos que se turnan: casi negro, verde hondo
+   (la mesa, las reseñas y las preguntas) y un gris grafito (la noche, con
+   quién vas a cocinar y la tira de fotos). Nunca quedan dos iguales juntos. */
 .mesa{background:var(--verde-hondo);padding-bottom:calc(var(--cruce) + var(--dentro))}
 .mesa p{color:var(--cal-med)}
 .mesa-foto{aspect-ratio:5/3;min-height:0}
@@ -192,7 +194,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 .leo p+p{margin-top:.85rem}
 
 /* ---------- 5. CON QUIÉN ---------- */
-.grupo{padding-top:var(--cambio)}
+.grupo{padding-block:var(--cambio);background:var(--tercero)}
 .grupo p{color:var(--cal-med);margin-top:.85rem}
 .grupo h2+p{margin-top:1.1rem}
 .grupo .foto{margin-top:var(--dentro);aspect-ratio:16/9;min-height:0}
@@ -219,7 +221,7 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 /* ---------- 8. LA TIRA ----------
    Cuatro fotos de un tapeo, todas a la vista: en el teléfono de a dos, en
    la computadora en una fila que termina en el margen, sin cortarse. */
-.tira-sec{padding-top:var(--cambio)}
+.tira-sec{padding-block:var(--cambio);background:var(--tercero)}
 .tira-sec h2{margin-bottom:var(--pegado)}
 .tira{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
 .tira figure{aspect-ratio:1;min-height:0}
