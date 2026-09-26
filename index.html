@@ -51,6 +51,13 @@
    enlace de línea que baja a las propuestas. El alto mínimo le da los 44 px
    de toque sin agrandar la letra. */
 .hero-ver{margin-top:1rem}
+/* Los enlaces que cierran un bloque («Ver el curso», las reseñas, los
+   artículos y los de la agenda) medían entre 32 y 39 px de alto. La banda de
+   44 px es absoluta: llega al objetivo táctil sin mover el texto. La misma
+   regla vive en /tapeo. Los de la agenda los arma render-ofertas.js, por eso
+   se toman por su clase. */
+.enlace-salida,.agenda-link{position:relative}
+.enlace-salida::after,.agenda-link::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
 .hero-ver a{display:inline-flex;align-items:center;min-height:44px}
 .hero-foto{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5}
 .hero-foto img{width:100%;height:100%;object-fit:cover}
@@ -64,6 +71,11 @@
 .agenda{background:var(--musgo);border-block:1px solid var(--linea)}
 [data-agenda="no"]{display:none}
 .agenda-cabeza{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
+/* La nota de la agenda es una oración, no un dato: iba en la negrita de .dato
+   y el enlace, con su relleno de bloque, partía el primer renglón. Ahora se
+   lee como texto y el enlace vive dentro de la oración. */
+.agenda-cabeza p.dato{font-weight:400;line-height:1.6}
+.agenda-cabeza p.dato .enlace-vivo{display:inline;padding-block:0}
 /* La agenda es una cartelera de fechas, no una galería: una fila por fecha,
    separadas por filete, con el enlace a la derecha en pantalla grande. Así
    entra igual con dos fechas que con seis, y el estado se lee en la etiqueta
@@ -351,7 +363,7 @@
         </ul>
         <p class="curso-cuando"><!--o:curso.inicio_texto-->Arranca el miércoles 7 de octubre<!--/o-->.</p>
         <div class="curso-destacado-pie">
-          <a href="/curso" class="enlace-vivo">Ver el curso</a>
+          <a href="/curso" class="enlace-vivo enlace-salida">Ver el curso</a>
         </div>
       </div>
     </div>
@@ -412,7 +424,7 @@
       <div>
         <h2 style="margin-top:.8rem">Lo que dicen quienes ya vinieron.</h2>
       </div>
-      <a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="dato" style="color:var(--miel);border-bottom:1px solid var(--linea-fuerte);padding-block:.3rem"><!--o:google.linea_texto-->★ 4,9 en Google, sobre 23 reseñas<!--/o--></a>
+      <a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="dato enlace-salida" style="color:var(--miel);border-bottom:1px solid var(--linea-fuerte);padding-block:.3rem"><!--o:google.linea_texto-->★ 4,9 en Google, sobre 23 reseñas<!--/o--></a>
     </div>
     <div class="prueba sube"><!--o:html:testimonios.index_html--><div class="voz"><blockquote>«No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado.»</blockquote><cite>Valentina Pedreira, curso de 3 meses</cite></div><div class="voz"><blockquote>«Lo que más me sorprendió fue entender el porqué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien.»</blockquote><cite>Matías Acevedo, curso de 3 meses</cite></div><div class="voz"><blockquote>«Excelente lugar para aprender a cocinar y a comer. Es mucho más que una receta.»</blockquote><cite>Alessandra Nadile, reseña en Google</cite></div><div class="voz"><blockquote>«Fue una gran experiencia además de aprender y conocer prácticas, y elaborar postres deliciosos y saludables.»</blockquote><cite>Natalia Montejo, reseña en Google</cite></div><!--/o--></div>
   </div>
@@ -424,7 +436,7 @@
       <div>
         <h2 style="margin-top:.8rem">Lo que la ciencia dice <br>sobre lo que cocinás.</h2>
       </div>
-      <a href="/articulos" class="dato" style="color:var(--miel);border-bottom:1px solid var(--linea-fuerte);padding-block:.3rem">Ver todos los artículos</a>
+      <a href="/articulos" class="dato enlace-salida" style="color:var(--miel);border-bottom:1px solid var(--linea-fuerte);padding-block:.3rem">Ver todos los artículos</a>
     </div>
     <div class="articulos-tira sube">
       <div class="articulo-mini">
