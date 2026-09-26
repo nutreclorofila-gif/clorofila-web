@@ -529,8 +529,14 @@ body:has(#cookie-banner.visible) .sticky-cta{bottom:6.25rem}
 .sticky-cta .wa-btn{display:flex;align-items:center;justify-content:center;width:48px;min-height:48px;border:1px solid var(--linea-fuerte);border-radius:var(--r);color:var(--cal);flex-shrink:0}
 @media (max-width:820px){
   .sticky-cta{display:flex}
-  main{padding-bottom:4.5rem}
-  body:has(#cookie-banner.visible) main{padding-bottom:10.5rem}
+  /* El lugar que tapa la barra fija se reserva en el pie, que es lo que la
+     barra tapa de verdad al llegar al final. Antes iba al final de main y
+     dejaba una franja del color del fondo entre el cierre y el pie: 72 px, y
+     168 con el aviso de cookies. Se reservaba además en las páginas sin barra.
+     Sin :has() no se reserva nada y la barra tapa el final del pie, que es
+     solo el renglón del copyright. */
+  body:has(.sticky-cta:not([data-estado="sin-fecha"])) .pie{padding-bottom:calc(2rem + 4.5rem)}
+  body:has(.sticky-cta:not([data-estado="sin-fecha"])):has(#cookie-banner.visible) .pie{padding-bottom:calc(2rem + 10.5rem)}
 }
 [data-estado="sin-fecha"].sticky-cta{display:none}
 
