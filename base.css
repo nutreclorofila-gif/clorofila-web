@@ -588,7 +588,10 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.75rem}
 .cookie-banner a{color:var(--cal);text-decoration:underline;display:inline-block;padding-block:.2rem}
 .cookie-banner-actions{display:flex;align-items:center;gap:1rem}
 #cookie-accept{background:var(--cal);color:var(--tinta);padding:.45rem 1rem;border-radius:var(--r);font-size:var(--t-nota);font-weight:600;min-height:36px}
-#cookie-decline{color:var(--cal-baja);text-decoration:underline;font-size:var(--t-nota);padding:.45rem .6rem;min-height:36px;display:inline-flex;align-items:center}
+/* «Rechazar» iba en --cal-baja: 4,6 a 1 sobre el aviso ya quieto, pero
+   Lighthouse lo medía en 4,0 durante el fundido de entrada. Con --cal-med,
+   que ya es de la paleta, queda en 7 a 1. Y pasa de 36 a 44 px de alto. */
+#cookie-decline{color:var(--cal-med);text-decoration:underline;font-size:var(--t-nota);padding:.45rem .6rem;min-height:44px;display:inline-flex;align-items:center}
 /* Esta regla subía el aviso 5rem para esquivar la barra fija de abajo, pero
    arriba ya se le da "top" y "bottom:auto" en <=900px: con las dos juntas el
    aviso se estiraba de arriba hasta abajo y ocupaba el 81% de la pantalla en
