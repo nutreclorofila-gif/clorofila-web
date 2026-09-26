@@ -218,6 +218,8 @@ strong{color:var(--cal);font-weight:600}
 .nav.pegada{border-bottom-color:var(--linea)}
 .nav-caja{max-width:var(--max);margin:0 auto;height:100%;padding-inline:clamp(1.25rem,4vw,2.5rem);display:flex;align-items:center;justify-content:space-between;gap:2rem}
 .marca{display:flex;flex-direction:column;line-height:1;flex-shrink:0}
+/* La marca también es un enlace (vuelve al inicio): 44 px de alto. */
+a.marca{min-height:44px;justify-content:center}
 .marca b{font-family:var(--display);font-size:var(--t-alto);font-weight:600;color:var(--cal);letter-spacing:-.02em}
 .marca span{font-family:var(--texto);font-size:var(--t-dato);letter-spacing:.01em;color:var(--cal-baja);margin-top:.2rem}
 .nav-links{display:flex;align-items:center;gap:1.25rem;flex:1}
@@ -275,13 +277,18 @@ strong{color:var(--cal);font-weight:600}
 .pie{border-top:1px solid var(--linea);padding-block:clamp(3rem,6vw,5rem) 2rem;background:var(--tinta-2)}
 .pie-caja{max-width:var(--max);margin:0 auto;padding-inline:clamp(1.25rem,4vw,2.5rem);display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
 .pie h2{font-family:var(--texto);font-size:var(--t-nota);font-weight:600;letter-spacing:0;color:var(--cal-med);margin-bottom:.85rem}
-.pie li+li{margin-top:.3rem}
-.pie li a{font-size:var(--t-chico);color:var(--cal-med);display:inline-block;padding-block:.25rem;transition:color .2s}
+.pie li+li{margin-top:0}
+/* Cada enlace del pie mide 44 px de alto, el objetivo táctil del sitio.
+   Antes eran 33 px con 5 de aire entre uno y otro. */
+.pie li a{font-size:var(--t-chico);color:var(--cal-med);display:inline-flex;align-items:center;min-height:44px;padding-block:.3rem;line-height:1.35;transition:color .2s}
 .pie li a:hover{color:var(--cal)}
 .pie .marca{margin-bottom:.2rem}
 .pie-lema{font-family:var(--display);font-size:var(--t-bajada);color:var(--cal);line-height:1.25;margin-block:.6rem 1rem;max-width:22ch}
 .pie-fin{max-width:var(--max);margin:2.5rem auto 0;padding-inline:clamp(1.25rem,4vw,2.5rem);padding-top:1.5rem;border-top:1px solid var(--linea);font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja);letter-spacing:0}
 .pie-fin a{display:inline-block;padding-block:.35rem}
+/* «Privacidad y cookies» medía 33 px: la banda lo lleva a 44 sin mover el renglón. */
+.pie-fin a{position:relative}
+.pie-fin a::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
 /* La dirección del pie lleva a /contacto, donde está el mapa: cómo llegar es
    lo que más se busca de Clorofila. Sin subrayado no se veía que fuera un
    enlace, y el color es el mismo del texto de al lado. */
@@ -346,6 +353,12 @@ h2 + p{margin-top:.55rem}
 .centrado .senal{justify-content:center}
 .enlace-vivo{color:var(--brote);font-weight:600;border-bottom:1px solid transparent;transition:border-color .2s;display:inline-block;padding-block:.3rem}
 .enlace-vivo:hover{border-bottom-color:var(--brote)}
+/* Los enlaces vivos que cierran un bloque («Cómo llegar», «Ver el perfil
+   completo», «Los talleres de un día») medían entre 29 y 37 px de alto. La
+   banda de 44 px es absoluta: llega al objetivo táctil sin mover el texto.
+   Es la misma idea que .enlace-salida en /tapeo. */
+.enlace-vivo{position:relative}
+.enlace-vivo::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
 
 /* --- Hero de página de producto --- */
 .hero-prod{position:relative;overflow:hidden;padding-block:clamp(1.75rem,3.2vw,2.6rem) clamp(3rem,6vw,5rem)}
@@ -515,7 +528,10 @@ html:not(.js) .nav{height:auto}
 .cierre .bajada{color:var(--cal-med);max-width:44ch}
 .cierre .comanda{background:var(--musgo-alto)}
 .cierre .comanda::before,.cierre .comanda::after{background:radial-gradient(circle at 5px 0, transparent 0 5px, var(--musgo-alto) 5.5px) 0 0/10px 7px repeat-x}
-.otras{margin-top:1.5rem;font-size:var(--t-nota);color:var(--cal-baja);line-height:2}
+/* El paso de renglón es de 44 px: cada línea de este bloque termina en un
+   enlace con su banda de 44 px, y con el paso de antes (2 = 28 px) las
+   bandas de dos renglones se pisaban. */
+.otras{margin-top:1.5rem;font-size:var(--t-nota);color:var(--cal-baja);line-height:2.75rem}
 @media (max-width:940px){.cierre-caja{grid-template-columns:1fr}}
 
 /* --- Barra fija de reserva (móvil) --- */
@@ -604,6 +620,10 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.75rem}
 .miga{font-family:var(--texto);font-size:var(--t-nota);letter-spacing:0;color:var(--cal-baja);margin-bottom:1.5rem}
 .miga a{color:var(--cal-med);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--linea-fuerte);display:inline-block;padding-block:.25rem}
 .miga a:hover{color:var(--cal)}
+/* «Inicio» y «Artículos» medían 30 px de alto. La banda de 44 px es
+   absoluta y no mueve el renglón. */
+.miga a{position:relative}
+.miga a::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
 .art-cabeza h1{font-size:var(--th-pagina);margin-block:.7rem .9rem}
 .art-firma{font-family:var(--texto);font-size:var(--t-chico);letter-spacing:0;color:var(--cal-med);line-height:1.7}
 /* El nombre del autor vive dentro de la oración de la firma. Con el relleno
