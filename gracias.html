@@ -66,6 +66,9 @@
 [data-para]{display:none}
 [data-para].activo{display:block}
 .acciones{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.25rem}
+/* En el teléfono los tres botones salían cada uno con el ancho de su texto.
+   Apilados y del mismo ancho, como en la comanda. */
+@media (max-width:640px){.acciones{flex-direction:column}.acciones .btn{justify-content:center}}
 
 .llevar li{border-top:1px solid var(--linea);padding-block:.7rem;font-size:var(--t-chico);color:var(--cal-med);display:flex;gap:.8rem}
 .llevar li::before{content:"—";color:var(--brote);flex-shrink:0}
