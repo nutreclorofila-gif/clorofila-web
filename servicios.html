@@ -44,6 +44,9 @@
 /* La página que vende lo más caro no tenía una sola foto: solo listas de
    servicios en abstracto. Una empresa que evalúa contratar necesita ver el
    lugar y el clima antes de escribir. */
+/* La foto va dentro de .env: suelta en la sección iba de borde a borde de la
+   pantalla con las esquinas redondeadas, y en la computadora estiraba a
+   1.280 px una foto de 867 px de ancho. */
 .serv-foto{margin:0 0 2.6rem;border-radius:var(--r-lg);overflow:hidden}
 .serv-foto img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:16/9}
 .hero-serv{padding-block:clamp(2rem,4vw,3.25rem) clamp(2.5rem,5vw,4rem)}
@@ -51,6 +54,9 @@
 .hero-serv-acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.6rem}
 @media (max-width:520px){.hero-serv-acciones .btn{flex:1 1 100%}}
 .hero-serv-sub{display:block;font-family:var(--display);font-size:var(--th-sub);color:var(--cal);letter-spacing:-.02em;margin-bottom:.9rem}
+/* El subtítulo es letra de título: con el interlineado del texto corrido sus
+   dos renglones quedaban separados como si fueran dos frases. */
+.hero-serv-sub{line-height:1.25}
 .hero-serv .bajada{color:var(--cal-med);max-width:60ch}
 
 .grupo-serv{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(1.75rem,4vw,3.5rem);align-items:start}
@@ -145,12 +151,14 @@
 </section>
 
 <section class="seccion borde-sup">
+  <div class="env">
   <figure class="serv-foto">
   <picture>
     <source srcset="img-clase-plating-700.webp 700w, img-clase-plating.webp 867w" sizes="(max-width: 900px) calc(100vw - 3rem), min(1100px, 100vw)" type="image/webp">
     <img src="img-clase-plating.jpg" width="867" height="1300" alt="Dos participantes emplatando juntos en el estudio de Clorofila" loading="lazy" decoding="async">
   </picture>
 </figure>
+  </div>
 <div class="env">
     <div class="grupo-serv sube">
       <div class="grupo-cabeza">
