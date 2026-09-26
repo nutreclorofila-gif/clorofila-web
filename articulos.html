@@ -59,6 +59,16 @@
    devuelve nada. Se aclara en vez de moverse, para no depender de
    prefers-reduced-motion. */
 .art h3 a:active{filter:brightness(1.14)}
+/* El título seguía siendo un objetivo de 21 px de alto. El enlace se estira
+   sobre la tarjeta entera (rótulo, título y resumen), así el dedo acierta en
+   cualquier parte de la nota. */
+.art{position:relative}
+.art h3 a::after{content:"";position:absolute;inset:0}
+.art:hover h3 a{color:var(--brote)}
+/* Entre la bajada y la nota de Instagram se sumaban el relleno de abajo del
+   hero y el de arriba de la sección: 128 px de hueco en la computadora. */
+.hero-art + .seccion-sm{padding-top:0}
+.art-nota .enlace-vivo{display:inline;padding-block:0}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260924" defer></script>
