@@ -528,10 +528,11 @@ html:not(.js) .nav{height:auto}
 .cierre .bajada{color:var(--cal-med);max-width:44ch}
 .cierre .comanda{background:var(--musgo-alto)}
 .cierre .comanda::before,.cierre .comanda::after{background:radial-gradient(circle at 5px 0, transparent 0 5px, var(--musgo-alto) 5.5px) 0 0/10px 7px repeat-x}
-/* El paso de renglón es de 44 px: cada línea de este bloque termina en un
-   enlace con su banda de 44 px, y con el paso de antes (2 = 28 px) las
-   bandas de dos renglones se pisaban. */
-.otras{margin-top:1.5rem;font-size:var(--t-nota);color:var(--cal-baja);line-height:2.75rem}
+/* El paso de renglón queda en 2 (28 px), como estaba. Las bandas de 44 px
+   de los enlaces de dos renglones seguidos se pisan un poco, pero cada línea
+   conserva 28 px propios, por encima de los 24 que pide WCAG 2.2 (2.5.8).
+   Subirlo a 44 px agrandaba entre 35 y 106 px todos los bloques de cierre. */
+.otras{margin-top:1.5rem;font-size:var(--t-nota);color:var(--cal-baja);line-height:2}
 @media (max-width:940px){.cierre-caja{grid-template-columns:1fr}}
 
 /* --- Barra fija de reserva (móvil) --- */
