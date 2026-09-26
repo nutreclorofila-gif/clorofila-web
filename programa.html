@@ -70,6 +70,15 @@
 .prog-acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
 .prog-guardar{border:1px solid var(--linea-fuerte);border-radius:var(--r);padding:.85rem 1.6rem;font-size:var(--t-chico);font-weight:600;color:var(--cal);min-height:48px;display:inline-flex;align-items:center;transition:border-color .2s}
 .prog-guardar:hover{border-color:var(--cal)}
+/* En el teléfono los dos botones salían cada uno con el ancho de su texto,
+   uno más largo que el otro. Apilados y del mismo ancho, como en la comanda. */
+@media (max-width:640px){.prog-acciones{flex-direction:column}.prog-guardar{justify-content:center}}
+/* El enlace a los talleres vive dentro de la oración: con el relleno de
+   bloque de .enlace-vivo la partía en dos renglones separados. */
+.otras .enlace-vivo{display:inline;padding-block:0}
+/* En la caja de reserva el botón se partía en «Reservar mi / lugar» a 1280 px:
+   la columna del precio se quedaba con el ancho. El botón no se parte. */
+.prog-reserva .btn{white-space:nowrap}
 /* El grueso de la impresión lo resuelve base.css dando vuelta los tokens.
    Acá queda sólo lo propio de esta página. */
 @media print{
