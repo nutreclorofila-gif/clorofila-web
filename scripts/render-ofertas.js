@@ -140,6 +140,9 @@ t.precio_texto = t.precio || '';
 // Sin fecha confirmada no se muestra precio: no está garantizado para la
 // próxima edición aunque haya quedado cargado el de la anterior.
 t.tiene_precio = (t.estado !== 'sin-fecha' && t.precio) ? 'si' : 'no';
+// Sin link de compra no se puede prometer una compra: la nota «Comprás la
+// entrada y ya está» se muestra solo cuando el botón compra de verdad.
+t.tiene_compra = (!ventaMuda(t.estado) && t.link_compra) ? 'si' : 'no';
 // Hay fecha publicada o no: lo usa /talleres para marcar en el índice
 // cuáles se pueden comprar hoy.
 t.tiene_fecha = (t.estado !== 'sin-fecha' && t.fecha_texto) ? 'si' : 'no';
