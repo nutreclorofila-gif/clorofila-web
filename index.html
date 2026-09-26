@@ -42,17 +42,16 @@
 .hero-caja{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
 .hero h1{margin-block:1rem 1.15rem;font-size:var(--th-portada);max-width:15ch;line-height:1.03}
 .hero-bajada{font-size:var(--t-cuerpo);color:var(--cal-med);max-width:48ch;margin-bottom:1.75rem}
-.hero-acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:2.25rem}
-/* En el teléfono los dos botones se apilaban con el ancho de su texto, y el
-   segundo terminaba más grande que el primero: el secundario pesando más que
-   el principal, o sea la jerarquía al revés. Apilados y del mismo ancho es
-   además lo que ya hacen las fichas de /curso y /tapeo. */
-@media (max-width:640px){.hero-acciones{flex-direction:column;align-items:stretch}}
 /* Tres cifras enormes con su etiqueta debajo, separadas por líneas, es el
    panel de control que trae cualquier plantilla. Son datos que uno diría en
    voz alta, así que se leen en una línea. */
 .hero-datos{border-top:1px solid var(--linea);padding-top:1.15rem;font-size:var(--t-chico);color:var(--cal-med);max-width:none}
 .hero-datos b{font-weight:600;color:var(--cal)}
+/* El hero presenta y no vende: en lugar de los dos botones queda un solo
+   enlace de línea que baja a las propuestas. El alto mínimo le da los 44 px
+   de toque sin agrandar la letra. */
+.hero-ver{margin-top:1rem}
+.hero-ver a{display:inline-flex;align-items:center;min-height:44px}
 .hero-foto{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5}
 .hero-foto img{width:100%;height:100%;object-fit:cover}
 @media (max-width:900px){.hero-caja{grid-template-columns:1fr}.hero-foto{aspect-ratio:4/3;margin-top:1.5rem}}
@@ -156,6 +155,8 @@
 
 /* ---------- MÉTODO: señales, no números ---------- */
 .metodo{background:var(--tinta-2)}
+/* La frase que viene de la clase de arriba ocupa el lugar de la volanta. */
+.metodo-entrada{font-size:var(--t-chico);color:var(--cal-med);max-width:52ch}
 .metodo-par{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2.5rem}
 .panel{border-top:1px solid var(--linea);padding:1.4rem 0 0}
 .panel-receta{background:transparent}
@@ -274,11 +275,8 @@
       <span class="senal">En Parque Rodó, Montevideo, desde 2013</span>
       <h1>Aprendemos, compartimos y comemos mejor.</h1>
       <p class="hero-bajada">Te proponemos un espacio de <strong>disfrute</strong>: cocinar y comer de manera creativa, energética y nutritiva, en el curso, los talleres y las cenas de Parque Rodó.</p>
-      <div class="hero-acciones">
-        <a href="/curso" class="btn btn-primario">Ver el curso</a>
-        <a data-set="href=tapeo.hero_boton_link" href="/tapeo" class="btn btn-linea"><!--o:tapeo.hero_boton-->Ver la cena de tapeo<!--/o--></a>
-      </div>
       <p class="hero-datos"><b>1.200</b> personas formadas en <b>13</b> años, y <b><!--o:google.puntaje_texto-->4,9<!--/o--></b> en <!--o:google.resenas_texto-->23 reseñas en Google<!--/o-->.</p>
+      <p class="hero-ver"><a href="#propuestas" class="enlace-vivo">Ver lo que hacemos</a></p>
     </div>
     <figure class="hero-foto">
       <picture>
@@ -289,11 +287,33 @@
   </div>
 </header>
 
-
+<section class="seccion borde-sup">
+  <div class="env">
+    <div class="sube">
+      <h2 style="margin-top:.8rem">Así es una clase en Clorofila.</h2>
+    </div>
+    <div class="senales sube">
+      <div class="senal-item">
+        <h3>En equipo, cada uno con su lugar</h3>
+        <p>Tenés tu lugar en la mesa grande, con tus herramientas y tus ingredientes, y practicás todas las preparaciones de la clase.</p>
+      </div>
+      <div class="senal-item">
+        <h3>Leonardo corrige en el momento</h3>
+        <p>Va puesto por puesto mientras trabajás: te muestra el punto de la masa, por qué se cortó una salsa, cómo se arregla.</p>
+      </div>
+      <div class="senal-item">
+        <h3>Terminamos comiendo</h3>
+        <p>Nos sentamos a la mesa a probar todo lo que salió, sin apuro y con el grupo entero.</p>
+      </div>
+    </div>
+    <figure class="banda sube"><picture><source srcset="img-clase-practica-700.webp 700w, img-clase-practica.webp 1200w" sizes="(max-width: 1240px) 100vw, 1200px" type="image/webp"><img src="img-clase-practica.jpg" width="1200" height="675" alt="Leonardo Lemes armando pastas junto a una alumna en una clase de Clorofila" loading="lazy" decoding="async"></picture></figure>
+  </div>
+</section>
 
 <section class="metodo seccion">
   <div class="env">
     <div class="sube">
+      <p class="metodo-entrada">Durante la clase, Leonardo explica qué le pasa a cada ingrediente mientras lo cocinás.</p>
       <h2 style="margin-top:.8rem">Entender la cocina nos permite <br>saber qué mejorar en una receta.</h2>
     </div>
     <div class="metodo-par sube">
@@ -312,6 +332,7 @@
   </div>
 </section>
 
+<div id="propuestas">
 <section class="seccion" id="curso">
   <div class="env">
     <div class="curso-destacado sube">
@@ -370,28 +391,7 @@
     <div class="tira-talleres"><!--o:html:talleres_tira_html--><a href="/talleres#fermentacion"><span>Fermentación</span></a><a href="/talleres#pan-sin-gluten"><span>Pan sin gluten</span></a><a href="/pastas"><span>Pastas sin gluten</span></a><a href="/talleres#alfajores"><span>Alfajores</span></a><a href="/talleres#quesos-vegetales"><span>Quesos vegetales</span></a><a href="/talleres" class="enlace-vivo">Ver todos los talleres</a><!--/o--></div>
   </div>
 </section>
-<section class="seccion borde-sup">
-  <div class="env">
-    <div class="sube">
-      <h2 style="margin-top:.8rem">Así es una clase en Clorofila.</h2>
-    </div>
-    <div class="senales sube">
-      <div class="senal-item">
-        <h3>En equipo, cada uno con su lugar</h3>
-        <p>Tenés tu lugar en la mesa grande, con tus herramientas y tus ingredientes, y practicás todas las preparaciones de la clase.</p>
-      </div>
-      <div class="senal-item">
-        <h3>Leonardo corrige en el momento</h3>
-        <p>Va puesto por puesto mientras trabajás: te muestra el punto de la masa, por qué se cortó una salsa, cómo se arregla.</p>
-      </div>
-      <div class="senal-item">
-        <h3>Terminamos comiendo</h3>
-        <p>Nos sentamos a la mesa a probar todo lo que salió, sin apuro y con el grupo entero.</p>
-      </div>
-    </div>
-    <figure class="banda sube"><picture><source srcset="img-clase-practica-700.webp 700w, img-clase-practica.webp 1200w" sizes="(max-width: 1240px) 100vw, 1200px" type="image/webp"><img src="img-clase-practica.jpg" width="1200" height="675" alt="Leonardo Lemes armando pastas junto a una alumna en una clase de Clorofila" loading="lazy" decoding="async"></picture></figure>
-  </div>
-</section>
+</div>
 
 
 
