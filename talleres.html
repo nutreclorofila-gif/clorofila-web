@@ -51,7 +51,7 @@
 /* Índice: además de navegar, dice de un vistazo qué está abierto. */
 .indice{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;border-block:1px solid var(--linea);padding-block:1rem}
 .indice-rotulo{font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja);margin-right:.4rem}
-.indice a{border:1px solid var(--linea);border-radius:var(--r);padding:.45rem .95rem;font-size:var(--t-nota);color:var(--cal-med);transition:border-color .2s,color .2s;min-height:34px;display:inline-flex;align-items:center}
+.indice a{border:1px solid var(--linea);border-radius:var(--r);padding:.45rem .95rem;font-size:var(--t-nota);color:var(--cal-med);transition:border-color .2s,color .2s;min-height:44px;display:inline-flex;align-items:center}
 .indice a:hover{border-color:var(--brote);color:var(--cal)}
 .indice a[data-abierto="si"]{border-color:rgba(143,192,138,.45);color:var(--cal)}
 .indice a[data-abierto="si"]::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brote);margin-right:.5rem;flex-shrink:0}
@@ -69,6 +69,10 @@
 .taller-estado{border-color:var(--linea-fuerte);color:var(--cal-baja)}
 [data-estado="abierto"] .taller-estado,[data-estado="ultimos"] .taller-estado{border-color:rgba(143,192,138,.45);color:var(--brote)}
 .taller-nota{margin-bottom:.9rem;font-size:var(--t-nota);color:var(--cal-baja)}
+/* El enlace al artículo vive dentro de la oración. Con el relleno de bloque
+   de .enlace-vivo partía el renglón, y en pan sin gluten dejaba el punto
+   final solo en una línea. */
+.taller-nota .enlace-vivo{display:inline;padding-block:0}
 .taller-linea{font-family:var(--texto);font-size:var(--t-dato);color:var(--cal-baja);margin-bottom:1.1rem;line-height:1.6}
 [data-estado="abierto"] .taller-linea{color:var(--miel)}
 /* Lo abierto arriba: no hacer scrollear seis fichas sin fecha. */
