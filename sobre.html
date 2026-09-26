@@ -64,6 +64,10 @@
 .valor{border-top:1px solid var(--linea);padding-top:1.1rem}
 .valor h3{font-size:var(--t-alto);margin-block:.6rem .5rem}
 .valor p{font-size:var(--t-chico);color:var(--cal-med)}
+/* En «Comunidad» los dos enlaces van dentro de la oración: con el relleno de
+   bloque de .enlace-vivo abrían el primer renglón y el párrafo se veía
+   desparejo al lado de los otros tres. */
+.valor p .enlace-vivo{display:inline;padding-block:0}
 @media (max-width:760px){.valores{grid-template-columns:1fr}}
 
 .banda{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:21/9}
