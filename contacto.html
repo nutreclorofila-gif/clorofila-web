@@ -65,6 +65,13 @@
 .horarios thead th:last-child{text-align:right}
 .horarios td:last-child{text-align:right;color:var(--miel)}
 .horarios-nota{font-size:var(--t-nota);color:var(--cal-baja);margin-top:.9rem;line-height:1.6}
+/* Los enlaces de estas dos oraciones van dentro del renglón: con el relleno
+   de bloque de .enlace-vivo abrían el interlineado de la bajada, y en el
+   teléfono «· Ver el curso» arrancaba un renglón con el punto medio suelto. */
+.contacto-intro .enlace-vivo,.horarios-nota .enlace-vivo{display:inline;padding-block:0}
+/* «Horarios del curso» quedaba pegado a la nota de cómo pasar por el
+   estudio, como si fuera su última línea. */
+.horarios{margin-top:1.75rem}
 
 .mapa{border:1px solid var(--linea);border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3;background:var(--musgo)}
 .mapa iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(.35) contrast(1.05)}
