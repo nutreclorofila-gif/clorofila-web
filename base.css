@@ -606,12 +606,28 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.75rem}
 .miga a:hover{color:var(--cal)}
 .art-cabeza h1{font-size:var(--th-pagina);margin-block:.7rem .9rem}
 .art-firma{font-family:var(--texto);font-size:var(--t-chico);letter-spacing:0;color:var(--cal-med);line-height:1.7}
-.art-firma a{color:var(--brote);display:inline-block;padding-block:.25rem}
+/* El nombre del autor vive dentro de la oración de la firma. Con el relleno
+   de bloque abría el interlineado entre el primer renglón y el segundo; como
+   enlace dentro de una oración, WCAG 2.2 lo exime del tamaño táctil (2.5.8,
+   excepción Inline). */
+.art-firma a{color:var(--brote)}
+/* Lo mismo con los enlaces sueltos dentro de un párrafo de artículo o de su
+   recuadro final («El programa completo está publicado…»). */
+.art-cuerpo p .enlace-vivo,.art-captura p .enlace-vivo{display:inline;padding-block:0}
 
 .art-cuerpo{max-width:720px;margin-inline:auto;padding-block:clamp(2.5rem,5vw,4rem)}
 .art-cuerpo p{font-size:var(--t-cuerpo);line-height:1.75;color:var(--cal-med);margin-bottom:1.3rem;max-width:none}
 .art-cuerpo h2{font-size:var(--th-sub);margin-block:2.75rem 1.1rem}
 .art-cuerpo strong{color:var(--cal)}
+/* Las listas del cuerpo perdían viñeta y aire con el reinicio de estilos, y
+   se leían como un párrafo con renglones cortados: «Proteínas: 8 a 10 g»
+   pegado a «Grasas: 4 a 5 g». Llevan la misma raya verde que las listas del
+   resto del sitio. Las fuentes tienen su propio formato y quedan afuera. */
+.art-cuerpo ul:not(.fuentes){margin:0 0 1.3rem}
+.art-cuerpo ul:not(.fuentes) li{position:relative;padding:.35rem 0 .35rem 1.6rem;font-size:var(--t-cuerpo);line-height:1.65;color:var(--cal-med)}
+.art-cuerpo ul:not(.fuentes) li::before{content:"—";position:absolute;left:0;color:var(--brote)}
+/* El subtítulo de cada receta quedaba pegado a su párrafo. */
+.art-cuerpo h3{margin-block:1.9rem .55rem}
 .destacado{border-left:2px solid var(--brote);background:var(--musgo);border-radius:0 var(--r) var(--r) 0;padding:1.4rem 1.6rem;margin-block:2rem;font-family:var(--display);font-size:var(--t-bajada);line-height:1.4;color:var(--cal);letter-spacing:-.01em}
 
 .fuentes{list-style:none;margin-block:1.2rem 0;display:grid;gap:.9rem}
