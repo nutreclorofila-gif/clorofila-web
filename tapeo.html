@@ -57,6 +57,7 @@
   --cambio:clamp(4.5rem,16vw,10rem);       /* cambio de momento de la noche */
   --tostado:#2A231D;                   /* bandas que alternan con el casi negro: marrón tostado, no verde vivo */
   --tercero:#1B201D;                       /* tercer fondo, entre los otros dos */
+  --th-seccion:clamp(1.75rem,2.9vw,2.15rem); /* en el celular los títulos de sección van a 28 px, no a 24 */
   --cruce:clamp(4rem,18vw,11rem);          /* lo que la foto de Leonardo se mete en la banda */
 }
 /* En /tapeo ninguna foto lleva radio ni el contorno de base.css. */
@@ -146,6 +147,11 @@ html.js .comanda-datos li:has(span[data-cuenta="no"]){display:none}
 @media (min-width:560px) and (max-width:899px){
   .recorrido li{grid-template-columns:9rem minmax(0,1fr);align-items:baseline;gap:1.25rem}
 }
+
+/* El enlace que cierra un bloque («Cómo llegar», «Conocer más sobre Leonardo»)
+   tiene una banda de 44 px para tocarlo con el dedo, sin mover el texto. */
+.enlace-salida{position:relative}
+.enlace-salida::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
 
 /* ---------- EL PASO DE UN FONDO AL OTRO ----------
    Las franjas de color no cortan en seco: arriba y abajo se funden con el
