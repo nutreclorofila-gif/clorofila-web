@@ -171,13 +171,17 @@ strong{color:var(--cal);font-weight:600}
 
 /* --- Estructura --------------------------------------------------------- */
 .env{max-width:var(--max);margin:0 auto;padding-inline:clamp(1.25rem,4vw,2.5rem)}
-.seccion{padding-block:clamp(4rem,9vw,7.5rem)}
-.seccion-sm{padding-block:clamp(2.5rem,5vw,4rem)}
+/* En el celular el piso de 4rem dejaba 128 px vacíos entre una sección y la
+   siguiente, más el margen de cada título: se bajaba media pantalla sin ver
+   nada. El piso baja a 3rem; desde unos 530 px de ancho manda el 9vw y la
+   computadora queda igual que antes. */
+.seccion{padding-block:clamp(3rem,9vw,7.5rem)}
+.seccion-sm{padding-block:clamp(2rem,5vw,4rem)}
 .borde-sup{border-top:1px solid var(--linea)}
 /* El contenido se acerca a su propio filete y se aleja del siguiente bloque:
    arriba menos aire que abajo. Con el mismo aire a los dos lados, cada filete
    quedaba flotando en el medio de 15rem de nada. */
-.seccion.borde-sup{padding-top:clamp(2.75rem,6vw,5rem)}
+.seccion.borde-sup{padding-top:clamp(2.25rem,6vw,5rem)}
 
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 .saltar{position:absolute;left:-9999px}
