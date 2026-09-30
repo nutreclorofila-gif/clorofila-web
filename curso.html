@@ -58,69 +58,64 @@
 .hero-leo{font-size:var(--t-nota);color:var(--cal-med);margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--linea)}
 .hero-leo strong{color:var(--cal)}
 .marca-chip{display:inline-flex;align-items:center;border:1px solid var(--linea);border-radius:var(--r);padding:.4rem .85rem;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-med)}
-@media (max-width:940px){.hero-caja{grid-template-columns:1fr}.hero-col-foto{order:-1}.hero-foto{aspect-ratio:4/3;margin-bottom:1rem}}
-/* En una sola columna (celular y tableta) la ficha de precio medía 871 px en
-   un teléfono de 375: más que la pantalla entera. Y los huecos entre las
-   piezas del hero iban de 0 a 37 px sin orden: el título quedaba pegado a la
-   frase de abajo. Acá va un solo ritmo: 12 px dentro del bloque de título,
-   28 px entre bloques. La ficha pierde relleno y las filas que repetían la
-   fecha de inicio y el lugar, que ya están arriba. La foto pasa de una franja
-   de 4:3 a un cuadro, para que se vean las caras de la clase. */
-@media (max-width:940px){
-  .hero-curso .hero-caja .hero-datos{margin-bottom:.6rem}
-  .hero-curso h1{margin-block:.75rem}
-  .hero-curso .hero-tesis{margin-bottom:0}
-  .hero-curso .hero-caja .comanda{margin-top:1.75rem;padding:1rem 1.05rem .95rem}
-  .hero-curso .comanda-cifra{margin-block:.6rem .15rem;font-size:2.1rem}
-  .hero-curso .comanda-porclase{margin-bottom:.45rem}
-  /* El ahorro va como renglón y no como recuadro: el borde y el relleno sumaban 20 px. */
-  .hero-curso .comanda-ahorro{border:0;padding:0;display:block}
-  .hero-curso .comanda-datos{margin-block:.55rem;padding-top:.55rem}
-  .hero-curso .comanda-datos li{padding-block:.2rem}
-  .hero-curso .comanda-acciones{margin-top:.75rem}
-  .hero-curso .comanda-nota{margin-top:.5rem}
-  .hero-curso .comanda-pagos{margin-top:.6rem;padding-top:.55rem;line-height:1.55}
-  .hero-curso .hero-caja .hero-foto{margin-top:1.75rem;margin-bottom:0;aspect-ratio:1/1}
-  .hero-curso .hero-foto img{object-position:50% 38%}
-  .hero-curso .hero-caja .bajada{margin-top:1.75rem;margin-bottom:0}
-  .hero-curso .hero-caja .hero-leo{margin-top:1rem;margin-bottom:0;padding-bottom:0;border-bottom:0}
-  /* La raya y los 48 px de abajo de esta línea, más el relleno del hero y el
-     de la sección siguiente, sumaban un hueco de casi 300 px antes de
-     «Después del curso». */
-  .hero-curso{padding-bottom:.5rem}
-  /* La ficha del cierre usa el mismo compacto que la de arriba. */
-  .cierre .comanda{padding:1rem 1.05rem .95rem}
-  .cierre .comanda-cifra{margin-block:.6rem .15rem;font-size:2.1rem}
-  .cierre .comanda-datos{margin-block:.55rem;padding-top:.55rem}
-  .cierre .comanda-datos li{padding-block:.2rem}
-  .cierre .comanda-ahorro{border:0;padding:0;display:block}
-}
-/* En el teléfono la cabeza de la ficha partía en tres columnas angostas:
-   «Inscripción · Octubre 2026» a un lado y los dos horarios al otro. Va una
-   debajo de la otra. */
-@media (max-width:560px){.comanda-cabeza{flex-direction:column;align-items:flex-start;gap:.3rem}}
-/* En la computadora la comanda baja hasta los 1.370 px y la foto terminaba a
-   los 800: quedaba media columna vacía. La foto acompaña a la comanda
-   mientras se lee, con el alto de la pantalla como tope. */
+
+/* El hero cuenta qué es el curso y ofrece un solo paso: cuándo arranca,
+   cuánto sale y el botón. La ficha entera con cuotas, grupos y formas de
+   pago baja al cierre, después de los motivos y las dudas, como en /tapeo.
+   Leo, 30/9: «no dejaría tan arriba el ticket». */
+.al-paso{margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid var(--linea);max-width:31rem}
+.al-paso-fecha{font-family:var(--display);font-size:var(--t-bajada);font-weight:500;letter-spacing:-.015em;line-height:1.25;color:var(--cal)}
+.al-paso-precio{margin-top:.35rem;font-size:var(--t-cuerpo);color:var(--cal-med);line-height:1.5;text-wrap:pretty}
+.al-paso-precio strong{color:var(--cal);font-weight:700;font-variant-numeric:tabular-nums}
+.al-paso .comanda-acciones{margin-top:1.05rem}
+.al-paso-mas{margin-top:.8rem;font-size:var(--t-chico);color:var(--cal-med);line-height:1.5}
+.hero-curso .hero-leo{border-bottom:0;padding-bottom:0;margin-top:.9rem}
+
+/* La foto va entera, en su formato de 3 × 4: recortada al ancho de la
+   pantalla se perdía la señora de la izquierda y la foto crecía hasta los
+   760 px de alto. */
 @media (min-width:941px){
-  /* overflow:hidden del encabezado anulaba el sticky; clip recorta igual.
-     Donde clip no existe queda hidden y la foto simplemente no acompaña. */
-  .hero-curso{overflow:clip}
-  .hero-col-foto{position:sticky;top:calc(var(--nav-h) + 1.5rem)}
-  .hero-col-foto .hero-foto{aspect-ratio:auto;height:min(76vh,760px)}
-  .hero-col-foto .hero-foto img{width:100%;height:100%;object-fit:cover}
+  .hero-curso .hero-caja{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);align-items:center}
+  .hero-curso .hero-col-foto .hero-foto{margin-right:0;border-radius:var(--r-lg);aspect-ratio:3/4}
+  .hero-curso .bajada{margin-top:1.6rem}
 }
 
-/* ---------- LA COMANDA ---------- */
-.comanda{position:relative;background:var(--musgo);border:1px solid var(--linea);border-radius:4px;padding:1.25rem 1.3rem 1.2rem;box-shadow:0 26px 60px rgba(0,0,0,.45)}
-.comanda-cifra{margin-block:.75rem .2rem;font-family:var(--display);font-size:clamp(2.2rem,3.9vw,2.75rem);color:var(--cal);line-height:1;letter-spacing:-.04em}
-.comanda-cifra small{display:block;font-family:var(--dato);font-size:var(--t-dato);letter-spacing:.14em;text-transform:uppercase;color:var(--cal-baja);margin-bottom:.35rem;font-weight:400}
-.comanda-porclase{font-family:var(--dato);font-size:var(--t-nota);color:var(--cal-med);margin-bottom:.7rem}
-.comanda-ahorro{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--dato);font-size:var(--t-nota);letter-spacing:.05em;color:var(--miel);border:1px solid rgba(240,179,85,.32);border-radius:var(--r);padding:.3rem .8rem;margin-bottom:.6rem}
-.comanda-datos{margin-block:.75rem;display:grid;gap:.05rem;border-top:1px dashed var(--linea-fuerte);padding-top:.85rem}
-.comanda-datos li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-block:.32rem;font-family:var(--dato);font-size:var(--t-nota);line-height:1.5}
-.comanda-nota{font-size:var(--t-dato);color:var(--cal-baja);line-height:1.5;margin-top:.8rem}
-.comanda-pagos{font-family:var(--dato);font-size:var(--t-nota);letter-spacing:.04em;color:var(--cal-baja);line-height:1.7;margin-top:.7rem;border-top:1px dashed var(--linea-fuerte);padding-top:.7rem}
+/* En una columna el orden es señal, título, tesis, foto, el paso corto de
+   reserva, la bajada y la línea de Leonardo. Un solo ritmo: 12 px dentro del
+   bloque de título y 28 px entre bloques. */
+@media (max-width:940px){
+  .hero-curso .hero-caja .hero-datos{order:6;margin:.5rem 0 0;font-size:var(--t-nota)}
+  .hero-curso h1{margin-block:.75rem}
+  .hero-curso .hero-tesis{margin-bottom:0}
+  .hero-curso .hero-caja .hero-foto{margin-top:1.75rem;margin-bottom:0;aspect-ratio:1/1}
+  .hero-curso .hero-foto img{object-position:50% 38%}
+  .hero-curso .hero-caja .al-paso{order:7;margin-top:1.5rem;max-width:none}
+  .hero-curso .hero-caja .bajada{order:8;margin-top:1.75rem;margin-bottom:0}
+  .hero-curso .hero-caja .hero-leo{order:9;margin-top:1rem;margin-bottom:0}
+  .hero-curso{padding-bottom:.5rem}
+}
+
+/* ---------- LA BOLETA DEL CIERRE ----------
+   Sigue siendo el papel dentado de la cocina, pero se lee como texto: sin
+   letra de máquina, sin mayúsculas espaciadas y sin rótulos sueltos. Cada
+   renglón es una oración. */
+.comanda{position:relative;background:var(--musgo);border:1px solid var(--linea);border-radius:4px;padding:1.25rem 1.3rem 1.2rem}
+.cierre .boleta{max-width:27rem;width:100%;justify-self:end;border-radius:0;border-block-color:transparent;padding:1.5rem 1.4rem 1.35rem}
+.boleta-cabeza{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.25rem 1rem;padding-bottom:.8rem;border-bottom:1px dashed var(--linea-fuerte)}
+.boleta-titulo{margin:0;font-family:var(--display);font-size:var(--t-bajada);font-weight:500;letter-spacing:-.01em;color:var(--cal)}
+.boleta-cuenta{font-size:var(--t-nota);color:var(--brote);white-space:nowrap}
+.boleta-cuenta:empty{display:none}
+.boleta-precio{margin-top:1rem;font-family:var(--display);font-size:var(--t-mayor);letter-spacing:-.02em;line-height:1.25;color:var(--cal-med)}
+.boleta-precio strong{color:var(--cal);font-weight:600;font-variant-numeric:tabular-nums}
+.boleta-texto{margin-top:.45rem;font-size:var(--t-chico);color:var(--cal-med);line-height:1.5}
+.boleta-lista{margin-top:1rem;padding-top:.9rem;border-top:1px dashed var(--linea-fuerte);display:grid;gap:.5rem;font-size:var(--t-chico);color:var(--cal-med);line-height:1.45}
+.boleta-lista li{position:relative;padding-left:1.05rem}
+.boleta-lista li::before{content:"";position:absolute;left:0;top:.7em;width:.45rem;height:1px;background:var(--cal-baja)}
+.boleta-grupos{margin-top:1rem;padding-top:.9rem;border-top:1px dashed var(--linea-fuerte);font-size:var(--t-chico);color:var(--cal);line-height:1.5;text-wrap:pretty}
+.boleta .comanda-acciones{margin-top:1.15rem}
+.boleta .comanda-nota{font-size:var(--t-nota);color:var(--cal-med);margin-top:.6rem}
+.boleta .comanda-nota:first-of-type{margin-top:.9rem}
+@media (max-width:940px){.cierre .boleta{justify-self:stretch;max-width:none;padding:1.25rem 1.1rem 1.15rem}}
 
 /* ---------- Encabezados de sección ---------- */
 .encabezado{margin-bottom:2.25rem}
@@ -159,9 +154,12 @@
 @media (max-width:820px){.equipo{grid-template-columns:1fr}}
 
 /* ---------- BANDA DE FOTO ---------- */
-.banda{position:relative;max-width:1200px;margin-inline:auto;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:21/9}
+/* La foto del grupo iba a 1.120 × 480 px y se veía blanda: el archivo mide
+   1.200 de ancho. A 704 px como máximo cada punto de pantalla tiene píxeles de
+   sobra, también en pantallas de doble densidad. */
+.banda{position:relative;max-width:44rem;margin-inline:0;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/9}
 .banda img{width:100%;height:100%;object-fit:cover}
-@media (max-width:620px){.banda{aspect-ratio:4/3}}
+@media (max-width:620px){.banda{aspect-ratio:3/2}}
 
 /* ---------- GRUPOS ---------- */
 /* El grupo abierto va primero: no hacer scrollear dos opciones muertas.
@@ -260,34 +258,20 @@
       <span class="senal">Curso presencial de cocina saludable en Parque Rodó, Montevideo</span>
       <h1>Aprendés a cocinar de forma consciente, <br>creativa y con más autonomía.</h1>
       <p class="hero-tesis">Elaborás postres sin azúcares añadidos, quesos vegetales, fermentos, sushi, pastas, tartas saladas y platos principales completos.</p>
-      <p class="bajada">Es una propuesta principalmente práctica para cocinar de forma consciente, creativa y con más autonomía, en Parque Rodó, Montevideo. Empezamos por las bases y las materias primas, y avanzamos hacia los platos más elaborados.</p>
-      <p class="hero-leo">Aprendés directamente con <strong>Leonardo Lemes</strong>, que lleva 25 años cocinando, 13 enseñando y más de 1.200 personas formadas.</p>
-
-      <div class="comanda">
-        <div class="comanda-cabeza">
-          <span class="comanda-titulo"><!--o:curso.inscripcion_titulo-->Inscripción · Octubre 2026<!--/o--></span>
-          <span class="comanda-estado" id="curso-countdown-tag" data-set="data-inicio-iso=curso.inicio_iso" data-inicio-iso="2026-10-07"><!--o:curso.inicio_texto-->Arranca el miércoles 7 de octubre<!--/o--></span>
-        </div>
-        <p class="comanda-cifra"><small>Precio total bonificado</small><!--o:curso.precio_total-->$12.200<!--/o--></p>
-        <p class="comanda-porclase"><!--o:curso.porclase_texto-->3 meses · 12 clases de 2 horas, una por semana<!--/o--></p>
-        <p class="comanda-ahorro">Ahorrás <!--o:curso.ahorro-->$2.200<!--/o--> pagando el curso completo</p>
-        <ul class="comanda-datos">
-          <li><strong>Mes a mes</strong><span><!--o:curso.cuotas_corto-->3 de $4.800<!--/o--></span></li>
-          <li><strong>Con tarjeta</strong><span>hasta <!--o:curso.cuotas_tarjeta_corto-->12 de $1.016 sin recargo<!--/o--></span></li>
-          <li><strong><!--o:curso.grupos_label-->Grupos abiertos<!--/o--></strong><span><!--o:curso.grupos_abiertos_texto-->Miércoles 19:00–21:00 · Jueves 10:00–12:00<!--/o--></span></li>
-        </ul>
+      <div class="al-paso">
+        <p class="al-paso-fecha"><!--o:curso.inicio_frase-->Arranca el miércoles 7 de octubre o el jueves 8 de octubre, según el grupo.<!--/o--></p>
+        <p class="al-paso-precio">El curso completo cuesta <strong><!--o:curso.precio_total-->$12.200<!--/o--></strong>, o <!--o:curso.precio_tarjeta-->hasta 12 cuotas de $1.016 sin recargo<!--/o--> con tarjeta.</p>
         <div class="comanda-acciones">
           <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2019%3A00%20a%2021%3A00%20o%20el%20de%20los%20jueves%20de%2010%3A00%20a%2012%3A00." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar<!--/o--></a>
-          <a href="/programa" class="btn btn-linea" data-producto="programa">Ver el programa completo</a>
         </div>
-        <p class="comanda-nota"><!--o:curso.cta_nota-->Te escribimos por WhatsApp en menos de 24 h para confirmar tu lugar<!--/o--></p>
-        <p class="comanda-nota">¿No usás WhatsApp? Escribinos a <a href="mailto:nutreclorofila@gmail.com?subject=Consulta%20del%20curso%20%E2%80%94%20desde%20la%20web" class="enlace-vivo">nutreclorofila@gmail.com</a></p>
-        <p class="comanda-pagos">Tarjeta · Transferencia · Abitab · RedPagos · MercadoPago</p>
+        <p class="al-paso-mas">¿Querés ver las 12 clases una por una? <a href="/programa" class="enlace-vivo" data-producto="programa">Mirá el programa completo</a>.</p>
       </div>
+      <p class="bajada">Es una propuesta principalmente práctica para cocinar de forma consciente, creativa y con más autonomía, en Parque Rodó, Montevideo. Empezamos por las bases y las materias primas, y avanzamos hacia los platos más elaborados.</p>
+      <p class="hero-leo">Aprendés directamente con <strong>Leonardo Lemes</strong>, que lleva 25 años cocinando, 13 enseñando y más de 1.200 personas formadas.</p>
     </div>
     <div class="hero-col-foto">
       <figure class="hero-foto">
-        <picture><source srcset="img-clase-masa-480.webp 480w, img-clase-masa-700.webp 700w, img-clase-masa.webp 975w" sizes="(max-width: 940px) calc(100vw - 3rem), 44vw" type="image/webp"><img src="img-clase-masa.jpg" width="975" height="1300" alt="Clase del curso de cocina basada en plantas de Clorofila, en Parque Rodó, Montevideo" loading="eager" fetchpriority="high" decoding="async"></picture>
+        <picture><source srcset="img-clase-masa-480.webp 480w, img-clase-masa-700.webp 700w, img-clase-masa.webp 975w" sizes="(max-width: 940px) calc(100vw - 3rem), 34vw" type="image/webp"><img src="img-clase-masa.jpg" width="975" height="1300" alt="Clase del curso de cocina basada en plantas de Clorofila, en Parque Rodó, Montevideo" loading="eager" fetchpriority="high" decoding="async"></picture>
       </figure>
         <p class="hero-datos"><b><!--o:google.puntaje_texto-->4,9<!--/o--></b> en <!--o:google.resenas_texto-->23 reseñas en Google<!--/o-->.</p>
     </div>
@@ -422,7 +406,7 @@
 <section class="seccion-sm">
   <div class="env">
     <figure class="banda sube">
-      <picture><source srcset="img-clase-grupo-480.webp 480w, img-clase-grupo-700.webp 700w, img-clase-grupo.webp 1200w" sizes="(max-width: 1240px) 100vw, 1200px" type="image/webp"><img src="img-clase-grupo.jpg" width="1200" height="675" alt="Grupo trabajando alrededor de la mesa grande en una clase de Clorofila" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="img-clase-grupo-480.webp 480w, img-clase-grupo-700.webp 700w, img-clase-grupo.webp 1200w" sizes="(max-width: 760px) calc(100vw - 3rem), 704px" type="image/webp"><img src="img-clase-grupo.jpg" width="1200" height="675" alt="Grupo trabajando alrededor de la mesa grande en una clase de Clorofila" loading="lazy" decoding="async"></picture>
     </figure>
   </div>
 </section>
@@ -534,27 +518,26 @@
       <p class="bajada"><!--o:curso.cierre_bajada-->Contanos qué estás buscando y te decimos si este curso te sirve. Te contesta Leonardo.<!--/o--></p>
       <p class="otras">¿Querés ver todo el contenido clase por clase? <a href="/programa" class="enlace-vivo">El programa completo</a> <br>¿Preferís probar antes con algo más corto? <a href="/talleres" class="enlace-vivo">Los talleres de un día</a> <br>¿Es para regalar? <a data-set="href=curso.regalo_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20regalar%20el%20curso%20de%20cocina.%20%C2%BFC%C3%B3mo%20hago%20con%20la%20gift%20card%3F" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="curso-regalo">Tenemos <span lang="en">gift card</span></a></p>
     </div>
-    <div class="comanda sube">
-      <div class="comanda-cabeza">
-        <span class="comanda-titulo"><!--o:curso.inscripcion_titulo-->Inscripción · Octubre 2026<!--/o--></span>
-        <span class="comanda-estado"><!--o:curso.grupos_abiertos_texto-->Miércoles 19:00–21:00 · Jueves 10:00–12:00<!--/o--></span>
+    <div class="comanda boleta sube">
+      <div class="boleta-cabeza">
+        <h3 class="boleta-titulo"><!--o:curso.edicion_titulo-->Edición octubre 2026<!--/o--></h3>
+        <p class="boleta-cuenta" data-set="data-inicio-iso=curso.inicio_iso" data-inicio-iso="2026-10-07" data-cuenta></p>
       </div>
-      <p class="comanda-cifra"><small>Precio total bonificado</small><!--o:curso.precio_total-->$12.200<!--/o--></p>
-      <p class="comanda-porclase"><!--o:curso.porclase_texto-->3 meses · 12 clases de 2 horas, una por semana<!--/o--></p>
-      <p class="comanda-ahorro">Ahorrás <!--o:curso.ahorro-->$2.200<!--/o--> pagando el curso completo</p>
-      <ul class="comanda-datos">
-        <li><strong>Mes a mes</strong><span><!--o:curso.cuotas_corto-->3 de $4.800<!--/o--></span></li>
-        <li><strong>Con tarjeta</strong><span>hasta <!--o:curso.cuotas_tarjeta_corto-->12 de $1.016 sin recargo<!--/o--></span></li>
+      <p class="boleta-precio">El curso completo cuesta <strong><!--o:curso.precio_total-->$12.200<!--/o--></strong>.</p>
+      <p class="boleta-texto">Son 12 clases de 2 horas, una por semana, durante tres meses. Los ingredientes y el recetario están incluidos.</p>
+      <ul class="boleta-lista">
+        <li>Con tarjeta son <!--o:curso.precio_tarjeta-->hasta 12 cuotas de $1.016 sin recargo<!--/o-->.</li>
+        <li>Mes a mes son <!--o:curso.precio_cuotas-->3 cuotas de $4.800<!--/o-->, y el total queda <!--o:curso.ahorro-->$2.200<!--/o--> más alto.</li>
+        <li>También aceptamos transferencia, Abitab, RedPagos y MercadoPago.</li>
       </ul>
-      <ul class="comanda-datos">
-        <li><strong>Inicio</strong><span><!--o:curso.inicio_texto-->Arranca el miércoles 7 de octubre<!--/o--></span></li>
-        <li><strong><!--o:curso.grupos_label-->Grupos abiertos<!--/o--></strong><span><!--o:curso.grupos_abiertos_texto-->Miércoles 19:00–21:00 · Jueves 10:00–12:00<!--/o--></span></li>
-      </ul>
+      <p class="boleta-grupos"><!--o:curso.grupos_frase-->Hay dos grupos: los miércoles de 19:00 a 21:00, desde el 7 de octubre, o los jueves de 10:00 a 12:00, desde el 8 de octubre.<!--/o--></p>
       <div class="comanda-acciones">
         <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2019%3A00%20a%2021%3A00%20o%20el%20de%20los%20jueves%20de%2010%3A00%20a%2012%3A00." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar<!--/o--></a>
         <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20info%20del%20curso%20de%20Clorofila." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="curso">Preguntar por WhatsApp</a>
       </div>
-      <p class="comanda-nota">Maldonado 1976 esq. Blanes · Parque Rodó · <a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo">Cómo llegar</a></p>
+      <p class="comanda-nota"><!--o:curso.cta_nota-->Te escribimos por WhatsApp en menos de 24 h para confirmar tu lugar.<!--/o--></p>
+      <p class="comanda-nota">¿No usás WhatsApp? Escribinos a <a href="mailto:nutreclorofila@gmail.com?subject=Consulta%20del%20curso%20%E2%80%94%20desde%20la%20web" class="enlace-vivo">nutreclorofila@gmail.com</a>.</p>
+      <p class="comanda-nota">Estamos en Maldonado 1976 esq. Blanes, Parque Rodó. <a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo">Cómo llegar</a></p>
     </div>
   </div>
 </section>

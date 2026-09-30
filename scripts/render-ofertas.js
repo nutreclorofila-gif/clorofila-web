@@ -468,7 +468,7 @@ datos.curso.wa_link = waBase + encodeURIComponent(
   'Hola Leonardo, tengo una pregunta sobre el curso de cocina.'
 );
 datos.curso.cta_nota = abiertos.length
-  ? 'Te escribimos por WhatsApp en menos de 24 h para confirmar tu lugar'
+  ? 'Te escribimos por WhatsApp en menos de 24 h para confirmar tu lugar.'
   : 'No hay edición abierta ahora. Dejanos tus datos y te avisamos cuando abramos la próxima.';
 for (const g of datos.curso.grupos) {
   datos.curso['grupo_' + g.id + '_estado_texto'] = g.estado === 'abierto' ? 'Abierto' : 'Grupo cerrado';
@@ -515,6 +515,22 @@ datos.curso.inscripcion_titulo = 'Inscripción · ' + datos.curso.edicion;
 // va la carga horaria y nada más: 12 clases de 2 h son 24 h, que es lo que
 // declara courseWorkload en el schema.
 datos.curso.porclase_texto = '3 meses · 12 clases de 2 horas, una por semana';
+
+/* El hero y la boleta de /curso hablan en oraciones y no en rótulos: Leo
+   pidió el 30/9 que el ticket se lea como texto y no como planilla. Estas dos
+   frases dicen cuándo arranca y qué grupos hay, con los grupos abiertos. */
+const sinArranca = function (g) { return g.inicio_texto.replace(/^arranca el /i, ''); };
+datos.curso.inicio_frase = abiertos.length === 0 ? 'La próxima edición todavía no tiene fecha.'
+  : abiertos.length === 1 ? abiertos[0].inicio_texto + '.'
+  : 'Arranca el ' + abiertos.map(sinArranca).join(' o el ') + ', según el grupo.';
+const unGrupo = function (g) {
+  return 'los ' + g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '') +
+    ', desde el ' + sinArranca(g).replace(/^\S+\s+/, '');
+};
+datos.curso.grupos_frase = abiertos.length === 0 ? 'La próxima edición todavía no tiene fecha.'
+  : abiertos.length === 1 ? 'El grupo abierto es el de ' + unGrupo(abiertos[0]) + '.'
+  : 'Hay ' + ({ 2: 'dos', 3: 'tres' }[abiertos.length] || abiertos.length) + ' grupos: ' +
+    abiertos.map(unGrupo).join(', o ') + '.';
 
 // La cantidad de horarios se dice en palabras, y cambia si son dos o tres.
 const cuantos = { 1: 'un horario', 2: 'dos horarios', 3: 'tres horarios' }[nombres.length]
