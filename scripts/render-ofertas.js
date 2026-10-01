@@ -103,17 +103,36 @@ function enlace(u) {
 
 /* ---- Reglas derivadas: nadie tiene que acordarse de bajar una fecha vencida ---- */
 
+// Si la primera fecha ya pasó y la segunda sigue en pie, la segunda pasa a
+// ser la fecha de la propuesta. Sin esto, al día siguiente de la primera
+// fecha la página decía «Sin fecha confirmada» y escondía la segunda, que
+// seguía abierta.
+function correrSegunda(o, campoHora) {
+  const s = o.segunda_fecha;
+  if (!esPasado(o.fecha_iso) || !s || !s.iso || esPasado(s.iso)) return;
+  o.fecha_iso = s.iso;
+  o.fecha_texto = s.texto;
+  if (s.hora_inicio) o[campoHora] = s.hora_inicio;
+  if (s.hora_fin) o.hora_fin = s.hora_fin;
+  if (s.link) o.link_compra = s.link;
+  delete o.segunda_fecha;
+}
+correrSegunda(datos.tapeo, 'hora');
+for (const t of Object.values(datos.talleres)) correrSegunda(t, 'hora_inicio');
+
 // Una fecha que ya pasó deja de venderse sola.
 if (esPasado(datos.tapeo.fecha_iso)) {
   datos.tapeo.estado = 'sin-fecha';
   datos.tapeo.fecha_texto = 'Sin fecha confirmada';
   datos.tapeo.fecha_iso = '';
+  delete datos.tapeo.segunda_fecha;
 }
 for (const [id, t] of Object.entries(datos.talleres)) {
   if (esPasado(t.fecha_iso)) {
     t.estado = 'sin-fecha';
     t.fecha_texto = 'Sin fecha confirmada';
     t.fecha_iso = '';
+    delete t.segunda_fecha;
   }
   t.id = id;
 }
