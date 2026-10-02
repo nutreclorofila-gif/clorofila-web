@@ -3,8 +3,8 @@
   "tapeo": {
     "estado": "abierto",
     "_estados_posibles": "sin-fecha | abierto | ultimos | agotado",
-    "fecha_iso": "2026-10-02",
-    "fecha_texto": "viernes 2 de octubre",
+    "fecha_iso": "2026-10-30",
+    "fecha_texto": "viernes 30 de octubre",
     "hora": "19:00",
     "hora_fin": "22:30",
     "precio": "$2.600 por persona",
@@ -37,8 +37,8 @@
       }
     ],
     "segunda_fecha": {
-      "iso": "2026-10-16",
-      "texto": "viernes 16 de octubre",
+      "iso": "2026-11-06",
+      "texto": "viernes 6 de noviembre",
       "hora_inicio": "19:00",
       "hora_fin": "22:30",
       "link": ""
