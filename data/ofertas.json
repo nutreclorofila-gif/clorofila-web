@@ -82,6 +82,7 @@
     "fermentacion": {
       "nombre": "Fermentación de vegetales",
       "nombre_corto": "Fermentación",
+      "linea_corta": "Hacemos chucrut, kimchi y encurtidos.",
       "estado": "sin-fecha",
       "fecha_iso": "",
       "fecha_texto": "Sin fecha confirmada",
@@ -92,6 +93,7 @@
     "pan-sin-gluten": {
       "nombre": "Pan sin gluten con masa madre",
       "nombre_corto": "Pan sin gluten",
+      "linea_corta": "Trabajamos la hidratación, la fermentación y la miga, con masa madre real y sin aditivos.",
       "estado": "sin-fecha",
       "fecha_iso": "",
       "fecha_texto": "Sin fecha confirmada",
@@ -102,6 +104,7 @@
     "pastas-sin-gluten": {
       "nombre": "Pastas sin gluten",
       "nombre_corto": "Pastas sin gluten",
+      "linea_corta": "Amasás, estirás y armás cada forma vos.",
       "estado": "sin-fecha",
       "fecha_iso": "",
       "fecha_texto": "Sin fecha confirmada",
@@ -116,6 +119,7 @@
     "alfajores": {
       "nombre": "Alfajores plant-based",
       "nombre_corto": "Alfajores",
+      "linea_corta": "Armás la masa, la ganache y los rellenos con técnica pastelera.",
       "estado": "sin-fecha",
       "fecha_iso": "",
       "fecha_texto": "Sin fecha confirmada",
@@ -126,6 +130,7 @@
     "quesos-vegetales": {
       "nombre": "Quesos vegetales",
       "nombre_corto": "Quesos vegetales",
+      "linea_corta": "Partimos del cajú y otras semillas para llegar a piezas madurables.",
       "estado": "sin-fecha",
       "fecha_iso": "",
       "fecha_texto": "Sin fecha confirmada",

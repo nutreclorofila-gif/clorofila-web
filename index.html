@@ -32,7 +32,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=58">
+<link rel="stylesheet" href="base.css?v=59">
 <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":["LocalBusiness","EducationalOrganization"],"@id":"https://clorofila.uy/#organization","name":"Clorofila","description":"Escuela de cocina basada en plantas en Parque Rodó, Montevideo, desde 2013. Curso presencial de tres meses, talleres intensivos de un día y experiencias de una noche. Todo lo que se cocina es 100% vegetal, sin gluten ni azúcares refinados.","url":"https://clorofila.uy/","email":"nutreclorofila@gmail.com","telephone":"+59894064148","openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"15:00","closes":"19:00"},"address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressRegion":"Montevideo","addressCountry":"UY"},"geo":{"@type":"GeoCoordinates","latitude":-34.9085217,"longitude":-56.1723695},"priceRange":"$$","hasMap":"https://www.google.com/maps/place/Clorofila/@-34.9085217,-56.1723695,17z","image":"https://clorofila.uy/og/og-home.jpg","logo":"https://clorofila.uy/icon-512.png","foundingDate":"2013","founder":{"@id":"https://clorofila.uy/leonardo#person"},"areaServed":{"@type":"City","name":"Montevideo"},"sameAs":["https://instagram.com/clorofilaclases","https://www.facebook.com/clorofilaclases","https://linktr.ee/clorofilaestudio"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"23","bestRating":"5"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Valentina Pedreira"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado."},{"@type":"Review","author":{"@type":"Person","name":"Matías Acevedo"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Lo que más me sorprendió fue entender el porqué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien."}],"knowsAbout":["Cocina basada en plantas","Cocina vegana","Cocina sin gluten","Fermentación de vegetales","Pastelería sin gluten","Quesos vegetales","Masa madre","Ciencia del alimento","Cocina saludable"]},{"@type":"WebSite","url":"https://clorofila.uy/","name":"Clorofila","inLanguage":"es-UY","publisher":{"@id":"https://clorofila.uy/#organization"}}]}
   </script>
@@ -147,7 +147,7 @@ main h3{line-height:1.15}
 .propuesta-al-reves{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
 .propuesta-al-reves .propuesta-foto{order:2}
 .propuesta-foto{margin:0;display:flex;flex-direction:column;line-height:0}
-.palabra{position:relative;z-index:1;margin:0 0 -.22em 1.5rem;font-size:clamp(2.8rem,5.6vw,4.5rem);line-height:.8;color:var(--cal);max-width:none}
+.palabra{position:relative;z-index:1;margin:0 0 -.22em 1.5rem;font-size:clamp(3.3rem,6.7vw,5.4rem);line-height:.8;color:var(--cal);max-width:none}
 .propuesta-al-reves .palabra{margin-left:auto;margin-right:1.5rem}
 .propuesta-foto img{width:100%;height:clamp(280px,30vw,400px);object-fit:cover;display:block;border-radius:0 220px 0 220px}
 .propuesta-al-reves .propuesta-foto img{border-radius:220px 0 220px 0}
@@ -174,18 +174,17 @@ main h3{line-height:1.15}
   .curso-transforma{grid-template-columns:1fr}
 }
 
-/* Talleres: el índice cuelga de su filete, de a dos en el celular. */
-.tira-talleres{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:0 1.75rem;margin-top:1.5rem}
-.tira-talleres a{border-top:1px solid var(--linea);padding:.9rem 0;font-size:var(--t-chico);color:var(--cal-med);transition:color .2s;min-height:48px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:.2rem}
-.tira-talleres a:hover{color:var(--cal)}
-.tira-talleres a.enlace-vivo{grid-column:1/-1;border-top:0;padding-top:1.15rem;min-height:0;color:var(--brote);font-weight:600}
-.tira-talleres a.enlace-vivo:hover{border-bottom-color:transparent;color:var(--brote)}
-.tira-talleres small{font-family:var(--texto);font-size:var(--t-nota);color:var(--miel)}
-.tira-talleres a[data-estado="abierto"]{border-top-color:rgba(224,133,86,.55);color:var(--cal)}
-@media (max-width:640px){
-  .tira-talleres{grid-template-columns:1fr 1fr;gap:0 1.25rem}
-  .tira-talleres a{font-size:var(--t-nota)}
-}
+/* Talleres: cada uno es una tarjeta con su nombre y la línea que cuenta qué
+   se hace. Antes eran cinco palabras sueltas colgadas de un filete. */
+.tira-talleres{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:.75rem;margin-top:1.5rem}
+.tira-talleres a{position:relative;display:flex;flex-direction:column;gap:.35rem;background:var(--musgo);border-radius:0 28px 0 28px;padding:1.1rem 1.25rem 1.2rem;transition:background .2s}
+.tira-talleres a:hover{background:var(--musgo-alto)}
+.tira-talleres strong{font-family:var(--display);font-weight:600;font-size:1.12rem;line-height:1.2;color:var(--cal)}
+.tira-talleres span{font-size:var(--t-nota);line-height:1.5;color:var(--cal-med)}
+.tira-talleres small{font-family:var(--texto);font-size:var(--t-nota);font-weight:600;color:var(--miel)}
+.tira-talleres a[data-estado="abierto"]{box-shadow:inset 0 0 0 1px rgba(240,179,85,.45)}
+.tira-talleres a.enlace-vivo{grid-column:1/-1;background:none;border-radius:0;padding:.6rem 0 0;color:var(--brote);font-weight:600}
+.tira-talleres a.enlace-vivo:hover{background:none}
 
 /* ---------- TAPEO: el afiche ----------
    Una hoja clara, apenas girada, apoyada sobre la foto de la noche. Es lo
@@ -382,7 +381,7 @@ main h3{line-height:1.15}
 <section class="seccion" id="curso">
   <div class="env">
     <div class="con-hoja">
-      <h2 class="titulo-hoja"><svg class="hoja" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21C3 10 10 3 21 3c0 11-7 18-18 18z"/><path d="M3 21L15 9"/></svg>Elegís cómo venir: al curso, a un taller o a una cena.</h2>
+      <h2 class="titulo-hoja"><svg class="hoja" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21C3 10 10 3 21 3c0 11-7 18-18 18z"/><path d="M3 21L15 9"/></svg>Cocinamos juntos en el curso, en los talleres y en las cenas.</h2>
       <div class="propuesta">
         <figure class="propuesta-foto">
           <span class="palabra" aria-hidden="true">Curso</span>
@@ -400,7 +399,7 @@ main h3{line-height:1.15}
             <li>Tartas saladas y platos principales completos</li>
             <li>Chocolates, ganache, helados y budines</li>
           </ul>
-          <p class="curso-cuando"><!--o:curso.inicio_texto-->Arranca el miércoles 7 de octubre<!--/o-->.</p>
+          <p class="curso-cuando"><!--o:curso.inicio_frase-->Arranca el miércoles 7 de octubre o el jueves 8 de octubre, según el grupo.<!--/o--></p>
           <a href="/curso" class="enlace-flecha enlace-salida">Ver el curso <span class="circulo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
       </div>
@@ -413,7 +412,7 @@ main h3{line-height:1.15}
           <span class="senal">Talleres intensivos de un día</span>
           <h3>Elaborás pan sin gluten, pastas, fermentos y quesos.</h3>
           <p>Cada taller le dedica el día entero a una sola técnica, de la primera mezcla hasta la mesa.</p>
-          <div class="tira-talleres"><!--o:html:talleres_tira_html--><a href="/talleres#fermentacion"><span>Fermentación</span></a><a href="/talleres#pan-sin-gluten"><span>Pan sin gluten</span></a><a href="/pastas"><span>Pastas sin gluten</span></a><a href="/talleres#alfajores"><span>Alfajores</span></a><a href="/talleres#quesos-vegetales"><span>Quesos vegetales</span></a><a href="/talleres" class="enlace-vivo">Ver todos los talleres</a><!--/o--></div>
+          <div class="tira-talleres"><!--o:html:talleres_tira_html--><a href="/talleres#fermentacion"><strong>Fermentación de vegetales</strong><span>Hacemos chucrut, kimchi y encurtidos.</span></a><a href="/talleres#pan-sin-gluten"><strong>Pan sin gluten con masa madre</strong><span>Trabajamos la hidratación, la fermentación y la miga, con masa madre real y sin aditivos.</span></a><a href="/pastas"><strong>Pastas sin gluten</strong><span>Amasás, estirás y armás cada forma vos.</span></a><a href="/talleres#alfajores"><strong>Alfajores plant-based</strong><span>Armás la masa, la ganache y los rellenos con técnica pastelera.</span></a><a href="/talleres#quesos-vegetales"><strong>Quesos vegetales</strong><span>Partimos del cajú y otras semillas para llegar a piezas madurables.</span></a><a href="/talleres" class="enlace-vivo">Ver todos los talleres</a><!--/o--></div>
         </div>
       </div>
     </div>
@@ -444,7 +443,7 @@ main h3{line-height:1.15}
       <h2>Próximas fechas</h2>
       <p class="dato" style="max-width:30ch;font-size:var(--t-nota);color:var(--cal-baja)"><a href="/talleres" class="enlace-vivo">Los talleres</a> se abren por demanda: dejanos tu interés y te avisamos cuando haya fecha.</p>
     </div>
-    <ul class="agenda-grid" tabindex="0" aria-label="Próximas fechas: deslizá para ver todas"><!--o:html:agenda_html--><li class="agenda-item" data-estado="abierto" data-tipo="curso" data-inicio-iso="2026-10-07"><span class="agenda-etiqueta" data-cuenta>Grupos abiertos</span><span class="agenda-dia" aria-hidden="true">7</span><p class="agenda-nombre">Curso de cocina saludable</p><p class="agenda-cuando">Arranca el miércoles 7 de octubre · miércoles o jueves</p><a href="/curso" class="agenda-link" data-producto="agenda">Ver el curso</a></li><li class="agenda-item" data-estado="abierto" data-tipo="tapeo"><span class="agenda-etiqueta">Inscripciones abiertas</span><span class="agenda-dia" aria-hidden="true">23</span><p class="agenda-nombre">Cena y Taller de Tapeo</p><p class="agenda-cuando">viernes 23 de octubre · 19:00 a 22:30 h</p><a href="/tapeo" class="agenda-link" data-producto="agenda">Ver la cena de tapeo</a></li><li class="agenda-item" data-estado="abierto" data-tipo="tapeo"><span class="agenda-etiqueta">Segunda fecha</span><span class="agenda-dia" aria-hidden="true">30</span><p class="agenda-nombre">Cena y Taller de Tapeo</p><p class="agenda-cuando">viernes 30 de octubre · 19:00 a 22:30 h</p><a href="/tapeo" class="agenda-link" data-producto="agenda">Ver la cena de tapeo</a></li><!--/o--></ul>
+    <ul class="agenda-grid" tabindex="0" aria-label="Próximas fechas: deslizá para ver todas"><!--o:html:agenda_html--><li class="agenda-item" data-estado="abierto" data-tipo="curso" data-inicio-iso="2026-10-07"><span class="agenda-etiqueta" data-cuenta>Grupos abiertos</span><span class="agenda-dia" aria-hidden="true">7</span><p class="agenda-nombre">Curso de cocina saludable</p><p class="agenda-cuando">Arranca el miércoles 7 de octubre · 19:00 a 21:00 h</p><a href="/curso" class="agenda-link" data-producto="agenda">Ver el curso</a></li><li class="agenda-item" data-estado="abierto" data-tipo="curso" data-inicio-iso="2026-10-08"><span class="agenda-etiqueta" data-cuenta>Grupos abiertos</span><span class="agenda-dia" aria-hidden="true">8</span><p class="agenda-nombre">Curso de cocina saludable</p><p class="agenda-cuando">Arranca el jueves 8 de octubre · 10:00 a 12:00 h</p><a href="/curso" class="agenda-link" data-producto="agenda">Ver el curso</a></li><li class="agenda-item" data-estado="abierto" data-tipo="tapeo"><span class="agenda-etiqueta">Inscripciones abiertas</span><span class="agenda-dia" aria-hidden="true">23</span><p class="agenda-nombre">Cena y Taller de Tapeo</p><p class="agenda-cuando">viernes 23 de octubre · 19:00 a 22:30 h</p><a href="/tapeo" class="agenda-link" data-producto="agenda">Ver la cena de tapeo</a></li><li class="agenda-item" data-estado="abierto" data-tipo="tapeo"><span class="agenda-etiqueta">Segunda fecha</span><span class="agenda-dia" aria-hidden="true">30</span><p class="agenda-nombre">Cena y Taller de Tapeo</p><p class="agenda-cuando">viernes 30 de octubre · 19:00 a 22:30 h</p><a href="/tapeo" class="agenda-link" data-producto="agenda">Ver la cena de tapeo</a></li><!--/o--></ul>
   </div>
 </section>
 

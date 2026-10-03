@@ -551,6 +551,10 @@ const sinArranca = function (g) { return g.inicio_texto.replace(/^arranca el /i,
 datos.curso.inicio_frase = abiertos.length === 0 ? 'La próxima edición todavía no tiene fecha.'
   : abiertos.length === 1 ? abiertos[0].inicio_texto + '.'
   : 'Arranca el ' + abiertos.map(sinArranca).join(' o el ') + ', según el grupo.';
+// Versión corta para los rótulos: «Arranca el 7 de octubre o el 8 de octubre».
+datos.curso.inicio_corto = abiertos.length > 1
+  ? 'Arranca el ' + abiertos.map(function (g) { return sinArranca(g).replace(/^\S+\s+/, ''); }).join(' o el ')
+  : datos.curso.inicio_texto;
 const unGrupo = function (g) {
   return 'los ' + g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '') +
     ', desde el ' + sinArranca(g).replace(/^\S+\s+/, '');
@@ -676,20 +680,18 @@ for (const [id, w] of Object.entries(datos.talleres)) {
 // El curso es lo primero que se vende y no estaba en la agenda: la home
 // mostraba "lo que se puede reservar hoy" sin el producto principal, que tiene
 // la edición de octubre abierta.
-if (abiertos.length) {
+// Una entrada por grupo abierto: cada grupo arranca un día distinto y la
+// agenda tiene que mostrar las dos fechas, no solo la primera.
+abiertos.forEach(function (g) {
   agenda.push({
-    iso: abiertos[0].inicio_iso, nombre: 'Curso de cocina saludable',
-    cuenta: abiertos[0].inicio_iso,
-    // dias_texto une los grupos con "y" —"miércoles y jueves"— y así queda bien
-    // en /programa, que habla de los dos como conjunto. Acá no: la agenda es lo
-    // que alguien puede reservar, y se reserva UNO. Con "y" la tarjeta se leía
-    // como que se cursan los dos días.
-    fecha: datos.curso.inicio_texto,
-    hora: datos.curso.grupos.map(function (g) { return g.nombre.toLowerCase(); }).join(' o '),
+    iso: g.inicio_iso, nombre: 'Curso de cocina saludable',
+    cuenta: g.inicio_iso,
+    fecha: g.inicio_texto,
+    hora: g.horario,
     precio: datos.curso.precio_total, estado: 'abierto',
     etiqueta: datos.curso.grupos_label, link: '/curso', cta: 'Ver el curso'
   });
-}
+});
 
 // El tapeo aparece aunque no tenga fecha, para que la experiencia exista en la
 // home todo el año. Sin fecha va al final y dice que no la tiene: la agenda no
@@ -790,7 +792,9 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
     const abierto = w.estado !== 'sin-fecha' && w.fecha_iso;
     (abierto ? conFecha : sinFecha).push(
       '<a href="' + enlace(destino) + '"' + (abierto ? ' data-estado="abierto"' : '') + '>' +
-      '<span>' + escapar(w.nombre_corto || w.nombre) + '</span>' +
+      // Cada taller con su nombre completo y la línea que cuenta qué se hace.
+      '<strong>' + escapar(w.nombre) + '</strong>' +
+      (w.linea_corta ? '<span>' + escapar(w.linea_corta) + '</span>' : '') +
       (abierto ? '<small>' + escapar(w.fecha_texto) + '</small>' : '') +
       '</a>'
     );
