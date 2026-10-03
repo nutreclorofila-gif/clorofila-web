@@ -609,9 +609,13 @@ datos.curso.horarios_chip = '3 meses · una clase por semana';
    dos grupos tienen distinto tamaño se dice el mayor, que es el peor caso. */
 (function () {
   const cupos = datos.curso.grupos.map(function (g) { return g.cupos_total; }).filter(Boolean);
-  datos.curso.cupo_texto = cupos.length
-    ? 'Hasta ' + Math.max.apply(null, cupos) + ' por grupo'
-    : 'Grupos reducidos';
+  // El grupo se abre con cupos_min y estira hasta cupos_total (Leo, 12/9: «de 12 a 15
+  // personas por grupo»). Decir solo el piso hacía creer que el techo era 12.
+  const minimos = datos.curso.grupos.map(function (g) { return g.cupos_min; }).filter(Boolean);
+  const max = cupos.length ? Math.max.apply(null, cupos) : 0;
+  const min = minimos.length ? Math.min.apply(null, minimos) : 0;
+  datos.curso.cupo_texto = !max ? 'Grupos reducidos'
+    : (min && min < max ? 'De ' + min + ' a ' + max + ' por grupo' : 'Hasta ' + max + ' por grupo');
 }());
 
 // El FAQ prometía "tenés tres horarios y te movés entre ellos". Con una sola
