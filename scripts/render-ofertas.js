@@ -731,10 +731,15 @@ datos.agenda_html = agenda.map(function (e) {
   /* Si el ítem tiene fecha de inicio, la etiqueta pasa a ser la cuenta
      regresiva cuando corre el JS ("Empieza en 6 semanas"). El renglón de abajo
      sigue diciendo el día exacto, así que no se pierde información. */
-  return '<li class="agenda-item" data-estado="' + e.estado + '"' +
+  /* El día va grande, como en una entrada. Es solo dibujo: el renglón de
+     abajo ya dice la fecha completa, así que el lector de pantalla lo saltea. */
+  var dia = /^\d{4}-\d{2}-\d{2}/.test(e.iso) && e.iso.indexOf('9999') !== 0 ? parseInt(e.iso.slice(8, 10), 10) : 0;
+  var tipo = e.link === '/tapeo' ? 'tapeo' : (e.link === '/curso' ? 'curso' : 'taller');
+  return '<li class="agenda-item" data-estado="' + e.estado + '" data-tipo="' + tipo + '"' +
     (e.cuenta ? ' data-inicio-iso="' + escapar(e.cuenta) + '"' : '') + '>' +
     '<span class="agenda-etiqueta"' + (e.cuenta ? ' data-cuenta' : '') + '>' +
       escapar(e.etiqueta) + '</span>' +
+    '<span class="agenda-dia" aria-hidden="true">' + (dia || '') + '</span>' +
     '<p class="agenda-nombre">' + escapar(e.nombre) + '</p>' +
     '<p class="agenda-cuando">' + escapar(e.fecha) + (e.hora ? ' · ' + escapar(e.hora) : '') + '</p>' +
     /* El precio ya se juntaba acá arriba y no se imprimía: la agenda decía qué

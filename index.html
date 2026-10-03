@@ -29,222 +29,264 @@
 <meta name="twitter:image" content="https://clorofila.uy/og/og-home.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
 <link rel="stylesheet" href="base.css?v=58">
 <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":["LocalBusiness","EducationalOrganization"],"@id":"https://clorofila.uy/#organization","name":"Clorofila","description":"Escuela de cocina basada en plantas en Parque Rodó, Montevideo, desde 2013. Curso presencial de tres meses, talleres intensivos de un día y experiencias de una noche. Todo lo que se cocina es 100% vegetal, sin gluten ni azúcares refinados.","url":"https://clorofila.uy/","email":"nutreclorofila@gmail.com","telephone":"+59894064148","openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"15:00","closes":"19:00"},"address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressRegion":"Montevideo","addressCountry":"UY"},"geo":{"@type":"GeoCoordinates","latitude":-34.9085217,"longitude":-56.1723695},"priceRange":"$$","hasMap":"https://www.google.com/maps/place/Clorofila/@-34.9085217,-56.1723695,17z","image":"https://clorofila.uy/og/og-home.jpg","logo":"https://clorofila.uy/icon-512.png","foundingDate":"2013","founder":{"@id":"https://clorofila.uy/leonardo#person"},"areaServed":{"@type":"City","name":"Montevideo"},"sameAs":["https://instagram.com/clorofilaclases","https://www.facebook.com/clorofilaclases","https://linktr.ee/clorofilaestudio"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"23","bestRating":"5"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Valentina Pedreira"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado."},{"@type":"Review","author":{"@type":"Person","name":"Matías Acevedo"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Lo que más me sorprendió fue entender el porqué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien."}],"knowsAbout":["Cocina basada en plantas","Cocina vegana","Cocina sin gluten","Fermentación de vegetales","Pastelería sin gluten","Quesos vegetales","Masa madre","Ciencia del alimento","Cocina saludable"]},{"@type":"WebSite","url":"https://clorofila.uy/","name":"Clorofila","inLanguage":"es-UY","publisher":{"@id":"https://clorofila.uy/#organization"}}]}
   </script>
 <style>
-/* ---------- HERO: la página se enciende ---------- */
-.hero{position:relative;overflow:hidden;padding-block:clamp(3rem,7vw,5.5rem) clamp(3rem,6vw,5rem)}
-.hero-caja{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
-.hero h1{margin-block:1rem 1.15rem;font-size:var(--th-portada);max-width:15ch;line-height:1.03}
-.hero-bajada{font-size:var(--t-cuerpo);color:var(--cal-med);max-width:48ch;margin-bottom:1.75rem}
-/* Tres cifras enormes con su etiqueta debajo, separadas por líneas, es el
-   panel de control que trae cualquier plantilla. Son datos que uno diría en
-   voz alta, así que se leen en una línea. */
-.hero-datos{border-top:1px solid var(--linea);padding-top:1.15rem;font-size:var(--t-chico);color:var(--cal-med);max-width:none}
-.hero-datos b{font-weight:600;color:var(--cal)}
-/* El hero presenta y no vende: en lugar de los dos botones queda un solo
-   enlace de línea que baja a las propuestas. El alto mínimo le da los 44 px
-   de toque sin agrandar la letra. */
-.hero-ver{margin-top:1rem}
-/* Los enlaces que cierran un bloque («Ver el curso», las reseñas, los
-   artículos y los de la agenda) medían entre 32 y 39 px de alto. La banda de
-   44 px es absoluta: llega al objetivo táctil sin mover el texto. La misma
-   regla vive en /tapeo. Los de la agenda los arma render-ofertas.js, por eso
-   se toman por su clase. */
-.enlace-salida,.agenda-link{position:relative}
-.enlace-salida::after,.agenda-link::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
-.hero-ver a{display:inline-flex;align-items:center;min-height:44px}
-.hero-foto{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5}
-.hero-foto img{width:100%;height:100%;object-fit:cover}
-@media (max-width:900px){.hero-caja{grid-template-columns:1fr}.hero-foto{aspect-ratio:4/3;margin-top:1.5rem}}
-/* En pantalla grande la foto no es una tarjeta dentro de la caja: es la luz de
-   la página, y llega hasta el borde derecho. El margen negativo es lo que la
-   caja de 1200px deja a cada lado más el padding de .env. */
-@media (min-width:901px){.hero .hero-foto{margin-right:calc(-1 * (max(0px, (100vw - var(--max)) / 2) + clamp(1.25rem,4vw,2.5rem)));border-top-right-radius:0;border-bottom-right-radius:0;aspect-ratio:auto;height:min(76vh,720px)}}
+/* =========================================================================
+   PORTADA. Es la dirección C del lienzo de diseño: fotos grandes con la curva
+   de una hoja, una foto chica encima de otra, la receta tachada en letra de
+   revista, el tapeo como un afiche y las fechas como entradas. Vive acá y no
+   en base.css: es la única página que lo usa por ahora.
+   ========================================================================= */
+:root{--serif:'Vollkorn',Georgia,'Times New Roman',serif;--avena:#E1E4DB;--tostado:#6B4A12;--sombra:0 28px 60px rgba(0,0,0,.42)}
+/* Los títulos de la portada van en Vollkorn: una letra con serifa, de libro
+   de cocina, en lugar de la grotesca del resto del sitio. */
+main h1,main h2,main h3,.panel-cita,.palabra,.agenda-dia,.agenda-nombre,.voz blockquote{font-family:var(--serif);font-weight:600;font-variation-settings:normal;letter-spacing:-.02em}
+main h2{font-size:clamp(1.6rem,2.9vw,2.25rem);line-height:1.1}
+main h3{line-height:1.15}
+.foto-borde{outline:1px solid rgba(255,255,255,.08);outline-offset:-1px}
 
-/* ---------- AGENDA ---------- */
-.agenda{background:var(--musgo);border-block:1px solid var(--linea)}
-[data-agenda="no"]{display:none}
-.agenda-cabeza{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
-/* La nota de la agenda es una oración, no un dato: iba en la negrita de .dato
-   y el enlace, con su relleno de bloque, partía el primer renglón. Ahora se
-   lee como texto y el enlace vive dentro de la oración. */
-.agenda-cabeza p.dato{font-weight:400;line-height:1.6}
-.agenda-cabeza p.dato .enlace-vivo{display:inline;padding-block:0}
-/* La agenda es una cartelera de fechas, no una galería: una fila por fecha,
-   separadas por filete, con el enlace a la derecha en pantalla grande. Así
-   entra igual con dos fechas que con seis, y el estado se lee en la etiqueta
-   y en el color del filete. */
-.agenda-grid{display:grid;gap:0;border-top:1px solid var(--linea)}
-.agenda-item{border-bottom:1px solid var(--linea);padding-block:1.2rem;display:grid;grid-template-columns:1fr;gap:.3rem}
-@media (min-width:720px){
-  .agenda-item{grid-template-columns:1fr auto;align-items:center;column-gap:2rem}
-  .agenda-item > *{grid-column:1}
-  .agenda-link{grid-column:2;grid-row:1 / -1;align-self:center;margin-top:0}
-}
-.agenda-etiqueta{font-family:var(--texto);font-size:var(--t-nota);color:var(--brote);margin-bottom:.5rem}
-/* Una nota cálida sobre tanto verde, y en el único lugar donde suma: lo que
-   está abierto. El contraste hay que medirlo contra el fondo de la tarjeta,
-   que es más claro que el de la página: ahí da 4,9:1 y la etiqueta mide 9,6px,
-   o sea que necesita 4,5. Contra el fondo de la página daría 6,5, pero ese
-   número no es el que corresponde mirar acá. */
-.agenda-item[data-estado="abierto"] .agenda-etiqueta{color:#E08556}
-.agenda-item[data-estado="abierto"]{border-bottom-color:rgba(224,133,86,.5)}
-.agenda-item[data-estado="ultimos"] .agenda-etiqueta{color:var(--fermento)}
-.agenda-item[data-estado="agotado"] .agenda-etiqueta{color:var(--cal-baja)}
-.agenda-item[data-estado="sin-fecha"] .agenda-etiqueta{color:var(--cal-baja)}
-.agenda-nombre{font-family:var(--display);font-size:var(--t-bajada);color:var(--cal);line-height:1.12;letter-spacing:-.02em}
-.agenda-cuando{font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-med);}
-.agenda-precio{font-family:var(--texto);font-size:var(--t-nota);color:var(--miel)}
-.agenda-link{margin-top:.9rem;font-size:var(--t-nota);font-weight:600;color:var(--cal);display:inline-block;padding-block:.3rem;border-bottom:1px solid var(--linea-fuerte);width:fit-content;transition:border-color .2s}
-.agenda-link:hover{border-color:var(--brote)}
-
-/* ---------- PROPUESTAS ---------- */
-.prop{position:relative;border:1px solid var(--linea);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;min-height:420px;transition:border-color .3s}
-.prop:hover{border-color:var(--linea-fuerte)}
-.prop-foto{position:absolute;inset:0}
-.prop-foto img{width:100%;height:100%;object-fit:cover}
-.prop-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(178deg,rgba(14,26,19,.28) 0%,rgba(14,26,19,.86) 58%,rgba(14,26,19,.97) 100%)}
-.prop-cuerpo{position:relative;margin-top:auto;padding:clamp(1.4rem,3vw,2rem)}
-.prop h3{font-size:var(--th-bloque);margin-block:.55rem .5rem}
-.prop p{font-size:var(--t-chico);color:var(--cal-med);max-width:40ch;margin-bottom:1.1rem}
-.prop-pie{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-@media (max-width:820px){.propuestas{grid-template-columns:1fr}}
-/* Tres fotos debajo de la tarjeta. La noche del tapeo es lo más visual que
-   tiene el sitio y con una sola foto -de fondo, y bajo un degradado que la
-   oscurece- no se alcanzaba a ver de qué se trata. En el celular la tira se
-   desliza con el dedo y engancha foto por foto; en pantalla grande entran las
-   tres juntas. Es scroll del navegador: sin JavaScript y sin nada que se
-   mueva solo, que en un carrusel automático es lo que molesta. */
-/* Las tiras llevan tabindex="0" en el HTML: en el teléfono la mitad de las
-   fotos queda fuera de vista y un contenedor con scroll que no recibe foco
-   no se puede recorrer con el teclado. Con foco, las flechas lo mueven. */
-.tira-fotos{display:flex;gap:.6rem;overflow-x:auto;scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;scrollbar-width:none;
-  margin:.9rem 0 0;padding-bottom:.2rem}
-/* La tira del tapeo acompaña a una tarjeta angosta y centrada; la del curso va
-   debajo de un bloque que ocupa todo el ancho. Cada una sigue a lo suyo. */
-.tira-fotos::-webkit-scrollbar{display:none}
-.tira-fotos figure{flex:0 0 62%;scroll-snap-align:center;border-radius:var(--r);
-  overflow:hidden;aspect-ratio:1;margin:0}
-.tira-fotos img{width:100%;height:100%;object-fit:cover;display:block}
-@media (min-width:821px){
-  .tira-fotos{overflow:visible;display:grid;grid-template-columns:1.55fr 1fr;grid-template-rows:1fr 1fr;gap:.6rem;height:clamp(320px,34vw,460px)}
-  .tira-fotos figure{flex:none;aspect-ratio:auto;min-height:0}
-  .tira-fotos figure:first-child{grid-row:span 2}
+/* ---------- HERO ---------- */
+.hero{padding-block:clamp(1.25rem,3.5vw,2.75rem) 0}
+/* La foto llega hasta el borde derecho de la pantalla. El texto queda
+   alineado con la caja de 1200px del resto de la página. */
+.hero-caja{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.98fr);align-items:center;gap:clamp(2rem,4vw,3.5rem);
+  padding-left:calc(max(0px,(100vw - var(--max)) / 2) + clamp(1.25rem,4vw,2.5rem))}
+.hero h1{font-size:clamp(2.5rem,5.4vw,4.4rem);line-height:1.06;margin:0 0 1.4rem;max-width:11ch}
+.hero-bajada{font-size:var(--t-bajada);line-height:1.5;color:var(--cal-med);max-width:26em;margin-bottom:1.9rem}
+.hero-acciones{display:flex;gap:.75rem;flex-wrap:wrap}
+.portada-foto{position:relative;margin:0;padding-bottom:60px}
+.portada-foto > picture:first-child img{width:100%;height:min(74vh,560px);object-fit:cover;object-position:40% 50%;border-radius:300px 0 0 0;display:block}
+/* La foto chica tiene la forma de una hoja y se apoya sobre la grande. El
+   borde del color del fondo es lo que la despega. */
+.foto-chica{position:absolute;display:block;border:6px solid var(--tinta);overflow:hidden;box-shadow:var(--sombra);line-height:0}
+.foto-chica img{width:100%;height:100%;object-fit:cover;display:block}
+.portada-foto .foto-chica{left:-48px;bottom:0;width:clamp(150px,18vw,230px);aspect-ratio:1;border-radius:0 110px 0 110px}
+.hero-datos{list-style:none;margin:clamp(2rem,5vw,3.5rem) auto 0;padding:0 clamp(1.25rem,4vw,2.5rem);max-width:var(--max);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.hero-datos li{background:var(--musgo);border-radius:6px;padding:1.1rem 1.4rem;font-size:var(--t-chico);color:var(--cal)}
+.hero-datos b{font-weight:600}
+@media (max-width:900px){
+  .hero-caja{grid-template-columns:1fr;padding-left:0;gap:2rem}
+  .hero-texto{padding-inline:clamp(1.25rem,4vw,2.5rem)}
+  .portada-foto{margin-left:3.5rem;padding-bottom:44px}
+  .portada-foto > picture:first-child img{height:auto;aspect-ratio:1/1.05;border-radius:150px 0 0 0}
+  .portada-foto .foto-chica{left:-2.25rem;width:40%;border-radius:0 64px 0 64px}
+  .hero-datos{grid-template-columns:1fr;gap:.5rem}
 }
 
-/* ---------- ARTÍCULOS (home) ---------- */
-.articulos-tira{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:1.25rem;margin-top:2.5rem}
-/* Toda la tarjeta lleva al artículo, no solo el renglón del título: con el dedo
-   el título medía 21px de alto, por debajo del mínimo de 24 que se puede tocar. */
-.articulo-mini{border-top:1px solid var(--linea);padding-top:1.1rem;position:relative}
-.articulo-mini h3{font-size:var(--t-cuerpo);margin-bottom:.5rem}
-.articulo-mini h3 a{color:var(--cal);letter-spacing:-.01em}
-.articulo-mini h3 a::after{content:"";position:absolute;inset:0;z-index:1}
-.articulo-mini:hover h3 a{color:var(--brote)}
-.articulo-mini p{font-size:var(--t-nota);color:var(--cal-med)}
+/* ---------- TÍTULO CON HOJA ----------
+   La hoja marca dónde empieza un tema y la línea verde baja hasta que el
+   tema termina. */
+.con-hoja{position:relative;padding-left:clamp(2.6rem,5vw,4rem)}
+.con-hoja::before{content:"";position:absolute;left:12px;top:3.4rem;bottom:0;width:1px;background:rgba(143,192,138,.45)}
+.titulo-hoja{position:relative;margin-bottom:clamp(2rem,4vw,3rem)}
+.hoja{position:absolute;left:calc(-1 * clamp(2.6rem,5vw,4rem));top:.12em;width:26px;height:26px;fill:var(--tinta);stroke:var(--brote);stroke-width:1.6}
 
-/* ---------- CURSO DESTACADO: el producto principal ---------- */
-.curso-destacado{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(2rem,5vw,4rem);align-items:center}
-.curso-destacado-foto{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5}
-.curso-destacado-foto img{width:100%;height:100%;object-fit:cover}
-.curso-transforma{display:grid;grid-template-columns:1fr 1fr;gap:.4rem 1.5rem;margin:1.75rem 0}
-.curso-transforma li{font-size:var(--t-chico);color:var(--cal-med);padding-block:.5rem;border-top:1px solid var(--linea);display:flex;gap:.6rem}
-.curso-transforma li::before{content:"—";color:var(--brote);flex-shrink:0}
-/* La fecha de arranque estaba en cinco páginas menos en esta, que es donde
-   llega casi toda la gente. Sin ella, "Reservar mi lugar" pide una decisión
-   sin el dato que la define. */
-.curso-cuando{margin-top:1.5rem;color:var(--miel);font-weight:500}
-.curso-destacado-pie{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin-top:.9rem}
-.curso-destacado-precio small{font-size:var(--t-chico);color:var(--cal-med);font-weight:400}
-@media (max-width:900px){.curso-destacado{grid-template-columns:1fr}.curso-destacado-foto{order:-1;aspect-ratio:16/10}.curso-transforma{grid-template-columns:1fr}}
+/* ---------- LA CLASE ---------- */
+.clase-par{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,6vw,4.5rem);align-items:start}
+.clase-foto{position:relative;margin:0;padding-bottom:70px}
+.clase-foto > picture:first-child img{width:100%;height:clamp(400px,42vw,540px);object-fit:cover;object-position:50% 30%;border-radius:0 240px 0 240px;display:block}
+.clase-foto .foto-chica{right:-40px;bottom:0;width:clamp(170px,19vw,240px);height:170px;border-radius:10px}
+.senales{display:grid;gap:.4rem;padding-top:2.5rem}
+.senal-item{padding-block:1.25rem}
+.senal-item h3{font-size:clamp(1.3rem,2vw,1.5rem);margin-bottom:.5rem}
+.senal-item p{font-size:var(--t-cuerpo);line-height:1.6}
+.banda{margin:clamp(4rem,9vw,7rem) 0 0;line-height:0}
+.banda img{width:100%;height:clamp(260px,40vw,540px);object-fit:cover;object-position:50% 45%;display:block}
+@media (max-width:820px){
+  .clase-par{grid-template-columns:1fr}
+  .clase-foto{margin-right:1.75rem;padding-bottom:50px}
+  .clase-foto > picture:first-child img{height:auto;aspect-ratio:1/1.15;border-radius:0 140px 0 140px}
+  .clase-foto .foto-chica{right:-1.75rem;width:48%;height:auto;aspect-ratio:4/3}
+  .senales{padding-top:1rem}
+}
 
-/* ---------- MÉTODO: señales, no números ---------- */
-.metodo{background:var(--tinta-2)}
-/* La frase que viene de la clase de arriba ocupa el lugar de la volanta. */
-.metodo-entrada{font-size:var(--t-chico);color:var(--cal-med);max-width:52ch}
-.metodo-par{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2.5rem}
-.panel{border-top:1px solid var(--linea);padding:1.4rem 0 0}
-.panel-receta{background:transparent}
-.panel-criterio{border-top-color:var(--brote)}
-.panel .rotulo{font-family:var(--texto);font-size:var(--t-nota);margin-bottom:1rem;display:block}
+/* ---------- MÉTODO: la receta tachada ---------- */
+.metodo{padding-block:clamp(2.5rem,6vw,5rem)}
+.metodo h2{max-width:20ch;margin-bottom:clamp(2.5rem,6vw,4.5rem)}
+.metodo-entrada{font-size:var(--t-chico);color:var(--cal-med);max-width:52ch;margin-bottom:.9rem}
+.metodo-par{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);gap:clamp(2rem,5vw,4rem);align-items:start}
+.panel .rotulo{display:block;font-family:var(--texto);font-size:var(--t-chico);margin-bottom:1rem}
 .panel-receta .rotulo{color:var(--cal-baja)}
 .panel-criterio .rotulo{color:var(--brote)}
-.panel-cita{font-family:var(--display);font-size:var(--t-tesis);color:var(--cal);line-height:1.28;letter-spacing:-.015em;margin-bottom:1rem}
-.panel p{font-size:var(--t-chico)}
-.metodo-remate{font-family:var(--display);font-size:var(--th-sub);color:var(--cal);text-align:center;margin-top:2.5rem;letter-spacing:-.02em;line-height:1.2}
-/* El remate funciona como un título: una palabra suelta en otro color ahí
-   es el gesto que delata una plantilla. En el cuerpo de los artículos el <em>
-   sí va en magenta, que es donde marca nombres científicos y títulos. */
-.metodo-remate em{font-style:normal;color:inherit}
-@media (max-width:820px){.metodo-par{grid-template-columns:1fr}}
+.panel p{font-size:var(--t-cuerpo);line-height:1.6;max-width:32em}
+.panel .panel-cita{line-height:1.12;margin-bottom:1.25rem;max-width:none}
+/* Lo que una receta fija, en grande y tachado: es lo que la clase reemplaza. */
+.panel-receta .panel-cita{font-size:clamp(1.6rem,3.4vw,2.6rem);color:var(--cal-baja);text-decoration:line-through;text-decoration-thickness:.06em;text-decoration-color:var(--cal-med)}
+/* Lo que se mira en su lugar, corrido hacia adentro y en verde. */
+.panel-criterio{margin:clamp(2.5rem,6vw,4.5rem) 0 0 18%}
+.panel-criterio .panel-cita{font-size:clamp(1.35rem,2.5vw,1.95rem);color:var(--brote)}
+.metodo-foto{margin:0;padding-top:clamp(0rem,6vw,5rem);line-height:0}
+.metodo-foto img{width:100%;height:clamp(340px,38vw,500px);object-fit:cover;object-position:45% 50%;border-radius:6px}
+.metodo-remate{font-family:var(--serif);font-weight:600;font-size:clamp(1.35rem,2.3vw,1.8rem);color:var(--cal);margin-top:clamp(3rem,7vw,6rem);letter-spacing:-.02em;line-height:1.2;max-width:none}
+.metodo-remate em{font-style:normal}
+@media (max-width:820px){
+  .metodo-par{grid-template-columns:1fr}
+  .panel-criterio{margin-left:10%}
+  .metodo-foto{padding-top:0}
+  .metodo-foto img{height:auto;aspect-ratio:4/3.4}
+}
 
-/* ---------- SEÑALES ---------- */
-.senales{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:2rem;margin-top:2.5rem}
-.senal-item{border-top:1px solid var(--linea);padding-top:1.1rem}
-.senal-item h3{font-size:var(--t-bajada);margin-block:.7rem .4rem}
-.senal-item p{font-size:var(--t-chico)}
-.banda{position:relative;max-width:1200px;margin:2.5rem auto 0;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/9}
-.banda img{width:100%;height:100%;object-fit:cover}
-@media (max-width:620px){.banda{aspect-ratio:4/3}}
+/* ---------- PROPUESTAS: una palabra grande sobre cada foto ---------- */
+.propuesta{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(2rem,6vw,4.5rem);align-items:center}
+.propuesta + .propuesta{margin-top:clamp(4.5rem,10vw,7rem)}
+.propuesta-al-reves{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.propuesta-al-reves .propuesta-foto{order:2}
+.propuesta-foto{margin:0;display:flex;flex-direction:column;line-height:0}
+.palabra{position:relative;z-index:1;margin:0 0 -.22em 1.5rem;font-size:clamp(2.8rem,5.6vw,4.5rem);line-height:.8;color:var(--cal);max-width:none}
+.propuesta-al-reves .palabra{margin-left:auto;margin-right:1.5rem}
+.propuesta-foto img{width:100%;height:clamp(280px,30vw,400px);object-fit:cover;display:block;border-radius:0 220px 0 220px}
+.propuesta-al-reves .propuesta-foto img{border-radius:220px 0 220px 0}
+.propuesta h3{font-size:clamp(1.45rem,2.4vw,1.9rem);margin-bottom:.9rem}
+.propuesta-texto > p{font-size:var(--t-cuerpo);line-height:1.6}
+.curso-transforma{display:grid;grid-template-columns:1fr 1fr;gap:0 1.5rem;margin:1.5rem 0}
+.curso-transforma li{font-size:var(--t-chico);color:var(--cal-med);padding-block:.5rem;border-top:1px solid var(--linea);display:flex;gap:.6rem}
+.curso-transforma li::before{content:"—";color:var(--brote);flex-shrink:0}
+.curso-cuando{margin-top:1.25rem;color:var(--miel);font-weight:600;font-size:var(--t-chico)}
+/* El enlace que cierra cada propuesta: la palabra y un círculo miel con la
+   flecha, que en el celular es fácil de tocar. */
+.enlace-flecha{display:inline-flex;align-items:center;gap:.9rem;margin-top:.9rem;font-weight:600;color:var(--brote)}
+.enlace-flecha::before{content:none}
+.enlace-flecha .circulo{flex-shrink:0;width:44px;height:44px;border-radius:50%;background:var(--miel);display:inline-flex;align-items:center;justify-content:center;transition:transform .2s var(--ease)}
+.enlace-flecha svg{width:22px;height:22px;fill:none;stroke:#20140A;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.enlace-flecha:hover{color:var(--cal)}
+.enlace-flecha:hover .circulo{transform:translateX(4px)}
+@media (prefers-reduced-motion:reduce){.enlace-flecha .circulo{transition:none}}
+@media (max-width:820px){
+  .propuesta,.propuesta-al-reves{grid-template-columns:1fr;gap:1.75rem}
+  .propuesta-al-reves .propuesta-foto{order:0}
+  .propuesta-foto img{height:auto;aspect-ratio:4/3;border-radius:0 120px 0 120px}
+  .propuesta-al-reves .propuesta-foto img{border-radius:120px 0 120px 0}
+  .curso-transforma{grid-template-columns:1fr}
+}
 
-/* ---------- PRUEBA ---------- */
-.prueba{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:1rem}
-
-/* ---------- TALLERES ---------- */
-/* Eran seis cajitas iguales que además dejaban la última sola en un segundo
-   renglón. Son el índice de los talleres: cada uno cuelga de su filete, como
-   la lista de contenidos del resto del sitio. */
-.tira-talleres{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:0 1.75rem;margin-top:2rem}
+/* Talleres: el índice cuelga de su filete, de a dos en el celular. */
+.tira-talleres{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:0 1.75rem;margin-top:1.5rem}
 .tira-talleres a{border-top:1px solid var(--linea);padding:.9rem 0;font-size:var(--t-chico);color:var(--cal-med);transition:color .2s;min-height:48px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:.2rem}
 .tira-talleres a:hover{color:var(--cal)}
-/* El «ver todos» no es un taller más: cruza el ancho y no cuelga de un
-   filete, así no se lee como el sexto de la lista. */
 .tira-talleres a.enlace-vivo{grid-column:1/-1;border-top:0;padding-top:1.15rem;min-height:0;color:var(--brote);font-weight:600}
 .tira-talleres a.enlace-vivo:hover{border-bottom-color:transparent;color:var(--brote)}
 .tira-talleres small{font-family:var(--texto);font-size:var(--t-nota);color:var(--miel)}
-/* El único que se puede comprar hoy no puede verse igual que los cuatro que
-   no tienen fecha. Mismo terracota que la agenda del inicio. */
 .tira-talleres a[data-estado="abierto"]{border-top-color:rgba(224,133,86,.55);color:var(--cal)}
-/* En el celular entraba una sola columna: seis cajas grandes con una palabra
-   adentro, media pantalla de aire y la sección entera ocupando 450px para
-   decir cinco nombres. De a dos se lee de un vistazo y ocupa la mitad. */
 @media (max-width:640px){
   .tira-talleres{grid-template-columns:1fr 1fr;gap:0 1.25rem}
   .tira-talleres a{font-size:var(--t-nota)}
-  .tira-talleres .enlace-vivo{grid-column:1/-1}
 }
+
+/* ---------- TAPEO: el afiche ----------
+   Una hoja clara, apenas girada, apoyada sobre la foto de la noche. Es lo
+   único claro de la página, y por eso se ve primero. */
+.afiche-caja{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:center}
+.afiche-foto{margin:0;border-radius:6px;overflow:hidden;box-shadow:var(--sombra);line-height:0}
+.afiche-foto img{width:100%;height:clamp(380px,42vw,540px);object-fit:cover;object-position:40% 50%}
+.afiche{position:relative;z-index:2;margin-left:-70px;background:var(--avena);color:var(--tinta);border-radius:6px;padding:clamp(2.25rem,4.5vw,3.5rem);transform:rotate(-1.2deg);box-shadow:var(--sombra)}
+.afiche h2{color:var(--tinta);font-size:clamp(1.8rem,3.4vw,2.7rem);line-height:1.08;margin-bottom:1.1rem;padding-right:90px}
+.afiche .dato{display:block;color:var(--tostado);font-size:var(--t-cuerpo);margin-bottom:1.25rem}
+.afiche h3{color:var(--tinta);font-size:clamp(1.3rem,2vw,1.55rem);padding-top:1.1rem;border-top:1px dashed rgba(14,26,19,.3);margin-bottom:.6rem}
+.afiche p{color:var(--tinta);font-size:var(--t-cuerpo);line-height:1.55;max-width:34em}
+.afiche .prop-pie{margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap}
+.afiche .btn{background:var(--tinta);color:var(--cal)}
+.afiche .btn:hover{background:#000}
+.afiche .otras{color:rgba(14,26,19,.72);margin-top:1.25rem}
+.afiche .otras .enlace-vivo{color:#1F4D2A;border-bottom-color:rgba(14,26,19,.4)}
+.afiche-plato{position:absolute;right:-50px;top:-84px;width:150px;height:150px;border-radius:50%;overflow:hidden;border:7px solid var(--tinta);box-shadow:var(--sombra);line-height:0}
+.afiche-plato img{width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){
+  .afiche-caja{grid-template-columns:1fr}
+  .afiche-foto img{height:auto;aspect-ratio:4/3}
+  .afiche{margin:-3.5rem .5rem 0;padding:2rem 1.5rem}
+  .afiche h2{padding-right:70px;font-size:1.65rem}
+  .afiche-plato{right:-.5rem;top:-56px;width:104px;height:104px;border-width:5px}
+}
+
+/* ---------- AGENDA: las fechas como entradas ---------- */
+.agenda{background:var(--musgo)}
+[data-agenda="no"]{display:none}
+.agenda-cabeza{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.agenda-cabeza p.dato{font-weight:400;line-height:1.6}
+.agenda-cabeza p.dato .enlace-vivo{display:inline;padding-block:0}
+.agenda-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:22px}
+.agenda-item{display:flex;flex-direction:column;background:var(--musgo-alto);border-radius:8px;box-shadow:0 16px 34px rgba(0,0,0,.38);color:var(--cal)}
+.agenda-etiqueta{padding:1.5rem 1.6rem 0;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja)}
+.agenda-item[data-estado="abierto"] .agenda-etiqueta{color:#E08556}
+.agenda-item[data-estado="ultimos"] .agenda-etiqueta{color:var(--fermento)}
+/* El día enorme y, abajo, la línea punteada con dos medialunas del color
+   del fondo: el corte de una entrada. */
+.agenda-dia{position:relative;display:block;margin:0 14px;padding:.35rem 12px 1.2rem;min-height:1.2rem;border-bottom:2px dashed rgba(244,241,233,.2);font-size:clamp(3.4rem,5.5vw,5rem);line-height:.85;color:var(--miel)}
+.agenda-dia::before,.agenda-dia::after{content:"";position:absolute;bottom:-12px;width:22px;height:22px;border-radius:50%;background:var(--musgo)}
+.agenda-dia::before{left:-25px}
+.agenda-dia::after{right:-25px}
+.agenda-nombre{padding:1.2rem 1.6rem 0;font-size:1.3rem;line-height:1.15;color:var(--cal);max-width:none}
+.agenda-cuando{padding:.4rem 1.6rem 1.1rem;font-size:var(--t-chico);color:var(--cal-baja)}
+.agenda-link{position:relative;display:block;margin:auto 1.6rem 1.6rem;padding:.95rem 1.5rem;border-radius:4px;background:var(--miel);color:#20140A;font-weight:600;font-size:var(--t-chico);text-align:center;transition:background .2s}
+.agenda-link:hover{background:#F7C273}
+/* El tapeo va en la hoja clara del afiche. */
+.agenda-item[data-tipo="tapeo"]{background:var(--avena);color:var(--tinta)}
+.agenda-item[data-tipo="tapeo"] .agenda-etiqueta,.agenda-item[data-tipo="tapeo"] .agenda-cuando{color:rgba(14,26,19,.72)}
+.agenda-item[data-tipo="tapeo"][data-estado="abierto"] .agenda-etiqueta{color:#9A3F12}
+.agenda-item[data-tipo="tapeo"] .agenda-dia{color:var(--tostado);border-bottom-color:rgba(14,26,19,.25)}
+.agenda-item[data-tipo="tapeo"] .agenda-nombre{color:var(--tinta)}
+.agenda-item[data-tipo="tapeo"] .agenda-link{background:var(--tinta);color:var(--cal)}
+.agenda-item[data-tipo="tapeo"] .agenda-link:hover{background:#000}
+.agenda-item[data-estado="agotado"],.agenda-item[data-estado="sin-fecha"]{opacity:.8}
+
+/* ---------- OPINIONES: la tarjeta sobre la foto ---------- */
+.opiniones-caja{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);align-items:center}
+.opiniones-foto{margin:0;line-height:0}
+.opiniones-foto img{width:100%;height:clamp(380px,40vw,520px);object-fit:cover;object-position:50% 40%;border-radius:0 260px 0 260px}
+.opiniones-tarjeta{position:relative;margin-left:-90px;background:var(--musgo-alto);border-radius:8px;padding:clamp(2rem,4.5vw,3.25rem);box-shadow:var(--sombra)}
+.opiniones-tarjeta h2{margin-bottom:1.75rem}
+.prueba{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2rem}
+.prueba .voz{border-top:1px solid var(--linea);padding-top:1.1rem}
+.prueba .voz blockquote{font-size:1.08rem;line-height:1.35}
+/* La primera opinión va grande y ocupa todo el ancho. */
+.prueba .voz:first-child{grid-column:1/-1;border-top:0;padding-top:0}
+.prueba .voz:first-child blockquote{font-size:clamp(1.3rem,2.2vw,1.7rem);line-height:1.18}
+.estrellas{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;margin-top:1.75rem}
+.estrellas svg{width:18px;height:18px;fill:var(--miel)}
+.estrellas .fila{display:flex;gap:3px}
+.estrellas a{color:var(--miel);border-bottom:1px solid var(--linea-fuerte);padding-block:.3rem}
+@media (max-width:900px){
+  .opiniones-caja{grid-template-columns:1fr}
+  .opiniones-foto{margin-right:1.75rem}
+  .opiniones-foto img{height:auto;aspect-ratio:1/1;border-radius:0 140px 0 140px}
+  .opiniones-tarjeta{margin:-4rem 0 0 .75rem;padding:1.75rem 1.4rem}
+  .prueba{grid-template-columns:1fr}
+}
+
+/* ---------- ARTÍCULOS ---------- */
+.articulos-cabeza{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;flex-wrap:wrap}
+.articulos-cabeza .titulo-hoja{margin-bottom:0}
+.articulos-tira{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:1.25rem;margin-top:2.25rem}
+.articulo-mini{background:var(--musgo);border-radius:8px;padding:1.5rem 1.5rem 1.6rem;position:relative;transition:background .2s}
+.articulo-mini:hover{background:var(--musgo-alto)}
+.articulo-mini h3{font-size:1.3rem;margin-bottom:.6rem}
+.articulo-mini h3 a{color:var(--cal)}
+.articulo-mini h3 a::after{content:"";position:absolute;inset:0;z-index:1}
+.articulo-mini p{font-size:var(--t-chico);color:var(--cal-med)}
 
 /* ---------- CIERRE ---------- */
 .cierre{text-align:center}
-.cierre h2{margin-bottom:1rem}
+.cierre h2{margin-bottom:1.25rem}
 .cierre p{margin:0 auto 2rem}
 .cierre-acciones{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
-
+.cierre-foto{margin:0 auto 2.75rem;max-width:980px;line-height:0}
+.cierre-foto img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:0 260px 0 260px;display:block}
 .firma-leo{display:flex;align-items:center;gap:.85rem;justify-content:center;max-width:44ch;margin:0 auto 2rem}
-/* El hijo del flex es el <picture>, no el <img>: sin esto el texto de al lado
-   aplasta la foto de 56px a 23 y el círculo sale un óvalo. */
-/* La foto del final de una clase: el grupo entero detrás de la mesa servida.
-   Estaba en el repo sin usarse en ninguna página. Es la única del sitio donde
-   se ve gente disfrutando en vez de trabajando concentrada, y va justo donde
-   el título promete un lugar en esa mesa. */
-.cierre-foto{margin:0 0 2.2rem;border-radius:var(--r-lg);overflow:hidden}
-.cierre-foto img{width:100%;height:100%;object-fit:cover;display:block}
-.cierre-foto figcaption{margin-top:.7rem;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja);text-align:center}
 .firma-leo>picture{flex-shrink:0;display:block;line-height:0}
 .firma-leo img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0}
 .firma-leo p{margin:0;text-align:left;color:var(--cal-med)}
-@media (max-width:480px){.firma-leo{text-align:left}}
-/* Lo mismo que en base.css: sin :active, tocar una tarjeta en el celular no
-   devuelve nada. Se aclara en vez de moverse, para no depender de
-   prefers-reduced-motion. */
-.agenda-item:active,.agenda-link:active,.prop:active,.articulo-mini:active,.tira-talleres a:active{filter:brightness(1.14)}
+@media (max-width:620px){.cierre-foto img{aspect-ratio:4/3;border-radius:0 120px 0 120px}}
+
+/* Los enlaces que cierran un bloque tienen una banda de 44px para el dedo. */
+.enlace-salida{position:relative}
+.enlace-salida::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
+.agenda-item:active,.articulo-mini:active,.tira-talleres a:active{filter:brightness(1.14)}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20260924" defer></script>
@@ -281,188 +323,203 @@
 <main id="principal">
 
 <header class="hero">
-  <div class="env hero-caja">
-    <div>
-      <span class="senal">En Parque Rodó, Montevideo, desde 2013</span>
+  <div class="hero-caja">
+    <div class="hero-texto sube">
       <h1>Aprendemos, compartimos y comemos mejor.</h1>
       <p class="hero-bajada">Te proponemos un espacio de <strong>disfrute</strong>: cocinar y comer de manera creativa, energética y nutritiva, en el curso, los talleres y las cenas de Parque Rodó.</p>
-      <p class="hero-datos"><b>1.200</b> personas formadas en <b>13</b> años, y <b><!--o:google.puntaje_texto-->4,9<!--/o--></b> en <!--o:google.resenas_texto-->23 reseñas en Google<!--/o-->.</p>
-      <p class="hero-ver"><a href="#propuestas" class="enlace-vivo">Ver lo que hacemos</a></p>
+      <div class="hero-acciones">
+        <a href="#propuestas" class="btn btn-primario">Ver lo que hacemos</a>
+        <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20info%20de%20Clorofila." target="_blank" rel="noopener noreferrer" class="btn btn-linea">Escribinos por WhatsApp</a>
+      </div>
     </div>
-    <figure class="hero-foto">
+    <figure class="portada-foto">
       <picture>
-        <source srcset="img-tapeo-hero-480.webp 480w, img-tapeo-hero-700.webp 700w, img-tapeo-hero.webp 1400w" sizes="(max-width: 900px) calc(100vw - 3rem), 46vw" type="image/webp">
+        <source srcset="img-tapeo-hero-480.webp 480w, img-tapeo-hero-700.webp 700w, img-tapeo-hero.webp 1400w" sizes="(max-width: 900px) calc(100vw - 3.5rem), 50vw" type="image/webp">
         <img src="img-tapeo-hero.jpg" width="1400" height="1050" alt="El grupo cocinando alrededor de la mesa larga de Clorofila, de noche" loading="eager" fetchpriority="high" decoding="async">
+      </picture>
+      <picture class="foto-chica">
+        <source srcset="img-clase-masa-480.webp 480w, img-clase-masa-700.webp 700w" sizes="(max-width: 900px) 40vw, 230px" type="image/webp">
+        <img src="img-clase-masa.jpg" width="975" height="1300" alt="Tres alumnos estirando masa en el mesón del estudio" decoding="async">
       </picture>
     </figure>
   </div>
+  <ul class="hero-datos">
+    <li>En Parque Rodó, Montevideo, desde 2013.</li>
+    <li><b>1.200</b> personas formadas en <b>13</b> años.</li>
+    <li><b><!--o:google.puntaje_texto-->4,9<!--/o--></b> en <!--o:google.resenas_texto-->23 reseñas en Google<!--/o-->.</li>
+  </ul>
 </header>
 
-<section class="seccion borde-sup">
+<section class="seccion">
   <div class="env">
-    <div class="sube">
-      <h2 style="margin-top:.8rem">Así es una clase en Clorofila.</h2>
+    <div class="con-hoja">
+      <h2 class="titulo-hoja"><svg class="hoja" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21C3 10 10 3 21 3c0 11-7 18-18 18z"/><path d="M3 21L15 9"/></svg>Así es una clase en Clorofila.</h2>
+      <div class="clase-par">
+        <figure class="clase-foto">
+          <picture><source srcset="img-leo-cocina-480.webp 480w, img-leo-cocina-700.webp 700w, img-leo-cocina.webp 975w" sizes="(max-width: 820px) calc(100vw - 6rem), 40vw" type="image/webp"><img src="img-leo-cocina.jpg" width="975" height="1300" alt="Leonardo Lemes cocinando en el estudio de Clorofila" loading="lazy" decoding="async"></picture>
+          <picture class="foto-chica"><source srcset="img-alumnas-700.webp" type="image/webp"><img src="img-alumnas.jpg" width="867" height="1300" alt="Tres alumnas pesan y mezclan ingredientes en la mesa del estudio" loading="lazy" decoding="async"></picture>
+        </figure>
+        <div class="senales">
+          <div class="senal-item">
+            <h3>En equipo, cada uno con su lugar</h3>
+            <p>Tenés tu lugar en la mesa grande, con tus herramientas y tus ingredientes, y practicás todas las preparaciones de la clase.</p>
+          </div>
+          <div class="senal-item">
+            <h3>Leonardo corrige en el momento</h3>
+            <p>Va puesto por puesto mientras trabajás: te muestra el punto de la masa, por qué se cortó una salsa, cómo se arregla.</p>
+          </div>
+          <div class="senal-item">
+            <h3>Terminamos comiendo</h3>
+            <p>Nos sentamos a la mesa a probar todo lo que salió, sin apuro y con el grupo entero.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="senales sube">
-      <div class="senal-item">
-        <h3>En equipo, cada uno con su lugar</h3>
-        <p>Tenés tu lugar en la mesa grande, con tus herramientas y tus ingredientes, y practicás todas las preparaciones de la clase.</p>
-      </div>
-      <div class="senal-item">
-        <h3>Leonardo corrige en el momento</h3>
-        <p>Va puesto por puesto mientras trabajás: te muestra el punto de la masa, por qué se cortó una salsa, cómo se arregla.</p>
-      </div>
-      <div class="senal-item">
-        <h3>Terminamos comiendo</h3>
-        <p>Nos sentamos a la mesa a probar todo lo que salió, sin apuro y con el grupo entero.</p>
-      </div>
-    </div>
-    <figure class="banda sube"><picture><source srcset="img-clase-practica-700.webp 700w, img-clase-practica.webp 1200w" sizes="(max-width: 1240px) 100vw, 1200px" type="image/webp"><img src="img-clase-practica.jpg" width="1200" height="675" alt="Leonardo Lemes armando pastas junto a una alumna en una clase de Clorofila" loading="lazy" decoding="async"></picture></figure>
   </div>
+  <figure class="banda"><picture><source srcset="img-clase-practica-700.webp 700w, img-clase-practica.webp 1200w" sizes="100vw" type="image/webp"><img src="img-clase-practica.jpg" width="1200" height="675" alt="Leonardo Lemes armando pastas junto a una alumna en una clase de Clorofila" loading="lazy" decoding="async"></picture></figure>
 </section>
 
 <section class="metodo seccion">
   <div class="env">
-    <div class="sube">
-      <p class="metodo-entrada">Durante la clase, Leonardo explica qué le pasa a cada ingrediente mientras lo cocinás.</p>
-      <h2 style="margin-top:.8rem">Entender la cocina nos permite <br>saber qué mejorar en una receta.</h2>
-    </div>
-    <div class="metodo-par sube">
-      <div class="panel panel-receta">
-        <span class="rotulo">Con una receta</span>
-        <p class="panel-cita">«Zanahoria al horno: 200°C, 25 minutos, cubos de 2 cm.»</p>
-        <p>Esos números valen solo en las condiciones exactas en que se escribieron. Cambiá el horno, el corte o la zanahoria, y el resultado cambia sin que sepas por qué.</p>
+    <p class="metodo-entrada">Durante la clase, Leonardo explica qué le pasa a cada ingrediente mientras lo cocinás.</p>
+    <h2>Entender la cocina nos permite saber qué mejorar en una receta.</h2>
+    <div class="metodo-par">
+      <div>
+        <div class="panel panel-receta">
+          <span class="rotulo">Con una receta</span>
+          <p class="panel-cita">«Zanahoria al horno: 200°C, 25 minutos, cubos de 2 cm.»</p>
+          <p>Esos números valen solo en las condiciones exactas en que se escribieron. Cambiá el horno, el corte o la zanahoria, y el resultado cambia sin que sepas por qué.</p>
+        </div>
+        <div class="panel panel-criterio">
+          <span class="rotulo">Entendiendo lo que pasa</span>
+          <p class="panel-cita">«Buscás que los bordes se caramelicen y que el centro ceda al pincharlo.»</p>
+          <p>Puede pasar a los 18 minutos o a los 35, y no importa: las señales te dicen lo que está pasando. Los números dependen del horno que tengas.</p>
+        </div>
       </div>
-      <div class="panel panel-criterio">
-        <span class="rotulo">Entendiendo lo que pasa</span>
-        <p class="panel-cita">«Buscás que los bordes se caramelicen y que el centro ceda al pincharlo.»</p>
-        <p>Puede pasar a los 18 minutos o a los 35, y no importa: las señales te dicen lo que está pasando. Los números dependen del horno que tengas.</p>
-      </div>
+      <figure class="metodo-foto"><picture><source srcset="img-tapeo-armando-600.webp 600w, img-tapeo-armando.webp 1000w" sizes="(max-width: 820px) calc(100vw - 3rem), 34vw" type="image/webp"><img src="img-tapeo-armando.jpg" width="1000" height="750" alt="Manos armando las elaboraciones sobre la mesa" loading="lazy" decoding="async"></picture></figure>
     </div>
-    <p class="metodo-remate sube">Lo que aprendés te sirve <br>para <em>cualquier</em> plato.</p>
+    <p class="metodo-remate">Lo que aprendés te sirve para <em>cualquier</em> plato.</p>
   </div>
 </section>
 
 <div id="propuestas">
 <section class="seccion" id="curso">
   <div class="env">
-    <div class="curso-destacado sube">
-      <figure class="curso-destacado-foto"><picture><source srcset="img-clase-grupo-480.webp 480w, img-clase-grupo-700.webp 700w, img-clase-grupo.webp 1200w" sizes="(max-width: 900px) calc(100vw - 3rem), 42vw" type="image/webp"><img src="img-clase-grupo.jpg" width="1200" height="675" alt="Grupo trabajando en una clase del curso de Clorofila" loading="lazy" decoding="async"></picture></figure>
-      <div>
-        <span class="senal">Curso de cocina saludable</span>
-        <h2>Aprendés a cocinar de forma consciente, creativa y con más autonomía.</h2>
-        <p>Es un curso presencial de tres meses, principalmente práctico: trabajamos recetas dulces y saladas, sin gluten, sin azúcares refinados ni grasas nocivas.</p>
-        <ul class="curso-transforma">
-          <li>Postres saludables sin azúcares añadidos</li>
-          <li>Quesos vegetales, patés y hummus</li>
-          <li>Kéfir, kombucha, chucrut y kimchi</li>
-          <li>Sushi, pastas, ceviches y dal de lentejas</li>
-          <li>Tartas saladas y platos principales completos</li>
-          <li>Chocolates, ganache, helados y budines</li>
-        </ul>
-        <p class="curso-cuando"><!--o:curso.inicio_texto-->Arranca el miércoles 7 de octubre<!--/o-->.</p>
-        <div class="curso-destacado-pie">
-          <a href="/curso" class="enlace-vivo enlace-salida">Ver el curso</a>
+    <div class="con-hoja">
+      <h2 class="titulo-hoja"><svg class="hoja" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21C3 10 10 3 21 3c0 11-7 18-18 18z"/><path d="M3 21L15 9"/></svg>Elegís cómo venir: al curso, a un taller o a una cena.</h2>
+      <div class="propuesta">
+        <figure class="propuesta-foto">
+          <span class="palabra" aria-hidden="true">Curso</span>
+          <picture><source srcset="img-clase-grupo-480.webp 480w, img-clase-grupo-700.webp 700w, img-clase-grupo.webp 1200w" sizes="(max-width: 820px) calc(100vw - 6rem), 46vw" type="image/webp"><img src="img-clase-grupo.jpg" width="1200" height="675" alt="Grupo trabajando en una clase del curso de Clorofila" loading="lazy" decoding="async"></picture>
+        </figure>
+        <div class="propuesta-texto">
+          <span class="senal">Curso de cocina saludable</span>
+          <h3>Aprendés a cocinar de forma consciente, creativa y con más autonomía.</h3>
+          <p>Es un curso presencial de tres meses, principalmente práctico: trabajamos recetas dulces y saladas, sin gluten, sin azúcares refinados ni grasas nocivas.</p>
+          <ul class="curso-transforma">
+            <li>Postres saludables sin azúcares añadidos</li>
+            <li>Quesos vegetales, patés y hummus</li>
+            <li>Kéfir, kombucha, chucrut y kimchi</li>
+            <li>Sushi, pastas, ceviches y dal de lentejas</li>
+            <li>Tartas saladas y platos principales completos</li>
+            <li>Chocolates, ganache, helados y budines</li>
+          </ul>
+          <p class="curso-cuando"><!--o:curso.inicio_texto-->Arranca el miércoles 7 de octubre<!--/o-->.</p>
+          <a href="/curso" class="enlace-flecha enlace-salida">Ver el curso <span class="circulo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        </div>
+      </div>
+      <div class="propuesta propuesta-al-reves">
+        <figure class="propuesta-foto">
+          <span class="palabra" aria-hidden="true">Talleres</span>
+          <picture><source srcset="img-clase-postre-700.webp 700w, img-clase-postre.webp 867w" sizes="(max-width: 820px) calc(100vw - 6rem), 46vw" type="image/webp"><img src="img-clase-postre.jpg" width="867" height="1300" alt="Dos alumnas armando un postre juntas" loading="lazy" decoding="async"></picture>
+        </figure>
+        <div class="propuesta-texto">
+          <span class="senal">Talleres intensivos de un día</span>
+          <h3>Elaborás pan sin gluten, pastas, fermentos y quesos.</h3>
+          <p>Cada taller le dedica el día entero a una sola técnica, de la primera mezcla hasta la mesa.</p>
+          <div class="tira-talleres"><!--o:html:talleres_tira_html--><a href="/talleres#fermentacion"><span>Fermentación</span></a><a href="/talleres#pan-sin-gluten"><span>Pan sin gluten</span></a><a href="/pastas"><span>Pastas sin gluten</span></a><a href="/talleres#alfajores"><span>Alfajores</span></a><a href="/talleres#quesos-vegetales"><span>Quesos vegetales</span></a><a href="/talleres" class="enlace-vivo">Ver todos los talleres</a><!--/o--></div>
         </div>
       </div>
     </div>
-    <div class="tira-fotos sube" role="group" tabindex="0" aria-label="Una clase del curso, en fotos"><figure><picture><source srcset="img-clase-masa-480.webp 480w, img-clase-masa-700.webp 700w, img-clase-masa.webp 975w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-clase-masa.jpg" width="975" height="1300" alt="Tres alumnos estirando masa en el mesón del estudio" loading="lazy" decoding="async"></picture></figure><figure><picture><source srcset="img-clase-plating-700.webp 700w, img-clase-plating.webp 867w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-clase-plating.jpg" width="867" height="1300" alt="Una alumna emplatando un postre, entre risas" loading="lazy" decoding="async"></picture></figure><figure><picture><source srcset="img-clase-postre-700.webp 700w, img-clase-postre.webp 867w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-clase-postre.jpg" width="867" height="1300" alt="Dos alumnas armando un postre juntas" loading="lazy" decoding="async"></picture></figure></div>
   </div>
 </section>
 
-
-
-<section class="seccion borde-sup" id="experiencia">
-  <div class="env">
-    <div class="sube" style="margin-bottom:1.5rem">
-      <span class="senal">Cena y taller</span>
-      <h2 style="margin-top:.8rem">Una noche donde cocinás, <br>aprendés y compartís.</h2>
-    </div>
-    <article class="prop sube" data-set="data-precio=tapeo.tiene_precio" data-precio="si">
-      <div class="prop-foto"><picture><source srcset="img-tapeo-mesa-700.webp 700w, img-tapeo-mesa.webp 1200w" sizes="(max-width: 820px) calc(100vw - 3rem), 48vw" type="image/webp"><img src="img-tapeo-mesa.jpg" width="1200" height="675" alt="El grupo trabajando alrededor de la mesa en la Cena y Taller de Tapeo" loading="lazy" decoding="async"></picture></div>
-      <div class="prop-cuerpo">
-        <span class="dato">Una noche, el <!--o:tapeo.fecha_texto-->viernes 23 de octubre<!--/o--></span>
-        <h3>Cena y Taller de Tapeo</h3>
-        <p>Cocinamos entre todos, cada uno en su puesto. <!--o:tapeo.menu_corto-->Gyozas de hongos y verduras, gírgolas asadas, buñuelos de chucrut y croquetas de puerro<!--/o-->. Después nos sentamos a comerlos, con las dos copas de vino o kombucha que entran, y la sobremesa que salga. <!--o:tapeo.cupos_frase-->Solo 12 lugares.<!--/o--></p>
-        <div class="prop-pie">
-          <a href="/tapeo" class="btn btn-claro" data-producto="tapeo"><!--o:tapeo.ver_boton-->Ver la cena de tapeo<!--/o--></a>
-        </div>
-        <p class="otras">¿La querés para tu grupo o tu equipo? <a href="/servicios" class="enlace-vivo">Armamos la cena privada</a></p>
+<section class="seccion" id="experiencia">
+  <div class="env afiche-caja">
+    <figure class="afiche-foto"><picture><source srcset="img-tapeo-leo-700.webp 700w, img-tapeo-leo.webp 1000w" sizes="(max-width: 900px) calc(100vw - 3rem), 44vw" type="image/webp"><img src="img-tapeo-leo.jpg" width="1000" height="666" alt="Leonardo Lemes explicando una preparación durante la Cena y Taller de Tapeo" loading="lazy" decoding="async"></picture></figure>
+    <article class="afiche" data-set="data-precio=tapeo.tiene_precio" data-precio="si">
+      <h2>Una noche donde cocinás, aprendés y compartís.</h2>
+      <span class="dato">Una noche, el <!--o:tapeo.fecha_texto-->viernes 23 de octubre<!--/o--></span>
+      <h3>Cena y Taller de Tapeo</h3>
+      <p>Cocinamos entre todos, cada uno en su puesto. <!--o:tapeo.menu_corto-->Gyozas de hongos y verduras, gírgolas asadas, buñuelos de chucrut y croquetas de puerro<!--/o-->. Después nos sentamos a comerlos, con las dos copas de vino o kombucha que entran, y la sobremesa que salga. <!--o:tapeo.cupos_frase-->Solo 12 lugares.<!--/o--></p>
+      <div class="prop-pie">
+        <a href="/tapeo" class="btn" data-producto="tapeo"><!--o:tapeo.ver_boton-->Ver la cena de tapeo<!--/o--></a>
       </div>
+      <p class="otras">¿La querés para tu grupo o tu equipo? <a href="/servicios" class="enlace-vivo">Armamos la cena privada</a></p>
+      <picture class="afiche-plato"><source srcset="img-tapeo-g1-400.webp 400w, img-tapeo-g1.webp 760w" sizes="150px" type="image/webp"><img src="img-tapeo-g1.jpg" width="760" height="760" alt="Verduras y cuencos de ingredientes sobre la mesa de trabajo" loading="lazy" decoding="async"></picture>
     </article>
-    <div class="tira-fotos sube" role="group" tabindex="0" aria-label="Una noche de tapeo, en fotos"><figure><picture><source srcset="img-tapeo-g1-400.webp 400w, img-tapeo-g1.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g1.jpg" width="760" height="760" alt="Verduras y cuencos de ingredientes sobre la mesa de trabajo" loading="lazy" decoding="async"></picture></figure><figure><picture><source srcset="img-tapeo-g2-400.webp 400w, img-tapeo-g2.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g2.jpg" width="760" height="760" alt="Leonardo cocinando junto a un participante" loading="lazy" decoding="async"></picture></figure><figure><picture><source srcset="img-tapeo-g3-400.webp 400w, img-tapeo-g3.webp 760w" sizes="(max-width:820px) 62vw, 200px" type="image/webp"><img src="img-tapeo-g3.jpg" width="760" height="760" alt="Tres participantes amasando, con las manos llenas de harina" loading="lazy" decoding="async"></picture></figure></div>
-  </div>
-</section>
-
-<section class="seccion-sm borde-sup">
-  <div class="env sube">
-    <span class="senal">Talleres intensivos de un día</span>
-    <h2 style="margin-top:.8rem;font-size:var(--th-seccion)">Elaborás pan sin gluten, pastas, fermentos y quesos.</h2>
-    <p style="margin-top:.7rem;max-width:52ch">Cada taller le dedica el día entero a una sola técnica, de la primera mezcla hasta la mesa.</p>
-    <div class="tira-talleres"><!--o:html:talleres_tira_html--><a href="/talleres#fermentacion"><span>Fermentación</span></a><a href="/talleres#pan-sin-gluten"><span>Pan sin gluten</span></a><a href="/pastas"><span>Pastas sin gluten</span></a><a href="/talleres#alfajores"><span>Alfajores</span></a><a href="/talleres#quesos-vegetales"><span>Quesos vegetales</span></a><a href="/talleres" class="enlace-vivo">Ver todos los talleres</a><!--/o--></div>
   </div>
 </section>
 </div>
 
-
-
 <section class="agenda seccion" id="agenda" data-set="data-agenda=tiene_agenda" data-agenda="si">
   <div class="env">
-    <div class="agenda-cabeza sube">
-      <div>
-        <h2 style="margin-top:.8rem">Próximas fechas</h2>
-      </div>
-      <p class="dato" style="max-width:30ch;text-transform:none;letter-spacing:.02em;font-size:var(--t-nota);color:var(--cal-baja)"><a href="/talleres" class="enlace-vivo">Los talleres</a> se abren por demanda: dejanos tu interés y te avisamos cuando haya fecha.</p>
+    <div class="agenda-cabeza">
+      <h2>Próximas fechas</h2>
+      <p class="dato" style="max-width:30ch;font-size:var(--t-nota);color:var(--cal-baja)"><a href="/talleres" class="enlace-vivo">Los talleres</a> se abren por demanda: dejanos tu interés y te avisamos cuando haya fecha.</p>
     </div>
-    <ul class="agenda-grid sube"><!--o:html:agenda_html--><li class="agenda-item" data-estado="abierto" data-inicio-iso="2026-10-07"><span class="agenda-etiqueta" data-cuenta>Grupos abiertos</span><p class="agenda-nombre">Curso de cocina saludable</p><p class="agenda-cuando">Arranca el miércoles 7 de octubre · miércoles o jueves</p><a href="/curso" class="agenda-link" data-producto="agenda">Ver el curso</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Inscripciones abiertas</span><p class="agenda-nombre">Cena y Taller de Tapeo</p><p class="agenda-cuando">viernes 23 de octubre · 19:00 a 22:30 h</p><a href="/tapeo" class="agenda-link" data-producto="agenda">Ver la cena de tapeo</a></li><li class="agenda-item" data-estado="abierto"><span class="agenda-etiqueta">Segunda fecha</span><p class="agenda-nombre">Cena y Taller de Tapeo</p><p class="agenda-cuando">viernes 30 de octubre · 19:00 a 22:30 h</p><a href="/tapeo" class="agenda-link" data-producto="agenda">Ver la cena de tapeo</a></li><!--/o--></ul>
-  </div>
-</section>
-<section class="seccion borde-sup">
-  <div class="env">
-    <div class="agenda-cabeza sube">
-      <div>
-        <h2 style="margin-top:.8rem">Lo que dicen quienes ya vinieron.</h2>
-      </div>
-      <a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="dato enlace-salida" style="color:var(--miel);border-bottom:1px solid var(--linea-fuerte);padding-block:.3rem"><!--o:google.linea_texto-->★ 4,9 en Google, sobre 23 reseñas<!--/o--></a>
-    </div>
-    <div class="prueba sube"><!--o:html:testimonios.index_html--><div class="voz"><blockquote>«No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado.»</blockquote><cite>Valentina Pedreira, curso de 3 meses</cite></div><div class="voz"><blockquote>«Lo que más me sorprendió fue entender el porqué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien.»</blockquote><cite>Matías Acevedo, curso de 3 meses</cite></div><div class="voz"><blockquote>«Excelente lugar para aprender a cocinar y a comer. Es mucho más que una receta.»</blockquote><cite>Alessandra Nadile, reseña en Google</cite></div><div class="voz"><blockquote>«Fue una gran experiencia además de aprender y conocer prácticas, y elaborar postres deliciosos y saludables.»</blockquote><cite>Natalia Montejo, reseña en Google</cite></div><!--/o--></div>
+    <ul class="agenda-grid"><!--o:html:agenda_html--><li class="agenda-item" data-estado="abierto" data-tipo="curso" data-inicio-iso="2026-10-07"><span class="agenda-etiqueta" data-cuenta>Grupos abiertos</span><span class="agenda-dia" aria-hidden="true">7</span><p class="agenda-nombre">Curso de cocina saludable</p><p class="agenda-cuando">Arranca el miércoles 7 de octubre · miércoles o jueves</p><a href="/curso" class="agenda-link" data-producto="agenda">Ver el curso</a></li><li class="agenda-item" data-estado="abierto" data-tipo="tapeo"><span class="agenda-etiqueta">Inscripciones abiertas</span><span class="agenda-dia" aria-hidden="true">23</span><p class="agenda-nombre">Cena y Taller de Tapeo</p><p class="agenda-cuando">viernes 23 de octubre · 19:00 a 22:30 h</p><a href="/tapeo" class="agenda-link" data-producto="agenda">Ver la cena de tapeo</a></li><li class="agenda-item" data-estado="abierto" data-tipo="tapeo"><span class="agenda-etiqueta">Segunda fecha</span><span class="agenda-dia" aria-hidden="true">30</span><p class="agenda-nombre">Cena y Taller de Tapeo</p><p class="agenda-cuando">viernes 30 de octubre · 19:00 a 22:30 h</p><a href="/tapeo" class="agenda-link" data-producto="agenda">Ver la cena de tapeo</a></li><!--/o--></ul>
   </div>
 </section>
 
-<section class="seccion borde-sup">
-  <div class="env">
-    <div class="agenda-cabeza sube">
-      <div>
-        <h2 style="margin-top:.8rem">Lo que la ciencia dice <br>sobre lo que cocinás.</h2>
-      </div>
-      <a href="/articulos" class="dato enlace-salida" style="color:var(--miel);border-bottom:1px solid var(--linea-fuerte);padding-block:.3rem">Ver todos los artículos</a>
-    </div>
-    <div class="articulos-tira sube">
-      <div class="articulo-mini">
-        <h3><a href="/articulos/aceite-de-oliva-punto-de-humo">¿Se puede cocinar con aceite de oliva?</a></h3>
-        <p>El punto de humo no es el indicador que importa. Tampoco el de ebullición.</p>
-      </div>
-      <div class="articulo-mini">
-        <h3><a href="/articulos/mas-alla-del-colesterol-total">El colesterol total no alcanza</a></h3>
-        <p>Qué mirar en un perfil lipídico además del número que todos conocen.</p>
-      </div>
-      <div class="articulo-mini">
-        <h3><a href="/articulos/proteina-vegetal-mitos-realidades">Proteína vegetal: mitos y realidades</a></h3>
-        <p>Qué es cierto y qué no sobre cubrir los requerimientos sin carne.</p>
+<section class="seccion">
+  <div class="env opiniones-caja">
+    <figure class="opiniones-foto"><picture><source srcset="img-leo-grupo-700.webp 700w, img-leo-grupo.webp 1100w" sizes="(max-width: 900px) calc(100vw - 4.5rem), 40vw" type="image/webp"><img src="img-leo-grupo.jpg" width="1100" height="733" alt="Leonardo explicando una preparación al grupo, alrededor de la mesa" loading="lazy" decoding="async"></picture></figure>
+    <div class="opiniones-tarjeta">
+      <h2>Lo que dicen quienes ya vinieron.</h2>
+      <div class="prueba"><!--o:html:testimonios.index_html--><div class="voz"><blockquote>«No son recetas que seguís como instrucciones — aprendés a pensar. Eso no lo encontré en ningún otro lado.»</blockquote><cite>Valentina Pedreira, curso de 3 meses</cite></div><div class="voz"><blockquote>«Lo que más me sorprendió fue entender el porqué de cada técnica. Ahora improviso con lo que hay en casa y me sale bien.»</blockquote><cite>Matías Acevedo, curso de 3 meses</cite></div><div class="voz"><blockquote>«Excelente lugar para aprender a cocinar y a comer. Es mucho más que una receta.»</blockquote><cite>Alessandra Nadile, reseña en Google</cite></div><div class="voz"><blockquote>«Fue una gran experiencia además de aprender y conocer prácticas, y elaborar postres deliciosos y saludables.»</blockquote><cite>Natalia Montejo, reseña en Google</cite></div><!--/o--></div>
+      <div class="estrellas">
+        <span class="fila" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg></span>
+        <a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="dato enlace-salida"><!--o:google.linea_texto-->★ 4,9 en Google, sobre 23 reseñas<!--/o--></a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="seccion cierre borde-sup">
-  <div class="env sube">
+<section class="seccion">
+  <div class="env">
+    <div class="con-hoja">
+      <div class="articulos-cabeza">
+        <h2 class="titulo-hoja"><svg class="hoja" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21C3 10 10 3 21 3c0 11-7 18-18 18z"/><path d="M3 21L15 9"/></svg>Lo que la ciencia dice <br>sobre lo que cocinás.</h2>
+        <a href="/articulos" class="dato enlace-salida" style="color:var(--miel);border-bottom:1px solid var(--linea-fuerte);padding-block:.3rem">Ver todos los artículos</a>
+      </div>
+      <div class="articulos-tira">
+        <div class="articulo-mini">
+          <h3><a href="/articulos/aceite-de-oliva-punto-de-humo">¿Se puede cocinar con aceite de oliva?</a></h3>
+          <p>El punto de humo no es el indicador que importa. Tampoco el de ebullición.</p>
+        </div>
+        <div class="articulo-mini">
+          <h3><a href="/articulos/mas-alla-del-colesterol-total">El colesterol total no alcanza</a></h3>
+          <p>Qué mirar en un perfil lipídico además del número que todos conocen.</p>
+        </div>
+        <div class="articulo-mini">
+          <h3><a href="/articulos/proteina-vegetal-mitos-realidades">Proteína vegetal: mitos y realidades</a></h3>
+          <p>Qué es cierto y qué no sobre cubrir los requerimientos sin carne.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="seccion cierre">
+  <div class="env">
     <figure class="cierre-foto">
       <picture>
-        <source srcset="img-comunidad-700.webp 700w, img-comunidad.webp 1800w" sizes="(max-width: 900px) calc(100vw - 3rem), min(900px, 100vw)" type="image/webp">
-        <img src="img-comunidad.jpg" width="1800" height="1013" alt="El grupo entero al final de una clase, detrás de la mesa con todo lo que cocinaron" loading="lazy" decoding="async">
+        <source srcset="img-comunidad-color-700.webp 700w, img-comunidad-color.webp 1800w" sizes="(max-width: 1020px) calc(100vw - 3rem), 980px" type="image/webp">
+        <img src="img-comunidad-color.jpg" width="1800" height="1013" alt="El grupo entero al final de una clase, detrás de la mesa con todo lo que cocinaron" loading="lazy" decoding="async">
       </picture>
     </figure>
-    <h2 style="margin-top:.8rem">Si te quedan dudas, escribinos.</h2>
+    <h2>Si te quedan dudas, escribinos.</h2>
     <div class="firma-leo">
       <picture><source srcset="img-leo-cocina-128.webp" type="image/webp"><img src="img-leo-cocina-128.jpg" alt="Leonardo Lemes" width="56" height="56" loading="lazy" decoding="async"></picture>
       <p>Contanos qué estás buscando y te decimos qué fecha te conviene. Te contesta Leonardo.</p>
