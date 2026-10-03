@@ -46,7 +46,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "entrada=$(cat); case \"$entrada\" in *'git commit'*) ;; *) exit 0 ;; esac; npm test >/tmp/claude-npm-test.log 2>&1 || { echo \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"permissionDecision\\\":\\\"deny\\\",\\\"permissionDecisionReason\\\":\\\"npm test fallo: no se puede commitear con el sitio roto. Detalle en /tmp/claude-npm-test.log\\\"}}\"; }",
+            "command": "entrada=$(cat); case \"$entrada\" in *'git commit'*) ;; *) exit 0 ;; esac; dir=$(printf '%s' \"$entrada\" | node -e 'let s=\"\";process.stdin.on(\"data\",d=>s+=d).on(\"end\",()=>{try{process.stdout.write(JSON.parse(s).cwd||\"\")}catch(e){}})'); [ -n \"$dir\" ] && [ -f \"$dir/package.json\" ] && cd \"$dir\"; npm test >/tmp/claude-npm-test.log 2>&1 || { echo \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"permissionDecision\\\":\\\"deny\\\",\\\"permissionDecisionReason\\\":\\\"npm test fallo: no se puede commitear con el sitio roto. Detalle en /tmp/claude-npm-test.log\\\"}}\"; }",
             "timeout": 120,
             "statusMessage": "Revisando el sitio antes de commitear..."
           }
