@@ -218,12 +218,10 @@ main h3{line-height:1.15}
 .agenda-etiqueta{padding:1.5rem 1.6rem 0;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja)}
 .agenda-item[data-estado="abierto"] .agenda-etiqueta{color:#E08556}
 .agenda-item[data-estado="ultimos"] .agenda-etiqueta{color:var(--fermento)}
-/* El día enorme y, abajo, la línea punteada con dos medialunas del color
-   del fondo: el corte de una entrada. */
+/* El día enorme y, abajo, la línea punteada del corte de una entrada. Las
+   medialunas de los costados se sacaron: entre dos entradas quedaban dos
+   puntos oscuros pegados y se veía doble. */
 .agenda-dia{position:relative;display:block;margin:0 14px;padding:.35rem 12px 1.2rem;min-height:1.2rem;border-bottom:2px dashed rgba(244,241,233,.2);font-size:clamp(3.4rem,5.5vw,5rem);line-height:.85;color:var(--miel)}
-.agenda-dia::before,.agenda-dia::after{content:"";position:absolute;bottom:-12px;width:22px;height:22px;border-radius:50%;background:var(--musgo)}
-.agenda-dia::before{left:-25px}
-.agenda-dia::after{right:-25px}
 .agenda-nombre{padding:1.2rem 1.6rem 0;font-size:1.3rem;line-height:1.15;color:var(--cal);max-width:none}
 .agenda-cuando{padding:.4rem 1.6rem 1.1rem;font-size:var(--t-chico);color:var(--cal-baja)}
 .agenda-link{position:relative;display:block;margin:auto 1.6rem 1.6rem;padding:.95rem 1.5rem;border-radius:4px;background:var(--miel);color:#20140A;font-weight:600;font-size:var(--t-chico);text-align:center;transition:background .2s}
