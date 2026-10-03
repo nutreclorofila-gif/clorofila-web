@@ -167,13 +167,22 @@ t.tiene_compra = (!ventaMuda(t.estado) && t.link_compra) ? 'si' : 'no';
 t.tiene_fecha = (t.estado !== 'sin-fecha' && t.fecha_texto) ? 'si' : 'no';
 t.horario_texto = t.hora && t.hora_fin ? t.hora + ' a ' + t.hora_fin + ' h' : (t.hora || '');
 
+// Con dos fechas abiertas, la línea las nombra a las dos: si solo dice la primera,
+// quien no puede ese día se va sin saber que hay otra. Solo se juntan si la segunda
+// tiene el mismo horario, porque la línea dice un único horario.
+function fechasTapeo(t) {
+  const s = t.segunda_fecha;
+  const mismoHorario = s && (!s.hora_inicio || s.hora_inicio === t.hora) && (!s.hora_fin || s.hora_fin === t.hora_fin);
+  return s && s.texto && mismoHorario ? t.fecha_texto + ' y ' + s.texto : t.fecha_texto;
+}
+
 // Una sola línea con lo que decide la reserva, igual que los talleres. En
 // /experiencias esta línea se armaba a mano concatenando fecha, hora y precio,
 // así que sin fecha publicaba "Sin fecha confirmada · 19:00 a 22:30 h · $2.600
 // por persona": justo el precio que la regla de arriba dice no publicar.
 t.linea = t.estado === 'sin-fecha'
   ? 'Las fechas se publican según la demanda — escribinos y te avisamos.'
-  : [t.fecha_texto, t.horario_texto, t.precio_texto].filter(Boolean).join(' · ');
+  : [fechasTapeo(t), t.horario_texto, t.precio_texto].filter(Boolean).join(' · ');
 
 // El WhatsApp cambia según haya fecha o no: nunca pide reservar algo que no existe.
 /* Se controla todo lo que tenga fecha antes de dibujar nada. */
