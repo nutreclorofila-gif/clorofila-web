@@ -61,7 +61,7 @@ main h3{line-height:1.15}
 .hero-bajada{font-size:var(--t-bajada);line-height:1.5;color:var(--cal-med);max-width:26em;margin-bottom:1.9rem}
 .hero-acciones{display:flex;gap:.75rem;flex-wrap:wrap}
 .portada-foto{position:relative;margin:0;padding-bottom:60px}
-.portada-foto > picture:first-child img{width:100%;height:min(74vh,560px);object-fit:cover;object-position:40% 50%;border-radius:300px 0 0 0;display:block}
+.portada-foto > picture:first-child img{width:100%;height:min(66vh,480px);object-fit:cover;object-position:62% 50%;border-radius:300px 0 0 0;display:block}
 /* La foto chica tiene la forma de una hoja y se apoya sobre la grande. El
    borde del color del fondo es lo que la despega. */
 .foto-chica{position:absolute;display:block;border:6px solid var(--tinta);overflow:hidden;box-shadow:var(--sombra);line-height:0}
@@ -150,7 +150,7 @@ main h3{line-height:1.15}
 .palabra{position:relative;z-index:1;margin:0 0 -.22em 1.5rem;font-size:clamp(3.3rem,6.7vw,5.4rem);line-height:.8;color:var(--cal);max-width:none}
 .propuesta-al-reves .palabra{margin-left:auto;margin-right:1.5rem}
 .propuesta-foto img{width:100%;height:clamp(280px,30vw,400px);object-fit:cover;display:block;border-radius:0 220px 0 220px}
-.propuesta-al-reves .propuesta-foto img{border-radius:220px 0 220px 0}
+.propuesta-al-reves .propuesta-foto img{border-radius:220px 0 220px 0;object-position:50% 30%}
 .propuesta h3{font-size:clamp(1.45rem,2.4vw,1.9rem);margin-bottom:.9rem}
 .propuesta-texto > p{font-size:var(--t-cuerpo);line-height:1.6}
 .curso-transforma{display:grid;grid-template-columns:1fr 1fr;gap:0 1.5rem;margin:1.5rem 0}
@@ -361,12 +361,12 @@ main h3{line-height:1.15}
     </div>
     <figure class="portada-foto">
       <picture>
-        <source srcset="img-tapeo-hero-480.webp 480w, img-tapeo-hero-700.webp 700w, img-tapeo-hero.webp 1400w" sizes="(max-width: 900px) calc(100vw - 3.5rem), 50vw" type="image/webp">
-        <img src="img-tapeo-hero.jpg" width="1400" height="1050" alt="El grupo cocinando alrededor de la mesa larga de Clorofila, de noche" loading="eager" fetchpriority="high" decoding="async">
+        <source srcset="img-tapeo-cocinando-480.webp 480w, img-tapeo-cocinando-700.webp 700w, img-tapeo-cocinando.webp 1200w" sizes="(max-width: 900px) calc(100vw - 3.5rem), 50vw" type="image/webp">
+        <img src="img-tapeo-cocinando.jpg" width="1200" height="675" alt="El grupo cocinando alrededor de la mesa larga de Clorofila, de noche" loading="eager" fetchpriority="high" decoding="async">
       </picture>
       <picture class="foto-chica">
-        <source srcset="img-clase-masa-480.webp 480w, img-clase-masa-700.webp 700w" sizes="(max-width: 900px) 40vw, 230px" type="image/webp">
-        <img src="img-clase-masa.jpg" width="975" height="1300" alt="Tres alumnos estirando masa en el mesón del estudio" decoding="async">
+        <source srcset="img-tapeo-g2-400.webp 400w, img-tapeo-g2.webp 760w" sizes="(max-width: 900px) 40vw, 230px" type="image/webp">
+        <img src="img-tapeo-g2.jpg" width="760" height="760" alt="Leonardo cocinando junto a un participante" decoding="async">
       </picture>
     </figure>
   </div>
@@ -406,7 +406,7 @@ main h3{line-height:1.15}
       <div class="propuesta propuesta-al-reves">
         <figure class="propuesta-foto">
           <span class="palabra" aria-hidden="true">Talleres</span>
-          <picture><source srcset="img-clase-postre-700.webp 700w, img-clase-postre.webp 867w" sizes="(max-width: 820px) calc(100vw - 6rem), 46vw" type="image/webp"><img src="img-clase-postre.jpg" width="867" height="1300" alt="Dos alumnas armando un postre juntas" loading="lazy" decoding="async"></picture>
+          <picture><source srcset="img-leo-ensena-480.webp 480w, img-leo-ensena-700.webp 700w, img-leo-ensena.webp 975w" sizes="(max-width: 820px) calc(100vw - 6rem), 46vw" type="image/webp"><img src="img-leo-ensena.jpg" width="975" height="1300" alt="Leonardo Lemes enseñando en Clorofila" loading="lazy" decoding="async"></picture>
         </figure>
         <div class="propuesta-texto">
           <span class="senal">Talleres intensivos de un día</span>
