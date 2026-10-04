@@ -76,7 +76,11 @@
    760 px de alto. */
 @media (min-width:941px){
   .hero-curso .hero-caja{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);align-items:center}
-  .hero-curso .hero-col-foto .hero-foto{margin-right:0;border-radius:var(--r-lg);aspect-ratio:3/4}
+  .hero-curso .hero-col-foto{position:relative}
+  .hero-curso .hero-col-foto .hero-foto{margin-right:0;border-radius:0 var(--hoja) 0 var(--hoja);aspect-ratio:3/4}
+  /* La foto chica de la portada: un plato terminado apoyado sobre la clase. */
+  .hero-curso .foto-chica{position:absolute;left:-64px;bottom:3.25rem;width:clamp(130px,13vw,180px);aspect-ratio:2/3;border:6px solid var(--tinta);border-radius:0 90px 0 90px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.25),0 18px 40px rgba(0,0,0,.35);line-height:0}
+  .hero-curso .foto-chica img{width:100%;height:100%;object-fit:cover;outline:0}
   .hero-curso .bajada{margin-top:1.6rem}
 }
 
@@ -93,6 +97,7 @@
   .hero-curso .hero-caja .bajada{order:8;margin-top:1.75rem;margin-bottom:0}
   .hero-curso .hero-caja .hero-leo{order:9;margin-top:1rem;margin-bottom:0}
   .hero-curso{padding-bottom:.5rem}
+  .hero-curso .foto-chica{display:none}
 }
 
 /* ---------- LA BOLETA DEL CIERRE ----------
@@ -157,7 +162,7 @@
 /* La foto del grupo iba a 1.120 × 480 px y se veía blanda: el archivo mide
    1.200 de ancho. A 704 px como máximo cada punto de pantalla tiene píxeles de
    sobra, también en pantallas de doble densidad. */
-.banda{position:relative;max-width:44rem;margin-inline:0;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/9}
+.banda{position:relative;max-width:44rem;margin-inline:0;border-radius:0 var(--hoja) 0 var(--hoja);overflow:hidden;aspect-ratio:16/9}
 .banda img{width:100%;height:100%;object-fit:cover}
 @media (max-width:620px){.banda{aspect-ratio:3/2}}
 
@@ -273,6 +278,7 @@
       <figure class="hero-foto">
         <picture><source srcset="img-clase-masa-480.webp 480w, img-clase-masa-700.webp 700w, img-clase-masa.webp 975w" sizes="(max-width: 940px) calc(100vw - 3rem), 34vw" type="image/webp"><img src="img-clase-masa.jpg" width="975" height="1300" alt="Clase del curso de cocina basada en plantas de Clorofila, en Parque Rodó, Montevideo" loading="eager" fetchpriority="high" decoding="async"></picture>
       </figure>
+      <picture class="foto-chica"><source srcset="img-postre-higos.webp" type="image/webp"><img src="img-postre-higos.jpg" width="667" height="1000" alt="Postre de higos con frutillas y arándanos, emplatado en Clorofila" loading="lazy" decoding="async"></picture>
         <p class="hero-datos"><b><!--o:google.puntaje_texto-->4,9<!--/o--></b> en <!--o:google.resenas_texto-->23 reseñas en Google<!--/o-->.</p>
     </div>
   </div>
