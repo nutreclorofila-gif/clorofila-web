@@ -429,20 +429,22 @@ h2 + p{margin-top:.55rem}
 .comanda::before{top:-6px;transform:rotate(180deg)}
 .comanda::after{bottom:-6px}
 .comanda-cabeza{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-bottom:.75rem;border-bottom:1px dashed var(--linea-fuerte)}
-.comanda-titulo{font-family:var(--dato);font-size:var(--t-dato);letter-spacing:.16em;text-transform:uppercase;color:var(--cal-baja)}
-.comanda-estado{font-family:var(--dato);font-size:var(--t-dato);letter-spacing:.1em;text-transform:uppercase;color:var(--brote)}
+/* Sin letra de máquina ni mayúsculas espaciadas: eran lo que más delataba
+   una plantilla (revisión del 30/9). Queda el papel dentado; el texto se lee. */
+.comanda-titulo{font-family:var(--display);font-weight:600;font-size:var(--t-bajada);letter-spacing:-.01em;color:var(--cal)}
+.comanda-estado{font-family:var(--texto);font-size:var(--t-nota);color:var(--brote);white-space:nowrap}
 [data-estado="ultimos"] .comanda-estado{color:var(--fermento)}
 [data-estado="agotado"] .comanda-estado,[data-estado="sin-fecha"] .comanda-estado{color:var(--cal-baja)}
 .comanda-datos{margin-block:.75rem;display:grid;gap:.05rem}
-.comanda-datos li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-block:.32rem;font-family:var(--dato);font-size:var(--t-nota);line-height:1.5}
-.comanda-datos li strong{color:var(--cal-baja);font-weight:400;letter-spacing:.06em;text-transform:uppercase;font-size:var(--t-dato);white-space:nowrap}
+.comanda-datos li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-block:.32rem;font-family:var(--texto);font-size:var(--t-chico);line-height:1.5;font-variant-numeric:tabular-nums}
+.comanda-datos li strong{color:var(--cal-med);font-weight:400;font-size:var(--t-chico);white-space:nowrap}
 .comanda-datos li span{color:var(--cal);text-align:right}
 .comanda-datos li a{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--linea-fuerte)}
 .comanda-datos li a:hover{text-decoration-color:var(--brote)}
 .comanda-precio span{color:var(--miel)!important;font-size:var(--t-cuerpo)}
 .comanda-acciones{display:grid;gap:.5rem;margin-top:1rem}
 .comanda-acciones .btn{width:100%;padding-inline:1.1rem}
-.comanda-nota{font-size:var(--t-dato);color:var(--cal-baja);line-height:1.5;margin-top:.8rem}
+.comanda-nota{font-size:var(--t-nota);color:var(--cal-med);line-height:1.5;margin-top:.8rem}
 
 /* Fechas seleccionables dentro de la comanda. */
 .fechas-bloque{border-top:1px dashed var(--linea-fuerte);padding-top:.85rem;margin-top:.3rem}
