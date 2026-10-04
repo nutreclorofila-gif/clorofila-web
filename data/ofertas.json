@@ -9,7 +9,7 @@
     "hora_fin": "22:30",
     "precio": "$2.600 por persona",
     "precio_num": "2600",
-    "link_compra": "",
+    "link_compra": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-1432",
     "cupos_total": 12,
     "lugar": "Maldonado 1976 esq. Blanes · Parque Rodó",
     "menu": [
@@ -41,7 +41,7 @@
       "texto": "viernes 30 de octubre",
       "hora_inicio": "19:00",
       "hora_fin": "22:30",
-      "link": ""
+      "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-e10f"
     }
   },
   "curso": {
@@ -105,16 +105,16 @@
       "nombre": "Pastas sin gluten",
       "nombre_corto": "Pastas sin gluten",
       "linea_corta": "Amasás, estirás y armás cada forma vos.",
-      "estado": "sin-fecha",
-      "fecha_iso": "",
-      "fecha_texto": "Sin fecha confirmada",
+      "estado": "abierto",
+      "fecha_iso": "2026-10-29",
+      "fecha_texto": "jueves 29 de octubre",
       "hora": "19:00 a 22:30 h",
       "hora_inicio": "19:00",
       "hora_fin": "22:30",
       "precio": "$2.700",
       "precio_num": "2700",
       "cupos_total": 12,
-      "link_compra": ""
+      "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten-0381"
     },
     "alfajores": {
       "nombre": "Alfajores plant-based",

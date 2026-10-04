@@ -812,14 +812,16 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
   datos.talleres_cta_link = conFecha.length ? '#abiertos'
     : waBase + encodeURIComponent('Hola Leonardo, me interesan los talleres de Clorofila. Avisame cuando abran fecha.');
   /* Con fecha el botón baja al índice de esta misma página y no puede abrir
-     una pestaña; sin fecha va a WhatsApp, que sí. El target sale de acá. */
-  datos.talleres_cta_target = conFecha.length ? '' : '_blank';
+     una pestaña; sin fecha va a WhatsApp, que sí. El target sale de acá («_self»: vacío no es válido en HTML). */
+  datos.talleres_cta_target = conFecha.length ? '_self' : '_blank';
   datos.talleres_nav = conFecha.length ? 'Ver fechas' : 'Ver talleres';
   /* Lo que vale para los cinco se dice acá una sola vez. Antes iba repetido
      en una etiqueta debajo de cada taller: quince etiquetas que no
      distinguían nada entre uno y otro. */
-  datos.talleres_bajada = 'Cada taller toma una técnica y le dedica el día entero, de la primera mezcla hasta la mesa. '
-    + 'Los ingredientes van incluidos y te llevás a casa lo que preparaste. '
+  /* Sin «el día entero» ni «te llevás a casa»: pastas dura tres horas y media
+     y lo que se cocina se comparte al cierre (Tikzet, 3/10). */
+  datos.talleres_bajada = 'Cada taller trabaja una sola técnica en una clase, de la primera mezcla hasta la mesa. '
+    + 'Los ingredientes van incluidos. '
     + (conFecha.length === 0
         ? 'Ahora mismo ninguno tiene fecha: los abrimos según la demanda y te avisamos.'
         : conFecha.length === 1
