@@ -34,6 +34,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://clorofila.uy/team-building</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-team-building.jpg</image:loc>
+      <image:title>Team building de cocina en Montevideo — Clorofila</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://clorofila.uy/tapeo</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>weekly</changefreq>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Marca que el JS corre. Sin esto, el menú del celular y las respuestas de
+     las preguntas quedan invisibles: las abre y cierra pagina.js. Va inline y
+     arriba de todo para que la clase llegue antes del primer pintado. -->
+<script>document.documentElement.className+=' js'</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0E1A13">
+<title>Team Building de Cocina en Montevideo | Clorofila</title>
+<meta name="description" content="Team building de cocina para empresas en Montevideo: tu equipo cocina junto en el estudio de Parque Rodó y después comparte la mesa. Propuesta a medida.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://clorofila.uy/team-building">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://clorofila.uy/team-building">
+<meta property="og:title" content="Team building de cocina en Montevideo — Clorofila">
+<meta property="og:description" content="Tu equipo cocina junto en el estudio de Clorofila, en Parque Rodó, y después se sienta a comer lo que preparó.">
+<meta property="og:image" content="https://clorofila.uy/og/og-team-building.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Un grupo detrás de la mesa del estudio de Clorofila, con todo lo que cocinó">
+<meta name="twitter:image:alt" content="Un grupo detrás de la mesa del estudio de Clorofila, con todo lo que cocinó">
+<meta property="og:locale" content="es_UY">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://clorofila.uy/og/og-team-building.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
+<link rel="stylesheet" href="base.css?v=60">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Service","@id":"https://clorofila.uy/team-building#servicio","name":"Team building de cocina en Montevideo","serviceType":"Team building de cocina para empresas","description":"El equipo cocina junto en el estudio de Clorofila, en Parque Rodó, y después se sienta a comer lo que preparó. Cocina basada en plantas, con el menú armado según el grupo.","url":"https://clorofila.uy/team-building","image":"https://clorofila.uy/og/og-team-building.jpg","areaServed":{"@type":"City","name":"Montevideo"},"audience":{"@type":"BusinessAudience","name":"Empresas y equipos de trabajo"},"provider":{"@id":"https://clorofila.uy/#organization","@type":"Organization","name":"Clorofila","url":"https://clorofila.uy/"},"location":{"@type":"Place","name":"Clorofila Estudio de Cocina","address":{"@type":"PostalAddress","streetAddress":"Maldonado 1976 esq. Blanes","addressLocality":"Montevideo","addressCountry":"UY"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://clorofila.uy/"},{"@type":"ListItem","position":2,"name":"Eventos y consultoría","item":"https://clorofila.uy/servicios"},{"@type":"ListItem","position":3,"name":"Team building","item":"https://clorofila.uy/team-building"}]}]}
+</script>
+<style>
+/* /team-building — la página para empresas. Hasta el 4/10/2026 el team
+   building era una ficha de una línea dentro de /servicios, y en Search
+   Console no había ni una aparición para «team building» (210 búsquedas por
+   mes en Uruguay). Esta página es la que Google puede mostrar para esa
+   búsqueda. Cupo, duración y precio no figuran: falta que Leo los confirme. */
+.hero-tb{padding-block:clamp(2rem,4vw,3.25rem) clamp(2.5rem,5vw,4rem)}
+.hero-tb h1{font-size:var(--th-pagina);margin-block:.7rem .8rem;max-width:20ch}
+.hero-tb .bajada{color:var(--cal-med);max-width:60ch}
+.hero-tb-foto{display:none;margin:0}
+@media (min-width:941px){
+  .hero-tb-caja{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(2rem,5vw,4.5rem);align-items:center}
+  .hero-tb-foto{display:block;border-radius:0 var(--hoja) 0 var(--hoja);overflow:hidden;aspect-ratio:1}
+  .hero-tb-foto img{width:100%;height:100%;object-fit:cover;outline:0}
+}
+.hero-tb-acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.6rem}
+@media (max-width:520px){.hero-tb-acciones .btn{flex:1 1 100%}}
+.tb-foto{margin:0 0 2.6rem;border-radius:0 var(--hoja) 0 var(--hoja);overflow:hidden}
+.tb-foto img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:16/9}
+.tb-grupo{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(1.75rem,4vw,3.5rem);align-items:start}
+.tb-grupo h2{font-size:var(--th-seccion);margin-block:.8rem .8rem}
+.tb-texto p{color:var(--cal-med);max-width:60ch}
+.tb-texto p+p{margin-top:1rem}
+@media (max-width:900px){.tb-grupo{grid-template-columns:1fr}}
+</style>
+<!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
+<script src="consent.js?v=20260924" defer></script>
+</head>
+<body data-producto="team-building">
+<a href="#principal" class="saltar">Ir al contenido principal</a>
+<div class="cookie-banner" id="cookie-banner" role="status" aria-label="Aviso de cookies">
+  <p>¿Aceptás cookies para saber qué se lee? <a href="/privacidad">Más info</a></p>
+  <div class="cookie-banner-actions">
+    <button type="button" id="cookie-decline">Rechazar</button>
+    <button type="button" id="cookie-accept">Aceptar</button>
+  </div>
+</div>
+
+<nav class="nav" id="nav" aria-label="Principal">
+  <div class="nav-caja">
+    <a href="/" class="marca"><b>Clorofila</b><span>Estudio de cocina</span></a>
+    <button type="button" class="cerrar-menu" id="cerrar-menu" aria-label="Cerrar menú">✕</button>
+    <ul class="nav-links" id="nav-links">
+      <li class="solo-menu"><a href="/">Inicio</a></li>
+      <li><a href="/curso">Curso</a></li>
+      <li><a href="/talleres">Talleres</a></li>
+      <li><a data-set="href=menu_experiencias" href="/tapeo">Experiencias</a></li>
+      <li class="nav-sec nav-corte"><a href="/articulos">Artículos</a></li>
+      <li class="nav-sec"><a href="/sobre">Sobre Clorofila</a></li>
+      <li class="nav-sec"><a href="/servicios">Eventos y consultoría</a></li>
+      <li class="nav-sec"><a href="/contacto">Contacto</a></li>
+      <li><a href="#conversemos" class="nav-cta">Conversemos</a></li>
+    </ul>
+    <button class="hamburguesa" id="hamburguesa" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
+  </div>
+</nav>
+
+<main id="principal">
+
+<header class="hero-tb">
+  <div class="env hero-tb-caja">
+    <div>
+    <span class="senal">Team building de cocina en Montevideo</span>
+    <h1>Tu equipo cocina junto y después se sienta a comer lo que preparó.</h1>
+    <p class="bajada">Lo hacemos en el estudio de Clorofila, en Parque Rodó, con Leonardo Lemes al frente. Toda la cocina es basada en plantas, y el menú lo armamos para cada grupo.</p>
+    <p class="hero-datos">Desde 2013, con más de <b>1.200</b> personas formadas, y <b><!--o:google.puntaje_texto-->4,9<!--/o--></b> en <!--o:google.resenas_texto-->23 reseñas en Google<!--/o-->.</p>
+    <div class="hero-tb-acciones">
+      <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20consultar%20por%20un%20team%20building%20de%20cocina%20para%20mi%20equipo." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="team-building">Consultar por WhatsApp</a>
+      <a href="#como-es" class="btn btn-linea">Ver cómo es</a>
+    </div>
+    </div>
+    <figure class="hero-tb-foto"><picture><source srcset="img-tapeo-g3-400.webp 400w, img-tapeo-g3.webp 760w" sizes="30vw" type="image/webp"><img src="img-tapeo-g3.jpg" width="760" height="760" alt="Tres participantes amasando y riéndose en la mesa del estudio" loading="eager" decoding="async"></picture></figure>
+  </div>
+</header>
+
+<section class="seccion borde-sup" id="como-es">
+  <div class="env">
+    <figure class="tb-foto">
+      <picture>
+        <source srcset="img-comunidad-color-700.webp 700w, img-comunidad-color.webp 1800w" sizes="(max-width: 900px) calc(100vw - 3rem), min(1100px, 100vw)" type="image/webp">
+        <img src="img-comunidad-color.jpg" width="1800" height="1013" alt="Un grupo al final de una clase, detrás de la mesa con todo lo que cocinó" loading="lazy" decoding="async">
+      </picture>
+    </figure>
+    <div class="tb-grupo sube">
+      <div>
+        <h2>Así es la jornada.</h2>
+      </div>
+      <div class="tb-texto">
+        <p>Leonardo explica cada preparación y muestra la técnica antes de empezar. Después el equipo cocina entre todos, alrededor de la mesa larga del estudio.</p>
+        <p>Cuando todo está listo, nos sentamos a comer lo que prepararon, en la misma mesa donde cocinaron.</p>
+        <p>Nadie tiene que saber cocinar para participar. Explicamos qué pasa en cada paso y por qué, así cada uno puede hacer su parte.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="seccion borde-sup">
+  <div class="env">
+    <div class="tb-grupo sube">
+      <div>
+        <h2>Lo armamos para tu equipo.</h2>
+      </div>
+      <div class="tb-texto">
+        <p>Para preparar la propuesta necesitamos saber cuántas personas son, qué fecha y horario tienen en mente y si alguien tiene una restricción alimentaria. Con esos datos te enviamos el menú y el presupuesto.</p>
+        <p>Si querés ver antes cómo es una noche en el estudio, la <a href="/tapeo" class="enlace-vivo" data-producto="tapeo">Cena y Taller de Tapeo</a> es abierta al público. También cocinamos para eventos de empresa y capacitamos equipos de cocina: está todo en <a href="/servicios" class="enlace-vivo">eventos y consultoría</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cierre seccion" id="conversemos">
+  <div class="env cierre-caja">
+    <div class="sube">
+      <h2>Si te quedan dudas, escribinos.</h2>
+      <p class="bajada">Contanos cuántos son y qué fecha tienen en mente. Te contesta Leonardo.</p>
+    </div>
+    <div class="sube" style="display:flex;flex-wrap:wrap;gap:.75rem">
+      <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20consultar%20por%20un%20team%20building%20de%20cocina%20para%20mi%20equipo." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="team-building">Escribir por WhatsApp</a>
+      <a href="mailto:nutreclorofila@gmail.com?subject=Consulta%20por%20team%20building" class="btn btn-linea">Escribir por email</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="pie-caja">
+    <div class="pie-marca">
+      <a href="/" class="marca"><b>Clorofila</b><span>Estudio de cocina</span></a>
+      <p class="pie-lema">Cocinamos y comemos de manera creativa, energética y nutritiva.</p>
+      <p class="dato" style="color:var(--cal-baja);text-transform:none;letter-spacing:.02em"><a href="/contacto">Maldonado 1976 esq. Blanes, Parque Rodó, Montevideo</a></p>
+    </div>
+    <div><h2>Propuestas</h2><ul><li><a href="/curso">El curso</a></li><li><a href="/programa">Programa completo</a></li><li><a href="/talleres">Todos los talleres</a></li><li><a href="/pastas">Pastas sin gluten</a></li><li><a href="/experiencias">Todas las experiencias</a></li>
+            <li><a href="/tapeo">Cena y Taller de Tapeo</a></li></ul></div>
+    <div><h2>Clorofila</h2><ul><li><a href="/leonardo">Leonardo Lemes</a></li><li><a href="/sobre">Sobre Clorofila</a></li><li><a href="/articulos">Artículos</a></li><li><a href="/servicios">Eventos y consultoría</a></li></ul></div>
+    <div><h2>Contacto</h2><ul><li><a href="https://wa.me/59894064148" target="_blank" rel="noopener noreferrer">094 064 148</a></li><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">@clorofilaclases</a></li></ul></div>
+  </div>
+  <p class="pie-fin">© 2026 Clorofila · Montevideo, Uruguay · <a href="/privacidad">Privacidad y cookies</a></p>
+</footer>
+
+
+<script src="track.js?v=20261004" defer></script>
+<script src="pagina.js?v=34" defer></script>
+</body>
+</html>
