@@ -4,7 +4,7 @@
    todas nocturnas y de luz cálida, pasan a ser la fuente de luz de la página.
    ========================================================================= */
 
-/* Respaldos con medidas ajustadas. Mientras Karla y Bricolage bajan de Google
+/* Respaldos con medidas ajustadas. Mientras Karla baja de Google
    Fonts, el texto se dibuja con Arial (o Roboto en Android) estirada al ancho
    y al alto de línea de la fuente web: cuando la web llega, las líneas no
    cambian de largo y la página no salta (CLS). Los porcentajes salen de
@@ -22,16 +22,6 @@
   font-family:'Karla Fallback Android';
   src:local('Roboto');
   size-adjust:102.62%;ascent-override:89.35%;descent-override:24.56%;line-gap-override:0%;
-}
-@font-face{
-  font-family:'Bricolage Grotesque Fallback';
-  src:local('Arial');
-  size-adjust:105.43%;ascent-override:88.21%;descent-override:25.61%;line-gap-override:0%;
-}
-@font-face{
-  font-family:'Bricolage Grotesque Fallback Android';
-  src:local('Roboto');
-  size-adjust:105.66%;ascent-override:88.02%;descent-override:25.55%;line-gap-override:0%;
 }
 
 :root{
@@ -53,17 +43,10 @@
   --miel:#F0B355;          /* ámbar de la luz del estudio: datos */
 
   /* Tipografía */
-  /* Bricolage Grotesque es una grotesca sans; el respaldo era Times New Roman,
-     una serif. Mientras la fuente carga —y para quien bloquea Google Fonts—
-     todos los títulos del sitio salían en otra familia y con otro carácter.
-     Medido sobre el h1 de la portada: Times da 708 px donde Bricolage da 828
-     (-14,5%, un salto visible al cambiar); Helvetica Neue da 816 (-1,4%). */
   /* Los títulos van en Vollkorn desde el 3/10/2026: una serifa de libro de
      cocina, la del lienzo de diseño. El respaldo es Georgia, también serifa,
-     para que el título no cambie de carácter mientras carga. La grotesca
-     queda solo en el logo. */
+     para que el título no cambie de carácter mientras carga. */
   --display:'Vollkorn',Georgia,'Times New Roman',serif;
-  --marca:'Bricolage Grotesque','Bricolage Grotesque Fallback Android','Bricolage Grotesque Fallback','Helvetica Neue',Arial,sans-serif;
   --hoja:clamp(90px,16vw,220px);
   --texto:'Karla','Karla Fallback Android','Karla Fallback',system-ui,sans-serif;
   --dato:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
@@ -229,8 +212,11 @@ strong{color:var(--cal);font-weight:600}
 .marca{display:flex;flex-direction:column;line-height:1;flex-shrink:0}
 /* La marca también es un enlace (vuelve al inicio): 44 px de alto. */
 a.marca{min-height:44px;justify-content:center}
-.marca b{font-family:var(--marca);font-size:var(--t-alto);font-weight:600;color:var(--cal);letter-spacing:-.02em}
-.marca span{font-family:var(--texto);font-size:var(--t-dato);letter-spacing:.01em;color:var(--cal-baja);margin-top:.2rem}
+/* El logo es el de la identidad de Clorofila (carpeta Identidad, 2021), no un
+   nombre escrito con una fuente: el «Clorofila» en Bricolage Grotesque se leía
+   como un logo de plantilla. Alto fijo; el ancho sale de la proporción. */
+.marca img{display:block;height:46px;width:auto;outline:0}
+@media (max-width:600px){.marca img{height:40px}}
 .nav-links{display:flex;align-items:center;gap:1.25rem;flex:1}
 /* "Inicio" solo en el menú del celular. En la compu el logo de arriba a la
    izquierda ya lleva al home, pero acá el menú abierto ocupa toda la pantalla
