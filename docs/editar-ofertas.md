@@ -33,6 +33,11 @@ No hay que tocar HTML.
 - `fecha_iso` es la fecha en formato año-mes-día. **Es la que manda**: si ya pasó,
   la web retira la fecha sola y vuelve a "próxima fecha a confirmar".
   Nunca más queda un banner viejo colgado.
+  No hace falta volver a publicar ese día: al publicar, el build calcula cómo
+  se tiene que ver el sitio el día después de cada fecha y lo guarda en
+  `estados.json`, y cada página se pone al día sola cuando llega ese día.
+  Para ver cómo quedaría el sitio otro día:
+  `OFERTAS_HOY=2026-10-24 node scripts/render-ofertas.js` (en una copia, no en el repo).
 - `fecha_texto` es lo que lee la gente. Escribilo como lo dirías.
   Si escribís el día de la semana, tiene que ser el que de verdad cae:
   el build compara el texto con `fecha_iso` y corta si no coinciden.

@@ -224,34 +224,112 @@
      seguiría cobrando una entrada para una noche que ya fue. Al marcarlo
      'sin-fecha' el CSS que ya existe esconde el botón de compra y la barra
      de reserva, y deja a la vista el "avisame cuando haya fecha". */
-  Array.prototype.forEach.call(document.querySelectorAll('[data-vence-iso]'), function (el) {
-    var iso = el.getAttribute('data-vence-iso');
-    if (!iso) return;
-    var hoy = new Date(); hoy.setHours(0, 0, 0, 0);
-    if (new Date(iso + 'T00:00:00-03:00') < hoy) el.setAttribute('data-estado', 'sin-fecha');
-  });
+  function darDeBajaLoVencido() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-vence-iso]'), function (el) {
+      var iso = el.getAttribute('data-vence-iso');
+      if (!iso) return;
+      var hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+      if (new Date(iso + 'T00:00:00-03:00') < hoy) el.setAttribute('data-estado', 'sin-fecha');
+    });
+  }
 
-  Array.prototype.forEach.call(document.querySelectorAll('[data-inicio-iso]'), function (el) {
-    /* Una cuenta regresiva sobre algo agotado apura por algo que nadie puede
-       comprar: el 15/9 la tarjeta del tapeo lleno decía "Empieza en 3 días".
-       Con la fecha llena el renglón se calla, y el hueco se marca igual que
-       cuando no hay cuenta para que el botón no salte. */
-    var cerrado = el.closest && el.closest('[data-estado="agotado"]');
-    var texto = cerrado ? null : cuantoFalta(el.getAttribute('data-inicio-iso'));
-    /* El destino puede ser el propio elemento: en la tarjeta de /experiencias
-       el <p> lleva las dos marcas, y buscando solo adentro el "no" no se
-       ponía nunca. Quedaba el hueco reservado, vacío, para una cuenta que no
-       iba a llegar. */
-    var destino = el.hasAttribute('data-cuenta') ? el : el.querySelector('[data-cuenta]');
-    /* Sin cuenta que mostrar hay que decirlo: el hueco viene reservado para
-       no empujar el boton al llenarse, y sin esta marca quedaria un espacio
-       en blanco esperando un texto que no va a llegar. */
-    if (!texto) {
-      if (destino) destino.setAttribute('data-cuenta', 'no');
-      return;
+  function contarLoQueFalta() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-inicio-iso]'), function (el) {
+      /* Una cuenta regresiva sobre algo agotado apura por algo que nadie puede
+         comprar: el 15/9 la tarjeta del tapeo lleno decía "Empieza en 3 días".
+         Con la fecha llena el renglón se calla, y el hueco se marca igual que
+         cuando no hay cuenta para que el botón no salte. */
+      var cerrado = el.closest && el.closest('[data-estado="agotado"]');
+      var texto = cerrado ? null : cuantoFalta(el.getAttribute('data-inicio-iso'));
+      /* El destino puede ser el propio elemento: en la tarjeta de /experiencias
+         el <p> lleva las dos marcas, y buscando solo adentro el "no" no se
+         ponía nunca. Quedaba el hueco reservado, vacío, para una cuenta que no
+         iba a llegar. */
+      var destino = el.hasAttribute('data-cuenta') ? el : el.querySelector('[data-cuenta]');
+      /* Sin cuenta que mostrar hay que decirlo: el hueco viene reservado para
+         no empujar el boton al llenarse, y sin esta marca quedaria un espacio
+         en blanco esperando un texto que no va a llegar. */
+      if (!texto) {
+        if (destino) destino.setAttribute('data-cuenta', 'no');
+        return;
+      }
+      if (destino) destino.setAttribute('data-cuenta', '');
+      (destino || el).textContent = texto;
+    });
+  }
+
+  /* La página se pone al día sola. El build la arma con la fecha del día en
+     que se publica; si después vence algo y nadie vuelve a publicar, la
+     portada seguía ofreciendo el tapeo de la semana pasada. El build deja
+     anotado en <html data-cambios> qué días cambia algo de esta página, y en
+     estados.json lo que tiene que decir desde cada uno: los mismos textos,
+     links y estados que pondría un build hecho ese día. Mientras no llegue
+     ninguno de esos días no se pide nada. */
+  function hoyEnElEstudio() {
+    return new Date(Date.now() - 3 * 3600000).toISOString().slice(0, 10);
+  }
+  function ponerAlDia(c) {
+    var o = c.o || {}, e = c.e || {}, s = c.s || {};
+    // Primero se juntan los comentarios y después se tocan: modificar el árbol
+    // mientras se lo recorre hace saltear nodos.
+    var marcas = [], w = document.createTreeWalker(document.body, NodeFilter.SHOW_COMMENT), n;
+    while ((n = w.nextNode())) {
+      if (n.data.indexOf('o:') === 0 && Object.prototype.hasOwnProperty.call(o, n.data.slice(2))) marcas.push(n);
     }
-    (destino || el).textContent = texto;
-  });
+    marcas.forEach(function (ini) {
+      // El cierre tiene que ser hermano de la apertura; si el HTML lo movió a
+      // otro lado, ese dato queda como lo dejó el build.
+      var fin = ini.nextSibling;
+      while (fin && !(fin.nodeType === 8 && fin.data === '/o')) fin = fin.nextSibling;
+      if (!fin) return;
+      while (ini.nextSibling !== fin) ini.parentNode.removeChild(ini.nextSibling);
+      var clave = ini.data.slice(2), v = o[clave];
+      if (clave.indexOf('html:') === 0) {
+        var t = document.createElement('template');
+        t.innerHTML = v;
+        ini.parentNode.insertBefore(t.content, fin);
+      } else {
+        ini.parentNode.insertBefore(document.createTextNode(v), fin);
+      }
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-estado-de]'), function (el) {
+      var par = e[el.getAttribute('data-estado-de')];
+      if (!par) return;
+      el.setAttribute('data-estado', par[0]);
+      if (par[1]) el.setAttribute('data-vence-iso', par[1]);
+      else el.removeAttribute('data-vence-iso');
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-set]'), function (el) {
+      el.getAttribute('data-set').split(';').forEach(function (par) {
+        var trozos = par.split('=');
+        if (trozos.length !== 2) return;
+        var ruta = trozos[1].trim();
+        if (Object.prototype.hasOwnProperty.call(s, ruta)) el.setAttribute(trozos[0].trim(), s[ruta]);
+      });
+    });
+  }
+
+  darDeBajaLoVencido();
+  contarLoQueFalta();
+  var hoyIso = hoyEnElEstudio();
+  var llegados = (document.documentElement.getAttribute('data-cambios') || '').split(' ')
+    .filter(function (d) { return d && d <= hoyIso; });
+  if (llegados.length && window.fetch) {
+    fetch('/estados.json', { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j || !j.cambios) return;
+        // Cada entrada ya trae todo lo que cambió desde la publicación: alcanza
+        // con la última que llegó.
+        var vigente = null;
+        j.cambios.forEach(function (c) { if (c.desde <= hoyIso) vigente = c; });
+        if (!vigente) return;
+        ponerAlDia(vigente);
+        darDeBajaLoVencido();
+        contarLoQueFalta();
+      })
+      .catch(function () {});
+  }
 
   /* El consentimiento se lee y se guarda por consent.js, que envuelve
      localStorage en try/catch: con las cookies bloqueadas, acceder al

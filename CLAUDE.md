@@ -48,6 +48,7 @@ node scripts/check-integridad.js main
 | Medición de eventos (clics, conversiones) | `track.js` |
 | Nav, menú móvil, animaciones, banner de cookies | `pagina.js` |
 | Artículos del blog | `articulos/*.html` |
+| Cómo se pone al día el sitio cuando vence una fecha, sin publicar | `estados.json` (lo genera `render-ofertas.js`; no se edita) |
 | Chequeos de CI | `scripts/check-*.js` |
 | Red que avisa si un cambio rompe algo | `scripts/check-integridad.js` |
 
