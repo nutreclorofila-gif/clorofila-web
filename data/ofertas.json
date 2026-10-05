@@ -3,13 +3,13 @@
   "tapeo": {
     "estado": "abierto",
     "_estados_posibles": "sin-fecha | abierto | ultimos | agotado",
-    "fecha_iso": "2026-10-02",
-    "fecha_texto": "viernes 2 de octubre",
+    "fecha_iso": "2026-10-23",
+    "fecha_texto": "viernes 23 de octubre",
     "hora": "19:00",
     "hora_fin": "22:30",
     "precio": "$2.600 por persona",
     "precio_num": "2600",
-    "link_compra": "",
+    "link_compra": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-1432",
     "cupos_total": 12,
     "lugar": "Maldonado 1976 esq. Blanes · Parque Rodó",
     "menu": [
@@ -37,11 +37,11 @@
       }
     ],
     "segunda_fecha": {
-      "iso": "2026-10-16",
-      "texto": "viernes 16 de octubre",
+      "iso": "2026-10-30",
+      "texto": "viernes 30 de octubre",
       "hora_inicio": "19:00",
       "hora_fin": "22:30",
-      "link": ""
+      "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-e10f"
     }
   },
   "curso": {
@@ -61,7 +61,8 @@
         "inicio_texto": "Arranca el miércoles 7 de octubre",
         "detalle": "Una clase por semana, 12 en total. Para quienes salen de trabajar y quieren cerrar el día cocinando.",
         "estado": "abierto",
-        "cupos_total": 12
+        "cupos_min": 12,
+        "cupos_total": 15
       },
       {
         "id": "jueves",
@@ -71,7 +72,8 @@
         "inicio_texto": "Arranca el jueves 8 de octubre",
         "detalle": "Una clase por semana, 12 en total. El grupo de mañana, con el estudio tranquilo y luz de día.",
         "estado": "abierto",
-        "cupos_total": 12
+        "cupos_min": 12,
+        "cupos_total": 15
       }
     ]
   },
@@ -80,6 +82,7 @@
     "fermentacion": {
       "nombre": "Fermentación de vegetales",
       "nombre_corto": "Fermentación",
+      "linea_corta": "Hacemos chucrut, kimchi y encurtidos.",
       "estado": "sin-fecha",
       "fecha_iso": "",
       "fecha_texto": "Sin fecha confirmada",
@@ -90,6 +93,7 @@
     "pan-sin-gluten": {
       "nombre": "Pan sin gluten con masa madre",
       "nombre_corto": "Pan sin gluten",
+      "linea_corta": "Trabajamos la hidratación, la fermentación y la miga, con masa madre real y sin aditivos.",
       "estado": "sin-fecha",
       "fecha_iso": "",
       "fecha_texto": "Sin fecha confirmada",
@@ -100,20 +104,22 @@
     "pastas-sin-gluten": {
       "nombre": "Pastas sin gluten",
       "nombre_corto": "Pastas sin gluten",
-      "estado": "sin-fecha",
-      "fecha_iso": "",
-      "fecha_texto": "Sin fecha confirmada",
+      "linea_corta": "Amasás, estirás y armás cada forma vos.",
+      "estado": "abierto",
+      "fecha_iso": "2026-10-29",
+      "fecha_texto": "jueves 29 de octubre",
       "hora": "19:00 a 22:30 h",
       "hora_inicio": "19:00",
       "hora_fin": "22:30",
       "precio": "$2.700",
       "precio_num": "2700",
       "cupos_total": 12,
-      "link_compra": ""
+      "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten-0381"
     },
     "alfajores": {
       "nombre": "Alfajores plant-based",
       "nombre_corto": "Alfajores",
+      "linea_corta": "Armás la masa, la ganache y los rellenos con técnica pastelera.",
       "estado": "sin-fecha",
       "fecha_iso": "",
       "fecha_texto": "Sin fecha confirmada",
@@ -124,6 +130,7 @@
     "quesos-vegetales": {
       "nombre": "Quesos vegetales",
       "nombre_corto": "Quesos vegetales",
+      "linea_corta": "Partimos del cajú y otras semillas para llegar a piezas madurables.",
       "estado": "sin-fecha",
       "fecha_iso": "",
       "fecha_texto": "Sin fecha confirmada",

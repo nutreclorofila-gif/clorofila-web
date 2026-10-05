@@ -31,10 +31,10 @@
 <meta name="twitter:image" content="https://clorofila.uy/og/og-leonardo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=52">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
+<link rel="stylesheet" href="base.css?v=60">
 <script type="application/ld+json">
   {"@context": "https://schema.org", "@graph": [{"@type": "Person", "name": "Leonardo Lemes", "jobTitle": "Chef, docente e investigador gastronómico", "description": "Chef, docente e investigador gastronómico con 25 años de experiencia. Fundador de Clorofila Estudio de Cocina en Parque Rodó, Montevideo.", "image": "https://clorofila.uy/img-leo-cocina.jpg", "url": "https://clorofila.uy/leonardo", "worksFor": {"@id": "https://clorofila.uy/#organization"}, "alumniOf": [{"@type": "EducationalOrganization", "name": "Na Luum — Diseño en Permacultura"}, {"@type": "EducationalOrganization", "name": "Ipoema — Agricultura de Bosques de Alimentos", "address": {"@type": "PostalAddress", "addressCountry": "BR"}}, {"@type": "EducationalOrganization", "name": "CLAEH — Gestión Cultural", "address": {"@type": "PostalAddress", "addressCountry": "UY"}}, {"@type": "EducationalOrganization", "name": "Neijing — Medicina Tradicional China"}, {"@type": "EducationalOrganization", "name": "Escuela Tianshu — Shiatsu"}], "knowsAbout": ["Cocina basada en plantas", "Fermentación", "Masa madre", "Pastelería sin gluten", "Desarrollo de productos gastronómicos", "Cocina vegana", "Quesos vegetales", "Investigación gastronómica"], "@id": "https://clorofila.uy/leonardo#person", "founderOf": {"@id": "https://clorofila.uy/#organization"}, "nationality": {"@type": "Country", "name": "Uruguay"}, "knowsLanguage": "es", "sameAs": ["https://instagram.com/clorofilaclases"]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://clorofila.uy/"}, {"@type": "ListItem", "position": 2, "name": "Leonardo Lemes", "item": "https://clorofila.uy/leonardo"}]}]}
   </script>
@@ -52,6 +52,13 @@
 .cifras-leo li:last-child{border-right:0;margin-right:0;padding-right:0}
 .cifras-leo b{display:block;font-family:var(--display);font-size:var(--th-seccion);color:var(--cal);line-height:1;letter-spacing:-.03em}
 .cifras-leo span{font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja)}
+/* La etiqueta de cada cifra es un bloque propio: como línea suelta tomaba
+   el interlineado del texto y en el teléfono «años / cocinando» quedaba en
+   dos renglones muy separados. */
+.cifras-leo span{display:block;line-height:1.3;margin-top:.4rem}
+/* El enlace de la bajada va dentro de la oración: con el relleno de bloque
+   de .enlace-vivo abría el renglón. */
+.bajada .enlace-vivo{display:inline;padding-block:0}
 /* En el celular los tres datos no entraban en una fila: quedaban dos arriba
    y "+1.200 personas formadas" solo abajo, desalineado con el primero y con
    el separador del segundo colgando en el aire. En tres columnas parejas los
@@ -85,6 +92,10 @@
 .tema p{font-size:var(--t-chico);color:var(--cal-med);margin-bottom:1.1rem}
 .tema-leer{margin-top:auto;font-size:var(--t-nota);font-weight:600;color:var(--cal);border-bottom:1px solid var(--linea-fuerte);width:fit-content;padding-block:.3rem;transition:border-color .2s,color .2s}
 .tema:hover .tema-leer{border-color:var(--brote);color:var(--brote)}
+/* «Leer el artículo» medía 32 px de alto. La banda de 44 px es absoluta:
+   llega al objetivo táctil sin mover el texto ni el filete de abajo. */
+.tema-leer{position:relative}
+.tema-leer::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
 
 .oficios{display:flex;flex-wrap:wrap;gap:.5rem;margin-block:2rem}
 .oficio{border:1px solid var(--linea);border-radius:var(--r);padding:.45rem .95rem;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-med)}
@@ -264,7 +275,7 @@
   <div class="env cierre-caja">
     <div class="sube">
       <h2>Leonardo da las clases <br>él mismo.</h2>
-      <p class="bajada">Tres meses en grupos reducidos, en Parque Rodó, con la participación de la Lic. Nut. Micaela Gago Moral. <!--o:curso.inicio_texto-->Arranca el miércoles 7 de octubre<!--/o-->.</p>
+      <p class="bajada">Tres meses en grupos reducidos, en Parque Rodó, con la participación de la Lic. Nut. Micaela Gago Moral. <!--o:curso.inicio_frase-->Arranca el miércoles 7 de octubre o el jueves 8 de octubre, según el grupo.<!--/o--></p>
     </div>
     <div class="sube" style="display:flex;flex-wrap:wrap;gap:.75rem">
       <a href="/curso" class="btn btn-primario" data-producto="curso">Ver el curso completo</a>
@@ -296,7 +307,7 @@
 </footer>
 
 
-<script src="track.js?v=20260924" defer></script>
-<script src="pagina.js?v=33" defer></script>
+<script src="track.js?v=20261004" defer></script>
+<script src="pagina.js?v=34" defer></script>
 </body>
 </html>

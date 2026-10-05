@@ -103,17 +103,36 @@ function enlace(u) {
 
 /* ---- Reglas derivadas: nadie tiene que acordarse de bajar una fecha vencida ---- */
 
+// Si la primera fecha ya pasó y la segunda sigue en pie, la segunda pasa a
+// ser la fecha de la propuesta. Sin esto, al día siguiente de la primera
+// fecha la página decía «Sin fecha confirmada» y escondía la segunda, que
+// seguía abierta.
+function correrSegunda(o, campoHora) {
+  const s = o.segunda_fecha;
+  if (!esPasado(o.fecha_iso) || !s || !s.iso || esPasado(s.iso)) return;
+  o.fecha_iso = s.iso;
+  o.fecha_texto = s.texto;
+  if (s.hora_inicio) o[campoHora] = s.hora_inicio;
+  if (s.hora_fin) o.hora_fin = s.hora_fin;
+  if (s.link) o.link_compra = s.link;
+  delete o.segunda_fecha;
+}
+correrSegunda(datos.tapeo, 'hora');
+for (const t of Object.values(datos.talleres)) correrSegunda(t, 'hora_inicio');
+
 // Una fecha que ya pasó deja de venderse sola.
 if (esPasado(datos.tapeo.fecha_iso)) {
   datos.tapeo.estado = 'sin-fecha';
   datos.tapeo.fecha_texto = 'Sin fecha confirmada';
   datos.tapeo.fecha_iso = '';
+  delete datos.tapeo.segunda_fecha;
 }
 for (const [id, t] of Object.entries(datos.talleres)) {
   if (esPasado(t.fecha_iso)) {
     t.estado = 'sin-fecha';
     t.fecha_texto = 'Sin fecha confirmada';
     t.fecha_iso = '';
+    delete t.segunda_fecha;
   }
   t.id = id;
 }
@@ -148,13 +167,22 @@ t.tiene_compra = (!ventaMuda(t.estado) && t.link_compra) ? 'si' : 'no';
 t.tiene_fecha = (t.estado !== 'sin-fecha' && t.fecha_texto) ? 'si' : 'no';
 t.horario_texto = t.hora && t.hora_fin ? t.hora + ' a ' + t.hora_fin + ' h' : (t.hora || '');
 
+// Con dos fechas abiertas, la línea las nombra a las dos: si solo dice la primera,
+// quien no puede ese día se va sin saber que hay otra. Solo se juntan si la segunda
+// tiene el mismo horario, porque la línea dice un único horario.
+function fechasTapeo(t) {
+  const s = t.segunda_fecha;
+  const mismoHorario = s && (!s.hora_inicio || s.hora_inicio === t.hora) && (!s.hora_fin || s.hora_fin === t.hora_fin);
+  return s && s.texto && mismoHorario ? t.fecha_texto + ' y ' + s.texto : t.fecha_texto;
+}
+
 // Una sola línea con lo que decide la reserva, igual que los talleres. En
 // /experiencias esta línea se armaba a mano concatenando fecha, hora y precio,
 // así que sin fecha publicaba "Sin fecha confirmada · 19:00 a 22:30 h · $2.600
 // por persona": justo el precio que la regla de arriba dice no publicar.
 t.linea = t.estado === 'sin-fecha'
   ? 'Las fechas se publican según la demanda — escribinos y te avisamos.'
-  : [t.fecha_texto, t.horario_texto, t.precio_texto].filter(Boolean).join(' · ');
+  : [fechasTapeo(t), t.horario_texto, t.precio_texto].filter(Boolean).join(' · ');
 
 // El WhatsApp cambia según haya fecha o no: nunca pide reservar algo que no existe.
 /* Se controla todo lo que tenga fecha antes de dibujar nada. */
@@ -468,7 +496,7 @@ datos.curso.wa_link = waBase + encodeURIComponent(
   'Hola Leonardo, tengo una pregunta sobre el curso de cocina.'
 );
 datos.curso.cta_nota = abiertos.length
-  ? 'Te escribimos por WhatsApp en menos de 24 h para confirmar tu lugar'
+  ? 'Te escribimos por WhatsApp en menos de 24 h para confirmar tu lugar.'
   : 'No hay edición abierta ahora. Dejanos tus datos y te avisamos cuando abramos la próxima.';
 for (const g of datos.curso.grupos) {
   datos.curso['grupo_' + g.id + '_estado_texto'] = g.estado === 'abierto' ? 'Abierto' : 'Grupo cerrado';
@@ -515,6 +543,26 @@ datos.curso.inscripcion_titulo = 'Inscripción · ' + datos.curso.edicion;
 // va la carga horaria y nada más: 12 clases de 2 h son 24 h, que es lo que
 // declara courseWorkload en el schema.
 datos.curso.porclase_texto = '3 meses · 12 clases de 2 horas, una por semana';
+
+/* El hero y la boleta de /curso hablan en oraciones y no en rótulos: Leo
+   pidió el 30/9 que el ticket se lea como texto y no como planilla. Estas dos
+   frases dicen cuándo arranca y qué grupos hay, con los grupos abiertos. */
+const sinArranca = function (g) { return g.inicio_texto.replace(/^arranca el /i, ''); };
+datos.curso.inicio_frase = abiertos.length === 0 ? 'La próxima edición todavía no tiene fecha.'
+  : abiertos.length === 1 ? abiertos[0].inicio_texto + '.'
+  : 'Arranca el ' + abiertos.map(sinArranca).join(' o el ') + ', según el grupo.';
+// Versión corta para los rótulos: «Arranca el 7 de octubre o el 8 de octubre».
+datos.curso.inicio_corto = abiertos.length > 1
+  ? 'Arranca el ' + abiertos.map(function (g) { return sinArranca(g).replace(/^\S+\s+/, ''); }).join(' o el ')
+  : datos.curso.inicio_texto;
+const unGrupo = function (g) {
+  return 'los ' + g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '') +
+    ', desde el ' + sinArranca(g).replace(/^\S+\s+/, '');
+};
+datos.curso.grupos_frase = abiertos.length === 0 ? 'La próxima edición todavía no tiene fecha.'
+  : abiertos.length === 1 ? 'El grupo abierto es el de ' + unGrupo(abiertos[0]) + '.'
+  : 'Hay ' + ({ 2: 'dos', 3: 'tres' }[abiertos.length] || abiertos.length) + ' grupos: ' +
+    abiertos.map(unGrupo).join(', o ') + '.';
 
 // La cantidad de horarios se dice en palabras, y cambia si son dos o tres.
 const cuantos = { 1: 'un horario', 2: 'dos horarios', 3: 'tres horarios' }[nombres.length]
@@ -574,9 +622,13 @@ datos.curso.horarios_chip = '3 meses · una clase por semana';
    dos grupos tienen distinto tamaño se dice el mayor, que es el peor caso. */
 (function () {
   const cupos = datos.curso.grupos.map(function (g) { return g.cupos_total; }).filter(Boolean);
-  datos.curso.cupo_texto = cupos.length
-    ? 'Hasta ' + Math.max.apply(null, cupos) + ' por grupo'
-    : 'Grupos reducidos';
+  // El grupo se abre con cupos_min y estira hasta cupos_total (Leo, 12/9: «de 12 a 15
+  // personas por grupo»). Decir solo el piso hacía creer que el techo era 12.
+  const minimos = datos.curso.grupos.map(function (g) { return g.cupos_min; }).filter(Boolean);
+  const max = cupos.length ? Math.max.apply(null, cupos) : 0;
+  const min = minimos.length ? Math.min.apply(null, minimos) : 0;
+  datos.curso.cupo_texto = !max ? 'Grupos reducidos'
+    : (min && min < max ? 'De ' + min + ' a ' + max + ' por grupo' : 'Hasta ' + max + ' por grupo');
 }());
 
 // El FAQ prometía "tenés tres horarios y te movés entre ellos". Con una sola
@@ -628,20 +680,18 @@ for (const [id, w] of Object.entries(datos.talleres)) {
 // El curso es lo primero que se vende y no estaba en la agenda: la home
 // mostraba "lo que se puede reservar hoy" sin el producto principal, que tiene
 // la edición de octubre abierta.
-if (abiertos.length) {
+// Una entrada por grupo abierto: cada grupo arranca un día distinto y la
+// agenda tiene que mostrar las dos fechas, no solo la primera.
+abiertos.forEach(function (g) {
   agenda.push({
-    iso: abiertos[0].inicio_iso, nombre: 'Curso de cocina saludable',
-    cuenta: abiertos[0].inicio_iso,
-    // dias_texto une los grupos con "y" —"miércoles y jueves"— y así queda bien
-    // en /programa, que habla de los dos como conjunto. Acá no: la agenda es lo
-    // que alguien puede reservar, y se reserva UNO. Con "y" la tarjeta se leía
-    // como que se cursan los dos días.
-    fecha: datos.curso.inicio_texto,
-    hora: datos.curso.grupos.map(function (g) { return g.nombre.toLowerCase(); }).join(' o '),
+    iso: g.inicio_iso, nombre: 'Curso de cocina saludable',
+    cuenta: g.inicio_iso,
+    fecha: g.inicio_texto,
+    hora: g.horario,
     precio: datos.curso.precio_total, estado: 'abierto',
     etiqueta: datos.curso.grupos_label, link: '/curso', cta: 'Ver el curso'
   });
-}
+});
 
 // El tapeo aparece aunque no tenga fecha, para que la experiencia exista en la
 // home todo el año. Sin fecha va al final y dice que no la tiene: la agenda no
@@ -683,10 +733,15 @@ datos.agenda_html = agenda.map(function (e) {
   /* Si el ítem tiene fecha de inicio, la etiqueta pasa a ser la cuenta
      regresiva cuando corre el JS ("Empieza en 6 semanas"). El renglón de abajo
      sigue diciendo el día exacto, así que no se pierde información. */
-  return '<li class="agenda-item" data-estado="' + e.estado + '"' +
+  /* El día va grande, como en una entrada. Es solo dibujo: el renglón de
+     abajo ya dice la fecha completa, así que el lector de pantalla lo saltea. */
+  var dia = /^\d{4}-\d{2}-\d{2}/.test(e.iso) && e.iso.indexOf('9999') !== 0 ? parseInt(e.iso.slice(8, 10), 10) : 0;
+  var tipo = e.link === '/tapeo' ? 'tapeo' : (e.link === '/curso' ? 'curso' : 'taller');
+  return '<li class="agenda-item" data-estado="' + e.estado + '" data-tipo="' + tipo + '"' +
     (e.cuenta ? ' data-inicio-iso="' + escapar(e.cuenta) + '"' : '') + '>' +
     '<span class="agenda-etiqueta"' + (e.cuenta ? ' data-cuenta' : '') + '>' +
       escapar(e.etiqueta) + '</span>' +
+    '<span class="agenda-dia" aria-hidden="true">' + (dia || '') + '</span>' +
     '<p class="agenda-nombre">' + escapar(e.nombre) + '</p>' +
     '<p class="agenda-cuando">' + escapar(e.fecha) + (e.hora ? ' · ' + escapar(e.hora) : '') + '</p>' +
     /* El precio ya se juntaba acá arriba y no se imprimía: la agenda decía qué
@@ -737,7 +792,9 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
     const abierto = w.estado !== 'sin-fecha' && w.fecha_iso;
     (abierto ? conFecha : sinFecha).push(
       '<a href="' + enlace(destino) + '"' + (abierto ? ' data-estado="abierto"' : '') + '>' +
-      '<span>' + escapar(w.nombre_corto || w.nombre) + '</span>' +
+      // Cada taller con su nombre completo y la línea que cuenta qué se hace.
+      '<strong>' + escapar(w.nombre) + '</strong>' +
+      (w.linea_corta ? '<span>' + escapar(w.linea_corta) + '</span>' : '') +
       (abierto ? '<small>' + escapar(w.fecha_texto) + '</small>' : '') +
       '</a>'
     );
@@ -755,14 +812,16 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
   datos.talleres_cta_link = conFecha.length ? '#abiertos'
     : waBase + encodeURIComponent('Hola Leonardo, me interesan los talleres de Clorofila. Avisame cuando abran fecha.');
   /* Con fecha el botón baja al índice de esta misma página y no puede abrir
-     una pestaña; sin fecha va a WhatsApp, que sí. El target sale de acá. */
-  datos.talleres_cta_target = conFecha.length ? '' : '_blank';
+     una pestaña; sin fecha va a WhatsApp, que sí. El target sale de acá («_self»: vacío no es válido en HTML). */
+  datos.talleres_cta_target = conFecha.length ? '_self' : '_blank';
   datos.talleres_nav = conFecha.length ? 'Ver fechas' : 'Ver talleres';
   /* Lo que vale para los cinco se dice acá una sola vez. Antes iba repetido
      en una etiqueta debajo de cada taller: quince etiquetas que no
      distinguían nada entre uno y otro. */
-  datos.talleres_bajada = 'Cada taller toma una técnica y le dedica el día entero, de la primera mezcla hasta la mesa. '
-    + 'Los ingredientes van incluidos y te llevás a casa lo que preparaste. '
+  /* Sin «el día entero» ni «te llevás a casa»: pastas dura tres horas y media
+     y lo que se cocina se comparte al cierre (Tikzet, 3/10). */
+  datos.talleres_bajada = 'Cada taller trabaja una sola técnica en una clase, de la primera mezcla hasta la mesa. '
+    + 'Los ingredientes van incluidos. '
     + (conFecha.length === 0
         ? 'Ahora mismo ninguno tiene fecha: los abrimos según la demanda y te avisamos.'
         : conFecha.length === 1

@@ -178,9 +178,29 @@
       barra.classList.toggle('visible', visible);
       barra.inert = !visible;
     };
-    enScroll(ancla
-      ? function () { mostrarBarra(ancla.getBoundingClientRect().bottom < 0); }
-      : function () { mostrarBarra(scrollY > innerHeight * 0.6); });
+    /* En el teléfono, el aviso de cookies tapaba el botón del hero al entrar:
+       medido en /curso a 390 × 844, el aviso ocupa de 735 a 828 px y el botón
+       empieza en 821. Mientras el aviso está abierto y tapa ese botón, la
+       barra se muestra y se apoya justo encima del aviso, que mide distinto
+       según el ancho: por eso la distancia se calcula y no va fija en el CSS. */
+    var aviso = document.getElementById('cookie-banner');
+    var botonHero = ancla && (ancla.querySelector('.btn') || ancla);
+    var avisoAbierto = function () { return !!aviso && aviso.classList.contains('visible'); };
+    var acomodarBarra = function () {
+      barra.style.bottom = avisoAbierto()
+        ? Math.round(innerHeight - aviso.getBoundingClientRect().top + 8) + 'px' : '';
+    };
+    var decidirBarra = ancla
+      ? function () {
+          var tapado = avisoAbierto() && botonHero.getBoundingClientRect().bottom > aviso.getBoundingClientRect().top;
+          mostrarBarra(ancla.getBoundingClientRect().bottom < 0 || tapado);
+          acomodarBarra();
+        }
+      : function () { mostrarBarra(scrollY > innerHeight * 0.6); acomodarBarra(); };
+    enScroll(decidirBarra);
+    if (aviso && 'MutationObserver' in window) {
+      new MutationObserver(decidirBarra).observe(aviso, { attributes: true, attributeFilter: ['class'] });
+    }
   }
 
   /* Cuenta regresiva al inicio del curso. Vivía como script suelto dentro de

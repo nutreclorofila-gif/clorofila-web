@@ -30,10 +30,10 @@
 <meta name="twitter:image" content="https://clorofila.uy/og/og-home.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=52">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
+<link rel="stylesheet" href="base.css?v=60">
 <style>
 /* Lo que sigue después de reservar. La página terminaba en los datos: quien
    acaba de comprar es el que más confianza tiene y no se le ofrecía nada. */
@@ -66,6 +66,9 @@
 [data-para]{display:none}
 [data-para].activo{display:block}
 .acciones{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.25rem}
+/* En el teléfono los tres botones salían cada uno con el ancho de su texto.
+   Apilados y del mismo ancho, como en la comanda. */
+@media (max-width:640px){.acciones{flex-direction:column}.acciones .btn{justify-content:center}}
 
 .llevar li{border-top:1px solid var(--linea);padding-block:.7rem;font-size:var(--t-chico);color:var(--cal-med);display:flex;gap:.8rem}
 .llevar li::before{content:"—";color:var(--brote);flex-shrink:0}
@@ -117,8 +120,8 @@
   </ol>
 <figure class="gracias-foto">
   <picture>
-    <source srcset="img-comunidad-700.webp 700w, img-comunidad.webp 1800w" sizes="(max-width: 900px) calc(100vw - 3rem), min(760px, 100vw)" type="image/webp">
-    <img src="img-comunidad.jpg" width="1800" height="1013" alt="El grupo al final de una clase, detrás de la mesa con todo lo que cocinaron" loading="eager" decoding="async">
+    <source srcset="img-comunidad-color-700.webp 700w, img-comunidad-color.webp 1800w" sizes="(max-width: 900px) calc(100vw - 3rem), min(760px, 100vw)" type="image/webp">
+    <img src="img-comunidad-color.jpg" width="1800" height="1013" alt="El grupo al final de una clase, detrás de la mesa con todo lo que cocinaron" loading="eager" decoding="async">
   </picture>
   <figcaption>Así termina una clase acá</figcaption>
 </figure>
@@ -147,14 +150,14 @@
     </div>
   </div>
 
-  <div data-para="tapeo" data-estado-de="tapeo" data-estado="abierto" data-vence-iso="2026-10-02" data-set="data-precio=tapeo.tiene_precio" data-precio="si">
+  <div data-para="tapeo" data-estado-de="tapeo" data-estado="abierto" data-vence-iso="2026-10-23" data-set="data-precio=tapeo.tiene_precio" data-precio="si">
     <div class="comanda">
       <div class="comanda-cabeza"><span class="comanda-titulo">Tu reserva</span><span class="comanda-estado">Cena y Taller de Tapeo</span></div>
-      <ul class="comanda-datos"><li><strong>Fecha</strong><span><!--o:tapeo.fecha_texto-->viernes 2 de octubre<!--/o--></span></li><li><strong>Hora</strong><span><!--o:tapeo.horario_texto-->19:00 a 22:30 h<!--/o--></span></li><li><strong>Lugar</strong><span>Maldonado 1976 esq. Blanes, Parque Rodó</span></li></ul>
+      <ul class="comanda-datos"><li><strong>Fecha</strong><span><!--o:tapeo.fecha_texto-->viernes 23 de octubre<!--/o--></span></li><li><strong>Hora</strong><span><!--o:tapeo.horario_texto-->19:00 a 22:30 h<!--/o--></span></li><li><strong>Lugar</strong><span>Maldonado 1976 esq. Blanes, Parque Rodó</span></li></ul>
     </div>
     <div class="acciones">
-      <a data-set="href=tapeo.calendario" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Cena+y+Taller+de+Tapeo+%E2%80%94+Clorofila&amp;dates=20261002T190000%2F20261002T223000&amp;details=Cocinamos+juntos+y+despu%C3%A9s+cenamos+todo+lo+que+preparamos.+Clorofila%2C+Parque+Rod%C3%B3.&amp;location=Clorofila%2C+Maldonado+1976+esq.+Blanes%2C+Parque+Rod%C3%B3%2C+Montevideo&amp;ctz=America%2FMontevideo" data-calendario class="btn btn-primario" target="_blank" rel="noopener noreferrer">Agregar la fecha al calendario</a>
-      <a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo.%20%C2%BFHay%20lugar%20el%20viernes%202%20de%20octubre%20o%20el%20viernes%2016%20de%20octubre%3F%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="tapeo">Escribirnos ahora</a>
+      <a data-set="href=tapeo.calendario" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Cena+y+Taller+de+Tapeo+%E2%80%94+Clorofila&amp;dates=20261023T190000%2F20261023T223000&amp;details=Cocinamos+juntos+y+despu%C3%A9s+cenamos+todo+lo+que+preparamos.+Clorofila%2C+Parque+Rod%C3%B3.&amp;location=Clorofila%2C+Maldonado+1976+esq.+Blanes%2C+Parque+Rod%C3%B3%2C+Montevideo&amp;ctz=America%2FMontevideo" data-calendario class="btn btn-primario" target="_blank" rel="noopener noreferrer">Agregar la fecha al calendario</a>
+      <a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo.%20%C2%BFHay%20lugar%20el%20viernes%2023%20de%20octubre%20o%20el%20viernes%2030%20de%20octubre%3F%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="tapeo">Escribirnos ahora</a>
     </div>
 
     <div class="gracias-luego">
@@ -194,8 +197,8 @@
 </footer>
 
 
-<script src="track.js?v=20260924" defer></script>
-<script src="pagina.js?v=33" defer></script>
+<script src="track.js?v=20261004" defer></script>
+<script src="pagina.js?v=34" defer></script>
 <script>
 // Muestra el bloque de la propuesta reservada: /gracias?p=tapeo o ?p=curso.
 (function () {

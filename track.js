@@ -109,6 +109,29 @@
   if (window.__analyticsLoaded) escribirOrigen();
   window.addEventListener('analytics:listo', escribirOrigen);
 
+  /* Quien llega por un anuncio de Google escribe por WhatsApp con «(G)» al
+     final del mensaje. Así, en el teléfono se cuenta cuántas consultas trae
+     Ads sin depender de que la persona haya aceptado las cookies: la marca va
+     en el texto del mensaje, no se guarda nada. Sin cookies aceptadas solo
+     se marca desde la página de llegada, porque el origen no se recuerda. */
+  function vieneDeGoogleAds() {
+    return origen.utm_source === 'google_ads' ||
+      (origen.utm_medium === 'cpc' && /google/i.test(origen.utm_source));
+  }
+
+  function marcarGoogle(a) {
+    if (!vieneDeGoogleAds()) return;
+    try {
+      var u = new URL(a.href);
+      var texto = u.searchParams.get('text') || 'Hola, quiero información de Clorofila.';
+      if (/\(G\)$/.test(texto)) return;
+      // A mano y no con searchParams.set: ese pone «+» en los espacios y
+      // WhatsApp no siempre los convierte.
+      u.searchParams.delete('text');
+      a.href = u.toString() + (u.search ? '&' : '?') + 'text=' + encodeURIComponent(texto + ' (G)');
+    } catch (e) { /* dirección rara: el enlace sigue como estaba */ }
+  }
+
   // El producto sale del botón; si el botón no lo declara, de la página.
   function productoDe(el) {
     var cerca = el && el.closest ? el.closest('[data-producto]') : null;
@@ -228,6 +251,7 @@
 
     var wa = e.target.closest('a[href*="wa.me"]');
     if (wa) {
+      marcarGoogle(wa);
       var prodWa = productoDe(wa);
       ga('click_whatsapp', prodWa);
       ga('generate_lead', prodWa, { method: 'whatsapp' });

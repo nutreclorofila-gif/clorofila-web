@@ -9,7 +9,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      # Historial completo, no un solo commit: las fechas del sitemap salen de
+      # git log (la fecha del último commit que tocó cada página). Con la
+      # descarga por defecto, de un solo commit, cada archivo tomaba la fecha
+      # de la punta y check:fechas daba por viejas todas las fechas del sitemap.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22

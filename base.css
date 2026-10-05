@@ -58,7 +58,13 @@
      todos los títulos del sitio salían en otra familia y con otro carácter.
      Medido sobre el h1 de la portada: Times da 708 px donde Bricolage da 828
      (-14,5%, un salto visible al cambiar); Helvetica Neue da 816 (-1,4%). */
-  --display:'Bricolage Grotesque','Bricolage Grotesque Fallback Android','Bricolage Grotesque Fallback','Helvetica Neue',Arial,sans-serif;
+  /* Los títulos van en Vollkorn desde el 3/10/2026: una serifa de libro de
+     cocina, la del lienzo de diseño. El respaldo es Georgia, también serifa,
+     para que el título no cambie de carácter mientras carga. La grotesca
+     queda solo en el logo. */
+  --display:'Vollkorn',Georgia,'Times New Roman',serif;
+  --marca:'Bricolage Grotesque','Bricolage Grotesque Fallback Android','Bricolage Grotesque Fallback','Helvetica Neue',Arial,sans-serif;
+  --hoja:clamp(90px,16vw,220px);
   --texto:'Karla','Karla Fallback Android','Karla Fallback',system-ui,sans-serif;
   --dato:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
 
@@ -129,16 +135,15 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 /* --- Tipografía --------------------------------------------------------- */
 h1,h2,h3{
   font-family:var(--display);
-  font-weight:500;
-  font-variation-settings:'wdth' 100,'opsz' 24;
+  font-weight:600;
   color:var(--cal);
-  line-height:1.02;
-  letter-spacing:-.025em;
+  line-height:1.08;
+  letter-spacing:-.02em;
   text-wrap:balance;
 }
-h1{font-size:var(--th-pagina);letter-spacing:-.04em}
-h2{font-size:var(--th-seccion);letter-spacing:-.03em}
-h3{font-size:var(--th-bloque);letter-spacing:-.02em}
+h1{font-size:var(--th-pagina)}
+h2{font-size:var(--th-seccion)}
+h3{font-size:var(--th-bloque)}
 p{max-width:var(--max-texto);text-wrap:pretty}
 li,blockquote{text-wrap:pretty}
 /* Sin color: el rosa es el estado «últimos lugares» y nada más. Pintando
@@ -171,13 +176,17 @@ strong{color:var(--cal);font-weight:600}
 
 /* --- Estructura --------------------------------------------------------- */
 .env{max-width:var(--max);margin:0 auto;padding-inline:clamp(1.25rem,4vw,2.5rem)}
-.seccion{padding-block:clamp(4rem,9vw,7.5rem)}
-.seccion-sm{padding-block:clamp(2.5rem,5vw,4rem)}
+/* En el celular el piso de 4rem dejaba 128 px vacíos entre una sección y la
+   siguiente, más el margen de cada título: se bajaba media pantalla sin ver
+   nada. El piso baja a 3rem; desde unos 530 px de ancho manda el 9vw y la
+   computadora queda igual que antes. */
+.seccion{padding-block:clamp(3rem,9vw,7.5rem)}
+.seccion-sm{padding-block:clamp(2rem,5vw,4rem)}
 .borde-sup{border-top:1px solid var(--linea)}
 /* El contenido se acerca a su propio filete y se aleja del siguiente bloque:
    arriba menos aire que abajo. Con el mismo aire a los dos lados, cada filete
    quedaba flotando en el medio de 15rem de nada. */
-.seccion.borde-sup{padding-top:clamp(2.75rem,6vw,5rem)}
+.seccion.borde-sup{padding-top:clamp(2.25rem,6vw,5rem)}
 
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 .saltar{position:absolute;left:-9999px}
@@ -218,7 +227,9 @@ strong{color:var(--cal);font-weight:600}
 .nav.pegada{border-bottom-color:var(--linea)}
 .nav-caja{max-width:var(--max);margin:0 auto;height:100%;padding-inline:clamp(1.25rem,4vw,2.5rem);display:flex;align-items:center;justify-content:space-between;gap:2rem}
 .marca{display:flex;flex-direction:column;line-height:1;flex-shrink:0}
-.marca b{font-family:var(--display);font-size:var(--t-alto);font-weight:600;color:var(--cal);letter-spacing:-.02em}
+/* La marca también es un enlace (vuelve al inicio): 44 px de alto. */
+a.marca{min-height:44px;justify-content:center}
+.marca b{font-family:var(--marca);font-size:var(--t-alto);font-weight:600;color:var(--cal);letter-spacing:-.02em}
 .marca span{font-family:var(--texto);font-size:var(--t-dato);letter-spacing:.01em;color:var(--cal-baja);margin-top:.2rem}
 .nav-links{display:flex;align-items:center;gap:1.25rem;flex:1}
 /* "Inicio" solo en el menú del celular. En la compu el logo de arriba a la
@@ -275,13 +286,18 @@ strong{color:var(--cal);font-weight:600}
 .pie{border-top:1px solid var(--linea);padding-block:clamp(3rem,6vw,5rem) 2rem;background:var(--tinta-2)}
 .pie-caja{max-width:var(--max);margin:0 auto;padding-inline:clamp(1.25rem,4vw,2.5rem);display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
 .pie h2{font-family:var(--texto);font-size:var(--t-nota);font-weight:600;letter-spacing:0;color:var(--cal-med);margin-bottom:.85rem}
-.pie li+li{margin-top:.3rem}
-.pie li a{font-size:var(--t-chico);color:var(--cal-med);display:inline-block;padding-block:.25rem;transition:color .2s}
+.pie li+li{margin-top:0}
+/* Cada enlace del pie mide 44 px de alto, el objetivo táctil del sitio.
+   Antes eran 33 px con 5 de aire entre uno y otro. */
+.pie li a{font-size:var(--t-chico);color:var(--cal-med);display:inline-flex;align-items:center;min-height:44px;padding-block:.3rem;line-height:1.35;transition:color .2s}
 .pie li a:hover{color:var(--cal)}
 .pie .marca{margin-bottom:.2rem}
 .pie-lema{font-family:var(--display);font-size:var(--t-bajada);color:var(--cal);line-height:1.25;margin-block:.6rem 1rem;max-width:22ch}
 .pie-fin{max-width:var(--max);margin:2.5rem auto 0;padding-inline:clamp(1.25rem,4vw,2.5rem);padding-top:1.5rem;border-top:1px solid var(--linea);font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja);letter-spacing:0}
 .pie-fin a{display:inline-block;padding-block:.35rem}
+/* «Privacidad y cookies» medía 33 px: la banda lo lleva a 44 sin mover el renglón. */
+.pie-fin a{position:relative}
+.pie-fin a::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
 /* La dirección del pie lleva a /contacto, donde está el mapa: cómo llegar es
    lo que más se busca de Clorofila. Sin subrayado no se veía que fuera un
    enlace, y el color es el mismo del texto de al lado. */
@@ -346,6 +362,12 @@ h2 + p{margin-top:.55rem}
 .centrado .senal{justify-content:center}
 .enlace-vivo{color:var(--brote);font-weight:600;border-bottom:1px solid transparent;transition:border-color .2s;display:inline-block;padding-block:.3rem}
 .enlace-vivo:hover{border-bottom-color:var(--brote)}
+/* Los enlaces vivos que cierran un bloque («Cómo llegar», «Ver el perfil
+   completo», «Los talleres de un día») medían entre 29 y 37 px de alto. La
+   banda de 44 px es absoluta: llega al objetivo táctil sin mover el texto.
+   Es la misma idea que .enlace-salida en /tapeo. */
+.enlace-vivo{position:relative}
+.enlace-vivo::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
 
 /* --- Hero de página de producto --- */
 .hero-prod{position:relative;overflow:hidden;padding-block:clamp(1.75rem,3.2vw,2.6rem) clamp(3rem,6vw,5rem)}
@@ -353,10 +375,12 @@ h2 + p{margin-top:.55rem}
 .hero-prod h1{font-size:var(--th-pagina);margin-block:.7rem .6rem;max-width:13ch;line-height:1.03}
 .hero-tesis{font-family:var(--display);font-size:var(--t-tesis);color:var(--brote);letter-spacing:-.02em;line-height:1.22;margin-bottom:.8rem}
 .hero-prod .bajada{color:var(--cal-med);font-size:var(--t-chico);max-width:46ch;margin-bottom:1.25rem}
-.hero-foto{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:5/6;margin-bottom:1.25rem}
+.hero-foto{position:relative;border-radius:0 var(--hoja) 0 var(--hoja);overflow:hidden;aspect-ratio:5/6;margin-bottom:1.25rem}
 /* En pantalla grande la foto llega hasta el borde derecho: no es una tarjeta
    dentro de la caja, es la luz de la página. */
-@media (min-width:941px){.hero-col-foto .hero-foto{margin-right:calc(-1 * (max(0px, (100vw - var(--max)) / 2) + clamp(1.25rem,4vw,2.5rem)));border-top-right-radius:0;border-bottom-right-radius:0}}
+/* Con la foto hasta el borde, la hoja se dibuja con una sola curva grande
+   arriba a la izquierda, como en la portada. */
+@media (min-width:941px){.hero-col-foto .hero-foto{margin-right:calc(-1 * (max(0px, (100vw - var(--max)) / 2) + clamp(1.25rem,4vw,2.5rem)));border-radius:var(--hoja) 0 0 0}}
 .hero-foto img{width:100%;height:100%;object-fit:cover}
 /* Sin align-items, los chips se estiran a lo alto de su línea del flex: en
    /talleres, "Un día" salía como un óvalo vertical de 69x136 y el de reseñas
@@ -405,20 +429,22 @@ h2 + p{margin-top:.55rem}
 .comanda::before{top:-6px;transform:rotate(180deg)}
 .comanda::after{bottom:-6px}
 .comanda-cabeza{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-bottom:.75rem;border-bottom:1px dashed var(--linea-fuerte)}
-.comanda-titulo{font-family:var(--dato);font-size:var(--t-dato);letter-spacing:.16em;text-transform:uppercase;color:var(--cal-baja)}
-.comanda-estado{font-family:var(--dato);font-size:var(--t-dato);letter-spacing:.1em;text-transform:uppercase;color:var(--brote)}
+/* Sin letra de máquina ni mayúsculas espaciadas: eran lo que más delataba
+   una plantilla (revisión del 30/9). Queda el papel dentado; el texto se lee. */
+.comanda-titulo{font-family:var(--display);font-weight:600;font-size:var(--t-bajada);letter-spacing:-.01em;color:var(--cal)}
+.comanda-estado{font-family:var(--texto);font-size:var(--t-nota);color:var(--brote);white-space:nowrap}
 [data-estado="ultimos"] .comanda-estado{color:var(--fermento)}
 [data-estado="agotado"] .comanda-estado,[data-estado="sin-fecha"] .comanda-estado{color:var(--cal-baja)}
 .comanda-datos{margin-block:.75rem;display:grid;gap:.05rem}
-.comanda-datos li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-block:.32rem;font-family:var(--dato);font-size:var(--t-nota);line-height:1.5}
-.comanda-datos li strong{color:var(--cal-baja);font-weight:400;letter-spacing:.06em;text-transform:uppercase;font-size:var(--t-dato);white-space:nowrap}
+.comanda-datos li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-block:.32rem;font-family:var(--texto);font-size:var(--t-chico);line-height:1.5;font-variant-numeric:tabular-nums}
+.comanda-datos li strong{color:var(--cal-med);font-weight:400;font-size:var(--t-chico);white-space:nowrap}
 .comanda-datos li span{color:var(--cal);text-align:right}
 .comanda-datos li a{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--linea-fuerte)}
 .comanda-datos li a:hover{text-decoration-color:var(--brote)}
 .comanda-precio span{color:var(--miel)!important;font-size:var(--t-cuerpo)}
 .comanda-acciones{display:grid;gap:.5rem;margin-top:1rem}
 .comanda-acciones .btn{width:100%;padding-inline:1.1rem}
-.comanda-nota{font-size:var(--t-dato);color:var(--cal-baja);line-height:1.5;margin-top:.8rem}
+.comanda-nota{font-size:var(--t-nota);color:var(--cal-med);line-height:1.5;margin-top:.8rem}
 
 /* Fechas seleccionables dentro de la comanda. */
 .fechas-bloque{border-top:1px dashed var(--linea-fuerte);padding-top:.85rem;margin-top:.3rem}
@@ -431,7 +457,7 @@ h2 + p{margin-top:.55rem}
 
 /* --- Bloque de dos columnas con foto --- */
 .par{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.75rem,4vw,3.5rem);align-items:center}
-.par-foto{border-radius:var(--r-lg);overflow:hidden}
+.par-foto{border-radius:0 var(--hoja) 0 var(--hoja);overflow:hidden}
 @media (max-width:820px){.par{grid-template-columns:1fr}}
 
 /* --- Objeción --- */
@@ -515,6 +541,10 @@ html:not(.js) .nav{height:auto}
 .cierre .bajada{color:var(--cal-med);max-width:44ch}
 .cierre .comanda{background:var(--musgo-alto)}
 .cierre .comanda::before,.cierre .comanda::after{background:radial-gradient(circle at 5px 0, transparent 0 5px, var(--musgo-alto) 5.5px) 0 0/10px 7px repeat-x}
+/* El paso de renglón queda en 2 (28 px), como estaba. Las bandas de 44 px
+   de los enlaces de dos renglones seguidos se pisan un poco, pero cada línea
+   conserva 28 px propios, por encima de los 24 que pide WCAG 2.2 (2.5.8).
+   Subirlo a 44 px agrandaba entre 35 y 106 px todos los bloques de cierre. */
 .otras{margin-top:1.5rem;font-size:var(--t-nota);color:var(--cal-baja);line-height:2}
 @media (max-width:940px){.cierre-caja{grid-template-columns:1fr}}
 
@@ -529,8 +559,14 @@ body:has(#cookie-banner.visible) .sticky-cta{bottom:6.25rem}
 .sticky-cta .wa-btn{display:flex;align-items:center;justify-content:center;width:48px;min-height:48px;border:1px solid var(--linea-fuerte);border-radius:var(--r);color:var(--cal);flex-shrink:0}
 @media (max-width:820px){
   .sticky-cta{display:flex}
-  main{padding-bottom:4.5rem}
-  body:has(#cookie-banner.visible) main{padding-bottom:10.5rem}
+  /* El lugar que tapa la barra fija se reserva en el pie, que es lo que la
+     barra tapa de verdad al llegar al final. Antes iba al final de main y
+     dejaba una franja del color del fondo entre el cierre y el pie: 72 px, y
+     168 con el aviso de cookies. Se reservaba además en las páginas sin barra.
+     Sin :has() no se reserva nada y la barra tapa el final del pie, que es
+     solo el renglón del copyright. */
+  body:has(.sticky-cta:not([data-estado="sin-fecha"])) .pie{padding-bottom:calc(2rem + 4.5rem)}
+  body:has(.sticky-cta:not([data-estado="sin-fecha"])):has(#cookie-banner.visible) .pie{padding-bottom:calc(2rem + 10.5rem)}
 }
 [data-estado="sin-fecha"].sticky-cta{display:none}
 
@@ -565,7 +601,10 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.75rem}
 .cookie-banner a{color:var(--cal);text-decoration:underline;display:inline-block;padding-block:.2rem}
 .cookie-banner-actions{display:flex;align-items:center;gap:1rem}
 #cookie-accept{background:var(--cal);color:var(--tinta);padding:.45rem 1rem;border-radius:var(--r);font-size:var(--t-nota);font-weight:600;min-height:36px}
-#cookie-decline{color:var(--cal-baja);text-decoration:underline;font-size:var(--t-nota);padding:.45rem .6rem;min-height:36px;display:inline-flex;align-items:center}
+/* «Rechazar» iba en --cal-baja: 4,6 a 1 sobre el aviso ya quieto, pero
+   Lighthouse lo medía en 4,0 durante el fundido de entrada. Con --cal-med,
+   que ya es de la paleta, queda en 7 a 1. Y pasa de 36 a 44 px de alto. */
+#cookie-decline{color:var(--cal-med);text-decoration:underline;font-size:var(--t-nota);padding:.45rem .6rem;min-height:44px;display:inline-flex;align-items:center}
 /* Esta regla subía el aviso 5rem para esquivar la barra fija de abajo, pero
    arriba ya se le da "top" y "bottom:auto" en <=900px: con las dos juntas el
    aviso se estiraba de arriba hasta abajo y ocupaba el 81% de la pantalla en
@@ -598,14 +637,34 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.75rem}
 .miga{font-family:var(--texto);font-size:var(--t-nota);letter-spacing:0;color:var(--cal-baja);margin-bottom:1.5rem}
 .miga a{color:var(--cal-med);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--linea-fuerte);display:inline-block;padding-block:.25rem}
 .miga a:hover{color:var(--cal)}
+/* «Inicio» y «Artículos» medían 30 px de alto. La banda de 44 px es
+   absoluta y no mueve el renglón. */
+.miga a{position:relative}
+.miga a::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
 .art-cabeza h1{font-size:var(--th-pagina);margin-block:.7rem .9rem}
 .art-firma{font-family:var(--texto);font-size:var(--t-chico);letter-spacing:0;color:var(--cal-med);line-height:1.7}
-.art-firma a{color:var(--brote);display:inline-block;padding-block:.25rem}
+/* El nombre del autor vive dentro de la oración de la firma. Con el relleno
+   de bloque abría el interlineado entre el primer renglón y el segundo; como
+   enlace dentro de una oración, WCAG 2.2 lo exime del tamaño táctil (2.5.8,
+   excepción Inline). */
+.art-firma a{color:var(--brote)}
+/* Lo mismo con los enlaces sueltos dentro de un párrafo de artículo o de su
+   recuadro final («El programa completo está publicado…»). */
+.art-cuerpo p .enlace-vivo,.art-captura p .enlace-vivo{display:inline;padding-block:0}
 
 .art-cuerpo{max-width:720px;margin-inline:auto;padding-block:clamp(2.5rem,5vw,4rem)}
 .art-cuerpo p{font-size:var(--t-cuerpo);line-height:1.75;color:var(--cal-med);margin-bottom:1.3rem;max-width:none}
 .art-cuerpo h2{font-size:var(--th-sub);margin-block:2.75rem 1.1rem}
 .art-cuerpo strong{color:var(--cal)}
+/* Las listas del cuerpo perdían viñeta y aire con el reinicio de estilos, y
+   se leían como un párrafo con renglones cortados: «Proteínas: 8 a 10 g»
+   pegado a «Grasas: 4 a 5 g». Llevan la misma raya verde que las listas del
+   resto del sitio. Las fuentes tienen su propio formato y quedan afuera. */
+.art-cuerpo ul:not(.fuentes){margin:0 0 1.3rem}
+.art-cuerpo ul:not(.fuentes) li{position:relative;padding:.35rem 0 .35rem 1.6rem;font-size:var(--t-cuerpo);line-height:1.65;color:var(--cal-med)}
+.art-cuerpo ul:not(.fuentes) li::before{content:"—";position:absolute;left:0;color:var(--brote)}
+/* El subtítulo de cada receta quedaba pegado a su párrafo. */
+.art-cuerpo h3{margin-block:1.9rem .55rem}
 .destacado{border-left:2px solid var(--brote);background:var(--musgo);border-radius:0 var(--r) var(--r) 0;padding:1.4rem 1.6rem;margin-block:2rem;font-family:var(--display);font-size:var(--t-bajada);line-height:1.4;color:var(--cal);letter-spacing:-.01em}
 
 .fuentes{list-style:none;margin-block:1.2rem 0;display:grid;gap:.9rem}

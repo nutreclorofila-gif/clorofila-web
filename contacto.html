@@ -31,10 +31,10 @@
 <meta name="twitter:image" content="https://clorofila.uy/og/og-contacto.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=52">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
+<link rel="stylesheet" href="base.css?v=60">
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@graph": [{"@type": "ContactPage", "@id": "https://clorofila.uy/contacto#page", "url": "https://clorofila.uy/contacto", "inLanguage": "es-UY", "name": "Contacto — Clorofila Estudio de Cocina", "about": {"@id": "https://clorofila.uy/#organization"}, "mainEntity": {"@id": "https://clorofila.uy/#organization"}, "significantLink": ["https://wa.me/59894064148", "https://instagram.com/clorofilaclases"]}, {"@type": "Place", "@id": "https://clorofila.uy/#place", "name": "Clorofila Estudio de Cocina", "address": {"@type": "PostalAddress", "streetAddress": "Maldonado 1976 esq. Blanes", "addressLocality": "Montevideo", "addressRegion": "Montevideo", "addressCountry": "UY"}, "geo": {"@type": "GeoCoordinates", "latitude":-34.9085217, "longitude":-56.1723695}, "publicAccess": true, "hasMap": "https://maps.app.goo.gl/DnqBneEmi1GHNUjG9"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://clorofila.uy/"}, {"@type": "ListItem", "position": 2, "name": "Contacto", "item": "https://clorofila.uy/contacto"}]}]}
 </script>
@@ -60,11 +60,18 @@
 .donde address strong{display:block;font-family:var(--display);font-size:var(--t-bajada);color:var(--cal);letter-spacing:-.02em}
 .horarios{width:100%;border-collapse:collapse}
 .horarios caption{text-align:left;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja);padding-bottom:.6rem}
-.horarios th,.horarios td{border-top:1px solid var(--linea);padding-block:.6rem;font-family:var(--dato);font-size:var(--t-nota);color:var(--cal);font-weight:400;text-align:left}
+.horarios th,.horarios td{border-top:1px solid var(--linea);padding-block:.6rem;font-family:var(--texto);font-variant-numeric:tabular-nums;font-size:var(--t-nota);color:var(--cal);font-weight:400;text-align:left}
 .horarios thead th{font-size:var(--t-nota);color:var(--cal-baja);border-top:0}
 .horarios thead th:last-child{text-align:right}
 .horarios td:last-child{text-align:right;color:var(--miel)}
 .horarios-nota{font-size:var(--t-nota);color:var(--cal-baja);margin-top:.9rem;line-height:1.6}
+/* Los enlaces de estas dos oraciones van dentro del renglón: con el relleno
+   de bloque de .enlace-vivo abrían el interlineado de la bajada, y en el
+   teléfono «· Ver el curso» arrancaba un renglón con el punto medio suelto. */
+.contacto-intro .enlace-vivo,.horarios-nota .enlace-vivo{display:inline;padding-block:0}
+/* «Horarios del curso» quedaba pegado a la nota de cómo pasar por el
+   estudio, como si fuera su última línea. */
+.horarios{margin-top:1.75rem}
 
 .mapa{border:1px solid var(--linea);border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3;background:var(--musgo)}
 .mapa iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(.35) contrast(1.05)}
@@ -140,7 +147,7 @@
         </thead>
         <tbody><!--o:html:curso.horarios_html--><tr><th scope="row">Miércoles</th><td>19:00 – 21:00 h</td></tr><tr><th scope="row">Jueves</th><td>10:00 – 12:00 h</td></tr><!--/o--></tbody>
       </table>
-      <p class="horarios-nota">Tres meses de cocina saludable y alimentación consciente. <!--o:curso.inicio_texto-->Arranca el miércoles 7 de octubre<!--/o--> · <a href="/curso" class="enlace-vivo">Ver el curso</a></p>
+      <p class="horarios-nota">Tres meses de cocina saludable y alimentación consciente. <!--o:curso.inicio_frase-->Arranca el miércoles 7 de octubre o el jueves 8 de octubre, según el grupo.<!--/o--> <a href="/curso" class="enlace-vivo">Ver el curso</a></p>
     </div>
   </div>
 
@@ -177,8 +184,8 @@
 </footer>
 
 
-<script src="track.js?v=20260924" defer></script>
-<script src="pagina.js?v=33" defer></script>
+<script src="track.js?v=20261004" defer></script>
+<script src="pagina.js?v=34" defer></script>
 <script>
 (function(){
   var b=document.getElementById('mapa-cargar');
