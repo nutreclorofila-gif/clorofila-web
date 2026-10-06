@@ -43,10 +43,11 @@
   --miel:#F0B355;          /* ámbar de la luz del estudio: datos */
 
   /* Tipografía */
-  /* Los títulos van en Vollkorn desde el 3/10/2026: una serifa de libro de
-     cocina, la del lienzo de diseño. El respaldo es Georgia, también serifa,
-     para que el título no cambie de carácter mientras carga. */
-  --display:'Vollkorn',Georgia,'Times New Roman',serif;
+  /* Los títulos van en Besley desde el 6/10/2026: una serifa de tipo Clarendon,
+     como la de los menús y las etiquetas viejas. La eligió Leo entre cinco. El
+     respaldo es Georgia, también serifa, para que el título no cambie de
+     carácter mientras carga. */
+  --display:'Besley',Georgia,'Times New Roman',serif;
   --hoja:clamp(90px,16vw,220px);
   --texto:'Karla','Karla Fallback Android','Karla Fallback',system-ui,sans-serif;
   --dato:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
@@ -121,7 +122,7 @@ h1,h2,h3{
   font-weight:600;
   color:var(--cal);
   line-height:1.08;
-  letter-spacing:-.02em;
+  letter-spacing:-.01em;
   text-wrap:balance;
 }
 h1{font-size:var(--th-pagina)}
