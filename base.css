@@ -660,9 +660,11 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.75rem}
 .fuentes a{color:var(--brote);text-decoration:underline;text-underline-offset:2px;padding-block:.35rem}
 .art-remate{border:1px solid rgba(143,192,138,.3);background:var(--musgo);border-radius:var(--r-lg);padding:clamp(1.5rem,3.5vw,2.25rem);margin-top:3rem}
 .art-remate p{font-size:var(--t-chico);margin-bottom:1.25rem}
-.art-captura{border:1px solid var(--linea);background:var(--musgo-alto);border-radius:var(--r-lg);padding:clamp(1.5rem,3.5vw,2.25rem);margin-top:1rem}
+.art-captura{border:1px solid var(--linea);background:var(--musgo-alto);border-radius:var(--r-lg);padding:clamp(1.5rem,3.5vw,2.25rem);margin-top:3rem}
+.art-remate+.art-captura{margin-top:1rem}
 .art-captura h2{margin-block:.7rem .7rem;font-size:var(--th-sub)}
 .art-captura p{font-size:var(--t-chico);margin-bottom:1.25rem}
+.art-captura-acciones{display:flex;flex-wrap:wrap;gap:.75rem}
 .art-captura .nota{font-size:var(--t-nota);color:var(--cal-baja);margin-block:.9rem 0}
 
 .seguir{max-width:720px;margin-inline:auto;padding-bottom:clamp(3rem,6vw,5rem)}
