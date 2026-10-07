@@ -631,9 +631,14 @@ datos.curso.cierre_bajada = abiertos.length
 // El resumen que leen los modelos de lenguaje en llms.txt. Antes decía a mano
 // "los grupos de martes y miércoles ya empezaron", que quedó falso apenas
 // cambió la edición.
+// Cada grupo con la fecha de su primera clase, sin «arranca»: así la línea sigue
+// siendo cierta después de que empieza, hasta el próximo build.
 datos.curso.resumen_grupos = abiertos.length
-  ? (abiertos.length === 1 ? 'Grupo abierto: ' : 'Grupos abiertos: ') +
-    datos.curso.grupos_abiertos_texto + '. ' + datos.curso.inicio_texto + '.'
+  ? (abiertos.length === 1 ? 'Grupo: ' : 'Grupos: ') +
+    abiertos.map(function (g) {
+      return g.nombre + ' ' + g.horario.replace(' a ', '–').replace(' h', '') +
+        ', con primera clase el ' + String(g.inicio_texto).replace(/^arranca el /i, '');
+    }).join('; ') + '.'
   : 'Los grupos de esta edición ya empezaron: se puede dejar el mail para avisar de la próxima.';
 
 // La FAQ de la cursada se arma con los grupos reales, para que no quede
