@@ -585,7 +585,8 @@ body.menu-abierto .cookie-banner{display:none}
    última línea de la página queda atrapada debajo y no hay manera de leerla.
    En los navegadores sin :has() simplemente no crece, que es como estaba. */
 body:has(#cookie-banner.visible) .pie{padding-bottom:5.75rem}
-.cookie-banner a{color:var(--cal);text-decoration:underline;display:inline-block;padding-block:.2rem}
+.cookie-banner a{color:var(--cal);text-decoration:underline;display:inline-block;padding-block:.2rem;position:relative}
+.cookie-banner a::after{content:"";position:absolute;left:-.4rem;right:-.4rem;top:50%;height:44px;transform:translateY(-50%)}
 .cookie-banner-actions{display:flex;align-items:center;gap:1rem}
 #cookie-accept{background:var(--cal);color:var(--tinta);padding:.45rem 1rem;border-radius:var(--r);font-size:var(--t-nota);font-weight:600;min-height:36px}
 /* «Rechazar» iba en --cal-baja: 4,6 a 1 sobre el aviso ya quieto, pero
