@@ -34,7 +34,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Besley:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=64">
+<link rel="stylesheet" href="base.css?v=65">
 <script type="application/ld+json">
   {"@context": "https://schema.org", "@graph": [{"@type": "Person", "name": "Leonardo Lemes", "jobTitle": "Chef, docente e investigador gastronómico", "description": "Chef, docente e investigador gastronómico con 25 años de experiencia. Fundador de Clorofila Estudio de Cocina en Parque Rodó, Montevideo.", "image": "https://clorofila.uy/img-leo-cocina.jpg", "url": "https://clorofila.uy/leonardo", "worksFor": {"@id": "https://clorofila.uy/#organization"}, "alumniOf": [{"@type": "EducationalOrganization", "name": "Na Luum — Diseño en Permacultura"}, {"@type": "EducationalOrganization", "name": "Ipoema — Agricultura de Bosques de Alimentos", "address": {"@type": "PostalAddress", "addressCountry": "BR"}}, {"@type": "EducationalOrganization", "name": "CLAEH — Gestión Cultural", "address": {"@type": "PostalAddress", "addressCountry": "UY"}}, {"@type": "EducationalOrganization", "name": "Neijing — Medicina Tradicional China"}, {"@type": "EducationalOrganization", "name": "Escuela Tianshu — Shiatsu"}], "knowsAbout": ["Cocina basada en plantas", "Fermentación", "Masa madre", "Pastelería sin gluten", "Desarrollo de productos gastronómicos", "Cocina vegana", "Quesos vegetales", "Investigación gastronómica"], "@id": "https://clorofila.uy/leonardo#person", "founderOf": {"@id": "https://clorofila.uy/#organization"}, "nationality": {"@type": "Country", "name": "Uruguay"}, "knowsLanguage": "es", "sameAs": ["https://instagram.com/clorofilaclases"]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://clorofila.uy/"}, {"@type": "ListItem", "position": 2, "name": "Leonardo Lemes", "item": "https://clorofila.uy/leonardo"}]}]}
   </script>
@@ -47,27 +47,9 @@
 .hero-leo .bajada{color:var(--cal-med);max-width:48ch;margin-bottom:2rem}
 .foto-leo{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:3/4}
 .foto-leo img{width:100%;height:100%;object-fit:cover}
-.cifras-leo{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--linea);padding-top:1.25rem}
-.cifras-leo li{padding-right:1.75rem;margin-right:1.75rem;border-right:1px solid var(--linea)}
-.cifras-leo li:last-child{border-right:0;margin-right:0;padding-right:0}
-.cifras-leo b{display:block;font-family:var(--display);font-size:var(--th-seccion);color:var(--cal);line-height:1;letter-spacing:-.03em}
-.cifras-leo span{font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja)}
-/* La etiqueta de cada cifra es un bloque propio: como línea suelta tomaba
-   el interlineado del texto y en el teléfono «años / cocinando» quedaba en
-   dos renglones muy separados. */
-.cifras-leo span{display:block;line-height:1.3;margin-top:.4rem}
 /* El enlace de la bajada va dentro de la oración: con el relleno de bloque
    de .enlace-vivo abría el renglón. */
 .bajada .enlace-vivo{display:inline;padding-block:0}
-/* En el celular los tres datos no entraban en una fila: quedaban dos arriba
-   y "+1.200 personas formadas" solo abajo, desalineado con el primero y con
-   el separador del segundo colgando en el aire. En tres columnas parejas los
-   tres arrancan a la misma altura y cada separador queda donde va. */
-@media (max-width:640px){
-  .cifras-leo{display:grid;grid-template-columns:repeat(3,1fr)}
-  .cifras-leo li{padding-right:.8rem;margin-right:.8rem}
-  .cifras-leo span{font-size:var(--t-dato);line-height:1.25}
-}
 @media (max-width:860px){.hero-leo-caja{grid-template-columns:1fr}.foto-leo{aspect-ratio:4/3;order:1;margin-top:1.5rem}}
 
 .cita{background:var(--musgo);border-block:1px solid var(--linea);text-align:center}
@@ -146,12 +128,7 @@
     <div>
       <span class="senal">Fundador de Clorofila, en Parque Rodó</span>
       <h1>Leonardo Lemes.</h1>
-      <p class="bajada">Chef, docente e investigador gastronómico, con 25 años cocinando y 13 enseñando. Es pionero en Uruguay en cocina basada en plantas, fermentación y comprensión científica del alimento. Coordina <a href="/curso" class="enlace-vivo" data-producto="curso">el curso</a> y acompaña cada clase puesto por puesto, mientras trabajamos.</p>
-      <ul class="cifras-leo">
-        <li><b>25</b><span>años cocinando</span></li>
-        <li><b>13</b><span>años enseñando</span></li>
-        <li><b>+1.200</b><span>personas formadas</span></li>
-      </ul>
+      <p class="bajada">Chef, docente e investigador gastronómico, con 25 años cocinando, 13 enseñando y más de 1.200 personas formadas en Clorofila. Es pionero en Uruguay en cocina basada en plantas, fermentación y comprensión científica del alimento. Coordina <a href="/curso" class="enlace-vivo" data-producto="curso">el curso</a> y acompaña cada clase puesto por puesto, mientras trabajamos.</p>
     </div>
   </div>
 </header>
