@@ -13,13 +13,13 @@
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#0E1A13">
 <title>Privacidad y cookies — Clorofila</title>
-<meta name="description" content="Qué mide clorofila.uy, con qué herramientas y qué pasa si no aceptás las cookies. Cómo cambiar la decisión en cualquier momento.">
+<meta name="description" content="Qué mide clorofila.uy, con qué herramientas y qué pasa si rechazás las cookies. Cómo cambiar la decisión en cualquier momento.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://clorofila.uy/privacidad">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://clorofila.uy/privacidad">
 <meta property="og:title" content="Privacidad y cookies — Clorofila">
-<meta property="og:description" content="Qué mide clorofila.uy, con qué herramientas y qué pasa si no aceptás las cookies.">
+<meta property="og:description" content="Qué mide clorofila.uy, con qué herramientas y qué pasa si rechazás las cookies.">
 <meta property="og:image" content="https://clorofila.uy/og/og-home.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -34,19 +34,19 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Besley:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=65">
+<link rel="stylesheet" href="base.css?v=72">
 <style>
 /* El teléfono y el correo van dentro de la oración: con el relleno de bloque
    de .enlace-vivo abrían el interlineado del último párrafo. */
 main p .enlace-vivo{display:inline;padding-block:0}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
-<script src="consent.js?v=20260924" defer></script>
+<script src="consent.js?v=20261008" defer></script>
 </head>
 <body data-producto="privacidad">
 <a href="#principal" class="saltar">Ir al contenido principal</a>
 <div class="cookie-banner" id="cookie-banner" role="status" aria-label="Aviso de cookies">
-  <p>¿Aceptás cookies para saber qué se lee? <a href="/privacidad">Más info</a></p>
+  <p>Mantené la mejor experiencia para tu navegador. <a href="/privacidad">Cookies</a></p>
   <div class="cookie-banner-actions">
     <button type="button" id="cookie-decline">Rechazar</button>
     <button type="button" id="cookie-accept">Aceptar</button>
@@ -76,20 +76,21 @@ main p .enlace-vivo{display:inline;padding-block:0}
 <div class="env" style="max-width:720px;padding-block:clamp(2.5rem,6vw,4.5rem)">
   <span class="senal">Privacidad</span>
   <h1>Qué medimos.</h1>
-  <p class="bajada" style="margin-bottom:2.5rem">Este sitio usa dos herramientas de terceros para saber qué páginas se leen y desde dónde llega la gente. Ninguna de las dos guarda nada en tu equipo hasta que aceptes.</p>
+  <p class="bajada" style="margin-bottom:2.5rem">Este sitio usa dos herramientas de terceros para saber qué páginas se leen y desde dónde llega la gente: Google Analytics y el píxel de Meta. Con el aviso de cookies decidís cuáles corren.</p>
 
   <h2 style="font-size:var(--th-sub);margin-bottom:.8rem">Antes de que decidas</h2>
-  <p style="margin-bottom:2rem">Hasta que contestes el aviso no medimos nada. No se carga Google Analytics ni el píxel de Meta, y tu visita no se cuenta.</p>
+  <p style="margin-bottom:2rem">Mientras no contestes el aviso, Google Analytics cuenta tu visita: qué páginas abrís, desde qué sitio llegaste y qué botones tocás. Guarda una cookie propia para eso, y Google la usa también para medir sus anuncios. El píxel de Meta no se carga.</p>
 
   <h2 style="font-size:var(--th-sub);margin-bottom:.8rem">Si aceptás</h2>
-  <p style="margin-bottom:1rem">Se cargan Google Analytics y el píxel de Meta completos, ya con cookies. Registran qué páginas visitás, cuánto tiempo estás, desde qué sitio llegaste y si tocás un botón de WhatsApp, de compra o el formulario para que te avisemos. Los datos van a Google y a Meta, cada uno con sus propias reglas.</p>
+  <p style="margin-bottom:1rem">Se suma el píxel de Meta. Las dos herramientas registran qué páginas visitás, cuánto tiempo estás, desde qué sitio llegaste y si tocás un botón de WhatsApp, de compra o el formulario para que te avisemos. Los datos van a Google y a Meta, cada uno con sus propias reglas.</p>
   <p style="margin-bottom:2rem">Sirven para una sola cosa: saber qué propuestas le interesan a la gente y por dónde se pierde alguien que estaba por escribirnos.</p>
 
   <h2 style="font-size:var(--th-sub);margin-bottom:.8rem">Si rechazás</h2>
-  <p style="margin-bottom:2rem">No se carga ninguna de las dos. El sitio funciona igual: se navega, se leen los artículos y se reserva lo mismo. Guardamos un dato en tu navegador para no volver a preguntarte, y ese dato no sale de tu equipo.</p>
+  <p style="margin-bottom:2rem">No se carga ninguna de las dos. Si Google Analytics ya había empezado a contar esa visita, se corta en ese momento y borramos su cookie. El sitio funciona igual: se navega, se leen los artículos y se reserva lo mismo. Guardamos un dato en tu navegador para no volver a preguntarte, y ese dato no sale de tu equipo.</p>
 
   <h2 style="font-size:var(--th-sub);margin-bottom:.8rem">Cambiar de opinión</h2>
-  <p style="margin-bottom:2rem">La decisión queda guardada en tu navegador. Si borrás los datos del sitio desde la configuración del navegador, el aviso vuelve a aparecer y podés elegir de nuevo. Con el almacenamiento bloqueado, la decisión vale solo para esa visita.</p>
+  <p style="margin-bottom:1rem">La decisión queda guardada en tu navegador. Con este botón vuelve a aparecer el aviso y elegís de nuevo. Con el almacenamiento bloqueado, la decisión vale solo para esa visita.</p>
+  <p style="margin-bottom:2rem"><button type="button" class="btn btn-linea" data-cookies-elegir>Volver a elegir</button></p>
 
   <h2 style="font-size:var(--th-sub);margin-bottom:.8rem">Cuando nos escribís</h2>
   <p style="margin-bottom:2rem">Si nos escribís por WhatsApp o por mail, guardamos lo que nos mandes para contestarte y coordinar tu lugar. Nada de eso se comparte con nadie más. Si querés que borremos tus datos, pedilo al <a href="https://wa.me/59894064148?text=Hola%2C%20quiero%20consultar%20por%20mis%20datos." target="_blank" rel="noopener noreferrer" class="enlace-vivo">094 064 148</a> o a <a href="mailto:nutreclorofila@gmail.com" class="enlace-vivo">nutreclorofila@gmail.com</a>.</p>
@@ -114,7 +115,7 @@ main p .enlace-vivo{display:inline;padding-block:0}
 </footer>
 
 
-<script src="track.js?v=20261004" defer></script>
-<script src="pagina.js?v=35" defer></script>
+<script src="track.js?v=20261008" defer></script>
+<script src="pagina.js?v=38" defer></script>
 </body>
 </html>

@@ -21,11 +21,9 @@
      segundo día la persona figuraba como "directo". Con la fecha guardada,
      al mes vence y deja de arrastrar una campaña vieja.
 
-     Se escribe recién cuando la persona acepta las cookies (aviso
-     analytics:listo de consent.js). Antes se guardaba al abrir la página,
-     también a quien no había decidido o había rechazado, y eso contradecía
-     lo que dice /privacidad. Leer sí se puede: solo hay algo guardado si
-     antes aceptó. */
+     Se escribe recién cuando Analytics arranca (aviso analytics:listo de
+     consent.js): al abrir la página si la persona no rechazó, o al aceptar.
+     A quien apretó "Rechazar" no se le guarda nada, como dice /privacidad. */
   function almacen() {
     try {
       var x = window.localStorage;
@@ -111,13 +109,23 @@
 
   /* Quien llega por un anuncio de Google escribe por WhatsApp con «(G)» al
      final del mensaje. Así, en el teléfono se cuenta cuántas consultas trae
-     Ads sin depender de que la persona haya aceptado las cookies: la marca va
-     en el texto del mensaje, no se guarda nada. Sin cookies aceptadas solo
-     se marca desde la página de llegada, porque el origen no se recuerda. */
+     Ads sin depender de las cookies: la marca va en el texto del mensaje, que
+     la persona ve antes de mandarlo.
+     Quien apretó "Rechazar" no tiene el origen guardado, así que en la
+     segunda página ya no se sabía que venía de Ads. Por eso se anota solo
+     eso, un "1" en sessionStorage: no sale del navegador, no identifica a
+     nadie y se borra al cerrar la pestaña (pedido de optimizando Google, 7/10). */
+  var CLAVE_ADS = 'clorofila_vino_de_ads';
   function vieneDeGoogleAds() {
-    return origen.utm_source === 'google_ads' ||
+    var ads = origen.utm_source === 'google_ads' ||
       (origen.utm_medium === 'cpc' && /google/i.test(origen.utm_source));
+    try {
+      if (ads) window.sessionStorage.setItem(CLAVE_ADS, '1');
+      else ads = window.sessionStorage.getItem(CLAVE_ADS) === '1';
+    } catch (e) { /* sin almacenamiento: solo la página de llegada */ }
+    return ads;
   }
+  vieneDeGoogleAds();
 
   function marcarGoogle(a) {
     if (!vieneDeGoogleAds()) return;
@@ -139,9 +147,24 @@
     return document.body.getAttribute('data-producto') || 'general';
   }
 
+  /* actividad: la misma información que producto, agrupada en las seis que
+     se miran en GA4 y en Ads (curso, tapeo, pastas, talleres, team-building,
+     general). producto distingue cada taller y cada artículo; para repartir
+     contactos por actividad hacía falta sumar a mano. */
+  function actividadDe(producto) {
+    var p = producto || '';
+    if (/^(curso|programa)(-|$)/.test(p)) return 'curso';
+    if (/^tapeo(-|$)/.test(p)) return 'tapeo';
+    if (p === 'pastas' || p === 'taller-pastas-sin-gluten') return 'pastas';
+    if (p === 'talleres' || /^taller-/.test(p)) return 'talleres';
+    if (p === 'team-building') return 'team-building';
+    return 'general';
+  }
+
   function parametros(producto, extra) {
     var p = {
       producto: producto,
+      actividad: actividadDe(producto),
       pagina: location.pathname,
       utm_source: origen.utm_source,
       utm_medium: origen.utm_medium,
@@ -180,9 +203,9 @@
     return null;
   }
 
-  /* Hasta que la persona no acepta las cookies, GA4 y el pixel no existen y
-     todo lo que se midiera se perdía: la vista de producto ocurre al abrir la
-     página, o sea SIEMPRE antes de aceptar. En 28 días eso fue 232 page_view
+  /* Mientras GA4 no arrancó, todo lo que se midiera se perdía: la vista de
+     producto ocurre al abrir la página, o sea antes de que consent.js cargue
+     Analytics. En 28 días eso fue 232 page_view
      contra 120 view_producto. Los eventos se guardan y se mandan cuando
      consent.js avisa que la analítica arrancó. */
   var pendientes = [];
@@ -196,6 +219,20 @@
   window.addEventListener('analytics:listo', function () {
     var cola = pendientes;
     pendientes = [];
+    cola.forEach(function (fn) { try { fn(); } catch (e) { /* uno malo no corta el resto */ } });
+  });
+
+  /* Meta tiene su propia cola: quien no contestó el aviso tiene Analytics
+     pero no el píxel, que carga recién al aceptar (aviso meta:listo). Si
+     acepta más tarde en la misma página, el ViewContent llega igual. */
+  var pendientesMeta = [];
+  function encolarMeta(fn) {
+    if (window.__metaAvisado) { fn(); return; }
+    if (pendientesMeta.length < TOPE_PENDIENTES) pendientesMeta.push(fn);
+  }
+  window.addEventListener('meta:listo', function () {
+    var cola = pendientesMeta;
+    pendientesMeta = [];
     cola.forEach(function (fn) { try { fn(); } catch (e) { /* uno malo no corta el resto */ } });
   });
 
@@ -219,7 +256,7 @@
   function meta(evento, producto, extra, propio) {
     var datos = { content_name: producto, content_category: 'clorofila' };
     if (extra) Object.keys(extra).forEach(function (k) { datos[k] = extra[k]; });
-    encolar(function () {
+    encolarMeta(function () {
       if (typeof fbq === 'function') fbq(propio ? 'trackCustom' : 'track', evento, datos);
     });
   }

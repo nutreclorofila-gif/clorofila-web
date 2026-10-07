@@ -342,18 +342,22 @@
   var banner = document.getElementById('cookie-banner');
   if (banner) {
     if (!almacen.leer()) {
-      /* Aparecía a los 700 ms, de golpe y apoyado sobre el hero: lo primero
-         que pasaba al entrar era que algo tapaba la foto. Ahora espera a que
-         la persona empiece a leer —el primer scroll— y si no scrollea sale
-         igual a los 2,5 s, porque sin respuesta el pixel de Meta no carga. */
+      /* Sale a los 0,5 s o con el primer scroll, lo que pase antes. Esperaba
+         2,5 s y mucha gente se iba sin verlo (pedido del 7/10, con el aviso ya
+         sin tapar el hero ni el menú). */
       var mostrarAviso = function () {
         if (banner.classList.contains('visible')) return;
         banner.classList.add('visible');
         window.removeEventListener('scroll', mostrarAviso);
       };
       window.addEventListener('scroll', mostrarAviso, { passive: true });
-      setTimeout(mostrarAviso, 2500);
+      setTimeout(mostrarAviso, 500);
     }
+    /* /privacidad tiene un botón para volver a elegir: muestra el aviso
+       aunque ya haya una decisión guardada. Aceptar o Rechazar la reemplaza. */
+    document.querySelectorAll('[data-cookies-elegir]').forEach(function (b) {
+      b.addEventListener('click', function () { banner.classList.add('visible'); });
+    });
     var ok = document.getElementById('cookie-accept');
     var no = document.getElementById('cookie-decline');
     if (ok) ok.addEventListener('click', function () {
@@ -364,6 +368,8 @@
     if (no) no.addEventListener('click', function () {
       almacen.guardar('declined');
       banner.classList.remove('visible');
+      // Analytics ya medía esta visita (no había contestado): se corta acá.
+      if (window.rechazarAnalytics) window.rechazarAnalytics();
     });
   }
 
