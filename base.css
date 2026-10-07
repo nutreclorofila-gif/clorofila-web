@@ -540,7 +540,7 @@ html:not(.js) .nav{height:auto}
 /* Con el aviso de cookies abajo, los dos se apoyaban uno sobre el otro y el
    aviso tapaba el botón. Mientras el aviso está, la barra sube por encima.
    Sube con "bottom" y no con transform, que es lo que la anima al entrar. */
-body:has(#cookie-banner.visible) .sticky-cta{bottom:9.5rem}
+body:has(#cookie-banner.visible) .sticky-cta{bottom:4.5rem}
 .sticky-cta.visible{transform:none}
 .sticky-cta .cta-main{flex:1;display:flex;align-items:center;justify-content:center;background:var(--miel);color:#20140A;border-radius:var(--r);font-weight:600;font-size:var(--t-chico);min-height:48px;padding-inline:1rem}
 .sticky-cta .wa-btn{display:flex;align-items:center;justify-content:center;width:48px;min-height:48px;border:1px solid var(--linea-fuerte);border-radius:var(--r);color:var(--cal);flex-shrink:0}
@@ -553,7 +553,7 @@ body:has(#cookie-banner.visible) .sticky-cta{bottom:9.5rem}
      Sin :has() no se reserva nada y la barra tapa el final del pie, que es
      solo el renglón del copyright. */
   body:has(.sticky-cta:not([data-estado="sin-fecha"])) .pie{padding-bottom:calc(2rem + 4.5rem)}
-  body:has(.sticky-cta:not([data-estado="sin-fecha"])):has(#cookie-banner.visible) .pie{padding-bottom:calc(2rem + 15rem)}
+  body:has(.sticky-cta:not([data-estado="sin-fecha"])):has(#cookie-banner.visible) .pie{padding-bottom:calc(2rem + 9rem)}
 }
 [data-estado="sin-fecha"].sticky-cta{display:none}
 
@@ -584,7 +584,7 @@ body.menu-abierto .cookie-banner{display:none}
 /* Mientras el aviso está abajo, el pie crece lo que el aviso mide: si no, la
    última línea de la página queda atrapada debajo y no hay manera de leerla.
    En los navegadores sin :has() simplemente no crece, que es como estaba. */
-body:has(#cookie-banner.visible) .pie{padding-bottom:10.5rem}
+body:has(#cookie-banner.visible) .pie{padding-bottom:5.5rem}
 .cookie-banner a{color:var(--cal);text-decoration:underline;display:inline-block;padding-block:.2rem;position:relative}
 .cookie-banner a::after{content:"";position:absolute;left:-.4rem;right:-.4rem;top:50%;height:44px;transform:translateY(-50%)}
 .cookie-banner-actions{display:flex;align-items:center;gap:1rem}
@@ -603,19 +603,17 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:10.5rem}
    y por eso ahí se veía bien. En móvil el aviso va arriba y la barra abajo:
    no se pisan, así que no hay nada que esquivar. */
 @media (max-width:480px){.cookie-banner{left:.75rem;right:.75rem;max-width:none}}
-/* Ocupaba 131px, el 20% de un teléfono de 667, apoyado sobre el hero y con
-   el texto en dos líneas. Con una sola línea y los botones al lado cuando
-   entran, baja a la mitad y deja de tapar la foto. */
-.cookie-banner{padding:.85rem 1rem;gap:.55rem;display:flex}
-.cookie-banner p{line-height:1.45}
-/* A 400px el corte dejaba afuera al iPhone de 393, que es de los teléfonos
-   más usados: ahí el aviso volvía a la versión apilada de 99px. Con el corte
-   en 360 entran casi todos y queda en la mitad de alto. */
-/* El texto va arriba y los dos botones abajo, del mismo ancho: Aceptar y
-   Rechazar tienen que ser igual de fáciles de tocar. */
-.cookie-banner{flex-direction:column;align-items:stretch}
-.cookie-banner-actions{gap:.6rem}
-@media (min-width:901px){.cookie-banner{max-width:360px}}
+/* 7/10: el cartel es una franja baja, con el texto y los dos botones en el
+   mismo renglón. Como tarjeta de 110 px tapaba la foto del hero y casi todos
+   apretaban «Rechazar» para sacarlo de encima. Aceptar y Rechazar siguen del
+   mismo tamaño: rechazar tiene que ser igual de fácil. */
+.cookie-banner{display:flex;flex-direction:row;align-items:center;gap:.75rem;padding:.5rem .55rem .5rem .9rem;box-shadow:0 8px 24px rgba(0,0,0,.35);font-size:.8rem}
+.cookie-banner p{flex:1;min-width:0;line-height:1.35;margin:0}
+.cookie-banner-actions{gap:.4rem;flex-shrink:0}
+#cookie-accept,#cookie-decline{flex:none;min-height:36px;padding:.3rem .7rem;font-size:.8rem;position:relative}
+/* El botón se ve de 36 px y se toca en 44. */
+#cookie-accept::after,#cookie-decline::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
+@media (min-width:901px){.cookie-banner{max-width:none;width:auto}}
 
 /* --- Artículos --- */
 /* Estas 34 reglas venían repetidas en un <style> dentro de cada uno de los 12
