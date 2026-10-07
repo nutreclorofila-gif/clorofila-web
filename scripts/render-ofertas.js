@@ -13,12 +13,18 @@
  *
  * Uso:  node scripts/render-ofertas.js          (escribe)
  *       node scripts/render-ofertas.js --check  (falla si algo quedaría desactualizado)
+ *       OFERTAS_HOY=2026-10-24 node scripts/render-ofertas.js   (arma el sitio como si fuera ese día)
+ *       node scripts/render-ofertas.js --valores (no escribe: imprime lo que pondría, en JSON)
  */
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 
 const raiz = path.join(__dirname, '..');
 const CHECK = process.argv.includes('--check');
+// Modo que usa el propio build para saber cómo se verá el sitio otro día. Ver
+// «Lo que cambia solo», más abajo.
+const VALORES = process.argv.includes('--valores');
 let datos;
 try {
   datos = JSON.parse(fs.readFileSync(path.join(raiz, 'data', 'ofertas.json'), 'utf8'));
@@ -36,6 +42,18 @@ try {
    franja apagaba una fecha que todavía corría. Todo se compara en -03:00, que
    es la hora del estudio. */
 const hoy = (function () {
+  /* Con OFERTAS_HOY=AAAA-MM-DD el sitio se arma como si fuera ese día. Lo usa
+     el build para calcular cómo tiene que verse la web en las fechas que
+     vienen, y sirve para probar a mano qué muestra el sitio cuando vence algo. */
+  const fijo = process.env.OFERTAS_HOY;
+  if (fijo) {
+    const p = fijo.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!p) {
+      console.error('✗ OFERTAS_HOY tiene que ser AAAA-MM-DD, por ejemplo 2026-10-24. Vino: "' + fijo + '"');
+      process.exit(1);
+    }
+    return new Date(Number(p[1]), Number(p[2]) - 1, Number(p[3]));
+  }
   const ahora = new Date();
   const mvd = new Date(ahora.getTime() - 3 * 3600 * 1000);
   return new Date(mvd.getUTCFullYear(), mvd.getUTCMonth(), mvd.getUTCDate());
@@ -213,7 +231,7 @@ const waBase = 'https://wa.me/59894064148?text=';
 t.wa_link = waBase + encodeURIComponent(
   t.estado === 'sin-fecha' || t.estado === 'agotado'
     ? 'Hola Leonardo, me interesa la Cena y Taller de Tapeo. Avisame cuando abran la próxima fecha.'
-    : 'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.fecha_texto + '. Somos [cantidad] personas.'
+    : 'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.fecha_texto + '.'
 );
 /* Con dos fechas abiertas, cada botón de fecha pide su noche. Antes el de la
    segunda caía en el mensaje de la primera: quien tocaba «viernes 16» mandaba
@@ -222,11 +240,11 @@ t.wa_link = waBase + encodeURIComponent(
 if (!ventaMuda(t.estado) && t.segunda_fecha && t.segunda_fecha.texto) {
   t.wa_link_1 = t.wa_link;
   t.wa_link_2 = waBase + encodeURIComponent(
-    'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.segunda_fecha.texto + '. Somos [cantidad] personas.'
+    'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.segunda_fecha.texto + '.'
   );
   t.wa_link = waBase + encodeURIComponent(
     'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo. ¿Hay lugar el ' + t.fecha_texto +
-    ' o el ' + t.segunda_fecha.texto + '? Somos [cantidad] personas.'
+    ' o el ' + t.segunda_fecha.texto + '?'
   );
 }
 /* Con la fecha llena, el botón decía "avisame si se libera un lugar" mientras
@@ -371,6 +389,22 @@ function linkCalendario(titulo, iso, horaIni, horaFin, detalle) {
 t.calendario = linkCalendario('Cena y Taller de Tapeo — Clorofila', t.fecha_iso, t.hora, t.hora_fin,
   'Cocinamos juntos y después cenamos todo lo que preparamos. Clorofila, Parque Rodó.');
 
+/* En /gracias, un botón de calendario por fecha. Con uno solo, quien compró la
+   segunda noche agendaba la primera. */
+function botonCalendario(link, texto) {
+  return '<a href="' + escapar(link) + '" data-calendario class="btn btn-primario" target="_blank" rel="noopener noreferrer">' + escapar(texto) + '</a>';
+}
+t.fechas_texto = fechasTapeo(t);
+t.calendario_html = [
+  t.fecha_iso ? botonCalendario(t.calendario, 'Agendar el ' + t.fecha_texto) : '',
+  (t.segunda_fecha && t.segunda_fecha.iso && t.estado !== 'sin-fecha' && t.estado !== 'agotado')
+    ? botonCalendario(linkCalendario('Cena y Taller de Tapeo — Clorofila', t.segunda_fecha.iso,
+        t.segunda_fecha.hora_inicio || t.hora, t.segunda_fecha.hora_fin || t.hora_fin,
+        'Cocinamos juntos y después cenamos todo lo que preparamos. Clorofila, Parque Rodó.'),
+        'Agendar el ' + t.segunda_fecha.texto)
+    : ''
+].filter(Boolean).join('\n      ');
+
 /* Cada taller usa exactamente las mismas reglas que el tapeo. */
 for (const [id, w] of Object.entries(datos.talleres)) {
   if (id.startsWith('_')) { delete datos.talleres[id]; continue; }
@@ -470,6 +504,13 @@ datos.curso.calendario = abiertos.length
       abiertos[0].horario.split(' a ')[0], abiertos[0].horario.split(' a ')[1].replace(' h', ''),
       'Primera clase del curso de tres meses de Clorofila, en Parque Rodó.')
   : '';
+// Un botón por grupo: con uno solo, quien se anotó al grupo del jueves agendaba el miércoles.
+datos.curso.calendario_html = abiertos.map(function (g) {
+  return botonCalendario(linkCalendario('Primera clase — Curso de Clorofila', g.inicio_iso,
+      g.horario.split(' a ')[0], g.horario.split(' a ')[1].replace(' h', ''),
+      'Primera clase del curso de tres meses de Clorofila, en Parque Rodó.'),
+    'Agendar la primera clase del ' + String(g.inicio_texto).replace(/^arranca el /i, ''));
+}).join('\n      ');
 datos.curso.estado = abiertos.length ? 'abierto' : 'sin-fecha';
 
 // Cuando no hay edición abierta, la web deja de pedir una inscripción que no
@@ -498,9 +539,14 @@ datos.curso.wa_link = waBase + encodeURIComponent(
 datos.curso.cta_nota = abiertos.length
   ? 'Te escribimos por WhatsApp en menos de 24 h para confirmar tu lugar.'
   : 'No hay edición abierta ahora. Dejanos tus datos y te avisamos cuando abramos la próxima.';
+/* Un grupo que ya empezó no «arranca»: la tarjeta decía «Grupo cerrado ·
+   Arranca el miércoles 7 de octubre» durante toda la edición. */
+function inicioDeGrupo(g) {
+  return esPasado(g.inicio_iso) ? String(g.inicio_texto).replace(/^arranca el /i, 'Empezó el ') : g.inicio_texto;
+}
 for (const g of datos.curso.grupos) {
   datos.curso['grupo_' + g.id + '_estado_texto'] = g.estado === 'abierto' ? 'Abierto' : 'Grupo cerrado';
-  datos.curso['grupo_' + g.id + '_inicio'] = g.inicio_texto;
+  datos.curso['grupo_' + g.id + '_inicio'] = inicioDeGrupo(g);
 }
 
 // Los bloques de grupo se dibujan solos. Antes estaban escritos a mano, uno por
@@ -512,7 +558,7 @@ datos.curso.grupos_html = datos.curso.grupos.map(function (g) {
     '<p class="grupo-estado">' + escapar(g.estado === 'abierto' ? 'Abierto' : 'Grupo cerrado') + '</p>' +
     '<p class="grupo-dia">' + escapar(g.nombre) + '</p>' +
     '<p class="grupo-hora">' + escapar(g.horario) + '</p>' +
-    '<p class="grupo-inicio">' + escapar(g.inicio_texto) + '</p>' +
+    '<p class="grupo-inicio">' + escapar(inicioDeGrupo(g)) + '</p>' +
     (g.detalle ? '<p class="grupo-detalle">' + escapar(g.detalle) + '</p>' : '') +
     /* Cada grupo abierto reserva por su cuenta. Con un botón único para los
        dos, el mensaje llegaba diciendo "me interesa el grupo de Miércoles ·
@@ -579,7 +625,8 @@ datos.curso.cierre_titulo_html = abiertos.length
   : 'La edición de ' + escapar(String(datos.curso.edicion).split(' ')[0].toLowerCase()) + ' <br>ya arrancó.';
 datos.curso.cierre_bajada = abiertos.length
   ? 'Contanos qué estás buscando y te decimos si este curso te sirve. Te contesta Leonardo.'
-  : 'Los grupos de esta edición ya empezaron. Dejanos tus datos y te avisamos cuando abra la próxima: te contesta Leonardo.';
+  // El título ya dice que la edición arrancó: la bajada no lo repite.
+  : 'Dejanos tus datos y te avisamos cuando abra la próxima. Te contesta Leonardo.';
 
 // El resumen que leen los modelos de lenguaje en llms.txt. Antes decía a mano
 // "los grupos de martes y miércoles ya empezaron", que quedó falso apenas
@@ -597,10 +644,18 @@ datos.curso.resumen_grupos = abiertos.length
 datos.curso.faq_cursada = 'Son 3 meses: 12 clases de 2 horas, una por semana. Elegís el grupo de ' +
   datos.curso.grupos.map(function (g) {
     return g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '');
-  }).join(' o ') + '. ' +
-  'Arrancan el ' + datos.curso.grupos.map(function (g) {
-    return g.inicio_texto.toLowerCase().replace(/^arranca el /, '');
-  }).join(' y el ') + '.';
+  }).join(' o ') + '. ' + (function () {
+    /* Seguía diciendo «Arrancan el miércoles 7 y el jueves 8» con la edición
+       ya en marcha: es la respuesta que lee quien llega por Google. */
+    const dia = function (g) { return g.inicio_texto.toLowerCase().replace(/^arranca el /, ''); };
+    const grupos = datos.curso.grupos;
+    const empezados = grupos.filter(function (g) { return esPasado(g.inicio_iso); });
+    if (!empezados.length) return (grupos.length === 1 ? 'Arranca el ' : 'Arrancan el ') + grupos.map(dia).join(' y el ') + '.';
+    if (empezados.length === grupos.length) return 'Esta edición empezó el ' + grupos.map(dia).join(' y el ') + ', y la próxima todavía no tiene fecha.';
+    return grupos.map(function (g, i) {
+      return (i ? 'el' : 'El') + ' de los ' + g.nombre.toLowerCase() + (esPasado(g.inicio_iso) ? ' empezó el ' : ' arranca el ') + dia(g);
+    }).join(' y ') + '.';
+  })();
 
 /* El chip decía "3 modalidades" a mano: quedó de la edición de agosto, que
    tenía tres grupos. Pero además la palabra estaba mal: lo que hay son
@@ -988,9 +1043,67 @@ let cambiados = [];
 const porEscribir = new Map();
 let errores = [];
 
+/* ---- Lo que cambia solo ----
+   El sitio se arma con la fecha del día en que se publica, y cada publicación
+   cuesta créditos de Netlify. Si se publicaba el 9 y nadie volvía a publicar,
+   el 24 la portada seguía ofreciendo el tapeo del 23, y entre el 24 y el 30
+   /tapeo decía «no hay fecha abierta» con la del 30 a la venta.
+   Ahora el build se pregunta a sí mismo cómo tiene que verse la web el día
+   siguiente a cada fecha del JSON, que es cuando algo vence. Guarda solo lo que
+   cambia en estados.json y le anota a cada página en qué días mirarlo
+   (data-cambios en <html>). Al llegar ese día, pagina.js pone esos textos,
+   links y estados: son los mismos que pondría un build hecho ese día. */
+function isoDe(d) {
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+function valoresDel(dia) {
+  const env = Object.assign({}, process.env, { OFERTAS_HOY: dia });
+  return JSON.parse(execFileSync(process.execPath, [__filename, '--valores'],
+    { env: env, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }));
+}
+const cambios = [];
+if (!VALORES) {
+  const crudo = JSON.parse(fs.readFileSync(path.join(raiz, 'data', 'ofertas.json'), 'utf8'));
+  const dias = new Set();
+  (function buscar(o, clave) {
+    if (Array.isArray(o)) return o.forEach(function (x) { buscar(x, clave); });
+    if (o && typeof o === 'object') return Object.keys(o).forEach(function (k) { buscar(o[k], k); });
+    if (typeof o === 'string' && /iso$/i.test(clave || '') && /^\d{4}-\d{2}-\d{2}$/.test(o)) {
+      const p = o.split('-').map(Number);
+      const siguiente = new Date(p[0], p[1] - 1, p[2] + 1);
+      if (siguiente > hoy) dias.add(isoDe(siguiente));
+    }
+  })(crudo);
+  if (dias.size) {
+    try {
+      const base = valoresDel(isoDe(hoy));
+      Array.from(dias).sort().forEach(function (dia) {
+        const otro = valoresDel(dia);
+        const dif = { desde: dia };
+        let hay = false;
+        ['o', 'e', 's'].forEach(function (tipo) {
+          Object.keys(otro[tipo]).forEach(function (k) {
+            if (JSON.stringify(otro[tipo][k]) === JSON.stringify(base[tipo][k])) return;
+            (dif[tipo] = dif[tipo] || {})[k] = otro[tipo][k];
+            hay = true;
+          });
+        });
+        if (hay) cambios.push(dif);
+      });
+    } catch (e) {
+      errores.push('no se pudo calcular cómo se verá el sitio en las próximas fechas: ' + e.message);
+    }
+  }
+}
+
+// Lo que pone el build, por dato. En modo --valores es la salida; si no, sirve
+// para saber qué días le importan a cada página.
+const vistos = { o: {}, e: {}, s: {} };
+
 for (const archivo of archivos) {
   const ruta = path.join(raiz, archivo);
   const original = fs.readFileSync(ruta, 'utf8');
+  const usadas = new Set();
 
   let salida = original.replace(
     /<!--o:(html:)?([a-zA-Z0-9_.\-]+)-->[\s\S]*?<!--\/o-->/g,
@@ -1000,6 +1113,8 @@ for (const archivo of archivos) {
         errores.push(archivo + ': no existe "' + ruta_ + '" en ofertas.json');
         return _m;
       }
+      vistos.o[(esHtml || '') + ruta_] = String(v);
+      usadas.add('o ' + (esHtml || '') + ruta_);
       const contenido = esHtml ? String(v) : escapar(v);
       return '<!--o:' + (esHtml || '') + ruta_ + '-->' + contenido + '<!--/o-->';
     }
@@ -1020,8 +1135,13 @@ for (const archivo of archivos) {
          nunca recibía esta red, y es el producto más caro del sitio. Se usa la
          del último grupo que arranca, no la del primero: mientras haya un grupo
          por empezar, el curso sigue abierto. */
-      const venceIso = (obj && (obj.fecha_iso || obj.vence_iso)) || '';
+      /* Con dos fechas vence con la segunda: con la primera, entre el 24 y el
+         30 de octubre /tapeo decía «no hay fecha abierta» y escondía la compra
+         del 30, que seguía a la venta. */
+      const venceIso = (obj && ((obj.segunda_fecha && obj.segunda_fecha.iso) || obj.fecha_iso || obj.vence_iso)) || '';
       const vence = venceIso ? ' data-vence-iso="' + escapar(venceIso) + '"' : '';
+      vistos.e[ruta_] = [estado, venceIso];
+      usadas.add('e ' + ruta_);
       const limpio = resto
         .replace(/\s+data-estado="[^"]*"/g, '')
         .replace(/\s+data-vence-iso="[^"]*"/g, '');
@@ -1050,10 +1170,23 @@ for (const archivo of archivos) {
         // resto, así el botón de compra no puede terminar siendo javascript:.
         const esLink = attr === 'href' || attr === 'src';
         escritos.push(attr + '="' + (esLink ? enlace(v) : escapar(v)) + '"');
+        vistos.s[ruta_] = esLink ? String(v).trim() : String(v);
+        usadas.add('s ' + ruta_);
       });
       return 'data-set="' + pares + '" ' + escritos.join(' ') + limpio;
     }
   );
+
+  // Los días en que algo de esta página cambia sin que nadie publique.
+  const diasPagina = cambios.filter(function (c) {
+    return ['o', 'e', 's'].some(function (tipo) {
+      return Object.keys(c[tipo] || {}).some(function (k) { return usadas.has(tipo + ' ' + k); });
+    });
+  }).map(function (c) { return c.desde; }).join(' ');
+  salida = salida.replace(/<html\b([^>]*)>/i, function (_m, attrs) {
+    const limpio = attrs.replace(/\s+data-cambios="[^"]*"/g, '');
+    return '<html' + limpio + (diasPagina ? ' data-cambios="' + diasPagina + '"' : '') + '>';
+  });
 
   /* --- JSON-LD: la ficha que ve Google sale del mismo JSON que la página --- */
   salida = salida.replace(
@@ -1402,6 +1535,15 @@ for (const archivo of archivos) {
   }
 }
 
+if (VALORES) {
+  if (errores.length) {
+    errores.forEach(function (e) { console.error('  - ' + e); });
+    process.exit(1);
+  }
+  process.stdout.write(JSON.stringify(vistos));
+  process.exit(0);
+}
+
 /* --- La lista de artículos para llms.txt sale de los archivos, no de una lista
    a mano: la plantilla nombraba cuatro de los once y el artículo nuevo de B12
    no figuraba. Son las respuestas que un modelo puede citar. --- */
@@ -1469,6 +1611,19 @@ for (const archivo of archivos) {
   if (actual !== generado) {
     cambiados.push('llms.txt');
     if (!CHECK) porEscribir.set(rutaLlms, generado);
+  }
+}
+
+/* --- estados.json: cómo se ve el sitio desde cada fecha que viene (ver «Lo
+   que cambia solo»). Cada entrada trae todo lo que cambia respecto de hoy, no
+   respecto de la anterior: el navegador aplica solo la última que ya llegó. --- */
+{
+  const rutaEstados = path.join(raiz, 'estados.json');
+  const generado = JSON.stringify({ cambios: cambios }) + '\n';
+  const actual = fs.existsSync(rutaEstados) ? fs.readFileSync(rutaEstados, 'utf8') : '';
+  if (actual !== generado) {
+    cambiados.push('estados.json');
+    if (!CHECK) porEscribir.set(rutaEstados, generado);
   }
 }
 

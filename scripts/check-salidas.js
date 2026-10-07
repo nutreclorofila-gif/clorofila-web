@@ -23,7 +23,7 @@ const ACTIVIDAD = {
   '/curso': 'curso', '/programa': 'curso',
   '/talleres': 'talleres', '/pastas': 'talleres',
   '/tapeo': 'experiencias', '/experiencias': 'experiencias',
-  '/servicios': 'eventos',
+  '/servicios': 'eventos', '/team-building': 'eventos',
   '/articulos': 'articulos',
 };
 const actividadDe = (ruta) =>

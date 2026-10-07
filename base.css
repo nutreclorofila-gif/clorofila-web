@@ -4,7 +4,7 @@
    todas nocturnas y de luz cálida, pasan a ser la fuente de luz de la página.
    ========================================================================= */
 
-/* Respaldos con medidas ajustadas. Mientras Karla y Bricolage bajan de Google
+/* Respaldos con medidas ajustadas. Mientras Karla baja de Google
    Fonts, el texto se dibuja con Arial (o Roboto en Android) estirada al ancho
    y al alto de línea de la fuente web: cuando la web llega, las líneas no
    cambian de largo y la página no salta (CLS). Los porcentajes salen de
@@ -22,16 +22,6 @@
   font-family:'Karla Fallback Android';
   src:local('Roboto');
   size-adjust:102.62%;ascent-override:89.35%;descent-override:24.56%;line-gap-override:0%;
-}
-@font-face{
-  font-family:'Bricolage Grotesque Fallback';
-  src:local('Arial');
-  size-adjust:105.43%;ascent-override:88.21%;descent-override:25.61%;line-gap-override:0%;
-}
-@font-face{
-  font-family:'Bricolage Grotesque Fallback Android';
-  src:local('Roboto');
-  size-adjust:105.66%;ascent-override:88.02%;descent-override:25.55%;line-gap-override:0%;
 }
 
 :root{
@@ -53,17 +43,11 @@
   --miel:#F0B355;          /* ámbar de la luz del estudio: datos */
 
   /* Tipografía */
-  /* Bricolage Grotesque es una grotesca sans; el respaldo era Times New Roman,
-     una serif. Mientras la fuente carga —y para quien bloquea Google Fonts—
-     todos los títulos del sitio salían en otra familia y con otro carácter.
-     Medido sobre el h1 de la portada: Times da 708 px donde Bricolage da 828
-     (-14,5%, un salto visible al cambiar); Helvetica Neue da 816 (-1,4%). */
-  /* Los títulos van en Vollkorn desde el 3/10/2026: una serifa de libro de
-     cocina, la del lienzo de diseño. El respaldo es Georgia, también serifa,
-     para que el título no cambie de carácter mientras carga. La grotesca
-     queda solo en el logo. */
-  --display:'Vollkorn',Georgia,'Times New Roman',serif;
-  --marca:'Bricolage Grotesque','Bricolage Grotesque Fallback Android','Bricolage Grotesque Fallback','Helvetica Neue',Arial,sans-serif;
+  /* Los títulos van en Besley desde el 6/10/2026: una serifa de tipo Clarendon,
+     como la de los menús y las etiquetas viejas. La eligió Leo entre cinco. El
+     respaldo es Georgia, también serifa, para que el título no cambie de
+     carácter mientras carga. */
+  --display:'Besley',Georgia,'Times New Roman',serif;
   --hoja:clamp(90px,16vw,220px);
   --texto:'Karla','Karla Fallback Android','Karla Fallback',system-ui,sans-serif;
   --dato:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
@@ -138,7 +122,7 @@ h1,h2,h3{
   font-weight:600;
   color:var(--cal);
   line-height:1.08;
-  letter-spacing:-.02em;
+  letter-spacing:-.01em;
   text-wrap:balance;
 }
 h1{font-size:var(--th-pagina)}
@@ -229,8 +213,11 @@ strong{color:var(--cal);font-weight:600}
 .marca{display:flex;flex-direction:column;line-height:1;flex-shrink:0}
 /* La marca también es un enlace (vuelve al inicio): 44 px de alto. */
 a.marca{min-height:44px;justify-content:center}
-.marca b{font-family:var(--marca);font-size:var(--t-alto);font-weight:600;color:var(--cal);letter-spacing:-.02em}
-.marca span{font-family:var(--texto);font-size:var(--t-dato);letter-spacing:.01em;color:var(--cal-baja);margin-top:.2rem}
+/* El logo es el de la identidad de Clorofila (carpeta Identidad, 2021), no un
+   nombre escrito con una fuente: el «Clorofila» en Bricolage Grotesque se leía
+   como un logo de plantilla. Alto fijo; el ancho sale de la proporción. */
+.marca img{display:block;height:46px;width:auto;outline:0}
+@media (max-width:600px){.marca img{height:40px}}
 .nav-links{display:flex;align-items:center;gap:1.25rem;flex:1}
 /* "Inicio" solo en el menú del celular. En la compu el logo de arriba a la
    izquierda ya lleva al home, pero acá el menú abierto ocupa toda la pantalla
@@ -598,7 +585,8 @@ body.menu-abierto .cookie-banner{display:none}
    última línea de la página queda atrapada debajo y no hay manera de leerla.
    En los navegadores sin :has() simplemente no crece, que es como estaba. */
 body:has(#cookie-banner.visible) .pie{padding-bottom:5.75rem}
-.cookie-banner a{color:var(--cal);text-decoration:underline;display:inline-block;padding-block:.2rem}
+.cookie-banner a{color:var(--cal);text-decoration:underline;display:inline-block;padding-block:.2rem;position:relative}
+.cookie-banner a::after{content:"";position:absolute;left:-.4rem;right:-.4rem;top:50%;height:44px;transform:translateY(-50%)}
 .cookie-banner-actions{display:flex;align-items:center;gap:1rem}
 #cookie-accept{background:var(--cal);color:var(--tinta);padding:.45rem 1rem;border-radius:var(--r);font-size:var(--t-nota);font-weight:600;min-height:36px}
 /* «Rechazar» iba en --cal-baja: 4,6 a 1 sobre el aviso ya quieto, pero
@@ -653,6 +641,9 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.75rem}
 .art-cuerpo p .enlace-vivo,.art-captura p .enlace-vivo{display:inline;padding-block:0}
 
 .art-cuerpo{max-width:720px;margin-inline:auto;padding-block:clamp(2.5rem,5vw,4rem)}
+/* La foto del artículo es la misma que se comparte en redes: una foto del estudio, no una ilustración. */
+.art-foto{margin:0 0 2rem;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:1200/630;background:var(--musgo)}
+.art-foto img{display:block;width:100%;height:100%;object-fit:cover}
 .art-cuerpo p{font-size:var(--t-cuerpo);line-height:1.75;color:var(--cal-med);margin-bottom:1.3rem;max-width:none}
 .art-cuerpo h2{font-size:var(--th-sub);margin-block:2.75rem 1.1rem}
 .art-cuerpo strong{color:var(--cal)}
@@ -673,9 +664,11 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.75rem}
 .fuentes a{color:var(--brote);text-decoration:underline;text-underline-offset:2px;padding-block:.35rem}
 .art-remate{border:1px solid rgba(143,192,138,.3);background:var(--musgo);border-radius:var(--r-lg);padding:clamp(1.5rem,3.5vw,2.25rem);margin-top:3rem}
 .art-remate p{font-size:var(--t-chico);margin-bottom:1.25rem}
-.art-captura{border:1px solid var(--linea);background:var(--musgo-alto);border-radius:var(--r-lg);padding:clamp(1.5rem,3.5vw,2.25rem);margin-top:1rem}
+.art-captura{border:1px solid var(--linea);background:var(--musgo-alto);border-radius:var(--r-lg);padding:clamp(1.5rem,3.5vw,2.25rem);margin-top:3rem}
+.art-remate+.art-captura{margin-top:1rem}
 .art-captura h2{margin-block:.7rem .7rem;font-size:var(--th-sub)}
 .art-captura p{font-size:var(--t-chico);margin-bottom:1.25rem}
+.art-captura-acciones{display:flex;flex-wrap:wrap;gap:.75rem}
 .art-captura .nota{font-size:var(--t-nota);color:var(--cal-baja);margin-block:.9rem 0}
 
 .seguir{max-width:720px;margin-inline:auto;padding-bottom:clamp(3rem,6vw,5rem)}

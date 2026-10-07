@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-UY">
+<html lang="es-UY" data-cambios="2026-10-08 2026-10-09 2026-10-24 2026-10-30 2026-10-31">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,10 +30,10 @@
 <meta name="twitter:image" content="https://clorofila.uy/og/og-home.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@24,100,400..600&family=Vollkorn:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
-<link rel="stylesheet" href="base.css?v=60">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Besley:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
+<link rel="stylesheet" href="base.css?v=65">
 <style>
 /* Lo que sigue después de reservar. La página terminaba en los datos: quien
    acaba de comprar es el que más confianza tiene y no se le ofrecía nada. */
@@ -89,7 +89,7 @@
 
 <nav class="nav" id="nav" aria-label="Principal">
   <div class="nav-caja">
-    <a href="/" class="marca"><b>Clorofila</b><span>Estudio de cocina</span></a>
+    <a href="/" class="marca"><picture><source srcset="/logo-clorofila.webp" type="image/webp"><img src="/logo-clorofila.png" width="600" height="153" alt="Clorofila, estudio de cocina"></picture></a>
     <button type="button" class="cerrar-menu" id="cerrar-menu" aria-label="Cerrar menú">✕</button>
     <ul class="nav-links" id="nav-links">
       <li class="solo-menu"><a href="/">Inicio</a></li>
@@ -130,7 +130,7 @@
   <div data-para="programa">
     <div class="comanda">
       <div class="comanda-cabeza"><span class="comanda-titulo">Tu pedido</span><span class="comanda-estado">El programa completo</span></div>
-      <ul class="comanda-datos"><li><strong><!--o:curso.grupos_label-->Grupos abiertos<!--/o--></strong><span><!--o:curso.grupos_abiertos_texto-->Miércoles 19:00–21:00 · Jueves 10:00–12:00<!--/o--></span></li><li><strong>Inicio</strong><span><!--o:curso.inicio_texto-->Arranca el miércoles 7 de octubre<!--/o--></span></li><li><strong>Precio</strong><span><!--o:curso.precio_total-->$12.200<!--/o--> o <!--o:curso.precio_cuotas-->3 cuotas de $4.800<!--/o--></span></li></ul>
+      <ul class="comanda-datos"><li><strong><!--o:curso.grupos_label-->Grupos abiertos<!--/o--></strong><span><!--o:curso.grupos_abiertos_texto-->Miércoles 19:00–21:00 · Jueves 10:00–12:00<!--/o--></span></li><li><strong>Inicio</strong><span><!--o:curso.inicio_frase-->Arranca el miércoles 7 de octubre o el jueves 8 de octubre, según el grupo.<!--/o--></span></li><li><strong>Precio</strong><span><!--o:curso.precio_total-->$12.200<!--/o--> o <!--o:curso.precio_cuotas-->3 cuotas de $4.800<!--/o--></span></li></ul>
     </div>
     <div class="acciones">
       <a href="/programa" class="btn btn-primario" data-producto="programa">Abrir el programa completo</a>
@@ -142,22 +142,24 @@
   <div data-para="curso">
     <div class="comanda">
       <div class="comanda-cabeza"><span class="comanda-titulo">Tu reserva</span><span class="comanda-estado">Curso de cocina saludable</span></div>
-      <ul class="comanda-datos"><li><strong><!--o:curso.grupos_label-->Grupos abiertos<!--/o--></strong><span><!--o:curso.grupos_abiertos_texto-->Miércoles 19:00–21:00 · Jueves 10:00–12:00<!--/o--></span></li><li><strong>Inicio</strong><span><!--o:curso.inicio_texto-->Arranca el miércoles 7 de octubre<!--/o--></span></li><li><strong>Lugar</strong><span>Maldonado 1976 esq. Blanes, Parque Rodó</span></li></ul>
+      <ul class="comanda-datos"><li><strong><!--o:curso.grupos_label-->Grupos abiertos<!--/o--></strong><span><!--o:curso.grupos_abiertos_texto-->Miércoles 19:00–21:00 · Jueves 10:00–12:00<!--/o--></span></li><li><strong>Inicio</strong><span><!--o:curso.inicio_frase-->Arranca el miércoles 7 de octubre o el jueves 8 de octubre, según el grupo.<!--/o--></span></li><li><strong>Lugar</strong><span>Maldonado 1976 esq. Blanes, Parque Rodó</span></li></ul>
     </div>
     <div class="acciones">
-      <a data-set="href=curso.calendario" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Primera+clase+%E2%80%94+Curso+de+Clorofila&amp;dates=20261007T190000%2F20261007T210000&amp;details=Primera+clase+del+curso+de+tres+meses+de+Clorofila%2C+en+Parque+Rod%C3%B3.&amp;location=Clorofila%2C+Maldonado+1976+esq.+Blanes%2C+Parque+Rod%C3%B3%2C+Montevideo&amp;ctz=America%2FMontevideo" data-calendario class="btn btn-primario" target="_blank" rel="noopener noreferrer">Agregar la primera clase al calendario</a>
+      <!--o:html:curso.calendario_html--><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Primera+clase+%E2%80%94+Curso+de+Clorofila&amp;dates=20261007T190000%2F20261007T210000&amp;details=Primera+clase+del+curso+de+tres+meses+de+Clorofila%2C+en+Parque+Rod%C3%B3.&amp;location=Clorofila%2C+Maldonado+1976+esq.+Blanes%2C+Parque+Rod%C3%B3%2C+Montevideo&amp;ctz=America%2FMontevideo" data-calendario class="btn btn-primario" target="_blank" rel="noopener noreferrer">Agendar la primera clase del miércoles 7 de octubre</a>
+      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Primera+clase+%E2%80%94+Curso+de+Clorofila&amp;dates=20261008T100000%2F20261008T120000&amp;details=Primera+clase+del+curso+de+tres+meses+de+Clorofila%2C+en+Parque+Rod%C3%B3.&amp;location=Clorofila%2C+Maldonado+1976+esq.+Blanes%2C+Parque+Rod%C3%B3%2C+Montevideo&amp;ctz=America%2FMontevideo" data-calendario class="btn btn-primario" target="_blank" rel="noopener noreferrer">Agendar la primera clase del jueves 8 de octubre</a><!--/o-->
       <a href="https://wa.me/59894064148?text=Hola%2C%20acabo%20de%20reservar%20un%20lugar%20en%20el%20curso." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="curso">Escribirnos ahora</a>
     </div>
   </div>
 
-  <div data-para="tapeo" data-estado-de="tapeo" data-estado="abierto" data-vence-iso="2026-10-23" data-set="data-precio=tapeo.tiene_precio" data-precio="si">
+  <div data-para="tapeo" data-estado-de="tapeo" data-estado="abierto" data-vence-iso="2026-10-30" data-set="data-precio=tapeo.tiene_precio" data-precio="si">
     <div class="comanda">
       <div class="comanda-cabeza"><span class="comanda-titulo">Tu reserva</span><span class="comanda-estado">Cena y Taller de Tapeo</span></div>
-      <ul class="comanda-datos"><li><strong>Fecha</strong><span><!--o:tapeo.fecha_texto-->viernes 23 de octubre<!--/o--></span></li><li><strong>Hora</strong><span><!--o:tapeo.horario_texto-->19:00 a 22:30 h<!--/o--></span></li><li><strong>Lugar</strong><span>Maldonado 1976 esq. Blanes, Parque Rodó</span></li></ul>
+      <ul class="comanda-datos"><li><strong>Fechas</strong><span><!--o:tapeo.fechas_texto-->viernes 23 de octubre y viernes 30 de octubre<!--/o--></span></li><li><strong>Hora</strong><span><!--o:tapeo.horario_texto-->19:00 a 22:30 h<!--/o--></span></li><li><strong>Lugar</strong><span>Maldonado 1976 esq. Blanes, Parque Rodó</span></li></ul>
     </div>
     <div class="acciones">
-      <a data-set="href=tapeo.calendario" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Cena+y+Taller+de+Tapeo+%E2%80%94+Clorofila&amp;dates=20261023T190000%2F20261023T223000&amp;details=Cocinamos+juntos+y+despu%C3%A9s+cenamos+todo+lo+que+preparamos.+Clorofila%2C+Parque+Rod%C3%B3.&amp;location=Clorofila%2C+Maldonado+1976+esq.+Blanes%2C+Parque+Rod%C3%B3%2C+Montevideo&amp;ctz=America%2FMontevideo" data-calendario class="btn btn-primario" target="_blank" rel="noopener noreferrer">Agregar la fecha al calendario</a>
-      <a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo.%20%C2%BFHay%20lugar%20el%20viernes%2023%20de%20octubre%20o%20el%20viernes%2030%20de%20octubre%3F%20Somos%20%5Bcantidad%5D%20personas." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="tapeo">Escribirnos ahora</a>
+      <!--o:html:tapeo.calendario_html--><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Cena+y+Taller+de+Tapeo+%E2%80%94+Clorofila&amp;dates=20261023T190000%2F20261023T223000&amp;details=Cocinamos+juntos+y+despu%C3%A9s+cenamos+todo+lo+que+preparamos.+Clorofila%2C+Parque+Rod%C3%B3.&amp;location=Clorofila%2C+Maldonado+1976+esq.+Blanes%2C+Parque+Rod%C3%B3%2C+Montevideo&amp;ctz=America%2FMontevideo" data-calendario class="btn btn-primario" target="_blank" rel="noopener noreferrer">Agendar el viernes 23 de octubre</a>
+      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Cena+y+Taller+de+Tapeo+%E2%80%94+Clorofila&amp;dates=20261030T190000%2F20261030T223000&amp;details=Cocinamos+juntos+y+despu%C3%A9s+cenamos+todo+lo+que+preparamos.+Clorofila%2C+Parque+Rod%C3%B3.&amp;location=Clorofila%2C+Maldonado+1976+esq.+Blanes%2C+Parque+Rod%C3%B3%2C+Montevideo&amp;ctz=America%2FMontevideo" data-calendario class="btn btn-primario" target="_blank" rel="noopener noreferrer">Agendar el viernes 30 de octubre</a><!--/o-->
+      <a data-set="href=tapeo.wa_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20para%20la%20Cena%20y%20Taller%20de%20Tapeo.%20%C2%BFHay%20lugar%20el%20viernes%2023%20de%20octubre%20o%20el%20viernes%2030%20de%20octubre%3F" target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="tapeo">Escribirnos ahora</a>
     </div>
 
     <div class="gracias-luego">
@@ -184,7 +186,7 @@
 <footer class="pie">
   <div class="pie-caja">
     <div class="pie-marca">
-      <a href="/" class="marca"><b>Clorofila</b><span>Estudio de cocina</span></a>
+      <a href="/" class="marca"><picture><source srcset="/logo-clorofila.webp" type="image/webp"><img src="/logo-clorofila.png" width="600" height="153" alt="Clorofila, estudio de cocina"></picture></a>
       <p class="pie-lema">Cocinamos y comemos de manera creativa, energética y nutritiva.</p>
       <p class="dato" style="color:var(--cal-baja);text-transform:none;letter-spacing:.02em"><a href="/contacto">Maldonado 1976 esq. Blanes, Parque Rodó, Montevideo</a></p>
     </div>
@@ -198,7 +200,7 @@
 
 
 <script src="track.js?v=20261004" defer></script>
-<script src="pagina.js?v=34" defer></script>
+<script src="pagina.js?v=35" defer></script>
 <script>
 // Muestra el bloque de la propuesta reservada: /gracias?p=tapeo o ?p=curso.
 (function () {
