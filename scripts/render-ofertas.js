@@ -231,7 +231,7 @@ const waBase = 'https://wa.me/59894064148?text=';
 t.wa_link = waBase + encodeURIComponent(
   t.estado === 'sin-fecha' || t.estado === 'agotado'
     ? 'Hola Leonardo, me interesa la Cena y Taller de Tapeo. Avisame cuando abran la próxima fecha.'
-    : 'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.fecha_texto + '. Somos [cantidad] personas.'
+    : 'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.fecha_texto + '.'
 );
 /* Con dos fechas abiertas, cada botón de fecha pide su noche. Antes el de la
    segunda caía en el mensaje de la primera: quien tocaba «viernes 16» mandaba
@@ -240,11 +240,11 @@ t.wa_link = waBase + encodeURIComponent(
 if (!ventaMuda(t.estado) && t.segunda_fecha && t.segunda_fecha.texto) {
   t.wa_link_1 = t.wa_link;
   t.wa_link_2 = waBase + encodeURIComponent(
-    'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.segunda_fecha.texto + '. Somos [cantidad] personas.'
+    'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.segunda_fecha.texto + '.'
   );
   t.wa_link = waBase + encodeURIComponent(
     'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo. ¿Hay lugar el ' + t.fecha_texto +
-    ' o el ' + t.segunda_fecha.texto + '? Somos [cantidad] personas.'
+    ' o el ' + t.segunda_fecha.texto + '?'
   );
 }
 /* Con la fecha llena, el botón decía "avisame si se libera un lugar" mientras
@@ -389,6 +389,22 @@ function linkCalendario(titulo, iso, horaIni, horaFin, detalle) {
 t.calendario = linkCalendario('Cena y Taller de Tapeo — Clorofila', t.fecha_iso, t.hora, t.hora_fin,
   'Cocinamos juntos y después cenamos todo lo que preparamos. Clorofila, Parque Rodó.');
 
+/* En /gracias, un botón de calendario por fecha. Con uno solo, quien compró la
+   segunda noche agendaba la primera. */
+function botonCalendario(link, texto) {
+  return '<a href="' + escapar(link) + '" data-calendario class="btn btn-primario" target="_blank" rel="noopener noreferrer">' + escapar(texto) + '</a>';
+}
+t.fechas_texto = fechasTapeo(t);
+t.calendario_html = [
+  t.fecha_iso ? botonCalendario(t.calendario, 'Agendar el ' + t.fecha_texto) : '',
+  (t.segunda_fecha && t.segunda_fecha.iso && t.estado !== 'sin-fecha' && t.estado !== 'agotado')
+    ? botonCalendario(linkCalendario('Cena y Taller de Tapeo — Clorofila', t.segunda_fecha.iso,
+        t.segunda_fecha.hora_inicio || t.hora, t.segunda_fecha.hora_fin || t.hora_fin,
+        'Cocinamos juntos y después cenamos todo lo que preparamos. Clorofila, Parque Rodó.'),
+        'Agendar el ' + t.segunda_fecha.texto)
+    : ''
+].filter(Boolean).join('\n      ');
+
 /* Cada taller usa exactamente las mismas reglas que el tapeo. */
 for (const [id, w] of Object.entries(datos.talleres)) {
   if (id.startsWith('_')) { delete datos.talleres[id]; continue; }
@@ -488,6 +504,13 @@ datos.curso.calendario = abiertos.length
       abiertos[0].horario.split(' a ')[0], abiertos[0].horario.split(' a ')[1].replace(' h', ''),
       'Primera clase del curso de tres meses de Clorofila, en Parque Rodó.')
   : '';
+// Un botón por grupo: con uno solo, quien se anotó al grupo del jueves agendaba el miércoles.
+datos.curso.calendario_html = abiertos.map(function (g) {
+  return botonCalendario(linkCalendario('Primera clase — Curso de Clorofila', g.inicio_iso,
+      g.horario.split(' a ')[0], g.horario.split(' a ')[1].replace(' h', ''),
+      'Primera clase del curso de tres meses de Clorofila, en Parque Rodó.'),
+    'Agendar la primera clase del ' + String(g.inicio_texto).replace(/^arranca el /i, ''));
+}).join('\n      ');
 datos.curso.estado = abiertos.length ? 'abierto' : 'sin-fecha';
 
 // Cuando no hay edición abierta, la web deja de pedir una inscripción que no
