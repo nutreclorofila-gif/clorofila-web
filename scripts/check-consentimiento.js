@@ -178,6 +178,8 @@ function pagina({ ruta, busqueda = '', producto, sinVista = false, conGracias = 
 console.log('\n6) Llega a /curso sin contestar el aviso, acepta en esa misma página');
 let p = pagina({ ruta: '/curso', busqueda: '?gclid=PRUEBA', producto: 'curso' });
 check('Analytics recibe la vista de producto al llegar', p.ga.includes('view_producto'), p.ga);
+const vista = p.win.dataLayer.find((x) => x[0] === 'event' && x[1] === 'view_producto');
+check('la vista lleva actividad=curso', vista && vista[2].actividad === 'curso', vista && vista[2]);
 check('el gclid queda anotado como google_ads', /google_ads/.test(p.almacen.clorofila_origen || ''), p.almacen);
 check('Meta no recibe nada antes de aceptar', p.meta.length === 0, p.meta);
 p.win.loadAnalytics();
@@ -194,6 +196,12 @@ p = pagina({ ruta: '/curso', busqueda: '?gclid=PRUEBA', producto: 'curso', decis
 check('Analytics no recibe nada', p.ga.length === 0, p.ga);
 check('Meta no recibe nada', p.meta.length === 0, p.meta);
 check('no guarda el origen', !('clorofila_origen' in p.almacen), p.almacen);
+
+console.log('\n6d) Rechazó, llegó por un anuncio y escribe por WhatsApp desde otra página');
+const sesionAds = {};
+p = pagina({ ruta: '/curso', busqueda: '?gclid=PRUEBA', producto: 'curso', decision: 'declined', sesion: sesionAds });
+check('no guarda el origen', !('clorofila_origen' in p.almacen), p.almacen);
+check('anota solo que vino de Ads, en la sesión', JSON.stringify(sesionAds) === '{"clorofila_vino_de_ads":"1"}', sesionAds);
 
 console.log('\n7) /gracias?p=tapeo sin contestar el aviso, acepta ahí');
 p = pagina({ ruta: '/gracias', busqueda: '?p=tapeo', producto: 'gracias', sinVista: true, conGracias: true });
