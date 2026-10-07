@@ -611,8 +611,8 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:10.5rem}
 /* A 400px el corte dejaba afuera al iPhone de 393, que es de los teléfonos
    más usados: ahí el aviso volvía a la versión apilada de 99px. Con el corte
    en 360 entran casi todos y queda en la mitad de alto. */
-/* Desde el 7/10 el texto explica para qué se usan y ocupa dos renglones: el
-   texto va arriba y los dos botones abajo, del mismo ancho. */
+/* El texto va arriba y los dos botones abajo, del mismo ancho: Aceptar y
+   Rechazar tienen que ser igual de fáciles de tocar. */
 .cookie-banner{flex-direction:column;align-items:stretch}
 .cookie-banner-actions{gap:.6rem}
 @media (min-width:901px){.cookie-banner{max-width:360px}}
