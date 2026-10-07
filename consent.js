@@ -45,37 +45,34 @@
 
   /* Modo de consentimiento (Consent Mode v2).
 
-     Se declara de entrada que NO hay permiso para nada, y Analytics se carga
-     recién cuando la persona aprieta "Aceptar" (o si ya había aceptado en
-     otra visita). Esto tiene que quedar declarado ANTES de cargar gtag: lo
-     que se manda antes de esta línea viaja con los permisos de fábrica, que
-     son todos concedidos.
+     Desde el 7/10/2026 Analytics mide a todos salvo a quien aprieta
+     "Rechazar". Meta y la publicidad siguen esperando a "Aceptar".
+     - Nadie tocó el aviso: Analytics con cookies; Meta y anuncios, no.
+     - "Aceptar": se suman Meta y los permisos de publicidad.
+     - "Rechazar": no se carga nada, y si Analytics ya había arrancado en esa
+       página, se corta ahí mismo (rechazarAnalytics).
+     Con "nada hasta aceptar" se perdía casi todo: dos de cada tres visitas no
+     contestaban el aviso, y de 25 clics de Ads se veían 2 sesiones.
 
-     Del 7/9 al 23/9/2026 Analytics se cargaba también mientras la persona no
-     decidía, en modo anónimo. Salió mal por dos lados:
-     - Los avisos anónimos no aparecen en ningún informe: la propiedad no
-       tiene el volumen que Google pide para modelarlos.
-     - Quien aceptaba en la primera página perdía su visita de llegada. Al
-       pasar a "granted", gtag no vuelve a mandar el page_view ni marca el
-       inicio de sesión ni la primera visita, así que la fuente de esa
-       persona nunca llegaba. first_visit bajó de 74 a 28 en dos semanas, y
-       de los clics de Ads se veía entre el 4 y el 6%.
-     Cargando gtag después del "granted", el primer page_view sale con
-     cookies y con la dirección de llegada intacta (utm y gclid). */
+     El permiso se declara ANTES de cargar gtag, nunca después. Del 7/9 al
+     23/9/2026 gtag arrancaba sin permiso de Analytics y lo recibía recién al
+     aceptar: el page_view de llegada salía sin cookies y la fuente de esa
+     persona se perdía (first_visit bajó de 74 a 28 en dos semanas). Acá el
+     primer page_view ya sale con el permiso que corresponde. */
+  var decision = leer();
   gtag('consent', 'default', {
     ad_storage: 'denied',
     ad_user_data: 'denied',
     ad_personalization: 'denied',
-    analytics_storage: 'denied'
+    analytics_storage: decision === 'declined' ? 'denied' : 'granted'
   });
-  // Solo cuentan si gtag llega a correr con los permisos denegados: que el
-  // gclid viaje en la dirección y que Google recorte los datos de publicidad.
-  // Con Analytics cargando recién al aceptar no debería pasar, pero no cuestan nada.
+  // Con la publicidad denegada: que el gclid viaje en la dirección (así la
+  // visita se atribuye igual al anuncio) y que Google recorte los datos de
+  // publicidad.
   gtag('set', 'ads_data_redaction', true);
   gtag('set', 'url_passthrough', true);
 
-  /* Carga Analytics. La llama solo loadAnalytics(), después de levantar los
-     permisos: así el primer page_view ya sale con cookies. */
+  /* Carga Analytics, siempre con el permiso ya declarado arriba. */
   function cargarGA() {
     if (window.__analyticsLoaded) return;
     if (DOMINIOS.indexOf(location.hostname) === -1) return;
@@ -89,21 +86,22 @@
     gtag('config', GA_ID);
   }
 
-  /* track.js guarda los eventos que ocurrieron antes de que Analytics
-     estuviera listo (la vista de producto, sobre todo) y los manda recién
-     con este aviso. Sin él se perdían: eran casi la mitad.
-     Sale una sola vez y al final de loadAnalytics(), con gtag y fbq ya
-     creados. Antes salía dentro de cargarGA(), antes de fbq('init'): track.js
-     vaciaba la cola, no encontraba fbq y tiraba los eventos de Meta. Así se
-     perdían el ViewContent de la página de llegada y el Schedule de /gracias. */
-  function avisarListo() {
-    if (window.__analyticsAvisado) return;
-    window.__analyticsAvisado = true;
+  /* Avisos para track.js y /gracias, que guardan lo que pasó antes de que
+     la herramienta estuviera lista y lo mandan con este aviso.
+     - analytics:listo: gtag ya existe. Sale una sola vez.
+     - meta:listo: fbq ya existe (después de fbq('init')). Sale una sola vez.
+     Son dos porque Analytics y Meta ya no arrancan juntos: quien no contestó
+     el aviso tiene Analytics y no Meta. Con un solo aviso, la vista de
+     producto se mandaba a Analytics al abrir la página y Meta nunca recibía
+     su ViewContent aunque la persona aceptara después. */
+  function avisar(nombre, marca) {
+    if (window[marca]) return;
+    window[marca] = true;
     try {
-      window.dispatchEvent(new Event('analytics:listo'));
+      window.dispatchEvent(new Event(nombre));
     } catch (e) {
       var ev = document.createEvent('Event');
-      ev.initEvent('analytics:listo', false, false);
+      ev.initEvent(nombre, false, false);
       window.dispatchEvent(ev);
     }
   }
@@ -111,8 +109,7 @@
   window.loadAnalytics = function () {
     if (DOMINIOS.indexOf(location.hostname) === -1) return;
 
-    // Aceptó: se levantan los cuatro permisos, y recién después se carga
-    // Analytics.
+    // Aceptó: se levantan los cuatro permisos antes de cargar nada.
     gtag('consent', 'update', {
       ad_storage: 'granted',
       ad_user_data: 'granted',
@@ -122,10 +119,33 @@
     cargarGA();
 
     // El píxel de Meta no entiende de permisos parciales: o mide con cookies
-    // o no mide. Por eso sigue cargando solo cuando la persona acepta.
+    // o no mide. Por eso carga solo cuando la persona acepta.
     if (!window.__metaCargado) cargarMeta();
 
-    avisarListo();
+    avisar('analytics:listo', '__analyticsAvisado');
+    avisar('meta:listo', '__metaAvisado');
+  };
+
+  /* Apretó "Rechazar" en esta página. Si Analytics ya había arrancado (no
+     había contestado el aviso), deja de mandar y se borran sus cookies. En
+     las páginas siguientes consent.js lee "declined" y no carga nada. */
+  window.rechazarAnalytics = function () {
+    gtag('consent', 'update', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied'
+    });
+    window['ga-disable-' + GA_ID] = true;
+    var dominio = location.hostname.replace(/^www\./, '');
+    (document.cookie || '').split(';').forEach(function (c) {
+      var nombre = c.split('=')[0].trim();
+      if (nombre === '_ga' || nombre.indexOf('_ga_') === 0) {
+        var vencida = nombre + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        document.cookie = vencida;
+        document.cookie = vencida + '; domain=.' + dominio;
+      }
+    });
   };
 
   function cargarMeta() {
@@ -144,8 +164,12 @@
     fbq('track', 'PageView');
   }
 
-  // Solo se mide a quien aceptó. Mientras la persona no decide no se carga
-  // nada, y a quien apretó "Rechazar" tampoco: el banner de pagina.js llama a
-  // loadAnalytics() cuando aprieta "Aceptar".
-  if (leer() === 'accepted') window.loadAnalytics();
+  // Aceptó en otra visita: todo. No contestó todavía: solo Analytics.
+  // Rechazó: nada.
+  if (decision === 'accepted') {
+    window.loadAnalytics();
+  } else if (decision !== 'declined' && DOMINIOS.indexOf(location.hostname) > -1) {
+    cargarGA();
+    avisar('analytics:listo', '__analyticsAvisado');
+  }
 })();

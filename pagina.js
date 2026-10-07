@@ -343,8 +343,8 @@
   if (banner) {
     if (!almacen.leer()) {
       /* Sale a los 0,5 s o con el primer scroll, lo que pase antes. Esperaba
-         2,5 s y mucha gente se iba sin verlo: sin respuesta no se mide la
-         visita (pedido del 7/10, con el aviso ya sin tapar el hero ni el menú). */
+         2,5 s y mucha gente se iba sin verlo (pedido del 7/10, con el aviso ya
+         sin tapar el hero ni el menú). */
       var mostrarAviso = function () {
         if (banner.classList.contains('visible')) return;
         banner.classList.add('visible');
@@ -363,6 +363,8 @@
     if (no) no.addEventListener('click', function () {
       almacen.guardar('declined');
       banner.classList.remove('visible');
+      // Analytics ya medía esta visita (no había contestado): se corta acá.
+      if (window.rechazarAnalytics) window.rechazarAnalytics();
     });
   }
 

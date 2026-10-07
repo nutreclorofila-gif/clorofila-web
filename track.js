@@ -21,11 +21,9 @@
      segundo día la persona figuraba como "directo". Con la fecha guardada,
      al mes vence y deja de arrastrar una campaña vieja.
 
-     Se escribe recién cuando la persona acepta las cookies (aviso
-     analytics:listo de consent.js). Antes se guardaba al abrir la página,
-     también a quien no había decidido o había rechazado, y eso contradecía
-     lo que dice /privacidad. Leer sí se puede: solo hay algo guardado si
-     antes aceptó. */
+     Se escribe recién cuando Analytics arranca (aviso analytics:listo de
+     consent.js): al abrir la página si la persona no rechazó, o al aceptar.
+     A quien apretó "Rechazar" no se le guarda nada, como dice /privacidad. */
   function almacen() {
     try {
       var x = window.localStorage;
@@ -180,9 +178,9 @@
     return null;
   }
 
-  /* Hasta que la persona no acepta las cookies, GA4 y el pixel no existen y
-     todo lo que se midiera se perdía: la vista de producto ocurre al abrir la
-     página, o sea SIEMPRE antes de aceptar. En 28 días eso fue 232 page_view
+  /* Mientras GA4 no arrancó, todo lo que se midiera se perdía: la vista de
+     producto ocurre al abrir la página, o sea antes de que consent.js cargue
+     Analytics. En 28 días eso fue 232 page_view
      contra 120 view_producto. Los eventos se guardan y se mandan cuando
      consent.js avisa que la analítica arrancó. */
   var pendientes = [];
@@ -196,6 +194,20 @@
   window.addEventListener('analytics:listo', function () {
     var cola = pendientes;
     pendientes = [];
+    cola.forEach(function (fn) { try { fn(); } catch (e) { /* uno malo no corta el resto */ } });
+  });
+
+  /* Meta tiene su propia cola: quien no contestó el aviso tiene Analytics
+     pero no el píxel, que carga recién al aceptar (aviso meta:listo). Si
+     acepta más tarde en la misma página, el ViewContent llega igual. */
+  var pendientesMeta = [];
+  function encolarMeta(fn) {
+    if (window.__metaAvisado) { fn(); return; }
+    if (pendientesMeta.length < TOPE_PENDIENTES) pendientesMeta.push(fn);
+  }
+  window.addEventListener('meta:listo', function () {
+    var cola = pendientesMeta;
+    pendientesMeta = [];
     cola.forEach(function (fn) { try { fn(); } catch (e) { /* uno malo no corta el resto */ } });
   });
 
@@ -219,7 +231,7 @@
   function meta(evento, producto, extra, propio) {
     var datos = { content_name: producto, content_category: 'clorofila' };
     if (extra) Object.keys(extra).forEach(function (k) { datos[k] = extra[k]; });
-    encolar(function () {
+    encolarMeta(function () {
       if (typeof fbq === 'function') fbq(propio ? 'trackCustom' : 'track', evento, datos);
     });
   }

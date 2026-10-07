@@ -75,7 +75,7 @@
 .dudas{margin-top:1.5rem;font-size:var(--t-chico);color:var(--cal-baja)}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
-<script src="consent.js?v=20260924" defer></script>
+<script src="consent.js?v=20261007" defer></script>
 </head>
 <body data-producto="gracias" data-sin-vista>
 <a href="#principal" class="saltar">Ir al contenido principal</a>
@@ -199,8 +199,8 @@
 </footer>
 
 
-<script src="track.js?v=20261004" defer></script>
-<script src="pagina.js?v=36" defer></script>
+<script src="track.js?v=20261007" defer></script>
+<script src="pagina.js?v=37" defer></script>
 <script>
 // Muestra el bloque de la propuesta reservada: /gracias?p=tapeo o ?p=curso.
 (function () {
@@ -224,8 +224,8 @@
   var cal = bloque && bloque.querySelector('[data-calendario]');
   if (cal && !cal.getAttribute('href')) cal.remove();
   /* Conversión: acá termina el camino que empezó en Instagram.
-     Si la persona todavía no aceptó las cookies, GA4 y el pixel no existen y la
-     conversión se perdía. Se espera el aviso de consent.js, igual que track.js.
+     Este script corre antes que consent.js: sin esperar sus avisos, la
+     conversión se perdía. Se espera el aviso, igual que track.js.
 
      Solo el curso y el tapeo son una reserva. Sin ?p=, o con p=programa, la
      persona pidió el temario: antes eso también salía como reserva_recibida,
@@ -234,25 +234,33 @@
 
      Una sola vez por visita: al recargar la página, o al volver con el botón
      de atrás, antes se contaba otra vez la misma persona. */
-  var clave = 'gracias_medido_' + elegido;
-  function yaMedido() {
+  var reserva = elegido === 'curso' || elegido === 'tapeo';
+  // Analytics y Meta van por separado: quien no contestó el aviso de cookies
+  // tiene Analytics al abrir la página y Meta recién si acepta.
+  function yaMedido(clave) {
     try { return window.sessionStorage.getItem(clave) === '1'; } catch (e) { return false; }
   }
-  function medir() {
-    if (yaMedido()) return;
-    var reserva = elegido === 'curso' || elegido === 'tapeo';
-    if (typeof gtag === 'function') {
-      if (reserva) gtag('event', 'reserva_recibida', { producto: elegido });
-      else gtag('event', 'generate_lead', { producto: 'programa', method: 'temario' });
-    }
-    if (typeof fbq === 'function') {
-      if (reserva) fbq('track', 'Schedule', { content_name: elegido });
-      else fbq('track', 'CompleteRegistration', { content_name: 'programa' });
-    }
+  function marcar(clave) {
     try { window.sessionStorage.setItem(clave, '1'); } catch (e) { /* sin almacenamiento, se mide igual */ }
   }
-  if (window.__analyticsAvisado) medir();
-  else window.addEventListener('analytics:listo', medir);
+  function medirGA() {
+    var clave = 'gracias_medido_' + elegido;
+    if (yaMedido(clave) || typeof gtag !== 'function') return;
+    if (reserva) gtag('event', 'reserva_recibida', { producto: elegido });
+    else gtag('event', 'generate_lead', { producto: 'programa', method: 'temario' });
+    marcar(clave);
+  }
+  function medirMeta() {
+    var clave = 'gracias_meta_' + elegido;
+    if (yaMedido(clave) || typeof fbq !== 'function') return;
+    if (reserva) fbq('track', 'Schedule', { content_name: elegido });
+    else fbq('track', 'CompleteRegistration', { content_name: 'programa' });
+    marcar(clave);
+  }
+  if (window.__analyticsAvisado) medirGA();
+  else window.addEventListener('analytics:listo', medirGA);
+  if (window.__metaAvisado) medirMeta();
+  else window.addEventListener('meta:listo', medirMeta);
 })();
 </script>
 </body>

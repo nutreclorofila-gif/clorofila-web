@@ -2,10 +2,10 @@
 // Qué se mide, y cuándo, según lo que la persona haya decidido en el cartel
 // de cookies. Es la parte del sitio donde una línea de más manda datos de un
 // visitante sin permiso, y donde un orden equivocado borra visitas del panel.
-// Del 7/9 al 23/9/2026 Analytics se cargaba en modo anónimo antes de que la
-// persona decidiera: esos avisos no aparecían en ningún informe, y quien
-// aceptaba perdía su visita de llegada (first_visit bajó de 74 a 28 en dos
-// semanas). La regla es: nada hasta aceptar, y el permiso antes que gtag.
+// La regla, desde el 7/10/2026: Analytics mide a todos salvo a quien aprieta
+// "Rechazar"; Meta y la publicidad, solo con "Aceptar". Y el permiso se
+// declara antes que gtag: del 7/9 al 23/9 llegaba después, y quien aceptaba
+// perdía su visita de llegada (first_visit bajó de 74 a 28 en dos semanas).
 //
 // Corre consent.js con un navegador simulado, porque en local el propio
 // script se apaga a propósito (solo mide en clorofila.uy) y ahí no se puede
@@ -19,7 +19,10 @@ const codigo = fs.readFileSync(path.join(__dirname, '..', 'consent.js'), 'utf8')
 function correr(guardado, hostname = 'clorofila.uy') {
   const scripts = [];
   const almacen = { cookieConsent: guardado };
+  const galletas = [];
   const doc = {
+    get cookie() { return '_ga=GA1.1.1; _ga_BBLJT4TYCV=GS1; otra=1'; },
+    set cookie(v) { galletas.push(v); },
     head: { appendChild(s) { scripts.push(s.src); } },
     createElement: () => ({ set src(v) { this._s = v; }, get src() { return this._s; } }),
     getElementsByTagName: () => [{ parentNode: { insertBefore(t) { scripts.push(t.src); } } }],
@@ -47,6 +50,8 @@ function correr(guardado, hostname = 'clorofila.uy') {
     get scripts() { return scripts.map((s) => (String(s).includes('googletagmanager') ? 'GA' : String(s).includes('facebook') ? 'META' : s)); },
     eventos,
     aceptar: win.loadAnalytics,
+    rechazar: win.rechazarAnalytics,
+    galletas,
     win,
   };
 }
@@ -59,38 +64,48 @@ const check = (nombre, ok, detalle) => {
   if (!ok) fallas++;
 };
 
-console.log('\n1) Nadie tocó el cartel (el 68% de las visitas)');
+console.log('\n1) Nadie tocó el cartel (dos de cada tres visitas)');
 let r = correr(null);
-check('declara los cuatro permisos denegados', JSON.stringify(r.consent[0]) === JSON.stringify(['default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' }]), r.consent);
+check('Analytics con permiso, publicidad sin permiso', JSON.stringify(r.consent[0]) === JSON.stringify(['default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' }]), r.consent);
 check('conserva el gclid y recorta datos de anuncios', r.sets.join(',') === 'ads_data_redaction=true,url_passthrough=true', r.sets);
-check('no carga nada hasta que decida', r.scripts.length === 0, r.scripts);
-check('no avisa a track.js', r.eventos.length === 0, r.eventos);
+check('carga Analytics y no Meta', r.scripts.join(',') === 'GA', r.scripts);
+check('avisa a track.js solo por Analytics', r.eventos.join(',') === 'analytics:listo', r.eventos);
+// Si el permiso llega después del config, el primer page_view sale sin
+// cookies y la visita de llegada se pierde: es lo que pasó del 7/9 al 23/9.
+let capa = r.win.dataLayer.map((a) => a[0] + (a[0] === 'consent' ? ':' + a[1] : ''));
+check('el permiso está declarado antes de la primera visita medida', capa.indexOf('consent:default') > -1 && capa.indexOf('consent:default') < capa.indexOf('config'), capa);
 
-console.log('\n2) Apretó "Rechazar"');
+console.log('\n2) Apretó "Rechazar" (visita anterior)');
 r = correr('declined');
+check('los cuatro permisos denegados', JSON.stringify(r.consent) === JSON.stringify([['default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' }]]), r.consent);
 check('no carga nada', r.scripts.length === 0, r.scripts);
-check('los permisos quedan denegados', r.consent.length === 1 && r.consent[0][0] === 'default', r.consent);
 check('no avisa a track.js', r.eventos.length === 0, r.eventos);
 
 console.log('\n3) Apretó "Aceptar" (visita anterior)');
 r = correr('accepted');
 check('levanta los cuatro permisos', JSON.stringify(r.consent[1]) === JSON.stringify(['update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' }]), r.consent);
-check('el "denied" va antes que el "granted"', r.consent[0][0] === 'default' && r.consent[1][0] === 'update', r.consent.map((c) => c[0]));
+capa = r.win.dataLayer.map((a) => a[0] + (a[0] === 'consent' ? ':' + a[1] : ''));
+check('los permisos van antes que la primera visita medida', capa.indexOf('consent:update') > -1 && capa.indexOf('consent:update') < capa.indexOf('config'), capa);
 check('carga Analytics y Meta', r.scripts.join(',') === 'GA,META', r.scripts);
+check('avisa por Analytics y por Meta', r.eventos.join(',') === 'analytics:listo,meta:listo', r.eventos);
 
-console.log('\n4) Acepta durante la visita (hasta ahí no se medía nada)');
+console.log('\n4) Acepta durante la visita (Analytics ya medía)');
 r = correr(null);
-const antes = r.scripts.slice();
 r.aceptar();
-check('antes no había nada cargado', antes.length === 0, antes);
-check('ahora carga Analytics y Meta', r.scripts.join(',') === 'GA,META', r.scripts);
-// Si el "granted" llega después del config, el primer page_view sale sin
-// cookies y la visita de llegada se pierde: es lo que pasó del 7/9 al 23/9.
-const capa = r.win.dataLayer.map((a) => a[0] + (a[0] === 'consent' ? ':' + a[1] : ''));
-check('el permiso llega antes que la primera visita medida', capa.indexOf('consent:update') > -1 && capa.indexOf('consent:update') < capa.indexOf('config'), capa);
-check('avisa a track.js una vez', r.eventos.length === 1, r.eventos);
+check('suma Meta sin cargar Analytics otra vez', r.scripts.join(',') === 'GA,META', r.scripts);
+check('levanta los permisos de publicidad', JSON.stringify(r.consent[1]) === JSON.stringify(['update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' }]), r.consent);
+check('un solo config de Analytics', r.win.dataLayer.filter((a) => a[0] === 'config').length === 1, r.win.dataLayer.length);
+check('avisa a Meta una vez', r.eventos.join(',') === 'analytics:listo,meta:listo', r.eventos);
 r.aceptar();
-check('apretar dos veces no duplica nada', r.scripts.join(',') === 'GA,META', r.scripts);
+check('apretar dos veces no duplica nada', r.scripts.join(',') === 'GA,META' && r.eventos.length === 2, [r.scripts, r.eventos]);
+
+console.log('\n4b) Rechaza durante la visita (Analytics ya medía)');
+r = correr(null);
+r.rechazar();
+check('baja los cuatro permisos', JSON.stringify(r.consent[1]) === JSON.stringify(['update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' }]), r.consent);
+check('apaga Analytics en esta página', r.win['ga-disable-G-BBLJT4TYCV'] === true, Object.keys(r.win));
+check('borra las cookies de Analytics y ninguna otra', r.galletas.length === 4 && r.galletas.every((g) => /^_ga(_BBLJT4TYCV)?=; expires=Thu, 01 Jan 1970/.test(g)), r.galletas);
+check('no carga Meta', r.scripts.join(',') === 'GA', r.scripts);
 
 console.log('\n5) En local y en las previews no se mide');
 r = correr(null, 'localhost');
@@ -108,9 +123,9 @@ const htmlGracias = fs.readFileSync(path.join(raiz, 'gracias.html'), 'utf8');
 const enLinea = [...htmlGracias.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => m[1]);
 const codigoGracias = enLinea.find((c) => c.includes('reserva_recibida'));
 
-function pagina({ ruta, busqueda = '', producto, sinVista = false, conGracias = false, sesion = {}, referrer = '' }) {
+function pagina({ ruta, busqueda = '', producto, sinVista = false, conGracias = false, sesion = {}, referrer = '', decision = null }) {
   const oyentes = {};
-  const almacen = {};
+  const almacen = decision ? { cookieConsent: decision } : {};
   const atributos = { 'data-producto': producto };
   if (sinVista) atributos['data-sin-vista'] = '';
   const nodo = () => ({ textContent: '', classList: { add() {} }, querySelector: () => null, getAttribute: () => null, remove() {} });
@@ -160,29 +175,40 @@ function pagina({ ruta, busqueda = '', producto, sinVista = false, conGracias = 
   };
 }
 
-console.log('\n6) Llega a /curso, acepta en esa misma página');
+console.log('\n6) Llega a /curso sin contestar el aviso, acepta en esa misma página');
 let p = pagina({ ruta: '/curso', busqueda: '?gclid=PRUEBA', producto: 'curso' });
-check('antes de aceptar no guarda el origen', !('clorofila_origen' in p.almacen), p.almacen);
-p.win.loadAnalytics();
-check('Meta recibe la vista de producto (ViewContent)', p.meta.includes('track:ViewContent'), p.meta);
-check('Analytics recibe la vista de producto', p.ga.includes('view_producto'), p.ga);
+check('Analytics recibe la vista de producto al llegar', p.ga.includes('view_producto'), p.ga);
 check('el gclid queda anotado como google_ads', /google_ads/.test(p.almacen.clorofila_origen || ''), p.almacen);
+check('Meta no recibe nada antes de aceptar', p.meta.length === 0, p.meta);
+p.win.loadAnalytics();
+check('al aceptar, Meta recibe la vista de producto (ViewContent)', p.meta.includes('track:ViewContent'), p.meta);
+check('Analytics no la recibe dos veces', p.ga.filter((e) => e === 'view_producto').length === 1, p.ga);
 
 console.log('\n6b) Acepta recién en la segunda página del sitio');
 p = pagina({ ruta: '/tapeo', producto: 'tapeo', referrer: 'https://clorofila.uy/curso' });
 p.win.loadAnalytics();
 check('no guarda un origen vacío que tape al próximo', !('clorofila_origen' in p.almacen), p.almacen);
 
-console.log('\n7) /gracias?p=tapeo, acepta ahí');
+console.log('\n6c) Había rechazado en otra visita');
+p = pagina({ ruta: '/curso', busqueda: '?gclid=PRUEBA', producto: 'curso', decision: 'declined' });
+check('Analytics no recibe nada', p.ga.length === 0, p.ga);
+check('Meta no recibe nada', p.meta.length === 0, p.meta);
+check('no guarda el origen', !('clorofila_origen' in p.almacen), p.almacen);
+
+console.log('\n7) /gracias?p=tapeo sin contestar el aviso, acepta ahí');
 p = pagina({ ruta: '/gracias', busqueda: '?p=tapeo', producto: 'gracias', sinVista: true, conGracias: true });
+check('Analytics recibe reserva_recibida al llegar', p.ga.includes('reserva_recibida'), p.ga);
 p.win.loadAnalytics();
-check('Meta recibe la reserva (Schedule)', p.meta.includes('track:Schedule'), p.meta);
-check('Analytics recibe reserva_recibida', p.ga.includes('reserva_recibida'), p.ga);
+check('al aceptar, Meta recibe la reserva (Schedule)', p.meta.includes('track:Schedule'), p.meta);
+check('Analytics no la cuenta dos veces', p.ga.filter((e) => e === 'reserva_recibida').length === 1, p.ga);
 check('/gracias no cuenta como vista de producto', !p.ga.includes('view_producto') && !p.meta.includes('track:ViewContent'), p.ga);
 const sesion = p.sesion;
-p = pagina({ ruta: '/gracias', busqueda: '?p=tapeo', producto: 'gracias', sinVista: true, conGracias: true, sesion });
-p.win.loadAnalytics();
-check('al recargar no se cuenta otra vez', !p.ga.includes('reserva_recibida') && !p.meta.includes('track:Schedule'), p.ga);
+p = pagina({ ruta: '/gracias', busqueda: '?p=tapeo', producto: 'gracias', sinVista: true, conGracias: true, sesion, decision: 'accepted' });
+check('al recargar no se cuenta otra vez', !p.ga.includes('reserva_recibida') && !p.meta.includes('track:Schedule'), [p.ga, p.meta]);
+
+console.log('\n7b) /gracias?p=curso, había aceptado en otra visita');
+p = pagina({ ruta: '/gracias', busqueda: '?p=curso', producto: 'gracias', sinVista: true, conGracias: true, decision: 'accepted' });
+check('Analytics y Meta reciben la reserva', p.ga.includes('reserva_recibida') && p.meta.includes('track:Schedule'), [p.ga, p.meta]);
 
 console.log('\n8) /gracias sin ?p= (pidió el temario)');
 p = pagina({ ruta: '/gracias', producto: 'gracias', sinVista: true, conGracias: true });
