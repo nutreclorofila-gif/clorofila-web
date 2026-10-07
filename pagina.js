@@ -353,6 +353,11 @@
       window.addEventListener('scroll', mostrarAviso, { passive: true });
       setTimeout(mostrarAviso, 500);
     }
+    /* /privacidad tiene un botón para volver a elegir: muestra el aviso
+       aunque ya haya una decisión guardada. Aceptar o Rechazar la reemplaza. */
+    document.querySelectorAll('[data-cookies-elegir]').forEach(function (b) {
+      b.addEventListener('click', function () { banner.classList.add('visible'); });
+    });
     var ok = document.getElementById('cookie-accept');
     var no = document.getElementById('cookie-decline');
     if (ok) ok.addEventListener('click', function () {
