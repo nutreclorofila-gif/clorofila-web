@@ -342,17 +342,16 @@
   var banner = document.getElementById('cookie-banner');
   if (banner) {
     if (!almacen.leer()) {
-      /* Aparecía a los 700 ms, de golpe y apoyado sobre el hero: lo primero
-         que pasaba al entrar era que algo tapaba la foto. Ahora espera a que
-         la persona empiece a leer —el primer scroll— y si no scrollea sale
-         igual a los 2,5 s, porque sin respuesta el pixel de Meta no carga. */
+      /* Sale a los 0,5 s o con el primer scroll, lo que pase antes. Esperaba
+         2,5 s y mucha gente se iba sin verlo: sin respuesta no se mide la
+         visita (pedido del 7/10, con el aviso ya sin tapar el hero ni el menú). */
       var mostrarAviso = function () {
         if (banner.classList.contains('visible')) return;
         banner.classList.add('visible');
         window.removeEventListener('scroll', mostrarAviso);
       };
       window.addEventListener('scroll', mostrarAviso, { passive: true });
-      setTimeout(mostrarAviso, 2500);
+      setTimeout(mostrarAviso, 500);
     }
     var ok = document.getElementById('cookie-accept');
     var no = document.getElementById('cookie-decline');
