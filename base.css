@@ -608,13 +608,16 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.5rem}
    apretaban «Rechazar» para sacarlo de encima. Aceptar y Rechazar siguen del
    mismo tamaño: rechazar tiene que ser igual de fácil. */
 .cookie-banner{display:flex;flex-direction:row;align-items:center;gap:.75rem;padding:.5rem .55rem .5rem .9rem;box-shadow:0 8px 24px rgba(0,0,0,.35);font-size:.8rem}
-.cookie-banner p{flex:1;min-width:0;line-height:1.35;margin:0}
+.cookie-banner p{flex:1;min-width:0;line-height:1.35;margin:0;font-size:.72rem}
 .cookie-banner-actions{gap:.4rem;flex-shrink:0}
 #cookie-accept,#cookie-decline{flex:none;min-height:36px;padding:.3rem .7rem;font-size:.8rem;position:relative}
 /* Pedido de Leo, 7/10: Aceptar es un recuadro transparente, solo el borde;
    Rechazar es solo texto. Los dos se tocan en 44 px de alto. */
 #cookie-accept{background:transparent;color:var(--cal);border:1px solid var(--cal-med);min-height:40px;padding:.4rem 1.15rem;font-size:.875rem}
 #cookie-decline{border:0;padding-inline:.15rem;color:var(--cal-med);font-weight:500;letter-spacing:-.04em}
+/* El link a /privacidad va del color del texto, con el subrayado apenas
+   marcado: en blanco competía con Aceptar (pedido de Leo, 7/10). */
+.cookie-banner p a{color:inherit;text-decoration-color:color-mix(in srgb,currentColor 45%,transparent);text-underline-offset:2px}
 /* El botón se ve de 36 px y se toca en 44. */
 #cookie-accept::after,#cookie-decline::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
 @media (min-width:901px){.cookie-banner{max-width:none;width:auto}}
