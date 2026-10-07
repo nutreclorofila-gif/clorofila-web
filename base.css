@@ -613,8 +613,8 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.5rem}
 #cookie-accept,#cookie-decline{flex:none;min-height:36px;padding:.3rem .7rem;font-size:.8rem;position:relative}
 /* Pedido de Leo, 7/10: Aceptar es un recuadro transparente, solo el borde;
    Rechazar es solo texto. Los dos se tocan en 44 px de alto. */
-#cookie-accept{background:transparent;color:var(--cal);border:1px solid var(--cal-med)}
-#cookie-decline{border:0;padding-inline:.4rem;color:var(--cal-med);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+#cookie-accept{background:transparent;color:var(--cal);border:1px solid var(--cal-med);min-height:40px;padding:.4rem 1.15rem;font-size:.875rem}
+#cookie-decline{border:0;padding-inline:.15rem;color:var(--cal-med);font-weight:500;letter-spacing:-.01em}
 /* El botón se ve de 36 px y se toca en 44. */
 #cookie-accept::after,#cookie-decline::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
 @media (min-width:901px){.cookie-banner{max-width:none;width:auto}}
