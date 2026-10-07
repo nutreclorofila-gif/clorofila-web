@@ -2,8 +2,8 @@
 // Qué se mide, y cuándo, según lo que la persona haya decidido en el cartel
 // de cookies. Es la parte del sitio donde una línea de más manda datos de un
 // visitante sin permiso, y donde un orden equivocado borra visitas del panel.
-// La regla, desde el 7/10/2026: Analytics mide a todos salvo a quien aprieta
-// "Rechazar"; Meta y la publicidad, solo con "Aceptar". Y el permiso se
+// La regla, desde el 7/10/2026: Google (Analytics y la medición de Ads) mide
+// a todos salvo a quien aprieta "Rechazar"; Meta, solo con "Aceptar". Y el permiso se
 // declara antes que gtag: del 7/9 al 23/9 llegaba después, y quien aceptaba
 // perdía su visita de llegada (first_visit bajó de 74 a 28 en dos semanas).
 //
@@ -66,8 +66,8 @@ const check = (nombre, ok, detalle) => {
 
 console.log('\n1) Nadie tocó el cartel (dos de cada tres visitas)');
 let r = correr(null);
-check('Analytics con permiso, publicidad sin permiso', JSON.stringify(r.consent[0]) === JSON.stringify(['default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' }]), r.consent);
-check('conserva el gclid y recorta datos de anuncios', r.sets.join(',') === 'ads_data_redaction=true,url_passthrough=true', r.sets);
+check('los cuatro permisos de Google concedidos', JSON.stringify(r.consent[0]) === JSON.stringify(['default', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' }]), r.consent);
+check('conserva el gclid y recorta datos de anuncios si se deniegan', r.sets.join(',') === 'ads_data_redaction=true,url_passthrough=true', r.sets);
 check('carga Analytics y no Meta', r.scripts.join(',') === 'GA', r.scripts);
 check('avisa a track.js solo por Analytics', r.eventos.join(',') === 'analytics:listo', r.eventos);
 // Si el permiso llega después del config, el primer page_view sale sin
@@ -93,7 +93,7 @@ console.log('\n4) Acepta durante la visita (Analytics ya medía)');
 r = correr(null);
 r.aceptar();
 check('suma Meta sin cargar Analytics otra vez', r.scripts.join(',') === 'GA,META', r.scripts);
-check('levanta los permisos de publicidad', JSON.stringify(r.consent[1]) === JSON.stringify(['update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' }]), r.consent);
+check('confirma los cuatro permisos', JSON.stringify(r.consent[1]) === JSON.stringify(['update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' }]), r.consent);
 check('un solo config de Analytics', r.win.dataLayer.filter((a) => a[0] === 'config').length === 1, r.win.dataLayer.length);
 check('avisa a Meta una vez', r.eventos.join(',') === 'analytics:listo,meta:listo', r.eventos);
 r.aceptar();

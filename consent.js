@@ -45,10 +45,10 @@
 
   /* Modo de consentimiento (Consent Mode v2).
 
-     Desde el 7/10/2026 Analytics mide a todos salvo a quien aprieta
-     "Rechazar". Meta y la publicidad siguen esperando a "Aceptar".
-     - Nadie tocó el aviso: Analytics con cookies; Meta y anuncios, no.
-     - "Aceptar": se suman Meta y los permisos de publicidad.
+     Desde el 7/10/2026 Google (Analytics y la medición de Google Ads) mide a
+     todos salvo a quien aprieta "Rechazar". Meta sigue esperando a "Aceptar".
+     - Nadie tocó el aviso: Analytics y Google Ads con cookies; Meta, no.
+     - "Aceptar": se suma Meta.
      - "Rechazar": no se carga nada, y si Analytics ya había arrancado en esa
        página, se corta ahí mismo (rechazarAnalytics).
      Con "nada hasta aceptar" se perdía casi todo: dos de cada tres visitas no
@@ -60,15 +60,18 @@
      persona se perdía (first_visit bajó de 74 a 28 en dos semanas). Acá el
      primer page_view ya sale con el permiso que corresponde. */
   var decision = leer();
+  // Pedido de Leo, 7/10: la medición de Google Ads también queda prendida
+  // salvo "Rechazar". Sin esto, las visitas que llegaban de un anuncio se
+  // veían en Analytics pero no volvían a Ads como conversiones.
+  var permiso = decision === 'declined' ? 'denied' : 'granted';
   gtag('consent', 'default', {
-    ad_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-    analytics_storage: decision === 'declined' ? 'denied' : 'granted'
+    ad_storage: permiso,
+    ad_user_data: permiso,
+    ad_personalization: permiso,
+    analytics_storage: permiso
   });
-  // Con la publicidad denegada: que el gclid viaje en la dirección (así la
-  // visita se atribuye igual al anuncio) y que Google recorte los datos de
-  // publicidad.
+  // Solo actúan con los permisos denegados: que el gclid viaje en la
+  // dirección y que Google recorte los datos de publicidad.
   gtag('set', 'ads_data_redaction', true);
   gtag('set', 'url_passthrough', true);
 
@@ -164,7 +167,7 @@
     fbq('track', 'PageView');
   }
 
-  // Aceptó en otra visita: todo. No contestó todavía: solo Analytics.
+  // Aceptó en otra visita: todo. No contestó todavía: Google sin Meta.
   // Rechazó: nada.
   if (decision === 'accepted') {
     window.loadAnalytics();
