@@ -213,6 +213,9 @@ t.contacto_sin_fecha = t.estado === 'sin-fecha'
   ? 'Todavía no hay fecha abierta. Dejanos tu mensaje y te avisamos cuando abramos la próxima.' : '';
 t.aviso_agotado = t.estado === 'agotado'
   ? 'Esta fecha se llenó. Escribinos y te anotamos para la próxima.' : '';
+// La versión corta, la de la ficha del tapeo en /experiencias.
+t.aviso_agotado_corto = t.estado === 'agotado'
+  ? 'Esta fecha ya se llenó. Escribinos y te avisamos apenas haya otra.' : '';
 
 // El WhatsApp cambia según haya fecha o no: nunca pide reservar algo que no existe.
 /* Se controla todo lo que tenga fecha antes de dibujar nada. */
@@ -659,14 +662,22 @@ datos.curso.resumen_grupos = abiertos.length
       return g.nombre + ' ' + g.horario.replace(' a ', '–').replace(' h', '') +
         ', con primera clase el ' + String(g.inicio_texto).replace(/^arranca el /i, '');
     }).join('; ') + '.'
-  : 'Los grupos de esta edición ya empezaron: se puede dejar el mail para avisar de la próxima.';
+  : 'Los grupos de esta edición ya empezaron. Podés dejar tu mail y te avisamos de la próxima edición.';
 
 // La FAQ de la cursada se arma con los grupos reales, para que no quede
 // prometiendo horarios de una edición que ya pasó.
 /* Decía "12 clases semanales por grupo", que se lee como doce clases por
    semana: el mismo malentendido de carga horaria que Leo marcó en la chip del
    hero. Son 12 clases en total, una por semana, de dos horas. */
-datos.curso.faq_cursada = 'Son 3 meses: 12 clases de 2 horas, una por semana. Elegís el grupo de ' +
+// Con todos los grupos empezados no ofrece elegir uno: la FAQ decía «Elegís
+// el grupo de miércoles o jueves» y recién después «esta edición empezó» (9/10).
+const todosEmpezados = datos.curso.grupos.length &&
+  datos.curso.grupos.every(function (g) { return esPasado(g.inicio_iso); });
+datos.curso.faq_cursada = todosEmpezados
+  ? 'Son 3 meses: 12 clases de 2 horas, una por semana. Los grupos de esta edición empezaron el ' +
+    datos.curso.grupos.map(function (g) { return g.inicio_texto.toLowerCase().replace(/^arranca el /, ''); }).join(' y el ') +
+    '. La próxima edición todavía no tiene fecha.'
+  : 'Son 3 meses: 12 clases de 2 horas, una por semana. Elegís el grupo de ' +
   datos.curso.grupos.map(function (g) {
     return g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '');
   }).join(' o ') + '. ' + (function () {
@@ -676,7 +687,6 @@ datos.curso.faq_cursada = 'Son 3 meses: 12 clases de 2 horas, una por semana. El
     const grupos = datos.curso.grupos;
     const empezados = grupos.filter(function (g) { return esPasado(g.inicio_iso); });
     if (!empezados.length) return (grupos.length === 1 ? 'Arranca el ' : 'Arrancan el ') + grupos.map(dia).join(' y el ') + '.';
-    if (empezados.length === grupos.length) return 'Esta edición empezó el ' + grupos.map(dia).join(' y el ') + ', y la próxima todavía no tiene fecha.';
     return grupos.map(function (g, i) {
       return (i ? 'el' : 'El') + ' de los ' + g.nombre.toLowerCase() + (esPasado(g.inicio_iso) ? ' empezó el ' : ' arranca el ') + dia(g);
     }).join(' y ') + '.';
@@ -1286,7 +1296,7 @@ for (const archivo of archivos) {
                  había lugar (9/10). Un grupo empezado no declara
                  disponibilidad; SoldOut queda solo para uno lleno. */
               if (g.estado === 'abierto') inst.offers.availability = 'https://schema.org/InStock';
-              else if (g.estado === 'agotado' || g.estado === 'lleno') inst.offers.availability = 'https://schema.org/SoldOut';
+              else if (g.estado === 'agotado') inst.offers.availability = 'https://schema.org/SoldOut';
               else delete inst.offers.availability;
               inst.offers.price = String(datos.curso.precio_total).replace(/[^\d]/g, '');
             }
