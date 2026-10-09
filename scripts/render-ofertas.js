@@ -202,6 +202,18 @@ t.linea = t.estado === 'sin-fecha'
   ? 'Las fechas se publican según la demanda — escribinos y te avisamos.'
   : [fechasTapeo(t), t.horario_texto, t.precio_texto].filter(Boolean).join(' · ');
 
+/* Los avisos de «no hay fecha» y «se llenó» iban fijos en el HTML y se ocultaban con CSS
+   cuando había fecha. La persona no los veía, pero Google, ChatGPT y cualquier
+   lector del HTML leían a la vez «viernes 23 de octubre» y «Todavía no hay
+   fecha abierta» (una revisión externa del 9/10 lo tomó al pie de la letra).
+   Ahora el texto solo existe cuando no hay fecha. */
+t.aviso_sin_fecha = t.estado === 'sin-fecha'
+  ? 'Todavía no hay fecha abierta. Escribinos y te avisamos cuando abramos la próxima.' : '';
+t.contacto_sin_fecha = t.estado === 'sin-fecha'
+  ? 'Todavía no hay fecha abierta. Dejanos tu mensaje y te avisamos cuando abramos la próxima.' : '';
+t.aviso_agotado = t.estado === 'agotado'
+  ? 'Esta fecha se llenó. Escribinos y te anotamos para la próxima.' : '';
+
 // El WhatsApp cambia según haya fecha o no: nunca pide reservar algo que no existe.
 /* Se controla todo lo que tenga fecha antes de dibujar nada. */
 revisarFecha('tapeo', datos.tapeo.fecha_iso, datos.tapeo.fecha_texto);
@@ -423,6 +435,14 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   w.linea = w.estado === 'sin-fecha'
     ? (w.linea_sin_fecha || 'Dejanos tu interés y te avisamos apenas abramos fecha.')
     : [w.fecha_texto, w.hora, w.precio].filter(Boolean).join(' · ');
+
+  // Igual que en el tapeo: el aviso de «sin fecha» solo existe cuando no hay fecha.
+  w.aviso_sin_fecha = w.estado === 'sin-fecha'
+    ? 'Este taller se abre por demanda: cuando hay grupo, sale. Escribinos y te avisamos apenas haya fecha.' : '';
+  w.contacto_sin_fecha = w.estado === 'sin-fecha'
+    ? 'Todavía no hay fecha abierta. Dejanos tu mensaje y te avisamos cuando abramos la próxima.' : '';
+  w.aviso_agotado = w.estado === 'agotado'
+    ? 'Esta fecha se llenó. Escribinos y te anotamos para la próxima.' : '';
 
   w.wa_link = waBase + encodeURIComponent(
     w.estado === 'sin-fecha' || w.estado === 'agotado'
@@ -1261,9 +1281,13 @@ for (const archivo of archivos) {
             if (horas[0]) inst.courseSchedule.startTime = horas[0].trim();
             if (horas[1]) inst.courseSchedule.endTime = horas[1].trim();
             if (inst.offers) {
-              inst.offers.availability = g.estado === 'abierto'
-                ? 'https://schema.org/InStock'
-                : 'https://schema.org/SoldOut';
+              /* «cerrado» es un grupo que ya empezó, no uno lleno. Antes salía
+                 como SoldOut y Google y ChatGPT leían «curso agotado» cuando
+                 había lugar (9/10). Un grupo empezado no declara
+                 disponibilidad; SoldOut queda solo para uno lleno. */
+              if (g.estado === 'abierto') inst.offers.availability = 'https://schema.org/InStock';
+              else if (g.estado === 'agotado' || g.estado === 'lleno') inst.offers.availability = 'https://schema.org/SoldOut';
+              else delete inst.offers.availability;
               inst.offers.price = String(datos.curso.precio_total).replace(/[^\d]/g, '');
             }
             return inst;
@@ -1298,6 +1322,12 @@ for (const archivo of archivos) {
           const insts = [].concat(nodo.hasCourseInstance || []);
           insts.forEach(function (i) { if (i.offers) i.offers.category = "Paid"; });
           if (insts[0] && insts[0].offers) nodo.offers = Object.assign({}, insts[0].offers, { category: "Paid" });
+          // El curso se puede comprar si algún grupo se puede comprar, no
+          // solo el primero.
+          if (nodo.offers) {
+            const algunoAbierto = insts.some(function (i) { return i.offers && /InStock$/.test(i.offers.availability || ''); });
+            if (algunoAbierto) nodo.offers.availability = 'https://schema.org/InStock';
+          }
 
           /* Los talleres también son Course —el de /pastas y los cinco de
              /talleres— y no tenían offers: Google no les podía mostrar el
