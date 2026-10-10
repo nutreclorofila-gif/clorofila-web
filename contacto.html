@@ -84,6 +84,7 @@
 .mapa-pie{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:baseline;justify-content:space-between;font-family:var(--texto);font-size:var(--t-dato);color:var(--cal-baja);margin-top:.8rem}
 .foto-espacio{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/10;margin-top:1rem}
 .foto-espacio img{width:100%;height:100%;object-fit:cover}
+.horarios:has(tbody:empty){display:none}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20261008" defer></script>
@@ -145,7 +146,7 @@
         <thead>
           <tr><th scope="col">Día</th><th scope="col">Horario</th></tr>
         </thead>
-        <tbody><!--o:html:curso.horarios_html--><tr><td colspan="2">La próxima edición todavía no tiene fecha.</td></tr><!--/o--></tbody>
+        <tbody><!--o:html:curso.horarios_html--><!--/o--></tbody>
       </table>
       <p class="horarios-nota">Tres meses de cocina saludable y alimentación consciente. <!--o:curso.inicio_frase-->La próxima edición todavía no tiene fecha.<!--/o--> <a href="/curso" class="enlace-vivo">Ver el curso</a></p>
     </div>

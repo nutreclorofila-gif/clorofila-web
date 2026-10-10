@@ -46,7 +46,7 @@
 :root{--serif:'Besley',Georgia,'Times New Roman',serif;--avena:#E1E4DB;--tostado:#6B4A12;--sombra:0 28px 60px rgba(0,0,0,.42)}
 /* Los títulos de la portada van en Besley, la misma serifa del resto del
    sitio. */
-main h1,main h2,main h3,.panel-cita,.palabra,.agenda-dia,.agenda-nombre,.voz blockquote{font-family:var(--serif);font-weight:600;font-variation-settings:normal;letter-spacing:-.01em}
+main h1,main h2,main h3,.panel-cita,.palabra,.agenda-dia,.agenda-nombre,.voz blockquote{font-family:var(--serif);font-size-adjust:var(--display-ajuste);font-weight:600;font-variation-settings:normal;letter-spacing:-.01em}
 main h2{font-size:clamp(1.6rem,2.9vw,2.25rem);line-height:1.1}
 main h3{line-height:1.15}
 .foto-borde{outline:1px solid rgba(255,255,255,.08);outline-offset:-1px}
@@ -131,7 +131,7 @@ main h3{line-height:1.15}
 .panel-criterio .panel-cita{font-size:clamp(1.35rem,2.5vw,1.95rem);color:var(--brote)}
 .metodo-foto{margin:0;padding-top:clamp(0rem,6vw,5rem);line-height:0}
 .metodo-foto img{width:100%;height:clamp(340px,38vw,500px);object-fit:cover;object-position:45% 50%;border-radius:6px}
-.metodo-remate{font-family:var(--serif);font-weight:600;font-size:clamp(1.35rem,2.3vw,1.8rem);color:var(--cal);margin-top:clamp(3rem,7vw,6rem);letter-spacing:-.02em;line-height:1.2;max-width:none}
+.metodo-remate{font-family:var(--serif);font-size-adjust:var(--display-ajuste);font-weight:600;font-size:clamp(1.35rem,2.3vw,1.8rem);color:var(--cal);margin-top:clamp(3rem,7vw,6rem);letter-spacing:-.02em;line-height:1.2;max-width:none}
 .metodo-remate em{font-style:normal}
 @media (max-width:820px){
   .metodo-par{grid-template-columns:1fr}

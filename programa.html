@@ -90,6 +90,10 @@
 .captura .nota{font-size:var(--t-nota);color:var(--cal-baja);margin-block:.9rem 0}
 .lista-dos{columns:2;column-gap:2rem}
 @media (max-width:640px){.lista-dos{columns:1}}
+.prog-meta span:empty{display:none}
+/* La lista de espera de abajo es para quien no puede en una edición abierta:
+   con la edición cerrada el botón principal ya anota para la próxima. */
+.captura[data-estado="sin-fecha"]{display:none}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20261008" defer></script>
@@ -132,7 +136,7 @@
     <span><!--o:curso.horarios_chip-->3 meses · una clase por semana<!--/o--></span>
     <span>Presencial en Parque Rodó</span>
     <span><!--o:curso.cupo_texto-->De 12 a 15 por grupo<!--/o--></span>
-    <span>Edición <!--o:curso.edicion-->Octubre 2026<!--/o--></span>
+    <span><!--o:curso.edicion_chip--><!--/o--></span>
     <span data-set="data-inicio-iso=curso.inicio_iso" data-inicio-iso=""><!--o:curso.inicio_corto-->Próxima edición a confirmar<!--/o--></span>
   </div>
 
@@ -171,7 +175,7 @@
   <div class="mes-prog">
     <span class="dato">Mes 3 · Integración</span>
     <h3>Pastelería, sushi, pastas y menú completo</h3>
-    <p class="detalle">Pastelería basada en plantas, sushi vegetal, pastas y dal, un menú completo y el recetario final.</p>
+    <p class="detalle">Pastelería basada en plantas, sushi vegetal, pastas, dal y el recetario final.</p>
     <p>Es el mes donde armás un menú completo por tu cuenta.</p>
   </div>
 
@@ -275,11 +279,11 @@
   <h2>Horarios y precio</h2>
   <div class="comanda" data-estado-de="curso" data-estado="sin-fecha">
     <div class="comanda-cabeza">
-      <span class="comanda-titulo">Inscribite al curso</span>
-      <span class="comanda-estado"><!--o:curso.edicion-->Octubre 2026<!--/o--></span>
+      <span class="comanda-titulo"><!--o:curso.precio_titulo-->Precio y formas de pago<!--/o--></span>
+      <span class="comanda-estado"><!--o:curso.edicion_chip--><!--/o--></span>
     </div>
     <ul class="comanda-datos">
-      <li><strong><!--o:curso.grupos_label-->Grupos<!--/o--></strong><span><!--o:curso.grupos_abiertos_texto-->Próxima edición a confirmar<!--/o--></span></li>
+      <li class="solo-con-fecha"><strong><!--o:curso.grupos_label-->Grupos<!--/o--></strong><span><!--o:curso.grupos_abiertos_texto-->Próxima edición a confirmar<!--/o--></span></li>
       <li><strong>Inicio</strong><span><!--o:curso.inicio_frase-->La próxima edición todavía no tiene fecha.<!--/o--></span></li>
       <li class="comanda-precio"><strong>Precio total</strong><span><!--o:curso.precio_total-->$12.200<!--/o--></span></li>
       <li><strong>Mes a mes</strong><span><!--o:curso.precio_cuotas-->3 cuotas de $4.800<!--/o--></span></li>

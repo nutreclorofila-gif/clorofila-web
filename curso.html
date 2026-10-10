@@ -120,6 +120,8 @@
 .boleta .comanda-acciones{margin-top:1.15rem}
 .boleta .comanda-nota{font-size:var(--t-nota);color:var(--cal-med);margin-top:.6rem}
 .boleta .comanda-nota:first-of-type{margin-top:.9rem}
+.boleta .comanda-nota:empty{display:none}
+.boleta .comanda-nota:empty + .comanda-nota{margin-top:.9rem}
 @media (max-width:940px){.cierre .boleta{justify-self:stretch;max-width:none;padding:1.25rem 1.1rem 1.15rem}}
 
 /* ---------- Encabezados de sección ---------- */
@@ -334,7 +336,7 @@
   <div class="env">
     <div class="encabezado sube">
       <h2>Cada mes se apoya <br>en el anterior.</h2>
-      <p>Tres meses con una progresión clara. No son clases sueltas: cada mes se apoya en lo que trabajaste el anterior.</p>
+      <p>Tres meses con una progresión clara. No son clases sueltas.</p>
     </div>
     <div class="meses sube">
       <article class="mes">
@@ -353,7 +355,7 @@
         <span class="mes-num">Mes 3</span>
         <span class="mes-etapa">Integración</span>
         <h3>Pastelería, sushi, pastas y menú completo</h3>
-        <p>Pastelería basada en plantas, sushi vegetal, pastas y dal, un menú completo y el recetario final. Es el mes donde armás un menú completo por tu cuenta.</p>
+        <p>Pastelería basada en plantas, sushi vegetal, pastas, dal y el recetario final. Es el mes donde armás un menú completo por tu cuenta.</p>
       </article>
     </div>
   </div>
@@ -511,7 +513,7 @@
     </div>
     <div class="comanda boleta sube">
       <div class="boleta-cabeza">
-        <h3 class="boleta-titulo"><!--o:curso.edicion_titulo-->Edición octubre 2026<!--/o--></h3>
+        <h3 class="boleta-titulo"><!--o:curso.boleta_titulo-->Precio y formas de pago<!--/o--></h3>
         <p class="boleta-cuenta" data-set="data-inicio-iso=curso.inicio_iso" data-inicio-iso="" data-cuenta></p>
       </div>
       <p class="boleta-precio">El curso completo cuesta <strong><!--o:curso.precio_total-->$12.200<!--/o--></strong>.</p>
@@ -526,7 +528,7 @@
         <a data-set="href=curso.cta_link" href="https://tally.so/r/EkMbWL" target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso"><!--o:curso.cta_texto-->Avisarme de la próxima edición<!--/o--></a>
         <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20info%20del%20curso%20de%20Clorofila." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="curso">Preguntar por WhatsApp</a>
       </div>
-      <p class="comanda-nota"><!--o:curso.cta_nota-->No hay edición abierta ahora. Dejanos tus datos y te avisamos cuando abramos la próxima.<!--/o--></p>
+      <p class="comanda-nota"><!--o:curso.cta_nota--><!--/o--></p>
       <p class="comanda-nota">¿No usás WhatsApp? Escribinos a <a href="mailto:nutreclorofila@gmail.com?subject=Consulta%20del%20curso%20%E2%80%94%20desde%20la%20web" class="enlace-vivo">nutreclorofila@gmail.com</a>.</p>
       <p class="comanda-nota">Estamos en Maldonado 1976 esq. Blanes, Parque Rodó. <a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo">Cómo llegar</a></p>
     </div>

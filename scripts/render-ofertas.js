@@ -515,7 +515,9 @@ datos.curso.horarios_html = abiertos.length
       return '<tr><th scope="row">' + escapar(g.nombre) + '</th><td>' +
         escapar(g.horario.replace(' a ', ' – ')) + '</td></tr>';
     }).join('')
-  : '<tr><td colspan="2">La próxima edición todavía no tiene fecha.</td></tr>';
+  // Sin grupos abiertos la tabla queda vacía y /contacto la oculta: la línea
+  // de abajo ya dice que la próxima edición no tiene fecha.
+  : '';
 datos.curso.inicio_iso = abiertos.length ? abiertos[0].inicio_iso : '';
 // Hasta cuándo se puede anotar: arranca de a un grupo, así que el curso deja de
 // estar abierto recién cuando empieza el último. Lo usa data-vence-iso.
@@ -561,7 +563,9 @@ datos.curso.wa_link = waBase + encodeURIComponent(
 );
 datos.curso.cta_nota = abiertos.length
   ? 'Te escribimos por WhatsApp en menos de 24 h para confirmar tu lugar.'
-  : 'No hay edición abierta ahora. Dejanos tus datos y te avisamos cuando abramos la próxima.';
+  // Sin edición abierta, la bajada y la línea de grupos ya lo dicen: una
+  // tercera vez debajo del botón sobraba. Queda vacía y la página la oculta.
+  : '';
 /* Un grupo que ya empezó no «arranca»: la tarjeta decía «Grupo cerrado ·
    Arranca el miércoles 7 de octubre» durante toda la edición. */
 function inicioDeGrupo(g) {
@@ -605,6 +609,15 @@ const nombres = datos.curso.grupos.map(function (g) { return g.nombre; });
 datos.curso.horarios_texto = nombres.join(' · ');
 datos.curso.dias_texto = enumerar(nombres.map(function (n) { return n.toLowerCase(); }));
 datos.curso.edicion_titulo = 'Edición ' + String(datos.curso.edicion).toLowerCase();
+// La tarjeta del precio vende la próxima edición cuando la actual ya empezó:
+// encabezarla con «Edición octubre» contradecía el botón de abajo.
+datos.curso.boleta_titulo = abiertos.length ? datos.curso.edicion_titulo : 'Precio y formas de pago';
+// La etiqueta «Edición octubre 2026» del programa quedaba al lado de «Próxima
+// edición a confirmar». Sin edición abierta queda vacía y la página la oculta.
+datos.curso.edicion_chip = abiertos.length ? datos.curso.edicion_titulo : '';
+// El recuadro de precio del programa: «Inscribite al curso · Octubre 2026»
+// encima de un botón que anota para la próxima edición.
+datos.curso.precio_titulo = abiertos.length ? 'Inscribite al curso' : 'Precio y formas de pago';
 datos.curso.inscripcion_titulo = 'Inscripción · ' + datos.curso.edicion;
 // Decía "3 meses · miércoles y jueves · 12 encuentros": el "y" hacía parecer
 // que se cursa los dos días, o sea el doble de carga de la real. Son dos
