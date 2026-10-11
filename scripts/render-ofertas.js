@@ -435,8 +435,10 @@ for (const [id, w] of Object.entries(datos.talleres)) {
     'Se abre por demanda';
 
   // Una sola línea con lo que decide la compra: cuándo y cuánto.
+  // Sin fecha, la línea repetía en cada tarjeta lo que ya dice el botón de
+  // abajo («Avisame cuando haya fecha»). Queda vacía y /talleres la oculta.
   w.linea = w.estado === 'sin-fecha'
-    ? (w.linea_sin_fecha || 'Dejanos tu interés y te avisamos apenas abramos fecha.')
+    ? (w.linea_sin_fecha || '')
     : [w.fecha_texto, w.hora, w.precio].filter(Boolean).join(' · ');
 
   // Igual que en el tapeo: el aviso de «sin fecha» solo existe cuando no hay fecha.
