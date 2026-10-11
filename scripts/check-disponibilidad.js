@@ -58,6 +58,22 @@ for (const p of paginas) {
     .replace(/<(p|li|span|div)\b[^>]*class="[^"]*\bsolo-[^"]*"[^>]*>[\s\S]*?<\/\1>/gi, ' ')
     .replace(/<!--[\s\S]*?-->/g, ' ');
 
+  /* Ocultar con CSS no alcanza: Google, ChatGPT y cualquier lector del HTML
+     leen el bloque igual. El 9/10 una revisión externa leyó en /tapeo
+     «Todavía no hay fecha abierta» y «Esta fecha se llenó» al lado de las
+     fechas a la venta. Un bloque solo-sin-fecha o solo-agotado no puede traer
+     ese aviso escrito a mano: lo pone el build solo cuando corresponde. */
+  const ocultosFijos = [];
+  for (const m of t.slice(iMain).matchAll(/<(p|li|span|div)\b[^>]*class="[^"]*\bsolo-(?:sin-fecha|agotado)\b[^"]*"[^>]*>([\s\S]*?)<\/\1>/gi)) {
+    const fijo = m[2].replace(/<!--o:[^>]*-->[\s\S]*?<!--\/o-->/g, ' ').replace(/<[^>]+>/g, ' ');
+    if (/no hay fecha|sin fecha|se llen[óo]|agotad|por demanda/i.test(fijo)) ocultosFijos.push(fijo.replace(/\s+/g, ' ').trim());
+  }
+  if (ocultosFijos.length) {
+    fallas += ocultosFijos.length;
+    console.error('\n✗ ' + p + ': aviso escrito a mano en un bloque oculto (lo leen Google y ChatGPT)');
+    ocultosFijos.forEach(c => console.error('    …' + c + '…'));
+  }
+
   const visible = cuerpo.replace(/<[^>]+>/g, ' ');
   const sueltas = [];
   for (const patron of afirmaciones) {

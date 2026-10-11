@@ -48,6 +48,13 @@
      respaldo es Georgia, también serifa, para que el título no cambie de
      carácter mientras carga. */
   --display:'Besley',Georgia,'Times New Roman',serif;
+  /* Besley dibuja la x un 13% más alta y la palabra un 12% más ancha que
+     Vollkorn, la letra anterior. Al cambiarla el 6/10 no se tocaron los
+     tamaños y todos los títulos quedaron más grandes (Leo, 9/10: «por qué se
+     ven tan grandes las letras»). Con este ajuste Besley ocupa lo mismo que
+     ocupaba Vollkorn (alto de x 0,46 del tamaño). Va junto a cada uso
+     de --display y se hereda a lo que está adentro. */
+  --display-ajuste:.46;
   --hoja:clamp(90px,16vw,220px);
   --texto:'Karla','Karla Fallback Android','Karla Fallback',system-ui,sans-serif;
   --dato:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
@@ -118,7 +125,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
 /* --- Tipografía --------------------------------------------------------- */
 h1,h2,h3{
-  font-family:var(--display);
+  font-family:var(--display);font-size-adjust:var(--display-ajuste);
   font-weight:600;
   color:var(--cal);
   line-height:1.08;
@@ -257,7 +264,7 @@ a.marca{min-height:44px;justify-content:center}
   .nav-links.abierto{display:flex;position:fixed;inset:0;background:var(--tinta);z-index:210;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;padding:var(--nav-h) clamp(1.25rem,4vw,2.5rem) 1.5rem;overflow-y:auto}
   .nav-links.abierto .solo-menu{display:block}
   .nav-links.abierto li+li{border-top:1px solid var(--linea)}
-  .nav-links.abierto a{display:flex;align-items:center;min-height:50px;font-family:var(--display);font-size:var(--t-mayor);color:var(--cal)}
+  .nav-links.abierto a{display:flex;align-items:center;min-height:50px;font-family:var(--display);font-size-adjust:var(--display-ajuste);font-size:var(--t-mayor);color:var(--cal)}
   /* En columna, el margen automático que abre el hueco en la compu empuja el
      ítem contra el borde derecho y le come el filete: acá no corresponde. */
   .nav-links.abierto .nav-corte{margin-left:0;padding-left:0;margin-top:.6rem}
@@ -279,7 +286,7 @@ a.marca{min-height:44px;justify-content:center}
 .pie li a{font-size:var(--t-chico);color:var(--cal-med);display:inline-flex;align-items:center;min-height:44px;padding-block:.3rem;line-height:1.35;transition:color .2s}
 .pie li a:hover{color:var(--cal)}
 .pie .marca{margin-bottom:.2rem}
-.pie-lema{font-family:var(--display);font-size:var(--t-bajada);color:var(--cal);line-height:1.25;margin-block:.6rem 1rem;max-width:22ch}
+.pie-lema{font-family:var(--display);font-size-adjust:var(--display-ajuste);font-size:var(--t-bajada);color:var(--cal);line-height:1.25;margin-block:.6rem 1rem;max-width:22ch}
 .pie-fin{max-width:var(--max);margin:2.5rem auto 0;padding-inline:clamp(1.25rem,4vw,2.5rem);padding-top:1.5rem;border-top:1px solid var(--linea);font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja);letter-spacing:0}
 .pie-fin a{display:inline-block;padding-block:.35rem}
 /* «Privacidad y cookies» medía 33 px: la banda lo lleva a 44 sin mover el renglón. */
@@ -360,7 +367,7 @@ h2 + p{margin-top:.55rem}
 .hero-prod{position:relative;overflow:hidden;padding-block:clamp(1.75rem,3.2vw,2.6rem) clamp(3rem,6vw,5rem)}
 .hero-caja{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4.5vw,4rem);align-items:start}
 .hero-prod h1{font-size:var(--th-pagina);margin-block:.7rem .6rem;max-width:13ch;line-height:1.03}
-.hero-tesis{font-family:var(--display);font-size:var(--t-tesis);color:var(--brote);letter-spacing:-.02em;line-height:1.22;margin-bottom:.8rem}
+.hero-tesis{font-family:var(--display);font-size-adjust:var(--display-ajuste);font-size:var(--t-tesis);color:var(--brote);letter-spacing:-.02em;line-height:1.22;margin-bottom:.8rem}
 .hero-prod .bajada{color:var(--cal-med);font-size:var(--t-chico);max-width:46ch;margin-bottom:1.25rem}
 .hero-foto{position:relative;border-radius:0 var(--hoja) 0 var(--hoja);overflow:hidden;aspect-ratio:5/6;margin-bottom:1.25rem}
 /* En pantalla grande la foto llega hasta el borde derecho: no es una tarjeta
@@ -418,7 +425,7 @@ h2 + p{margin-top:.55rem}
 .comanda-cabeza{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-bottom:.75rem;border-bottom:1px dashed var(--linea-fuerte)}
 /* Sin letra de máquina ni mayúsculas espaciadas: eran lo que más delataba
    una plantilla (revisión del 30/9). Queda el papel dentado; el texto se lee. */
-.comanda-titulo{font-family:var(--display);font-weight:600;font-size:var(--t-bajada);letter-spacing:-.01em;color:var(--cal)}
+.comanda-titulo{font-family:var(--display);font-size-adjust:var(--display-ajuste);font-weight:600;font-size:var(--t-bajada);letter-spacing:-.01em;color:var(--cal)}
 .comanda-estado{font-family:var(--texto);font-size:var(--t-nota);color:var(--brote);white-space:nowrap}
 [data-estado="ultimos"] .comanda-estado{color:var(--fermento)}
 [data-estado="agotado"] .comanda-estado,[data-estado="sin-fecha"] .comanda-estado{color:var(--cal-baja)}
@@ -457,7 +464,7 @@ h2 + p{margin-top:.55rem}
 /* --- Qué incluye --- */
 .incluye{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:1.75rem}
 .incluye li{border-top:1px solid var(--linea);padding-top:1rem}
-.incluye strong{display:block;font-family:var(--display);font-size:var(--t-cuerpo);color:var(--cal);letter-spacing:-.015em;margin-bottom:.35rem}
+.incluye strong{display:block;font-family:var(--display);font-size-adjust:var(--display-ajuste);font-size:var(--t-cuerpo);color:var(--cal);letter-spacing:-.015em;margin-bottom:.35rem}
 .incluye span{font-size:var(--t-chico);color:var(--cal-med)}
 
 /* --- Testimonios --- */
@@ -478,7 +485,7 @@ h2 + p{margin-top:.55rem}
 .docente-formacion li{font-size:var(--t-nota);color:var(--cal-med);padding-block:.22rem;display:flex;gap:.6rem}
 .docente-formacion li::before{content:"·";color:var(--brote)}
 
-.voz blockquote{font-family:var(--display);font-size:var(--t-cuerpo);line-height:1.35;color:var(--cal);letter-spacing:-.01em;margin-bottom:.9rem}
+.voz blockquote{font-family:var(--display);font-size-adjust:var(--display-ajuste);font-size:var(--t-cuerpo);line-height:1.35;color:var(--cal);letter-spacing:-.01em;margin-bottom:.9rem}
 /* El nombre al pie de la columna: si no, cada cita lo dejaba a una altura
    distinta según cuántos renglones ocupara la frase. */
 .voz cite{margin-top:auto;font-style:normal;font-family:var(--texto);font-size:var(--t-chico);font-weight:600;letter-spacing:0;color:var(--cal-med)}
@@ -665,7 +672,7 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.5rem}
 .art-cuerpo ul:not(.fuentes) li::before{content:"—";position:absolute;left:0;color:var(--brote)}
 /* El subtítulo de cada receta quedaba pegado a su párrafo. */
 .art-cuerpo h3{margin-block:1.9rem .55rem}
-.destacado{border-left:2px solid var(--brote);background:var(--musgo);border-radius:0 var(--r) var(--r) 0;padding:1.4rem 1.6rem;margin-block:2rem;font-family:var(--display);font-size:var(--t-bajada);line-height:1.4;color:var(--cal);letter-spacing:-.01em}
+.destacado{border-left:2px solid var(--brote);background:var(--musgo);border-radius:0 var(--r) var(--r) 0;padding:1.4rem 1.6rem;margin-block:2rem;font-family:var(--display);font-size-adjust:var(--display-ajuste);font-size:var(--t-bajada);line-height:1.4;color:var(--cal);letter-spacing:-.01em}
 
 .fuentes{list-style:none;margin-block:1.2rem 0;display:grid;gap:.9rem}
 .fuentes li{font-size:var(--t-chico);line-height:1.6;color:var(--cal-baja);border-top:1px solid var(--linea);padding-top:.9rem}
@@ -683,7 +690,7 @@ body:has(#cookie-banner.visible) .pie{padding-bottom:5.5rem}
 .seguir{max-width:720px;margin-inline:auto;padding-bottom:clamp(3rem,6vw,5rem)}
 .seguir h2{font-size:var(--t-bajada);margin-bottom:.5rem}
 .seguir li{border-top:1px solid var(--linea)}
-.seguir li a{display:block;padding-block:.95rem;font-family:var(--display);font-size:var(--t-cuerpo);color:var(--cal);letter-spacing:-.02em;transition:color .2s,padding-left .2s var(--ease)}
+.seguir li a{display:block;padding-block:.95rem;font-family:var(--display);font-size-adjust:var(--display-ajuste);font-size:var(--t-cuerpo);color:var(--cal);letter-spacing:-.02em;transition:color .2s,padding-left .2s var(--ease)}
 .seguir li a:hover{color:var(--brote);padding-left:.5rem}
 
 /* La única tabla del blog (la de endulzantes) salía con el estilo de fábrica

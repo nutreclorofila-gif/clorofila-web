@@ -202,6 +202,21 @@ t.linea = t.estado === 'sin-fecha'
   ? 'Las fechas se publican según la demanda — escribinos y te avisamos.'
   : [fechasTapeo(t), t.horario_texto, t.precio_texto].filter(Boolean).join(' · ');
 
+/* Los avisos de «no hay fecha» y «se llenó» iban fijos en el HTML y se ocultaban con CSS
+   cuando había fecha. La persona no los veía, pero Google, ChatGPT y cualquier
+   lector del HTML leían a la vez «viernes 23 de octubre» y «Todavía no hay
+   fecha abierta» (una revisión externa del 9/10 lo tomó al pie de la letra).
+   Ahora el texto solo existe cuando no hay fecha. */
+t.aviso_sin_fecha = t.estado === 'sin-fecha'
+  ? 'Todavía no hay fecha abierta. Escribinos y te avisamos cuando abramos la próxima.' : '';
+t.contacto_sin_fecha = t.estado === 'sin-fecha'
+  ? 'Todavía no hay fecha abierta. Dejanos tu mensaje y te avisamos cuando abramos la próxima.' : '';
+t.aviso_agotado = t.estado === 'agotado'
+  ? 'Esta fecha se llenó. Escribinos y te anotamos para la próxima.' : '';
+// La versión corta, la de la ficha del tapeo en /experiencias.
+t.aviso_agotado_corto = t.estado === 'agotado'
+  ? 'Esta fecha ya se llenó. Escribinos y te avisamos apenas haya otra.' : '';
+
 // El WhatsApp cambia según haya fecha o no: nunca pide reservar algo que no existe.
 /* Se controla todo lo que tenga fecha antes de dibujar nada. */
 revisarFecha('tapeo', datos.tapeo.fecha_iso, datos.tapeo.fecha_texto);
@@ -420,9 +435,19 @@ for (const [id, w] of Object.entries(datos.talleres)) {
     'Se abre por demanda';
 
   // Una sola línea con lo que decide la compra: cuándo y cuánto.
+  // Sin fecha, la línea repetía en cada tarjeta lo que ya dice el botón de
+  // abajo («Avisame cuando haya fecha»). Queda vacía y /talleres la oculta.
   w.linea = w.estado === 'sin-fecha'
-    ? (w.linea_sin_fecha || 'Dejanos tu interés y te avisamos apenas abramos fecha.')
+    ? (w.linea_sin_fecha || '')
     : [w.fecha_texto, w.hora, w.precio].filter(Boolean).join(' · ');
+
+  // Igual que en el tapeo: el aviso de «sin fecha» solo existe cuando no hay fecha.
+  w.aviso_sin_fecha = w.estado === 'sin-fecha'
+    ? 'Este taller se abre por demanda: cuando hay grupo, sale. Escribinos y te avisamos apenas haya fecha.' : '';
+  w.contacto_sin_fecha = w.estado === 'sin-fecha'
+    ? 'Todavía no hay fecha abierta. Dejanos tu mensaje y te avisamos cuando abramos la próxima.' : '';
+  w.aviso_agotado = w.estado === 'agotado'
+    ? 'Esta fecha se llenó. Escribinos y te anotamos para la próxima.' : '';
 
   w.wa_link = waBase + encodeURIComponent(
     w.estado === 'sin-fecha' || w.estado === 'agotado'
@@ -492,7 +517,9 @@ datos.curso.horarios_html = abiertos.length
       return '<tr><th scope="row">' + escapar(g.nombre) + '</th><td>' +
         escapar(g.horario.replace(' a ', ' – ')) + '</td></tr>';
     }).join('')
-  : '<tr><td colspan="2">La próxima edición todavía no tiene fecha.</td></tr>';
+  // Sin grupos abiertos la tabla queda vacía y /contacto la oculta: la línea
+  // de abajo ya dice que la próxima edición no tiene fecha.
+  : '';
 datos.curso.inicio_iso = abiertos.length ? abiertos[0].inicio_iso : '';
 // Hasta cuándo se puede anotar: arranca de a un grupo, así que el curso deja de
 // estar abierto recién cuando empieza el último. Lo usa data-vence-iso.
@@ -538,7 +565,9 @@ datos.curso.wa_link = waBase + encodeURIComponent(
 );
 datos.curso.cta_nota = abiertos.length
   ? 'Te escribimos por WhatsApp en menos de 24 h para confirmar tu lugar.'
-  : 'No hay edición abierta ahora. Dejanos tus datos y te avisamos cuando abramos la próxima.';
+  // Sin edición abierta, la bajada y la línea de grupos ya lo dicen: una
+  // tercera vez debajo del botón sobraba. Queda vacía y la página la oculta.
+  : '';
 /* Un grupo que ya empezó no «arranca»: la tarjeta decía «Grupo cerrado ·
    Arranca el miércoles 7 de octubre» durante toda la edición. */
 function inicioDeGrupo(g) {
@@ -582,6 +611,15 @@ const nombres = datos.curso.grupos.map(function (g) { return g.nombre; });
 datos.curso.horarios_texto = nombres.join(' · ');
 datos.curso.dias_texto = enumerar(nombres.map(function (n) { return n.toLowerCase(); }));
 datos.curso.edicion_titulo = 'Edición ' + String(datos.curso.edicion).toLowerCase();
+// La tarjeta del precio vende la próxima edición cuando la actual ya empezó:
+// encabezarla con «Edición octubre» contradecía el botón de abajo.
+datos.curso.boleta_titulo = abiertos.length ? datos.curso.edicion_titulo : 'Precio y formas de pago';
+// La etiqueta «Edición octubre 2026» del programa quedaba al lado de «Próxima
+// edición a confirmar». Sin edición abierta queda vacía y la página la oculta.
+datos.curso.edicion_chip = abiertos.length ? datos.curso.edicion_titulo : '';
+// El recuadro de precio del programa: «Inscribite al curso · Octubre 2026»
+// encima de un botón que anota para la próxima edición.
+datos.curso.precio_titulo = abiertos.length ? 'Inscribite al curso' : 'Precio y formas de pago';
 datos.curso.inscripcion_titulo = 'Inscripción · ' + datos.curso.edicion;
 // Decía "3 meses · miércoles y jueves · 12 encuentros": el "y" hacía parecer
 // que se cursa los dos días, o sea el doble de carga de la real. Son dos
@@ -639,14 +677,22 @@ datos.curso.resumen_grupos = abiertos.length
       return g.nombre + ' ' + g.horario.replace(' a ', '–').replace(' h', '') +
         ', con primera clase el ' + String(g.inicio_texto).replace(/^arranca el /i, '');
     }).join('; ') + '.'
-  : 'Los grupos de esta edición ya empezaron: se puede dejar el mail para avisar de la próxima.';
+  : 'Los grupos de esta edición ya empezaron. Podés dejar tu mail y te avisamos de la próxima edición.';
 
 // La FAQ de la cursada se arma con los grupos reales, para que no quede
 // prometiendo horarios de una edición que ya pasó.
 /* Decía "12 clases semanales por grupo", que se lee como doce clases por
    semana: el mismo malentendido de carga horaria que Leo marcó en la chip del
    hero. Son 12 clases en total, una por semana, de dos horas. */
-datos.curso.faq_cursada = 'Son 3 meses: 12 clases de 2 horas, una por semana. Elegís el grupo de ' +
+// Con todos los grupos empezados no ofrece elegir uno: la FAQ decía «Elegís
+// el grupo de miércoles o jueves» y recién después «esta edición empezó» (9/10).
+const todosEmpezados = datos.curso.grupos.length &&
+  datos.curso.grupos.every(function (g) { return esPasado(g.inicio_iso); });
+datos.curso.faq_cursada = todosEmpezados
+  ? 'Son 3 meses: 12 clases de 2 horas, una por semana. Los grupos de esta edición empezaron el ' +
+    datos.curso.grupos.map(function (g) { return g.inicio_texto.toLowerCase().replace(/^arranca el /, ''); }).join(' y el ') +
+    '. La próxima edición todavía no tiene fecha.'
+  : 'Son 3 meses: 12 clases de 2 horas, una por semana. Elegís el grupo de ' +
   datos.curso.grupos.map(function (g) {
     return g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '');
   }).join(' o ') + '. ' + (function () {
@@ -656,7 +702,6 @@ datos.curso.faq_cursada = 'Son 3 meses: 12 clases de 2 horas, una por semana. El
     const grupos = datos.curso.grupos;
     const empezados = grupos.filter(function (g) { return esPasado(g.inicio_iso); });
     if (!empezados.length) return (grupos.length === 1 ? 'Arranca el ' : 'Arrancan el ') + grupos.map(dia).join(' y el ') + '.';
-    if (empezados.length === grupos.length) return 'Esta edición empezó el ' + grupos.map(dia).join(' y el ') + ', y la próxima todavía no tiene fecha.';
     return grupos.map(function (g, i) {
       return (i ? 'el' : 'El') + ' de los ' + g.nombre.toLowerCase() + (esPasado(g.inicio_iso) ? ' empezó el ' : ' arranca el ') + dia(g);
     }).join(' y ') + '.';
@@ -1261,9 +1306,13 @@ for (const archivo of archivos) {
             if (horas[0]) inst.courseSchedule.startTime = horas[0].trim();
             if (horas[1]) inst.courseSchedule.endTime = horas[1].trim();
             if (inst.offers) {
-              inst.offers.availability = g.estado === 'abierto'
-                ? 'https://schema.org/InStock'
-                : 'https://schema.org/SoldOut';
+              /* «cerrado» es un grupo que ya empezó, no uno lleno. Antes salía
+                 como SoldOut y Google y ChatGPT leían «curso agotado» cuando
+                 había lugar (9/10). Un grupo empezado no declara
+                 disponibilidad; SoldOut queda solo para uno lleno. */
+              if (g.estado === 'abierto') inst.offers.availability = 'https://schema.org/InStock';
+              else if (g.estado === 'agotado') inst.offers.availability = 'https://schema.org/SoldOut';
+              else delete inst.offers.availability;
               inst.offers.price = String(datos.curso.precio_total).replace(/[^\d]/g, '');
             }
             return inst;
@@ -1298,6 +1347,12 @@ for (const archivo of archivos) {
           const insts = [].concat(nodo.hasCourseInstance || []);
           insts.forEach(function (i) { if (i.offers) i.offers.category = "Paid"; });
           if (insts[0] && insts[0].offers) nodo.offers = Object.assign({}, insts[0].offers, { category: "Paid" });
+          // El curso se puede comprar si algún grupo se puede comprar, no
+          // solo el primero.
+          if (nodo.offers) {
+            const algunoAbierto = insts.some(function (i) { return i.offers && /InStock$/.test(i.offers.availability || ''); });
+            if (algunoAbierto) nodo.offers.availability = 'https://schema.org/InStock';
+          }
 
           /* Los talleres también son Course —el de /pastas y los cinco de
              /talleres— y no tenían offers: Google no les podía mostrar el

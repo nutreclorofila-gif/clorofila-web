@@ -224,6 +224,13 @@ p.win.loadAnalytics();
 check('no cuenta como reserva', !p.ga.includes('reserva_recibida') && !p.meta.includes('track:Schedule'), p.ga);
 check('cuenta como pedido de temario', p.ga.includes('generate_lead/temario'), p.ga);
 
+console.log('\n8b) /gracias?p=espera (se anotó en la lista de espera)');
+p = pagina({ ruta: '/gracias', busqueda: '?p=espera', producto: 'gracias', sinVista: true, conGracias: true });
+p.win.loadAnalytics();
+check('no cuenta como reserva', !p.ga.includes('reserva_recibida') && !p.meta.includes('track:Schedule'), p.ga);
+check('cuenta como lista de espera', p.ga.includes('generate_lead/lista_espera') && !p.ga.includes('generate_lead/temario'), p.ga);
+check('Meta recibe la lista de espera', p.meta.some(function (m) { return /CompleteRegistration/.test(m); }), p.meta);
+
 console.log(
   fallas
     ? '\n✗ consentimiento: ' + fallas + ' comprobación(es) fallan. Revisá consent.js.\n'
