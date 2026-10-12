@@ -152,7 +152,11 @@
   },
   "regalo": {
     "_leeme": "La página /gift-card. Los valores salen solos de los precios de arriba (tapeo, pastas y el pago total del curso). tarjeta_link es el link de Mercado Pago sin monto definido (la persona escribe el monto), el que Leo pasó el 12/10 para todas las opciones. Si se vacía, la página dice «escribinos y te mandamos el link».",
-    "tarjeta_link": "https://link.mercadopago.com.uy/clorofilaestudio"
+    "tarjeta_link": "https://link.mercadopago.com.uy/clorofilaestudio",
+    "_leeme_canje": "canje_link es el formulario para usar una gift card recibida. Vacío, la página dice «escribinos al 094 064 148 con el código». Llenalo cuando el formulario de canje esté publicado.",
+    "canje_link": "",
+    "_leeme_precio": "precio_respetado en true agrega «si el precio de la actividad cambia durante ese año, la gift card vale igual». Queda en false hasta que Leo lo confirme.",
+    "precio_respetado": false
   },
   "google": {
     "_leeme": "El puntaje y la cantidad de reseñas del perfil de Google. Se muestran en el home, el curso y el tapeo, y también en la ficha que lee Google. Actualizalo cuando entren reseñas nuevas: escribí el puntaje con punto (4.9), no con coma.",

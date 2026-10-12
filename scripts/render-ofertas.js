@@ -1085,6 +1085,18 @@ datos.regalo = Object.assign({ tarjeta_link: '' }, datos.regalo);
   r.tarjeta_html = r.tarjeta_link
     ? 'Pagás en Mercado Pago y escribís el valor de la gift card que elegiste. <a href="' + enlace(r.tarjeta_link) + '" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card">Pagar con tarjeta</a>'
     : '<a href="' + escapar(wa) + '" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card">Escribinos</a> y te mandamos el link de Mercado Pago.';
+  /* Usar una gift card recibida. Hasta que exista el formulario de canje,
+     se hace por WhatsApp con el código. */
+  const waCanje = waBase + encodeURIComponent('Hola Leonardo, me regalaron una gift card. Mi código es ');
+  r.canje_texto = r.canje_link
+    ? 'Completás el formulario con el código y elegís la fecha.'
+    : 'Escribinos al 094 064 148 con el código y elegís la fecha.';
+  r.canje_boton = r.canje_link ? 'Usar mi gift card' : 'Escribir por WhatsApp';
+  r.canje_href = r.canje_link ? enlace(r.canje_link) : waCanje;
+  // Que el precio se respete lo confirma Leo: hasta entonces no se promete.
+  r.precio_nota = r.precio_respetado === true
+    ? 'Si el precio de la actividad cambia durante ese año, la gift card vale igual.'
+    : '';
 })();
 
 /* ---- Reemplazo en los HTML ---- */
