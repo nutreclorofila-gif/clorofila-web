@@ -56,11 +56,11 @@
 .afiche{position:relative;z-index:2;margin:-3rem .25rem 0;background:#E1E4DB;color:var(--tinta);border-radius:6px;padding:2rem 1.5rem;transform:rotate(-1.2deg);box-shadow:0 1px 2px rgba(0,0,0,.25),0 18px 40px rgba(0,0,0,.35)}
 .afiche h2{color:var(--tinta)}
 .carta{margin-top:1.25rem}
-.carta li{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.25rem 1rem;font-family:var(--display);font-size-adjust:var(--display-ajuste);font-weight:600;font-size:clamp(1.1rem,1rem + .6vw,1.35rem);line-height:1.25;letter-spacing:-.01em;color:var(--tinta);padding-block:.75rem;border-top:1px dashed rgba(14,26,19,.3)}
+.carta li{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:1rem;font-family:var(--display);font-size-adjust:var(--display-ajuste);font-weight:600;font-size:clamp(1.1rem,1rem + .6vw,1.35rem);line-height:1.25;letter-spacing:-.01em;color:var(--tinta);padding-block:.75rem;border-top:1px dashed rgba(14,26,19,.3)}
 .carta a{color:var(--tinta);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;text-decoration-color:rgba(14,26,19,.35)}
 .carta a:hover{text-decoration-color:var(--tinta)}
-.carta .valor{font-variant-numeric:tabular-nums;white-space:nowrap}
-.afiche-nota:empty{display:none}
+/* Sin tabular-nums: en Besley los ceros de ancho fijo salen con otro dibujo. */
+.carta .valor{white-space:nowrap}
 .afiche-nota{margin-top:1rem;font-size:var(--t-chico);color:rgba(14,26,19,.75);max-width:40ch}
 @media (min-width:900px){
   .valores-caja{grid-template-columns:repeat(12,minmax(0,1fr));align-items:center}
@@ -92,9 +92,12 @@
 html:not(.js) .copiar{display:none}
 
 .canje{background:var(--musgo);border-block:1px solid var(--linea)}
+.canje-dudas:empty{display:none}
+.canje .canje-dudas{margin-block:1.25rem 0;font-size:var(--t-cuerpo)}
+.canje-dudas .enlace-vivo{display:inline;padding-block:0}
 .canje p{margin-block:.75rem 1.5rem;color:var(--cal-med);font-size:var(--t-bajada);max-width:44ch}
-.cierre-regalo .env{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.25rem 2rem}
-.cierre-regalo p{font-family:var(--display);font-size-adjust:var(--display-ajuste);font-size:var(--th-bloque);font-weight:600;color:var(--cal);max-width:30ch}
+.pasos-nota{margin-top:2.5rem;color:var(--cal-med);max-width:46rem}
+.pasos-nota .enlace-vivo{display:inline;padding-block:0}
 
 @media print{.copiar{display:none}.afiche,.paso{transform:none;box-shadow:none}}
 </style>
@@ -149,8 +152,7 @@ html:not(.js) .copiar{display:none}
         <!--o:html:regalo.opciones_html--><li><a href="/tapeo">Cena y Taller de Tapeo</a><span class="valor">$2.600</span></li><li><a href="/pastas">Taller de Pastas sin gluten</a><span class="valor">$2.700</span></li><li><a href="/curso">Curso de cocina, pago total</a><span class="valor">$12.200</span></li><!--/o-->
         <li><span>Otro monto, el que elijas</span></li>
       </ul>
-      <p class="afiche-nota">Vale por un año desde la compra.</p>
-      <p class="afiche-nota"><!--o:regalo.precio_nota--><!--/o--></p>
+      <p class="afiche-nota"><!--o:regalo.validez_nota-->Vale por un año desde la compra, por la actividad que elegiste aunque cambie el precio. La de otro monto vale por ese monto.<!--/o--></p>
     </article>
   </div>
 </section>
@@ -192,23 +194,19 @@ html:not(.js) .copiar{display:none}
         <p>Tiene el nombre de quien la recibe y el tuyo, la actividad, la fecha hasta la que vale y un código que empieza con GC.</p>
       </li>
     </ol>
+    <p class="pasos-nota">Si te quedan dudas antes de comprar, <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20tengo%20una%20pregunta%20sobre%20la%20gift%20card." target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card">escribinos</a>.</p>
   </div>
 </section>
 
 <section class="seccion-sm canje" id="te-regalaron">
   <div class="env">
     <h2>¿Te regalaron una <span lang="en">gift card</span>?</h2>
-    <p><!--o:regalo.canje_texto-->Escribinos al 094 064 148 con el código y elegís la fecha.<!--/o--></p>
-    <a data-set="href=regalo.canje_href" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20me%20regalaron%20una%20gift%20card.%20Mi%20c%C3%B3digo%20es%20" target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="gift-card-canje"><!--o:regalo.canje_boton-->Escribir por WhatsApp<!--/o--></a>
+    <p><!--o:regalo.canje_texto-->Completás el formulario con el código de tu gift card y elegís la fecha.<!--/o--></p>
+    <a data-set="href=regalo.canje_href" href="https://tally.so/r/LZAVVl" target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="gift-card-canje"><!--o:regalo.canje_boton-->Usar mi gift card<!--/o--></a>
+    <p class="canje-dudas"><!--o:html:regalo.canje_dudas_html-->Si tenés dudas, <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20me%20regalaron%20una%20gift%20card.%20Mi%20c%C3%B3digo%20es%20" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card-canje">escribinos al 094 064 148</a>.<!--/o--></p>
   </div>
 </section>
 
-<section class="seccion-sm cierre-regalo">
-  <div class="env">
-    <p>Si te quedan dudas, escribinos.</p>
-    <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20tengo%20una%20pregunta%20sobre%20la%20gift%20card." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="gift-card">WhatsApp 094 064 148</a>
-  </div>
-</section>
 
 </main>
 
@@ -229,19 +227,30 @@ html:not(.js) .copiar{display:none}
 
 
 
-<script src="track.js?v=20261012" defer></script>
+<script src="track.js?v=20261012b" defer></script>
 <script src="pagina.js?v=38" defer></script>
 <script>
 /* Copiar el número de cuenta: en el celular, seleccionar un número largo
    para pegarlo en la app del banco es donde más se equivoca la gente. */
 (function(){
   document.querySelectorAll('.copiar').forEach(function(b){
+    /* Si el navegador no deja copiar (permiso negado, página sin https), el
+       número queda seleccionado para copiarlo a mano: el botón nunca queda
+       mudo. */
+    function seleccionar(){
+      var n=b.parentNode.querySelector('.numero'),r=document.createRange();
+      r.selectNodeContents(n);
+      var sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);
+      b.textContent='Seleccionado';
+    }
+    function listo(){
+      b.setAttribute('data-copiado','');
+      b.textContent='Copiado';
+    }
     b.addEventListener('click',function(){
-      if(!navigator.clipboard)return;
-      navigator.clipboard.writeText(b.getAttribute('data-copiar')).then(function(){
-        b.setAttribute('data-copiado','');
-        b.textContent='Copiado';
-        setTimeout(function(){b.removeAttribute('data-copiado');b.textContent='Copiar';},2000);
+      var p=navigator.clipboard?navigator.clipboard.writeText(b.getAttribute('data-copiar')):Promise.reject();
+      p.then(listo,seleccionar).then(function(){
+        setTimeout(function(){b.removeAttribute('data-copiado');b.textContent='Copiar';},2500);
       });
     });
   });

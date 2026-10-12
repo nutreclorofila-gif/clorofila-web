@@ -343,6 +343,11 @@
       ga('tally_form_open', 'gift-card');
       return;
     }
+    // El de canje (usar una gift card recibida) tampoco es un temario.
+    if (tallyLink && tallyLink.href.indexOf('LZAVVl') !== -1) {
+      ga('tally_form_open', 'gift-card-canje');
+      return;
+    }
     if (tallyLink) {
       ga('begin_reservation', 'programa');
       ga('tally_form_open', 'programa');
