@@ -1078,6 +1078,9 @@ datos.regalo = Object.assign({ tarjeta_link: '' }, datos.regalo);
   r.opciones_html = opciones.map(function (o) {
     return '<li><a href="' + o[1] + '">' + escapar(o[0]) + '</a><span class="valor">' + escapar(o[2]) + '</span></li>';
   }).join('');
+  // La misma lista en una línea, para llms.txt.
+  r.valores_texto = opciones.map(function (o) { return o[0].replace(', pago total', ' con pago total') + ' (' + o[2] + ')'; }).join(', ') +
+    (opciones.length ? ' u otro monto a elección' : 'el monto que elijas');
   const wa = waBase + encodeURIComponent('Hola Leonardo, quiero pagar una gift card con tarjeta.');
   /* El link de Mercado Pago es «sin monto definido»: la persona escribe el
      valor de la gift card que eligió. El primero que se probó (12/10)
@@ -1089,7 +1092,7 @@ datos.regalo = Object.assign({ tarjeta_link: '' }, datos.regalo);
      se hace por WhatsApp con el código. */
   const waCanje = waBase + encodeURIComponent('Hola Leonardo, me regalaron una gift card. Mi código es ');
   r.canje_texto = r.canje_link
-    ? 'Completás el formulario con el código de tu gift card y elegís la fecha.'
+    ? 'Completás el formulario con el código de tu gift card y elegís la fecha. Si ninguna te sirve, te avisamos cuando haya nuevas y la gift card sigue vigente.'
     : 'Escribinos al 094 064 148 con el código y elegís la fecha.';
   r.canje_boton = r.canje_link ? 'Usar mi gift card' : 'Escribir por WhatsApp';
   r.canje_href = r.canje_link ? enlace(r.canje_link) : waCanje;

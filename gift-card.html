@@ -20,15 +20,15 @@
 <meta property="og:url" content="https://clorofila.uy/gift-card">
 <meta property="og:title" content="Gift card de Clorofila — Estudio de Cocina">
 <meta property="og:description" content="Una clase de cocina para regalar: el tapeo, las pastas sin gluten, el curso o el monto que elijas.">
-<meta property="og:image" content="https://clorofila.uy/og/og-home.jpg">
+<meta property="og:image" content="https://clorofila.uy/og/og-gift-card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:alt" content="Clase de cocina en Clorofila, Parque Rodó, Montevideo">
-<meta name="twitter:image:alt" content="Clase de cocina en Clorofila, Parque Rodó, Montevideo">
+<meta property="og:image:alt" content="Un grupo cocinando en una clase de Clorofila, Parque Rodó, Montevideo">
+<meta name="twitter:image:alt" content="Un grupo cocinando en una clase de Clorofila, Parque Rodó, Montevideo">
 <meta property="og:locale" content="es_UY">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://clorofila.uy/og/og-home.jpg">
+<meta name="twitter:image" content="https://clorofila.uy/og/og-gift-card.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Besley:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
@@ -48,6 +48,7 @@
    secuencia (pagás, completás, recibís el código), por eso van numerados. */
 .hero-regalo{padding-block:clamp(2rem,4vw,3.25rem) clamp(1rem,3vw,2rem)}
 .hero-regalo h1{font-size:var(--th-pagina);margin-block:.7rem .8rem;max-width:20ch;text-wrap:balance}
+.hero-canje{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1rem;margin-top:1.5rem;color:var(--cal-med)}
 .hero-regalo .bajada{color:var(--cal-med);font-size:var(--t-bajada);line-height:1.55;max-width:48ch;text-wrap:pretty}
 
 .valores-caja{display:grid}
@@ -140,6 +141,7 @@ html:not(.js) .copiar{display:none}
     <span class="senal"><span lang="en">Gift card</span> de Clorofila</span>
     <h1>Podés regalar una clase de cocina en Clorofila.</h1>
     <p class="bajada">Elegís la actividad o el monto, pagás y completás un formulario. Cuando confirmamos el pago, te mandamos por mail la tarjeta con el código.</p>
+    <p class="hero-canje">¿Te regalaron una? <a data-set="href=regalo.canje_href" href="https://tally.so/r/LZAVVl" target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="gift-card-canje"><!--o:regalo.canje_boton-->Usar mi gift card<!--/o--></a></p>
   </div>
 </header>
 
@@ -191,7 +193,7 @@ html:not(.js) .copiar{display:none}
         <span class="paso-num" aria-hidden="true">3</span>
         <h3>Te llega la gift card.</h3>
         <p>Cuando Leonardo confirma el pago, te mandamos por mail la tarjeta lista para regalar, normalmente el mismo día.</p>
-        <p>Tiene el nombre de quien la recibe y el tuyo, la actividad, la fecha hasta la que vale y un código que empieza con GC.</p>
+        <p>Tiene el nombre de quien la recibe y el tuyo, la actividad, la validez de un año y un código que empieza con GC.</p>
       </li>
     </ol>
     <p class="pasos-nota">Si te quedan dudas antes de comprar, <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20tengo%20una%20pregunta%20sobre%20la%20gift%20card." target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card">escribinos</a>.</p>
@@ -201,7 +203,7 @@ html:not(.js) .copiar{display:none}
 <section class="seccion-sm canje" id="te-regalaron">
   <div class="env">
     <h2>¿Te regalaron una <span lang="en">gift card</span>?</h2>
-    <p><!--o:regalo.canje_texto-->Completás el formulario con el código de tu gift card y elegís la fecha.<!--/o--></p>
+    <p><!--o:regalo.canje_texto-->Completás el formulario con el código de tu gift card y elegís la fecha. Si ninguna te sirve, te avisamos cuando haya nuevas y la gift card sigue vigente.<!--/o--></p>
     <a data-set="href=regalo.canje_href" href="https://tally.so/r/LZAVVl" target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="gift-card-canje"><!--o:regalo.canje_boton-->Usar mi gift card<!--/o--></a>
     <p class="canje-dudas"><!--o:html:regalo.canje_dudas_html-->Si tenés dudas, <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20me%20regalaron%20una%20gift%20card.%20Mi%20c%C3%B3digo%20es%20" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card-canje">escribinos al 094 064 148</a>.<!--/o--></p>
   </div>
@@ -218,7 +220,7 @@ html:not(.js) .copiar{display:none}
       <p class="dato" style="color:var(--cal-baja);text-transform:none;letter-spacing:.02em"><a href="/contacto">Maldonado 1976 esq. Blanes, Parque Rodó, Montevideo</a></p>
     </div>
     <div><h2>Propuestas</h2><ul><li><a href="/curso">El curso</a></li><li><a href="/programa">Programa completo</a></li><li><a href="/talleres">Todos los talleres</a></li><li><a href="/pastas">Pastas sin gluten</a></li><li><a href="/experiencias">Todas las experiencias</a></li>
-            <li><a href="/tapeo">Cena y Taller de Tapeo</a></li></ul></div>
+            <li><a href="/tapeo">Cena y Taller de Tapeo</a></li><li><a href="/gift-card">Gift card</a></li></ul></div>
     <div><h2>Clorofila</h2><ul><li><a href="/leonardo">Leonardo Lemes</a></li><li><a href="/sobre">Sobre Clorofila</a></li><li><a href="/articulos">Artículos</a></li><li><a href="/servicios">Eventos y consultoría</a></li></ul></div>
     <div><h2>Contacto</h2><ul><li><a href="https://wa.me/59894064148" target="_blank" rel="noopener noreferrer">094 064 148</a></li><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">@clorofilaclases</a></li></ul></div>
   </div>
@@ -227,7 +229,7 @@ html:not(.js) .copiar{display:none}
 
 
 
-<script src="track.js?v=20261012b" defer></script>
+<script src="track.js?v=20261012c" defer></script>
 <script src="pagina.js?v=38" defer></script>
 <script>
 /* Copiar el número de cuenta: en el celular, seleccionar un número largo
