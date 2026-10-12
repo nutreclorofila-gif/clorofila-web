@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Marca que el JS corre. Sin esto, el menú del celular y las respuestas de
+     las preguntas quedan invisibles: las abre y cierra pagina.js. Va inline y
+     arriba de todo para que la clase llegue antes del primer pintado. -->
+<script>document.documentElement.className+=' js'</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0E1A13">
+<title>Gift card para regalar una clase de cocina — Clorofila, Montevideo</title>
+<meta name="description" content="Regalá la Cena y Taller de Tapeo, el Taller de Pastas sin gluten, el curso de cocina o el monto que elijas. Pagás por transferencia, Abitab, RedPagos o tarjeta.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://clorofila.uy/gift-card">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://clorofila.uy/gift-card">
+<meta property="og:title" content="Gift card de Clorofila — Estudio de Cocina">
+<meta property="og:description" content="Una clase de cocina para regalar: el tapeo, las pastas sin gluten, el curso o el monto que elijas.">
+<meta property="og:image" content="https://clorofila.uy/og/og-home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Clase de cocina en Clorofila, Parque Rodó, Montevideo">
+<meta name="twitter:image:alt" content="Clase de cocina en Clorofila, Parque Rodó, Montevideo">
+<meta property="og:locale" content="es_UY">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://clorofila.uy/og/og-home.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Besley:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:wght@600&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
+<link rel="stylesheet" href="base.css?v=73">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "ContactPage", "@id": "https://clorofila.uy/contacto#page", "url": "https://clorofila.uy/contacto", "inLanguage": "es-UY", "name": "Contacto — Clorofila Estudio de Cocina", "about": {"@id": "https://clorofila.uy/#organization"}, "mainEntity": {"@id": "https://clorofila.uy/#organization"}, "significantLink": ["https://wa.me/59894064148", "https://instagram.com/clorofilaclases"]}, {"@type": "Place", "@id": "https://clorofila.uy/#place", "name": "Clorofila Estudio de Cocina", "address": {"@type": "PostalAddress", "streetAddress": "Maldonado 1976 esq. Blanes", "addressLocality": "Montevideo", "addressRegion": "Montevideo", "addressCountry": "UY"}, "geo": {"@type": "GeoCoordinates", "latitude":-34.9085217, "longitude":-56.1723695}, "publicAccess": true, "hasMap": "https://maps.app.goo.gl/DnqBneEmi1GHNUjG9"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://clorofila.uy/"}, {"@type": "ListItem", "position": 2, "name": "Contacto", "item": "https://clorofila.uy/contacto"}]}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://clorofila.uy/gift-card#page", "url": "https://clorofila.uy/gift-card", "inLanguage": "es-UY", "name": "Gift card de Clorofila", "description": "Cómo comprar una gift card para regalar una clase de cocina en Clorofila.", "about": {"@id": "https://clorofila.uy/#organization"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://clorofila.uy/"}, {"@type": "ListItem", "position": 2, "name": "Gift card", "item": "https://clorofila.uy/gift-card"}]}]}
+</script>
+<style>
+/* /gift-card — desde el 12/10/2026. La gift card es la hoja clara girada,
+   la misma carta de /tapeo y de «Todo entra en el precio» en /curso: es lo
+   que se regala, así que es lo que más se ve. Los tres pasos sí son una
+   secuencia (pagás, completás, recibís el código), por eso van numerados. */
+.hero-regalo{padding-block:clamp(2rem,4vw,3.25rem) clamp(1rem,3vw,2rem)}
+.hero-regalo h1{font-size:var(--th-pagina);margin-block:.7rem .8rem;max-width:20ch;text-wrap:balance}
+.hero-regalo .bajada{color:var(--cal-med);font-size:var(--t-bajada);line-height:1.55;max-width:48ch;text-wrap:pretty}
+
+.valores-caja{display:grid}
+.valores-foto{margin:0 calc(-1 * clamp(1.25rem,4vw,2.5rem));aspect-ratio:16/11;overflow:hidden}
+.valores-foto img{width:100%;height:100%;object-fit:cover}
+.afiche{position:relative;z-index:2;margin:-3rem .25rem 0;background:#E1E4DB;color:var(--tinta);border-radius:6px;padding:2rem 1.5rem;transform:rotate(-1.2deg);box-shadow:0 1px 2px rgba(0,0,0,.25),0 18px 40px rgba(0,0,0,.35)}
+.afiche h2{color:var(--tinta)}
+.carta{margin-top:1.25rem}
+.carta li{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.25rem 1rem;font-family:var(--display);font-size-adjust:var(--display-ajuste);font-weight:600;font-size:clamp(1.1rem,1rem + .6vw,1.35rem);line-height:1.25;letter-spacing:-.01em;color:var(--tinta);padding-block:.75rem;border-top:1px dashed rgba(14,26,19,.3)}
+.carta a{color:var(--tinta);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;text-decoration-color:rgba(14,26,19,.35)}
+.carta a:hover{text-decoration-color:var(--tinta)}
+.carta .valor{font-variant-numeric:tabular-nums;white-space:nowrap}
+.afiche-nota{margin-top:1rem;font-size:var(--t-chico);color:rgba(14,26,19,.75);max-width:40ch}
+@media (min-width:900px){
+  .valores-caja{grid-template-columns:repeat(12,minmax(0,1fr));align-items:center}
+  .valores-foto{grid-column:6/-1;grid-row:1;margin:0;aspect-ratio:4/3;border-radius:0 var(--hoja) 0 var(--hoja)}
+  .afiche{grid-column:1/8;grid-row:1;margin:0;padding:clamp(2.25rem,3.5vw,3rem)}
+}
+
+/* Los pasos: tarjetas musgo con el número grande en miel, como los meses
+   de /curso. En la compu bajan en escalera hacia la derecha. */
+.pasos{list-style:none;padding:0;display:grid;gap:3.5rem;margin-top:3.25rem;max-width:46rem;counter-reset:paso}
+.paso{position:relative;background:var(--musgo);border-radius:6px;padding:2rem 1.5rem 1.75rem;box-shadow:0 1px 2px rgba(0,0,0,.25),0 18px 40px rgba(0,0,0,.3)}
+.paso-num{position:absolute;right:1rem;top:-3.1rem;font-family:var(--display);font-size-adjust:var(--display-ajuste);font-size:5.5rem;font-weight:600;line-height:1;color:var(--miel);text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.paso h3{font-size:var(--th-bloque);max-width:22ch}
+.paso p{margin-top:.75rem;color:var(--cal-med);max-width:52ch}
+.paso .btn{margin-top:1.25rem}
+@media (min-width:900px){.paso+.paso{margin-left:4rem}.paso+.paso+.paso{margin-left:8rem}}
+
+.medios{margin-top:1.25rem;border-top:1px solid var(--linea)}
+.medio{padding-block:1rem;border-bottom:1px solid var(--linea)}
+.medio:last-child{border-bottom:0;padding-bottom:0}
+.medio h4{font-family:var(--texto);font-size:var(--t-cuerpo);font-weight:600;letter-spacing:0;color:var(--cal)}
+.medio p{margin-top:.3rem;color:var(--cal-med);font-size:var(--t-chico)}
+.medio .enlace-vivo{display:inline;padding-block:0}
+.cuenta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .9rem}
+.numero{font-variant-numeric:tabular-nums;font-size:var(--t-bajada);letter-spacing:.02em;color:var(--cal);font-weight:500}
+.copiar{min-height:40px;padding:.35rem .9rem;border:1.5px solid var(--linea-fuerte);border-radius:999px;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal);background:none;cursor:pointer;transition:border-color .2s,background-color .2s}
+.copiar:hover{border-color:var(--cal)}
+.copiar[data-copiado]{border-color:var(--brote);color:var(--brote)}
+html:not(.js) .copiar{display:none}
+
+.cierre-regalo .env{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.25rem 2rem}
+.cierre-regalo p{font-family:var(--display);font-size-adjust:var(--display-ajuste);font-size:var(--th-bloque);font-weight:600;color:var(--cal);max-width:30ch}
+
+@media print{.copiar{display:none}.afiche,.paso{transform:none;box-shadow:none}}
+</style>
+<!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
+<script src="consent.js?v=20261008" defer></script>
+</head>
+<body data-producto="gift-card">
+<a href="#principal" class="saltar">Ir al contenido principal</a>
+<div class="cookie-banner" id="cookie-banner" role="status" aria-label="Aviso de cookies">
+  <p>Mantené la mejor experiencia para tu navegador. <a href="/privacidad">Cookies</a></p>
+  <div class="cookie-banner-actions">
+    <button type="button" id="cookie-decline">Rechazar</button>
+    <button type="button" id="cookie-accept">Aceptar</button>
+  </div>
+</div>
+
+<nav class="nav" id="nav" aria-label="Principal">
+  <div class="nav-caja">
+    <a href="/" class="marca"><picture><source srcset="/logo-clorofila.webp" type="image/webp"><img src="/logo-clorofila.png" width="600" height="153" alt="Clorofila, estudio de cocina"></picture></a>
+    <button type="button" class="cerrar-menu" id="cerrar-menu" aria-label="Cerrar menú">✕</button>
+    <ul class="nav-links" id="nav-links">
+      <li class="solo-menu"><a href="/">Inicio</a></li>
+      <li><a href="/curso">Curso</a></li>
+      <li><a href="/talleres">Talleres</a></li>
+      <li><a data-set="href=menu_experiencias" href="/tapeo">Experiencias</a></li>
+      <li class="nav-sec nav-corte"><a href="/articulos">Artículos</a></li>
+      <li class="nav-sec"><a href="/sobre">Sobre Clorofila</a></li>
+      <li class="nav-sec"><a href="/servicios">Eventos y consultoría</a></li>
+      <li class="nav-sec"><a href="/contacto">Contacto</a></li>
+      <li><a href="https://wa.me/59894064148?text=Hola%2C%20quiero%20info%20de%20Clorofila." target="_blank" rel="noopener noreferrer" class="nav-cta">Escribir</a></li>
+    </ul>
+    <button class="hamburguesa" id="hamburguesa" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
+  </div>
+</nav>
+
+<main id="principal">
+
+<header class="hero-regalo">
+  <div class="env">
+    <span class="senal"><span lang="en">Gift card</span> de Clorofila</span>
+    <h1>Podés regalar una clase de cocina en Clorofila.</h1>
+    <p class="bajada">Elegís la actividad o el monto, pagás y completás un formulario. Cuando confirmamos el pago, te llega el código para la persona que recibe el regalo.</p>
+  </div>
+</header>
+
+<section class="seccion-sm" id="valores">
+  <div class="env valores-caja">
+    <figure class="valores-foto"><picture><source srcset="img-tapeo-mesa-700.webp 700w, img-tapeo-mesa.webp 1200w" sizes="(max-width: 899px) 100vw, 60vw" type="image/webp"><img src="img-tapeo-mesa.jpg" width="1200" height="675" alt="Un grupo cocinando en una clase de Clorofila" loading="eager" decoding="async"></picture></figure>
+    <article class="afiche">
+      <h2>Qué podés regalar.</h2>
+      <ul class="carta">
+        <!--o:html:regalo.opciones_html--><li><a href="/tapeo">Cena y Taller de Tapeo</a><span class="valor">$2.600</span></li><li><a href="/pastas">Taller de Pastas sin gluten</a><span class="valor">$2.700</span></li><li><a href="/curso">Curso de cocina, pago total</a><span class="valor">$12.200</span></li><!--/o-->
+        <li><span>Otro monto, el que elijas</span></li>
+      </ul>
+      <p class="afiche-nota">Quien recibe la gift card usa el código al inscribirse.</p>
+    </article>
+  </div>
+</section>
+
+<section class="seccion" id="como-se-compra">
+  <div class="env">
+    <h2>Cómo se compra.</h2>
+    <ol class="pasos">
+      <li class="paso">
+        <span class="paso-num" aria-hidden="true">1</span>
+        <h3>Pagás el valor que elegiste.</h3>
+        <div class="medios">
+          <div class="medio">
+            <h4>Transferencia al BROU</h4>
+            <p>Caja de ahorro en pesos, a nombre de Leonardo Lemes.</p>
+            <p class="cuenta"><span class="numero">001056536-00001</span> <button type="button" class="copiar" data-copiar="001056536-00001" aria-label="Copiar el número de cuenta del BROU">Copiar</button></p>
+          </div>
+          <div class="medio">
+            <h4>Abitab o RedPagos</h4>
+            <p>Depositás en la cuenta del BROU con el número de formato anterior.</p>
+            <p class="cuenta"><span class="numero">197-0351645</span> <button type="button" class="copiar" data-copiar="197-0351645" aria-label="Copiar el número de cuenta para Abitab o RedPagos">Copiar</button></p>
+          </div>
+          <div class="medio">
+            <h4>Con tarjeta</h4>
+            <p><!--o:html:regalo.tarjeta_html-->Para la gift card de $2.600 tenemos un link listo: <a href="https://mpago.la/2Kgmnji" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card">Pagar $2.600 en Mercado Pago</a>. Para otro valor, <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20pagar%20una%20gift%20card%20con%20tarjeta." target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card">escribinos</a> y te mandamos el link.<!--/o--></p>
+          </div>
+        </div>
+      </li>
+      <li class="paso">
+        <span class="paso-num" aria-hidden="true">2</span>
+        <h3>Completás el formulario de la gift card.</h3>
+        <p>Al enviarlo, te llega un mail.</p>
+        <a href="https://tally.so/r/obrgK5" target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="gift-card">Completar el formulario</a>
+      </li>
+      <li class="paso">
+        <span class="paso-num" aria-hidden="true">3</span>
+        <h3>Te llega la gift card.</h3>
+        <p>Cuando Leonardo confirma el pago, te mandamos un código que empieza con GC. Se lo das a la persona que recibe el regalo.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="seccion-sm cierre-regalo">
+  <div class="env">
+    <p>Si te quedan dudas, escribinos.</p>
+    <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20tengo%20una%20pregunta%20sobre%20la%20gift%20card." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="gift-card">WhatsApp 094 064 148</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="pie-caja">
+    <div class="pie-marca">
+      <a href="/" class="marca"><picture><source srcset="/logo-clorofila.webp" type="image/webp"><img src="/logo-clorofila.png" width="600" height="153" alt="Clorofila, estudio de cocina"></picture></a>
+      <p class="pie-lema">Cocinamos y comemos de manera creativa, energética y nutritiva.</p>
+      <p class="dato" style="color:var(--cal-baja);text-transform:none;letter-spacing:.02em"><a href="/contacto">Maldonado 1976 esq. Blanes, Parque Rodó, Montevideo</a></p>
+    </div>
+    <div><h2>Propuestas</h2><ul><li><a href="/curso">El curso</a></li><li><a href="/programa">Programa completo</a></li><li><a href="/talleres">Todos los talleres</a></li><li><a href="/pastas">Pastas sin gluten</a></li><li><a href="/experiencias">Todas las experiencias</a></li>
+            <li><a href="/tapeo">Cena y Taller de Tapeo</a></li></ul></div>
+    <div><h2>Clorofila</h2><ul><li><a href="/leonardo">Leonardo Lemes</a></li><li><a href="/sobre">Sobre Clorofila</a></li><li><a href="/articulos">Artículos</a></li><li><a href="/servicios">Eventos y consultoría</a></li></ul></div>
+    <div><h2>Contacto</h2><ul><li><a href="https://wa.me/59894064148" target="_blank" rel="noopener noreferrer">094 064 148</a></li><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">@clorofilaclases</a></li></ul></div>
+  </div>
+  <p class="pie-fin">© 2026 Clorofila · Montevideo, Uruguay · <a href="/privacidad">Privacidad y cookies</a></p>
+</footer>
+
+
+
+<script src="track.js?v=20261012" defer></script>
+<script src="pagina.js?v=38" defer></script>
+<script>
+/* Copiar el número de cuenta: en el celular, seleccionar un número largo
+   para pegarlo en la app del banco es donde más se equivoca la gente. */
+(function(){
+  document.querySelectorAll('.copiar').forEach(function(b){
+    b.addEventListener('click',function(){
+      if(!navigator.clipboard)return;
+      navigator.clipboard.writeText(b.getAttribute('data-copiar')).then(function(){
+        b.setAttribute('data-copiado','');
+        b.textContent='Copiado';
+        setTimeout(function(){b.removeAttribute('data-copiado');b.textContent='Copiar';},2000);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
