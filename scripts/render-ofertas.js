@@ -1079,16 +1079,12 @@ datos.regalo = Object.assign({ tarjeta_link: '' }, datos.regalo);
     return '<li><a href="' + o[1] + '">' + escapar(o[0]) + '</a><span class="valor">' + escapar(o[2]) + '</span></li>';
   }).join('');
   const wa = waBase + encodeURIComponent('Hola Leonardo, quiero pagar una gift card con tarjeta.');
-  /* El link de Mercado Pago de la gift card cobra un monto fijo ($2.600 el
-     12/10). Ofrecerlo para «cualquier valor» mandaba a pagar el curso con un
-     link que cobra el tapeo. */
-  const pagar = r.tarjeta_link ? '<a href="' + enlace(r.tarjeta_link) + '" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card">Pagar ' + (r.tarjeta_valor ? escapar(r.tarjeta_valor) + ' ' : '') + 'en Mercado Pago</a>' : '';
-  const escribinos = '<a href="' + escapar(wa) + '" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card">Escribinos</a>';
-  r.tarjeta_html = !r.tarjeta_link
-    ? escribinos + ' y te mandamos el link de Mercado Pago.'
-    : r.tarjeta_valor
-      ? 'Para la gift card de ' + escapar(r.tarjeta_valor) + ' tenemos un link listo: ' + pagar + '. Para otro valor, ' + escribinos.replace('>Escribinos<', '>escribinos<') + ' y te mandamos el link.'
-      : pagar + '.';
+  /* El link de Mercado Pago es «sin monto definido»: la persona escribe el
+     valor de la gift card que eligió. El primero que se probó (12/10)
+     cobraba $2.600 fijos y no servía para el curso ni para las pastas. */
+  r.tarjeta_html = r.tarjeta_link
+    ? 'Pagás en Mercado Pago y escribís el valor de la gift card que elegiste. <a href="' + enlace(r.tarjeta_link) + '" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card">Pagar con tarjeta</a>'
+    : '<a href="' + escapar(wa) + '" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card">Escribinos</a> y te mandamos el link de Mercado Pago.';
 })();
 
 /* ---- Reemplazo en los HTML ---- */
