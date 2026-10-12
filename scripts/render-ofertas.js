@@ -316,9 +316,6 @@ t.cta_link = (!ventaMuda(t.estado) && t.link_compra) ? t.link_compra : t.wa_link
 t.sumar_link = waBase + encodeURIComponent(
   'Hola Leonardo, ya reservé para la Cena y Taller de Tapeo. Quiero sumar a alguien más.'
 );
-t.regalo_link = waBase + encodeURIComponent(
-  'Hola Leonardo, quiero regalar una Cena y Taller de Tapeo. ¿Cómo hago con la gift card?'
-);
 /* El segundo botón del inicio llevaba siempre al tapeo. Con la fecha llena
    eso es mandar a la puerta cerrada al que recién llega, y ya está medido lo
    que pasa: el anuncio del tapeo del 18 se dejó corriendo tres días después
@@ -557,9 +554,6 @@ datos.curso.cta_link = abiertos.length
 // El botón redondo de al lado es para preguntar, no para reservar: siempre va a
 // WhatsApp, también cuando no hay edición abierta y el botón grande lleva al
 // formulario. Sin esto mandaba un chat en blanco y Leo no sabía de qué venía.
-datos.curso.regalo_link = waBase + encodeURIComponent(
-  'Hola Leonardo, quiero regalar el curso de cocina. ¿Cómo hago con la gift card?'
-);
 datos.curso.wa_link = waBase + encodeURIComponent(
   'Hola Leonardo, tengo una pregunta sobre el curso de cocina.'
 );
@@ -1065,6 +1059,33 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
       });
   });
 }
+
+/* ---- Gift card (/gift-card) ----
+   Los valores son los mismos precios de cada propuesta: no se cargan aparte,
+   así una suba en el tapeo no deja la gift card con el precio viejo. Si una
+   propuesta queda sin precio publicado, su renglón no aparece. Desde el 12/10
+   la gift card tiene su propia página y su formulario: los «¿Es para
+   regalar?» de /curso y /tapeo, que abrían un WhatsApp, llevan ahí. */
+datos.regalo = Object.assign({ tarjeta_link: '' }, datos.regalo);
+(function () {
+  const r = datos.regalo;
+  const pastas = datos.talleres['pastas-sin-gluten'] || {};
+  const opciones = [
+    ['Cena y Taller de Tapeo', '/tapeo', String(datos.tapeo.precio || '').replace(/\s*por persona$/i, '')],
+    ['Taller de Pastas sin gluten', '/pastas', pastas.precio || ''],
+    ['Curso de cocina, pago total', '/curso', datos.curso.precio_total || '']
+  ].filter(function (o) { return o[2]; });
+  r.opciones_html = opciones.map(function (o) {
+    return '<li><a href="' + o[1] + '">' + escapar(o[0]) + '</a><span class="valor">' + escapar(o[2]) + '</span></li>';
+  }).join('');
+  const wa = waBase + encodeURIComponent('Hola Leonardo, quiero pagar una gift card con tarjeta.');
+  /* El link de Mercado Pago es «sin monto definido»: la persona escribe el
+     valor de la gift card que eligió. El primero que se probó (12/10)
+     cobraba $2.600 fijos y no servía para el curso ni para las pastas. */
+  r.tarjeta_html = r.tarjeta_link
+    ? 'Pagás en Mercado Pago y escribís el valor de la gift card que elegiste. <a href="' + enlace(r.tarjeta_link) + '" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card">Pagar con tarjeta</a>'
+    : '<a href="' + escapar(wa) + '" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card">Escribinos</a> y te mandamos el link de Mercado Pago.';
+})();
 
 /* ---- Reemplazo en los HTML ---- */
 

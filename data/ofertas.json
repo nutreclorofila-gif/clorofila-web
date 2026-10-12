@@ -150,6 +150,10 @@
       "cupos_total": 16
     }
   },
+  "regalo": {
+    "_leeme": "La página /gift-card. Los valores salen solos de los precios de arriba (tapeo, pastas y el pago total del curso). tarjeta_link es el link de Mercado Pago sin monto definido (la persona escribe el monto), el que Leo pasó el 12/10 para todas las opciones. Si se vacía, la página dice «escribinos y te mandamos el link».",
+    "tarjeta_link": "https://link.mercadopago.com.uy/clorofilaestudio"
+  },
   "google": {
     "_leeme": "El puntaje y la cantidad de reseñas del perfil de Google. Se muestran en el home, el curso y el tapeo, y también en la ficha que lee Google. Actualizalo cuando entren reseñas nuevas: escribí el puntaje con punto (4.9), no con coma.",
     "puntaje": 4.9,

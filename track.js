@@ -335,6 +335,14 @@
        Para Meta es un Lead (deja sus datos), no un InitiateCheckout: nadie
        empieza a pagar al pedir el temario. */
     var tallyLink = e.target.closest('a[href*="tally.so"]');
+    /* El formulario de la gift card (12/10) es una compra, no un pedido de
+       temario: contarlo como Lead del programa inflaba justo el número que
+       mira Meta para optimizar. Se registra solo que se abrió, con su propio
+       producto, sin evento clave. */
+    if (tallyLink && tallyLink.href.indexOf('obrgK5') !== -1) {
+      ga('tally_form_open', 'gift-card');
+      return;
+    }
     if (tallyLink) {
       ga('begin_reservation', 'programa');
       ga('tally_form_open', 'programa');
