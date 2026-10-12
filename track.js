@@ -334,6 +334,14 @@
        «programa» desde el resto, y el mismo pedido quedaba partido en dos.
        Para Meta es un Lead (deja sus datos), no un InitiateCheckout: nadie
        empieza a pagar al pedir el temario. */
+    /* Pagar la gift card con tarjeta (12/10). Se cuenta el clic, sin evento
+       clave: el pago lo confirma Leonardo a mano y la venta no se ve desde acá. */
+    var mp = e.target.closest('a[href*="mercadopago.com"]');
+    if (mp) {
+      ga('click_mercadopago', productoDe(mp));
+      return;
+    }
+
     var tallyLink = e.target.closest('a[href*="tally.so"]');
     /* El formulario de la gift card (12/10) es una compra, no un pedido de
        temario: contarlo como Lead del programa inflaba justo el número que
@@ -341,6 +349,11 @@
        producto, sin evento clave. */
     if (tallyLink && tallyLink.href.indexOf('obrgK5') !== -1) {
       ga('tally_form_open', 'gift-card');
+      return;
+    }
+    // El de canje (usar una gift card recibida) tampoco es un temario.
+    if (tallyLink && tallyLink.href.indexOf('LZAVVl') !== -1) {
+      ga('tally_form_open', 'gift-card-canje');
       return;
     }
     if (tallyLink) {

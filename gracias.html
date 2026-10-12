@@ -48,8 +48,8 @@
 .gracias-foto img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:16/9}
 .gracias-foto figcaption{margin-top:.7rem;font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja);text-align:center}
 
-/* /gracias — cuatro variantes en una página: ?p=programa, ?p=espera, ?p=curso,
-   ?p=tapeo.
+/* /gracias — seis variantes en una página: ?p=programa, ?p=espera, ?p=curso,
+   ?p=tapeo, ?p=gift-card y ?p=canje.
    El tilde y el «qué sigue» son lo primero, porque la pregunta que trae
    alguien recién reservado es siempre la misma: ¿y ahora qué? */
 .gracias{max-width:720px;margin-inline:auto;padding-block:clamp(2.5rem,5vw,4rem) clamp(3rem,6vw,5rem)}
@@ -153,6 +153,24 @@
       <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20me%20anot%C3%A9%20para%20la%20pr%C3%B3xima%20edici%C3%B3n%20y%20tengo%20una%20consulta." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="curso">Tengo una pregunta</a>
     </div>
   </div>
+  <!-- ?p=gift-card: lo abre el formulario de compra de la gift card (Tally
+       obrgK5). ?p=canje: el de usar una gift card recibida (Tally LZAVVl).
+       Ninguno de los dos es una reserva ni un pedido de temario: se miden
+       aparte para no inflar las conversiones de Ads y de Meta. -->
+  <div data-para="gift-card">
+    <div class="comanda">
+      <div class="comanda-cabeza"><span class="comanda-titulo">Tu pedido</span><span class="comanda-estado">Gift card</span></div>
+      <ul class="comanda-datos"><li><strong>Vale por</strong><span>La actividad o el monto que elegiste</span></li><li><strong>Validez</strong><span>Un año desde la compra</span></li></ul>
+    </div>
+    <div class="acciones">
+      <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20compr%C3%A9%20una%20gift%20card%20y%20tengo%20una%20consulta." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="gift-card">Tengo una pregunta</a>
+    </div>
+  </div>
+  <div data-para="canje">
+    <div class="acciones">
+      <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20us%C3%A9%20mi%20gift%20card%20y%20tengo%20una%20consulta." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="gift-card-canje">Tengo una pregunta</a>
+    </div>
+  </div>
   <div data-para="curso">
     <div class="comanda">
       <div class="comanda-cabeza"><span class="comanda-titulo">Tu reserva</span><span class="comanda-estado">Curso de cocina saludable</span></div>
@@ -204,7 +222,7 @@
       <p class="dato" style="color:var(--cal-baja);text-transform:none;letter-spacing:.02em"><a href="/contacto">Maldonado 1976 esq. Blanes, Parque Rodó, Montevideo</a></p>
     </div>
     <div><h2>Propuestas</h2><ul><li><a href="/curso">El curso</a></li><li><a href="/programa">Programa completo</a></li><li><a href="/talleres">Todos los talleres</a></li><li><a href="/pastas">Pastas sin gluten</a></li><li><a href="/experiencias">Todas las experiencias</a></li>
-            <li><a href="/tapeo">Cena y Taller de Tapeo</a></li></ul></div>
+            <li><a href="/tapeo">Cena y Taller de Tapeo</a></li><li><a href="/gift-card">Gift card</a></li></ul></div>
     <div><h2>Clorofila</h2><ul><li><a href="/leonardo">Leonardo Lemes</a></li><li><a href="/sobre">Sobre Clorofila</a></li><li><a href="/articulos">Artículos</a></li><li><a href="/servicios">Eventos y consultoría</a></li></ul></div>
     <div><h2>Contacto</h2><ul><li><a href="https://wa.me/59894064148" target="_blank" rel="noopener noreferrer">094 064 148</a></li><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">@clorofilaclases</a></li></ul></div>
   </div>
@@ -212,28 +230,30 @@
 </footer>
 
 
-<script src="track.js?v=20261012" defer></script>
+<script src="track.js?v=20261012c" defer></script>
 <script src="pagina.js?v=38" defer></script>
 <script>
 // Muestra el bloque de la propuesta reservada: /gracias?p=tapeo o ?p=curso.
 (function () {
   var p = new URLSearchParams(location.search).get('p');
-  var valido = { tapeo: 1, curso: 1, programa: 1, espera: 1 };
+  var valido = { tapeo: 1, curso: 1, programa: 1, espera: 1, 'gift-card': 1, canje: 1 };
   var elegido = valido[p] ? p : 'programa';
   var textos = {
     programa: ['Acá está el programa.', 'Podés leerlo ahora mismo, y guardarlo o imprimirlo desde la misma página. Si te queda alguna duda, escribinos por WhatsApp.'],
+    'gift-card': ['Recibimos tu pedido.', 'Cuando Leonardo confirma el pago, te mandamos por mail la gift card lista para regalar, normalmente el mismo día.'],
+    canje: ['Recibimos tu gift card.', 'En unos minutos te llega un mail con lo que sigue. Si no lo ves, mirá en promociones o en spam.'],
     espera: ['Te anotamos.', 'Te escribimos por mail apenas abra la próxima edición del curso o haya fecha del taller que elegiste. Mientras tanto, el programa completo está publicado.'],
     curso: ['Recibimos tu reserva.', 'Ya está anotada. Ahora te escribimos por WhatsApp para confirmarte el lugar y coordinar el pago — normalmente en el día, siempre en menos de 24 horas.'],
     tapeo: ['Recibimos tu reserva.', 'Ya está anotada. Ahora te escribimos por WhatsApp para confirmarte el lugar y coordinar el pago — normalmente en el día, siempre en menos de 24 horas.']
   };
   document.querySelector('[data-titulo]').textContent = textos[elegido][0];
   document.querySelector('[data-bajada]').textContent = textos[elegido][1];
-  if (elegido === 'programa' || elegido === 'espera') {
+  if (elegido !== 'curso' && elegido !== 'tapeo') {
     document.querySelectorAll('[data-solo-reserva]').forEach(function (el) { el.remove(); });
   }
   var bloque = document.querySelector('[data-para="' + elegido + '"]');
   if (bloque) bloque.classList.add('activo');
-  document.body.setAttribute('data-producto', elegido);
+  document.body.setAttribute('data-producto', elegido === 'canje' ? 'gift-card-canje' : elegido);
   // Si esa propuesta no tiene fecha cargada, no ofrecemos agregarla al calendario.
   var cal = bloque && bloque.querySelector('[data-calendario]');
   if (cal && !cal.getAttribute('href')) cal.remove();
@@ -264,6 +284,10 @@
     // La lista de espera es un contacto, no una reserva: mismo evento que el
     // temario, con otro method para poder separarlos en los informes.
     else if (elegido === 'espera') gtag('event', 'generate_lead', { producto: 'curso', method: 'lista_espera' });
+    // La gift card: el pedido todavía no está pagado y el canje no es una
+    // venta nueva. Eventos propios, sin evento clave.
+    else if (elegido === 'gift-card') gtag('event', 'gift_card_pedida', { producto: 'gift-card' });
+    else if (elegido === 'canje') gtag('event', 'gift_card_canjeada', { producto: 'gift-card-canje' });
     else gtag('event', 'generate_lead', { producto: 'programa', method: 'temario' });
     marcar(clave);
   }
@@ -271,6 +295,8 @@
     var clave = 'gracias_meta_' + elegido;
     if (yaMedido(clave) || typeof fbq !== 'function') return;
     if (reserva) fbq('track', 'Schedule', { content_name: elegido });
+    else if (elegido === 'gift-card') fbq('trackCustom', 'GiftCardPedida');
+    else if (elegido === 'canje') fbq('trackCustom', 'GiftCardCanjeada');
     else fbq('track', 'CompleteRegistration', { content_name: elegido === 'espera' ? 'lista_espera' : 'programa' });
     marcar(clave);
   }

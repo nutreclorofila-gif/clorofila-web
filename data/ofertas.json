@@ -152,7 +152,11 @@
   },
   "regalo": {
     "_leeme": "La página /gift-card. Los valores salen solos de los precios de arriba (tapeo, pastas y el pago total del curso). tarjeta_link es el link de Mercado Pago sin monto definido (la persona escribe el monto), el que Leo pasó el 12/10 para todas las opciones. Si se vacía, la página dice «escribinos y te mandamos el link».",
-    "tarjeta_link": "https://link.mercadopago.com.uy/clorofilaestudio"
+    "tarjeta_link": "https://link.mercadopago.com.uy/clorofilaestudio",
+    "_leeme_canje": "canje_link es el formulario para usar una gift card recibida. Vacío, la página dice «escribinos al 094 064 148 con el código». El 12/10 se cargó el formulario «Usar mi gift card» (LZAVVl); no publicar la web hasta que ese formulario esté activo en Tally.",
+    "canje_link": "https://tally.so/r/LZAVVl",
+    "_leeme_precio": "precio_respetado en true suma a la validez «por la actividad que elegiste aunque cambie el precio. La de otro monto vale por ese monto.». Leo lo confirmó el 12/10: la gift card vale por la actividad, no por el valor.",
+    "precio_respetado": true
   },
   "google": {
     "_leeme": "El puntaje y la cantidad de reseñas del perfil de Google. Se muestran en el home, el curso y el tapeo, y también en la ficha que lee Google. Actualizalo cuando entren reseñas nuevas: escribí el puntaje con punto (4.9), no con coma.",

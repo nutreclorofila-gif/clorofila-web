@@ -1078,6 +1078,9 @@ datos.regalo = Object.assign({ tarjeta_link: '' }, datos.regalo);
   r.opciones_html = opciones.map(function (o) {
     return '<li><a href="' + o[1] + '">' + escapar(o[0]) + '</a><span class="valor">' + escapar(o[2]) + '</span></li>';
   }).join('');
+  // La misma lista en una línea, para llms.txt.
+  r.valores_texto = opciones.map(function (o) { return o[0].replace(', pago total', ' con pago total') + ' (' + o[2] + ')'; }).join(', ') +
+    (opciones.length ? ' u otro monto a elección' : 'el monto que elijas');
   const wa = waBase + encodeURIComponent('Hola Leonardo, quiero pagar una gift card con tarjeta.');
   /* El link de Mercado Pago es «sin monto definido»: la persona escribe el
      valor de la gift card que eligió. El primero que se probó (12/10)
@@ -1085,6 +1088,24 @@ datos.regalo = Object.assign({ tarjeta_link: '' }, datos.regalo);
   r.tarjeta_html = r.tarjeta_link
     ? 'Pagás en Mercado Pago y escribís el valor de la gift card que elegiste. <a href="' + enlace(r.tarjeta_link) + '" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card">Pagar con tarjeta</a>'
     : '<a href="' + escapar(wa) + '" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card">Escribinos</a> y te mandamos el link de Mercado Pago.';
+  /* Usar una gift card recibida. Hasta que exista el formulario de canje,
+     se hace por WhatsApp con el código. */
+  const waCanje = waBase + encodeURIComponent('Hola Leonardo, me regalaron una gift card. Mi código es ');
+  r.canje_texto = r.canje_link
+    ? 'Completás el formulario con el código de tu gift card y elegís la fecha. Si ninguna te sirve, te avisamos cuando haya nuevas y la gift card sigue vigente.'
+    : 'Escribinos al 094 064 148 con el código y elegís la fecha.';
+  r.canje_boton = r.canje_link ? 'Usar mi gift card' : 'Escribir por WhatsApp';
+  r.canje_href = r.canje_link ? enlace(r.canje_link) : waCanje;
+  // Con formulario, WhatsApp queda para las dudas; sin él, ya es el botón.
+  r.canje_dudas_html = r.canje_link
+    ? 'Si tenés dudas, <a href="' + escapar(waCanje) + '" target="_blank" rel="noopener noreferrer" class="enlace-vivo" data-producto="gift-card-canje">escribinos al 094 064 148</a>.'
+    : '';
+  /* La gift card vale por la actividad, no por el valor: Leo, 12/10, «es que
+     no dice el valor, vale por la actividad». Se muestra solo con
+     precio_respetado en true. */
+  r.validez_nota = r.precio_respetado === true
+    ? 'Vale por un año desde la compra, por la actividad que elegiste aunque cambie el precio. La de otro monto vale por ese monto.'
+    : 'Vale por un año desde la compra.';
 })();
 
 /* ---- Reemplazo en los HTML ---- */
