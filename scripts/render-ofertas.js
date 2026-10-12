@@ -297,6 +297,13 @@ t.resumen_texto =
 // Sin fecha, el link de venta de la edición anterior queda mudo: se ignora
 // aunque siga en el JSON, para no vender una entrada que ya no existe.
 // "jueves 3 de septiembre" -> "jueves 3", para que entre en un botón.
+/* validFrom de una oferta: el día que se abrió la venta (venta_desde en el
+   JSON). Search Console lo marcaba como faltante en los tres eventos
+   (10/10/2026). Sin dato, no se inventa: la oferta sale sin validFrom. */
+function desde(iso) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(iso || '') ? iso + 'T00:00:00-03:00' : '';
+}
+
 function fechaCorta(texto) {
   if (!texto) return '';
   const partes = String(texto).trim().split(/\s+/);
@@ -1424,6 +1431,7 @@ for (const archivo of archivos) {
               if (taller.fecha_iso && taller.estado !== 'sin-fecha') {
                 nodo.offers.validThrough = taller.fecha_iso + 'T' + (taller.hora_inicio || '00:00') + ':00-03:00';
               }
+              if (desde(taller.venta_desde) && taller.estado !== 'sin-fecha') nodo.offers.validFrom = desde(taller.venta_desde);
             } else {
               delete nodo.offers;
             }
@@ -1476,6 +1484,7 @@ for (const archivo of archivos) {
                   : 'https://schema.org/InStock',
                 validThrough: t.fecha_iso + 'T' + t.hora + ':00-03:00'
               };
+              if (desde(t.venta_desde)) nodo.offers.validFrom = desde(t.venta_desde);
             } else {
               delete nodo.offers;
             }
@@ -1506,6 +1515,7 @@ for (const archivo of archivos) {
                   : 'https://schema.org/InStock',
                 validThrough: w.fecha_iso + 'T' + w.hora_inicio + ':00-03:00'
               };
+              if (desde(w.venta_desde)) nodo.offers.validFrom = desde(w.venta_desde);
             } else {
               delete nodo.offers;
             }
@@ -1540,6 +1550,7 @@ for (const archivo of archivos) {
             if (s2.link) seg.offers.url = s2.link;
             // La oferta de la segunda noche vale hasta esa noche, no hasta la primera.
             if (seg.offers.validThrough) seg.offers.validThrough = seg.startDate;
+            if (desde(s2.venta_desde)) seg.offers.validFrom = desde(s2.venta_desde);
           }
           // Se rehace desde el evento principal en vez de dejar el que ya estaba:
           // si cambió el precio o el horario, el bloque viejo seguía mintiendo.

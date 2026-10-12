@@ -9,6 +9,8 @@
     "hora_fin": "22:30",
     "precio": "$2.600 por persona",
     "precio_num": "2600",
+    "_leeme_venta_desde": "venta_desde: el día que se abrió la venta de esta fecha (AAAA-MM-DD). Google lo lee como validFrom de la oferta. Al cargar una fecha nueva, poné el día en que la publicás. El 2/10 es cuando entraron el 23 y el 30 a este archivo.",
+    "venta_desde": "2026-10-02",
     "link_compra": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-1432",
     "cupos_total": 12,
     "lugar": "Maldonado 1976 esq. Blanes · Parque Rodó",
@@ -41,6 +43,7 @@
       "texto": "viernes 30 de octubre",
       "hora_inicio": "19:00",
       "hora_fin": "22:30",
+      "venta_desde": "2026-10-02",
       "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-e10f"
     }
   },
@@ -113,6 +116,7 @@
       "hora_fin": "22:30",
       "precio": "$2.700",
       "precio_num": "2700",
+      "venta_desde": "2026-10-04",
       "cupos_total": 12,
       "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten-0381"
     },
