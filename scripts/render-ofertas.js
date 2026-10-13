@@ -594,7 +594,10 @@ for (const g of datos.curso.grupos) {
 // día, así que cambiar de edición obligaba a editar curso.html y a acordarse de
 // los placeholders de cada id: si un grupo desaparecía del JSON, el build se
 // caía por un `curso.grupo_martes_inicio` que ya no existía.
-datos.curso.grupos_html = datos.curso.grupos.map(function (g) {
+/* Un grupo que ya empezó no se muestra (13/10): con la edición de octubre en
+   marcha, /curso seguía mostrando «Grupo cerrado — Empezó el miércoles 7»,
+   una fecha pasada en la página que vende la próxima. */
+datos.curso.grupos_html = datos.curso.grupos.filter(function (g) { return g.estado !== 'cerrado'; }).map(function (g) {
   return '<article class="grupo" data-estado="' + escapar(g.estado) + '">' +
     '<p class="grupo-estado">' + escapar(g.estado === 'abierto' ? 'Abierto' : 'Grupo cerrado') + '</p>' +
     '<p class="grupo-dia">' + escapar(g.nombre) + '</p>' +
@@ -665,18 +668,19 @@ const cuantos = { 1: 'un horario', 2: 'dos horarios', 3: 'tres horarios' }[nombr
   || nombres.length + ' horarios';
 datos.curso.intro_grupos = abiertos.length
   ? 'El mismo programa en ' + cuantos + '. Los grupos son chicos a propósito, para que puedas cocinar, preguntar y que Leonardo te corrija a vos.'
-  : 'El mismo programa en ' + cuantos + '. Los grupos de esta edición ya arrancaron. Son chicos a propósito, para que puedas cocinar, preguntar y que Leonardo te corrija a vos.';
+  : 'La próxima edición todavía no tiene fecha. Cuando abra, te avisamos los días y los horarios. Los grupos son chicos a propósito, para que puedas cocinar, preguntar y que Leonardo te corrija a vos.';
+datos.curso.grupos_titulo = abiertos.length ? 'Grupos y horarios.' : 'Próxima edición.';
 
 // El cierre cambia entero según haya edición abierta o no.
 // El espacio antes del <br> es a propósito: sin él, el texto que lee Google
 // dice "Empezá enoctubre". No cambia cómo se ve.
 datos.curso.cierre_titulo_html = abiertos.length
   ? 'Preguntanos <br>lo que quieras.'
-  : 'La edición de ' + escapar(String(datos.curso.edicion).split(' ')[0].toLowerCase()) + ' <br>ya arrancó.';
+  : 'La próxima edición <br>todavía no tiene fecha.';
 datos.curso.cierre_bajada = abiertos.length
   ? 'Contanos qué estás buscando y te decimos si este curso te sirve. Te contesta Leonardo.'
   // El título ya dice que la edición arrancó: la bajada no lo repite.
-  : 'Dejanos tus datos y te avisamos cuando abra la próxima. Te contesta Leonardo.';
+  : 'Dejanos tus datos y te avisamos cuando abra. Te contesta Leonardo.';
 
 // El resumen que leen los modelos de lenguaje en llms.txt. Antes decía a mano
 // "los grupos de martes y miércoles ya empezaron", que quedó falso apenas
@@ -689,7 +693,9 @@ datos.curso.resumen_grupos = abiertos.length
       return g.nombre + ' ' + g.horario.replace(' a ', '–').replace(' h', '') +
         ', con primera clase el ' + String(g.inicio_texto).replace(/^arranca el /i, '');
     }).join('; ') + '.'
-  : 'Los grupos de esta edición ya empezaron. Podés dejar tu mail y te avisamos de la próxima edición.';
+  : 'La próxima edición todavía no tiene fecha. Podés dejar tu mail y te avisamos cuando abra.';
+// «Edición octubre 2026.» en llms.txt solo mientras esa edición se puede comprar.
+datos.curso.edicion_llms = abiertos.length ? 'Edición ' + datos.curso.edicion + '. ' : '';
 
 // La FAQ de la cursada se arma con los grupos reales, para que no quede
 // prometiendo horarios de una edición que ya pasó.
@@ -701,9 +707,9 @@ datos.curso.resumen_grupos = abiertos.length
 const todosEmpezados = datos.curso.grupos.length &&
   datos.curso.grupos.every(function (g) { return esPasado(g.inicio_iso); });
 datos.curso.faq_cursada = todosEmpezados
-  ? 'Son 3 meses: 12 clases de 2 horas, una por semana. Los grupos de esta edición empezaron el ' +
-    datos.curso.grupos.map(function (g) { return g.inicio_texto.toLowerCase().replace(/^arranca el /, ''); }).join(' y el ') +
-    '. La próxima edición todavía no tiene fecha.'
+  // Sin las fechas de la edición en marcha (13/10): era una fecha pasada en
+  // la respuesta que lee quien llega por Google.
+  ? 'Son 3 meses: 12 clases de 2 horas, una por semana. La próxima edición todavía no tiene fecha: cuando abra, te avisamos los días y los horarios.'
   : 'Son 3 meses: 12 clases de 2 horas, una por semana. Elegís el grupo de ' +
   datos.curso.grupos.map(function (g) {
     return g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '');
@@ -1341,9 +1347,22 @@ for (const archivo of archivos) {
         // Antes cada CourseInstance estaba escrito a mano y solo se actualizaba
         // si su startDate coincidía con un grupo: al cambiar de edición, los
         // grupos viejos quedaban publicados con la fecha y el precio de antes.
-        if (nodo['@type'] === 'Course' && Array.isArray(nodo.hasCourseInstance)) {
-          const molde = nodo.hasCourseInstance[0] || {};
-          nodo.hasCourseInstance = datos.curso.grupos.map(function (g) {
+        /* Solo los grupos que todavía no empezaron (13/10): con la edición en
+           marcha, Google seguía leyendo grupos con primera clase el 7 y el 8/10.
+           Sin ninguno, el curso queda sin hasCourseInstance, y el molde de
+           abajo permite volver a armarlos cuando se cargue la próxima. */
+        if (nodo['@type'] === 'Course' && (Array.isArray(nodo.hasCourseInstance) ||
+            /\/(curso|programa)#course$/.test(nodo['@id'] || ''))) {
+          const molde = (nodo.hasCourseInstance || [])[0] || {
+            '@type': 'CourseInstance', courseMode: 'Onsite',
+            location: { '@type': 'Place', name: 'Clorofila', address: { '@type': 'PostalAddress',
+              streetAddress: 'Maldonado 1976 esq. Blanes', addressLocality: 'Montevideo', addressCountry: 'UY' } },
+            offers: { '@type': 'Offer', price: '', priceCurrency: 'UYU',
+              url: (nodo.offers && nodo.offers.url) || 'https://clorofila.uy/curso', category: 'Paid' },
+            courseWorkload: 'PT2H', inLanguage: 'es-UY'
+          };
+          const vigentes = datos.curso.grupos.filter(function (g) { return g.estado !== 'cerrado'; });
+          nodo.hasCourseInstance = vigentes.map(function (g) {
             const inst = JSON.parse(JSON.stringify(molde));
             inst.name = 'Grupo ' + g.nombre.toLowerCase() + ' ' + g.horario.replace(' a ', '-').replace(' h', '');
             inst.startDate = g.inicio_iso;
@@ -1384,6 +1403,10 @@ for (const archivo of archivos) {
             }
             return inst;
           });
+          if (!nodo.hasCourseInstance.length) {
+            delete nodo.hasCourseInstance;
+            if (nodo.offers) delete nodo.offers.availability;
+          }
           tocado = true;
         }
 
