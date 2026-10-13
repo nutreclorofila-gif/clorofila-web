@@ -15,6 +15,9 @@
  * Es el chequeo que habría frenado el error del 7/9: el primer page_view de
  * quien aceptaba salía sin cookies y sin la dirección de llegada.
  *
+ * Desde el 7/10, Google (Analytics y Ads) mide antes de que la persona elija,
+ * salvo que haya rechazado en otra visita; Meta sigue esperando a «Aceptar».
+ *
  * Necesita Chrome instalado y conexión (baja gtag.js y fbevents.js), por eso
  * no va en npm test: corre en CI y a mano con `npm run check:navegador`.
  * Otro Chrome: CHROME=/ruta/al/chrome npm run check:navegador
@@ -179,7 +182,12 @@ async function escenario(titulo, ruta, pruebas) {
   try {
     await c.cmd('Page.navigate', { url: `http://clorofila.uy${ruta}` });
     await espera(3500); // tiempo para que un error mande algo sin permiso
-    check('antes de decidir no sale nada', c.envios.length === 0 && !c.salieron.some((u) => /googletagmanager|facebook/.test(u)), c.envios.map((e) => e.url.slice(0, 80)));
+    // Desde el 7/10 Google mide a todos salvo a quien rechaza (consent.js
+    // arranca en granted sin decisión). Meta, en cambio, espera a «Aceptar».
+    const metaAntes = c.salieron.filter((u) => /facebook/.test(u));
+    check('antes de decidir Meta no recibe nada', metaAntes.length === 0, metaAntes.map((u) => u.slice(0, 80)));
+    await hasta(() => eventosGA(c.envios).length > 0, 10000);
+    check('antes de decidir Analytics ya mide', eventosGA(c.envios).length > 0, c.envios.map((e) => e.url.slice(0, 80)));
     const hayBoton = await c.evaluar(`(() => { const b = document.getElementById('cookie-accept'); if (!b) return false; b.click(); return true; })()`);
     check('el aviso de cookies tiene el botón Aceptar', hayBoton, hayBoton);
     await pruebas(c);

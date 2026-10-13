@@ -277,15 +277,6 @@
     // el propio documento). Sin este guardia, esos clics tiraban excepción.
     if (!e.target || typeof e.target.closest !== 'function') return;
 
-    var tally = e.target.closest('[data-tally-open]');
-    if (tally) {
-      var prod = productoDe(tally);
-      ga('begin_reservation', prod);
-      ga('tally_form_open', prod);
-      meta('InitiateCheckout', prod);
-      return;
-    }
-
     var wa = e.target.closest('a[href*="wa.me"]');
     if (wa) {
       marcarGoogle(wa);
@@ -323,17 +314,6 @@
       return;
     }
 
-    /* Tally abierto como enlace, no como ventanita. Acá arriba ya se mide el
-       widget (data-tally-open), pero el botón "Quiero el temario" de los doce
-       artículos, de /curso y de /programa es un enlace común a tally.so: catorce
-       botones que no dejaban ningún rastro. Son la puerta de entrada del
-       contenido al embudo, así que sin esto no se sabe si los artículos sirven.
-
-       Todos los enlaces van al mismo formulario, el del temario, así que el
-       producto es siempre «programa»: antes salía «curso» desde /curso y
-       «programa» desde el resto, y el mismo pedido quedaba partido en dos.
-       Para Meta es un Lead (deja sus datos), no un InitiateCheckout: nadie
-       empieza a pagar al pedir el temario. */
     /* Pagar la gift card con tarjeta (12/10). Se cuenta el clic, sin evento
        clave: el pago lo confirma Leonardo a mano y la venta no se ve desde acá. */
     var mp = e.target.closest('a[href*="mercadopago.com"]');
@@ -356,42 +336,29 @@
       ga('tally_form_open', 'gift-card-canje');
       return;
     }
+    /* EkMbWL es la lista de espera del curso (los 33 «Avisame de la próxima
+       edición»). Se contaba como begin_reservation y Lead de Meta del
+       «programa», como si alguien empezara a inscribirse: abrir el formulario
+       no es anotarse. La conversión la cuenta /gracias?p=espera cuando se
+       manda; acá queda solo que se abrió. */
+    if (tallyLink && tallyLink.href.indexOf('EkMbWL') !== -1) {
+      ga('tally_form_open', 'curso', { method: 'lista_espera' });
+      return;
+    }
     if (tallyLink) {
-      ga('begin_reservation', 'programa');
-      ga('tally_form_open', 'programa');
-      meta('Lead', 'programa');
+      ga('tally_form_open', productoDe(tallyLink));
       return;
     }
 
-    /* Botones grandes de acción (.nav-cta, .cta-main, .btn-accent). Muchos
+    /* Botones grandes de acción (.nav-cta, .cta-main). Muchos
        solo llevan a otra página o a otra parte de la misma (/curso,
        #reservar, #inscribirme), así que se cuentan como clic a un botón, no
        como reserva: antes salían como click_reservar y como Lead de Meta, y
        Ads los tomaba por intención de compra. */
-    var cta = e.target.closest('.nav-cta, .cta-main, .btn-accent');
+    var cta = e.target.closest('.nav-cta, .cta-main');
     if (cta) {
       ga('click_cta', productoDe(cta));
       meta('ClickCTA', productoDe(cta), null, true);
-    }
-  });
-
-  /* --- Formulario de Tally enviado = inscripción ---
-     Se exige que el mensaje venga del iframe de Tally. Sin esa verificación,
-     cualquier página que abra la nuestra en una ventana o la embeba puede
-     mandar el mismo mensaje y anotar inscripciones que nunca pasaron: los
-     eventos de conversión (sign_up, CompleteRegistration) son justo los que
-     alimentan la optimización de los anuncios. */
-  var ORIGEN_TALLY = 'https://tally.so';
-  window.addEventListener('message', function (e) {
-    if (e.origin !== ORIGEN_TALLY) return;
-    var data = e.data;
-    if (typeof data === 'string') {
-      try { data = JSON.parse(data); } catch (err) { return; }
-    }
-    if (data && data.event === 'Tally.FormSubmitted') {
-      var prod = document.body.getAttribute('data-producto') || 'curso';
-      ga('sign_up', prod, { method: 'tally' });
-      meta('CompleteRegistration', prod);
     }
   });
 })();

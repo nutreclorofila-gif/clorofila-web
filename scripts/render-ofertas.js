@@ -438,6 +438,14 @@ for (const [id, w] of Object.entries(datos.talleres)) {
     ? (w.linea_sin_fecha || '')
     : [w.fecha_texto, w.hora, w.precio].filter(Boolean).join(' · ');
 
+  // Lo que lee llms.txt. Decía solo «Fecha abierta», sin día ni precio, y es
+  // justo lo que preguntan a ChatGPT. Mismo criterio que tapeo.resumen_texto.
+  w.resumen_texto =
+    w.estado === 'sin-fecha' ? 'sin fecha abierta por ahora; se abre según la demanda' :
+    w.estado === 'agotado'   ? 'fecha ' + w.fecha_texto + ', sin lugares disponibles' :
+    'próxima fecha ' + [w.fecha_texto, w.hora, w.precio].filter(Boolean).join(', ') +
+      (w.cupos_total ? ', solo ' + w.cupos_total + ' lugares' : '');
+
   // Igual que en el tapeo: el aviso de «sin fecha» solo existe cuando no hay fecha.
   w.aviso_sin_fecha = w.estado === 'sin-fecha'
     ? 'Este taller se abre por demanda: cuando hay grupo, sale. Escribinos y te avisamos apenas haya fecha.' : '';
@@ -540,6 +548,9 @@ datos.curso.estado = abiertos.length ? 'abierto' : 'sin-fecha';
 // Cuando no hay edición abierta, la web deja de pedir una inscripción que no
 // existe y pasa sola a juntar lista de espera. Nadie tiene que acordarse.
 datos.curso.cta_texto = abiertos.length ? 'Reservar mi lugar' : 'Avisarme de la próxima edición';
+// El botón de la barra de /curso decía "Reservar" con la inscripción cerrada y
+// llevaba a la lista de espera. Mismo criterio que el tapeo y los talleres.
+datos.curso.nav_cta = abiertos.length ? 'Reservar' : 'Avisame';
 // Con edición abierta se reserva por WhatsApp, que es como se reserva de verdad.
 // Sin edición abierta, el formulario pasa a ser la lista de espera.
 datos.curso.cta_link = abiertos.length
@@ -851,6 +862,13 @@ datos.agenda_html = agenda.map(function (e) {
     '</li>';
 }).join('');
 datos.tiene_agenda = agenda.length ? 'si' : 'no';
+/* La portada pedía "Reservar" y "Ver próximas fechas" aunque en la agenda ya
+   no quedara nada a la venta (el tapeo sin fecha figura igual, para que exista
+   todo el año). Sin nada para comprar, los dos botones llevan a las propuestas. */
+const hayVenta = agenda.some(function (e) { return !ventaMuda(e.estado); });
+datos.portada_nav_cta   = hayVenta ? 'Reservar' : 'Ver propuestas';
+datos.portada_nav_link  = hayVenta ? '#agenda' : '#propuestas';
+datos.portada_fechas_cta = hayVenta ? 'Ver próximas fechas' : 'Ver las propuestas';
 
 /* ---- El menú del tapeo, en versión corta para el inicio ----
    En /tapeo los platos van completos ("Gyozas de hongos y verduras con salsa
