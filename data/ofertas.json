@@ -53,7 +53,7 @@
         "hora_inicio": "19:00",
         "hora_fin": "22:30",
         "venta_desde": "2026-10-14",
-        "link": null
+        "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-1ed7"
       },
       {
         "iso": "2026-11-27",
@@ -61,10 +61,10 @@
         "hora_inicio": "19:00",
         "hora_fin": "22:30",
         "venta_desde": "2026-10-14",
-        "link": null
+        "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-8062"
       }
     ],
-    "_leeme_mas_fechas": "mas_fechas: las fechas que vienen después de la segunda, en orden. Cuando pasa una fecha, la siguiente se corre sola (en el build y en el navegador, con estados.json). Sin link de Tikzet, el botón de esa fecha lleva a WhatsApp."
+    "_leeme_mas_fechas": "mas_fechas: las fechas que vienen después de la segunda, en orden. Cuando pasa una fecha, la siguiente se corre sola (en el build y en el navegador, con estados.json). Sin link de Tikzet («link»: null), el botón de esa fecha lleva a WhatsApp."
   },
   "curso": {
     "estado": "abierto",
@@ -113,7 +113,7 @@
     ]
   },
   "talleres": {
-    "_leeme": "Cada taller: mismo sistema que el tapeo. estado sin-fecha | abierto | ultimos | agotado.",
+    "_leeme": "Cada taller: mismo sistema que el tapeo. estado sin-fecha | abierto | ultimos | agotado. nombre_enlace: el nombre que va dentro de enlaces y botones cuando «nombre» lleva «veganos» (Leo no quiere «vegano» en botones ni enlaces).",
     "fermentacion": {
       "nombre": "Fermentación de vegetales",
       "nombre_corto": "Fermentación",
@@ -139,7 +139,7 @@
       "hora_fin": "22:30",
       "precio_num": "2600",
       "venta_desde": "2026-10-14",
-      "link_compra": null
+      "link_compra": "https://www.tikzet.com/events/taller-de-pan-sin-gluten-con-masa-madre"
     },
     "pastas-sin-gluten": {
       "nombre": "Pastas sin gluten",
@@ -155,10 +155,11 @@
       "precio_num": "2700",
       "venta_desde": "2026-10-14",
       "cupos_total": 12,
-      "link_compra": null
+      "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten-12c3"
     },
     "alfajores": {
       "nombre": "Alfajores veganos y sin gluten",
+      "nombre_enlace": "Alfajores sin gluten",
       "nombre_corto": "Alfajores",
       "linea_corta": "Armás la masa, la ganache y los rellenos con técnica pastelera.",
       "estado": "abierto",
@@ -171,7 +172,7 @@
       "hora_fin": "18:30",
       "precio_num": "2600",
       "venta_desde": "2026-10-14",
-      "link_compra": null
+      "link_compra": "https://www.tikzet.com/events/taller-de-alfajores-veganos-y-sin-gluten"
     },
     "quesos-vegetales": {
       "nombre": "Quesos vegetales",

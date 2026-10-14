@@ -129,8 +129,16 @@ function enlace(u) {
    cuatro): las que siguen a la segunda van en mas_fechas, en orden, y se
    corren en fila a medida que pasan. */
 function correrSegunda(o, campoHora) {
+  // Una fecha sin texto no se puede mostrar: quedaba «undefined» en la agenda.
   const cola = [].concat(o.segunda_fecha || [], o.mas_fechas || [])
-    .filter(function (f) { return f && f.iso; });
+    .filter(function (f) { return f && f.iso && f.texto; });
+  // Cada fecha guarda su horario antes de correr la fila. Si no trae uno
+  // propio, vale el de la primera fecha cargada, no el de la que quede
+  // primera ese día.
+  cola.forEach(function (f) {
+    if (!f.hora_inicio && o[campoHora]) f.hora_inicio = o[campoHora];
+    if (!f.hora_fin && o.hora_fin) f.hora_fin = o.hora_fin;
+  });
   while (esPasado(o.fecha_iso) && cola.length) {
     const s = cola.shift();
     if (esPasado(s.iso)) continue;
@@ -143,6 +151,8 @@ function correrSegunda(o, campoHora) {
     // anterior vendía la entrada de una noche que ya pasó.
     o.link_compra = s.link || null;
     if (s.venta_desde) o.venta_desde = s.venta_desde;
+    // Que se haya llenado una noche no llena la siguiente.
+    o.estado = s.estado || (o.estado === 'agotado' || o.estado === 'ultimos' ? 'abierto' : o.estado);
   }
   const quedan = cola.filter(function (f) { return !esPasado(f.iso); });
   if (quedan.length) o.segunda_fecha = quedan[0]; else delete o.segunda_fecha;
@@ -203,10 +213,12 @@ t.horario_texto = t.hora && t.hora_fin ? t.hora + ' a ' + t.hora_fin + ' h' : (t
 // Con dos fechas abiertas, la línea las nombra a las dos: si solo dice la primera,
 // quien no puede ese día se va sin saber que hay otra. Solo se juntan si la segunda
 // tiene el mismo horario, porque la línea dice un único horario.
+// Desde el 14/10 son todas las fechas abiertas, no solo dos.
 function fechasTapeo(t) {
-  const s = t.segunda_fecha;
-  const mismoHorario = s && (!s.hora_inicio || s.hora_inicio === t.hora) && (!s.hora_fin || s.hora_fin === t.hora_fin);
-  return s && s.texto && mismoHorario ? t.fecha_texto + ' y ' + s.texto : t.fecha_texto;
+  const siguen = [].concat(t.segunda_fecha || [], t.mas_fechas || []).filter(function (s) {
+    return s && s.texto && (!s.hora_inicio || s.hora_inicio === t.hora) && (!s.hora_fin || s.hora_fin === t.hora_fin);
+  });
+  return unirCon([t.fecha_texto].concat(siguen.map(function (s) { return s.texto; })), 'y');
 }
 
 // Una sola línea con lo que decide la reserva, igual que los talleres. En
@@ -276,8 +288,8 @@ if (!ventaMuda(t.estado) && t.segunda_fecha && t.segunda_fecha.texto) {
     'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + t.segunda_fecha.texto + '.'
   );
   t.wa_link = waBase + encodeURIComponent(
-    'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo. ¿Hay lugar el ' + t.fecha_texto +
-    ' o el ' + t.segunda_fecha.texto + '?'
+    'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo. ¿Hay lugar ' +
+    unirCon(textosDeFechas(t).map(function (x) { return 'el ' + x; }), 'o') + '?'
   );
   // Las fechas de más, igual: cada botón pide su noche.
   (t.mas_fechas || []).forEach(function (f) {
@@ -291,9 +303,10 @@ function textosDeFechas(o) {
   return [o.fecha_texto].concat(o.segunda_fecha && o.segunda_fecha.texto ? [o.segunda_fecha.texto] : [],
     (o.mas_fechas || []).map(function (f) { return f.texto; }).filter(Boolean));
 }
-function unirConY(lista) {
-  return lista.length < 2 ? (lista[0] || '') : lista.slice(0, -1).join(', ') + ' y ' + lista[lista.length - 1];
+function unirCon(lista, conj) {
+  return lista.length < 2 ? (lista[0] || '') : lista.slice(0, -1).join(', ') + ' ' + conj + ' ' + lista[lista.length - 1];
 }
+function unirConY(lista) { return unirCon(lista, 'y'); }
 /* Con la fecha llena, el botón decía "avisame si se libera un lugar" mientras
    el mensaje que se manda pide la próxima fecha: dos promesas distintas en el
    mismo clic. Y esperar una cancelación es lo más chico que se puede ofrecer
@@ -458,8 +471,14 @@ t.fechas_texto = fechasTapeo(t);
 t.dato_portada = (function () {
   const s = t.segunda_fecha;
   // Sin fecha decía «Una noche, el Sin fecha confirmada» (pasaba desde el 31/10).
-  if (/^sin fecha/i.test(t.fecha_texto)) return 'Una noche, con fecha a confirmar';
-  if (t.fechas_texto === t.fecha_texto || !s || !s.texto) return 'Una noche, el ' + t.fecha_texto;
+  if (t.estado === 'sin-fecha' || /^sin fecha/i.test(t.fecha_texto)) return 'Una noche, con fecha a confirmar';
+  const todas = textosDeFechas(t);
+  // Con tres o más, nombrarlas todas no entra en la tarjeta.
+  if (todas.length > 2) {
+    const cuantas = ['', '', 'Dos', 'Tres', 'Cuatro', 'Cinco', 'Seis'][todas.length] || String(todas.length);
+    return cuantas + ' noches a elegir, del ' + todas[0] + ' al ' + todas[todas.length - 1];
+  }
+  if (!s || !s.texto) return 'Una noche, el ' + t.fecha_texto;
   const mes = function (x) { const m = x.match(/ de ([a-zé]+)$/); return m ? m[1] : ''; };
   const primera = mes(t.fecha_texto) && mes(t.fecha_texto) === mes(s.texto)
     ? t.fecha_texto.replace(/ de [a-zé]+$/, '') : t.fecha_texto;
@@ -473,7 +492,12 @@ t.calendario_html = [
         'Cocinamos juntos y después cenamos todo lo que preparamos. Clorofila, Parque Rodó.'),
         'Agendar el ' + t.segunda_fecha.texto)
     : ''
-].filter(Boolean).join('\n      ');
+].concat((t.estado !== 'sin-fecha' && t.estado !== 'agotado' ? (t.mas_fechas || []) : []).map(function (f) {
+  return botonCalendario(linkCalendario('Cena y Taller de Tapeo — Clorofila', f.iso,
+    f.hora_inicio || t.hora, f.hora_fin || t.hora_fin,
+    'Cocinamos juntos y después cenamos todo lo que preparamos. Clorofila, Parque Rodó.'),
+    'Agendar el ' + f.texto);
+})).filter(Boolean).join('\n      ');
 
 /* Cada taller usa exactamente las mismas reglas que el tapeo. */
 for (const [id, w] of Object.entries(datos.talleres)) {
@@ -558,11 +582,26 @@ for (const [id, w] of Object.entries(datos.talleres)) {
      («Avisame cuando haya fecha del taller de…») y siguió diciendo eso cuando
      el botón pasó a «Reservar mi lugar» (14/10). Va el nombre corto: un botón
      no lleva «veganos». */
-  w.cta_aria = w.cta_texto + ': taller de ' + (w.nombre_corto || w.nombre);
+  w.cta_aria = w.cta_texto + ': taller de ' + (w.nombre_enlace || w.nombre_corto || w.nombre);
+  // «Comprás la entrada y ya está» iba fijo en /pastas y seguía ahí con el
+  // botón yendo a WhatsApp (14/10).
+  w.tiene_compra = (!ventaMuda(w.estado) && w.link_compra) ? 'si' : 'no';
+  w.nota_compra = w.tiene_compra === 'si'
+    ? 'Comprás la entrada y ya está. Si preferís, coordinamos por WhatsApp.'
+    : 'Escribinos por WhatsApp: te confirmamos el lugar y coordinamos el pago.';
   if (w.segunda_fecha && w.segunda_fecha.texto && w.estado !== 'sin-fecha') {
     w.linea += ' · también el ' + w.segunda_fecha.texto;
   }
 }
+
+// llms.txt nombraba los talleres como «se abren según la demanda» aunque
+// tuvieran fecha (14/10). Acá van los que tienen fecha; pastas tiene bloque propio.
+datos.talleres_estado_llms = Object.keys(datos.talleres).filter(function (id) {
+  const w = datos.talleres[id];
+  return id !== 'pastas-sin-gluten' && w.publicar !== false && w.estado !== 'sin-fecha' && w.fecha_iso;
+}).map(function (id) {
+  return '\n  ' + datos.talleres[id].nombre + ': ' + datos.talleres[id].resumen_texto + '.';
+}).join('');
 
 const abiertos = datos.curso.grupos.filter(function (g) { return g.estado === 'abierto'; });
 datos.curso.grupos_abiertos_texto = abiertos.length
@@ -907,14 +946,14 @@ datos.curso.horarios_chip = datos.curso.horarios_chip_calc;
 // La nota de abajo de los grupos en /curso, con el mismo criterio.
 datos.curso.grupos_nota = quincenal && semanales.length > 1
   ? 'Si te cambia el trabajo o surge un viaje, entre ' + semanales.map(function (g) { return g.nombre.toLowerCase(); }).join(' y ') +
-    ' te movés mientras haya lugar, y con el grupo de los ' + quincenal.nombre.toLowerCase() + ' se coordina. La clase que faltes la recuperás.'
+    ' te movés mientras haya lugar, y con el grupo de los ' + quincenal.nombre.toLowerCase() + ' lo coordinamos con vos. La clase que faltes la recuperás.'
   : quincenal && semanales.length
   ? 'Si te cambia el trabajo o surge un viaje, el cambio entre los ' + semanales[0].nombre.toLowerCase() + ' y los ' +
-    quincenal.nombre.toLowerCase() + ' se coordina. La clase que faltes la recuperás.'
+    quincenal.nombre.toLowerCase() + ' lo coordinamos con vos. La clase que faltes la recuperás.'
   : 'Si te cambia el trabajo o surge un viaje, te movés de día mientras haya lugar, y la clase que faltes la recuperás.';
 const otroRitmo = quincenal
   ? 'El de los ' + quincenal.nombre.toLowerCase() + ' tiene otro ritmo: va cada quince días, con encuentros de ' +
-    duracion(quincenal) + '. Pasarte a ese grupo, o salir de él, se coordina con nosotros y depende del lugar. ' +
+    duracion(quincenal) + '. Para pasarte a ese grupo, o para salir de él, lo coordinamos con vos según el lugar que haya. ' +
     'Si te cambia el trabajo o te surge un viaje, avisanos: nadie pierde el curso por un cambio de agenda.'
   : '';
 datos.curso.faq_cambio_grupo = quincenal && semanales.length > 1
@@ -1103,7 +1142,8 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
     (abierto ? conFecha : sinFecha).push(
       '<a href="' + enlace(destino) + '"' + (abierto ? ' data-estado="abierto"' : '') + '>' +
       // Cada taller con su nombre completo y la línea que cuenta qué se hace.
-      '<strong>' + escapar(w.nombre) + '</strong>' +
+      // Es un enlace: si el nombre lleva «veganos», va nombre_enlace.
+      '<strong>' + escapar(w.nombre_enlace || w.nombre) + '</strong>' +
       (w.linea_corta ? '<span>' + escapar(w.linea_corta) + '</span>' : '') +
       (abierto ? '<small>' + escapar(w.fecha_texto) + '</small>' : '') +
       '</a>'
@@ -1654,6 +1694,17 @@ for (const archivo of archivos) {
               : null;
           const taller = claveTaller && datos.talleres[claveTaller];
           if (taller) {
+            // La duración sale del horario del taller: estaba a mano en P1D
+            // con talleres de 3 h 30 (14/10). Sin horario queda lo que haya.
+            const tramoT = [taller.hora_inicio, taller.hora_fin].map(function (x) {
+              const q = String(x || '').split(':'); return Number(q[0]) * 60 + Number(q[1] || 0);
+            });
+            const minsT = taller.hora_inicio && taller.hora_fin ? tramoT[1] - tramoT[0] : 0;
+            if (minsT > 0 && taller.estado !== 'sin-fecha') {
+              [].concat(nodo.hasCourseInstance || []).forEach(function (inst) {
+                inst.courseWorkload = 'PT' + Math.floor(minsT / 60) + 'H' + (minsT % 60 ? (minsT % 60) + 'M' : '');
+              });
+            }
             if (taller.precio_num) {
               nodo.offers = {
                 '@type': 'Offer',
@@ -1778,6 +1829,9 @@ for (const archivo of archivos) {
         seg.endDate = s2.iso + 'T' + (s2.hora_fin || finBase) + ':00-03:00';
         if (seg.offers) {
           if (s2.link) seg.offers.url = s2.link;
+          // Que la primera noche esté llena no llena las demás.
+          if (seg.offers.availability) seg.offers.availability = s2.estado === 'agotado'
+            ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock';
           // La oferta de la segunda noche vale hasta esa noche, no hasta la primera.
           if (seg.offers.validThrough) seg.offers.validThrough = seg.startDate;
           if (desde(s2.venta_desde)) seg.offers.validFrom = desde(s2.venta_desde);
