@@ -129,13 +129,16 @@
 .encabezado{margin-bottom:2.25rem}
 
 /* ---------- LO QUE VAS A PODER ----------
-   Era la primera de cuatro listas de renglones con guion seguidas, todas
-   iguales: la página se leía como un documento. Ahora es una sola oración
-   en la letra de los títulos, que sigue al título, y una hoja marca dónde
-   empieza cada parte. */
-.poder{max-width:32em;margin-top:1.1rem;font-family:var(--display);font-size-adjust:var(--display-ajuste);font-size:clamp(1.35rem,1rem + 1.6vw,2.15rem);line-height:1.45;letter-spacing:-.01em;color:var(--cal);text-wrap:pretty}
-.poder li{display:inline}
-.poder li+li::before{content:"";display:inline-block;width:.55em;height:.55em;margin:0 .3em 0 .2em;background:var(--brote);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 21C3 10 10 3 21 3c0 11-7 18-18 18z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 21C3 10 10 3 21 3c0 11-7 18-18 18z'/%3E%3C/svg%3E") center/contain no-repeat}
+   El 11/10 pasó a ser una sola oración corrida, con una hoja entre cada
+   parte. En pantalla la hoja caía al final o al principio del renglón, las
+   partes eran más grandes que el título y la oración se leía cortada (Leo,
+   14/10: «se ve raro»). Ahora es una lista, una cosa por renglón. Va en la
+   letra de los títulos para no repetir la lista de abajo, que va en la letra
+   del cuerpo; en pantallas anchas, en dos columnas. */
+.poder{margin-top:1.6rem;max-width:68rem}
+.poder li{position:relative;padding-left:1.6em;margin-bottom:1rem;break-inside:avoid;font-family:var(--display);font-size-adjust:var(--display-ajuste);font-size:clamp(1.15rem,1rem + .5vw,1.4rem);line-height:1.35;color:var(--cal);text-wrap:pretty}
+.poder li::before{content:"";position:absolute;left:0;top:.28em;width:.8em;height:.8em;background:var(--brote);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 21C3 10 10 3 21 3c0 11-7 18-18 18z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 21C3 10 10 3 21 3c0 11-7 18-18 18z'/%3E%3C/svg%3E") center/contain no-repeat}
+@media (min-width:1000px){.poder{columns:2;column-gap:3rem}}
 
 /* ---------- ¿ES PARA VOS? ----------
    Lo que te describe va como lista corta; lo que no hace falta va tachado,
@@ -322,13 +325,13 @@
   <div class="env">
     <h2 class="poder-titulo">Después del curso, vas a poder</h2>
     <ul class="poder">
-      <li>armar un menú saludable y variado,</li>
-      <li>improvisar con lo que tengas en casa,</li>
-      <li>adaptar una receta al horno que tengas,</li>
-      <li>entender por qué algo funciona o falla,</li>
-      <li>corregir una preparación a mitad de camino,</li>
-      <li>amasar, fermentar y madurar un queso</li>
-      <li>y sustituir el azúcar y las grasas nocivas.</li>
+      <li>Armar un menú saludable y variado</li>
+      <li>Improvisar con lo que tengas en casa</li>
+      <li>Adaptar una receta al horno que tengas</li>
+      <li>Entender por qué algo funciona o falla</li>
+      <li>Corregir una preparación a mitad de camino</li>
+      <li>Amasar pastas, fermentar verduras y madurar un queso vegetal</li>
+      <li>Sustituir el azúcar y las grasas nocivas</li>
     </ul>
   </div>
 </section>
