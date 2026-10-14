@@ -152,26 +152,19 @@
 @media (min-width:900px){.para-vos{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:center}.para-vos-si li{font-size:var(--t-bajada)}.para-vos-no{transform:rotate(1deg)}}
 
 /* ---------- LOS TRES MESES ----------
-   Tres tarjetas con el plato de cada mes y el número grande sobre la foto.
-   En la compu bajan en escalera: cada mes se apoya en el anterior, que es
-   el argumento del curso. En el celular se deslizan de costado. */
-.recorrido-bajada{margin-top:.6rem;font-size:var(--t-cuerpo);color:var(--cal-med)}
-.meses{display:grid;grid-auto-flow:column;grid-auto-columns:min(82%,22rem);gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:2rem clamp(1.25rem,4vw,2.5rem) 1.5rem;scroll-padding-inline:clamp(1.25rem,4vw,2.5rem);scrollbar-width:none}
-.meses::-webkit-scrollbar{display:none}
-.mes{scroll-snap-align:start;display:flex;flex-direction:column;background:var(--musgo);border-radius:6px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.25),0 18px 40px rgba(0,0,0,.3)}
-.mes-foto{margin:0;aspect-ratio:4/3;overflow:hidden}
-.mes-foto picture,.diario-foto picture,.incluye-foto picture{display:block;height:100%}
-.mes-foto img{width:100%;height:100%;object-fit:cover}
-.mes-texto{position:relative;padding:1.3rem 1.35rem 1.6rem}
-.mes-num{position:absolute;right:1rem;top:-3.1rem;font-family:var(--display);font-size-adjust:var(--display-ajuste);font-size:5.5rem;font-weight:600;line-height:1;color:var(--miel);text-shadow:0 2px 14px rgba(0,0,0,.45)}
-.mes-etapa{font-size:var(--t-nota);color:var(--brote)}
-.mes h3{font-size:var(--th-bloque);margin-block:.3rem .55rem;max-width:15ch}
-.mes p:last-child{font-size:var(--t-chico);color:var(--cal-med);line-height:1.55}
-@media (min-width:900px){
-  .meses{grid-auto-flow:row;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1.25rem,2.5vw,2rem);overflow:visible;max-width:var(--max);margin-inline:auto;padding:2.5rem clamp(1.25rem,4vw,2.5rem) 5rem}
-  .mes:nth-child(2){transform:translateY(2.5rem)}
-  .mes:nth-child(3){transform:translateY(5rem)}
-}
+   Vuelve la lista de texto (14/10). Las tarjetas con foto del 11/10 se
+   cortaban en el celular y Leo las vio feas: «¿estaba así de fea?». */
+.meses{display:grid;gap:0;max-width:840px}
+.mes{display:grid;grid-template-columns:4.5rem 1fr;gap:.4rem 1.5rem;padding-block:1.75rem;border-bottom:1px solid var(--linea);position:relative}
+.mes:last-child{border-bottom:0}
+.mes-num{grid-row:span 3;font-family:var(--texto);font-size:var(--t-dato);color:var(--brote);padding-top:.5rem;position:relative}
+.mes-num::after{content:"";position:absolute;left:.15rem;top:2.1rem;bottom:-1.75rem;width:1px;background:linear-gradient(var(--linea-fuerte),transparent)}
+.mes:last-child .mes-num::after{display:none}
+.mes-etapa{font-family:var(--texto);font-size:var(--t-nota);color:var(--cal-baja)}
+.mes h3{font-size:var(--th-bloque);margin-block:.2rem .5rem}
+.mes p{font-size:var(--t-chico);color:var(--cal-med)}
+@media (max-width:560px){.mes{grid-template-columns:3.4rem 1fr;gap:.35rem .8rem}.mes-num{white-space:nowrap}.mes-num::after{display:none}}
+.diario-foto picture,.incluye-foto picture{display:block;height:100%}
 
 /* ---------- LO DE TODOS LOS DÍAS ----------
    Era otra lista de seis renglones: ahora es un párrafo al lado del budín,
@@ -364,39 +357,32 @@
   </div>
 </section>
 
-<section class="seccion recorrido" id="recorrido">
+<section class="seccion borde-sup" id="recorrido">
   <div class="env">
-    <h2>Cada mes se apoya <br>en el anterior.</h2>
-    <p class="recorrido-bajada">Tres meses con una progresión clara. No son clases sueltas.</p>
-  </div>
-  <div class="meses">
-    <article class="mes">
-      <figure class="mes-foto"><picture><source srcset="img-taller-fermento-v2-700.webp 700w, img-taller-fermento-v2.webp 1200w" sizes="(max-width: 899px) 82vw, 30vw" type="image/webp"><img src="img-taller-fermento-v2.jpg" width="1200" height="900" alt="Un frasco de fermento tapado con un lienzo sobre la mesada del estudio" loading="lazy" decoding="async"></picture></figure>
-      <div class="mes-texto">
-        <p class="mes-num" aria-hidden="true">1</p>
-        <p class="mes-etapa"><span class="sr-only">Mes 1: </span>Fundamentos</p>
+    <div class="encabezado sube">
+      <h2>Cada mes se apoya <br>en el anterior.</h2>
+      <p>Tres meses con una progresión clara. No son clases sueltas.</p>
+    </div>
+    <div class="meses sube">
+      <article class="mes">
+        <span class="mes-num">Mes 1</span>
+        <span class="mes-etapa">Fundamentos</span>
         <h3>Las bases y las materias primas</h3>
         <p>Técnicas de corte y organización, bases vegetales, batidos verdes, sopas y la primera fermentación. Es lo que conviene tener resuelto antes de seguir cualquier receta.</p>
-      </div>
-    </article>
-    <article class="mes">
-      <figure class="mes-foto"><picture><source srcset="img-tosta.webp 667w" sizes="(max-width: 899px) 82vw, 30vw" type="image/webp"><img src="img-tosta.jpg" width="667" height="1000" alt="Tosta con hongos y hojas verdes en un plato oscuro" loading="lazy" decoding="async"></picture></figure>
-      <div class="mes-texto">
-        <p class="mes-num" aria-hidden="true">2</p>
-        <p class="mes-etapa"><span class="sr-only">Mes 2: </span>Profundización</p>
+      </article>
+      <article class="mes">
+        <span class="mes-num">Mes 2</span>
+        <span class="mes-etapa">Profundización</span>
         <h3>Fermentación, hongos y quesos vegetales</h3>
         <p>Kéfir, kombucha y kimchi, cocina con hongos, platos salados complejos, quesos vegetales y seguridad alimentaria en las fermentaciones. Acá entendés por qué pasa cada cosa, no solo cómo se hace.</p>
-      </div>
-    </article>
-    <article class="mes">
-      <figure class="mes-foto"><picture><source srcset="img-cheesecake.webp 667w" sizes="(max-width: 899px) 82vw, 30vw" type="image/webp"><img src="img-cheesecake.jpg" width="667" height="1000" alt="Cheesecake vegetal con frutillas y flores sobre un plato blanco" loading="lazy" decoding="async"></picture></figure>
-      <div class="mes-texto">
-        <p class="mes-num" aria-hidden="true">3</p>
-        <p class="mes-etapa"><span class="sr-only">Mes 3: </span>Integración</p>
+      </article>
+      <article class="mes">
+        <span class="mes-num">Mes 3</span>
+        <span class="mes-etapa">Integración</span>
         <h3>Pastelería, sushi, pastas y menú completo</h3>
         <p>Pastelería basada en plantas, sushi vegetal, pastas, dal y el recetario final. Es el mes donde armás un menú completo por tu cuenta.</p>
-      </div>
-    </article>
+      </article>
+    </div>
   </div>
 </section>
 
