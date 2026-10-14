@@ -1485,11 +1485,15 @@ for (const archivo of archivos) {
             inst.name = 'Grupo ' + g.nombre.toLowerCase() + ' ' + g.horario.replace(' a ', '-').replace(' h', '');
             inst.startDate = g.inicio_iso;
             // Cada encuentro dura lo que dice su horario: el de los sábados son 3 h 30.
+            // Para Google, courseWorkload es la carga total del grupo y la de un
+            // encuentro va en courseSchedule.duration. Acá iba la de un encuentro
+            // (PT2H), y el curso decía 2 horas en total (14/10).
             const tramo = String(g.horario).replace(' h', '').split(' a ').map(function (x) {
               const q = x.trim().split(':'); return Number(q[0]) * 60 + Number(q[1] || 0);
             });
             const mins = tramo[1] - tramo[0];
-            if (mins > 0) inst.courseWorkload = 'PT' + Math.floor(mins / 60) + 'H' + (mins % 60 ? (mins % 60) + 'M' : '');
+            const duracion = function (m) { return 'PT' + Math.floor(m / 60) + 'H' + (m % 60 ? (m % 60) + 'M' : ''); };
+            if (mins > 0) inst.courseWorkload = duracion(mins * (g.clases || 12));
             // El cupo sale de ofertas.json, no escrito a mano acá: si cambia el
             // tamaño de los grupos, cambia en un solo lugar.
             if (g.cupos_total) inst.maximumAttendeeCapacity = g.cupos_total;
@@ -1518,6 +1522,7 @@ for (const archivo of archivos) {
             if (dia) inst.courseSchedule.byDay = 'https://schema.org/' + dia;
             if (horas[0]) inst.courseSchedule.startTime = horas[0].trim();
             if (horas[1]) inst.courseSchedule.endTime = horas[1].trim();
+            if (mins > 0) inst.courseSchedule.duration = duracion(mins);
             if (inst.offers) {
               /* «cerrado» es un grupo que ya empezó, no uno lleno. Antes salía
                  como SoldOut y Google y ChatGPT leían «curso agotado» cuando
