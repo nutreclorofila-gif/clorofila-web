@@ -230,8 +230,9 @@ Object.keys(datos.talleres).forEach(function (k) {
 datos.curso.grupos.forEach(function (g) {
   revisarFecha('curso.grupos.' + g.id, g.inicio_iso, g.inicio_texto);
   // El nombre del grupo es el día en que se cursa: tiene que ser ese día.
+  // En plural también vale («Sábados», para el grupo quincenal).
   const d = new Date(g.inicio_iso + 'T00:00:00');
-  if (!isNaN(d) && g.nombre && DIAS[d.getDay()] !== String(g.nombre).toLowerCase()) {
+  if (!isNaN(d) && g.nombre && DIAS[d.getDay()] !== String(g.nombre).toLowerCase().replace(/(ado|ingo)s$/, '$1')) {
     console.error('✗ El grupo "' + g.nombre + '" arranca un ' + DIAS[d.getDay()] + ' (' + g.inicio_iso + ')');
     console.error('  El nombre del grupo tiene que ser el día en que se cursa.');
     process.exit(1);
@@ -643,16 +644,52 @@ datos.curso.inscripcion_titulo = 'Inscripción · ' + datos.curso.edicion;
 // declara courseWorkload en el schema.
 datos.curso.porclase_texto = '3 meses · 12 clases de 2 horas, una por semana';
 
+/* Un grupo puede ser quincenal (la edición de marzo 2027 suma el segundo y el
+   cuarto sábado de cada mes, con encuentros más largos). Todo lo que decía
+   «una por semana» para el curso entero se arma acá, para que no quede
+   diciendo semanal de un grupo que no lo es. */
+const enJuego = abiertos.length ? abiertos : datos.curso.grupos;
+const quincenal = enJuego.filter(function (g) { return g.frecuencia === 'quincenal'; })[0];
+const semanales = enJuego.filter(function (g) { return g.frecuencia !== 'quincenal'; });
+function duracion(g) {
+  const h = String(g.horario).replace(' h', '').split(' a ').map(function (x) {
+    const p = x.trim().split(':'); return Number(p[0]) * 60 + Number(p[1] || 0);
+  });
+  const min = h[1] - h[0];
+  const horas = Math.floor(min / 60);
+  return horas + (min % 60 === 30 ? ' horas y media' : horas === 1 ? ' hora' : ' horas');
+}
+function conO(lista) {
+  if (lista.length <= 1) return lista.join('');
+  return lista.slice(0, -1).join(', ') + ' o ' + lista[lista.length - 1];
+}
+const losDias = function (gs) {
+  return gs.map(function (g) { return 'los ' + g.nombre.toLowerCase(); }).join(' y ');
+};
+datos.curso.horarios_chip_calc = quincenal ? '3 meses · semanal o quincenal' : '3 meses · una clase por semana';
+// La frase de la boleta de /curso, sin la parte de lo incluido.
+datos.curso.cursada_boleta = quincenal
+  ? 'Son tres meses. ' + losDias(semanales).replace(/^l/, 'L') + ', 12 clases de 2 horas, una por semana; ' +
+    losDias([quincenal]) + ', ' + quincenal.clases + ' encuentros de ' + duracion(quincenal) + ', cada quince días.'
+  : 'Son 12 clases de 2 horas, una por semana, durante tres meses.';
+// La bajada de /programa.
+datos.curso.cursada_programa = quincenal
+  ? 'Los grupos de ' + semanales.map(function (g) { return g.nombre.toLowerCase(); }).join(' y de ') +
+    ' tienen una clase por semana, 12 en total. El de los ' + quincenal.nombre.toLowerCase() + ' tiene ' +
+    quincenal.clases + ' encuentros más largos, cada quince días. Cada mes se apoya en el anterior.'
+  : 'Los grupos —' + datos.curso.grupos.map(function (g) { return g.nombre.toLowerCase(); }).join(' y ') +
+    '— cursan cada uno 12 clases, una por semana, y cada mes se apoya en el anterior.';
+
 /* El hero y la boleta de /curso hablan en oraciones y no en rótulos: Leo
    pidió el 30/9 que el ticket se lea como texto y no como planilla. Estas dos
    frases dicen cuándo arranca y qué grupos hay, con los grupos abiertos. */
 const sinArranca = function (g) { return g.inicio_texto.replace(/^arranca el /i, ''); };
 datos.curso.inicio_frase = abiertos.length === 0 ? 'La próxima edición todavía no tiene fecha.'
   : abiertos.length === 1 ? abiertos[0].inicio_texto + '.'
-  : 'Arranca el ' + abiertos.map(sinArranca).join(' o el ') + ', según el grupo.';
+  : 'Arranca el ' + conO(abiertos.map(function (g, i) { return (i ? 'el ' : '') + sinArranca(g); })) + ', según el grupo.';
 // Versión corta para los rótulos: «Arranca el 7 de octubre o el 8 de octubre».
 datos.curso.inicio_corto = abiertos.length > 1
-  ? 'Arranca el ' + abiertos.map(function (g) { return sinArranca(g).replace(/^\S+\s+/, ''); }).join(' o el ')
+  ? 'Arranca el ' + conO(abiertos.map(function (g, i) { return (i ? 'el ' : '') + sinArranca(g).replace(/^\S+\s+/, ''); }))
   : datos.curso.inicio_texto;
 const unGrupo = function (g) {
   return 'los ' + g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '') +
@@ -661,7 +698,11 @@ const unGrupo = function (g) {
 datos.curso.grupos_frase = abiertos.length === 0 ? 'La próxima edición todavía no tiene fecha.'
   : abiertos.length === 1 ? 'El grupo abierto es el de ' + unGrupo(abiertos[0]) + '.'
   : 'Hay ' + ({ 2: 'dos', 3: 'tres' }[abiertos.length] || abiertos.length) + ' grupos: ' +
-    abiertos.map(unGrupo).join(', o ') + '.';
+    (abiertos.length > 2
+      // Con tres, la oración con las fechas pasaba de 40 palabras. Las fechas
+      // ya están en inicio_frase: acá van los días y los horarios.
+      ? enumerar(abiertos.map(function (g) { return g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', ''); }))
+      : abiertos.map(unGrupo).join(', o ')) + '.';
 
 // La cantidad de horarios se dice en palabras, y cambia si son dos o tres.
 const cuantos = { 1: 'un horario', 2: 'dos horarios', 3: 'tres horarios' }[nombres.length]
@@ -710,16 +751,17 @@ datos.curso.faq_cursada = todosEmpezados
   // Sin las fechas de la edición en marcha (13/10): era una fecha pasada en
   // la respuesta que lee quien llega por Google.
   ? 'Son 3 meses: 12 clases de 2 horas, una por semana. La próxima edición todavía no tiene fecha: cuando abra, te avisamos los días y los horarios.'
-  : 'Son 3 meses: 12 clases de 2 horas, una por semana. Elegís el grupo de ' +
-  datos.curso.grupos.map(function (g) {
+  : (quincenal ? datos.curso.cursada_boleta : 'Son 3 meses: 12 clases de 2 horas, una por semana.') +
+  ' Elegís el grupo de ' + conO(datos.curso.grupos.map(function (g) {
     return g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '');
-  }).join(' o ') + '. ' + (function () {
+  })) + '. ' + (function () {
     /* Seguía diciendo «Arrancan el miércoles 7 y el jueves 8» con la edición
        ya en marcha: es la respuesta que lee quien llega por Google. */
     const dia = function (g) { return g.inicio_texto.toLowerCase().replace(/^arranca el /, ''); };
     const grupos = datos.curso.grupos;
     const empezados = grupos.filter(function (g) { return esPasado(g.inicio_iso); });
-    if (!empezados.length) return (grupos.length === 1 ? 'Arranca el ' : 'Arrancan el ') + grupos.map(dia).join(' y el ') + '.';
+    if (!empezados.length) return (grupos.length === 1 ? 'Arranca el ' : 'Arrancan el ') +
+      enumerar(grupos.map(function (g, i) { return (i ? 'el ' : '') + dia(g); })) + '.';
     return grupos.map(function (g, i) {
       return (i ? 'el' : 'El') + ' de los ' + g.nombre.toLowerCase() + (esPasado(g.inicio_iso) ? ' empezó el ' : ' arranca el ') + dia(g);
     }).join(' y ') + '.';
@@ -737,7 +779,7 @@ datos.curso.faq_cursada = todosEmpezados
    elige uno. La chip pasa a decir la frecuencia, que es lo que tranquiliza a
    quien calcula si le da el tiempo; cuántos grupos hay se dice en la ficha de
    reserva, que es donde se elige. */
-datos.curso.horarios_chip = '3 meses · una clase por semana';
+datos.curso.horarios_chip = datos.curso.horarios_chip_calc;
 
 /* "Grupos reducidos" no dice nada: cada quien imagina un número distinto y
    quien duda si va a poder preguntar en clase se queda con la duda. El cupo
@@ -1366,6 +1408,12 @@ for (const archivo of archivos) {
             const inst = JSON.parse(JSON.stringify(molde));
             inst.name = 'Grupo ' + g.nombre.toLowerCase() + ' ' + g.horario.replace(' a ', '-').replace(' h', '');
             inst.startDate = g.inicio_iso;
+            // Cada encuentro dura lo que dice su horario: el de los sábados son 3 h 30.
+            const tramo = String(g.horario).replace(' h', '').split(' a ').map(function (x) {
+              const q = x.trim().split(':'); return Number(q[0]) * 60 + Number(q[1] || 0);
+            });
+            const mins = tramo[1] - tramo[0];
+            if (mins > 0) inst.courseWorkload = 'PT' + Math.floor(mins / 60) + 'H' + (mins % 60 ? (mins % 60) + 'M' : '');
             // El cupo sale de ofertas.json, no escrito a mano acá: si cambia el
             // tamaño de los grupos, cambia en un solo lugar.
             if (g.cupos_total) inst.maximumAttendeeCapacity = g.cupos_total;
@@ -1377,14 +1425,17 @@ for (const archivo of archivos) {
             const DIAS_EN = {
               domingo: 'Sunday', lunes: 'Monday', martes: 'Tuesday',
               'miércoles': 'Wednesday', miercoles: 'Wednesday', jueves: 'Thursday',
-              viernes: 'Friday', 'sábado': 'Saturday', sabado: 'Saturday'
+              viernes: 'Friday', 'sábado': 'Saturday', sabado: 'Saturday',
+              'sábados': 'Saturday', sabados: 'Saturday', domingos: 'Sunday'
             };
             const dia = DIAS_EN[String(g.nombre).toLowerCase().trim()];
             const horas = String(g.horario).replace(' h', '').split(' a ');
             inst.courseSchedule = {
               '@type': 'Schedule',
-              repeatFrequency: 'P1W',
-              repeatCount: 12,
+              // El segundo y el cuarto sábado caen siempre a 14 días entre sí
+              // en la edición de marzo 2027 (13 y 27/3, 10 y 24/4, 8 y 22/5).
+              repeatFrequency: g.frecuencia === 'quincenal' ? 'P2W' : 'P1W',
+              repeatCount: g.clases || 12,
               startDate: g.inicio_iso,
               scheduleTimezone: 'America/Montevideo'
             };
