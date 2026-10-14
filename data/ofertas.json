@@ -9,6 +9,8 @@
     "hora_fin": "22:30",
     "precio": "$2.600 por persona",
     "precio_num": "2600",
+    "_leeme_venta_desde": "venta_desde: el día que se abrió la venta de esta fecha (AAAA-MM-DD). Google lo lee como validFrom de la oferta. Al cargar una fecha nueva, poné el día en que la publicás. El 2/10 es cuando entraron el 23 y el 30 a este archivo.",
+    "venta_desde": "2026-10-02",
     "link_compra": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-1432",
     "cupos_total": 12,
     "lugar": "Maldonado 1976 esq. Blanes · Parque Rodó",
@@ -41,12 +43,32 @@
       "texto": "viernes 30 de octubre",
       "hora_inicio": "19:00",
       "hora_fin": "22:30",
+      "venta_desde": "2026-10-02",
       "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-e10f"
-    }
+    },
+    "mas_fechas": [
+      {
+        "iso": "2026-11-13",
+        "texto": "viernes 13 de noviembre",
+        "hora_inicio": "19:00",
+        "hora_fin": "22:30",
+        "venta_desde": "2026-10-14",
+        "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-1ed7"
+      },
+      {
+        "iso": "2026-11-27",
+        "texto": "viernes 27 de noviembre",
+        "hora_inicio": "19:00",
+        "hora_fin": "22:30",
+        "venta_desde": "2026-10-14",
+        "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-8062"
+      }
+    ],
+    "_leeme_mas_fechas": "mas_fechas: las fechas que vienen después de la segunda, en orden. Cuando pasa una fecha, la siguiente se corre sola (en el build y en el navegador, con estados.json). Sin link de Tikzet («link»: null), el botón de esa fecha lleva a WhatsApp."
   },
   "curso": {
     "estado": "abierto",
-    "edicion": "Octubre 2026",
+    "edicion": "Marzo 2027",
     "precio_total": "$12.200",
     "precio_cuotas": "3 cuotas de $4.800",
     "precio_tarjeta": "hasta 12 cuotas de $1.016 sin recargo",
@@ -57,8 +79,8 @@
         "id": "miercoles",
         "nombre": "Miércoles",
         "horario": "19:00 a 21:00 h",
-        "inicio_iso": "2026-10-07",
-        "inicio_texto": "Arranca el miércoles 7 de octubre",
+        "inicio_iso": "2027-03-10",
+        "inicio_texto": "Arranca el miércoles 10 de marzo de 2027",
         "detalle": "Una clase por semana, 12 en total. Para quienes salen de trabajar y quieren cerrar el día cocinando.",
         "estado": "abierto",
         "cupos_min": 12,
@@ -68,9 +90,22 @@
         "id": "jueves",
         "nombre": "Jueves",
         "horario": "10:00 a 12:00 h",
-        "inicio_iso": "2026-10-08",
-        "inicio_texto": "Arranca el jueves 8 de octubre",
+        "inicio_iso": "2027-03-11",
+        "inicio_texto": "Arranca el jueves 11 de marzo de 2027",
         "detalle": "Una clase por semana, 12 en total. El grupo de mañana, con el estudio tranquilo y luz de día.",
+        "estado": "abierto",
+        "cupos_min": 12,
+        "cupos_total": 15
+      },
+      {
+        "id": "sabados",
+        "nombre": "Sábados",
+        "horario": "15:00 a 18:30 h",
+        "inicio_iso": "2027-03-13",
+        "inicio_texto": "Arranca el sábado 13 de marzo de 2027",
+        "detalle": "El segundo y el cuarto sábado de cada mes, cada quince días: 6 encuentros de tres horas y media.",
+        "frecuencia": "quincenal",
+        "clases": 6,
         "estado": "abierto",
         "cupos_min": 12,
         "cupos_total": 15
@@ -78,7 +113,7 @@
     ]
   },
   "talleres": {
-    "_leeme": "Cada taller: mismo sistema que el tapeo. estado sin-fecha | abierto | ultimos | agotado.",
+    "_leeme": "Cada taller: mismo sistema que el tapeo. estado sin-fecha | abierto | ultimos | agotado. nombre_enlace: el nombre que va dentro de enlaces y botones cuando «nombre» lleva «veganos» (Leo no quiere «vegano» en botones ni enlaces).",
     "fermentacion": {
       "nombre": "Fermentación de vegetales",
       "nombre_corto": "Fermentación",
@@ -94,38 +129,50 @@
       "nombre": "Pan sin gluten con masa madre",
       "nombre_corto": "Pan sin gluten",
       "linea_corta": "Trabajamos la hidratación, la fermentación y la miga, con masa madre real y sin aditivos.",
-      "estado": "sin-fecha",
-      "fecha_iso": "",
-      "fecha_texto": "Sin fecha confirmada",
-      "hora": "",
-      "precio": "",
-      "cupos_total": 10
+      "estado": "abierto",
+      "fecha_iso": "2026-11-17",
+      "fecha_texto": "martes 17 de noviembre",
+      "hora": "19:00 a 22:30 h",
+      "precio": "$2.600",
+      "cupos_total": 12,
+      "hora_inicio": "19:00",
+      "hora_fin": "22:30",
+      "precio_num": "2600",
+      "venta_desde": "2026-10-14",
+      "link_compra": "https://www.tikzet.com/events/taller-de-pan-sin-gluten-con-masa-madre"
     },
     "pastas-sin-gluten": {
       "nombre": "Pastas sin gluten",
       "nombre_corto": "Pastas sin gluten",
       "linea_corta": "Amasás, estirás y armás cada forma vos.",
       "estado": "abierto",
-      "fecha_iso": "2026-10-29",
-      "fecha_texto": "jueves 29 de octubre",
-      "hora": "19:00 a 22:30 h",
-      "hora_inicio": "19:00",
-      "hora_fin": "22:30",
+      "fecha_iso": "2026-11-07",
+      "fecha_texto": "sábado 7 de noviembre",
+      "hora": "15:00 a 18:30 h",
+      "hora_inicio": "15:00",
+      "hora_fin": "18:30",
       "precio": "$2.700",
       "precio_num": "2700",
+      "venta_desde": "2026-10-14",
       "cupos_total": 12,
-      "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten-0381"
+      "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten-12c3"
     },
     "alfajores": {
-      "nombre": "Alfajores plant-based",
+      "nombre": "Alfajores veganos y sin gluten",
+      "nombre_enlace": "Alfajores sin gluten",
       "nombre_corto": "Alfajores",
       "linea_corta": "Armás la masa, la ganache y los rellenos con técnica pastelera.",
-      "estado": "sin-fecha",
-      "fecha_iso": "",
-      "fecha_texto": "Sin fecha confirmada",
-      "hora": "",
-      "precio": "",
-      "cupos_total": 10
+      "estado": "abierto",
+      "fecha_iso": "2026-11-21",
+      "fecha_texto": "sábado 21 de noviembre",
+      "hora": "15:00 a 18:30 h",
+      "precio": "$2.600",
+      "cupos_total": 12,
+      "hora_inicio": "15:00",
+      "hora_fin": "18:30",
+      "precio_num": "2600",
+      "venta_desde": "2026-10-14",
+      "link_compra": "https://www.tikzet.com/events/taller-de-alfajores-veganos-y-sin-gluten"
     },
     "quesos-vegetales": {
       "nombre": "Quesos vegetales",
@@ -161,7 +208,7 @@
   "google": {
     "_leeme": "El puntaje y la cantidad de reseñas del perfil de Google. Se muestran en el home, el curso y el tapeo, y también en la ficha que lee Google. Actualizalo cuando entren reseñas nuevas: escribí el puntaje con punto (4.9), no con coma.",
     "puntaje": 4.9,
-    "resenas": 23
+    "resenas": 24
   },
   "estudio": {
     "_leeme": "Los años que el sitio dice de Clorofila y de Leonardo. No se escriben en años sino en el año de inicio, para que npm test avise cuando cambia el año y el texto de las páginas quede viejo. Ver scripts/check-antiguedad.js.",

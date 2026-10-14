@@ -220,6 +220,145 @@
   status = 404
   force  = true
 
+# Fotos reemplazadas con el mismo nombre después de publicar el sitio entero
+# (10/9/2026). Las imágenes se sirven con caché «immutable» de un año (ver
+# más abajo): quien ya las tenía guardadas seguía viendo la foto vieja. Se
+# renombraron con -v2 el 13/10; estos 301 mantienen vivos los nombres viejos
+# para lo que los enlace desde afuera (Google Imágenes, anuncios, mails).
+# REGLA: si reemplazás una foto, cambiale el nombre; no la pises.
+
+[[redirects]]
+  from = "/img-clase-grupo-480.webp"
+  to   = "/img-clase-grupo-v2-480.webp"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-clase-grupo-700.webp"
+  to   = "/img-clase-grupo-v2-700.webp"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-clase-grupo.jpg"
+  to   = "/img-clase-grupo-v2.jpg"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-clase-grupo.webp"
+  to   = "/img-clase-grupo-v2.webp"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-clase-masa-480.webp"
+  to   = "/img-clase-masa-v2-480.webp"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-clase-masa-700.webp"
+  to   = "/img-clase-masa-v2-700.webp"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-clase-masa.jpg"
+  to   = "/img-clase-masa-v2.jpg"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-clase-masa.webp"
+  to   = "/img-clase-masa-v2.webp"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-clase-plating-700.webp"
+  to   = "/img-clase-plating-v2-700.webp"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-clase-plating.jpg"
+  to   = "/img-clase-plating-v2.jpg"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-clase-plating.webp"
+  to   = "/img-clase-plating-v2.webp"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-clase-postre-700.webp"
+  to   = "/img-clase-postre-v2-700.webp"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-clase-postre.jpg"
+  to   = "/img-clase-postre-v2.jpg"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-clase-postre.webp"
+  to   = "/img-clase-postre-v2.webp"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-taller-fermento-700.webp"
+  to   = "/img-taller-fermento-v2-700.webp"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-taller-fermento.jpg"
+  to   = "/img-taller-fermento-v2.jpg"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-taller-fermento.webp"
+  to   = "/img-taller-fermento-v2.webp"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-taller-quesos-700.webp"
+  to   = "/img-taller-quesos-v2-700.webp"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-taller-quesos-900.jpg"
+  to   = "/img-taller-quesos-v2-900.jpg"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-taller-quesos-900.webp"
+  to   = "/img-taller-quesos-v2-900.webp"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-taller-quesos.jpg"
+  to   = "/img-taller-quesos-v2.jpg"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/img-taller-quesos.webp"
+  to   = "/img-taller-quesos-v2.webp"
+  status = 301
+  force  = true
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -245,6 +384,8 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Caché de un año para las fotos: si se reemplaza una, cambiale el nombre
+# (ver los 301 de img-*-v2 más arriba). Pisarla deja la vieja en los navegadores.
 [[headers]]
   for = "/*.jpg"
   [headers.values]

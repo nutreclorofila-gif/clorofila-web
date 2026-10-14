@@ -76,6 +76,7 @@ Los dos que se venden hoy tienen landing propia:
 ```
 https://clorofila.uy/tapeo
 https://clorofila.uy/pastas
+https://clorofila.uy/gift-card
 ```
 
 El resto tiene URL propia y corta, que lleva a su bloque:
