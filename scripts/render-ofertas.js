@@ -684,12 +684,23 @@ datos.curso.cursada_programa = quincenal
    pidió el 30/9 que el ticket se lea como texto y no como planilla. Estas dos
    frases dicen cuándo arranca y qué grupos hay, con los grupos abiertos. */
 const sinArranca = function (g) { return g.inicio_texto.replace(/^arranca el /i, ''); };
+const mesDe = function (g) { const m = sinArranca(g).match(/ de ([a-zé]+)$/); return m ? m[1] : ''; };
+const mismoMes = abiertos.length > 1 && mesDe(abiertos[0]) &&
+  abiertos.every(function (g) { return mesDe(g) === mesDe(abiertos[0]); }) ? mesDe(abiertos[0]) : '';
 datos.curso.inicio_frase = abiertos.length === 0 ? 'La próxima edición todavía no tiene fecha.'
   : abiertos.length === 1 ? abiertos[0].inicio_texto + '.'
-  : 'Arranca el ' + conO(abiertos.map(function (g, i) { return (i ? 'el ' : '') + sinArranca(g); })) + ', según el grupo.';
+  : 'Arranca el ' + conO(abiertos.map(function (g, i) {
+      // Si todos arrancan el mismo mes, el mes se dice una sola vez al final:
+      // «el miércoles 10, el jueves 11 o el sábado 13 de marzo».
+      const t = mismoMes ? sinArranca(g).replace(/ de [a-zé]+$/, '') : sinArranca(g);
+      return (i ? 'el ' : '') + t;
+    })) + (mismoMes ? ' de ' + mismoMes : '') + ', según el grupo.';
 // Versión corta para los rótulos: «Arranca el 7 de octubre o el 8 de octubre».
 datos.curso.inicio_corto = abiertos.length > 1
-  ? 'Arranca el ' + conO(abiertos.map(function (g, i) { return (i ? 'el ' : '') + sinArranca(g).replace(/^\S+\s+/, ''); }))
+  ? 'Arranca el ' + conO(abiertos.map(function (g, i) {
+      const t = sinArranca(g).replace(/^\S+\s+/, '');
+      return (i ? 'el ' : '') + (mismoMes ? t.replace(/ de [a-zé]+$/, '') : t);
+    })) + (mismoMes ? ' de ' + mismoMes : '')
   : datos.curso.inicio_texto;
 const unGrupo = function (g) {
   return 'los ' + g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '') +

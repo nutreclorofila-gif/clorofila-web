@@ -111,7 +111,8 @@
 .boleta-cuenta{font-size:var(--t-nota);color:var(--brote);white-space:nowrap}
 .boleta-cuenta:empty{display:none}
 .boleta-precio{margin-top:1rem;font-family:var(--display);font-size-adjust:var(--display-ajuste);font-size:var(--t-mayor);letter-spacing:-.02em;line-height:1.25;color:var(--cal-med)}
-.boleta-precio strong{color:var(--cal);font-weight:600;font-variant-numeric:tabular-nums}
+/* Sin tabular-nums: Besley no trae esas cifras y el 0 salía con otra letra («$12.2 00»). */
+.boleta-precio strong{color:var(--cal);font-weight:600}
 .boleta-texto{margin-top:.45rem;font-size:var(--t-chico);color:var(--cal-med);line-height:1.5}
 .boleta-lista{margin-top:1rem;padding-top:.9rem;border-top:1px dashed var(--linea-fuerte);display:grid;gap:.5rem;font-size:var(--t-chico);color:var(--cal-med);line-height:1.45}
 .boleta-lista li{position:relative;padding-left:1.05rem}
@@ -297,7 +298,7 @@
       <h1>Aprendés a cocinar de forma consciente, <br>creativa y con más autonomía.</h1>
       <p class="hero-tesis">Elaborás postres sin azúcares añadidos, quesos vegetales, fermentos, sushi, pastas, tartas saladas y platos principales completos.</p>
       <div class="al-paso">
-        <p class="al-paso-fecha"><!--o:curso.inicio_frase-->Arranca el miércoles 10 de marzo, el jueves 11 de marzo o el sábado 13 de marzo, según el grupo.<!--/o--></p>
+        <p class="al-paso-fecha"><!--o:curso.inicio_frase-->Arranca el miércoles 10, el jueves 11 o el sábado 13 de marzo, según el grupo.<!--/o--></p>
         <p class="al-paso-precio">El curso completo cuesta <strong><!--o:curso.precio_total-->$12.200<!--/o--></strong>, o <!--o:curso.precio_tarjeta-->hasta 12 cuotas de $1.016 sin recargo<!--/o--> con tarjeta.</p>
         <div class="comanda-acciones">
           <a data-set="href=curso.cta_link" href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20curso.%20Me%20interesa%20el%20grupo%20de%20los%20mi%C3%A9rcoles%20de%2019%3A00%20a%2021%3A00%20o%20el%20de%20los%20jueves%20de%2010%3A00%20a%2012%3A00%20o%20el%20de%20los%20s%C3%A1bados%20de%2015%3A00%20a%2018%3A30." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="curso"><!--o:curso.cta_texto-->Reservar mi lugar<!--/o--></a>
