@@ -415,6 +415,18 @@ function botonCalendario(link, texto) {
   return '<a href="' + escapar(link) + '" data-calendario class="btn btn-primario" target="_blank" rel="noopener noreferrer">' + escapar(texto) + '</a>';
 }
 t.fechas_texto = fechasTapeo(t);
+// La tarjeta de la portada decía solo la primera fecha («Una noche, el viernes
+// 23 de octubre») con las dos noches abiertas (14/10).
+t.dato_portada = (function () {
+  const s = t.segunda_fecha;
+  // Sin fecha decía «Una noche, el Sin fecha confirmada» (pasaba desde el 31/10).
+  if (/^sin fecha/i.test(t.fecha_texto)) return 'Una noche, con fecha a confirmar';
+  if (t.fechas_texto === t.fecha_texto || !s || !s.texto) return 'Una noche, el ' + t.fecha_texto;
+  const mes = function (x) { const m = x.match(/ de ([a-zé]+)$/); return m ? m[1] : ''; };
+  const primera = mes(t.fecha_texto) && mes(t.fecha_texto) === mes(s.texto)
+    ? t.fecha_texto.replace(/ de [a-zé]+$/, '') : t.fecha_texto;
+  return 'Una noche, el ' + primera + ' o el ' + s.texto;
+})();
 t.calendario_html = [
   t.fecha_iso ? botonCalendario(t.calendario, 'Agendar el ' + t.fecha_texto) : '',
   (t.segunda_fecha && t.segunda_fecha.iso && t.estado !== 'sin-fecha' && t.estado !== 'agotado')
@@ -1688,6 +1700,53 @@ for (const archivo of archivos) {
          segunda fecha, y el tapeo de octubre se vende por WhatsApp: sin ese
          link, el viernes 16 no existía ni para Google ni para ChatGPT. Si no
          hay link propio, la oferta apunta a la página, igual que la primera. */
+      function armarSegundo(base, idSeg, s2, horaBase, finBase) {
+        const seg = JSON.parse(JSON.stringify(base));
+        seg['@id'] = idSeg;
+        // La segunda fecha puede ir a otra hora: el mismo taller a veces es
+        // de mañana y a veces de noche. Si no trae horario, hereda el primero.
+        seg.startDate = s2.iso + 'T' + (s2.hora_inicio || s2.hora || horaBase) + ':00-03:00';
+        seg.endDate = s2.iso + 'T' + (s2.hora_fin || finBase) + ':00-03:00';
+        if (seg.offers) {
+          if (s2.link) seg.offers.url = s2.link;
+          // La oferta de la segunda noche vale hasta esa noche, no hasta la primera.
+          if (seg.offers.validThrough) seg.offers.validThrough = seg.startDate;
+          if (desde(s2.venta_desde)) seg.offers.validFrom = desde(s2.venta_desde);
+        }
+        return seg;
+      }
+      /* En /experiencias el evento vive anidado en un ItemList y no en la raíz
+         del @graph, así que segundoEvento() no lo encontraba: Google veía una
+         sola de las dos noches (14/10). Acá la segunda va como otro ítem. */
+      function segundoEnLista(idBase, o, horaBase, finBase) {
+        const s2 = o && o.segunda_fecha;
+        const hay = o && o.estado !== 'sin-fecha' && s2 && s2.iso;
+        const idSeg = idBase + '-2';
+        (function buscar(n) {
+          if (!n || typeof n !== 'object') return;
+          if (Array.isArray(n)) { n.forEach(buscar); return; }
+          const lista = n.itemListElement;
+          if (n['@type'] === 'ItemList' && Array.isArray(lista)) {
+            const i = lista.findIndex(function (li) { return li && li.item && li.item['@id'] === idBase; });
+            if (i !== -1) {
+              const antes = JSON.stringify(n);
+              const j = lista.findIndex(function (li) { return li && li.item && li.item['@id'] === idSeg; });
+              if (hay) {
+                const li = JSON.parse(JSON.stringify(lista[i]));
+                li.item = armarSegundo(lista[i].item, idSeg, s2, horaBase, finBase);
+                if (j === -1) lista.splice(i + 1, 0, li); else lista[j] = li;
+              } else if (j !== -1) {
+                lista.splice(j, 1);
+              }
+              lista.forEach(function (li, k) { if (li && li.position != null) li.position = k + 1; });
+              if (n.numberOfItems != null) n.numberOfItems = lista.length;
+              if (JSON.stringify(n) !== antes) tocado = true;
+              return;
+            }
+          }
+          Object.keys(n).forEach(function (k) { buscar(n[k]); });
+        })(ld);
+      }
       function segundoEvento(idBase, o, horaBase, finBase) {
         if (!Array.isArray(ld['@graph'])) return;
         const idSeg = idBase + '-2';
@@ -1696,18 +1755,7 @@ for (const archivo of archivos) {
         const s2 = o && o.segunda_fecha;
         const hay = o && o.estado !== 'sin-fecha' && s2 && s2.iso;
         if (base && hay) {
-          const seg = JSON.parse(JSON.stringify(base));
-          seg['@id'] = idSeg;
-          // La segunda fecha puede ir a otra hora: el mismo taller a veces es
-          // de mañana y a veces de noche. Si no trae horario, hereda el primero.
-          seg.startDate = s2.iso + 'T' + (s2.hora_inicio || s2.hora || horaBase) + ':00-03:00';
-          seg.endDate = s2.iso + 'T' + (s2.hora_fin || finBase) + ':00-03:00';
-          if (seg.offers) {
-            if (s2.link) seg.offers.url = s2.link;
-            // La oferta de la segunda noche vale hasta esa noche, no hasta la primera.
-            if (seg.offers.validThrough) seg.offers.validThrough = seg.startDate;
-            if (desde(s2.venta_desde)) seg.offers.validFrom = desde(s2.venta_desde);
-          }
+          const seg = armarSegundo(base, idSeg, s2, horaBase, finBase);
           // Se rehace desde el evento principal en vez de dejar el que ya estaba:
           // si cambió el precio o el horario, el bloque viejo seguía mintiendo.
           const donde = ld['@graph'].findIndex(function (n) { return n && n['@id'] === idSeg; });
@@ -1727,6 +1775,7 @@ for (const archivo of archivos) {
       const wPastas = datos.talleres['pastas-sin-gluten'];
       segundoEvento('https://clorofila.uy/pastas#evento', wPastas, wPastas && wPastas.hora_inicio, wPastas && wPastas.hora_fin);
       segundoEvento('https://clorofila.uy/tapeo#evento', datos.tapeo, datos.tapeo.hora, datos.tapeo.hora_fin);
+      segundoEnLista('https://clorofila.uy/tapeo#evento', datos.tapeo, datos.tapeo.hora, datos.tapeo.hora_fin);
 
       /* Presencial, siempre: cocinar es presencial. Google lo recomienda para
          todo Event y se perdía al copiar el evento de /tapeo a /experiencias,
