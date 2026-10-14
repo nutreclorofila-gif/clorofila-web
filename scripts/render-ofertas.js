@@ -798,7 +798,20 @@ datos.curso.horarios_chip = datos.curso.horarios_chip_calc;
 
 // El FAQ prometía "tenés tres horarios y te movés entre ellos". Con una sola
 // modalidad no hay a dónde moverse, así que la respuesta cambia entera.
-datos.curso.faq_cambio_grupo = nombres.length > 1
+/* Con un grupo quincenal la respuesta no puede ser «te movés entre ellos»:
+   el sábado va cada quince días y con encuentros más largos, así que entrar
+   o salir de ese grupo se coordina. Entre los semanales sí se cambia. */
+// La nota de abajo de los grupos en /curso, con el mismo criterio.
+datos.curso.grupos_nota = quincenal && semanales.length > 1
+  ? 'Si te cambia el trabajo o surge un viaje, entre ' + semanales.map(function (g) { return g.nombre.toLowerCase(); }).join(' y ') +
+    ' te movés mientras haya lugar, y con el grupo de los ' + quincenal.nombre.toLowerCase() + ' se coordina. La clase que faltes la recuperás.'
+  : 'Si te cambia el trabajo o surge un viaje, te movés de día mientras haya lugar, y la clase que faltes la recuperás.';
+datos.curso.faq_cambio_grupo = quincenal && semanales.length > 1
+  ? 'Sí. Entre los grupos de ' + semanales.map(function (g) { return g.nombre.toLowerCase(); }).join(' y ') +
+    ' te movés mientras haya lugar. El de los ' + quincenal.nombre.toLowerCase() + ' tiene otro ritmo: va cada quince días, ' +
+    'con encuentros de ' + duracion(quincenal) + '. Pasarte a ese grupo, o salir de él, se coordina con nosotros y depende del lugar. ' +
+    'Si te cambia el trabajo o te surge un viaje, avisanos: nadie pierde el curso por un cambio de agenda.'
+  : nombres.length > 1
   ? 'Sí, y pasa seguido. Tenés ' + cuantos + ' y te movés entre ellos mientras haya lugar. ' +
     'Si te cambia el trabajo o te surge un viaje, avisanos y te reubicamos: nadie pierde el ' +
     'curso por un cambio de agenda.'
