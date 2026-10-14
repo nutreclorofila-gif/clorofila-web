@@ -554,6 +554,11 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   w.cta_texto = (!ventaMuda(w.estado) && w.link_compra)
     ? (w.tiene_segunda === 'si' ? 'Comprar · ' + fechaCorta(w.fecha_texto) + '' : 'Comprar mi entrada')
     : w.wa_texto;
+  /* Lo que lee un lector de pantalla en el botón. Iba fijo en el HTML
+     («Avisame cuando haya fecha del taller de…») y siguió diciendo eso cuando
+     el botón pasó a «Reservar mi lugar» (14/10). Va el nombre corto: un botón
+     no lleva «veganos». */
+  w.cta_aria = w.cta_texto + ': taller de ' + (w.nombre_corto || w.nombre);
   if (w.segunda_fecha && w.segunda_fecha.texto && w.estado !== 'sin-fecha') {
     w.linea += ' · también el ' + w.segunda_fecha.texto;
   }
