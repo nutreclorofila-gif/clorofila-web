@@ -566,9 +566,9 @@ datos.curso.cta_link = abiertos.length
       ? 'Hola Leonardo, quiero reservar mi lugar en el curso, en el grupo de los ' +
         String(abiertos[0].nombre).toLowerCase() + ' de ' + abiertos[0].horario.replace(' h', '') + '.'
       : 'Hola Leonardo, quiero reservar mi lugar en el curso. Me interesa el grupo de los ' +
-        abiertos.map(function (g) {
-          return String(g.nombre).toLowerCase() + ' de ' + g.horario.replace(' h', '');
-        }).join(' o el de los ') + '.')
+        conO(abiertos.map(function (g, i) {
+          return (i ? 'el de los ' : '') + String(g.nombre).toLowerCase() + ' de ' + g.horario.replace(' h', '');
+        })) + '.')
   : 'https://tally.so/r/EkMbWL';
 // El botón redondo de al lado es para preguntar, no para reservar: siempre va a
 // WhatsApp, también cuando no hay edición abierta y el botón grande lleva al
@@ -722,6 +722,13 @@ datos.curso.intro_grupos = abiertos.length
   ? 'El mismo programa en ' + cuantos + '. Los grupos son chicos a propósito, para que puedas cocinar, preguntar y que Leonardo te corrija a vos.'
   : 'La próxima edición todavía no tiene fecha. Cuando abra, te avisamos los días y los horarios. Los grupos son chicos a propósito, para que puedas cocinar, preguntar y que Leonardo te corrija a vos.';
 datos.curso.grupos_titulo = abiertos.length ? 'Grupos y horarios.' : 'Próxima edición.';
+// /gracias?p=espera: quien se anota en la lista de espera con una edición ya
+// abierta pide la siguiente. La fila decía «Arranca el miércoles 10…», como si
+// se hubiera anotado en esa.
+datos.curso.espera_frase = abiertos.length
+  ? 'La edición de ' + String(datos.curso.edicion).toLowerCase().replace(/ (\d{4})$/, ' de $1') +
+    ' ya está abierta. Te avisamos cuando abra la siguiente.'
+  : 'La próxima edición todavía no tiene fecha. Te avisamos cuando abra.';
 
 // El cierre cambia entero según haya edición abierta o no.
 // El espacio antes del <br> es a propósito: sin él, el texto que lee Google
