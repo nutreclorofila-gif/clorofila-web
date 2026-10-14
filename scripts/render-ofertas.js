@@ -684,7 +684,7 @@ datos.curso.cursada_programa = quincenal
    pidió el 30/9 que el ticket se lea como texto y no como planilla. Estas dos
    frases dicen cuándo arranca y qué grupos hay, con los grupos abiertos. */
 const sinArranca = function (g) { return g.inicio_texto.replace(/^arranca el /i, ''); };
-const mesDe = function (g) { const m = sinArranca(g).match(/ de ([a-zé]+)$/); return m ? m[1] : ''; };
+const mesDe = function (g) { const m = sinArranca(g).match(/ de ([a-zé]+(?: de \d{4})?)$/); return m ? m[1] : ''; };
 const mismoMes = abiertos.length > 1 && mesDe(abiertos[0]) &&
   abiertos.every(function (g) { return mesDe(g) === mesDe(abiertos[0]); }) ? mesDe(abiertos[0]) : '';
 datos.curso.inicio_frase = abiertos.length === 0 ? 'La próxima edición todavía no tiene fecha.'
@@ -692,14 +692,14 @@ datos.curso.inicio_frase = abiertos.length === 0 ? 'La próxima edición todaví
   : 'Arranca el ' + conO(abiertos.map(function (g, i) {
       // Si todos arrancan el mismo mes, el mes se dice una sola vez al final:
       // «el miércoles 10, el jueves 11 o el sábado 13 de marzo».
-      const t = mismoMes ? sinArranca(g).replace(/ de [a-zé]+$/, '') : sinArranca(g);
+      const t = mismoMes ? sinArranca(g).replace(/ de [a-zé]+( de \d{4})?$/, '') : sinArranca(g);
       return (i ? 'el ' : '') + t;
     })) + (mismoMes ? ' de ' + mismoMes : '') + ', según el grupo.';
 // Versión corta para los rótulos: «Arranca el 7 de octubre o el 8 de octubre».
 datos.curso.inicio_corto = abiertos.length > 1
   ? 'Arranca el ' + conO(abiertos.map(function (g, i) {
       const t = sinArranca(g).replace(/^\S+\s+/, '');
-      return (i ? 'el ' : '') + (mismoMes ? t.replace(/ de [a-zé]+$/, '') : t);
+      return (i ? 'el ' : '') + (mismoMes ? t.replace(/ de [a-zé]+( de \d{4})?$/, '') : t);
     })) + (mismoMes ? ' de ' + mismoMes : '')
   : datos.curso.inicio_texto;
 const unGrupo = function (g) {
@@ -772,7 +772,9 @@ datos.curso.faq_cursada = todosEmpezados
     const grupos = datos.curso.grupos;
     const empezados = grupos.filter(function (g) { return esPasado(g.inicio_iso); });
     if (!empezados.length) return (grupos.length === 1 ? 'Arranca el ' : 'Arrancan el ') +
-      enumerar(grupos.map(function (g, i) { return (i ? 'el ' : '') + dia(g); })) + '.';
+      enumerar(grupos.map(function (g, i) {
+        return (i ? 'el ' : '') + (mismoMes ? dia(g).replace(/ de [a-zé]+( de \d{4})?$/, '') : dia(g));
+      })) + (mismoMes ? ' de ' + mismoMes : '') + '.';
     return grupos.map(function (g, i) {
       return (i ? 'el' : 'El') + ' de los ' + g.nombre.toLowerCase() + (esPasado(g.inicio_iso) ? ' empezó el ' : ' arranca el ') + dia(g);
     }).join(' y ') + '.';
