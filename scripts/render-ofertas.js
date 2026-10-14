@@ -125,15 +125,28 @@ function enlace(u) {
 // ser la fecha de la propuesta. Sin esto, al día siguiente de la primera
 // fecha la página decía «Sin fecha confirmada» y escondía la segunda, que
 // seguía abierta.
+/* Desde noviembre hay propuestas con más de dos fechas (el tapeo tiene
+   cuatro): las que siguen a la segunda van en mas_fechas, en orden, y se
+   corren en fila a medida que pasan. */
 function correrSegunda(o, campoHora) {
-  const s = o.segunda_fecha;
-  if (!esPasado(o.fecha_iso) || !s || !s.iso || esPasado(s.iso)) return;
-  o.fecha_iso = s.iso;
-  o.fecha_texto = s.texto;
-  if (s.hora_inicio) o[campoHora] = s.hora_inicio;
-  if (s.hora_fin) o.hora_fin = s.hora_fin;
-  if (s.link) o.link_compra = s.link;
-  delete o.segunda_fecha;
+  const cola = [].concat(o.segunda_fecha || [], o.mas_fechas || [])
+    .filter(function (f) { return f && f.iso; });
+  while (esPasado(o.fecha_iso) && cola.length) {
+    const s = cola.shift();
+    if (esPasado(s.iso)) continue;
+    o.fecha_iso = s.iso;
+    o.fecha_texto = s.texto;
+    if (s.hora_inicio) o[campoHora] = s.hora_inicio;
+    if (s.hora_fin) o.hora_fin = s.hora_fin;
+    if (campoHora === 'hora_inicio' && s.hora_inicio && s.hora_fin) o.hora = s.hora_inicio + ' a ' + s.hora_fin + ' h';
+    // Sin link propio la fecha se reserva por WhatsApp. Heredar el de la
+    // anterior vendía la entrada de una noche que ya pasó.
+    o.link_compra = s.link || null;
+    if (s.venta_desde) o.venta_desde = s.venta_desde;
+  }
+  const quedan = cola.filter(function (f) { return !esPasado(f.iso); });
+  if (quedan.length) o.segunda_fecha = quedan[0]; else delete o.segunda_fecha;
+  if (quedan.length > 1) o.mas_fechas = quedan.slice(1); else delete o.mas_fechas;
 }
 correrSegunda(datos.tapeo, 'hora');
 for (const t of Object.values(datos.talleres)) correrSegunda(t, 'hora_inicio');
@@ -144,6 +157,7 @@ if (esPasado(datos.tapeo.fecha_iso)) {
   datos.tapeo.fecha_texto = 'Sin fecha confirmada';
   datos.tapeo.fecha_iso = '';
   delete datos.tapeo.segunda_fecha;
+  delete datos.tapeo.mas_fechas;
 }
 for (const [id, t] of Object.entries(datos.talleres)) {
   if (esPasado(t.fecha_iso)) {
@@ -151,6 +165,7 @@ for (const [id, t] of Object.entries(datos.talleres)) {
     t.fecha_texto = 'Sin fecha confirmada';
     t.fecha_iso = '';
     delete t.segunda_fecha;
+    delete t.mas_fechas;
   }
   t.id = id;
 }
@@ -221,11 +236,13 @@ t.aviso_agotado_corto = t.estado === 'agotado'
 /* Se controla todo lo que tenga fecha antes de dibujar nada. */
 revisarFecha('tapeo', datos.tapeo.fecha_iso, datos.tapeo.fecha_texto);
 if (datos.tapeo.segunda_fecha) revisarFecha('tapeo.segunda_fecha', datos.tapeo.segunda_fecha.iso, datos.tapeo.segunda_fecha.texto);
+(datos.tapeo.mas_fechas || []).forEach(function (f, i) { revisarFecha('tapeo.mas_fechas.' + i, f.iso, f.texto); });
 Object.keys(datos.talleres).forEach(function (k) {
   const t = datos.talleres[k];
   if (!t || typeof t !== 'object') return;
   revisarFecha('talleres.' + k, t.fecha_iso, t.fecha_texto);
   if (t.segunda_fecha) revisarFecha('talleres.' + k + '.segunda_fecha', t.segunda_fecha.iso, t.segunda_fecha.texto);
+  (t.mas_fechas || []).forEach(function (f, i) { revisarFecha('talleres.' + k + '.mas_fechas.' + i, f.iso, f.texto); });
 });
 datos.curso.grupos.forEach(function (g) {
   revisarFecha('curso.grupos.' + g.id, g.inicio_iso, g.inicio_texto);
@@ -262,6 +279,20 @@ if (!ventaMuda(t.estado) && t.segunda_fecha && t.segunda_fecha.texto) {
     'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo. ¿Hay lugar el ' + t.fecha_texto +
     ' o el ' + t.segunda_fecha.texto + '?'
   );
+  // Las fechas de más, igual: cada botón pide su noche.
+  (t.mas_fechas || []).forEach(function (f) {
+    f.wa_link = waBase + encodeURIComponent(
+      'Hola Leonardo, quiero reservar para la Cena y Taller de Tapeo del ' + f.texto + '.'
+    );
+  });
+}
+// Todas las fechas abiertas, en orden: «el 23 de octubre, el 30 de octubre y el 13 de noviembre».
+function textosDeFechas(o) {
+  return [o.fecha_texto].concat(o.segunda_fecha && o.segunda_fecha.texto ? [o.segunda_fecha.texto] : [],
+    (o.mas_fechas || []).map(function (f) { return f.texto; }).filter(Boolean));
+}
+function unirConY(lista) {
+  return lista.length < 2 ? (lista[0] || '') : lista.slice(0, -1).join(', ') + ' y ' + lista[lista.length - 1];
 }
 /* Con la fecha llena, el botón decía "avisame si se libera un lugar" mientras
    el mensaje que se manda pide la próxima fecha: dos promesas distintas en el
@@ -289,7 +320,7 @@ t.resumen_texto =
   t.estado === 'sin-fecha' ? 'sin fecha abierta por ahora; las fechas se publican según la demanda' :
   t.estado === 'agotado'   ? 'fecha ' + t.fecha_texto + ', sin lugares disponibles' :
   (t.segunda_fecha && t.segunda_fecha.texto
-    ? 'próximas fechas ' + t.fecha_texto + ' y ' + t.segunda_fecha.texto + ', ' + t.horario_texto +
+    ? 'próximas fechas ' + unirConY(textosDeFechas(t)) + ', ' + t.horario_texto +
       (t.precio ? ', ' + t.precio : '') + ', ' + t.cupos_texto.toLowerCase() + ' por noche'
     : 'próxima fecha ' + t.fecha_texto + ', ' + t.horario_texto + (t.precio ? ', ' + t.precio : '') + ', ' + t.cupos_texto.toLowerCase());
 
@@ -359,8 +390,9 @@ t.segunda_link = (t.segunda_fecha && t.segunda_fecha.link) || '';
 // puede traer su propio horario. Si no lo trae, hereda el de la primera.
 function horarioDe(f, porDefecto) {
   if (!f) return porDefecto;
-  if (f.hora && f.hora_fin) return f.hora + ' a ' + f.hora_fin + ' h';
-  return f.hora || porDefecto;
+  const ini = f.hora || f.hora_inicio;
+  if (ini && f.hora_fin) return ini + ' a ' + f.hora_fin + ' h';
+  return ini || porDefecto;
 }
 
 // Cuando hay dos fechas, se muestran como opciones para elegir, no como
@@ -380,6 +412,12 @@ function listaFechas(o, sufijo) {
       '<strong>' + escapar(o.segunda_fecha.texto) + '</strong>' +
       '<span>' + escapar(horarioDe(o.segunda_fecha, o.horario_texto)) + '</span></a></li>');
   }
+  (o.mas_fechas || []).forEach(function (f) {
+    if (!f || !f.texto) return;
+    items.push('<li><a href="' + enlace(ventaMuda(o.estado) ? o.wa_link : (f.link || f.wa_link || o.wa_link)) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
+      '<strong>' + escapar(f.texto) + '</strong>' +
+      '<span>' + escapar(horarioDe(f, o.horario_texto)) + '</span></a></li>');
+  });
   return items.join('');
 }
 t.fechas_html = listaFechas(t, 'tapeo');
@@ -483,6 +521,11 @@ for (const [id, w] of Object.entries(datos.talleres)) {
     w.wa_link_2 = waBase + encodeURIComponent(
       'Hola Leonardo, quiero reservar un lugar en el taller de ' + w.nombre + ' del ' + w.segunda_fecha.texto + '.'
     );
+    (w.mas_fechas || []).forEach(function (f) {
+      f.wa_link = waBase + encodeURIComponent(
+        'Hola Leonardo, quiero reservar un lugar en el taller de ' + w.nombre + ' del ' + f.texto + '.'
+      );
+    });
   }
   // El botón de al lado dice "preguntar": tiene que preguntar.
   w.pregunta_link = waBase + encodeURIComponent(
@@ -897,6 +940,13 @@ if (t.estado !== 'sin-fecha' && t.fecha_iso) {
       estado: 'abierto', etiqueta: 'Segunda fecha', link: '/tapeo', cta: 'Ver la cena de tapeo'
     });
   }
+  (t.mas_fechas || []).forEach(function (f) {
+    agenda.push({
+      iso: f.iso + '-b', nombre: 'Cena y Taller de Tapeo',
+      fecha: f.texto, hora: horarioDe(f, t.horario_texto), precio: t.precio,
+      estado: 'abierto', etiqueta: 'Otra fecha', link: '/tapeo', cta: 'Ver la cena de tapeo'
+    });
+  });
 }
 for (const [id, w] of Object.entries(datos.talleres)) {
   // "publicar": false lo deja fuera del sitio aunque tenga fecha cargada. El
@@ -917,6 +967,13 @@ for (const [id, w] of Object.entries(datos.talleres)) {
       link: (id === 'pastas-sin-gluten') ? '/pastas' : '/talleres#' + id, cta: 'Ver el taller'
     });
   }
+  (w.mas_fechas || []).forEach(function (f) {
+    agenda.push({
+      iso: f.iso + '-b', nombre: w.nombre, fecha: f.texto,
+      hora: horarioDe(f, w.hora), precio: w.precio, estado: 'abierto', etiqueta: 'Otra fecha',
+      link: (id === 'pastas-sin-gluten') ? '/pastas' : '/talleres#' + id, cta: 'Ver el taller'
+    });
+  });
 }
 // El curso es lo primero que se vende y no estaba en la agenda: la home
 // mostraba "lo que se puede reservar hoy" sin el producto principal, que tiene
@@ -1379,7 +1436,9 @@ for (const archivo of archivos) {
       /* Con dos fechas vence con la segunda: con la primera, entre el 24 y el
          30 de octubre /tapeo decía «no hay fecha abierta» y escondía la compra
          del 30, que seguía a la venta. */
-      const venceIso = (obj && ((obj.segunda_fecha && obj.segunda_fecha.iso) || obj.fecha_iso || obj.vence_iso)) || '';
+      // Con más de dos, vence con la última.
+      const ultimaMas = obj && obj.mas_fechas && obj.mas_fechas.length ? obj.mas_fechas[obj.mas_fechas.length - 1].iso : '';
+      const venceIso = (obj && (ultimaMas || (obj.segunda_fecha && obj.segunda_fecha.iso) || obj.fecha_iso || obj.vence_iso)) || '';
       const vence = venceIso ? ' data-vence-iso="' + escapar(venceIso) + '"' : '';
       vistos.e[ruta_] = [estado, venceIso];
       usadas.add('e ' + ruta_);
@@ -1720,13 +1779,20 @@ for (const archivo of archivos) {
         }
         return seg;
       }
+      // Las fechas que siguen a la primera: la segunda y las de mas_fechas.
+      function fechasQueSiguen(o) {
+        if (!o || o.estado === 'sin-fecha') return [];
+        return [].concat(o.segunda_fecha || [], o.mas_fechas || []).filter(function (f) { return f && f.iso; });
+      }
+      // ¿Es un evento derivado de idBase (idBase-2, idBase-3…)?
+      function esDerivado(id, idBase) {
+        return typeof id === 'string' && id.indexOf(idBase + '-') === 0 && /^-\d+$/.test(id.slice(idBase.length));
+      }
       /* En /experiencias el evento vive anidado en un ItemList y no en la raíz
          del @graph, así que segundoEvento() no lo encontraba: Google veía una
-         sola de las dos noches (14/10). Acá la segunda va como otro ítem. */
+         sola de las dos noches (14/10). Acá cada fecha que sigue va como otro ítem. */
       function segundoEnLista(idBase, o, horaBase, finBase) {
-        const s2 = o && o.segunda_fecha;
-        const hay = o && o.estado !== 'sin-fecha' && s2 && s2.iso;
-        const idSeg = idBase + '-2';
+        const extra = fechasQueSiguen(o);
         (function buscar(n) {
           if (!n || typeof n !== 'object') return;
           if (Array.isArray(n)) { n.forEach(buscar); return; }
@@ -1735,15 +1801,19 @@ for (const archivo of archivos) {
             const i = lista.findIndex(function (li) { return li && li.item && li.item['@id'] === idBase; });
             if (i !== -1) {
               const antes = JSON.stringify(n);
-              const j = lista.findIndex(function (li) { return li && li.item && li.item['@id'] === idSeg; });
-              if (hay) {
-                const li = JSON.parse(JSON.stringify(lista[i]));
-                li.item = armarSegundo(lista[i].item, idSeg, s2, horaBase, finBase);
-                if (j === -1) lista.splice(i + 1, 0, li); else lista[j] = li;
-              } else if (j !== -1) {
-                lista.splice(j, 1);
-              }
-              lista.forEach(function (li, k) { if (li && li.position != null) li.position = k + 1; });
+              const molde = lista[i];
+              // Se rehacen todos los derivados desde el principal, en orden.
+              const sinDerivados = lista.filter(function (li) { return !(li && li.item && esDerivado(li.item['@id'], idBase)); });
+              const k = sinDerivados.indexOf(molde);
+              const nuevos = extra.map(function (s2, j) {
+                const li = JSON.parse(JSON.stringify(molde));
+                li.item = armarSegundo(molde.item, idBase + '-' + (j + 2), s2, horaBase, finBase);
+                return li;
+              });
+              const final = sinDerivados.slice(0, k + 1).concat(nuevos, sinDerivados.slice(k + 1));
+              lista.length = 0;
+              final.forEach(function (li) { lista.push(li); });
+              lista.forEach(function (li, m) { if (li && li.position != null) li.position = m + 1; });
               if (n.numberOfItems != null) n.numberOfItems = lista.length;
               if (JSON.stringify(n) !== antes) tocado = true;
               return;
@@ -1754,12 +1824,13 @@ for (const archivo of archivos) {
       }
       function segundoEvento(idBase, o, horaBase, finBase) {
         if (!Array.isArray(ld['@graph'])) return;
-        const idSeg = idBase + '-2';
         const base = ld['@graph'].find(function (n) { return n && n['@id'] === idBase; });
-        const yaEsta = ld['@graph'].some(function (n) { return n && n['@id'] === idSeg; });
-        const s2 = o && o.segunda_fecha;
-        const hay = o && o.estado !== 'sin-fecha' && s2 && s2.iso;
-        if (base && hay) {
+        if (!base) return;
+        const extra = fechasQueSiguen(o);
+        const vigentes = {};
+        extra.forEach(function (s2, j) {
+          const idSeg = idBase + '-' + (j + 2);
+          vigentes[idSeg] = true;
           const seg = armarSegundo(base, idSeg, s2, horaBase, finBase);
           // Se rehace desde el evento principal en vez de dejar el que ya estaba:
           // si cambió el precio o el horario, el bloque viejo seguía mintiendo.
@@ -1771,11 +1842,13 @@ for (const archivo of archivos) {
             ld['@graph'][donde] = seg;
             tocado = true;
           }
-        } else if (base && !hay && yaEsta) {
-          // Se cerró la segunda fecha: el evento deja de publicarse.
-          ld['@graph'] = ld['@graph'].filter(function (n) { return !n || n['@id'] !== idSeg; });
-          tocado = true;
-        }
+        });
+        // Una fecha que se cerró deja de publicarse.
+        const antes = ld['@graph'].length;
+        ld['@graph'] = ld['@graph'].filter(function (n) {
+          return !n || !esDerivado(n['@id'], idBase) || vigentes[n['@id']];
+        });
+        if (ld['@graph'].length !== antes) tocado = true;
       }
       const wPastas = datos.talleres['pastas-sin-gluten'];
       segundoEvento('https://clorofila.uy/pastas#evento', wPastas, wPastas && wPastas.hora_inicio, wPastas && wPastas.hora_fin);

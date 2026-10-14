@@ -45,7 +45,26 @@
       "hora_fin": "22:30",
       "venta_desde": "2026-10-02",
       "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-e10f"
-    }
+    },
+    "mas_fechas": [
+      {
+        "iso": "2026-11-13",
+        "texto": "viernes 13 de noviembre",
+        "hora_inicio": "19:00",
+        "hora_fin": "22:30",
+        "venta_desde": "2026-10-14",
+        "link": null
+      },
+      {
+        "iso": "2026-11-27",
+        "texto": "viernes 27 de noviembre",
+        "hora_inicio": "19:00",
+        "hora_fin": "22:30",
+        "venta_desde": "2026-10-14",
+        "link": null
+      }
+    ],
+    "_leeme_mas_fechas": "mas_fechas: las fechas que vienen después de la segunda, en orden. Cuando pasa una fecha, la siguiente se corre sola (en el build y en el navegador, con estados.json). Sin link de Tikzet, el botón de esa fecha lleva a WhatsApp."
   },
   "curso": {
     "estado": "abierto",
@@ -110,39 +129,49 @@
       "nombre": "Pan sin gluten con masa madre",
       "nombre_corto": "Pan sin gluten",
       "linea_corta": "Trabajamos la hidratación, la fermentación y la miga, con masa madre real y sin aditivos.",
-      "estado": "sin-fecha",
-      "fecha_iso": "",
-      "fecha_texto": "Sin fecha confirmada",
-      "hora": "",
-      "precio": "",
-      "cupos_total": 10
+      "estado": "abierto",
+      "fecha_iso": "2026-11-17",
+      "fecha_texto": "martes 17 de noviembre",
+      "hora": "19:00 a 22:30 h",
+      "precio": "$2.600",
+      "cupos_total": 12,
+      "hora_inicio": "19:00",
+      "hora_fin": "22:30",
+      "precio_num": "2600",
+      "venta_desde": "2026-10-14",
+      "link_compra": null
     },
     "pastas-sin-gluten": {
       "nombre": "Pastas sin gluten",
       "nombre_corto": "Pastas sin gluten",
       "linea_corta": "Amasás, estirás y armás cada forma vos.",
       "estado": "abierto",
-      "fecha_iso": "2026-10-29",
-      "fecha_texto": "jueves 29 de octubre",
-      "hora": "19:00 a 22:30 h",
-      "hora_inicio": "19:00",
-      "hora_fin": "22:30",
+      "fecha_iso": "2026-11-07",
+      "fecha_texto": "sábado 7 de noviembre",
+      "hora": "15:00 a 18:30 h",
+      "hora_inicio": "15:00",
+      "hora_fin": "18:30",
       "precio": "$2.700",
       "precio_num": "2700",
-      "venta_desde": "2026-10-04",
+      "venta_desde": "2026-10-14",
       "cupos_total": 12,
-      "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten-0381"
+      "link_compra": null
     },
     "alfajores": {
       "nombre": "Alfajores plant-based",
       "nombre_corto": "Alfajores",
       "linea_corta": "Armás la masa, la ganache y los rellenos con técnica pastelera.",
-      "estado": "sin-fecha",
-      "fecha_iso": "",
-      "fecha_texto": "Sin fecha confirmada",
-      "hora": "",
-      "precio": "",
-      "cupos_total": 10
+      "estado": "abierto",
+      "fecha_iso": "2026-11-21",
+      "fecha_texto": "sábado 21 de noviembre",
+      "hora": "15:00 a 18:30 h",
+      "precio": "$2.600",
+      "cupos_total": 12,
+      "hora_inicio": "15:00",
+      "hora_fin": "18:30",
+      "precio_num": "2600",
+      "venta_desde": "2026-10-14",
+      "link_compra": null
     },
     "quesos-vegetales": {
       "nombre": "Quesos vegetales",
