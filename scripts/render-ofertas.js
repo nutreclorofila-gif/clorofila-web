@@ -647,8 +647,12 @@ datos.curso.porclase_texto = '3 meses · 12 clases de 2 horas, una por semana';
 /* Un grupo puede ser quincenal (la edición de marzo 2027 suma el segundo y el
    cuarto sábado de cada mes, con encuentros más largos). Todo lo que decía
    «una por semana» para el curso entero se arma acá, para que no quede
-   diciendo semanal de un grupo que no lo es. */
-const enJuego = abiertos.length ? abiertos : datos.curso.grupos;
+   diciendo semanal de un grupo que no lo es.
+   Cuenta todos los grupos de la edición, también los que ya empezaron: el
+   curso sigue teniendo esos grupos. Contaba solo los abiertos, y el 12/3/2027,
+   con miércoles y jueves ya empezados, la boleta iba a decir «Son tres meses.
+   , 12 clases» y el programa «Los grupos de  tienen una clase por semana». */
+const enJuego = datos.curso.grupos;
 const quincenal = enJuego.filter(function (g) { return g.frecuencia === 'quincenal'; })[0];
 const semanales = enJuego.filter(function (g) { return g.frecuencia !== 'quincenal'; });
 function duracion(g) {
@@ -668,14 +672,22 @@ const losDias = function (gs) {
 };
 datos.curso.horarios_chip_calc = quincenal ? '3 meses · semanal o quincenal' : '3 meses · una clase por semana';
 // La frase de la boleta de /curso, sin la parte de lo incluido.
-datos.curso.cursada_boleta = quincenal
+datos.curso.cursada_boleta = quincenal && semanales.length
   ? 'Son tres meses. ' + losDias(semanales).replace(/^l/, 'L') + ', 12 clases de 2 horas, una por semana; ' +
     losDias([quincenal]) + ', ' + quincenal.clases + ' encuentros de ' + duracion(quincenal) + ', cada quince días.'
+  : quincenal
+  ? 'Son tres meses: ' + quincenal.clases + ' encuentros de ' + duracion(quincenal) + ', cada quince días, ' +
+    losDias([quincenal]) + '.'
   : 'Son 12 clases de 2 horas, una por semana, durante tres meses.';
-// La bajada de /programa.
+// La bajada de /programa. Con un solo grupo semanal va en singular.
 datos.curso.cursada_programa = quincenal
-  ? 'Los grupos de ' + semanales.map(function (g) { return g.nombre.toLowerCase(); }).join(' y de ') +
-    ' tienen una clase por semana, 12 en total. El de los ' + quincenal.nombre.toLowerCase() + ' tiene ' +
+  ? (semanales.length > 1
+      ? 'Los grupos de ' + semanales.map(function (g) { return g.nombre.toLowerCase(); }).join(' y de ') +
+        ' tienen una clase por semana, 12 en total. '
+      : semanales.length
+      ? 'El grupo de los ' + semanales[0].nombre.toLowerCase() + ' tiene una clase por semana, 12 en total. '
+      : '') +
+    (semanales.length ? 'El de los ' : 'El grupo de los ') + quincenal.nombre.toLowerCase() + ' tiene ' +
     quincenal.clases + ' encuentros más largos, cada quince días. Cada mes se apoya en el anterior.'
   : 'Los grupos —' + datos.curso.grupos.map(function (g) { return g.nombre.toLowerCase(); }).join(' y ') +
     '— cursan cada uno 12 clases, una por semana, y cada mes se apoya en el anterior.';
@@ -765,26 +777,26 @@ datos.curso.edicion_llms = abiertos.length ? 'Edición ' + datos.curso.edicion +
 // el grupo de miércoles o jueves» y recién después «esta edición empezó» (9/10).
 const todosEmpezados = datos.curso.grupos.length &&
   datos.curso.grupos.every(function (g) { return esPasado(g.inicio_iso); });
-datos.curso.faq_cursada = todosEmpezados
+datos.curso.faq_cursada = todosEmpezados || !abiertos.length
   // Sin las fechas de la edición en marcha (13/10): era una fecha pasada en
   // la respuesta que lee quien llega por Google.
   ? 'Son 3 meses: 12 clases de 2 horas, una por semana. La próxima edición todavía no tiene fecha: cuando abra, te avisamos los días y los horarios.'
-  : (quincenal ? datos.curso.cursada_boleta : 'Son 3 meses: 12 clases de 2 horas, una por semana.') +
-  ' Elegís el grupo de ' + conO(datos.curso.grupos.map(function (g) {
-    return g.nombre.toLowerCase() + ' de ' + g.horario.replace(' h', '');
-  })) + '. ' + (function () {
+  : (quincenal ? datos.curso.cursada_boleta : 'Son 3 meses: 12 clases de 2 horas, una por semana.') + ' ' + (function () {
     /* Seguía diciendo «Arrancan el miércoles 7 y el jueves 8» con la edición
-       ya en marcha: es la respuesta que lee quien llega por Google. */
+       ya en marcha: es la respuesta que lee quien llega por Google.
+       Se elige solo entre los grupos abiertos: con el de los miércoles ya
+       empezado, ofrecía elegirlo igual (14/10). */
     const dia = function (g) { return g.inicio_texto.toLowerCase().replace(/^arranca el /, ''); };
-    const grupos = datos.curso.grupos;
-    const empezados = grupos.filter(function (g) { return esPasado(g.inicio_iso); });
-    if (!empezados.length) return (grupos.length === 1 ? 'Arranca el ' : 'Arrancan el ') +
-      enumerar(grupos.map(function (g, i) {
+    const horario = function (g) { return g.horario.replace(' h', ''); };
+    const eleccion = abiertos.length > 1
+      ? 'Elegís el grupo de ' + conO(abiertos.map(function (g) {
+          return g.nombre.toLowerCase() + ' de ' + horario(g);
+        })) + '. '
+      : 'Queda abierto el grupo de los ' + abiertos[0].nombre.toLowerCase() + ', de ' + horario(abiertos[0]) + '. ';
+    return eleccion + (abiertos.length === 1 ? 'Arranca el ' : 'Arrancan el ') +
+      enumerar(abiertos.map(function (g, i) {
         return (i ? 'el ' : '') + (mismoMes ? dia(g).replace(/ de [a-zé]+( de \d{4})?$/, '') : dia(g));
       })) + (mismoMes ? ' de ' + mismoMes : '') + '.';
-    return grupos.map(function (g, i) {
-      return (i ? 'el' : 'El') + ' de los ' + g.nombre.toLowerCase() + (esPasado(g.inicio_iso) ? ' empezó el ' : ' arranca el ') + dia(g);
-    }).join(' y ') + '.';
   })();
 
 /* El chip decía "3 modalidades" a mano: quedó de la edición de agosto, que
@@ -825,12 +837,20 @@ datos.curso.horarios_chip = datos.curso.horarios_chip_calc;
 datos.curso.grupos_nota = quincenal && semanales.length > 1
   ? 'Si te cambia el trabajo o surge un viaje, entre ' + semanales.map(function (g) { return g.nombre.toLowerCase(); }).join(' y ') +
     ' te movés mientras haya lugar, y con el grupo de los ' + quincenal.nombre.toLowerCase() + ' se coordina. La clase que faltes la recuperás.'
+  : quincenal && semanales.length
+  ? 'Si te cambia el trabajo o surge un viaje, el cambio entre los ' + semanales[0].nombre.toLowerCase() + ' y los ' +
+    quincenal.nombre.toLowerCase() + ' se coordina. La clase que faltes la recuperás.'
   : 'Si te cambia el trabajo o surge un viaje, te movés de día mientras haya lugar, y la clase que faltes la recuperás.';
+const otroRitmo = quincenal
+  ? 'El de los ' + quincenal.nombre.toLowerCase() + ' tiene otro ritmo: va cada quince días, con encuentros de ' +
+    duracion(quincenal) + '. Pasarte a ese grupo, o salir de él, se coordina con nosotros y depende del lugar. ' +
+    'Si te cambia el trabajo o te surge un viaje, avisanos: nadie pierde el curso por un cambio de agenda.'
+  : '';
 datos.curso.faq_cambio_grupo = quincenal && semanales.length > 1
   ? 'Sí. Entre los grupos de ' + semanales.map(function (g) { return g.nombre.toLowerCase(); }).join(' y ') +
-    ' te movés mientras haya lugar. El de los ' + quincenal.nombre.toLowerCase() + ' tiene otro ritmo: va cada quince días, ' +
-    'con encuentros de ' + duracion(quincenal) + '. Pasarte a ese grupo, o salir de él, se coordina con nosotros y depende del lugar. ' +
-    'Si te cambia el trabajo o te surge un viaje, avisanos: nadie pierde el curso por un cambio de agenda.'
+    ' te movés mientras haya lugar. ' + otroRitmo
+  : quincenal && semanales.length
+  ? 'Sí, con aviso. ' + otroRitmo
   : nombres.length > 1
   ? 'Sí, y pasa seguido. Tenés ' + cuantos + ' y te movés entre ellos mientras haya lugar. ' +
     'Si te cambia el trabajo o te surge un viaje, avisanos y te reubicamos: nadie pierde el ' +
