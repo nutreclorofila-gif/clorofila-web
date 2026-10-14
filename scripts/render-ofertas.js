@@ -506,7 +506,11 @@ for (const [id, w] of Object.entries(datos.talleres)) {
 
 const abiertos = datos.curso.grupos.filter(function (g) { return g.estado === 'abierto'; });
 datos.curso.grupos_abiertos_texto = abiertos.length
-  ? abiertos.map(function (g) { return g.nombre + ' ' + g.horario.replace(' a ', '–').replace(' h', ''); }).join(' · ')
+  // El grupo quincenal lo dice: «Sábados 15:00–18:30» se leía como semanal (14/10).
+  ? abiertos.map(function (g) {
+      return g.nombre + ' ' + g.horario.replace(' a ', '–').replace(' h', '') +
+        (g.frecuencia === 'quincenal' ? ', cada quince días' : '');
+    }).join(' · ')
   : 'Próxima edición a confirmar';
 datos.curso.inicio_texto = abiertos.length ? abiertos[0].inicio_texto : 'Próxima edición a confirmar';
 // La etiqueta de esa fila estaba escrita a mano como "Grupo abierto": con dos
@@ -528,7 +532,7 @@ datos.curso.cuotas_tarjeta_corto = String(datos.curso.precio_tarjeta || '')
 datos.curso.horarios_html = abiertos.length
   ? abiertos.map(function (g) {
       return '<tr><th scope="row">' + escapar(g.nombre) + '</th><td>' +
-        escapar(g.horario.replace(' a ', ' – ')) + '</td></tr>';
+        escapar(g.horario.replace(' a ', ' – ')) + (g.frecuencia === 'quincenal' ? ', cada quince días' : '') + '</td></tr>';
     }).join('')
   // Sin grupos abiertos la tabla queda vacía y /contacto la oculta: la línea
   // de abajo ya dice que la próxima edición no tiene fecha.
@@ -741,6 +745,13 @@ datos.curso.espera_frase = abiertos.length
   ? 'La edición de ' + String(datos.curso.edicion).toLowerCase().replace(/ (\d{4})$/, ' de $1') +
     ' ya está abierta. Te avisamos cuando abra la siguiente.'
   : 'La próxima edición todavía no tiene fecha. Te avisamos cuando abra.';
+// El recuadro del final de los doce artículos decía «te avisamos cuando abra
+// la próxima edición» con la de marzo de 2027 ya abierta (14/10).
+datos.curso.aviso_articulos_html = (abiertos.length
+  ? 'La edición de ' + String(datos.curso.edicion).toLowerCase().replace(/ (\d{4})$/, ' de $1') +
+    ' ya tiene inscripciones abiertas. Si no podés en esa, dejanos tu mail y te avisamos cuando abra la siguiente'
+  : 'Dejanos tu mail y te avisamos cuando abra la próxima edición') +
+  ' y cuando haya fecha de <a href="/talleres" class="enlace-vivo">los talleres</a>.';
 
 // El cierre cambia entero según haya edición abierta o no.
 // El espacio antes del <br> es a propósito: sin él, el texto que lee Google
@@ -766,7 +777,7 @@ datos.curso.resumen_grupos = abiertos.length
     }).join('; ') + '.'
   : 'La próxima edición todavía no tiene fecha. Podés dejar tu mail y te avisamos cuando abra.';
 // «Edición octubre 2026.» en llms.txt solo mientras esa edición se puede comprar.
-datos.curso.edicion_llms = abiertos.length ? 'Edición ' + datos.curso.edicion + '. ' : '';
+datos.curso.edicion_llms = abiertos.length ? 'Edición ' + String(datos.curso.edicion).toLowerCase() + '. ' : '';
 
 // La FAQ de la cursada se arma con los grupos reales, para que no quede
 // prometiendo horarios de una edición que ya pasó.
