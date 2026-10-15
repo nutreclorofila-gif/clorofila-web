@@ -127,16 +127,33 @@
   }
   vieneDeGoogleAds();
 
+  /* Lo mismo con «(M)» para quien llega desde la ficha de Google Maps (el
+     Perfil de Empresa): su enlace al sitio lleva utm_campaign=perfil-de-empresa.
+     Si una visita trae las dos marcas, gana «(G)», porque el anuncio es lo que
+     se paga (pedido de optimizando Google, 14/10). */
+  var CLAVE_FICHA = 'clorofila_vino_de_la_ficha';
+  function vieneDeLaFicha() {
+    var ficha = origen.utm_source === 'google' && origen.utm_medium === 'organic' &&
+      origen.utm_campaign === 'perfil-de-empresa';
+    try {
+      if (ficha) window.sessionStorage.setItem(CLAVE_FICHA, '1');
+      else ficha = window.sessionStorage.getItem(CLAVE_FICHA) === '1';
+    } catch (e) { /* sin almacenamiento: solo la página de llegada */ }
+    return ficha;
+  }
+  vieneDeLaFicha();
+
   function marcarGoogle(a) {
-    if (!vieneDeGoogleAds()) return;
+    var marca = vieneDeGoogleAds() ? ' (G)' : (vieneDeLaFicha() ? ' (M)' : '');
+    if (!marca) return;
     try {
       var u = new URL(a.href);
       var texto = u.searchParams.get('text') || 'Hola, quiero información de Clorofila.';
-      if (/\(G\)$/.test(texto)) return;
+      if (/\((G|M)\)$/.test(texto)) return;
       // A mano y no con searchParams.set: ese pone «+» en los espacios y
       // WhatsApp no siempre los convierte.
       u.searchParams.delete('text');
-      a.href = u.toString() + (u.search ? '&' : '?') + 'text=' + encodeURIComponent(texto + ' (G)');
+      a.href = u.toString() + (u.search ? '&' : '?') + 'text=' + encodeURIComponent(texto + marca);
     } catch (e) { /* dirección rara: el enlace sigue como estaba */ }
   }
 

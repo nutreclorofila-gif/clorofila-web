@@ -327,6 +327,9 @@
         ponerAlDia(vigente);
         darDeBajaLoVencido();
         contarLoQueFalta();
+        // Los enlaces que entraron recién (y los aria-label que pisó data-set)
+        // no tenían el aviso de otra pestaña.
+        avisarOtraPestana();
       })
       .catch(function () {});
   }
@@ -384,16 +387,19 @@
      adentro no se leería: si el enlace ya tiene aria-label, el aviso se suma
      ahí; si no, entra como texto oculto con .sr-only, que ya existe en el CSS. */
   var AVISO = "(se abre en otra pestaña)";
-  document.querySelectorAll("a[target=\"_blank\"]").forEach(function (a) {
-    var etiqueta = a.getAttribute("aria-label");
-    if ((etiqueta || a.textContent || "").indexOf("otra pestaña") !== -1) return;
-    if (etiqueta) {
-      a.setAttribute("aria-label", etiqueta + " " + AVISO);
-    } else {
-      var s = document.createElement("span");
-      s.className = "sr-only";
-      s.textContent = " " + AVISO;
-      a.appendChild(s);
-    }
-  });
+  function avisarOtraPestana() {
+    document.querySelectorAll("a[target=\"_blank\"]").forEach(function (a) {
+      var etiqueta = a.getAttribute("aria-label");
+      if ((etiqueta || a.textContent || "").indexOf("otra pestaña") !== -1) return;
+      if (etiqueta) {
+        a.setAttribute("aria-label", etiqueta + " " + AVISO);
+      } else {
+        var s = document.createElement("span");
+        s.className = "sr-only";
+        s.textContent = " " + AVISO;
+        a.appendChild(s);
+      }
+    });
+  }
+  avisarOtraPestana();
 })();

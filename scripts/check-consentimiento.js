@@ -203,6 +203,11 @@ p = pagina({ ruta: '/curso', busqueda: '?gclid=PRUEBA', producto: 'curso', decis
 check('no guarda el origen', !('clorofila_origen' in p.almacen), p.almacen);
 check('anota solo que vino de Ads, en la sesión', JSON.stringify(sesionAds) === '{"clorofila_vino_de_ads":"1"}', sesionAds);
 
+console.log('\n6e) Rechazó y llegó desde la ficha de Google Maps');
+const sesionFicha = {};
+p = pagina({ ruta: '/', busqueda: '?utm_source=google&utm_medium=organic&utm_campaign=perfil-de-empresa', producto: 'general', decision: 'declined', sesion: sesionFicha });
+check('anota solo que vino de la ficha, en la sesión', JSON.stringify(sesionFicha) === '{"clorofila_vino_de_la_ficha":"1"}', sesionFicha);
+
 console.log('\n7) /gracias?p=tapeo sin contestar el aviso, acepta ahí');
 p = pagina({ ruta: '/gracias', busqueda: '?p=tapeo', producto: 'gracias', sinVista: true, conGracias: true });
 check('Analytics recibe reserva_recibida al llegar', p.ga.includes('reserva_recibida'), p.ga);
