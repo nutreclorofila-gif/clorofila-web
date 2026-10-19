@@ -608,7 +608,7 @@ datos.curso.grupos_abiertos_texto = abiertos.length
   // El grupo quincenal lo dice: «Sábados 15:00–18:30» se leía como semanal (14/10).
   ? abiertos.map(function (g) {
       return g.nombre + ' ' + g.horario.replace(' a ', '–').replace(' h', '') +
-        (g.frecuencia === 'quincenal' ? ', cada quince días' : '');
+        (g.frecuencia === 'quincenal' ? ', ' + (g.ritmo || 'cada quince días') : '');
     }).join(' · ')
   : 'Próxima edición a confirmar';
 datos.curso.inicio_texto = abiertos.length ? abiertos[0].inicio_texto : 'Próxima edición a confirmar';
@@ -631,7 +631,7 @@ datos.curso.cuotas_tarjeta_corto = String(datos.curso.precio_tarjeta || '')
 datos.curso.horarios_html = abiertos.length
   ? abiertos.map(function (g) {
       return '<tr><th scope="row">' + escapar(g.nombre) + '</th><td>' +
-        escapar(g.horario.replace(' a ', ' – ')) + (g.frecuencia === 'quincenal' ? ', cada quince días' : '') + '</td></tr>';
+        escapar(g.horario.replace(' a ', ' – ')) + (g.frecuencia === 'quincenal' ? ', ' + (g.ritmo || 'cada quince días') : '') + '</td></tr>';
     }).join('')
   // Sin grupos abiertos la tabla queda vacía y /contacto la oculta: la línea
   // de abajo ya dice que la próxima edición no tiene fecha.
@@ -805,11 +805,13 @@ const losDias = function (gs) {
 };
 datos.curso.horarios_chip_calc = quincenal ? '3 meses · semanal o quincenal' : '3 meses · una clase por semana';
 // La frase de la boleta de /curso, sin la parte de lo incluido.
+// Leo lo dice así en el texto del curso 2027: «segundo y cuarto sábado de cada mes».
+const ritmoQuincenal = quincenal ? (quincenal.ritmo || 'cada quince días') : '';
 datos.curso.cursada_boleta = quincenal && semanales.length
-  ? 'Son tres meses. ' + losDias(semanales).replace(/^l/, 'L') + ', 12 clases de 2 horas, una por semana; ' +
-    losDias([quincenal]) + ', ' + quincenal.clases + ' encuentros de ' + duracion(quincenal) + ', cada quince días.'
+  ? 'Son tres meses. ' + losDias(semanales).replace(/^l/, 'L') + ', 12 clases de 2 horas, una por semana. ' +
+    losDias([quincenal]).replace(/^l/, 'L') + ', ' + quincenal.clases + ' encuentros de ' + duracion(quincenal) + ', ' + ritmoQuincenal + '.'
   : quincenal
-  ? 'Son tres meses: ' + quincenal.clases + ' encuentros de ' + duracion(quincenal) + ', cada quince días, ' +
+  ? 'Son tres meses: ' + quincenal.clases + ' encuentros de ' + duracion(quincenal) + ', ' + ritmoQuincenal + ', ' +
     losDias([quincenal]) + '.'
   : 'Son 12 clases de 2 horas, una por semana, durante tres meses.';
 // La bajada de /programa. Con un solo grupo semanal va en singular.
@@ -821,7 +823,7 @@ datos.curso.cursada_programa = quincenal
       ? 'El grupo de los ' + semanales[0].nombre.toLowerCase() + ' tiene una clase por semana, 12 en total. '
       : '') +
     (semanales.length ? 'El de los ' : 'El grupo de los ') + quincenal.nombre.toLowerCase() + ' tiene ' +
-    quincenal.clases + ' encuentros más largos, cada quince días. Cada mes se apoya en el anterior.'
+    quincenal.clases + ' encuentros más largos, ' + ritmoQuincenal + '. Cada mes se apoya en el anterior.'
   : 'Los grupos —' + datos.curso.grupos.map(function (g) { return g.nombre.toLowerCase(); }).join(' y ') +
     '— cursan cada uno 12 clases, una por semana, y cada mes se apoya en el anterior.';
 
@@ -982,7 +984,7 @@ datos.curso.grupos_nota = quincenal && semanales.length > 1
     quincenal.nombre.toLowerCase() + ' lo coordinamos con vos. La clase que faltes la recuperás.'
   : 'Si te cambia el trabajo o surge un viaje, te movés de día mientras haya lugar, y la clase que faltes la recuperás.';
 const otroRitmo = quincenal
-  ? 'El de los ' + quincenal.nombre.toLowerCase() + ' tiene otro ritmo: va cada quince días, con encuentros de ' +
+  ? 'El de los ' + quincenal.nombre.toLowerCase() + ' tiene otro ritmo: va ' + ritmoQuincenal + ', con encuentros de ' +
     duracion(quincenal) + '. Para pasarte a ese grupo, o para salir de él, lo coordinamos con vos según el lugar que haya. ' +
     'Si te cambia el trabajo o te surge un viaje, avisanos: nadie pierde el curso por un cambio de agenda.'
   : '';
