@@ -672,7 +672,7 @@ datos.curso.cta_link = abiertos.length
         conO(abiertos.map(function (g, i) {
           return (i ? 'el de los ' : '') + String(g.nombre).toLowerCase() + ' de ' + g.horario.replace(' h', '');
         })) + '.')
-  : 'https://tally.so/r/EkMbWL';
+  : enlace(datos.curso.espera_link);
 // El botón redondo de al lado es para preguntar, no para reservar: siempre va a
 // WhatsApp, también cuando no hay edición abierta y el botón grande lleva al
 // formulario. Sin esto mandaba un chat en blanco y Leo no sabía de qué venía.
