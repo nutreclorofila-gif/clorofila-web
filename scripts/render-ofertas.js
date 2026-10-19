@@ -658,13 +658,17 @@ datos.curso.estado = abiertos.length ? 'abierto' : 'sin-fecha';
 
 // Cuando no hay edición abierta, la web deja de pedir una inscripción que no
 // existe y pasa sola a juntar lista de espera. Nadie tiene que acordarse.
-datos.curso.cta_texto = abiertos.length ? 'Reservar mi lugar' : 'Avisarme de la próxima edición';
+/* Desde el 18/10 el curso se vende en Tikzet, un evento por grupo. Si todos los
+   grupos abiertos tienen su link, la inscripción es ahí y no por WhatsApp. */
+const vendeTikzet = abiertos.length > 0 && abiertos.every(function (g) { return g.link; });
+datos.curso.cta_texto = vendeTikzet ? 'Inscribirme'
+  : abiertos.length ? 'Reservar mi lugar' : 'Avisarme de la próxima edición';
 // El botón de la barra de /curso decía "Reservar" con la inscripción cerrada y
 // llevaba a la lista de espera. Mismo criterio que el tapeo y los talleres.
-datos.curso.nav_cta = abiertos.length ? 'Reservar' : 'Avisame';
+datos.curso.nav_cta = vendeTikzet ? 'Inscribirme' : abiertos.length ? 'Reservar' : 'Avisame';
 // Con edición abierta se reserva por WhatsApp, que es como se reserva de verdad.
 // Sin edición abierta, el formulario pasa a ser la lista de espera.
-datos.curso.cta_link = abiertos.length
+datos.curso.cta_link = vendeTikzet ? '#inscribirme' : abiertos.length
   ? waBase + encodeURIComponent(abiertos.length === 1
       ? 'Hola Leonardo, quiero reservar mi lugar en el curso, en el grupo de los ' +
         String(abiertos[0].nombre).toLowerCase() + ' de ' + abiertos[0].horario.replace(' h', '') + '.'
@@ -679,11 +683,34 @@ datos.curso.cta_link = abiertos.length
 datos.curso.wa_link = waBase + encodeURIComponent(
   'Hola Leonardo, tengo una pregunta sobre el curso de cocina.'
 );
-datos.curso.cta_nota = abiertos.length
+datos.curso.cta_nota = vendeTikzet
+  ? 'Elegís tu grupo y pagás en Tikzet el curso completo o el primer mes. Ahí queda hecha la inscripción, sin formularios aparte.'
+  : abiertos.length
   ? 'Te escribimos por WhatsApp en menos de 24 h para confirmar tu lugar.'
   // Sin edición abierta, la bajada y la línea de grupos ya lo dicen: una
   // tercera vez debajo del botón sobraba. Queda vacía y la página la oculta.
   : '';
+// La barra fija y los botones que llevan a #inscribirme no abren otra pestaña.
+datos.curso.cta_target = vendeTikzet ? '_self' : '_blank';
+/* Donde la página no muestra los grupos, van los tres links con su día y su
+   hora. Sin venta en Tikzet queda el botón de siempre. */
+function botonesDeCompra(clase) {
+  if (!vendeTikzet) {
+    return '<a href="' + enlace(datos.curso.cta_link) + '" target="_blank" rel="noopener noreferrer" class="' + clase +
+      '" data-producto="curso">' + escapar(datos.curso.cta_texto) + '</a>';
+  }
+  return abiertos.map(function (g) {
+    const cuando = String(g.nombre) + ' de ' + g.horario.replace(' h', '');
+    return '<a href="' + enlace(g.link) + '" target="_blank" rel="noopener noreferrer" class="' + clase +
+      '" data-producto="curso" aria-label="' + escapar('Inscribirme en el grupo de los ' + cuando.toLowerCase()) + '">' +
+      escapar(cuando) + '</a>';
+  }).join('');
+}
+datos.curso.compra_html = botonesDeCompra('btn btn-primario');
+datos.curso.compra_linea_html = botonesDeCompra('btn btn-linea');
+datos.curso.pago_frase = vendeTikzet
+  ? 'Te inscribís y pagás en Tikzet: el curso completo o el primer mes.'
+  : 'Se paga por transferencia, Abitab, RedPagos o Mercado Pago.';
 /* Un grupo que ya empezó no «arranca»: la tarjeta decía «Grupo cerrado ·
    Arranca el miércoles 7 de octubre» durante toda la edición. */
 function inicioDeGrupo(g) {
@@ -711,7 +738,10 @@ datos.curso.grupos_html = datos.curso.grupos.filter(function (g) { return g.esta
     /* Cada grupo abierto reserva por su cuenta. Con un botón único para los
        dos, el mensaje llegaba diciendo "me interesa el grupo de Miércoles ·
        Jueves" y había que preguntar cuál era antes de poder confirmar nada. */
-    (g.estado === 'abierto'
+    (g.estado === 'abierto' && g.link
+      ? '<a class="grupo-cta" href="' + enlace(g.link) + '" target="_blank" rel="noopener noreferrer" data-producto="curso">' +
+        'Inscribirme en este grupo</a>'
+      : g.estado === 'abierto'
       ? '<a class="grupo-cta" href="' + enlace(waBase + encodeURIComponent(
           'Hola Leonardo, quiero reservar mi lugar en el curso, en el grupo de los ' +
           String(g.nombre).toLowerCase() + ' de ' + g.horario.replace(' h', '') + '.')) +

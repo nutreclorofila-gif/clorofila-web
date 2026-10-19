@@ -73,6 +73,7 @@
     "precio_cuotas": "3 cuotas de $4.800",
     "precio_tarjeta": "hasta 12 cuotas de $1.016 sin recargo",
     "ahorro": "$2.200",
+    "_leeme_link": "Cada grupo tiene su evento en Tikzet (link). Con todos los grupos abiertos con link, los botones de inscripción llevan a Tikzet; sin link, se reserva por WhatsApp. En Tikzet hay dos entradas: el curso completo y el primer mes (18/10).",
     "_leeme_espera": "espera_link es la lista de espera («Avisame de la próxima edición»): la usan /curso y /programa cuando no hay grupo abierto, y los 12 artículos siempre. El 18/10 Leo decidió pasar las inscripciones a Tikzet; no cambiar este link hasta que exista el evento.",
     "espera_link": "https://tally.so/r/EkMbWL",
     "_leeme_grupos": "Agregar, sacar o cambiar un grupo se hace acá y nada más: los bloques de la página del curso, el schema de Google y los textos que nombran los días se dibujan solos. El grupo se cierra automáticamente cuando inicio_iso ya pasó. El nombre y el texto tienen que coincidir con inicio_iso: si no, el build avisa y no publica.",
@@ -85,6 +86,7 @@
         "inicio_texto": "Arranca el miércoles 10 de marzo de 2027",
         "detalle": "Una clase por semana, 12 en total. Para quienes salen de trabajar y quieren cerrar el día cocinando.",
         "estado": "abierto",
+        "link": "https://www.tikzet.com/events/curso-de-cocina-saludable-grupo-miercoles",
         "cupos_min": 12,
         "cupos_total": 15
       },
@@ -96,6 +98,7 @@
         "inicio_texto": "Arranca el jueves 11 de marzo de 2027",
         "detalle": "Una clase por semana, 12 en total. El grupo de mañana, con el estudio tranquilo y luz de día.",
         "estado": "abierto",
+        "link": "https://www.tikzet.com/events/curso-de-cocina-saludable-grupo-jueves",
         "cupos_min": 12,
         "cupos_total": 15
       },
@@ -109,6 +112,7 @@
         "frecuencia": "quincenal",
         "clases": 6,
         "estado": "abierto",
+        "link": "https://www.tikzet.com/events/curso-de-cocina-saludable-grupo-sabados",
         "cupos_min": 12,
         "cupos_total": 15
       }
