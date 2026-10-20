@@ -1217,8 +1217,10 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
     + (conFecha.length === 0
         ? 'Ahora mismo ninguno tiene fecha: los abrimos según la demanda y te avisamos.'
         : conFecha.length === 1
-          ? 'Hay uno con fecha abierta; el resto se abre según la demanda.'
-          : 'Hay ' + conFecha.length + ' con fecha abierta; el resto se abre según la demanda.');
+          ? 'Un taller tiene fecha abierta; los otros se abren según la demanda.'
+          // «Hay 3 con fecha abierta» se leía sin sustantivo (revisión del 20/10).
+          : ({ 2: 'Dos', 3: 'Tres', 4: 'Cuatro', 5: 'Cinco' }[conFecha.length] || String(conFecha.length)) +
+            ' talleres tienen fecha abierta; los otros se abren según la demanda.');
 }
 
 /* ---- A dónde lleva "Experiencias" en el menú ----
