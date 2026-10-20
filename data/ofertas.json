@@ -71,8 +71,12 @@
     "edicion": "Marzo 2027",
     "precio_total": "$12.200",
     "precio_cuotas": "3 cuotas de $4.800",
-    "precio_tarjeta": "hasta 12 cuotas de $1.016 sin recargo",
+    "_leeme_tarjeta": "precio_tarjeta vacío desde el 20/10: el curso se cobra en Tikzet por Mercado Pago y no está confirmado que haya 12 cuotas sin recargo. Antes decía «hasta 12 cuotas de $1.016 sin recargo». Si se confirma, se vuelve a cargar y el sitio lo muestra solo.",
+    "precio_tarjeta": "",
     "ahorro": "$2.200",
+    "_leeme_link": "Cada grupo tiene su evento en Tikzet (link). Con todos los grupos abiertos con link, los botones de inscripción llevan a Tikzet; sin link, se reserva por WhatsApp. En Tikzet hay dos entradas: el curso completo y el primer mes (18/10).",
+    "_leeme_espera": "espera_link es la lista de espera («Avisame de la próxima edición»): la usan /curso y /programa cuando no hay grupo abierto, y los 12 artículos siempre. El 18/10 Leo decidió pasar las inscripciones a Tikzet; no cambiar este link hasta que exista el evento.",
+    "espera_link": "https://tally.so/r/EkMbWL",
     "_leeme_grupos": "Agregar, sacar o cambiar un grupo se hace acá y nada más: los bloques de la página del curso, el schema de Google y los textos que nombran los días se dibujan solos. El grupo se cierra automáticamente cuando inicio_iso ya pasó. El nombre y el texto tienen que coincidir con inicio_iso: si no, el build avisa y no publica.",
     "grupos": [
       {
@@ -83,6 +87,7 @@
         "inicio_texto": "Arranca el miércoles 10 de marzo de 2027",
         "detalle": "Una clase por semana, 12 en total. Para quienes salen de trabajar y quieren cerrar el día cocinando.",
         "estado": "abierto",
+        "link": "https://www.tikzet.com/events/curso-de-cocina-saludable-grupo-miercoles",
         "cupos_min": 12,
         "cupos_total": 15
       },
@@ -94,6 +99,7 @@
         "inicio_texto": "Arranca el jueves 11 de marzo de 2027",
         "detalle": "Una clase por semana, 12 en total. El grupo de mañana, con el estudio tranquilo y luz de día.",
         "estado": "abierto",
+        "link": "https://www.tikzet.com/events/curso-de-cocina-saludable-grupo-jueves",
         "cupos_min": 12,
         "cupos_total": 15
       },
@@ -101,12 +107,15 @@
         "id": "sabados",
         "nombre": "Sábados",
         "horario": "15:00 a 18:30 h",
+        "ritmo": "el segundo y el cuarto sábado de cada mes",
+        "ritmo_corto": "el segundo y el cuarto de cada mes",
         "inicio_iso": "2027-03-13",
         "inicio_texto": "Arranca el sábado 13 de marzo de 2027",
-        "detalle": "El segundo y el cuarto sábado de cada mes, cada quince días: 6 encuentros de tres horas y media.",
+        "detalle": "El segundo y el cuarto sábado de cada mes: 6 encuentros de tres horas y media.",
         "frecuencia": "quincenal",
         "clases": 6,
         "estado": "abierto",
+        "link": "https://www.tikzet.com/events/curso-de-cocina-saludable-grupo-sabados",
         "cupos_min": 12,
         "cupos_total": 15
       }
@@ -200,6 +209,8 @@
   "regalo": {
     "_leeme": "La página /gift-card. Los valores salen solos de los precios de arriba (tapeo, pastas y el pago total del curso). tarjeta_link es el link de Mercado Pago sin monto definido (la persona escribe el monto), el que Leo pasó el 12/10 para todas las opciones. Si se vacía, la página dice «escribinos y te mandamos el link».",
     "tarjeta_link": "https://link.mercadopago.com.uy/clorofilaestudio",
+    "_leeme_formulario": "formulario_link es el formulario que se completa después de pagar la gift card. El 18/10 Leo decidió pasar las ventas a Tikzet; no cambiar este link hasta que exista el evento.",
+    "formulario_link": "https://tally.so/r/obrgK5",
     "_leeme_canje": "canje_link es el formulario para usar una gift card recibida. Vacío, la página dice «escribinos al 094 064 148 con el código». El 12/10 se cargó el formulario «Usar mi gift card» (LZAVVl); no publicar la web hasta que ese formulario esté activo en Tally.",
     "canje_link": "https://tally.so/r/LZAVVl",
     "_leeme_precio": "precio_respetado en true suma a la validez «por la actividad que elegiste aunque cambie el precio. La de otro monto vale por ese monto.». Leo lo confirmó el 12/10: la gift card vale por la actividad, no por el valor.",

@@ -608,7 +608,7 @@ datos.curso.grupos_abiertos_texto = abiertos.length
   // El grupo quincenal lo dice: «Sábados 15:00–18:30» se leía como semanal (14/10).
   ? abiertos.map(function (g) {
       return g.nombre + ' ' + g.horario.replace(' a ', '–').replace(' h', '') +
-        (g.frecuencia === 'quincenal' ? ', cada quince días' : '');
+        (g.frecuencia === 'quincenal' ? ', ' + (g.ritmo_corto || g.ritmo || 'cada quince días') : '');
     }).join(' · ')
   : 'Próxima edición a confirmar';
 datos.curso.inicio_texto = abiertos.length ? abiertos[0].inicio_texto : 'Próxima edición a confirmar';
@@ -626,12 +626,22 @@ datos.curso.grupos_label = abiertos.length === 0 ? 'Grupos'
 datos.curso.cuotas_corto = String(datos.curso.precio_cuotas || '').replace(' cuotas ', ' ');
 // La cuota con tarjeta es la más chica, pero no reemplaza a la otra: van las dos.
 // "hasta 12 cuotas de $1.016" -> "12 de $1.016".
+/* Sin cuotas con tarjeta confirmadas (20/10), los textos que las nombraban
+   muestran el pago mes a mes. */
+const pt = String(datos.curso.precio_tarjeta || '').trim();
+datos.curso.precio_hero_frase = pt ? ', o ' + pt + ' con tarjeta' : ', o ' + datos.curso.precio_cuotas + ' mes a mes';
+datos.curso.tarjeta_li_html = pt ? '<li>Con tarjeta son ' + escapar(pt) + '.</li>' : '';
+datos.curso.tarjeta_fila_html = pt ? '<li><strong>Con tarjeta</strong><span>' + escapar(pt) + '</span></li>' : '';
+datos.curso.precio_destacado = pt || datos.curso.precio_total;
+datos.curso.precio_destacado_nota = pt
+  ? datos.curso.precio_total + ' al contado, con la bonificación · o ' + datos.curso.precio_cuotas
+  : 'El curso completo, o ' + datos.curso.precio_cuotas;
 datos.curso.cuotas_tarjeta_corto = String(datos.curso.precio_tarjeta || '')
   .replace(/^hasta\s+/, '').replace(' cuotas ', ' ');
 datos.curso.horarios_html = abiertos.length
   ? abiertos.map(function (g) {
       return '<tr><th scope="row">' + escapar(g.nombre) + '</th><td>' +
-        escapar(g.horario.replace(' a ', ' – ')) + (g.frecuencia === 'quincenal' ? ', cada quince días' : '') + '</td></tr>';
+        escapar(g.horario.replace(' a ', ' – ')) + (g.frecuencia === 'quincenal' ? ', ' + (g.ritmo_corto || g.ritmo || 'cada quince días') : '') + '</td></tr>';
     }).join('')
   // Sin grupos abiertos la tabla queda vacía y /contacto la oculta: la línea
   // de abajo ya dice que la próxima edición no tiene fecha.
@@ -658,13 +668,17 @@ datos.curso.estado = abiertos.length ? 'abierto' : 'sin-fecha';
 
 // Cuando no hay edición abierta, la web deja de pedir una inscripción que no
 // existe y pasa sola a juntar lista de espera. Nadie tiene que acordarse.
-datos.curso.cta_texto = abiertos.length ? 'Reservar mi lugar' : 'Avisarme de la próxima edición';
+/* Desde el 18/10 el curso se vende en Tikzet, un evento por grupo. Si todos los
+   grupos abiertos tienen su link, la inscripción es ahí y no por WhatsApp. */
+const vendeTikzet = abiertos.length > 0 && abiertos.every(function (g) { return g.link; });
+datos.curso.cta_texto = vendeTikzet ? 'Inscribirme'
+  : abiertos.length ? 'Reservar mi lugar' : 'Avisarme de la próxima edición';
 // El botón de la barra de /curso decía "Reservar" con la inscripción cerrada y
 // llevaba a la lista de espera. Mismo criterio que el tapeo y los talleres.
-datos.curso.nav_cta = abiertos.length ? 'Reservar' : 'Avisame';
+datos.curso.nav_cta = vendeTikzet ? 'Inscribirme' : abiertos.length ? 'Reservar' : 'Avisame';
 // Con edición abierta se reserva por WhatsApp, que es como se reserva de verdad.
 // Sin edición abierta, el formulario pasa a ser la lista de espera.
-datos.curso.cta_link = abiertos.length
+datos.curso.cta_link = vendeTikzet ? '#inscribirme' : abiertos.length
   ? waBase + encodeURIComponent(abiertos.length === 1
       ? 'Hola Leonardo, quiero reservar mi lugar en el curso, en el grupo de los ' +
         String(abiertos[0].nombre).toLowerCase() + ' de ' + abiertos[0].horario.replace(' h', '') + '.'
@@ -672,18 +686,41 @@ datos.curso.cta_link = abiertos.length
         conO(abiertos.map(function (g, i) {
           return (i ? 'el de los ' : '') + String(g.nombre).toLowerCase() + ' de ' + g.horario.replace(' h', '');
         })) + '.')
-  : 'https://tally.so/r/EkMbWL';
+  : enlace(datos.curso.espera_link);
 // El botón redondo de al lado es para preguntar, no para reservar: siempre va a
 // WhatsApp, también cuando no hay edición abierta y el botón grande lleva al
 // formulario. Sin esto mandaba un chat en blanco y Leo no sabía de qué venía.
 datos.curso.wa_link = waBase + encodeURIComponent(
   'Hola Leonardo, tengo una pregunta sobre el curso de cocina.'
 );
-datos.curso.cta_nota = abiertos.length
+datos.curso.cta_nota = vendeTikzet
+  ? 'Elegís tu grupo y pagás en Tikzet el curso completo o el primer mes. Ahí queda hecha la inscripción, sin formularios aparte.'
+  : abiertos.length
   ? 'Te escribimos por WhatsApp en menos de 24 h para confirmar tu lugar.'
   // Sin edición abierta, la bajada y la línea de grupos ya lo dicen: una
   // tercera vez debajo del botón sobraba. Queda vacía y la página la oculta.
   : '';
+// La barra fija y los botones que llevan a #inscribirme no abren otra pestaña.
+datos.curso.cta_target = vendeTikzet ? '_self' : '_blank';
+/* Donde la página no muestra los grupos, van los tres links con su día y su
+   hora. Sin venta en Tikzet queda el botón de siempre. */
+function botonesDeCompra(clase) {
+  if (!vendeTikzet) {
+    return '<a href="' + enlace(datos.curso.cta_link) + '" target="_blank" rel="noopener noreferrer" class="' + clase +
+      '" data-producto="curso">' + escapar(datos.curso.cta_texto) + '</a>';
+  }
+  return abiertos.map(function (g) {
+    const cuando = String(g.nombre) + ' de ' + g.horario.replace(' h', '');
+    return '<a href="' + enlace(g.link) + '" target="_blank" rel="noopener noreferrer" class="' + clase +
+      '" data-producto="curso" aria-label="' + escapar('Inscribirme en el grupo de los ' + cuando.toLowerCase()) + '">' +
+      escapar(cuando) + '</a>';
+  }).join('');
+}
+datos.curso.compra_html = botonesDeCompra('btn btn-primario');
+datos.curso.compra_linea_html = botonesDeCompra('btn btn-linea');
+datos.curso.pago_frase = vendeTikzet
+  ? 'Te inscribís y pagás en Tikzet: el curso completo o el primer mes.'
+  : 'Se paga por transferencia, Abitab, RedPagos o Mercado Pago.';
 /* Un grupo que ya empezó no «arranca»: la tarjeta decía «Grupo cerrado ·
    Arranca el miércoles 7 de octubre» durante toda la edición. */
 function inicioDeGrupo(g) {
@@ -711,7 +748,10 @@ datos.curso.grupos_html = datos.curso.grupos.filter(function (g) { return g.esta
     /* Cada grupo abierto reserva por su cuenta. Con un botón único para los
        dos, el mensaje llegaba diciendo "me interesa el grupo de Miércoles ·
        Jueves" y había que preguntar cuál era antes de poder confirmar nada. */
-    (g.estado === 'abierto'
+    (g.estado === 'abierto' && g.link
+      ? '<a class="grupo-cta" href="' + enlace(g.link) + '" target="_blank" rel="noopener noreferrer" data-producto="curso">' +
+        'Inscribirme en este grupo</a>'
+      : g.estado === 'abierto'
       ? '<a class="grupo-cta" href="' + enlace(waBase + encodeURIComponent(
           'Hola Leonardo, quiero reservar mi lugar en el curso, en el grupo de los ' +
           String(g.nombre).toLowerCase() + ' de ' + g.horario.replace(' h', '') + '.')) +
@@ -775,11 +815,13 @@ const losDias = function (gs) {
 };
 datos.curso.horarios_chip_calc = quincenal ? '3 meses · semanal o quincenal' : '3 meses · una clase por semana';
 // La frase de la boleta de /curso, sin la parte de lo incluido.
+// Leo lo dice así en el texto del curso 2027: «segundo y cuarto sábado de cada mes».
+const ritmoQuincenal = quincenal ? (quincenal.ritmo || 'cada quince días') : '';
 datos.curso.cursada_boleta = quincenal && semanales.length
-  ? 'Son tres meses. ' + losDias(semanales).replace(/^l/, 'L') + ', 12 clases de 2 horas, una por semana; ' +
-    losDias([quincenal]) + ', ' + quincenal.clases + ' encuentros de ' + duracion(quincenal) + ', cada quince días.'
+  ? 'Son tres meses. ' + losDias(semanales).replace(/^l/, 'L') + ', 12 clases de 2 horas, una por semana. ' +
+    losDias([quincenal]).replace(/^l/, 'L') + ', ' + quincenal.clases + ' encuentros de ' + duracion(quincenal) + ', ' + ritmoQuincenal + '.'
   : quincenal
-  ? 'Son tres meses: ' + quincenal.clases + ' encuentros de ' + duracion(quincenal) + ', cada quince días, ' +
+  ? 'Son tres meses: ' + quincenal.clases + ' encuentros de ' + duracion(quincenal) + ', ' + ritmoQuincenal + ', ' +
     losDias([quincenal]) + '.'
   : 'Son 12 clases de 2 horas, una por semana, durante tres meses.';
 // La bajada de /programa. Con un solo grupo semanal va en singular.
@@ -791,7 +833,7 @@ datos.curso.cursada_programa = quincenal
       ? 'El grupo de los ' + semanales[0].nombre.toLowerCase() + ' tiene una clase por semana, 12 en total. '
       : '') +
     (semanales.length ? 'El de los ' : 'El grupo de los ') + quincenal.nombre.toLowerCase() + ' tiene ' +
-    quincenal.clases + ' encuentros más largos, cada quince días. Cada mes se apoya en el anterior.'
+    quincenal.clases + ' encuentros más largos, ' + ritmoQuincenal + '. Cada mes se apoya en el anterior.'
   : 'Los grupos —' + datos.curso.grupos.map(function (g) { return g.nombre.toLowerCase(); }).join(' y ') +
     '— cursan cada uno 12 clases, una por semana, y cada mes se apoya en el anterior.';
 
@@ -952,7 +994,7 @@ datos.curso.grupos_nota = quincenal && semanales.length > 1
     quincenal.nombre.toLowerCase() + ' lo coordinamos con vos. La clase que faltes la recuperás.'
   : 'Si te cambia el trabajo o surge un viaje, te movés de día mientras haya lugar, y la clase que faltes la recuperás.';
 const otroRitmo = quincenal
-  ? 'El de los ' + quincenal.nombre.toLowerCase() + ' tiene otro ritmo: va cada quince días, con encuentros de ' +
+  ? 'El de los ' + quincenal.nombre.toLowerCase() + ' tiene otro ritmo: va ' + ritmoQuincenal + ', con encuentros de ' +
     duracion(quincenal) + '. Para pasarte a ese grupo, o para salir de él, lo coordinamos con vos según el lugar que haya. ' +
     'Si te cambia el trabajo o te surge un viaje, avisanos: nadie pierde el curso por un cambio de agenda.'
   : '';
@@ -1175,8 +1217,10 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
     + (conFecha.length === 0
         ? 'Ahora mismo ninguno tiene fecha: los abrimos según la demanda y te avisamos.'
         : conFecha.length === 1
-          ? 'Hay uno con fecha abierta; el resto se abre según la demanda.'
-          : 'Hay ' + conFecha.length + ' con fecha abierta; el resto se abre según la demanda.');
+          ? 'Un taller tiene fecha abierta; los otros se abren según la demanda.'
+          // «Hay 3 con fecha abierta» se leía sin sustantivo (revisión del 20/10).
+          : ({ 2: 'Dos', 3: 'Tres', 4: 'Cuatro', 5: 'Cinco' }[conFecha.length] || String(conFecha.length)) +
+            ' talleres tienen fecha abierta; los otros se abren según la demanda.');
 }
 
 /* ---- A dónde lleva "Experiencias" en el menú ----
