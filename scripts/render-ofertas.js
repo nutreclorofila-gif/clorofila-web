@@ -626,6 +626,16 @@ datos.curso.grupos_label = abiertos.length === 0 ? 'Grupos'
 datos.curso.cuotas_corto = String(datos.curso.precio_cuotas || '').replace(' cuotas ', ' ');
 // La cuota con tarjeta es la más chica, pero no reemplaza a la otra: van las dos.
 // "hasta 12 cuotas de $1.016" -> "12 de $1.016".
+/* Sin cuotas con tarjeta confirmadas (20/10), los textos que las nombraban
+   muestran el pago mes a mes. */
+const pt = String(datos.curso.precio_tarjeta || '').trim();
+datos.curso.precio_hero_frase = pt ? ', o ' + pt + ' con tarjeta' : ', o ' + datos.curso.precio_cuotas + ' mes a mes';
+datos.curso.tarjeta_li_html = pt ? '<li>Con tarjeta son ' + escapar(pt) + '.</li>' : '';
+datos.curso.tarjeta_fila_html = pt ? '<li><strong>Con tarjeta</strong><span>' + escapar(pt) + '</span></li>' : '';
+datos.curso.precio_destacado = pt || datos.curso.precio_total;
+datos.curso.precio_destacado_nota = pt
+  ? datos.curso.precio_total + ' al contado, con la bonificación · o ' + datos.curso.precio_cuotas
+  : 'El curso completo, o ' + datos.curso.precio_cuotas;
 datos.curso.cuotas_tarjeta_corto = String(datos.curso.precio_tarjeta || '')
   .replace(/^hasta\s+/, '').replace(' cuotas ', ' ');
 datos.curso.horarios_html = abiertos.length
