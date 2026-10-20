@@ -608,7 +608,7 @@ datos.curso.grupos_abiertos_texto = abiertos.length
   // El grupo quincenal lo dice: «Sábados 15:00–18:30» se leía como semanal (14/10).
   ? abiertos.map(function (g) {
       return g.nombre + ' ' + g.horario.replace(' a ', '–').replace(' h', '') +
-        (g.frecuencia === 'quincenal' ? ', ' + (g.ritmo || 'cada quince días') : '');
+        (g.frecuencia === 'quincenal' ? ', ' + (g.ritmo_corto || g.ritmo || 'cada quince días') : '');
     }).join(' · ')
   : 'Próxima edición a confirmar';
 datos.curso.inicio_texto = abiertos.length ? abiertos[0].inicio_texto : 'Próxima edición a confirmar';
@@ -641,7 +641,7 @@ datos.curso.cuotas_tarjeta_corto = String(datos.curso.precio_tarjeta || '')
 datos.curso.horarios_html = abiertos.length
   ? abiertos.map(function (g) {
       return '<tr><th scope="row">' + escapar(g.nombre) + '</th><td>' +
-        escapar(g.horario.replace(' a ', ' – ')) + (g.frecuencia === 'quincenal' ? ', ' + (g.ritmo || 'cada quince días') : '') + '</td></tr>';
+        escapar(g.horario.replace(' a ', ' – ')) + (g.frecuencia === 'quincenal' ? ', ' + (g.ritmo_corto || g.ritmo || 'cada quince días') : '') + '</td></tr>';
     }).join('')
   // Sin grupos abiertos la tabla queda vacía y /contacto la oculta: la línea
   // de abajo ya dice que la próxima edición no tiene fecha.

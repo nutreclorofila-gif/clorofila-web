@@ -108,6 +108,7 @@
         "nombre": "Sábados",
         "horario": "15:00 a 18:30 h",
         "ritmo": "el segundo y el cuarto sábado de cada mes",
+        "ritmo_corto": "el segundo y el cuarto de cada mes",
         "inicio_iso": "2027-03-13",
         "inicio_texto": "Arranca el sábado 13 de marzo de 2027",
         "detalle": "El segundo y el cuarto sábado de cada mes: 6 encuentros de tres horas y media.",
