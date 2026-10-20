@@ -71,7 +71,7 @@
     "edicion": "Marzo 2027",
     "precio_total": "$12.200",
     "precio_cuotas": "3 cuotas de $4.800",
-    "_leeme_tarjeta": "precio_tarjeta vacío desde el 20/10: el curso se cobra en Tikzet por Mercado Pago y no está confirmado que haya 12 cuotas sin recargo. Antes decía «hasta 12 cuotas de $1.016 sin recargo». Si se confirma, se vuelve a cargar y el sitio lo muestra solo.",
+    "_leeme_tarjeta": "precio_tarjeta vacío desde el 20/10: el curso se cobra en Tikzet y las 12 cuotas las da el link de Mercado Pago, no Tikzet (Inscripciones, 20/10). Antes decía «hasta 12 cuotas de $1.016 sin recargo». Si Tikzet da cuotas, se vuelve a cargar y el sitio lo muestra solo.",
     "precio_tarjeta": "",
     "ahorro": "$2.200",
     "_leeme_link": "Cada grupo tiene su evento en Tikzet (link). Con todos los grupos abiertos con link, los botones de inscripción llevan a Tikzet; sin link, se reserva por WhatsApp. En Tikzet hay dos entradas: el curso completo y el primer mes (18/10).",
