@@ -44,7 +44,9 @@
       "hora_inicio": "19:00",
       "hora_fin": "22:30",
       "venta_desde": "2026-10-02",
-      "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-e10f"
+      "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-e10f",
+      "estado": "agotado",
+      "_leeme_estado": "22/10: el 30/10 se llenó (12 de 12 en la Master; Tikzet da soldOut). Si una fecha que no es la primera se llena, se marca con estado agotado dentro de esa misma fecha."
     },
     "mas_fechas": [
       {
