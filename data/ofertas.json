@@ -1,7 +1,8 @@
 {
   "_leeme": "Este archivo manda sobre las fechas, precios y estado de cada propuesta. Editalo y publicá: la web se regenera sola. Ver docs/editar-ofertas.md antes de tocarlo. No se publica cuántos lugares quedan: es un dato que depende de que alguien lo actualice a mano.",
   "tapeo": {
-    "estado": "abierto",
+    "estado": "agotado",
+    "_leeme_estado": "22/10: el 23/10 se llenó. Con la primera fecha agotada y otra con lugar después, la web muestra como primera la siguiente con lugar.",
     "_estados_posibles": "sin-fecha | abierto | ultimos | agotado",
     "fecha_iso": "2026-10-23",
     "fecha_texto": "viernes 23 de octubre",
@@ -44,7 +45,9 @@
       "hora_inicio": "19:00",
       "hora_fin": "22:30",
       "venta_desde": "2026-10-02",
-      "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-e10f"
+      "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-e10f",
+      "estado": "agotado",
+      "_leeme_estado": "22/10: el 30/10 se llenó (12 de 12 en la Master; Tikzet da soldOut). Si una fecha que no es la primera se llena, se marca con estado agotado dentro de esa misma fecha."
     },
     "mas_fechas": [
       {
@@ -54,6 +57,14 @@
         "hora_fin": "22:30",
         "venta_desde": "2026-10-14",
         "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-1ed7"
+      },
+      {
+        "iso": "2026-11-20",
+        "texto": "viernes 20 de noviembre",
+        "hora_inicio": "19:00",
+        "hora_fin": "22:30",
+        "venta_desde": "2026-10-22",
+        "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-f424"
       },
       {
         "iso": "2026-11-27",
@@ -71,7 +82,7 @@
     "edicion": "Marzo 2027",
     "precio_total": "$12.200",
     "precio_cuotas": "3 cuotas de $4.800",
-    "_leeme_tarjeta": "precio_tarjeta vacío desde el 20/10: el curso se cobra en Tikzet por Mercado Pago y no está confirmado que haya 12 cuotas sin recargo. Antes decía «hasta 12 cuotas de $1.016 sin recargo». Si se confirma, se vuelve a cargar y el sitio lo muestra solo.",
+    "_leeme_tarjeta": "precio_tarjeta vacío desde el 20/10: el curso se cobra en Tikzet y las 12 cuotas las da el link de Mercado Pago, no Tikzet (Inscripciones, 20/10). Antes decía «hasta 12 cuotas de $1.016 sin recargo». Si Tikzet da cuotas, se vuelve a cargar y el sitio lo muestra solo.",
     "precio_tarjeta": "",
     "ahorro": "$2.200",
     "_leeme_link": "Cada grupo tiene su evento en Tikzet (link). Con todos los grupos abiertos con link, los botones de inscripción llevan a Tikzet; sin link, se reserva por WhatsApp. En Tikzet hay dos entradas: el curso completo y el primer mes (18/10).",
@@ -172,13 +183,13 @@
       "nombre_corto": "Alfajores",
       "linea_corta": "Armás la masa, la ganache y los rellenos con técnica pastelera.",
       "estado": "abierto",
-      "fecha_iso": "2026-11-21",
-      "fecha_texto": "sábado 21 de noviembre",
-      "hora": "15:00 a 18:30 h",
+      "fecha_iso": "2026-11-24",
+      "fecha_texto": "martes 24 de noviembre",
+      "hora": "19:00 a 22:30 h",
       "precio": "$2.600",
       "cupos_total": 12,
-      "hora_inicio": "15:00",
-      "hora_fin": "18:30",
+      "hora_inicio": "19:00",
+      "hora_fin": "22:30",
       "precio_num": "2600",
       "venta_desde": "2026-10-14",
       "link_compra": "https://www.tikzet.com/events/taller-de-alfajores-veganos-y-sin-gluten"

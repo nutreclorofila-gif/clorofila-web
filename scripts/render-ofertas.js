@@ -139,9 +139,16 @@ function correrSegunda(o, campoHora) {
     if (!f.hora_inicio && o[campoHora]) f.hora_inicio = o[campoHora];
     if (!f.hora_fin && o.hora_fin) f.hora_fin = o.hora_fin;
   });
-  while (esPasado(o.fecha_iso) && cola.length) {
+  // La primera también se corre si se llenó y después hay otra con lugar: el
+  // 22/10 se llenaron el 23 y el 30, y con la primera agotada la web apagaba
+  // la venta del 13, el 20 y el 27.
+  const hayConLugar = function () { return cola.some(function (f) { return !esPasado(f.iso) && f.estado !== 'agotado'; }); };
+  while ((esPasado(o.fecha_iso) || (o.estado === 'agotado' && hayConLugar())) && cola.length) {
     const s = cola.shift();
     if (esPasado(s.iso)) continue;
+    // Una fecha llena no pasa a ser la primera si después hay otra con lugar:
+    // si pasara, su «agotado» apagaría la venta de todas las que siguen.
+    if (s.estado === 'agotado' && hayConLugar()) continue;
     o.fecha_iso = s.iso;
     o.fecha_texto = s.texto;
     if (s.hora_inicio) o[campoHora] = s.hora_inicio;
@@ -214,9 +221,19 @@ t.horario_texto = t.hora && t.hora_fin ? t.hora + ' a ' + t.hora_fin + ' h' : (t
 // quien no puede ese día se va sin saber que hay otra. Solo se juntan si la segunda
 // tiene el mismo horario, porque la línea dice un único horario.
 // Desde el 14/10 son todas las fechas abiertas, no solo dos.
+/* Cada fecha que sigue a la primera puede llenarse sola: «estado»: "agotado"
+   en esa fecha de ofertas.json. Lleno el 30/10 (22/10), la web lo seguía
+   ofreciendo como abierto porque solo miraba el estado de la primera. */
+function fechaLlena(f) { return !!f && f.estado === 'agotado'; }
+// La siguiente fecha con lugar después de la primera, para «También hay fecha el…».
+function otraConLugar(o) {
+  return [].concat(o.segunda_fecha || [], o.mas_fechas || []).filter(function (f) {
+    return f && f.texto && !fechaLlena(f);
+  })[0] || null;
+}
 function fechasTapeo(t) {
   const siguen = [].concat(t.segunda_fecha || [], t.mas_fechas || []).filter(function (s) {
-    return s && s.texto && (!s.hora_inicio || s.hora_inicio === t.hora) && (!s.hora_fin || s.hora_fin === t.hora_fin);
+    return s && s.texto && !fechaLlena(s) && (!s.hora_inicio || s.hora_inicio === t.hora) && (!s.hora_fin || s.hora_fin === t.hora_fin);
   });
   return unirCon([t.fecha_texto].concat(siguen.map(function (s) { return s.texto; })), 'y');
 }
@@ -300,8 +317,8 @@ if (!ventaMuda(t.estado) && t.segunda_fecha && t.segunda_fecha.texto) {
 }
 // Todas las fechas abiertas, en orden: «el 23 de octubre, el 30 de octubre y el 13 de noviembre».
 function textosDeFechas(o) {
-  return [o.fecha_texto].concat(o.segunda_fecha && o.segunda_fecha.texto ? [o.segunda_fecha.texto] : [],
-    (o.mas_fechas || []).map(function (f) { return f.texto; }).filter(Boolean));
+  return [o.fecha_texto].concat(o.segunda_fecha && o.segunda_fecha.texto && !fechaLlena(o.segunda_fecha) ? [o.segunda_fecha.texto] : [],
+    (o.mas_fechas || []).filter(function (f) { return !fechaLlena(f); }).map(function (f) { return f.texto; }).filter(Boolean));
 }
 function unirCon(lista, conj) {
   return lista.length < 2 ? (lista[0] || '') : lista.slice(0, -1).join(', ') + ' ' + conj + ' ' + lista[lista.length - 1];
@@ -394,10 +411,10 @@ t.cta_texto =
   (ventaMuda(t.estado) || !t.link_compra) ? t.wa_texto :
   t.tiene_segunda === 'si' ? 'Comprar · ' + fechaCorta(t.fecha_texto) + '' :
   'Comprar mi entrada';
-t.segunda_texto = t.segunda_fecha && t.segunda_fecha.texto
-  ? '¿No podés ese día? También hay fecha el ' + t.segunda_fecha.texto + '.'
+t.segunda_texto = otraConLugar(t)
+  ? '¿No podés ese día? También hay fecha el ' + otraConLugar(t).texto + '.'
   : '';
-t.segunda_link = (t.segunda_fecha && t.segunda_fecha.link) || '';
+t.segunda_link = (otraConLugar(t) && otraConLugar(t).link) || '';
 
 // El mismo taller a veces va de mañana y a veces de noche: la segunda fecha
 // puede traer su propio horario. Si no lo trae, hereda el de la primera.
@@ -420,16 +437,19 @@ function listaFechas(o, sufijo) {
       '<strong>' + escapar(o.fecha_texto) + '</strong>' +
       '<span>' + escapar([o.horario_texto, o.cupos_texto].filter(Boolean).join(' · ')) + '</span></a></li>'
   ];
+  // Una fecha llena se sigue mostrando, con el aviso, pero no lleva a comprar.
   if (o.segunda_fecha && o.segunda_fecha.texto) {
-    items.push('<li><a href="' + enlace(ventaMuda(o.estado) ? o.wa_link : (o.segunda_fecha.link || o.wa_link_2 || o.wa_link)) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
+    var llenaSeg = fechaLlena(o.segunda_fecha);
+    items.push('<li><a href="' + enlace((ventaMuda(o.estado) || llenaSeg) ? o.wa_link : (o.segunda_fecha.link || o.wa_link_2 || o.wa_link)) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
       '<strong>' + escapar(o.segunda_fecha.texto) + '</strong>' +
-      '<span>' + escapar(horarioDe(o.segunda_fecha, o.horario_texto)) + '</span></a></li>');
+      '<span>' + escapar([horarioDe(o.segunda_fecha, o.horario_texto), llenaSeg ? 'Sin lugares disponibles' : ''].filter(Boolean).join(' · ')) + '</span></a></li>');
   }
   (o.mas_fechas || []).forEach(function (f) {
     if (!f || !f.texto) return;
-    items.push('<li><a href="' + enlace(ventaMuda(o.estado) ? o.wa_link : (f.link || f.wa_link || o.wa_link)) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
+    var llena = fechaLlena(f);
+    items.push('<li><a href="' + enlace((ventaMuda(o.estado) || llena) ? o.wa_link : (f.link || f.wa_link || o.wa_link)) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
       '<strong>' + escapar(f.texto) + '</strong>' +
-      '<span>' + escapar(horarioDe(f, o.horario_texto)) + '</span></a></li>');
+      '<span>' + escapar([horarioDe(f, o.horario_texto), llena ? 'Sin lugares disponibles' : ''].filter(Boolean).join(' · ')) + '</span></a></li>');
   });
   return items.join('');
 }
@@ -486,13 +506,13 @@ t.dato_portada = (function () {
 })();
 t.calendario_html = [
   t.fecha_iso ? botonCalendario(t.calendario, 'Agendar el ' + t.fecha_texto) : '',
-  (t.segunda_fecha && t.segunda_fecha.iso && t.estado !== 'sin-fecha' && t.estado !== 'agotado')
+  (t.segunda_fecha && t.segunda_fecha.iso && !fechaLlena(t.segunda_fecha) && t.estado !== 'sin-fecha' && t.estado !== 'agotado')
     ? botonCalendario(linkCalendario('Cena y Taller de Tapeo — Clorofila', t.segunda_fecha.iso,
         t.segunda_fecha.hora_inicio || t.hora, t.segunda_fecha.hora_fin || t.hora_fin,
         'Cocinamos juntos y después cenamos todo lo que preparamos. Clorofila, Parque Rodó.'),
         'Agendar el ' + t.segunda_fecha.texto)
     : ''
-].concat((t.estado !== 'sin-fecha' && t.estado !== 'agotado' ? (t.mas_fechas || []) : []).map(function (f) {
+].concat((t.estado !== 'sin-fecha' && t.estado !== 'agotado' ? (t.mas_fechas || []) : []).filter(function (f) { return !fechaLlena(f); }).map(function (f) {
   return botonCalendario(linkCalendario('Cena y Taller de Tapeo — Clorofila', f.iso,
     f.hora_inicio || t.hora, f.hora_fin || t.hora_fin,
     'Cocinamos juntos y después cenamos todo lo que preparamos. Clorofila, Parque Rodó.'),
@@ -569,9 +589,9 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   w.tiene_fecha = (w.estado !== 'sin-fecha' && w.fecha_texto) ? 'si' : 'no';
   w.tiene_segunda = (w.segunda_fecha && w.segunda_fecha.texto) ? 'si' : 'no';
   w.fechas_titulo = w.tiene_segunda === 'si' ? 'Elegí tu fecha' : 'La próxima fecha';
-  w.segunda_texto = (w.segunda_fecha && w.segunda_fecha.texto)
-    ? '¿No podés ese día? También hay fecha el ' + w.segunda_fecha.texto + '.' : '';
-  w.segunda_link = (w.segunda_fecha && w.segunda_fecha.link) || '';
+  w.segunda_texto = otraConLugar(w)
+    ? '¿No podés ese día? También hay fecha el ' + otraConLugar(w).texto + '.' : '';
+  w.segunda_link = (otraConLugar(w) && otraConLugar(w).link) || '';
 
   w.fechas_html = listaFechas(w, 'taller-' + id);
   w.cta_link = (!ventaMuda(w.estado) && w.link_compra) ? w.link_compra : w.wa_link;
@@ -589,7 +609,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   w.nota_compra = w.tiene_compra === 'si'
     ? 'Comprás la entrada y ya está. Si preferís, coordinamos por WhatsApp.'
     : 'Escribinos por WhatsApp: te confirmamos el lugar y coordinamos el pago.';
-  if (w.segunda_fecha && w.segunda_fecha.texto && w.estado !== 'sin-fecha') {
+  if (w.segunda_fecha && w.segunda_fecha.texto && !fechaLlena(w.segunda_fecha) && w.estado !== 'sin-fecha') {
     w.linea += ' · también el ' + w.segunda_fecha.texto;
   }
 }
@@ -1019,14 +1039,16 @@ if (t.estado !== 'sin-fecha' && t.fecha_iso) {
     etiqueta: t.estado_texto, link: '/tapeo',
     cta: t.ver_boton
   });
-  if (t.segunda_fecha && t.segunda_fecha.texto) {
+  // La agenda es lo que se puede comprar hoy: una fecha llena que no es la
+  // primera no entra (ver la memoria «no empujar lo agotado»).
+  if (t.segunda_fecha && t.segunda_fecha.texto && !fechaLlena(t.segunda_fecha)) {
     agenda.push({
       iso: (t.segunda_fecha.iso || t.fecha_iso) + '-b', nombre: 'Cena y Taller de Tapeo',
       fecha: t.segunda_fecha.texto, hora: horarioDe(t.segunda_fecha, t.horario_texto), precio: t.precio,
       estado: 'abierto', etiqueta: 'Segunda fecha', link: '/tapeo', cta: 'Ver la cena de tapeo'
     });
   }
-  (t.mas_fechas || []).forEach(function (f) {
+  (t.mas_fechas || []).filter(function (f) { return !fechaLlena(f); }).forEach(function (f) {
     agenda.push({
       iso: f.iso + '-b', nombre: 'Cena y Taller de Tapeo',
       fecha: f.texto, hora: horarioDe(f, t.horario_texto), precio: t.precio,
@@ -1046,14 +1068,14 @@ for (const [id, w] of Object.entries(datos.talleres)) {
     precio: w.precio, estado: w.estado, etiqueta: w.estado_texto,
     link: (id === 'pastas-sin-gluten') ? '/pastas' : '/talleres#' + id, cta: 'Ver el taller'
   });
-  if (w.segunda_fecha && w.segunda_fecha.texto) {
+  if (w.segunda_fecha && w.segunda_fecha.texto && !fechaLlena(w.segunda_fecha)) {
     agenda.push({
       iso: (w.segunda_fecha.iso || w.fecha_iso) + '-b', nombre: w.nombre, fecha: w.segunda_fecha.texto,
       hora: horarioDe(w.segunda_fecha, w.hora), precio: w.precio, estado: 'abierto', etiqueta: 'Segunda fecha',
       link: (id === 'pastas-sin-gluten') ? '/pastas' : '/talleres#' + id, cta: 'Ver el taller'
     });
   }
-  (w.mas_fechas || []).forEach(function (f) {
+  (w.mas_fechas || []).filter(function (f) { return !fechaLlena(f); }).forEach(function (f) {
     agenda.push({
       iso: f.iso + '-b', nombre: w.nombre, fecha: f.texto,
       hora: horarioDe(f, w.hora), precio: w.precio, estado: 'abierto', etiqueta: 'Otra fecha',
