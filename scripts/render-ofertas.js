@@ -139,12 +139,16 @@ function correrSegunda(o, campoHora) {
     if (!f.hora_inicio && o[campoHora]) f.hora_inicio = o[campoHora];
     if (!f.hora_fin && o.hora_fin) f.hora_fin = o.hora_fin;
   });
-  while (esPasado(o.fecha_iso) && cola.length) {
+  // La primera también se corre si se llenó y después hay otra con lugar: el
+  // 22/10 se llenaron el 23 y el 30, y con la primera agotada la web apagaba
+  // la venta del 13, el 20 y el 27.
+  const hayConLugar = function () { return cola.some(function (f) { return !esPasado(f.iso) && f.estado !== 'agotado'; }); };
+  while ((esPasado(o.fecha_iso) || (o.estado === 'agotado' && hayConLugar())) && cola.length) {
     const s = cola.shift();
     if (esPasado(s.iso)) continue;
     // Una fecha llena no pasa a ser la primera si después hay otra con lugar:
     // si pasara, su «agotado» apagaría la venta de todas las que siguen.
-    if (s.estado === 'agotado' && cola.some(function (f) { return !esPasado(f.iso) && f.estado !== 'agotado'; })) continue;
+    if (s.estado === 'agotado' && hayConLugar()) continue;
     o.fecha_iso = s.iso;
     o.fecha_texto = s.texto;
     if (s.hora_inicio) o[campoHora] = s.hora_inicio;
