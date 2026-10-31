@@ -99,7 +99,7 @@
   </url>
   <url>
     <loc>https://clorofila.uy/articulos</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -170,7 +170,17 @@
     <priority>0.6</priority>
     <image:image>
       <image:loc>https://clorofila.uy/og/og-guia-practica-del-tofu.jpg</image:loc>
-      <image:title>Remojo de legumbres: cuánto importa y cuánto no</image:title>
+      <image:title>Guía práctica del tofu</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://clorofila.uy/articulos/cocinar-comer-en-compania-longevidad</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://clorofila.uy/og/og-cocinar-comer-en-compania-longevidad.jpg</image:loc>
+      <image:title>¿Cocinar y comer en compañía ayudan a vivir más años?</image:title>
     </image:image>
   </url>
   <url>
