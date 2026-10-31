@@ -1163,9 +1163,14 @@ datos.tiene_agenda = agenda.length ? 'si' : 'no';
    fecha ni un precio arriba. Si no queda nada a la venta, no se escribe. */
 {
   const prox = agenda.filter(function (e) { return e.estado !== 'agotado' && e.estado !== 'sin-fecha'; })[0];
+  // Es un enlace: si el nombre del taller lleva «veganos», va nombre_enlace.
+  const taller = prox && Object.values(datos.talleres).filter(function (w) { return w && w.nombre === prox.nombre; })[0];
+  const nombre = prox ? ((taller && taller.nombre_enlace) || prox.nombre) : '';
+  // El curso trae la fecha como frase («Arranca el miércoles 10…»).
+  const fecha = prox ? prox.fecha.replace(/^Arranca el /i, '') : '';
   datos.portada_proximo_html = prox
-    ? 'La próxima fecha abierta es la de <a href="' + enlace(prox.link) + '" class="enlace-vivo" data-producto="agenda">' + escapar(prox.nombre) + '</a>, el ' +
-      escapar(prox.fecha) + (prox.precio ? ', a ' + escapar(prox.precio) : '') + '. <a href="#agenda" class="enlace-vivo">Ver todas las fechas</a>.'
+    ? 'La próxima fecha abierta es la de <a href="' + enlace(prox.link) + '" class="enlace-vivo" data-producto="agenda">' + escapar(nombre) + '</a>, el ' +
+      escapar(fecha) + (prox.precio ? ', a ' + escapar(prox.precio) : '') + '. <a href="#agenda" class="enlace-vivo">Ver todas las fechas</a>.'
     : '';
 }
 /* La portada pedía "Reservar" y "Ver próximas fechas" aunque en la agenda ya
