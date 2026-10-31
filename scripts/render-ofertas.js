@@ -2075,7 +2075,11 @@ if (VALORES) {
     const html = fs.readFileSync(path.join(dir, f), 'utf8');
     const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
     const titulo = h1 ? h1[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim() : f;
-    return '- [' + titulo + '](https://clorofila.uy/articulos/' + f.replace(/\.html$/, '') + ')';
+    // La respuesta corta va al lado del título: un modelo cita la respuesta,
+    // no la pregunta.
+    const corta = html.match(/<p class="respuesta-corta">([\s\S]*?)<\/p>/);
+    const respuesta = corta ? ': ' + corta[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().replace(/^En corto:\s*/, '') : '';
+    return '- [' + titulo + '](https://clorofila.uy/articulos/' + f.replace(/\.html$/, '') + ')' + respuesta;
   }).join('\n');
 }
 
