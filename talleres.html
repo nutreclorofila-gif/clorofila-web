@@ -47,6 +47,13 @@
 .hero-talleres{padding-block:clamp(2rem,4vw,3.25rem) clamp(2rem,4vw,3rem)}
 .hero-talleres h1{font-size:var(--th-pagina);margin-block:.7rem .8rem}
 .hero-talleres .bajada{color:var(--cal-med);max-width:54ch}
+.hero-fechas{list-style:none;padding:0;margin:1.25rem 0 0;display:grid;gap:.5rem;max-width:34rem}
+.hero-fechas:empty{display:none}
+.hero-fechas + .hero-datos{margin-top:1.1rem}
+.hero-fechas a{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.15rem 1rem;min-height:44px;padding:.6rem 1rem;border:1px solid var(--linea-fuerte);border-radius:var(--r);text-decoration:none}
+.hero-fechas a:hover{border-color:var(--miel)}
+.hero-fechas strong{color:var(--cal);font-weight:600}
+.hero-fechas span{color:var(--cal-med);font-size:var(--t-chico);font-variant-numeric:tabular-nums}
 
 /* Índice: además de navegar, dice de un vistazo qué está abierto. */
 .indice{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;padding-block:.5rem 1rem}
@@ -137,6 +144,7 @@
     <span class="senal">Una técnica por vez, en Parque Rodó, Montevideo</span>
     <h1>Elaborás pan sin gluten, pastas, fermentos y quesos.</h1>
     <p class="bajada"><!--o:talleres_bajada-->Cada taller trabaja una sola técnica en una clase, de la primera mezcla hasta la mesa. Los ingredientes van incluidos. Tres talleres tienen fecha abierta; los otros se abren según la demanda.<!--/o--></p>
+    <ul class="hero-fechas"><!--o:html:talleres_hero_html--><li><a href="https://www.tikzet.com/events/taller-de-pastas-sin-gluten-12c3" target="_blank" rel="noopener noreferrer" data-producto="pastas"><strong>Pastas sin gluten</strong><span>sábado 7 de noviembre · $2.700</span></a></li><li><a href="https://www.tikzet.com/events/taller-de-pan-sin-gluten-con-masa-madre" target="_blank" rel="noopener noreferrer" data-producto="taller-pan-sin-gluten"><strong>Pan sin gluten con masa madre</strong><span>martes 17 de noviembre · $2.600</span></a></li><li><a href="https://www.tikzet.com/events/taller-de-alfajores-veganos-y-sin-gluten" target="_blank" rel="noopener noreferrer" data-producto="taller-alfajores"><strong>Alfajores sin gluten</strong><span>martes 24 de noviembre · $2.600</span></a></li><!--/o--></ul>
     <p class="hero-datos"><b><!--o:google.puntaje_texto-->4,9<!--/o--></b> en <!--o:google.resenas_texto-->27 reseñas en Google<!--/o-->.</p>
   </div>
 </header>

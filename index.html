@@ -60,6 +60,9 @@ main h3{line-height:1.15}
 .hero h1{font-size:clamp(2.5rem,5.4vw,4.4rem);line-height:1.06;margin:0 0 1.4rem;max-width:11ch}
 .hero-bajada{font-size:var(--t-bajada);line-height:1.5;color:var(--cal-med);max-width:26em;margin-bottom:1.9rem}
 .hero-acciones{display:flex;gap:.75rem;flex-wrap:wrap}
+.hero-proximo{margin-top:1.1rem;color:var(--cal-med);font-size:var(--t-chico);line-height:1.55;max-width:30em;text-wrap:pretty}
+.hero-proximo:empty{display:none}
+.hero-proximo .enlace-vivo{display:inline;padding-block:0}
 .portada-foto{position:relative;margin:0;padding-bottom:60px}
 .portada-foto > picture:first-child img{width:100%;height:min(66vh,480px);object-fit:cover;object-position:62% 50%;border-radius:300px 0 0 0;display:block}
 /* La foto chica tiene la forma de una hoja y se apoya sobre la grande. El
@@ -358,6 +361,7 @@ main h3{line-height:1.15}
         <a href="#propuestas" class="btn btn-primario">Ver lo que hacemos</a>
         <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20info%20de%20Clorofila." target="_blank" rel="noopener noreferrer" class="btn btn-linea">Escribinos por WhatsApp</a>
       </div>
+      <p class="hero-proximo"><!--o:html:portada_proximo_html-->La próxima fecha abierta es la de <a href="/pastas" class="enlace-vivo" data-producto="agenda">Pastas sin gluten</a>, el sábado 7 de noviembre, a $2.700. <a href="#agenda" class="enlace-vivo">Ver todas las fechas</a>.<!--/o--></p>
     </div>
     <figure class="portada-foto">
       <picture>
