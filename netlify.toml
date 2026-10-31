@@ -359,6 +359,94 @@
   status = 301
   force  = true
 
+# Links de correos y mensajes que llegan con la coma o el punto de la frase
+# pegados, o cortados en el guion: GA4 registró /tapeo, /team-building. y
+# /team- como páginas de entrada en octubre de 2026, y daban 404.
+[[redirects]]
+  from = "/tapeo,"
+  to   = "/tapeo"
+  status = 301
+
+[[redirects]]
+  from = "/tapeo."
+  to   = "/tapeo"
+  status = 301
+
+[[redirects]]
+  from = "/team-building,"
+  to   = "/team-building"
+  status = 301
+
+[[redirects]]
+  from = "/team-building."
+  to   = "/team-building"
+  status = 301
+
+[[redirects]]
+  from = "/curso,"
+  to   = "/curso"
+  status = 301
+
+[[redirects]]
+  from = "/curso."
+  to   = "/curso"
+  status = 301
+
+[[redirects]]
+  from = "/talleres,"
+  to   = "/talleres"
+  status = 301
+
+[[redirects]]
+  from = "/talleres."
+  to   = "/talleres"
+  status = 301
+
+[[redirects]]
+  from = "/pastas,"
+  to   = "/pastas"
+  status = 301
+
+[[redirects]]
+  from = "/pastas."
+  to   = "/pastas"
+  status = 301
+
+[[redirects]]
+  from = "/experiencias,"
+  to   = "/experiencias"
+  status = 301
+
+[[redirects]]
+  from = "/experiencias."
+  to   = "/experiencias"
+  status = 301
+
+[[redirects]]
+  from = "/gift-card,"
+  to   = "/gift-card"
+  status = 301
+
+[[redirects]]
+  from = "/gift-card."
+  to   = "/gift-card"
+  status = 301
+
+[[redirects]]
+  from = "/programa,"
+  to   = "/programa"
+  status = 301
+
+[[redirects]]
+  from = "/programa."
+  to   = "/programa"
+  status = 301
+
+[[redirects]]
+  from = "/team-"
+  to   = "/team-building"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]
