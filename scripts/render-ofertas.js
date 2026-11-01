@@ -1818,6 +1818,18 @@ for (const archivo of archivos) {
             } else {
               delete nodo.offers;
             }
+            /* La fecha del taller no llegaba al CourseInstance: Google veía el
+               taller de pan o el de alfajores sin día, aunque la página lo
+               muestra arriba de todo. Sin fecha (o vencida) no se escribe. */
+            [].concat(nodo.hasCourseInstance || []).forEach(function (inst) {
+              if (taller.fecha_iso && taller.estado !== 'sin-fecha' && taller.hora_inicio && taller.hora_fin) {
+                inst.startDate = taller.fecha_iso + 'T' + taller.hora_inicio + ':00-03:00';
+                inst.endDate = taller.fecha_iso + 'T' + taller.hora_fin + ':00-03:00';
+                if (nodo.offers) inst.offers = Object.assign({}, nodo.offers);
+              } else {
+                delete inst.startDate; delete inst.endDate; delete inst.offers;
+              }
+            });
           }
           tocado = true;
         }
