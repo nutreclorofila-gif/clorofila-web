@@ -1158,6 +1158,21 @@ datos.agenda_html = agenda.map(function (e) {
     '</li>';
 }).join('');
 datos.tiene_agenda = agenda.length ? 'si' : 'no';
+/* La próxima fecha que se puede comprar, debajo de los botones de la
+   portada. La agenda está a varias pantallas y la portada no mostraba ni una
+   fecha ni un precio arriba. Si no queda nada a la venta, no se escribe. */
+{
+  const prox = agenda.filter(function (e) { return e.estado !== 'agotado' && e.estado !== 'sin-fecha'; })[0];
+  // Es un enlace: si el nombre del taller lleva «veganos», va nombre_enlace.
+  const taller = prox && Object.values(datos.talleres).filter(function (w) { return w && w.nombre === prox.nombre; })[0];
+  const nombre = prox ? ((taller && taller.nombre_enlace) || prox.nombre) : '';
+  // El curso trae la fecha como frase («Arranca el miércoles 10…»).
+  const fecha = prox ? prox.fecha.replace(/^Arranca el /i, '') : '';
+  datos.portada_proximo_html = prox
+    ? 'La próxima fecha abierta es la de <a href="' + enlace(prox.link) + '" class="enlace-vivo" data-producto="agenda">' + escapar(nombre) + '</a>, el ' +
+      escapar(fecha) + (prox.precio ? ', a ' + escapar(prox.precio) : '') + '. <a href="#agenda" class="enlace-vivo">Ver todas las fechas</a>.'
+    : '';
+}
 /* La portada pedía "Reservar" y "Ver próximas fechas" aunque en la agenda ya
    no quedara nada a la venta (el tapeo sin fecha figura igual, para que exista
    todo el año). Sin nada para comprar, los dos botones llevan a las propuestas. */
@@ -1213,6 +1228,20 @@ if (Array.isArray(datos.tapeo.menu) && datos.tapeo.menu.length) {
       '</a>'
     );
   }
+  /* Las fechas abiertas, arriba de todo en /talleres. En el celular, el precio
+     y el botón de compra aparecían recién después de dos pantallas, y la
+     página convertía un tercio que /tapeo, que los muestra de entrada. Cada
+     fecha va directo a su compra; las agotadas o sin fecha no aparecen. */
+  datos.talleres_hero_html = Object.entries(datos.talleres).filter(function (par) {
+    const w = par[1];
+    return w.publicar !== false && w.nombre && w.fecha_iso && !ventaMuda(w.estado) && w.link_compra;
+  }).sort(function (a, b) { return a[1].fecha_iso < b[1].fecha_iso ? -1 : 1; }).map(function (par) {
+    const id = par[0], w = par[1];
+    const producto = (id === 'pastas-sin-gluten') ? 'pastas' : 'taller-' + id;
+    return '<li><a href="' + enlace(w.cta_link) + '" target="_blank" rel="noopener noreferrer" data-producto="' + producto + '">' +
+      '<strong>' + escapar(w.nombre_enlace || w.nombre) + '</strong>' +
+      '<span>' + escapar(w.fecha_texto) + (w.precio_texto ? ' · ' + escapar(w.precio_texto) : '') + '</span></a></li>';
+  }).join('');
   datos.talleres_tira_html = conFecha.concat(sinFecha).join('') +
     '<a href="/talleres" class="enlace-vivo">Ver todos los talleres</a>';
   // La bajada de /talleres decía "algunos tienen fecha abierta ahora mismo".
@@ -1789,6 +1818,18 @@ for (const archivo of archivos) {
             } else {
               delete nodo.offers;
             }
+            /* La fecha del taller no llegaba al CourseInstance: Google veía el
+               taller de pan o el de alfajores sin día, aunque la página lo
+               muestra arriba de todo. Sin fecha (o vencida) no se escribe. */
+            [].concat(nodo.hasCourseInstance || []).forEach(function (inst) {
+              if (taller.fecha_iso && taller.estado !== 'sin-fecha' && taller.hora_inicio && taller.hora_fin) {
+                inst.startDate = taller.fecha_iso + 'T' + taller.hora_inicio + ':00-03:00';
+                inst.endDate = taller.fecha_iso + 'T' + taller.hora_fin + ':00-03:00';
+                if (nodo.offers) inst.offers = Object.assign({}, nodo.offers);
+              } else {
+                delete inst.startDate; delete inst.endDate; delete inst.offers;
+              }
+            });
           }
           tocado = true;
         }
