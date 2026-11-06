@@ -162,6 +162,14 @@ function correrSegunda(o, campoHora) {
     o.estado = s.estado || (o.estado === 'agotado' || o.estado === 'ultimos' ? 'abierto' : o.estado);
   }
   const quedan = cola.filter(function (f) { return !esPasado(f.iso); });
+  // Si la primera tiene pocos lugares pero después hay otra con lugar, el
+  // cartel general sigue diciendo «Inscripciones abiertas»: los pocos lugares
+  // son de esa noche, no de todas. La marca queda solo en esa fecha.
+  o.primera_ultimos = false;
+  if (o.estado === 'ultimos' && quedan.some(function (f) { return f.estado !== 'agotado' && f.estado !== 'ultimos'; })) {
+    o.estado = 'abierto';
+    o.primera_ultimos = true;
+  }
   if (quedan.length) o.segunda_fecha = quedan[0]; else delete o.segunda_fecha;
   if (quedan.length > 1) o.mas_fechas = quedan.slice(1); else delete o.mas_fechas;
 }
@@ -435,21 +443,24 @@ function listaFechas(o, sufijo) {
   var items = [
     '<li><a href="' + enlace(destino) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
       '<strong>' + escapar(o.fecha_texto) + '</strong>' +
-      '<span>' + escapar([o.horario_texto, o.cupos_texto].filter(Boolean).join(' · ')) + '</span></a></li>'
+      '<span>' + escapar([o.horario_texto, (o.estado === 'ultimos' || o.primera_ultimos) ? 'Últimos lugares' : o.cupos_texto].filter(Boolean).join(' · ')) + '</span></a></li>'
   ];
+  // Cómo se marca una fecha que no es la primera: llena o con pocos lugares.
+  // Nunca se publica cuántos quedan.
+  var marca = function (f) { return fechaLlena(f) ? 'Sin lugares disponibles' : (f.estado === 'ultimos' ? 'Últimos lugares' : ''); };
   // Una fecha llena se sigue mostrando, con el aviso, pero no lleva a comprar.
   if (o.segunda_fecha && o.segunda_fecha.texto) {
     var llenaSeg = fechaLlena(o.segunda_fecha);
     items.push('<li><a href="' + enlace((ventaMuda(o.estado) || llenaSeg) ? o.wa_link : (o.segunda_fecha.link || o.wa_link_2 || o.wa_link)) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
       '<strong>' + escapar(o.segunda_fecha.texto) + '</strong>' +
-      '<span>' + escapar([horarioDe(o.segunda_fecha, o.horario_texto), llenaSeg ? 'Sin lugares disponibles' : ''].filter(Boolean).join(' · ')) + '</span></a></li>');
+      '<span>' + escapar([horarioDe(o.segunda_fecha, o.horario_texto), marca(o.segunda_fecha)].filter(Boolean).join(' · ')) + '</span></a></li>');
   }
   (o.mas_fechas || []).forEach(function (f) {
     if (!f || !f.texto) return;
     var llena = fechaLlena(f);
     items.push('<li><a href="' + enlace((ventaMuda(o.estado) || llena) ? o.wa_link : (f.link || f.wa_link || o.wa_link)) + '" target="_blank" rel="noopener noreferrer" data-producto="' + sufijo + '">' +
       '<strong>' + escapar(f.texto) + '</strong>' +
-      '<span>' + escapar([horarioDe(f, o.horario_texto), llena ? 'Sin lugares disponibles' : ''].filter(Boolean).join(' · ')) + '</span></a></li>');
+      '<span>' + escapar([horarioDe(f, o.horario_texto), marca(f)].filter(Boolean).join(' · ')) + '</span></a></li>');
   });
   return items.join('');
 }
@@ -1035,8 +1046,8 @@ const agenda = [];
 if (t.estado !== 'sin-fecha' && t.fecha_iso) {
   agenda.push({
     iso: t.fecha_iso, nombre: 'Cena y Taller de Tapeo', fecha: t.fecha_texto,
-    hora: t.horario_texto, precio: t.precio, estado: t.estado,
-    etiqueta: t.estado_texto, link: '/tapeo',
+    hora: t.horario_texto, precio: t.precio, estado: t.primera_ultimos ? 'ultimos' : t.estado,
+    etiqueta: t.primera_ultimos ? 'Últimos lugares' : t.estado_texto, link: '/tapeo',
     cta: t.ver_boton
   });
   // La agenda es lo que se puede comprar hoy: una fecha llena que no es la
