@@ -173,14 +173,14 @@
   </div>
   <div data-para="curso">
     <div class="comanda">
-      <div class="comanda-cabeza"><span class="comanda-titulo">Tu reserva</span><span class="comanda-estado">Curso de cocina saludable</span></div>
+      <div class="comanda-cabeza"><span class="comanda-titulo">Tu inscripción</span><span class="comanda-estado">Curso de cocina saludable</span></div>
       <ul class="comanda-datos"><li><strong><!--o:curso.grupos_label-->Grupos abiertos<!--/o--></strong><span><!--o:curso.grupos_abiertos_texto-->Miércoles 19:00–21:00 · Jueves 10:00–12:00 · Sábados 15:00–18:30, el segundo y el cuarto de cada mes<!--/o--></span></li><li><strong>Inicio</strong><span><!--o:curso.inicio_frase-->Arranca el miércoles 10, el jueves 11 o el sábado 13 de marzo de 2027, según el grupo.<!--/o--></span></li><li><strong>Lugar</strong><span>Maldonado 1976 esq. Blanes, Parque Rodó</span></li></ul>
     </div>
     <div class="acciones">
       <!--o:html:curso.calendario_html--><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Primera+clase+%E2%80%94+Curso+de+Clorofila&amp;dates=20270310T190000%2F20270310T210000&amp;details=Primera+clase+del+curso+de+tres+meses+de+Clorofila%2C+en+Parque+Rod%C3%B3.&amp;location=Clorofila%2C+Maldonado+1976+esq.+Blanes%2C+Parque+Rod%C3%B3%2C+Montevideo&amp;ctz=America%2FMontevideo" data-calendario class="btn btn-primario" target="_blank" rel="noopener noreferrer">Agendar la primera clase del miércoles 10 de marzo de 2027</a>
       <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Primera+clase+%E2%80%94+Curso+de+Clorofila&amp;dates=20270311T100000%2F20270311T120000&amp;details=Primera+clase+del+curso+de+tres+meses+de+Clorofila%2C+en+Parque+Rod%C3%B3.&amp;location=Clorofila%2C+Maldonado+1976+esq.+Blanes%2C+Parque+Rod%C3%B3%2C+Montevideo&amp;ctz=America%2FMontevideo" data-calendario class="btn btn-primario" target="_blank" rel="noopener noreferrer">Agendar la primera clase del jueves 11 de marzo de 2027</a>
       <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Primera+clase+%E2%80%94+Curso+de+Clorofila&amp;dates=20270313T150000%2F20270313T183000&amp;details=Primera+clase+del+curso+de+tres+meses+de+Clorofila%2C+en+Parque+Rod%C3%B3.&amp;location=Clorofila%2C+Maldonado+1976+esq.+Blanes%2C+Parque+Rod%C3%B3%2C+Montevideo&amp;ctz=America%2FMontevideo" data-calendario class="btn btn-primario" target="_blank" rel="noopener noreferrer">Agendar la primera clase del sábado 13 de marzo de 2027</a><!--/o-->
-      <a href="https://wa.me/59894064148?text=Hola%2C%20acabo%20de%20reservar%20un%20lugar%20en%20el%20curso." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="curso">Escribirnos ahora</a>
+      <a href="https://wa.me/59894064148?text=Hola%2C%20acabo%20de%20inscribirme%20en%20el%20curso." target="_blank" rel="noopener noreferrer" class="btn btn-linea" data-producto="curso">Escribirnos ahora</a>
     </div>
   </div>
 
@@ -246,13 +246,18 @@
     'gift-card': ['Recibimos tu pedido.', 'Cuando Leonardo confirma el pago, te mandamos por mail la gift card lista para regalar, normalmente el mismo día.'],
     canje: ['Recibimos tu gift card.', 'En unos minutos te llega un mail con lo que sigue. Si no lo ves, mirá en promociones o en spam.'],
     espera: ['Te anotamos.', 'Te escribimos por mail apenas abra la próxima edición del curso o haya fecha del taller que elegiste. Mientras tanto, el programa completo está publicado.'],
-    curso: ['Recibimos tu reserva.', 'Ya está anotada. Ahora te escribimos por WhatsApp para confirmarte el lugar y coordinar el pago — normalmente en el día, siempre en menos de 24 horas.'],
+    // Desde el 9/11 el curso se inscribe en el formulario de Tally 0V7yvB, que al
+    // enviarse redirige acá. Texto 11, aprobado por Leo.
+    curso: ['Listo, recibimos tu inscripción', 'En unos minutos te llega un mail con la confirmación o, si falta algo, con lo que hay que completar. Si no lo ves, revisá spam o escribinos al 094 064 148.'],
     tapeo: ['Recibimos tu reserva.', 'Ya está anotada. Ahora te escribimos por WhatsApp para confirmarte el lugar y coordinar el pago — normalmente en el día, siempre en menos de 24 horas.']
   };
   document.querySelector('[data-titulo]').textContent = textos[elegido][0];
   document.querySelector('[data-bajada]').textContent = textos[elegido][1];
-  if (elegido !== 'curso' && elegido !== 'tapeo') {
-    document.querySelectorAll('[data-solo-reserva]').forEach(function (el) { el.remove(); });
+  // Los pasos «te escribimos por WhatsApp y coordinamos el pago» son del tapeo:
+  // el curso se paga en el formulario y lo que sigue llega por mail (9/11).
+  // «Qué llevar» sirve igual para el curso.
+  if (elegido !== 'tapeo') {
+    document.querySelectorAll(elegido === 'curso' ? 'ol[data-solo-reserva]' : '[data-solo-reserva]').forEach(function (el) { el.remove(); });
   }
   var bloque = document.querySelector('[data-para="' + elegido + '"]');
   if (bloque) bloque.classList.add('activo');
