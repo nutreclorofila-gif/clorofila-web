@@ -699,8 +699,10 @@ datos.curso.estado = abiertos.length ? 'abierto' : 'sin-fecha';
 
 // Cuando no hay edición abierta, la web deja de pedir una inscripción que no
 // existe y pasa sola a juntar lista de espera. Nadie tiene que acordarse.
-/* Desde el 18/10 el curso se vende en Tikzet, un evento por grupo. Si todos los
-   grupos abiertos tienen su link, la inscripción es ahí y no por WhatsApp. */
+/* Desde el 18/10 el curso se vendía en Tikzet; desde el 9/11 la inscripción
+   es el formulario propio de Tally (0V7yvB), el mismo para los tres grupos.
+   Si todos los grupos abiertos tienen su link, la inscripción es ahí y no por
+   WhatsApp. El nombre vendeTikzet quedó de antes. */
 const vendeTikzet = abiertos.length > 0 && abiertos.every(function (g) { return g.link; });
 datos.curso.cta_texto = vendeTikzet ? 'Inscribirme'
   : abiertos.length ? 'Reservar mi lugar' : 'Avisarme de la próxima edición';
@@ -725,7 +727,7 @@ datos.curso.wa_link = waBase + encodeURIComponent(
   'Hola Leonardo, tengo una pregunta sobre el curso de cocina.'
 );
 datos.curso.cta_nota = vendeTikzet
-  ? 'Elegís tu grupo y pagás en Tikzet el curso completo o el primer mes. Ahí queda hecha la inscripción, sin formularios aparte.'
+  ? 'Elegís tu grupo y la forma de pago en el formulario de inscripción. Después te llega un mail con la confirmación.'
   : abiertos.length
   ? 'Te escribimos por WhatsApp en menos de 24 h para confirmar tu lugar.'
   // Sin edición abierta, la bajada y la línea de grupos ya lo dicen: una
@@ -750,7 +752,7 @@ function botonesDeCompra(clase) {
 datos.curso.compra_html = botonesDeCompra('btn btn-primario');
 datos.curso.compra_linea_html = botonesDeCompra('btn btn-linea');
 datos.curso.pago_frase = vendeTikzet
-  ? 'Te inscribís y pagás en Tikzet: el curso completo o el primer mes.'
+  ? 'Te inscribís en el formulario y elegís cómo pagar: el curso completo, por mes o en cuotas con tarjeta.'
   : 'Se paga por transferencia, Abitab, RedPagos o Mercado Pago.';
 /* Un grupo que ya empezó no «arranca»: la tarjeta decía «Grupo cerrado ·
    Arranca el miércoles 7 de octubre» durante toda la edición. */
