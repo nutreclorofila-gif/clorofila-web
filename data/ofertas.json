@@ -66,7 +66,9 @@
         "hora_inicio": "19:00",
         "hora_fin": "22:30",
         "venta_desde": "2026-10-22",
-        "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-f424"
+        "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-f424",
+        "estado": "agotado",
+        "_leeme_estado": "9/11: Leo decidió que esa noche es un grupo privado. En Tikzet figura soldOut. La única anotada pasó al 27/11 (aviso de Inscripciones)."
       },
       {
         "iso": "2026-11-27",
