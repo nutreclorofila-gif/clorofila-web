@@ -64,6 +64,11 @@
 .incluye li{color:var(--cal-med)}
 .incluye b{color:var(--cal);font-weight:600}
 .nota-chica{font-size:var(--t-chico);color:var(--cal-baja);margin-top:1.2rem}
+.fotos-grupo-caja{display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:1fr 1fr;gap:clamp(.75rem,1.5vw,1.1rem)}
+.fotos-grupo figure{margin:0;border-radius:6px;overflow:hidden;line-height:0}
+.fotos-grupo img{width:100%;height:100%;object-fit:cover}
+.fotos-grande{grid-row:1/3}
+@media (max-width:900px){.fotos-grupo-caja{grid-template-columns:1fr 1fr;grid-template-rows:auto}.fotos-grande{grid-column:1/3;grid-row:auto}.fotos-grupo figure:not(.fotos-grande) img{aspect-ratio:4/3}}
 @media (max-width:900px){
   .hero-grupos-caja,.para-quien,.dos-col{grid-template-columns:1fr}
 }
@@ -162,6 +167,16 @@
         <p class="nota-chica">Es en nuestro estudio, Maldonado 1976 esq. Blanes, Parque Rodó. Para equipos de trabajo también puede ser en la empresa.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- Fotos reales del tapeo (carpeta de Drive «Fotos Tapeo — para la web»,
+     de nutreclorofila). Primero el grupo al final de la noche, después cocinando. -->
+<section class="seccion borde-sup fotos-grupo" aria-label="Fotos de la Cena y Taller de Tapeo">
+  <div class="env fotos-grupo-caja">
+    <figure class="fotos-grande"><picture><source srcset="img-tapeo.webp 1600w" sizes="(max-width: 900px) calc(100vw - 3rem), 56vw" type="image/webp"><img src="img-tapeo.jpg" width="1600" height="1200" alt="Un grupo al final de la noche, detrás de la mesa con lo que prepararon" loading="lazy" decoding="async"></picture></figure>
+    <figure><picture><source srcset="img-tapeo-cocinando-480.webp 480w, img-tapeo-cocinando-700.webp 700w, img-tapeo-cocinando.webp 1200w" sizes="(max-width: 900px) calc(100vw - 3rem), 34vw" type="image/webp"><img src="img-tapeo-cocinando.jpg" width="1200" height="675" alt="El grupo cocinando alrededor de la mesa larga, de noche" loading="lazy" decoding="async"></picture></figure>
+    <figure><picture><source srcset="img-tapeo-manos-700.webp 700w, img-tapeo-manos.webp 1200w" sizes="(max-width: 900px) calc(100vw - 3rem), 34vw" type="image/webp"><img src="img-tapeo-manos.jpg" width="1200" height="675" alt="Participantes amasando juntos en la mesa" loading="lazy" decoding="async"></picture></figure>
   </div>
 </section>
 
