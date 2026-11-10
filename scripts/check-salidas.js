@@ -22,7 +22,7 @@ const raiz = path.join(__dirname, '..');
 const ACTIVIDAD = {
   '/curso': 'curso', '/programa': 'curso',
   '/talleres': 'talleres', '/pastas': 'talleres',
-  '/tapeo': 'experiencias', '/experiencias': 'experiencias',
+  '/tapeo': 'experiencias', '/experiencias': 'experiencias', '/grupos': 'experiencias',
   '/servicios': 'eventos', '/team-building': 'eventos',
   '/articulos': 'articulos',
 };
@@ -35,7 +35,7 @@ const PROPIAS = {
   'index.html': null, // la portada no es de ninguna actividad: tiene que nombrarlas
   'curso.html': 'curso', 'programa.html': 'curso',
   'talleres.html': 'talleres', 'pastas.html': 'talleres',
-  'tapeo.html': 'experiencias', 'experiencias.html': 'experiencias',
+  'tapeo.html': 'experiencias', 'experiencias.html': 'experiencias', 'grupos.html': 'experiencias',
   'servicios.html': 'eventos',
   'articulos.html': 'articulos',
   'sobre.html': null, 'leonardo.html': null, 'contacto.html': null,
