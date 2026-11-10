@@ -509,11 +509,14 @@ t.dato_portada = (function () {
     const cuantas = ['', '', 'Dos', 'Tres', 'Cuatro', 'Cinco', 'Seis'][todas.length] || String(todas.length);
     return cuantas + ' noches a elegir, del ' + todas[0] + ' al ' + todas[todas.length - 1];
   }
-  if (!s || !s.texto) return 'Una noche, el ' + t.fecha_texto;
+  // La otra fecha sale de las que tienen lugar: con el 20/11 agotado la
+  // tarjeta seguía diciendo «el viernes 13 o el viernes 20» (9/11).
+  if (todas.length < 2) return 'Una noche, el ' + t.fecha_texto;
+  const otra = todas[1];
   const mes = function (x) { const m = x.match(/ de ([a-zé]+)$/); return m ? m[1] : ''; };
-  const primera = mes(t.fecha_texto) && mes(t.fecha_texto) === mes(s.texto)
+  const primera = mes(t.fecha_texto) && mes(t.fecha_texto) === mes(otra)
     ? t.fecha_texto.replace(/ de [a-zé]+$/, '') : t.fecha_texto;
-  return 'Una noche, el ' + primera + ' o el ' + s.texto;
+  return 'Una noche, el ' + primera + ' o el ' + otra;
 })();
 t.calendario_html = [
   t.fecha_iso ? botonCalendario(t.calendario, 'Agendar el ' + t.fecha_texto) : '',
