@@ -253,7 +253,7 @@ a.marca{min-height:44px;justify-content:center}
 .hamburguesa::after{transform:translateX(-50%);top:calc(50% + 2.5px)}
 .cerrar-menu::before{top:50%;transform:translate(-50%,-50%) rotate(45deg)}
 .cerrar-menu::after{top:50%;transform:translate(-50%,-50%) rotate(-45deg)}
-@media (max-width:999px){
+@media (max-width:1099px){
   .nav-links{display:none}
   .hamburguesa{display:block}
   /* El menú deja de ser una lista centrada en el medio de la pantalla y pasa
@@ -519,7 +519,7 @@ h2 + p{margin-top:.55rem}
 .respuesta-corta strong{color:var(--brote)}
 html:not(.js) .sube{opacity:1;transform:none}
 html:not(.js) .nav{height:auto}
-@media (max-width:999px){
+@media (max-width:1099px){
   html:not(.js) .nav-caja{flex-wrap:wrap;height:auto;padding-block:.7rem}
   html:not(.js) .nav-links{display:flex;flex-wrap:wrap;gap:.6rem 1.1rem;width:100%;padding-bottom:.3rem}
   /* Sin JS los ocho enlaces se acomodan en dos renglones: el margen automático

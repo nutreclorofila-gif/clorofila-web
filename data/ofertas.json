@@ -66,7 +66,9 @@
         "hora_inicio": "19:00",
         "hora_fin": "22:30",
         "venta_desde": "2026-10-22",
-        "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-f424"
+        "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-f424",
+        "estado": "agotado",
+        "_leeme_estado": "9/11: Leo decidió que esa noche es un grupo privado. En Tikzet figura soldOut. La única anotada pasó al 27/11 (aviso de Inscripciones)."
       },
       {
         "iso": "2026-11-27",
@@ -87,7 +89,7 @@
     "_leeme_tarjeta": "precio_tarjeta vacío desde el 20/10: el curso se cobra en Tikzet y las 12 cuotas las da el link de Mercado Pago, no Tikzet (Inscripciones, 20/10). Antes decía «hasta 12 cuotas de $1.016 sin recargo». Si Tikzet da cuotas, se vuelve a cargar y el sitio lo muestra solo.",
     "precio_tarjeta": "",
     "ahorro": "$2.200",
-    "_leeme_link": "Cada grupo tiene su evento en Tikzet (link). Con todos los grupos abiertos con link, los botones de inscripción llevan a Tikzet; sin link, se reserva por WhatsApp. En Tikzet hay dos entradas: el curso completo y el primer mes (18/10).",
+    "_leeme_link": "9/11: los tres grupos van al formulario propio de Tally (https://tally.so/r/0V7yvB), sin grupo prellenado porque Tally no lo toma por URL (probado). Lo armó Ordenar y lo revisa Inscripciones. Antes: Cada grupo tiene su evento en Tikzet (link). Con todos los grupos abiertos con link, los botones de inscripción llevan a Tikzet; sin link, se reserva por WhatsApp. En Tikzet hay dos entradas: el curso completo y el primer mes (18/10).",
     "_leeme_espera": "espera_link es la lista de espera («Avisame de la próxima edición»): la usan /curso y /programa cuando no hay grupo abierto, y los 12 artículos siempre. El 18/10 Leo decidió pasar las inscripciones a Tikzet; no cambiar este link hasta que exista el evento.",
     "espera_link": "https://tally.so/r/EkMbWL",
     "_leeme_grupos": "Agregar, sacar o cambiar un grupo se hace acá y nada más: los bloques de la página del curso, el schema de Google y los textos que nombran los días se dibujan solos. El grupo se cierra automáticamente cuando inicio_iso ya pasó. El nombre y el texto tienen que coincidir con inicio_iso: si no, el build avisa y no publica.",
@@ -98,9 +100,9 @@
         "horario": "19:00 a 21:00 h",
         "inicio_iso": "2027-03-10",
         "inicio_texto": "Arranca el miércoles 10 de marzo de 2027",
-        "detalle": "Una clase por semana, 12 en total. Para quienes salen de trabajar y quieren cerrar el día cocinando.",
+        "detalle": "Tiene una clase por semana, 12 en total. Es para quienes salen de trabajar y quieren cerrar el día cocinando.",
         "estado": "abierto",
-        "link": "https://www.tikzet.com/events/curso-de-cocina-saludable-grupo-miercoles",
+        "link": "https://tally.so/r/0V7yvB",
         "cupos_min": 12,
         "cupos_total": 15
       },
@@ -110,9 +112,9 @@
         "horario": "10:00 a 12:00 h",
         "inicio_iso": "2027-03-11",
         "inicio_texto": "Arranca el jueves 11 de marzo de 2027",
-        "detalle": "Una clase por semana, 12 en total. El grupo de mañana, con el estudio tranquilo y luz de día.",
+        "detalle": "Tiene una clase por semana, 12 en total. Es el grupo de la mañana, con el estudio tranquilo y luz de día.",
         "estado": "abierto",
-        "link": "https://www.tikzet.com/events/curso-de-cocina-saludable-grupo-jueves",
+        "link": "https://tally.so/r/0V7yvB",
         "cupos_min": 12,
         "cupos_total": 15
       },
@@ -124,11 +126,11 @@
         "ritmo_corto": "el segundo y el cuarto de cada mes",
         "inicio_iso": "2027-03-13",
         "inicio_texto": "Arranca el sábado 13 de marzo de 2027",
-        "detalle": "El segundo y el cuarto sábado de cada mes: 6 encuentros de tres horas y media.",
+        "detalle": "Son 6 encuentros de tres horas y media, el segundo y el cuarto sábado de cada mes.",
         "frecuencia": "quincenal",
         "clases": 6,
         "estado": "abierto",
-        "link": "https://www.tikzet.com/events/curso-de-cocina-saludable-grupo-sabados",
+        "link": "https://tally.so/r/0V7yvB",
         "cupos_min": 12,
         "cupos_total": 15
       }
@@ -180,7 +182,7 @@
       "link_compra": "https://www.tikzet.com/events/taller-de-pastas-sin-gluten-12c3"
     },
     "alfajores": {
-      "nombre": "Alfajores veganos y sin gluten",
+      "nombre": "Alfajores sin gluten",
       "nombre_enlace": "Alfajores sin gluten",
       "nombre_corto": "Alfajores",
       "linea_corta": "Armás la masa, la ganache y los rellenos con técnica pastelera.",
@@ -232,7 +234,7 @@
   "google": {
     "_leeme": "El puntaje y la cantidad de reseñas del perfil de Google. Se muestran en el home, el curso y el tapeo, y también en la ficha que lee Google. Actualizalo cuando entren reseñas nuevas: escribí el puntaje con punto (4.9), no con coma.",
     "puntaje": 4.9,
-    "resenas": 27
+    "resenas": 30
   },
   "estudio": {
     "_leeme": "Los años que el sitio dice de Clorofila y de Leonardo. No se escriben en años sino en el año de inicio, para que npm test avise cuando cambia el año y el texto de las páginas quede viejo. Ver scripts/check-antiguedad.js.",

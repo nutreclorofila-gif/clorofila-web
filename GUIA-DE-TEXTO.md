@@ -247,6 +247,32 @@ llenan" y esto decía "se completa". Es la misma jugada: avisar que se cierra.
 Cuando aparezca una forma nueva, agregarla a `EMPUJA` en `check-texto.js` —
 ya pasó tres veces.
 
+**17. La web no se escribe como el chat.**
+Leo, 10/11/2026: cuando escribe en el chat simplifica y escribe rápido, y no
+importa si un pensamiento lo termina después en vez de antes. En la web esa
+sintaxis queda rara. Lo que marcó: *"Arranca el miércoles 10, el jueves 11 o
+el sábado 13 de marzo de 2027, según el grupo."*
+
+Los defectos de esa forma, para reconocerlos:
+
+- **La aclaración llega al final y cambia lo anterior.** "…, según el grupo":
+  el lector recorre tres fechas creyendo que valen todas y recién en la última
+  palabra se entera de que son opciones. Lo que ordena la lectura va primero.
+- **No se nombra el sujeto.** "Arranca el…": ¿qué arranca? Si el lector tiene
+  que adivinarlo, se nombra.
+- **Se agrega una idea después de cerrar la oración.** Colas pegadas con coma
+  al final, o un fragmento sin verbo después del punto (regla 2).
+- **Listas sin marco.** Primero se dice qué es la lista, después la lista.
+- **Referencias sueltas.** "lo", "eso", "ahí" sin algo claro a qué apuntan.
+- **Dos ideas con una coma.** Si hay dos ideas, son dos oraciones (regla 10).
+
+| Decía | Dice |
+|---|---|
+| Arranca el miércoles 10, el jueves 11 o el sábado 13 de marzo de 2027, según el grupo. | Cada grupo empieza en una fecha distinta: el miércoles 10, el jueves 11 o el sábado 13 de marzo de 2027. |
+
+Las frases de Leo en el chat sirven para saber **qué** quiere decir, no
+**cómo** escribirlo en la página.
+
 ## La prueba final
 
 Leé la frase en voz alta. Si nadie la diría hablando, se reescribe. Si tuviste
