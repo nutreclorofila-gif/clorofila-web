@@ -882,12 +882,15 @@ const mismoMes = abiertos.length > 1 && mesDe(abiertos[0]) &&
   abiertos.every(function (g) { return mesDe(g) === mesDe(abiertos[0]); }) ? mesDe(abiertos[0]) : '';
 datos.curso.inicio_frase = abiertos.length === 0 ? 'La próxima edición todavía no tiene fecha.'
   : abiertos.length === 1 ? abiertos[0].inicio_texto + '.'
-  : 'Arranca el ' + conO(abiertos.map(function (g, i) {
-      // Si todos arrancan el mismo mes, el mes se dice una sola vez al final:
-      // «el miércoles 10, el jueves 11 o el sábado 13 de marzo».
+  /* Lo que ordena la lista va primero. Decía «Arranca el miércoles 10, el
+     jueves 11 o el sábado 13 de marzo, según el grupo.»: no decía qué
+     arrancaba, y que eran opciones se sabía recién en la última palabra
+     (Leo, 10/11: «queda raro»). Si todos arrancan el mismo mes, el mes se
+     dice una sola vez, al final de la fecha. */
+  : 'Cada grupo empieza en una fecha distinta: el ' + conO(abiertos.map(function (g, i) {
       const t = mismoMes ? sinArranca(g).replace(/ de [a-zé]+( de \d{4})?$/, '') : sinArranca(g);
       return (i ? 'el ' : '') + t;
-    })) + (mismoMes ? ' de ' + mismoMes : '') + ', según el grupo.';
+    })) + (mismoMes ? ' de ' + mismoMes : '') + '.';
 // Versión corta para los rótulos: «Arranca el 7 de octubre o el 8 de octubre».
 datos.curso.inicio_corto = abiertos.length > 1
   ? 'Arranca el ' + conO(abiertos.map(function (g, i) {
