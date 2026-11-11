@@ -251,7 +251,7 @@ function fechasTapeo(t) {
 // así que sin fecha publicaba "Sin fecha confirmada · 19:00 a 22:30 h · $2.600
 // por persona": justo el precio que la regla de arriba dice no publicar.
 t.linea = t.estado === 'sin-fecha'
-  ? 'Las fechas se publican según la demanda — escribinos y te avisamos.'
+  ? 'Las fechas se publican según la demanda. Escribinos y te avisamos.'
   : [fechasTapeo(t), t.horario_texto, t.precio_texto].filter(Boolean).join(' · ');
 
 /* Los avisos de «no hay fecha» y «se llenó» iban fijos en el HTML y se ocultaban con CSS
@@ -352,7 +352,7 @@ t.cupos_frase =
   t.estado === 'agotado'   ? 'Esta fecha ya se llenó.' :
   t.estado === 'ultimos'   ? 'Quedan pocos lugares.' :
   t.estado === 'sin-fecha' ? 'Las fechas se abren según la demanda.' :
-  'Solo ' + t.cupos_total + ' lugares.';
+  'Cada noche tiene ' + t.cupos_total + ' lugares.';
 
 t.resumen_texto =
   t.estado === 'sin-fecha' ? 'sin fecha abierta por ahora; las fechas se publican según la demanda' :
@@ -564,7 +564,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
 
   // Igual que en el tapeo: el aviso de «sin fecha» solo existe cuando no hay fecha.
   w.aviso_sin_fecha = w.estado === 'sin-fecha'
-    ? 'Este taller se abre por demanda: cuando hay grupo, sale. Escribinos y te avisamos apenas haya fecha.' : '';
+    ? 'Este taller se abre por demanda, cuando se junta un grupo. Escribinos y te avisamos apenas haya fecha.' : '';
   w.contacto_sin_fecha = w.estado === 'sin-fecha'
     ? 'Todavía no hay fecha abierta. Dejanos tu mensaje y te avisamos cuando abramos la próxima.' : '';
   w.aviso_agotado = w.estado === 'agotado'
@@ -621,7 +621,7 @@ for (const [id, w] of Object.entries(datos.talleres)) {
   // botón yendo a WhatsApp (14/10).
   w.tiene_compra = (!ventaMuda(w.estado) && w.link_compra) ? 'si' : 'no';
   w.nota_compra = w.tiene_compra === 'si'
-    ? 'Comprás la entrada y ya está. Si preferís, coordinamos por WhatsApp.'
+    ? 'Con la compra de la entrada ya tenés tu lugar. Si preferís, coordinamos por WhatsApp.'
     : 'Escribinos por WhatsApp: te confirmamos el lugar y coordinamos el pago.';
   if (w.segunda_fecha && w.segunda_fecha.texto && !fechaLlena(w.segunda_fecha) && w.estado !== 'sin-fecha') {
     w.linea += ' · también el ' + w.segunda_fecha.texto;
@@ -663,7 +663,7 @@ datos.curso.cuotas_corto = String(datos.curso.precio_cuotas || '').replace(' cuo
 /* Sin cuotas con tarjeta confirmadas (20/10), los textos que las nombraban
    muestran el pago mes a mes. */
 const pt = String(datos.curso.precio_tarjeta || '').trim();
-datos.curso.precio_hero_frase = pt ? ', o ' + pt + ' con tarjeta' : ', o ' + datos.curso.precio_cuotas + ' mes a mes';
+datos.curso.precio_hero_frase = pt ? '. Con tarjeta son ' + pt : '. Si pagás mes a mes, son ' + datos.curso.precio_cuotas;
 datos.curso.tarjeta_li_html = pt ? '<li>Con tarjeta son ' + escapar(pt) + '.</li>' : '';
 datos.curso.tarjeta_fila_html = pt ? '<li><strong>Con tarjeta</strong><span>' + escapar(pt) + '</span></li>' : '';
 datos.curso.precio_destacado = pt || datos.curso.precio_total;
@@ -854,8 +854,9 @@ datos.curso.horarios_chip_calc = quincenal ? '3 meses · semanal o quincenal' : 
 // Leo lo dice así en el texto del curso 2027: «segundo y cuarto sábado de cada mes».
 const ritmoQuincenal = quincenal ? (quincenal.ritmo || 'cada quince días') : '';
 datos.curso.cursada_boleta = quincenal && semanales.length
-  ? 'Son tres meses. ' + losDias(semanales).replace(/^l/, 'L') + ', 12 clases de 2 horas, una por semana. ' +
-    losDias([quincenal]).replace(/^l/, 'L') + ', ' + quincenal.clases + ' encuentros de ' + duracion(quincenal) + ', ' + ritmoQuincenal + '.'
+  ? 'El curso dura tres meses. ' + (semanales.length > 1 ? 'Los grupos de ' : 'El grupo de ') + losDias(semanales) +
+    (semanales.length > 1 ? ' tienen' : ' tiene') + ' 12 clases de 2 horas, una por semana. ' +
+    'El de ' + losDias([quincenal]) + ' tiene ' + quincenal.clases + ' encuentros de ' + duracion(quincenal) + ', ' + ritmoQuincenal + '.'
   : quincenal
   ? 'Son tres meses: ' + quincenal.clases + ' encuentros de ' + duracion(quincenal) + ', ' + ritmoQuincenal + ', ' +
     losDias([quincenal]) + '.'
@@ -887,10 +888,14 @@ datos.curso.inicio_frase = abiertos.length === 0 ? 'La próxima edición todaví
      arrancaba, y que eran opciones se sabía recién en la última palabra
      (Leo, 10/11: «queda raro»). Si todos arrancan el mismo mes, el mes se
      dice una sola vez, al final de la fecha. */
+  : mismoMes
+  ? 'Los ' + ({ 2: 'dos', 3: 'tres', 4: 'cuatro' }[abiertos.length] || abiertos.length) + ' grupos empiezan en ' + mismoMes + ': el ' +
+    enumerar(abiertos.map(function (g, i) {
+      return (i ? 'el ' : '') + sinArranca(g).replace(/ de [a-zé]+( de \d{4})?$/, '');
+    })) + '.'
   : 'Cada grupo empieza en una fecha distinta: el ' + conO(abiertos.map(function (g, i) {
-      const t = mismoMes ? sinArranca(g).replace(/ de [a-zé]+( de \d{4})?$/, '') : sinArranca(g);
-      return (i ? 'el ' : '') + t;
-    })) + (mismoMes ? ' de ' + mismoMes : '') + '.';
+      return (i ? 'el ' : '') + sinArranca(g);
+    })) + '.';
 // Versión corta para los rótulos: «Arranca el 7 de octubre o el 8 de octubre».
 datos.curso.inicio_corto = abiertos.length > 1
   ? 'Arranca el ' + conO(abiertos.map(function (g, i) {
@@ -915,7 +920,7 @@ datos.curso.grupos_frase = abiertos.length === 0 ? 'La próxima edición todaví
 const cuantos = { 1: 'un horario', 2: 'dos horarios', 3: 'tres horarios' }[nombres.length]
   || nombres.length + ' horarios';
 datos.curso.intro_grupos = abiertos.length
-  ? 'El mismo programa en ' + cuantos + '. Los grupos son chicos a propósito, para que puedas cocinar, preguntar y que Leonardo te corrija a vos.'
+  ? 'Es el mismo programa en ' + cuantos + '. Los grupos son chicos a propósito, para que puedas cocinar, preguntar y que Leonardo te corrija a vos.'
   : 'La próxima edición todavía no tiene fecha. Cuando abra, te avisamos los días y los horarios. Los grupos son chicos a propósito, para que puedas cocinar, preguntar y que Leonardo te corrija a vos.';
 datos.curso.grupos_titulo = abiertos.length ? 'Grupos y horarios.' : 'Próxima edición.';
 // /gracias?p=espera: quien se anota en la lista de espera con una edición ya
@@ -980,14 +985,15 @@ datos.curso.faq_cursada = todosEmpezados || !abiertos.length
     const dia = function (g) { return g.inicio_texto.toLowerCase().replace(/^arranca el /, ''); };
     const horario = function (g) { return g.horario.replace(' h', ''); };
     const eleccion = abiertos.length > 1
-      ? 'Elegís el grupo de ' + conO(abiertos.map(function (g) {
+      ? 'Los horarios son ' + enumerar(abiertos.map(function (g) {
           return g.nombre.toLowerCase() + ' de ' + horario(g);
         })) + '. '
       : 'Queda abierto el grupo de los ' + abiertos[0].nombre.toLowerCase() + ', de ' + horario(abiertos[0]) + '. ';
-    return eleccion + (abiertos.length === 1 ? 'Arranca el ' : 'Arrancan el ') +
+    if (abiertos.length === 1) return eleccion + 'Empieza el ' + dia(abiertos[0]) + '.';
+    return eleccion + (mismoMes ? 'Los grupos empiezan en ' + mismoMes + ': el ' : 'Los grupos empiezan el ') +
       enumerar(abiertos.map(function (g, i) {
         return (i ? 'el ' : '') + (mismoMes ? dia(g).replace(/ de [a-zé]+( de \d{4})?$/, '') : dia(g));
-      })) + (mismoMes ? ' de ' + mismoMes : '') + '.';
+      })) + '.';
   })();
 
 /* El chip decía "3 modalidades" a mano: quedó de la edición de agosto, que
@@ -1026,15 +1032,17 @@ datos.curso.horarios_chip = datos.curso.horarios_chip_calc;
    o salir de ese grupo se coordina. Entre los semanales sí se cambia. */
 // La nota de abajo de los grupos en /curso, con el mismo criterio.
 datos.curso.grupos_nota = quincenal && semanales.length > 1
-  ? 'Si te cambia el trabajo o surge un viaje, entre ' + semanales.map(function (g) { return g.nombre.toLowerCase(); }).join(' y ') +
-    ' te movés mientras haya lugar, y con el grupo de los ' + quincenal.nombre.toLowerCase() + ' lo coordinamos con vos. La clase que faltes la recuperás.'
+  ? 'Si te cambia el trabajo o surge un viaje, ' + (semanales.length === 2
+      ? 'podés pasar del grupo de los ' + semanales[0].nombre.toLowerCase() + ' al de los ' + semanales[1].nombre.toLowerCase() + ', o al revés'
+      : 'podés pasar de un grupo a otro entre ' + losDias(semanales)) +
+    ', mientras haya lugar. El pase al grupo de los ' + quincenal.nombre.toLowerCase() + ' lo coordinamos con vos. La clase que faltes la recuperás.'
   : quincenal && semanales.length
   ? 'Si te cambia el trabajo o surge un viaje, el cambio entre los ' + semanales[0].nombre.toLowerCase() + ' y los ' +
     quincenal.nombre.toLowerCase() + ' lo coordinamos con vos. La clase que faltes la recuperás.'
   : 'Si te cambia el trabajo o surge un viaje, te movés de día mientras haya lugar, y la clase que faltes la recuperás.';
 const otroRitmo = quincenal
   ? 'El de los ' + quincenal.nombre.toLowerCase() + ' tiene otro ritmo: va ' + ritmoQuincenal + ', con encuentros de ' +
-    duracion(quincenal) + '. Para pasarte a ese grupo, o para salir de él, lo coordinamos con vos según el lugar que haya. ' +
+    duracion(quincenal) + '. Si querés pasarte a ese grupo o salir de él, coordinamos el cambio con vos según el lugar que haya. ' +
     'Si te cambia el trabajo o te surge un viaje, avisanos: nadie pierde el curso por un cambio de agenda.'
   : '';
 datos.curso.faq_cambio_grupo = quincenal && semanales.length > 1
@@ -1188,8 +1196,9 @@ datos.tiene_agenda = agenda.length ? 'si' : 'no';
   // El curso trae la fecha como frase («Arranca el miércoles 10…»).
   const fecha = prox ? prox.fecha.replace(/^Arranca el /i, '') : '';
   datos.portada_proximo_html = prox
-    ? 'La próxima fecha abierta es la de <a href="' + enlace(prox.link) + '" class="enlace-vivo" data-producto="agenda">' + escapar(nombre) + '</a>, el ' +
-      escapar(fecha) + (prox.precio ? ', a ' + escapar(prox.precio) : '') + '. <a href="#agenda" class="enlace-vivo">Ver todas las fechas</a>.'
+    ? 'La próxima fecha abierta es ' + (/^cena/i.test(nombre) ? 'la ' : taller && !/^(taller|domingo)/i.test(nombre) ? 'el taller de ' : 'el ') +
+      '<a href="' + enlace(prox.link) + '" class="enlace-vivo" data-producto="agenda">' + escapar(nombre) + '</a> del ' +
+      escapar(fecha) + '.' + (prox.precio ? ' Cuesta ' + escapar(prox.precio) + '.' : '') + ' <a href="#agenda" class="enlace-vivo">Ver todas las fechas</a>.'
     : '';
 }
 /* La portada pedía "Reservar" y "Ver próximas fechas" aunque en la agenda ya
@@ -1457,7 +1466,7 @@ datos.regalo = Object.assign({ tarjeta_link: '' }, datos.regalo);
      se hace por WhatsApp con el código. */
   const waCanje = waBase + encodeURIComponent('Hola Leonardo, me regalaron una gift card. Mi código es ');
   r.canje_texto = r.canje_link
-    ? 'Completás el formulario con el código de tu gift card y elegís la fecha. Si ninguna te sirve, te avisamos cuando haya nuevas y la gift card sigue vigente.'
+    ? 'Completás el formulario con el código de tu gift card y elegís la fecha. Si ninguna fecha te sirve, te avisamos cuando haya nuevas. Mientras tanto, la gift card sigue vigente.'
     : 'Escribinos al 094 064 148 con el código y elegís la fecha.';
   r.canje_boton = r.canje_link ? 'Usar mi gift card' : 'Escribir por WhatsApp';
   r.canje_href = r.canje_link ? enlace(r.canje_link) : waCanje;
@@ -1469,7 +1478,7 @@ datos.regalo = Object.assign({ tarjeta_link: '' }, datos.regalo);
      no dice el valor, vale por la actividad». Se muestra solo con
      precio_respetado en true. */
   r.validez_nota = r.precio_respetado === true
-    ? 'Vale por un año desde la compra, por la actividad que elegiste aunque cambie el precio. La de otro monto vale por ese monto.'
+    ? 'La gift card vale por un año desde la compra. Si elegiste una actividad, vale por esa actividad aunque cambie el precio. Si elegiste otro monto, vale por ese monto.'
     : 'Vale por un año desde la compra.';
 })();
 
