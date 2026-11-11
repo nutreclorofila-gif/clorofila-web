@@ -73,6 +73,12 @@
   .hero-grupos-caja,.para-quien,.dos-col{grid-template-columns:1fr}
 }
 @media (max-width:620px){.lista-usos{grid-template-columns:1fr}}
+.claves{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem clamp(1.5rem,3vw,2.5rem)}
+.claves li{color:var(--cal-med)}
+.claves b{display:block;color:var(--cal);font-family:var(--display);font-size:1.15rem;font-weight:600;margin-bottom:.35rem}
+.pasos-grupo{margin:0;padding-left:1.4rem;display:grid;gap:.9rem;color:var(--cal-med)}
+.pasos-grupo li::marker{color:var(--cal);font-weight:600}
+@media (max-width:720px){.claves{grid-template-columns:1fr}}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20261008" defer></script>
@@ -112,10 +118,10 @@
 <header class="hero-grupos">
   <div class="env hero-grupos-caja">
     <div>
-      <span class="senal">Para amigos, familias y equipos, en Parque Rodó, Montevideo</span>
+      <span class="senal">Experiencia gastronómica para grupos · Parque Rodó, Montevideo</span>
       <h1>Una noche o un mediodía de cocina, solo para tu grupo.</h1>
-      <p class="bajada">Es la Cena y Taller de Tapeo, sin nadie de afuera. Entre todos cocinan cuatro tapas, aprenden cada técnica y después se sientan a comer todo lo que prepararon.</p>
-      <p class="hero-datos"><b><!--o:google.puntaje_texto-->4,9<!--/o--></b> en <!--o:google.resenas_texto-->27 reseñas en Google<!--/o-->.</p>
+      <p class="bajada">Es nuestra Cena y Taller de Tapeo, pero solo para ustedes y en la fecha que elijan. Entre todos cocinan cuatro tapas, guiados por Leonardo, y después se sientan a comer todo lo que prepararon.</p>
+      <p class="hero-datos"><b><!--o:google.puntaje_texto-->4,9<!--/o--></b> en <!--o:google.resenas_texto-->30 reseñas en Google<!--/o-->.</p>
       <div class="hero-grupos-acciones">
         <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quiero%20armar%20una%20experiencia%20para%20un%20grupo.%20Somos%20__%20y%20pensamos%20en%20la%20fecha%20__." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="grupos">Pedir una propuesta</a>
         <a href="#incluye" class="btn btn-linea">Ver qué incluye</a>
@@ -124,6 +130,16 @@
     <figure class="hero-grupos-foto"><picture><source srcset="img-tapeo-mesa-700.webp 700w, img-tapeo-mesa.webp 1200w" sizes="(max-width: 900px) calc(100vw - 3rem), 44vw" type="image/webp"><img src="img-tapeo-mesa.jpg" width="1200" height="675" alt="La mesa larga de Clorofila con un grupo cocinando junto" loading="eager" fetchpriority="high" decoding="async"></picture></figure>
   </div>
 </header>
+
+<section class="seccion borde-sup claves-grupo" aria-label="Cómo es la experiencia">
+  <div class="env">
+    <ul class="claves sube">
+      <li><b>Cocinan juntos</b>Leonardo guía cada paso. No hace falta tener experiencia en la cocina.</li>
+      <li><b>Comen juntos</b>Se sientan a la mesa larga con todo lo que hizo el grupo.</li>
+      <li><b>Solo ustedes</b>No hay nadie de afuera y la fecha la eligen ustedes.</li>
+    </ul>
+  </div>
+</section>
 
 <section class="seccion borde-sup" id="para-quien">
   <div class="env">
@@ -239,6 +255,21 @@
   </div>
 </section>
 
+<section class="seccion borde-sup" id="como-se-arma">
+  <div class="env">
+    <div class="para-quien sube">
+      <div>
+        <h2>Cómo se arma.</h2>
+      </div>
+      <ol class="pasos-grupo">
+        <li>Nos escribís cuántos son y qué fecha tienen en mente.</li>
+        <li>Te armamos la propuesta.</li>
+        <li>Si les sirve, reservamos la fecha.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
 <section class="cierre seccion" id="pedir">
   <div class="env cierre-caja">
     <div class="sube">
@@ -262,7 +293,7 @@
       <p class="dato" style="color:var(--cal-baja);text-transform:none;letter-spacing:.02em"><a href="/contacto">Maldonado 1976 esq. Blanes, Parque Rodó, Montevideo</a></p>
     </div>
     <div><h2>Propuestas</h2><ul><li><a href="/curso">El curso</a></li><li><a href="/programa">Programa completo</a></li><li><a href="/talleres">Todos los talleres</a></li><li><a href="/pastas">Pastas sin gluten</a></li><li><a href="/experiencias">Todas las experiencias</a></li>
-            <li><a href="/tapeo">Cena y Taller de Tapeo</a></li><li><a href="/gift-card">Gift card</a></li><li><a href="/grupos">Experiencia para grupos</a></li><li><a href="/team-building">Team building para empresas</a></li></ul></div>
+            <li><a href="/tapeo">Cena y Taller de Tapeo</a></li><li><a href="/gift-card">Gift card</a></li><li><a href="/grupos">Experiencia gastronómica para grupos</a></li><li><a href="/team-building">Team building para empresas</a></li></ul></div>
     <div><h2>Clorofila</h2><ul><li><a href="/leonardo">Leonardo Lemes</a></li><li><a href="/sobre">Sobre Clorofila</a></li><li><a href="/articulos">Artículos</a></li><li><a href="/servicios">Eventos y consultoría</a></li></ul></div>
     <div><h2>Contacto</h2><ul><li><a href="https://wa.me/59894064148" target="_blank" rel="noopener noreferrer">094 064 148</a></li><li><a href="mailto:nutreclorofila@gmail.com">nutreclorofila@gmail.com</a></li><li><a href="https://instagram.com/clorofilaclases" target="_blank" rel="noopener noreferrer">@clorofilaclases</a></li></ul></div>
   </div>
