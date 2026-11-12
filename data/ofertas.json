@@ -57,8 +57,8 @@
         "hora_fin": "22:30",
         "venta_desde": "2026-10-14",
         "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-1ed7",
-        "estado": "ultimos",
-        "_leeme_estado": "5/11: queda 1 lugar de 12 (aviso de Inscripciones). La web dice «Últimos lugares», sin número. Cuando se venda el último, pasa a agotado."
+        "estado": "agotado",
+        "_leeme_estado": "12/11: en Tikzet figura «Stock agotado» (verificado). Antes: 5/11, quedaba 1 lugar de 12."
       },
       {
         "iso": "2026-11-20",
