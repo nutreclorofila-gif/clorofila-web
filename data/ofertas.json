@@ -95,21 +95,6 @@
     "_leeme_grupos": "Agregar, sacar o cambiar un grupo se hace acá y nada más: los bloques de la página del curso, el schema de Google y los textos que nombran los días se dibujan solos. El grupo se cierra automáticamente cuando inicio_iso ya pasó. El nombre y el texto tienen que coincidir con inicio_iso: si no, el build avisa y no publica.",
     "grupos": [
       {
-        "id": "intensivo",
-        "nombre": "Lunes, jueves y viernes",
-        "titulo": "Intensivo",
-        "horario": "10:00 a 12:00 h",
-        "inicio_iso": "2027-02-01",
-        "inicio_texto": "Arranca el lunes 1 de febrero de 2027",
-        "fin_iso": "2027-03-01",
-        "detalle": "Es el curso intensivo: las mismas 12 clases en cuatro semanas, tres por semana, hasta el lunes 1 de marzo. Se paga completo, $12.200, o con tarjeta en hasta 12 cuotas de $1.016.",
-        "frecuencia": "intensivo",
-        "clases": 12,
-        "estado": "abierto",
-        "link": "https://tally.so/r/0V7yvB",
-        "cupos_total": 14
-      },
-      {
         "id": "martes",
         "nombre": "Martes",
         "horario": "19:00 a 21:00 h",
@@ -172,7 +157,7 @@
         "cupos_total": 15
       }
     ],
-    "_leeme_febrero": "17/11: Leo aprobó el 16/11 tres grupos de febrero 2027: martes de noche, miércoles de mañana y el intensivo de cuatro semanas (lunes, jueves y viernes). Los de marzo siguen igual. El intensivo no tiene pago mes a mes: completo o con tarjeta. Cupo 14 por grupo (Inscripciones)."
+    "_leeme_febrero": "17/11: Leo aprobó el 16/11 dos grupos de febrero 2027: martes de noche y miércoles de mañana. Los de marzo siguen igual. Cupo 14 por grupo (Inscripciones). El intensivo de lunes, jueves y viernes se publicó el 17/11 y se sacó el mismo día: Leo, «hay que terminar de armarlo bien no puede ser mas de un dia por semana». render-ofertas sigue sabiendo armar un grupo con frecuencia «intensivo» y fin_iso si vuelve."
   },
   "talleres": {
     "_leeme": "Cada taller: mismo sistema que el tapeo. estado sin-fecha | abierto | ultimos | agotado. nombre_enlace: el nombre que va dentro de enlaces y botones cuando «nombre» lleva «veganos» (Leo no quiere «vegano» en botones ni enlaces).",
