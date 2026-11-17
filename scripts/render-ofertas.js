@@ -796,8 +796,17 @@ for (const g of datos.curso.grupos) {
 /* Un grupo que ya empezó no se muestra (13/10): con la edición de octubre en
    marcha, /curso seguía mostrando «Grupo cerrado — Empezó el miércoles 7»,
    una fecha pasada en la página que vende la próxima. */
-datos.curso.grupos_html = datos.curso.grupos.filter(function (g) { return g.estado !== 'cerrado'; }).map(function (g) {
-  return '<article class="grupo" data-estado="' + escapar(g.estado) + '">' +
+/* Leo, 17/11: «si ponés febrero y marzo separado, así no queda todo junto».
+   Con grupos que arrancan en meses distintos, cada mes lleva su título y sus
+   tarjetas debajo. Con un solo mes no se agrega nada. */
+const visibles = datos.curso.grupos.filter(function (g) { return g.estado !== 'cerrado'; });
+const mesLargo = function (g) { const m = String(g.inicio_texto).match(/ de ([a-zé]+ de \d{4})$/); return m ? m[1] : ''; };
+const separarPorMes = visibles.map(mesLargo).filter(function (m, i, a) { return m && a.indexOf(m) === i; }).length > 1;
+datos.curso.grupos_html = visibles.map(function (g, i) {
+  const mes = mesLargo(g);
+  const titulo = separarPorMes && mes && (i === 0 || mesLargo(visibles[i - 1]) !== mes)
+    ? '<h3 class="grupos-mes">Grupos que empiezan en ' + escapar(mes) + '</h3>' : '';
+  return titulo + '<article class="grupo" data-estado="' + escapar(g.estado) + '">' +
     '<p class="grupo-estado">' + escapar(g.estado === 'abierto' ? 'Abierto' : 'Grupo cerrado') + '</p>' +
     '<p class="grupo-dia">' + escapar(g.nombre) + '</p>' +
     '<p class="grupo-hora">' + escapar(g.horario) + '</p>' +
