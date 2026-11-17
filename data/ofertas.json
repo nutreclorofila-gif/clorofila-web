@@ -83,17 +83,54 @@
   },
   "curso": {
     "estado": "abierto",
-    "edicion": "Marzo 2027",
+    "edicion": "2027",
     "precio_total": "$12.200",
     "precio_cuotas": "3 cuotas de $4.800",
-    "_leeme_tarjeta": "precio_tarjeta vacío desde el 20/10: el curso se cobra en Tikzet y las 12 cuotas las da el link de Mercado Pago, no Tikzet (Inscripciones, 20/10). Antes decía «hasta 12 cuotas de $1.016 sin recargo». Si Tikzet da cuotas, se vuelve a cargar y el sitio lo muestra solo.",
-    "precio_tarjeta": "",
+    "_leeme_tarjeta": "17/11: vuelven las 12 cuotas con tarjeta (texto de Leo del curso de febrero 2027, vía Inscripciones). Del 20/10 al 17/11 estuvo vacío porque Tikzet no daba cuotas. Vacío, el sitio muestra el pago mes a mes.",
+    "precio_tarjeta": "hasta 12 cuotas de $1.016",
     "ahorro": "$2.200",
     "_leeme_link": "9/11: los tres grupos van al formulario propio de Tally (https://tally.so/r/0V7yvB), sin grupo prellenado porque Tally no lo toma por URL (probado). Lo armó Ordenar y lo revisa Inscripciones. Antes: Cada grupo tiene su evento en Tikzet (link). Con todos los grupos abiertos con link, los botones de inscripción llevan a Tikzet; sin link, se reserva por WhatsApp. En Tikzet hay dos entradas: el curso completo y el primer mes (18/10).",
     "_leeme_espera": "espera_link es la lista de espera («Avisame de la próxima edición»): la usan /curso y /programa cuando no hay grupo abierto, y los 12 artículos siempre. El 18/10 Leo decidió pasar las inscripciones a Tikzet; no cambiar este link hasta que exista el evento.",
     "espera_link": "https://tally.so/r/EkMbWL",
     "_leeme_grupos": "Agregar, sacar o cambiar un grupo se hace acá y nada más: los bloques de la página del curso, el schema de Google y los textos que nombran los días se dibujan solos. El grupo se cierra automáticamente cuando inicio_iso ya pasó. El nombre y el texto tienen que coincidir con inicio_iso: si no, el build avisa y no publica.",
     "grupos": [
+      {
+        "id": "intensivo",
+        "nombre": "Lunes, jueves y viernes",
+        "titulo": "Intensivo",
+        "horario": "10:00 a 12:00 h",
+        "inicio_iso": "2027-02-01",
+        "inicio_texto": "Arranca el lunes 1 de febrero de 2027",
+        "fin_iso": "2027-03-01",
+        "detalle": "Es el curso intensivo: las mismas 12 clases en cuatro semanas, tres por semana, hasta el lunes 1 de marzo. Se paga completo, $12.200, o con tarjeta en hasta 12 cuotas de $1.016.",
+        "frecuencia": "intensivo",
+        "clases": 12,
+        "estado": "abierto",
+        "link": "https://tally.so/r/0V7yvB",
+        "cupos_total": 14
+      },
+      {
+        "id": "martes",
+        "nombre": "Martes",
+        "horario": "19:00 a 21:00 h",
+        "inicio_iso": "2027-02-02",
+        "inicio_texto": "Arranca el martes 2 de febrero de 2027",
+        "detalle": "Tiene una clase por semana, 12 en total. Es para quienes salen de trabajar y quieren cerrar el día cocinando.",
+        "estado": "abierto",
+        "link": "https://tally.so/r/0V7yvB",
+        "cupos_total": 14
+      },
+      {
+        "id": "miercoles-manana",
+        "nombre": "Miércoles",
+        "horario": "10:00 a 12:00 h",
+        "inicio_iso": "2027-02-03",
+        "inicio_texto": "Arranca el miércoles 3 de febrero de 2027",
+        "detalle": "Tiene una clase por semana, 12 en total. Es el grupo de la mañana, con el estudio tranquilo y luz de día.",
+        "estado": "abierto",
+        "link": "https://tally.so/r/0V7yvB",
+        "cupos_total": 14
+      },
       {
         "id": "miercoles",
         "nombre": "Miércoles",
@@ -134,7 +171,8 @@
         "cupos_min": 12,
         "cupos_total": 15
       }
-    ]
+    ],
+    "_leeme_febrero": "17/11: Leo aprobó el 16/11 tres grupos de febrero 2027: martes de noche, miércoles de mañana y el intensivo de cuatro semanas (lunes, jueves y viernes). Los de marzo siguen igual. El intensivo no tiene pago mes a mes: completo o con tarjeta. Cupo 14 por grupo (Inscripciones)."
   },
   "talleres": {
     "_leeme": "Cada taller: mismo sistema que el tapeo. estado sin-fecha | abierto | ultimos | agotado. nombre_enlace: el nombre que va dentro de enlaces y botones cuando «nombre» lleva «veganos» (Leo no quiere «vegano» en botones ni enlaces).",
