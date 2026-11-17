@@ -926,8 +926,8 @@ datos.curso.cursada_programa = intensivo
     ].filter(Boolean).join(' ')
   : quincenal
   ? (semanales.length > 1
-      ? 'Los grupos de ' + semanales.map(function (g) { return g.nombre.toLowerCase(); }).join(' y de ') +
-        ' tienen una clase por semana, 12 en total. '
+      // Dos grupos el mismo día (miércoles de febrero y de marzo) se nombran una vez.
+      ? 'Los grupos de ' + losDias(semanales) + ' tienen una clase por semana, 12 en total. '
       : semanales.length
       ? 'El grupo de los ' + semanales[0].nombre.toLowerCase() + ' tiene una clase por semana, 12 en total. '
       : '') +
