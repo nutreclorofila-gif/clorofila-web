@@ -86,6 +86,15 @@
         "venta_desde": "2026-11-19",
         "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-6062",
         "_leeme": "21/11: Leo la pasó del viernes 11/12 al viernes 4/12 (aviso de Inscripciones; el 11/12 está de vacaciones, del 10/12 al mediodía al 13/12). Mismo evento de Tikzet, sin compras al cambiarla. 12 lugares, $2.600."
+      },
+      {
+        "iso": "2026-12-18",
+        "texto": "viernes 18 de diciembre",
+        "hora_inicio": "19:00",
+        "hora_fin": "22:30",
+        "venta_desde": "2026-11-21",
+        "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-4e08",
+        "_leeme": "21/11: Leo decidió tener dos fechas en diciembre, el 4 y el 18 (aviso de Inscripciones). Evento de Tikzet 7daaeca1. 12 lugares, $2.600."
       }
     ],
     "_leeme_mas_fechas": "mas_fechas: las fechas que vienen después de la segunda, en orden. Cuando pasa una fecha, la siguiente se corre sola (en el build y en el navegador, con estados.json). Sin link de Tikzet («link»: null), el botón de esa fecha lleva a WhatsApp."
