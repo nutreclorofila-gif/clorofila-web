@@ -677,7 +677,11 @@ datos.curso.cuotas_corto = String(datos.curso.precio_cuotas || '').replace(' cuo
 /* Sin cuotas con tarjeta confirmadas (20/10), los textos que las nombraban
    muestran el pago mes a mes. */
 const pt = String(datos.curso.precio_tarjeta || '').trim();
-datos.curso.precio_hero_frase = pt ? '. Con tarjeta son ' + pt : '. Si pagás mes a mes, son ' + datos.curso.precio_cuotas;
+// Las tres formas de pago juntas arriba (23/11): el mes a mes aparecía recién
+// en la boleta, al final de la página.
+datos.curso.precio_hero_frase = pt
+  ? '. Con tarjeta son ' + pt + '. Mes a mes son ' + datos.curso.precio_cuotas
+  : '. Si pagás mes a mes, son ' + datos.curso.precio_cuotas;
 datos.curso.tarjeta_li_html = pt ? '<li>Con tarjeta son ' + escapar(pt) + '.</li>' : '';
 datos.curso.tarjeta_fila_html = pt ? '<li><strong>Con tarjeta</strong><span>' + escapar(pt) + '</span></li>' : '';
 datos.curso.precio_destacado = pt || datos.curso.precio_total;
