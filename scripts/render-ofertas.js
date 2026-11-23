@@ -684,6 +684,10 @@ datos.curso.precio_destacado = pt || datos.curso.precio_total;
 datos.curso.precio_destacado_nota = pt
   ? datos.curso.precio_total + ' al contado, con la bonificación · o ' + datos.curso.precio_cuotas
   : 'El curso completo, o ' + datos.curso.precio_cuotas;
+// llms.txt nombraba solo el contado y las 3 cuotas: faltaba la tarjeta, que la
+// página del curso muestra como precio destacado (23/11).
+datos.curso.precio_llms = datos.curso.precio_total + ' al contado' +
+  (pt ? ', ' + pt + ' con tarjeta' : '') + ' o ' + datos.curso.precio_cuotas;
 datos.curso.cuotas_tarjeta_corto = String(datos.curso.precio_tarjeta || '')
   .replace(/^hasta\s+/, '').replace(' cuotas ', ' ');
 datos.curso.horarios_html = abiertos.length
