@@ -529,3 +529,9 @@
 
 [context.deploy-preview]
   ignore = "/bin/true"
+
+# /empresas no existe: quien la escriba llega a /team-building (23/11, plan de Experiencias)
+[[redirects]]
+  from = "/empresas"
+  to   = "/team-building"
+  status = 301
