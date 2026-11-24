@@ -77,6 +77,24 @@
         "hora_fin": "22:30",
         "venta_desde": "2026-10-14",
         "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-8062"
+      },
+      {
+        "iso": "2026-12-04",
+        "texto": "viernes 4 de diciembre",
+        "hora_inicio": "19:00",
+        "hora_fin": "22:30",
+        "venta_desde": "2026-11-19",
+        "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-6062",
+        "_leeme": "21/11: Leo la pasó del viernes 11/12 al viernes 4/12 (aviso de Inscripciones; el 11/12 está de vacaciones, del 10/12 al mediodía al 13/12). Mismo evento de Tikzet, sin compras al cambiarla. 12 lugares, $2.600."
+      },
+      {
+        "iso": "2026-12-18",
+        "texto": "viernes 18 de diciembre",
+        "hora_inicio": "19:00",
+        "hora_fin": "22:30",
+        "venta_desde": "2026-11-21",
+        "link": "https://www.tikzet.com/events/cena-y-taller-de-tapeo-clorofila-4e08",
+        "_leeme": "21/11: Leo decidió tener dos fechas en diciembre, el 4 y el 18 (aviso de Inscripciones). Evento de Tikzet 7daaeca1. 12 lugares, $2.600."
       }
     ],
     "_leeme_mas_fechas": "mas_fechas: las fechas que vienen después de la segunda, en orden. Cuando pasa una fecha, la siguiente se corre sola (en el build y en el navegador, con estados.json). Sin link de Tikzet («link»: null), el botón de esa fecha lleva a WhatsApp."
@@ -344,6 +362,54 @@
         "contexto": "reseña en Google",
         "propio": false,
         "cita": "Mucha paciencia, conocimiento y buena onda para enseñar. Absolutamente recomendado."
+      },
+      {
+        "id": "monica-giordano",
+        "nombre": "Mónica Giordano",
+        "contexto": "reseña en Google",
+        "propio": false,
+        "_leeme": "23/11: copiada tal cual de Google Maps por «optimizando Google». Vino a una actividad abierta. No se retoca.",
+        "cita": "Super linda propuesta. Cocinar en grupo, comer deli y conocer gente copada."
+      },
+      {
+        "id": "estefani-sabio",
+        "nombre": "Estefani Sabio",
+        "contexto": "reseña en Google",
+        "propio": false,
+        "_leeme": "23/11: copiada tal cual de Google Maps por «optimizando Google». Vino a una actividad abierta. No se retoca.",
+        "cita": "Me encantó!!! Me sentí muy bien en el grupo y el equipo de Clorofila también me hizo sentir muy cómoda. Recomiendo 🤗"
+      },
+      {
+        "id": "angela-dellacqua",
+        "nombre": "Angela Dell Acqua",
+        "contexto": "reseña en Google",
+        "propio": false,
+        "_leeme": "23/11: copiada tal cual de Google Maps por «optimizando Google». Vino a una actividad abierta. No se retoca.",
+        "cita": "Fui al curso de tapeo con el chef Leonardo. Me gustó la propuesta y la dinámica del taller. El grupo que me tocó compartir muy agradables."
+      },
+      {
+        "id": "luciana-de-lema",
+        "nombre": "Luciana de Lema",
+        "contexto": "reseña en Google",
+        "propio": false,
+        "_leeme": "23/11: copiada tal cual de Google Maps por «optimizando Google». Vino a una actividad abierta. No se retoca.",
+        "cita": "Disfrutamos de una excelente propuesta gastronómica y un gran ambiente! Nos divertimos mientras cocinamos, lo recomiendo!! Leo fue muy amable en compartirnos sus conocimientos."
+      },
+      {
+        "id": "martin-monllor",
+        "nombre": "Martín Monllor",
+        "contexto": "reseña en Google",
+        "propio": false,
+        "_leeme": "23/11: copiada tal cual de Google Maps por «optimizando Google». Vino a una actividad abierta. No se retoca.",
+        "cita": "Maravillosa experiencia!! Aprendimos haciendo y probando comida deliciosa y disfrutamos de un momento hermoso!!"
+      },
+      {
+        "id": "federico-rodriguez-puig",
+        "nombre": "Federico Rodríguez Puig",
+        "contexto": "reseña en Google",
+        "propio": false,
+        "_leeme": "23/11: copiada tal cual de Google Maps por «optimizando Google». Vino a una actividad abierta. No se retoca.",
+        "cita": "Muy divertido y educativo. La pasamos genial mientras aprendíamos tips. Apto para los de madera como yo! Leo un crack. 👍🏼"
       }
     ],
     "paginas": {
@@ -385,9 +451,14 @@
         "lucia"
       ],
       "team_building": [
-        "matias-arrieta",
-        "liber",
-        "isabella"
+        "luciana-de-lema",
+        "martin-monllor",
+        "federico-rodriguez-puig"
+      ],
+      "grupos": [
+        "monica-giordano",
+        "estefani-sabio",
+        "angela-dellacqua"
       ]
     }
   }

@@ -12,14 +12,14 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#0E1A13">
-<title>Experiencia gastronómica para empresas en Montevideo | Team building</title>
-<meta name="description" content="Team building gastronómico en Montevideo: la Cena y Taller de Tapeo o el Team building en la cocina. El equipo cocina junto a Leonardo Lemes y comparte la mesa.">
+<title>Team building de cocina para empresas en Montevideo</title>
+<meta name="description" content="El equipo cocina un menú completo y comparte la mesa, en nuestro estudio de Parque Rodó o en su empresa. Fin de año e integración. Pida propuesta.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://clorofila.uy/team-building">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://clorofila.uy/team-building">
-<meta property="og:title" content="Experiencia gastronómica para empresas en Montevideo | Team building">
-<meta name="twitter:title" content="Experiencia gastronómica para empresas en Montevideo | Team building">
+<meta property="og:title" content="Team building de cocina para empresas en Montevideo">
+<meta name="twitter:title" content="Team building de cocina para empresas en Montevideo">
 <meta property="og:description" content="Una actividad de cocina en equipo en nuestro estudio de Parque Rodó o en su empresa, con una comida compartida al finalizar. Propuestas a medida para cada empresa.">
 <meta property="og:image" content="https://clorofila.uy/og/og-team-building.jpg">
 <meta property="og:image:width" content="1200">
@@ -76,6 +76,10 @@
 @media (max-width:600px){.tb-usos{grid-template-columns:1fr}}
 .tb-intro{color:var(--cal-med);max-width:60ch;margin-top:.9rem}
 .tb-cierre-bloque{margin-top:2.4rem}
+.pasos-grupo{margin:0;padding-left:1.4rem;display:grid;gap:.9rem;color:var(--cal-med)}
+.pasos-grupo li::marker{color:var(--cal);font-weight:600}
+.pasos-tb{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr));gap:clamp(1.75rem,4vw,3.5rem)}
+.pasos-tb h2{font-size:var(--th-seccion);margin-block:0 1rem}
 </style>
 <!-- Analítica con consentimiento (GA4 + Meta Pixel): ver consent.js -->
 <script src="consent.js?v=20261008" defer></script>
@@ -99,7 +103,8 @@
       <li><a href="/curso">Curso</a></li>
       <li><a href="/talleres">Talleres</a></li>
       <li><a data-set="href=menu_experiencias" href="/tapeo">Experiencias</a></li>
-      <li><a href="/grupos" aria-current="page">Grupos y empresas</a></li>
+      <li><a href="/grupos">Grupos</a></li>
+      <li><a href="/team-building" aria-current="page">Empresas</a></li>
       <li class="nav-sec nav-corte"><a href="/articulos">Artículos</a></li>
       <li class="nav-sec"><a href="/sobre">Sobre Clorofila</a></li>
       <li class="nav-sec"><a href="/gift-card">Regalar</a></li>
@@ -118,28 +123,39 @@
     <span class="senal">Para empresas en Montevideo</span>
     <h1>Su equipo cocina un menú completo y después comparte la mesa.</h1>
     <p class="bajada">Proponemos un espacio de disfrute para los equipos de trabajo, con recetas saludables y sustentables. Leonardo Lemes, chef con 25 años de oficio, guía la actividad en nuestro estudio de Parque Rodó o en su empresa.</p>
-    <p class="hero-datos">Trabajamos desde 2013, formamos a más de <b>1.200</b> personas y tenemos <b><!--o:google.puntaje_texto-->4,9<!--/o--></b> en <!--o:google.resenas_texto-->30 reseñas en Google<!--/o-->.</p>
+    <!-- Recuadro de datos (23/11, mejoras frente a MDPAULA). Datos de las preguntas
+         de abajo. Sin precio: team building va siempre a cotizar. -->
+    <ul class="comanda-datos" aria-label="Datos de la actividad">
+      <li><strong>Lugar</strong><span>Nuestro estudio en Parque Rodó, o su empresa</span></li>
+      <li><strong>Personas</strong><span>Hasta 20, o hasta 25 en el espacio del fondo</span></li>
+      <li><strong>Horario</strong><span>De noche, de 19:00 a 22:30, o al mediodía</span></li>
+      <li><strong>Incluye</strong><span>Los insumos y la comida que preparan</span></li>
+      <li><strong>Menú</strong><span>Un solo menú para todo el equipo</span></li>
+    </ul>
     <div class="hero-tb-acciones">
-      <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quisiera%20solicitar%20una%20propuesta%20de%20team%20building%20gastron%C3%B3mico%20para%20mi%20empresa." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="team-building">Solicitar una propuesta</a>
+      <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quisiera%20una%20propuesta%20para%20mi%20empresa.%20Somos%20__%20personas%2C%20pensamos%20en%20la%20fecha%20__%20y%20el%20motivo%20es%20__." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="team-building">Solicitar una propuesta</a>
       <a href="#experiencias" class="btn btn-linea">Ver las dos experiencias</a>
     </div>
+    <p class="hero-datos">Trabajamos desde 2013, formamos a más de <b>1.200</b> personas y tenemos <b><!--o:google.puntaje_texto-->4,9<!--/o--></b> en <!--o:google.resenas_texto-->30 reseñas en Google<!--/o-->.</p>
     <p style="margin-top:1rem;font-size:var(--t-chico);color:var(--cal-med)">¿Es para amigos o familia? <a href="/grupos" class="enlace-vivo">Experiencia gastronómica para grupos</a></p>
     </div>
     <figure class="hero-tb-foto"><picture><source srcset="img-tapeo-g3-400.webp 400w, img-tapeo-g3.webp 760w" sizes="30vw" type="image/webp"><img src="img-tapeo-g3.jpg" width="760" height="760" alt="Tres participantes trabajando una masa en la mesa del estudio de Clorofila" loading="eager" decoding="async"></picture></figure>
   </div>
 </header>
 
-<!-- Despedidas de fin de año (10/11): texto 4.c de «experiencia-gastronomica-grupos.md»,
-     en el registro de esta página. Sin días ni precio: siempre a cotizar.
-     Espera el OK de Leo. -->
+<!-- Cierre de año (23/11): texto de Experiencias (H-para-la-sesion-web-23-11.md),
+     plan aprobado por Leo. Es la búsqueda fuerte donde no aparecíamos. Sin precio:
+     el team building va siempre a cotizar. Del 10 al 13/12 no hay fechas. -->
 <section class="cierre seccion" id="fin-de-ano">
   <div class="env cierre-caja">
     <div class="sube">
-      <h2>Despedidas de fin de año.</h2>
-      <p class="bajada">En diciembre armamos una noche o un mediodía solo para su equipo. Entre todos cocinan cuatro tapas, aprenden y después comparten la mesa. Puede ser en nuestro estudio de Parque Rodó o en la empresa.</p>
+      <h2>Cierre de año con su equipo.</h2>
+      <p class="bajada">Una tarde o una noche en nuestro estudio de Parque Rodó: cocinan juntos un menú de estación y después lo comparten en la mesa. Un solo menú para todo el grupo, y si alguien tiene una alergia, avisa antes.</p>
+      <p>Para grupos de 6 a 20 personas, o hasta 25 en el espacio del fondo. Hay fechas hasta el viernes 18 de diciembre.</p>
+      <p>En <a href="/articulos/actividad-fin-de-ano-empresas-montevideo" class="enlace-vivo">este artículo</a> contamos cómo es la actividad, paso a paso.</p>
     </div>
     <div class="sube" style="display:flex;flex-wrap:wrap;gap:.75rem">
-      <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quisiera%20una%20propuesta%20para%20la%20despedida%20de%20fin%20de%20a%C3%B1o%20de%20mi%20empresa." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="team-building">Solicitar una propuesta</a>
+      <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quisiera%20una%20propuesta%20para%20la%20despedida%20de%20fin%20de%20a%C3%B1o%20de%20mi%20empresa." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="team-building">Pedir una propuesta</a>
     </div>
   </div>
 </section>
@@ -251,7 +267,33 @@
       <h2>Lo que dicen quienes cocinaron con nosotros.</h2>
       <p><a href="https://maps.app.goo.gl/DnqBneEmi1GHNUjG9" target="_blank" rel="noopener noreferrer" class="enlace-vivo" style="color:var(--miel)"><!--o:google.linea_texto-->★ 4,9 en Google, sobre 30 reseñas<!--/o--></a></p>
     </div>
-    <div class="prueba sube"><!--o:html:testimonios.team_building_html--><div class="voz"><blockquote>«Excelente los cursos, gran persona Leo, se nota la pasión por la cocina saludable, tuve el gusto de trabajar con él y es una fuente de conocimientos, hermoso el espacio, uso y recomiendo!»</blockquote><cite>Matías Arrieta, reseña en Google</cite></div><div class="voz"><blockquote>«Mucha paciencia, conocimiento y buena onda para enseñar. Absolutamente recomendado.»</blockquote><cite>Líber Madruga, reseña en Google</cite></div><div class="voz"><blockquote>«Recomiendo sus clases, son toda una experiencia, te vas con un montón de momentos lindos, y aprendizajes muy útiles y únicos.»</blockquote><cite>Isabella Soumastre, reseña en Google</cite></div><!--/o--></div>
+    <div class="prueba sube"><!--o:html:testimonios.team_building_html--><div class="voz"><blockquote>«Disfrutamos de una excelente propuesta gastronómica y un gran ambiente! Nos divertimos mientras cocinamos, lo recomiendo!! Leo fue muy amable en compartirnos sus conocimientos.»</blockquote><cite>Luciana de Lema, reseña en Google</cite></div><div class="voz"><blockquote>«Maravillosa experiencia!! Aprendimos haciendo y probando comida deliciosa y disfrutamos de un momento hermoso!!»</blockquote><cite>Martín Monllor, reseña en Google</cite></div><div class="voz"><blockquote>«Muy divertido y educativo. La pasamos genial mientras aprendíamos tips. Apto para los de madera como yo! Leo un crack. 👍🏼»</blockquote><cite>Federico Rodríguez Puig, reseña en Google</cite></div><!--/o--></div>
+  </div>
+</section>
+
+<!-- Pasos y formato «Vamos a su lugar» (23/11, K-que-mejorar-23-11.md). -->
+<section class="seccion borde-sup" id="como-es">
+  <div class="env pasos-tb sube">
+    <div>
+      <h2>Cómo es la actividad.</h2>
+      <ol class="pasos-grupo">
+        <li>Cada persona tiene su puesto y Leonardo explica el fundamento de cada técnica.</li>
+        <li>El equipo reparte las tareas y prepara el menú entre todos.</li>
+        <li>Al terminar, se sientan a comer juntos lo que prepararon.</li>
+      </ol>
+    </div>
+    <div>
+      <h2>Cómo se coordina.</h2>
+      <ol class="pasos-grupo">
+        <li>Nos escriben por WhatsApp o por correo cuántas personas son y qué fecha tienen en mente.</li>
+        <li>Armamos la propuesta con el menú y el presupuesto.</li>
+        <li>Si les sirve, reservamos la fecha.</li>
+      </ol>
+    </div>
+    <div>
+      <h2>Vamos a su lugar.</h2>
+      <p>Si lo prefieren, hacemos la actividad en su empresa o en otro espacio que elijan. Llevamos los anafes y todo lo necesario para cocinar.</p>
+    </div>
   </div>
 </section>
 
@@ -278,7 +320,7 @@
       <p class="bajada">Cuéntennos qué están buscando para su equipo y diseñamos juntos la propuesta. Leonardo responde cada consulta personalmente.</p>
     </div>
     <div class="sube" style="display:flex;flex-wrap:wrap;gap:.75rem">
-      <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quisiera%20solicitar%20una%20propuesta%20de%20team%20building%20gastron%C3%B3mico%20para%20mi%20empresa." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="team-building">Escribir por WhatsApp</a>
+      <a href="https://wa.me/59894064148?text=Hola%20Leonardo%2C%20quisiera%20una%20propuesta%20para%20mi%20empresa.%20Somos%20__%20personas%2C%20pensamos%20en%20la%20fecha%20__%20y%20el%20motivo%20es%20__." target="_blank" rel="noopener noreferrer" class="btn btn-primario" data-producto="team-building">Escribir por WhatsApp</a>
       <a href="mailto:nutreclorofila@gmail.com?subject=Solicitud%20de%20propuesta%20de%20team%20building" class="btn btn-linea">Escribir por email</a>
     </div>
   </div>
